@@ -1,0 +1,36 @@
+/* Common */
+"LABEL_OK" = "确认";
+"LABEL_SIGNUP" = "注册";
+"LABEL_SIGNIN" = "登录";
+"LABEL_NAME" = "名称";
+"LABEL_USERNAME" = "用户名";
+"LABEL_PASSWORD" = "密码";
+"LABEL_EMAIL" = "邮箱";
+"LABEL_USERNAME(EMAIL)" = "用户名(邮箱)";
+"LABEL_FORGOTPASSWORD" = "忘记密码?";
+"LABEL_TERMS&CONDITIONS" = "条款和条件";
+
+/* Login */
+"BUTTON_SIGNIN" = "登录";
+"BUTTON_SIGNUP" = "注册";
+
+/* Alert */
+"ALERT_ERROR" = "错误";
+
+/* Validate */
+"VALIDATE_LENGTHTOOLONG" = "太长，最大字符数（中文占两个字符）为";
+"VALIDATE_LENGTHTOOSHORT" = "太短，最小字符数（中文占两个字符）为";
+"VALIDATE_INVALID" = "无效";
+"VALIDATE_INCORRECT" = "不正确";
+"VALIDATE_NO_AVATAR" = "请在“+”处选择头像";
+
+/* Actions */
+"ACTION_TAKEPHOTO" = "拍照";
+"ACTION_FROMALBUM" = "从相册选择";
+"ACTION_CANCEL" = "取消";
+
+/* Errors */
+"ERROR_CAMERA_DENIED" = "请在iPhone的“设置-隐私-相机”选项中，允许本应用访问你的相机";
+
+/* Exceptions */
+"EXCEPTION_CAMERA_OR_ALBUM_UNAVAILABLE" = "因为未知原因，无法使用您的相机或相册";

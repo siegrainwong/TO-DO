@@ -1,0 +1,8 @@
+pod 'Wilddog'
+pod 'SDAutoLayout'
+pod 'MBProgressHUD'
+pod 'TPKeyboardAvoiding'
+pod 'Masonry'
+pod 'JSONModel'
+pod 'Qiniu'
+pod 'GTMBase64'

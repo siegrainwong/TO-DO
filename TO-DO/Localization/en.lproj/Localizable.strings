@@ -1,0 +1,36 @@
+/* Common */
+"LABEL_OK" = "OK";
+"LABEL_SIGNUP" = "Sign Up";
+"LABEL_SIGNIN" = "Sign In";
+"LABEL_NAME" = "Name";
+"LABEL_USERNAME" = "Username";
+"LABEL_PASSWORD" = "Password";
+"LABEL_EMAIL" = "Email";
+"LABEL_USERNAME(EMAIL)" = "Username(Email)";
+"LABEL_FORGOTPASSWORD" = "FORGOT PASSWORD?";
+"LABEL_TERMS&CONDITIONS" = "TERMS & CONDITIONS";
+
+/* Login */
+"BUTTON_SIGNIN" = "SIGN IN";
+"BUTTON_SIGNUP" = "DONE";
+
+/* Alert */
+"ALERT_ERROR" = "Error";
+
+/* Validate */
+"VALIDATE_LENGTHTOOLONG" = " is too long, maximum is ";
+"VALIDATE_LENGTHTOOSHORT" = " is too short, minimum is ";
+"VALIDATE_INVALID" = " is invalid";
+"VALIDATE_INCORRECT" = " is incorrect";
+"VALIDATE_NO_AVATAR" = "Please select your avatar";
+
+/* Actions */
+"ACTION_TAKEPHOTO" = "Take a photo";
+"ACTION_FROMALBUM" = "Pick from album";
+"ACTION_CANCEL" = "Cancel";
+
+/* Errors */
+"ERROR_CAMERA_DENIED" = "Please allow app to access your device's camera in \"Settings\" -> \"Privacy\" -> \"Camera\"";
+
+/* Exceptions */
+"EXCEPTION_CAMERA_OR_ALBUM_UNAVAILABLE" = "Unable to open your camera or album because of an unexpected error";

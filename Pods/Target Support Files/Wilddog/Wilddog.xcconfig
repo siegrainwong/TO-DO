@@ -1,0 +1,6 @@
+GCC_PREPROCESSOR_DEFINITIONS = $(inherited) COCOAPODS=1
+HEADER_SEARCH_PATHS = "${PODS_ROOT}/Headers/Private" "${PODS_ROOT}/Headers/Private/Wilddog" "${PODS_ROOT}/Headers/Public" "${PODS_ROOT}/Headers/Public/AFNetworking" "${PODS_ROOT}/Headers/Public/GTMBase64" "${PODS_ROOT}/Headers/Public/HappyDNS" "${PODS_ROOT}/Headers/Public/JSONModel" "${PODS_ROOT}/Headers/Public/MBProgressHUD" "${PODS_ROOT}/Headers/Public/Masonry" "${PODS_ROOT}/Headers/Public/Qiniu" "${PODS_ROOT}/Headers/Public/SDAutoLayout" "${PODS_ROOT}/Headers/Public/TPKeyboardAvoiding" "${PODS_ROOT}/Headers/Public/Wilddog"
+LIBRARY_SEARCH_PATHS = $(inherited) "${PODS_ROOT}/Wilddog"
+OTHER_LDFLAGS = -ObjC -l"WilddogStatic" -l"sqlite3" -framework "JavaScriptCore"
+PODS_ROOT = ${SRCROOT}
+SKIP_INSTALL = YES
