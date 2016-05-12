@@ -31,6 +31,7 @@
 
 /* Errors */
 "ERROR_CAMERA_DENIED" = "请在iPhone的“设置-隐私-相机”选项中，允许本应用访问你的相机";
+"ERROR_AVATAR_UPLOAD_FAILED" = "上传图片失败，请重试";
 
 /* Exceptions */
 "EXCEPTION_CAMERA_OR_ALBUM_UNAVAILABLE" = "因为未知原因，无法使用您的相机或相册";

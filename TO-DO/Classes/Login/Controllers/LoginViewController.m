@@ -71,6 +71,7 @@ static NSString* const kAvatarCancelKey = @"cancel";
           isSignUp:isSignUp
         completion:^(bool error) {
             [loginView stopCommitAnimation];
+            [[UIApplication sharedApplication] setNetworkActivityIndicatorVisible:NO];
             if (error) return;
         }];
 }

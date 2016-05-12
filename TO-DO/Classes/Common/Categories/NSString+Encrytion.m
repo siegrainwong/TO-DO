@@ -48,14 +48,11 @@
 {
     const char* cKey = [key cStringUsingEncoding:NSASCIIStringEncoding];
     const char* cData = [self cStringUsingEncoding:NSASCIIStringEncoding];
-
     unsigned char cHMAC[CC_SHA1_DIGEST_LENGTH];
-
     CCHmac(kCCHmacAlgSHA1, cKey, strlen(cKey), cData, strlen(cData), cHMAC);
-
-    NSData* HMAC = [[NSData alloc] initWithBytes:cHMAC length:sizeof(cHMAC)];
-
-    NSString* hash = [GTMBase64 stringByEncodingData:HMAC];
+    NSData* HMACData = [NSData dataWithBytes:cHMAC length:sizeof(cHMAC)];
+    //这里要用网络安全的加密方式，否则加密后的base64字符串中有"/"符号
+    NSString* hash = [GTMBase64 stringByWebSafeEncodingData:HMACData padded:YES];
 
     return hash;
 }

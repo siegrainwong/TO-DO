@@ -6,6 +6,7 @@
 //  Copyright © 2016年 com.siegrain. All rights reserved.
 //
 
+#import "AppDelegate.h"
 #import "DataKeys.h"
 #import "FieldValidator.h"
 #import "ImageUploader.h"
@@ -21,10 +22,11 @@
 
 /* localization dictionary keys */
 static NSString* const kEmailInvalidKey = @"EmailInvalid";
-static NSString* const kAvatarHaventSelectedKey = @"AvatarHaventSelected";
 static NSString* const kNameInvalidKey = @"NameInvalid";
 static NSString* const kPasswordInvalidKey = @"PasswordInvalid";
 static NSString* const kUsernameOrPasswordIncorrectKey = @"UsernameOrPasswordIncorrect";
+static NSString* const kAvatarHaventSelectedKey = @"AvatarHaventSelected";
+static NSString* const kAvatarUploadFailedKey = @"AvatarUploadFailed";
 
 @implementation LoginDataManager {
     Wilddog* usersDataRef;
@@ -48,6 +50,9 @@ static NSString* const kUsernameOrPasswordIncorrectKey = @"UsernameOrPasswordInc
                         [NSString stringWithFormat:@"%@", NSLocalizedString(@"VALIDATE_NO_AVATAR", nil)]
                          forKey:kAvatarHaventSelectedKey];
     [_localDictionary setObject:
+                        [NSString stringWithFormat:@"%@", NSLocalizedString(@"ERROR_AVATAR_UPLOAD_FAILED", nil)]
+                         forKey:kAvatarUploadFailedKey];
+    [_localDictionary setObject:
                         [NSString stringWithFormat:@"%@%@",
                                                    isSignUp ? NSLocalizedString(@"LABLE_EMAIL", nil) : NSLocalizedString(@"LABEL_USERNAME(EMAIL)", nil), NSLocalizedString(@"VALIDATE_INVALID", nil)]
                          forKey:kEmailInvalidKey];
@@ -68,26 +73,24 @@ static NSString* const kUsernameOrPasswordIncorrectKey = @"UsernameOrPasswordInc
 {
     isSignUp = signUp;
 
-    [ImageUploader uploadImage:user.avatarImage];
-
     [self validateUser:user
             completion:^(Wilddog* userRef) {
                 if (!userRef) {
-                    if (completion) completion(YES);
-                    return;
+                    if (completion) return completion(YES);
                 }
 
                 if (isSignUp) {
-                    //TODO: upload avatar
 
                     // record user information
                     [userRef setValue:[user toDictionary]
                       withCompletionBlock:^(NSError* error, Wilddog* ref) {
+
                           if (completion) completion(NO);
                       }];
                 } else {
                     // update last login time
                     [userRef updateChildValues:[user toDictionaryWithKeys:@[ PropertyName(user, user.lastLoginTime) ]]];
+                    [[UIApplication sharedApplication] setNetworkActivityIndicatorVisible:NO];
                     if (completion) completion(NO);
                 }
             }];
@@ -142,6 +145,7 @@ static NSString* const kUsernameOrPasswordIncorrectKey = @"UsernameOrPasswordInc
 
     // server validate
     //
+    [[UIApplication sharedApplication] setNetworkActivityIndicatorVisible:YES];
     if (!isSignUp) {
         // validate with wilddog user authorization
         [usersDataRef authUser:user.email
@@ -160,18 +164,31 @@ static NSString* const kUsernameOrPasswordIncorrectKey = @"UsernameOrPasswordInc
                                 }];
            }];
     } else {
-        // create user on wilddog user database
-        [usersDataRef createUser:user.email
-                          password:user.password
-          withValueCompletionBlock:^(NSError* error, NSDictionary* result) {
-              if (error) {
-                  [SCLAlertHelper errorAlertWithContent:error.localizedDescription];
-                  return completion(nil);
-              }
+        // upload avatar
+        [ImageUploader
+          uploadImage:user.avatarImage
+                 type:UploadImageTypeAvatar
+               prefix:kUploadPrefixAvatar
+           completion:^(bool error, NSString* path) {
+               if (error) {
+                   [SCLAlertHelper errorAlertWithContent:_localDictionary[kAvatarUploadFailedKey]];
+                   return completion(nil);
+               }
+               user.avatar = path;
 
-              NSString* suid = [result[@"uid"] stringByReplacingOccurrencesOfString:@"simplelogin:" withString:@""];
-              return completion([usersDataRef childByAppendingPath:suid]);
-          }];
+               // create user on wilddog user database
+               [usersDataRef createUser:user.email
+                                 password:user.password
+                 withValueCompletionBlock:^(NSError* error, NSDictionary* result) {
+                     if (error) {
+                         [SCLAlertHelper errorAlertWithContent:error.localizedDescription];
+                         return completion(nil);
+                     }
+
+                     NSString* suid = [result[@"uid"] stringByReplacingOccurrencesOfString:@"simplelogin:" withString:@""];
+                     return completion([usersDataRef childByAppendingPath:suid]);
+                 }];
+           }];
     }
 }
 

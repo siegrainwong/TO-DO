@@ -31,6 +31,7 @@
 
 /* Errors */
 "ERROR_CAMERA_DENIED" = "Please allow app to access your device's camera in \"Settings\" -> \"Privacy\" -> \"Camera\"";
+"ERROR_AVATAR_UPLOAD_FAILED" = "Failed to upload avatar, please try again";
 
 /* Exceptions */
 "EXCEPTION_CAMERA_OR_ALBUM_UNAVAILABLE" = "Unable to open your camera or album because of an unexpected error";

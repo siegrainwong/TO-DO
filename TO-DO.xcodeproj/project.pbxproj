@@ -41,6 +41,8 @@
 		F95994531CE462E100B042BD /* QiniuTokenGenerator.m in Sources */ = {isa = PBXBuildFile; fileRef = F95994521CE462E100B042BD /* QiniuTokenGenerator.m */; };
 		F95994561CE4692D00B042BD /* NSString+Encrytion.m in Sources */ = {isa = PBXBuildFile; fileRef = F95994551CE4692D00B042BD /* NSString+Encrytion.m */; };
 		F959945B1CE47BC200B042BD /* ImageUploader.m in Sources */ = {isa = PBXBuildFile; fileRef = F959945A1CE47BC200B042BD /* ImageUploader.m */; };
+		F959945E1CE481CD00B042BD /* DateUtil.m in Sources */ = {isa = PBXBuildFile; fileRef = F959945D1CE481CD00B042BD /* DateUtil.m */; };
+		F95994611CE4898100B042BD /* UIImage+Compression.m in Sources */ = {isa = PBXBuildFile; fileRef = F95994601CE4898100B042BD /* UIImage+Compression.m */; };
 		F99A902E1CE30CB600EC0762 /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = F99A90301CE30CB600EC0762 /* Localizable.strings */; };
 		F9A723731CDDF8A800E3BC8E /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = F9A723721CDDF8A800E3BC8E /* main.m */; };
 		F9A723791CDDF8A800E3BC8E /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = F9A723781CDDF8A800E3BC8E /* ViewController.m */; };
@@ -135,6 +137,10 @@
 		F95994551CE4692D00B042BD /* NSString+Encrytion.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSString+Encrytion.m"; sourceTree = "<group>"; };
 		F95994591CE47BC200B042BD /* ImageUploader.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ImageUploader.h; sourceTree = "<group>"; };
 		F959945A1CE47BC200B042BD /* ImageUploader.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ImageUploader.m; sourceTree = "<group>"; };
+		F959945C1CE481CD00B042BD /* DateUtil.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DateUtil.h; sourceTree = "<group>"; };
+		F959945D1CE481CD00B042BD /* DateUtil.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DateUtil.m; sourceTree = "<group>"; };
+		F959945F1CE4898100B042BD /* UIImage+Compression.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIImage+Compression.h"; sourceTree = "<group>"; };
+		F95994601CE4898100B042BD /* UIImage+Compression.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIImage+Compression.m"; sourceTree = "<group>"; };
 		F99A902F1CE30CB600EC0762 /* Base */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = Base; path = Base.lproj/Localizable.strings; sourceTree = "<group>"; };
 		F99A90311CE30CB800EC0762 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/Localizable.strings; sourceTree = "<group>"; };
 		F99A90321CE30D9B00EC0762 /* Localizable.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Localizable.h; sourceTree = "<group>"; };
@@ -284,6 +290,8 @@
 				F92B876C1CE368B300D15EAE /* UIView+Extentsion.m */,
 				F95994541CE4692D00B042BD /* NSString+Encrytion.h */,
 				F95994551CE4692D00B042BD /* NSString+Encrytion.m */,
+				F959945F1CE4898100B042BD /* UIImage+Compression.h */,
+				F95994601CE4898100B042BD /* UIImage+Compression.m */,
 			);
 			path = Categories;
 			sourceTree = "<group>";
@@ -304,6 +312,8 @@
 				F95994571CE4787700B042BD /* Qiniu */,
 				F94CA23C1CE2FA9E0006904F /* FieldValidator.h */,
 				F94CA23D1CE2FA9E0006904F /* FieldValidator.m */,
+				F959945C1CE481CD00B042BD /* DateUtil.h */,
+				F959945D1CE481CD00B042BD /* DateUtil.m */,
 				F94CA23E1CE2FA9E0006904F /* GCDUtil.h */,
 				F94CA23F1CE2FA9E0006904F /* GCDUtil.m */,
 				F94CA2401CE2FA9E0006904F /* MD5Util.h */,
@@ -685,6 +695,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				F9A723791CDDF8A800E3BC8E /* ViewController.m in Sources */,
+				F959945E1CE481CD00B042BD /* DateUtil.m in Sources */,
 				F94CA2601CE2FB940006904F /* LoginViewController.m in Sources */,
 				F94CA20A1CE2F9780006904F /* UIImage+ImageEffects.m in Sources */,
 				F95994531CE462E100B042BD /* QiniuTokenGenerator.m in Sources */,
@@ -697,6 +708,7 @@
 				F94CA2041CE2F9780006904F /* SCLAlertViewResponder.m in Sources */,
 				F94CA2621CE2FB940006904F /* SGUser.m in Sources */,
 				F94CA2431CE2FA9E0006904F /* NSString+Extension.m in Sources */,
+				F95994611CE4898100B042BD /* UIImage+Compression.m in Sources */,
 				F95994561CE4692D00B042BD /* NSString+Encrytion.m in Sources */,
 				F94CA2491CE2FA9E0006904F /* FieldValidator.m in Sources */,
 				F94CA2611CE2FB940006904F /* LoginDataManager.m in Sources */,
