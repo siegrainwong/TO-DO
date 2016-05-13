@@ -13,9 +13,13 @@
 #define DataKeys_h
 
 #import <UIKit/UIKit.h>
-
-static NSString* const kQiniuDomain = @"http://o6yj5t1zc.bkt.clouddn.com/";
+/* 野狗空间地址 */
 static NSString* const kWilddogConnectionString = @"https://sgtodo.wilddogio.com/";
+/* 七牛空间地址 */
+static NSString* const kQiniuDomain = @"http://o6yj5t1zc.bkt.clouddn.com/";
+/* LeanCloud */
+static NSString* const kLeanCloudAppID = @"vDDTixlKPFwrGS60fnprdslF-gzGzoHsz";
+static NSString* const kLeanCloudAppKey = @"dM0JeJT5w3a74pE1yQ9UcMJk";
 
 //用户表
 static NSString* const kDATAKEY_USERS = @"users";

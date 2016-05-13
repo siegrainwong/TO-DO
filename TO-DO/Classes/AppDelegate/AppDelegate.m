@@ -11,6 +11,7 @@
 #import "LoginViewController.h"
 #import "WAuthData+Extension.h"
 #import "Wilddog.h"
+#import <AVOSCloud.h>
 
 @implementation AppDelegate {
     Wilddog* dataRef;
@@ -21,10 +22,7 @@
   didFinishLaunchingWithOptions:(NSDictionary*)launchOptions
 {
     // login state observer
-    dataRef = [[Wilddog alloc] initWithUrl:kWilddogConnectionString];
-    dataHandle = [dataRef observeAuthEventWithBlock:^(WAuthData* authData) {
-        NSLog(@"AppDelegate-用户变更：%@", authData.suid);
-    }];
+    [AVOSCloud setApplicationId:kLeanCloudAppID clientKey:kLeanCloudAppKey];
 
     // display home
     self.window = [[UIWindow alloc] initWithFrame:[[UIScreen mainScreen] bounds]];

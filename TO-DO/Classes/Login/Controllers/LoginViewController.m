@@ -66,14 +66,13 @@ static NSString* const kAvatarCancelKey = @"cancel";
 #pragma mark - commit
 - (void)loginViewDidPressCommitButton:(SGUser*)user isSignUp:(BOOL)isSignUp
 {
-    [dataManager
-      handleCommit:user
-          isSignUp:isSignUp
-        completion:^(bool error) {
-            [loginView stopCommitAnimation];
-            [[UIApplication sharedApplication] setNetworkActivityIndicatorVisible:NO];
-            if (error) return;
-        }];
+    [dataManager handleCommit:user
+                     isSignUp:isSignUp
+                     complete:^(bool succeed) {
+                         [loginView stopCommitAnimation];
+                         [[UIApplication sharedApplication] setNetworkActivityIndicatorVisible:NO];
+                         if (!succeed) return;
+                     }];
 }
 #pragma mark - avatar
 - (void)loginViewDidPressAvatarButton
@@ -126,7 +125,7 @@ static NSString* const kAvatarCancelKey = @"cancel";
 {
     [super viewDidDisappear:animated];
 
-    // 不能在UIImagePickerController作为TopController的时候释放这个Controller
+    // 不能在UIImagePickerController作为TopController的时候释放
     if (!releaseWhileDisappear)
         return;
 

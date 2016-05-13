@@ -14,7 +14,7 @@
             buildForArchiving = "YES">
             <BuildableReference
                BuildableIdentifier = 'primary'
-               BlueprintIdentifier = '0ED432B617B2199831F1C312'
+               BlueprintIdentifier = 'FA9146A400C1F3DEA5843CF9'
                BlueprintName = 'Wilddog'
                ReferencedContainer = 'container:Pods.xcodeproj'
                BuildableName = 'libWilddog.a'>

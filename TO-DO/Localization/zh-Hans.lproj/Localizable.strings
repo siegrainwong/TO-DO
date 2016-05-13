@@ -23,6 +23,9 @@
 "VALIDATE_INVALID" = "无效";
 "VALIDATE_INCORRECT" = "不正确";
 "VALIDATE_NO_AVATAR" = "请在“+”处选择头像";
+"VALIDATE_USER_DOESNT_EXIST" = "用户不存在";
+"VALIDATE_EMAIL_ALREADY_TAKEN" = "邮箱已被占用";
+"VALIDATE_LOGIN_FAILCOUNT_OVERLIMIT" = "登录失败次数超过限制，请稍候再试（15分钟后），或者通过忘记密码重设密码。";
 
 /* Actions */
 "ACTION_TAKEPHOTO" = "拍照";

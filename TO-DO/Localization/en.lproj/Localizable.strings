@@ -23,6 +23,10 @@
 "VALIDATE_INVALID" = " is invalid";
 "VALIDATE_INCORRECT" = " is incorrect";
 "VALIDATE_NO_AVATAR" = "Please select your avatar";
+"VALIDATE_USER_DOESNT_EXIST" = "User doesn't exist";
+"VALIDATE_EMAIL_ALREADY_TAKEN" = "Email has already been taken";
+"VALIDATE_LOGIN_FAILCOUNT_OVERLIMIT" = "Failed login count over limit, reset your password or try again later(15 mins)";
+
 
 /* Actions */
 "ACTION_TAKEPHOTO" = "Take a photo";

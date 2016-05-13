@@ -21,5 +21,5 @@
  *
  *  @return <#return value description#>
  */
-- (void)handleCommit:(SGUser*)user isSignUp:(BOOL)signUp completion:(void (^)(bool error))completion;
+- (void)handleCommit:(SGUser*)user isSignUp:(BOOL)signUp complete:(void (^)(bool succeed))complete;
 @end

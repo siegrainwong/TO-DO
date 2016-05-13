@@ -20,6 +20,7 @@ PODS:
   - AFNetworking/UIKit (2.6.3):
     - AFNetworking/NSURLConnection
     - AFNetworking/NSURLSession
+  - AVOSCloud (3.2.9)
   - GTMBase64 (1.0.0)
   - HappyDNS (0.2.3)
   - JSONModel (1.2.0)
@@ -33,6 +34,7 @@ PODS:
   - Wilddog (1.0.0)
 
 DEPENDENCIES:
+  - AVOSCloud
   - GTMBase64
   - JSONModel
   - Masonry
@@ -44,6 +46,7 @@ DEPENDENCIES:
 
 SPEC CHECKSUMS:
   AFNetworking: cb8d14a848e831097108418f5d49217339d4eb60
+  AVOSCloud: b020009b1f2e35c271d4d019075458c879fc1d21
   GTMBase64: 0da7372e95f5171f3f652db38cde6716f8eb5e24
   HappyDNS: 6d85942e64c28b4fa61f8c76580398f52d6d1d11
   JSONModel: 12523685c4b623553ccf844bbbf7007624317b2c
