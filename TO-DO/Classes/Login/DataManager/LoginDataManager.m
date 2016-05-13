@@ -78,14 +78,20 @@ static NSString* const kAvatarUploadFailedKey = @"AvatarUploadFailed";
                 if (!userRef) {
                     if (completion) return completion(YES);
                 }
-
                 if (isSignUp) {
-
                     // record user information
                     [userRef setValue:[user toDictionary]
                       withCompletionBlock:^(NSError* error, Wilddog* ref) {
-
-                          if (completion) completion(NO);
+                          // login with wilddog user authorization
+                          [usersDataRef authUser:user.email
+                                        password:user.password
+                             withCompletionBlock:^(NSError* error, WAuthData* authData) {
+                                 if (error) {
+                                     [SCLAlertHelper errorAlertWithContent:error.localizedDescription];
+                                     return completion(YES);
+                                 }
+                                 if (completion) completion(NO);
+                             }];
                       }];
                 } else {
                     // update last login time
