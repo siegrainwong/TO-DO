@@ -81,12 +81,12 @@ static NSString* const kAvatarCancelKey = @"cancel";
     UIAlertController* alertController = [UIAlertController alertControllerWithTitle:nil message:nil preferredStyle:UIAlertControllerStyleActionSheet];
     UIAlertAction* photoAction = [UIAlertAction actionWithTitle:_localDictionary[kAvatarTakePhotoKey]
                                                           style:UIAlertActionStyleDefault
-                                                        handler:^(UIAlertAction* _Nonnull action) {
+                                                        handler:^(UIAlertAction* action) {
                                                             [weakSelf alertActionDidSelect:UIImagePickerControllerSourceTypeCamera];
                                                         }];
     UIAlertAction* albumAction = [UIAlertAction actionWithTitle:_localDictionary[kAvatarFromAlbumKey]
                                                           style:UIAlertActionStyleDefault
-                                                        handler:^(UIAlertAction* _Nonnull action) {
+                                                        handler:^(UIAlertAction* action) {
                                                             [weakSelf alertActionDidSelect:UIImagePickerControllerSourceTypePhotoLibrary];
                                                         }];
     UIAlertAction* cancelAction = [UIAlertAction actionWithTitle:_localDictionary[kAvatarCancelKey] style:UIAlertActionStyleCancel handler:nil];
@@ -133,5 +133,7 @@ static NSString* const kAvatarCancelKey = @"cancel";
     loginView = nil;
     dataManager = nil;
     _localDictionary = nil;
+
+    [self removeFromParentViewController];
 }
 @end

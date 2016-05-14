@@ -18,7 +18,6 @@
 static NSInteger const kPopHeightWhenKeyboardShow = 170;
 static NSUInteger const kAvatarSizeDividedByView = 4;
 
-//TODO: 头像选择和上传
 @implementation LoginView {
     UIImageView* headerImageView;
     UILabel* headerTitle;
