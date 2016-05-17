@@ -13,7 +13,7 @@
 		F93BC14F1CE5E961000A34C5 /* menu.png in Resources */ = {isa = PBXBuildFile; fileRef = F93BC14C1CE5E961000A34C5 /* menu.png */; };
 		F93BC1501CE5E961000A34C5 /* search.png in Resources */ = {isa = PBXBuildFile; fileRef = F93BC14D1CE5E961000A34C5 /* search.png */; };
 		F93BC1571CE5E9EE000A34C5 /* HomeViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = F93BC1561CE5E9EE000A34C5 /* HomeViewController.m */; };
-		F94CA1ED1CE2F91F0006904F /* header bg.png in Resources */ = {isa = PBXBuildFile; fileRef = F94CA1EA1CE2F91F0006904F /* header bg.png */; };
+		F94CA1ED1CE2F91F0006904F /* login header bg.png in Resources */ = {isa = PBXBuildFile; fileRef = F94CA1EA1CE2F91F0006904F /* login header bg.png */; };
 		F94CA1EE1CE2F91F0006904F /* mark-signup.png in Resources */ = {isa = PBXBuildFile; fileRef = F94CA1EB1CE2F91F0006904F /* mark-signup.png */; };
 		F94CA1EF1CE2F91F0006904F /* mark.png in Resources */ = {isa = PBXBuildFile; fileRef = F94CA1EC1CE2F91F0006904F /* mark.png */; };
 		F94CA2031CE2F9780006904F /* SCLAlertView.m in Sources */ = {isa = PBXBuildFile; fileRef = F94CA1F31CE2F9780006904F /* SCLAlertView.m */; };
@@ -47,6 +47,7 @@
 		F959945B1CE47BC200B042BD /* ImageUploader.m in Sources */ = {isa = PBXBuildFile; fileRef = F959945A1CE47BC200B042BD /* ImageUploader.m */; };
 		F959945E1CE481CD00B042BD /* DateUtil.m in Sources */ = {isa = PBXBuildFile; fileRef = F959945D1CE481CD00B042BD /* DateUtil.m */; };
 		F95994611CE4898100B042BD /* UIImage+Compression.m in Sources */ = {isa = PBXBuildFile; fileRef = F95994601CE4898100B042BD /* UIImage+Compression.m */; };
+		F980EDCF1CE70F4E00A861FE /* HeaderView.m in Sources */ = {isa = PBXBuildFile; fileRef = F980EDCE1CE70F4E00A861FE /* HeaderView.m */; };
 		F99A902E1CE30CB600EC0762 /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = F99A90301CE30CB600EC0762 /* Localizable.strings */; };
 		F9A723731CDDF8A800E3BC8E /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = F9A723721CDDF8A800E3BC8E /* main.m */; };
 		F9A723791CDDF8A800E3BC8E /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = F9A723781CDDF8A800E3BC8E /* ViewController.m */; };
@@ -84,7 +85,7 @@
 		F93BC14D1CE5E961000A34C5 /* search.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = search.png; sourceTree = "<group>"; };
 		F93BC1551CE5E9EE000A34C5 /* HomeViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HomeViewController.h; sourceTree = "<group>"; };
 		F93BC1561CE5E9EE000A34C5 /* HomeViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HomeViewController.m; sourceTree = "<group>"; };
-		F94CA1EA1CE2F91F0006904F /* header bg.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "header bg.png"; sourceTree = "<group>"; };
+		F94CA1EA1CE2F91F0006904F /* login header bg.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "login header bg.png"; sourceTree = "<group>"; };
 		F94CA1EB1CE2F91F0006904F /* mark-signup.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "mark-signup.png"; sourceTree = "<group>"; };
 		F94CA1EC1CE2F91F0006904F /* mark.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = mark.png; sourceTree = "<group>"; };
 		F94CA1F21CE2F9780006904F /* SCLAlertView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SCLAlertView.h; sourceTree = "<group>"; };
@@ -150,6 +151,8 @@
 		F959945D1CE481CD00B042BD /* DateUtil.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DateUtil.m; sourceTree = "<group>"; };
 		F959945F1CE4898100B042BD /* UIImage+Compression.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIImage+Compression.h"; sourceTree = "<group>"; };
 		F95994601CE4898100B042BD /* UIImage+Compression.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIImage+Compression.m"; sourceTree = "<group>"; };
+		F980EDCD1CE70F4E00A861FE /* HeaderView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HeaderView.h; sourceTree = "<group>"; };
+		F980EDCE1CE70F4E00A861FE /* HeaderView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HeaderView.m; sourceTree = "<group>"; };
 		F99A902F1CE30CB600EC0762 /* Base */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = Base; path = Base.lproj/Localizable.strings; sourceTree = "<group>"; };
 		F99A90311CE30CB800EC0762 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/Localizable.strings; sourceTree = "<group>"; };
 		F99A90321CE30D9B00EC0762 /* Localizable.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Localizable.h; sourceTree = "<group>"; };
@@ -271,6 +274,8 @@
 		F93BC1591CE6087B000A34C5 /* Views */ = {
 			isa = PBXGroup;
 			children = (
+				F980EDCD1CE70F4E00A861FE /* HeaderView.h */,
+				F980EDCE1CE70F4E00A861FE /* HeaderView.m */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -288,7 +293,7 @@
 		F94CA1E91CE2F91F0006904F /* 1. Login */ = {
 			isa = PBXGroup;
 			children = (
-				F94CA1EA1CE2F91F0006904F /* header bg.png */,
+				F94CA1EA1CE2F91F0006904F /* login header bg.png */,
 				F94CA1EB1CE2F91F0006904F /* mark-signup.png */,
 				F94CA1EC1CE2F91F0006904F /* mark.png */,
 			);
@@ -689,7 +694,7 @@
 				F9A723841CDDF8A800E3BC8E /* LaunchScreen.storyboard in Resources */,
 				F94CA1EE1CE2F91F0006904F /* mark-signup.png in Resources */,
 				F93BC14E1CE5E961000A34C5 /* header bg.png in Resources */,
-				F94CA1ED1CE2F91F0006904F /* header bg.png in Resources */,
+				F94CA1ED1CE2F91F0006904F /* login header bg.png in Resources */,
 				F9A723811CDDF8A800E3BC8E /* Assets.xcassets in Resources */,
 				F93BC14F1CE5E961000A34C5 /* menu.png in Resources */,
 				F93BC1501CE5E961000A34C5 /* search.png in Resources */,
@@ -789,6 +794,7 @@
 				F94CA2031CE2F9780006904F /* SCLAlertView.m in Sources */,
 				F94CA2081CE2F9780006904F /* SCLTextView.m in Sources */,
 				F94CA2641CE2FB940006904F /* SGTextField.m in Sources */,
+				F980EDCF1CE70F4E00A861FE /* HeaderView.m in Sources */,
 				F94CA24B1CE2FA9E0006904F /* MD5Util.m in Sources */,
 				F94CA2481CE2FA9E0006904F /* TodoHelper.m in Sources */,
 				F94CA2091CE2F9780006904F /* SCLTimerDisplay.m in Sources */,

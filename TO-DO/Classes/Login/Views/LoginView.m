@@ -6,6 +6,7 @@
 //  Copyright © 2016年 com.siegrain. All rights reserved.
 //
 
+#import "HeaderView.h"
 #import "LoginView.h"
 #import "Macros.h"
 #import "Masonry.h"
@@ -16,12 +17,9 @@
 #import "UIView+Extentsion.h"
 
 static NSInteger const kPopHeightWhenKeyboardShow = 170;
-static NSUInteger const kAvatarSizeDividedByView = 4;
 
 @implementation LoginView {
-    UIImageView* headerImageView;
-    UILabel* headerTitle;
-    UIButton* avatarButton;
+    HeaderView* headerView;
     SGTextField* nameTextField;
     SGTextField* usernameTextField;
     SGTextField* passwordTextField;
@@ -37,7 +35,7 @@ static NSUInteger const kAvatarSizeDividedByView = 4;
 #pragma mark - localization
 - (void)localizeStrings
 {
-    headerTitle.text = NSLocalizedString(@"LABEL_SIGNUP", nil);
+    headerView.headerTitleLabel.text = NSLocalizedString(@"LABEL_SIGNUP", nil);
     nameTextField.title = NSLocalizedString(@"LABEL_NAME", nil);
     passwordTextField.title = NSLocalizedString(@"LABEL_PASSWORD", nil);
 
@@ -50,15 +48,15 @@ static NSUInteger const kAvatarSizeDividedByView = 4;
         [commitButton setTitle:NSLocalizedString(@"BUTTON_SIGNUP", nil) forState:UIControlStateNormal];
         [rightOperationButton setTitle:NSLocalizedString(@"LABEL_SIGNIN", nil) forState:UIControlStateNormal];
         [leftOperationButton setTitle:NSLocalizedString(@"LABEL_TERMS&CONDITIONS", nil) forState:UIControlStateNormal];
-        [avatarButton setBackgroundImage:avatarImage ? avatarImage : [UIImage imageAtResourcePath:@"mark-signup"] forState:UIControlStateNormal];
-        avatarButton.userInteractionEnabled = YES;
+        [headerView.avatarButton setBackgroundImage:avatarImage ? avatarImage : [UIImage imageAtResourcePath:@"mark-signup"] forState:UIControlStateNormal];
+        headerView.userInteractionEnabled = YES;
     } else {
         usernameTextField.title = NSLocalizedString(@"LABEL_USERNAME", nil);
         [commitButton setTitle:NSLocalizedString(@"BUTTON_SIGNIN", nil) forState:UIControlStateNormal];
         [rightOperationButton setTitle:NSLocalizedString(@"LABEL_SIGNUP", nil) forState:UIControlStateNormal];
         [leftOperationButton setTitle:NSLocalizedString(@"LABEL_FORGOTPASSWORD", nil) forState:UIControlStateNormal];
-        [avatarButton setBackgroundImage:[UIImage imageAtResourcePath:@"mark"] forState:UIControlStateNormal];
-        avatarButton.userInteractionEnabled = NO;
+        [headerView.avatarButton setBackgroundImage:[UIImage imageAtResourcePath:@"mark"] forState:UIControlStateNormal];
+        headerView.userInteractionEnabled = NO;
     }
 }
 #pragma mark - initial
@@ -77,22 +75,13 @@ static NSUInteger const kAvatarSizeDividedByView = 4;
 }
 - (void)setup
 {
-    headerImageView = [[UIImageView alloc] init];
-    headerImageView.image = [UIImage imageAtResourcePath:@"header bg.png"];
-    headerImageView.contentMode = UIViewContentModeScaleAspectFill;
-    [self addSubview:headerImageView];
-
-    headerTitle = [[UILabel alloc] init];
-    headerTitle.font = [TodoHelper themeFontWithSize:32];
-    headerTitle.textColor = [UIColor whiteColor];
-    headerTitle.layer.opacity = 0;
-    [headerImageView addSubview:headerTitle];
-
-    avatarButton = [[UIButton alloc] init];
-    avatarButton.layer.masksToBounds = YES;
-    avatarButton.layer.cornerRadius = kScreenWidth / 4 / 2;
-    [avatarButton addTarget:self action:@selector(avatarButtonDidPress) forControlEvents:UIControlEventTouchUpInside];
-    [self addSubview:avatarButton];
+    __weak typeof(self) weakSelf = self;
+    headerView = [HeaderView headerView];
+    [headerView.headerImageView setImage:[UIImage imageAtResourcePath:@"login header bg"]];
+    [headerView setHeaderViewDidPressAvatarButton:^{
+        [weakSelf avatarButtonDidPress];
+    }];
+    [self addSubview:headerView];
 
     nameTextField = [SGTextField textField];
     nameTextField.returnKeyType = UIReturnKeyNext;
@@ -155,28 +144,15 @@ static NSUInteger const kAvatarSizeDividedByView = 4;
 
 - (void)bindConstraints
 {
-    [headerImageView mas_makeConstraints:^(MASConstraintMaker* make) {
-        make.left.right.top.offset(0);
-        make.height.equalTo(self).dividedBy(3);
-    }];
-
-    [headerTitle mas_makeConstraints:^(MASConstraintMaker* make) {
-        make.centerX.equalTo(headerImageView);
-        make.centerY.offset(-30);
-        make.height.offset(80);
-    }];
-
-    [avatarButton mas_makeConstraints:^(MASConstraintMaker* make) {
-        make.centerX.equalTo(headerImageView);
-        make.top.equalTo(headerImageView.mas_bottom).offset(-60);
-        make.width.equalTo(self).dividedBy(kAvatarSizeDividedByView);
-        make.height.equalTo(avatarButton.mas_width);
+    [headerView mas_makeConstraints:^(MASConstraintMaker* make) {
+        make.left.top.right.offset(0);
+        make.height.equalTo(self).multipliedBy(0.4);
     }];
 
     [nameTextField mas_makeConstraints:^(MASConstraintMaker* make) {
         make.left.offset(25);
         make.right.offset(-25);
-        make.centerY.offset(-30);
+        make.centerY.offset(-20);
         make.height.offset(0);
     }];
 
@@ -218,7 +194,7 @@ static NSUInteger const kAvatarSizeDividedByView = 4;
         make.width.height.equalTo(leftOperationButton);
     }];
 
-    MASAttachKeys(headerImageView, avatarButton, nameTextField, usernameTextField, passwordTextField, commitButton,
+    MASAttachKeys(nameTextField, usernameTextField, passwordTextField, commitButton,
                   leftOperationButton, rightOperationButton);
 }
 
@@ -271,7 +247,7 @@ static NSUInteger const kAvatarSizeDividedByView = 4;
 }
 - (void)enableView:(BOOL)isEnable
 {
-    avatarButton.userInteractionEnabled = isEnable;
+    headerView.userInteractionEnabled = isEnable;
     leftOperationButton.enabled = isEnable;
     rightOperationButton.enabled = isEnable;
     commitButton.enabled = isEnable;
@@ -290,7 +266,7 @@ static NSUInteger const kAvatarSizeDividedByView = 4;
 - (void)setAvatar:(UIImage*)image
 {
     avatarImage = image;
-    [avatarButton setBackgroundImage:image forState:UIControlStateNormal];
+    [headerView.avatarButton setBackgroundImage:image forState:UIControlStateNormal];
 }
 #pragma mark - switch to sign in/ sign up mode with animation
 - (void)switchModeAnimate
@@ -309,7 +285,7 @@ static NSUInteger const kAvatarSizeDividedByView = 4;
     }];
     [UIView animateWithDuration:0.3
                      animations:^{
-                         headerTitle.layer.opacity = isSignUp;
+                         headerView.headerTitleLabel.layer.opacity = isSignUp;
                          nameTextField.layer.opacity = isSignUp;
                          [weakSelf layoutIfNeeded];
                      }];
@@ -327,7 +303,7 @@ static NSUInteger const kAvatarSizeDividedByView = 4;
 {
     CGFloat viewPopHeight = show ? kPopHeightWhenKeyboardShow : 0;
 
-    // Mark: SDAutoLayout 更新约束有动画的话有Bug，只能用 Masonry
+    // Mark: SDAutoLayout 更新约束有动画的话有 Bug ，只能用 Masonry
     __weak typeof(self) weakSelf = self;
     [self mas_updateConstraints:^(MASConstraintMaker* make) {
         make.top.offset(-viewPopHeight);
