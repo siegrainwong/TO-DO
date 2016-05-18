@@ -76,10 +76,9 @@ static NSInteger const kPopHeightWhenKeyboardShow = 170;
 - (void)setup
 {
     __weak typeof(self) weakSelf = self;
-    headerView = [HeaderView headerView];
+    headerView = [HeaderView headerViewWithAvatarPosition:HeaderAvatarPositionBottom titleAlignement:HeaderTitleAlignementCenter];
     headerView.rightOperationButton.hidden = YES;
     headerView.headerTitleLabel.layer.opacity = 0;
-    headerView.avatarPosition = HeaderAvatarPositionBottom;
     [headerView.headerImageView setImage:[UIImage imageAtResourcePath:@"login header bg"]];
     [headerView setHeaderViewDidPressAvatarButton:^{
         [weakSelf avatarButtonDidPress];

@@ -45,11 +45,13 @@
 }
 - (void)setup
 {
-    headerView = [HeaderView headerView];
-    headerView.avatarPosition = HeaderAvatarPositionCenter;
+    headerView = [HeaderView headerViewWithAvatarPosition:HeaderAvatarPositionCenter titleAlignement:HeaderTitleAlignementCenter];
     [headerView.rightOperationButton setImage:[UIImage imageNamed:@"add"] forState:UIControlStateNormal];
     [headerView.avatarButton setImage:[UIImage qn_imageWithString:user.avatar andStyle:kImageStyleSmall] forState:UIControlStateNormal];
     headerView.headerImageView.image = [UIImage imageAtResourcePath:@"header bg"];
+    [headerView setHeaderViewDidPressAvatarButton:^{
+        [SGUser logOut];
+    }];
     self.tableView.tableHeaderView = headerView;
 }
 - (void)bindConstraints

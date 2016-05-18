@@ -20,14 +20,6 @@ typedef NS_ENUM(NSInteger, HeaderTitleAlignement) {
 
 @interface HeaderView : UIView
 /**
- *  头像按钮位置
- */
-@property (nonatomic, readwrite, assign) HeaderAvatarPosition avatarPosition;
-/**
- *  标题对其方式
- */
-@property (nonatomic, readwrite, assign) HeaderTitleAlignement titleAlignement;
-/**
  *  标题Label
  */
 @property (nonatomic, readonly, strong) UILabel* headerTitleLabel;
@@ -53,5 +45,5 @@ typedef NS_ENUM(NSInteger, HeaderTitleAlignement) {
  */
 @property (nonatomic, readwrite, copy) void (^headerViewDidPressAvatarButton)();
 
-+ (instancetype)headerView;
++ (instancetype)headerViewWithAvatarPosition:(HeaderAvatarPosition)avatarPosition titleAlignement:(HeaderTitleAlignement)titleAlignement;
 @end

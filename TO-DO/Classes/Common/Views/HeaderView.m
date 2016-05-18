@@ -12,13 +12,19 @@
 #import "TodoHelper.h"
 #import "UIImage+Extension.h"
 
-static CGFloat const kAvatarSizeMultipliedByHeight = 0.15;
+static CGFloat const kAvatarSizeMultipliedByHeight = 0.16;
+static CGFloat const kTitleLabelHeight = 40;
 
-@implementation HeaderView
+@implementation HeaderView {
+    HeaderAvatarPosition avatarPosition;
+    HeaderTitleAlignement titleAlignement;
+}
 #pragma mark - initial
-+ (instancetype)headerView
++ (instancetype)headerViewWithAvatarPosition:(HeaderAvatarPosition)avatarPosition titleAlignement:(HeaderTitleAlignement)titleAlignement
 {
     HeaderView* headerView = [[HeaderView alloc] init];
+    headerView->avatarPosition = avatarPosition;
+    headerView->titleAlignement = titleAlignement;
     [headerView setup];
     [headerView bindConstraints];
 
@@ -59,35 +65,24 @@ static CGFloat const kAvatarSizeMultipliedByHeight = 0.15;
         make.height.equalTo(_rightOperationButton.mas_width);
     }];
 
-    [self setAvatarPosition:_avatarPosition];
-    [self setTitleAlignement:_titleAlignement];
-}
-#pragma mark - avatar button position change
-- (void)setAvatarPosition:(HeaderAvatarPosition)avatarPosition
-{
-    _avatarPosition = avatarPosition;
-    if (avatarPosition == HeaderAvatarPositionCenter) {
-    } else {
-        [_headerTitleLabel mas_remakeConstraints:^(MASConstraintMaker* make) {
-            make.centerX.equalTo(_headerImageView);
-            make.centerY.offset(-30);
-            make.height.offset(80);
-        }];
-    }
-}
-#pragma mark - title label alignement change
-- (void)setTitleAlignement:(HeaderTitleAlignement)titleAlignement
-{
-    _titleAlignement = titleAlignement;
-    if (titleAlignement == HeaderTitleAlignementCenter) {
-        [_avatarButton mas_remakeConstraints:^(MASConstraintMaker* make) {
-            make.centerX.equalTo(_headerImageView);
+    [_avatarButton mas_makeConstraints:^(MASConstraintMaker* make) {
+        make.centerX.equalTo(_headerImageView);
+        if (avatarPosition == HeaderAvatarPositionCenter)
+            make.top.offset(kScreenHeight * 0.18);
+        else
             make.bottom.offset(0);
-            make.width.offset(kScreenHeight * kAvatarSizeMultipliedByHeight);
-            make.height.equalTo(_avatarButton.mas_width);
-        }];
-    } else {
-    }
+        make.width.offset(kScreenHeight * kAvatarSizeMultipliedByHeight);
+        make.height.equalTo(_avatarButton.mas_width);
+    }];
+
+    [_headerTitleLabel mas_makeConstraints:^(MASConstraintMaker* make) {
+        make.centerX.equalTo(_headerImageView);
+        if (avatarPosition == HeaderAvatarPositionCenter && titleAlignement == HeaderTitleAlignementCenter)
+            make.top.equalTo(_avatarButton.mas_bottom).offset(5);
+        else
+            make.centerY.offset(-30);
+        make.height.offset(kTitleLabelHeight);
+    }];
 }
 #pragma mark - avatar button event
 - (void)avatarButtonDidPress
