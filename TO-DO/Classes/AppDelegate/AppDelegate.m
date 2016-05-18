@@ -9,8 +9,11 @@
 #import "AppDelegate.h"
 #import "DataKeys.h"
 #import "HomeTableViewController.h"
+#import "JTNavigationController.h"
 #import "LoginViewController.h"
+#import "Macros.h"
 #import "SGUser.h"
+#import "UIImage+Extension.h"
 #import <AVOSCloud.h>
 
 @implementation AppDelegate
@@ -25,9 +28,9 @@
     SGUser* user = [SGUser currentUser];
     if (user) {
         NSLog(@"当前用户：%@", user.username);
-        [self switchRootViewController:[[HomeTableViewController alloc] init]];
+        [self switchRootViewController:[[HomeTableViewController alloc] init] isNavigation:YES];
     } else {
-        [self switchRootViewController:[[LoginViewController alloc] init]];
+        [self switchRootViewController:[[LoginViewController alloc] init] isNavigation:NO];
     }
 
     return YES;
@@ -63,12 +66,20 @@
     [SGUser registerSubclass];
 }
 #pragma mark - appdelegate methods
-- (void)switchRootViewController:(UIViewController*)viewController
+- (void)switchRootViewController:(UIViewController*)viewController isNavigation:(BOOL)isNavigation
 {
+    [UIApplication sharedApplication].statusBarStyle = UIStatusBarStyleLightContent;
+
     self.window = [[UIWindow alloc] initWithFrame:[[UIScreen mainScreen] bounds]];
     self.window.backgroundColor = [UIColor whiteColor];
 
-    self.window.rootViewController = viewController;
+    JTNavigationController* nav;
+    if (isNavigation) {
+        nav = [[JTNavigationController alloc] initWithRootViewController:viewController];
+        nav.fullScreenPopGestureEnabled = YES;
+    }
+
+    self.window.rootViewController = isNavigation ? nav : viewController;
 
     [self.window makeKeyAndVisible];
 }

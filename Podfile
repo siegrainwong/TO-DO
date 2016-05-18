@@ -11,5 +11,6 @@ pod 'Qiniu'
 pod 'GTMBase64'
 pod 'AVOSCloud'
 pod 'SDWebImage'
+pod 'JTNavigationController'
 
 end

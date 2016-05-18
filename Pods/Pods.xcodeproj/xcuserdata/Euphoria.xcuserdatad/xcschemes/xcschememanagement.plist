@@ -24,6 +24,11 @@
 			<key>isShown</key>
 			<false/>
 		</dict>
+		<key>JTNavigationController.xcscheme</key>
+		<dict>
+			<key>isShown</key>
+			<false/>
+		</dict>
 		<key>MBProgressHUD.xcscheme</key>
 		<dict>
 			<key>isShown</key>
@@ -62,17 +67,12 @@
 	</dict>
 	<key>SuppressBuildableAutocreation</key>
 	<dict>
-		<key>09DB99B4731D97E068140D087A6EF175</key>
+		<key>07B9B6BE56EE33E06FFAC4E805F9D8A8</key>
 		<dict>
 			<key>primary</key>
 			<true/>
 		</dict>
 		<key>09FA060F1A0492FB25232F489AC4E573</key>
-		<dict>
-			<key>primary</key>
-			<true/>
-		</dict>
-		<key>28E4F9CD551764B3909FBC33DA7BD82F</key>
 		<dict>
 			<key>primary</key>
 			<true/>
@@ -92,22 +92,32 @@
 			<key>primary</key>
 			<true/>
 		</dict>
+		<key>59590A52B608569459CEE99FE7AE8791</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
 		<key>6627E2CE58504A680DE862D5526B302C</key>
 		<dict>
 			<key>primary</key>
 			<true/>
 		</dict>
-		<key>86FD10D0A7371115689BCA5A60299452</key>
+		<key>D388C80700976483CA4F902484AD314F</key>
 		<dict>
 			<key>primary</key>
 			<true/>
 		</dict>
-		<key>AE9952C03641527015D3A7A3EADB9E6E</key>
+		<key>D49115A39D5768ED8002CDA856E9DBB4</key>
 		<dict>
 			<key>primary</key>
 			<true/>
 		</dict>
-		<key>B2927308E8834E9113FA9DE26F064CB5</key>
+		<key>DD2203F5799B3018DAAA15F078BE1441</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
+		<key>E694B7A9158D69735D08E399D0B8ED5C</key>
 		<dict>
 			<key>primary</key>
 			<true/>

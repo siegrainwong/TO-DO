@@ -76,7 +76,7 @@ static NSString* const kAvatarCancelKey = @"cancel";
                          if (!succeed) return;
 
                          AppDelegate* delegate = (AppDelegate*)[UIApplication sharedApplication].delegate;
-                         [delegate switchRootViewController:[[HomeTableViewController alloc] init]];
+                         [delegate switchRootViewController:[[HomeTableViewController alloc] init] isNavigation:YES];
                      }];
 }
 #pragma mark - avatar

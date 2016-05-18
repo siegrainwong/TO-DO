@@ -14,10 +14,10 @@
             buildForArchiving = "YES">
             <BuildableReference
                BuildableIdentifier = 'primary'
-               BlueprintIdentifier = 'DD2203F5799B3018DAAA15F078BE1441'
-               BlueprintName = 'TPKeyboardAvoiding'
+               BlueprintIdentifier = 'E694B7A9158D69735D08E399D0B8ED5C'
+               BlueprintName = 'JTNavigationController'
                ReferencedContainer = 'container:Pods.xcodeproj'
-               BuildableName = 'libTPKeyboardAvoiding.a'>
+               BuildableName = 'libJTNavigationController.a'>
             </BuildableReference>
          </BuildActionEntry>
       </BuildActionEntries>

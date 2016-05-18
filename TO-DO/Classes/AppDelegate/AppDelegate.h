@@ -23,5 +23,5 @@
 /**
  *  切换根控制器
  */
-- (void)switchRootViewController:(UIViewController*)viewController;
+- (void)switchRootViewController:(UIViewController*)viewController isNavigation:(BOOL)isNavigation;
 @end

@@ -67,7 +67,7 @@ static CGFloat const kTitleLabelHeight = 40;
     }];
 
     [_rightOperationButton mas_makeConstraints:^(MASConstraintMaker* make) {
-        make.bottom.offset(-kScreenHeight * 0.03);
+        make.bottom.offset(-kScreenHeight * 0.02);
         make.right.offset(-20);
         make.width.offset(kScreenHeight * 0.1);
         make.height.equalTo(_rightOperationButton.mas_width);
