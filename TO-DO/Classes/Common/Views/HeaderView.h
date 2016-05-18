@@ -22,15 +22,15 @@ typedef NS_ENUM(NSInteger, HeaderTitleAlignement) {
 /**
  *  标题Label
  */
-@property (nonatomic, readonly, strong) UILabel* headerTitleLabel;
+@property (nonatomic, readonly, strong) UILabel* titleLabel;
 /**
  *  副标题Label
  */
-@property (nonatomic, readonly, strong) UILabel* headerSubtitleLabel;
+@property (nonatomic, readonly, strong) UILabel* subtitleLabel;
 /**
  *  背景ImageView
  */
-@property (nonatomic, readonly, strong) UIImageView* headerImageView;
+@property (nonatomic, readonly, strong) UIImageView* backgroundImageView;
 /**
  *  头像按钮
  */

@@ -22,7 +22,8 @@
 #pragma mark - localization
 - (void)localizeStrings
 {
-    headerView.headerTitleLabel.text = NSLocalizedString(@"LABEL_TASKS", nil);
+    headerView.titleLabel.text = NSLocalizedString(@"LABEL_TASKS", nil);
+    headerView.subtitleLabel.text = @"MAY 14, 2016";
 }
 #pragma mark - initial
 - (void)viewDidLoad
@@ -48,7 +49,7 @@
     headerView = [HeaderView headerViewWithAvatarPosition:HeaderAvatarPositionCenter titleAlignement:HeaderTitleAlignementCenter];
     [headerView.rightOperationButton setImage:[UIImage imageNamed:@"add"] forState:UIControlStateNormal];
     [headerView.avatarButton setImage:[UIImage qn_imageWithString:user.avatar andStyle:kImageStyleSmall] forState:UIControlStateNormal];
-    headerView.headerImageView.image = [UIImage imageAtResourcePath:@"header bg"];
+    headerView.backgroundImageView.image = [UIImage imageAtResourcePath:@"header bg"];
     [headerView setHeaderViewDidPressAvatarButton:^{
         [SGUser logOut];
     }];
@@ -59,7 +60,7 @@
     [headerView mas_makeConstraints:^(MASConstraintMaker* make) {
         make.top.left.offset(0);
         make.width.offset(kScreenWidth);
-        make.height.offset(kScreenHeight * 0.65);
+        make.height.offset(kScreenHeight * 0.6);
     }];
 }
 @end

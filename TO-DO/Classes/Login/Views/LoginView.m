@@ -35,7 +35,7 @@ static NSInteger const kPopHeightWhenKeyboardShow = 170;
 #pragma mark - localization
 - (void)localizeStrings
 {
-    headerView.headerTitleLabel.text = NSLocalizedString(@"LABEL_SIGNUP", nil);
+    headerView.titleLabel.text = NSLocalizedString(@"LABEL_SIGNUP", nil);
     nameTextField.title = NSLocalizedString(@"LABEL_NAME", nil);
     passwordTextField.title = NSLocalizedString(@"LABEL_PASSWORD", nil);
 
@@ -78,8 +78,8 @@ static NSInteger const kPopHeightWhenKeyboardShow = 170;
     __weak typeof(self) weakSelf = self;
     headerView = [HeaderView headerViewWithAvatarPosition:HeaderAvatarPositionBottom titleAlignement:HeaderTitleAlignementCenter];
     headerView.rightOperationButton.hidden = YES;
-    headerView.headerTitleLabel.layer.opacity = 0;
-    [headerView.headerImageView setImage:[UIImage imageAtResourcePath:@"login header bg"]];
+    headerView.titleLabel.layer.opacity = 0;
+    [headerView.backgroundImageView setImage:[UIImage imageAtResourcePath:@"login header bg"]];
     [headerView setHeaderViewDidPressAvatarButton:^{
         [weakSelf avatarButtonDidPress];
     }];
@@ -284,7 +284,7 @@ static NSInteger const kPopHeightWhenKeyboardShow = 170;
     }];
     [UIView animateWithDuration:0.3
                      animations:^{
-                         headerView.headerTitleLabel.layer.opacity = isSignUp;
+                         headerView.titleLabel.layer.opacity = isSignUp;
                          nameTextField.layer.opacity = isSignUp;
                          [weakSelf layoutIfNeeded];
                      }];

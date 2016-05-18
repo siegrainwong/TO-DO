@@ -32,14 +32,19 @@ static CGFloat const kTitleLabelHeight = 40;
 }
 - (void)setup
 {
-    _headerImageView = [[UIImageView alloc] init];
-    _headerImageView.contentMode = UIViewContentModeScaleToFill;
-    [self addSubview:_headerImageView];
+    _backgroundImageView = [[UIImageView alloc] init];
+    _backgroundImageView.contentMode = UIViewContentModeScaleToFill;
+    [self addSubview:_backgroundImageView];
 
-    _headerTitleLabel = [[UILabel alloc] init];
-    _headerTitleLabel.font = [TodoHelper themeFontWithSize:32];
-    _headerTitleLabel.textColor = [UIColor whiteColor];
-    [self addSubview:_headerTitleLabel];
+    _titleLabel = [[UILabel alloc] init];
+    _titleLabel.font = [TodoHelper themeFontWithSize:32];
+    _titleLabel.textColor = [UIColor whiteColor];
+    [self addSubview:_titleLabel];
+
+    _subtitleLabel = [[UILabel alloc] init];
+    _subtitleLabel.font = [TodoHelper themeFontWithSize:12];
+    _subtitleLabel.textColor = ColorWithRGB(0xCCCCCC);
+    [self addSubview:_subtitleLabel];
 
     _avatarButton = [[UIButton alloc] init];
     _avatarButton.layer.masksToBounds = YES;
@@ -53,20 +58,23 @@ static CGFloat const kTitleLabelHeight = 40;
 }
 - (void)bindConstraints
 {
-    [_headerImageView mas_makeConstraints:^(MASConstraintMaker* make) {
+    [_backgroundImageView mas_makeConstraints:^(MASConstraintMaker* make) {
         make.left.right.top.offset(0);
-        make.height.equalTo(self).multipliedBy(0.9);
+        if (avatarPosition == HeaderAvatarPositionBottom)
+            make.height.equalTo(self).multipliedBy(0.9);
+        else
+            make.height.equalTo(self);
     }];
 
     [_rightOperationButton mas_makeConstraints:^(MASConstraintMaker* make) {
-        make.bottom.offset(-kScreenHeight * 0.08);
+        make.bottom.offset(-kScreenHeight * 0.03);
         make.right.offset(-20);
         make.width.offset(kScreenHeight * 0.1);
         make.height.equalTo(_rightOperationButton.mas_width);
     }];
 
     [_avatarButton mas_makeConstraints:^(MASConstraintMaker* make) {
-        make.centerX.equalTo(_headerImageView);
+        make.centerX.equalTo(_backgroundImageView);
         if (avatarPosition == HeaderAvatarPositionCenter)
             make.top.offset(kScreenHeight * 0.18);
         else
@@ -75,13 +83,19 @@ static CGFloat const kTitleLabelHeight = 40;
         make.height.equalTo(_avatarButton.mas_width);
     }];
 
-    [_headerTitleLabel mas_makeConstraints:^(MASConstraintMaker* make) {
-        make.centerX.equalTo(_headerImageView);
+    [_titleLabel mas_makeConstraints:^(MASConstraintMaker* make) {
+        make.centerX.equalTo(_backgroundImageView);
         if (avatarPosition == HeaderAvatarPositionCenter && titleAlignement == HeaderTitleAlignementCenter)
             make.top.equalTo(_avatarButton.mas_bottom).offset(5);
         else
             make.centerY.offset(-30);
         make.height.offset(kTitleLabelHeight);
+    }];
+
+    [_subtitleLabel mas_makeConstraints:^(MASConstraintMaker* make) {
+        make.top.equalTo(_titleLabel.mas_bottom).offset(5);
+        make.height.offset(20);
+        make.centerX.equalTo(_titleLabel);
     }];
 }
 #pragma mark - avatar button event
