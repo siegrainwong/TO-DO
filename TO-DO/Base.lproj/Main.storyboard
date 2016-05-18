@@ -17,7 +17,7 @@
                         <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="login header bg.png" translatesAutoresizingMaskIntoConstraints="NO" id="JyF-ZK-Vis">
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="header bg.png" translatesAutoresizingMaskIntoConstraints="NO" id="JyF-ZK-Vis">
                                 <rect key="frame" x="141" y="0.0" width="353" height="224"/>
                             </imageView>
                         </subviews>
@@ -30,6 +30,6 @@
         </scene>
     </scenes>
     <resources>
-        <image name="login header bg.png" width="750" height="520"/>
+        <image name="header bg.png" width="750" height="799"/>
     </resources>
 </document>

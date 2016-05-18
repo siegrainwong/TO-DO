@@ -17,8 +17,6 @@
 #import "SCLAlertHelper.h"
 #import "SCLAlertView.h"
 #import "SGUser.h"
-#import "WAuthData+Extension.h"
-#import "Wilddog.h"
 #import <AVOSCloud.h>
 
 /* local localization dictionary keys */
@@ -86,7 +84,7 @@ static NSInteger const kLoginFailCountOverLimitErrorCodeKey = 1;
     [[UIApplication sharedApplication] setNetworkActivityIndicatorVisible:YES];
     // sign in
     if (!isSignUp) {
-        [AVUser logInWithUsernameInBackground:user.email
+        [SGUser logInWithUsernameInBackground:user.email
                                      password:user.password
                                         block:^(AVUser* user, NSError* error) {
                                             if (error)
@@ -95,18 +93,26 @@ static NSInteger const kLoginFailCountOverLimitErrorCodeKey = 1;
                                             return complete(!error);
                                         }];
     } else {
-        AVUser* avUser = [AVUser user];
-        avUser.username = user.email;
-        avUser.email = user.email;
-        avUser.password = user.password;
-        [avUser setObject:user.avatar forKey:PropertyName(user, user.avatar)];
-        [avUser setObject:user.name forKey:PropertyName(user, user.name)];
-        [avUser signUpInBackgroundWithBlock:^(BOOL succeeded, NSError* error) {
-            if (error)
-                [SCLAlertHelper errorAlertWithContent:_localDictionary[@(error.code)] ? _localDictionary[@(error.code)] : error.localizedDescription];
+        [ImageUploader
+          uploadImage:user.avatarImage
+                 type:UploadImageTypeAvatar
+               prefix:kUploadPrefixAvatar
+           completion:^(bool error, NSString* path) {
+               if (error) {
+                   [SCLAlertHelper errorAlertWithContent:_localDictionary[kAvatarUploadFailedKey]];
 
-            return complete(!error);
-        }];
+                   return complete(NO);
+               }
+
+               user.avatar = path;
+
+               [user signUpInBackgroundWithBlock:^(BOOL succeeded, NSError* error) {
+                   if (error)
+                       [SCLAlertHelper errorAlertWithContent:_localDictionary[@(error.code)] ? _localDictionary[@(error.code)] : error.localizedDescription];
+
+                   return complete(!error);
+               }];
+           }];
     }
 }
 #pragma mark - validate

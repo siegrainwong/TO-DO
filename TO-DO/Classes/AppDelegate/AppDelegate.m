@@ -8,73 +8,69 @@
 
 #import "AppDelegate.h"
 #import "DataKeys.h"
+#import "HomeTableViewController.h"
 #import "LoginViewController.h"
-#import "WAuthData+Extension.h"
-#import "Wilddog.h"
+#import "SGUser.h"
 #import <AVOSCloud.h>
 
-@implementation AppDelegate {
-    Wilddog* dataRef;
-    WilddogHandle dataHandle;
-}
+@implementation AppDelegate
 
 - (BOOL)application:(UIApplication*)application
   didFinishLaunchingWithOptions:(NSDictionary*)launchOptions
 {
-    // login state observer
-    [AVOSCloud setApplicationId:kLeanCloudAppID clientKey:kLeanCloudAppKey];
+    [self setupLeanCloud];
 
-    // display home
-    self.window = [[UIWindow alloc] initWithFrame:[[UIScreen mainScreen] bounds]];
-    self.window.backgroundColor = [UIColor whiteColor];
+    // validate user's login state
+    //    [SGUser logOut];
+    SGUser* user = [SGUser currentUser];
+    if (user) {
+        NSLog(@"当前用户：%@", user.username);
+        [self switchRootViewController:[[HomeTableViewController alloc] init]];
+    } else {
+        [self switchRootViewController:[[LoginViewController alloc] init]];
+    }
 
-    LoginViewController* loginVC = [[LoginViewController alloc] init];
-    self.window.rootViewController = loginVC;
-
-    [self.window makeKeyAndVisible];
     return YES;
 }
 
 - (void)applicationWillResignActive:(UIApplication*)application
 {
-    // Sent when the application is about to move from active to inactive state.
-    // This can occur for certain types of temporary interruptions (such as an
-    // incoming phone call or SMS message) or when the user quits the application
-    // and it begins the transition to the background state.
-    // Use this method to pause ongoing tasks, disable timers, and throttle down
-    // OpenGL ES frame rates. Games should use this method to pause the game.
 }
 
 - (void)applicationDidEnterBackground:(UIApplication*)application
 {
-    // Use this method to release shared resources, save user data, invalidate
-    // timers, and store enough application state information to restore your
-    // application to its current state in case it is terminated later.
-    // If your application supports background execution, this method is called
-    // instead of applicationWillTerminate: when the user quits.
 }
 
 - (void)applicationWillEnterForeground:(UIApplication*)application
 {
-    // Called as part of the transition from the background to the inactive state;
-    // here you can undo many of the changes made on entering the background.
 }
 
 - (void)applicationDidBecomeActive:(UIApplication*)application
 {
-    // Restart any tasks that were paused (or not yet started) while the
-    // application was inactive. If the application was previously in the
-    // background, optionally refresh the user interface.
 }
 
 - (void)applicationWillTerminate:(UIApplication*)application
 {
-    // Called when the application is about to terminate. Save data if
-    // appropriate. See also applicationDidEnterBackground:.
-    // Saves changes in the application's managed object context before the
-    // application terminates.
     [self saveContext];
-    [dataRef removeAuthEventObserverWithHandle:dataHandle];
+}
+#pragma mark - LeanCloud methods
+- (void)setupLeanCloud
+{
+    // setup leanCloud with appId and key
+    [AVOSCloud setApplicationId:kLeanCloudAppID clientKey:kLeanCloudAppKey];
+
+    // register subclasses
+    [SGUser registerSubclass];
+}
+#pragma mark - appdelegate methods
+- (void)switchRootViewController:(UIViewController*)viewController
+{
+    self.window = [[UIWindow alloc] initWithFrame:[[UIScreen mainScreen] bounds]];
+    self.window.backgroundColor = [UIColor whiteColor];
+
+    self.window.rootViewController = viewController;
+
+    [self.window makeKeyAndVisible];
 }
 
 #pragma mark - Core Data stack

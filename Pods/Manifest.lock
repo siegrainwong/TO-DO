@@ -30,8 +30,10 @@ PODS:
     - AFNetworking (~> 2.0)
     - HappyDNS (~> 0.2)
   - SDAutoLayout (1.53)
+  - SDWebImage (3.7.6):
+    - SDWebImage/Core (= 3.7.6)
+  - SDWebImage/Core (3.7.6)
   - TPKeyboardAvoiding (1.3)
-  - Wilddog (1.0.0)
 
 DEPENDENCIES:
   - AVOSCloud
@@ -41,8 +43,8 @@ DEPENDENCIES:
   - MBProgressHUD
   - Qiniu
   - SDAutoLayout
+  - SDWebImage
   - TPKeyboardAvoiding
-  - Wilddog
 
 SPEC CHECKSUMS:
   AFNetworking: cb8d14a848e831097108418f5d49217339d4eb60
@@ -54,7 +56,9 @@ SPEC CHECKSUMS:
   MBProgressHUD: 1569cf7ace17a8bac47aabfbb8580a49690386d1
   Qiniu: 2c05af1f9d580c036b18faf832cc98e98bfb21bc
   SDAutoLayout: ea6e2ae9fbb438aa2feb0c4363dba9297e98638a
+  SDWebImage: c325cf02c30337336b95beff20a13df489ec0ec9
   TPKeyboardAvoiding: a5138f318c06fb3e151f886e18ce4a72695d9cbe
-  Wilddog: 08618a6d5e9d774de7c4424119227b9392de2002
 
-COCOAPODS: 0.39.0
+PODFILE CHECKSUM: 011205d723ea923452bad5aae90e4e295ba0f034
+
+COCOAPODS: 1.0.0

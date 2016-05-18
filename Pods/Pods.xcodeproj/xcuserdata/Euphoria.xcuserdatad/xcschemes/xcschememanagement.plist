@@ -34,7 +34,7 @@
 			<key>isShown</key>
 			<false/>
 		</dict>
-		<key>Pods.xcscheme</key>
+		<key>Pods-TO-DO.xcscheme</key>
 		<dict>
 			<key>isShown</key>
 			<false/>
@@ -49,12 +49,12 @@
 			<key>isShown</key>
 			<false/>
 		</dict>
-		<key>TPKeyboardAvoiding.xcscheme</key>
+		<key>SDWebImage.xcscheme</key>
 		<dict>
 			<key>isShown</key>
 			<false/>
 		</dict>
-		<key>Wilddog.xcscheme</key>
+		<key>TPKeyboardAvoiding.xcscheme</key>
 		<dict>
 			<key>isShown</key>
 			<false/>
@@ -62,12 +62,17 @@
 	</dict>
 	<key>SuppressBuildableAutocreation</key>
 	<dict>
+		<key>09DB99B4731D97E068140D087A6EF175</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
 		<key>09FA060F1A0492FB25232F489AC4E573</key>
 		<dict>
 			<key>primary</key>
 			<true/>
 		</dict>
-		<key>18BE9F12671B01D9431B46C8E2D37769</key>
+		<key>28E4F9CD551764B3909FBC33DA7BD82F</key>
 		<dict>
 			<key>primary</key>
 			<true/>
@@ -87,27 +92,22 @@
 			<key>primary</key>
 			<true/>
 		</dict>
-		<key>5EBAF6E63DC1487A8632E3831B828DD3</key>
-		<dict>
-			<key>primary</key>
-			<true/>
-		</dict>
 		<key>6627E2CE58504A680DE862D5526B302C</key>
 		<dict>
 			<key>primary</key>
 			<true/>
 		</dict>
-		<key>D1968DBDDE6C648AE6DB1248B29EA68A</key>
+		<key>86FD10D0A7371115689BCA5A60299452</key>
 		<dict>
 			<key>primary</key>
 			<true/>
 		</dict>
-		<key>E3D80CAEADBCA3D298F3FA67D4622DAB</key>
+		<key>AE9952C03641527015D3A7A3EADB9E6E</key>
 		<dict>
 			<key>primary</key>
 			<true/>
 		</dict>
-		<key>EC4FC2CCEA86C9BB1CAAA8A1D4D1C18C</key>
+		<key>B2927308E8834E9113FA9DE26F064CB5</key>
 		<dict>
 			<key>primary</key>
 			<true/>

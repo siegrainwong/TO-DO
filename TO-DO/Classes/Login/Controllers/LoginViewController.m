@@ -6,6 +6,8 @@
 //  Copyright © 2016年 com.siegrain. All rights reserved.
 //
 
+#import "AppDelegate.h"
+#import "HomeTableViewController.h"
 #import "LoginDataManager.h"
 #import "LoginViewController.h"
 #import "Masonry.h"
@@ -72,6 +74,9 @@ static NSString* const kAvatarCancelKey = @"cancel";
                          [loginView stopCommitAnimation];
                          [[UIApplication sharedApplication] setNetworkActivityIndicatorVisible:NO];
                          if (!succeed) return;
+
+                         AppDelegate* delegate = (AppDelegate*)[UIApplication sharedApplication].delegate;
+                         [delegate switchRootViewController:[[HomeTableViewController alloc] init]];
                      }];
 }
 #pragma mark - avatar

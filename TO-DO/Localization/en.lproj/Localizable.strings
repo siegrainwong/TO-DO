@@ -27,7 +27,6 @@
 "VALIDATE_EMAIL_ALREADY_TAKEN" = "Email has already been taken";
 "VALIDATE_LOGIN_FAILCOUNT_OVERLIMIT" = "Failed login count over limit, reset your password or try again later(15 mins)";
 
-
 /* Actions */
 "ACTION_TAKEPHOTO" = "Take a photo";
 "ACTION_FROMALBUM" = "Pick from album";
@@ -39,3 +38,6 @@
 
 /* Exceptions */
 "EXCEPTION_CAMERA_OR_ALBUM_UNAVAILABLE" = "Unable to open your camera or album because of an unexpected error";
+
+/* Home */
+"LABEL_TASKS" = "Tasks";

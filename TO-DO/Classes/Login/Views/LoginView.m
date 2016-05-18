@@ -77,6 +77,9 @@ static NSInteger const kPopHeightWhenKeyboardShow = 170;
 {
     __weak typeof(self) weakSelf = self;
     headerView = [HeaderView headerView];
+    headerView.rightOperationButton.hidden = YES;
+    headerView.headerTitleLabel.layer.opacity = 0;
+    headerView.avatarPosition = HeaderAvatarPositionBottom;
     [headerView.headerImageView setImage:[UIImage imageAtResourcePath:@"login header bg"]];
     [headerView setHeaderViewDidPressAvatarButton:^{
         [weakSelf avatarButtonDidPress];
@@ -223,15 +226,12 @@ static NSInteger const kPopHeightWhenKeyboardShow = 170;
 
             [weakSelf startCommitAnimation];
 
-            SGUser* user = [[SGUser alloc] init];
+            SGUser* user = [SGUser object];
+            user.username = usernameTextField.text;
             user.name = nameTextField.text;
-            user.email = usernameTextField.text;
+            user.email = user.username;
             user.password = passwordTextField.text;
-            user.lastLoginTime = [NSDate date];
             user.avatarImage = avatarImage;
-
-            if (isSignUp)
-                user.registerTime = [NSDate date];
 
             [_delegate loginViewDidPressCommitButton:user isSignUp:isSignUp];
         }

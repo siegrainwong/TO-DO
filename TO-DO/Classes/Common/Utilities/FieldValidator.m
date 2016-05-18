@@ -45,7 +45,7 @@
 //验证中文英文数字
 + (BOOL)validateName:(NSString*)name
 {
-    NSString* regex = @"^[\u4e00-\u9fa5A-Za-z0-9]+$";
+    NSString* regex = @"^[\u4e00-\u9fa5A-Za-z0-9\\s*]+$";
     NSPredicate* predicate = [NSPredicate predicateWithFormat:@"SELF MATCHES %@", regex];
     return [predicate evaluateWithObject:name];
 }

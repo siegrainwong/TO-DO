@@ -38,3 +38,6 @@
 
 /* Exceptions */
 "EXCEPTION_CAMERA_OR_ALBUM_UNAVAILABLE" = "因为未知原因，无法使用您的相机或相册";
+
+/* Home */
+"LABEL_TASKS" = "个任务";

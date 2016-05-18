@@ -9,4 +9,11 @@
 #import "SGUser.h"
 
 @implementation SGUser
+@dynamic avatar;
+@dynamic name;
+
++ (NSString*)parseClassName
+{
+    return @"_User";
+}
 @end
