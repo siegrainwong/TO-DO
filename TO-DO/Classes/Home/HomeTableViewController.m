@@ -9,17 +9,17 @@
 #import "AVOSCloud.h"
 #import "HeaderView.h"
 #import "HomeTableViewController.h"
-#import "JTNavigationController.h"
 #import "Macros.h"
 #import "Masonry.h"
 #import "SGUser.h"
 #import "UIImage+Extension.h"
 #import "UIImage+Qiniu.h"
 #import "UINavigationController+Transparent.h"
+#import "UIScrollView+Extension.h"
+#import "UITableView+Extension.h"
 
 @implementation HomeTableViewController {
-    HeaderView* headerView;
-    SGUser* user;
+    UITableView* tableView;
 }
 #pragma mark - localization
 - (void)localizeStrings
@@ -32,46 +32,24 @@
 {
     [super viewDidLoad];
 
-    user = [SGUser currentUser];
-
-    [self setupNavigationBar];
-    [self setup];
-    [self bindConstraints];
     [self localizeStrings];
 }
 - (void)viewDidLayoutSubviews
 {
     [super viewDidLayoutSubviews];
 
-    // Mark: 因为导航栏多出的64的高度，如果想忽略的话需要在这里设置
-    self.tableView.contentInset = UIEdgeInsetsZero;
-
-    // Mark: tableviewHeader 不认约束
-    CGFloat height = [headerView systemLayoutSizeFittingSize:UILayoutFittingCompressedSize].height;
-    CGRect frame = headerView.frame;
-    frame.size.height = height;
-    headerView.frame = frame;
-
-    self.tableView.tableHeaderView = headerView;
+    [tableView ignoreNavigationHeight];
+    [tableView resizeTableHeaderView];
 }
-- (void)setupNavigationBar
+- (void)setupView
 {
-    [self.navigationController transparentNavigationBar];
+    [super setupView];
 
-    UIButton* menuBarbutton = [[UIButton alloc] init];
-    menuBarbutton.tintColor = [UIColor whiteColor];
-    menuBarbutton.frame = CGRectMake(0, 0, 20, 20);
-    [menuBarbutton setBackgroundImage:[UIImage imageNamed:@"menu"] forState:UIControlStateNormal];
-    self.navigationItem.leftBarButtonItem = [[UIBarButtonItem alloc] initWithCustomView:menuBarbutton];
+    tableView = [[UITableView alloc] init];
+    tableView.dataSource = self;
+    tableView.delegate = self;
+    [self.view addSubview:tableView];
 
-    UIButton* searchBarbutton = [[UIButton alloc] init];
-    searchBarbutton.tintColor = [UIColor whiteColor];
-    searchBarbutton.frame = CGRectMake(0, 0, 20, 20);
-    [searchBarbutton setBackgroundImage:[UIImage imageNamed:@"search"] forState:UIControlStateNormal];
-    self.navigationItem.rightBarButtonItem = [[UIBarButtonItem alloc] initWithCustomView:searchBarbutton];
-}
-- (void)setup
-{
     headerView = [HeaderView headerViewWithAvatarPosition:HeaderAvatarPositionCenter titleAlignement:HeaderTitleAlignementCenter];
     [headerView.rightOperationButton setImage:[UIImage imageNamed:@"add"] forState:UIControlStateNormal];
     [headerView.avatarButton setImage:[UIImage qn_imageWithString:user.avatar andStyle:kImageStyleSmall] forState:UIControlStateNormal];
@@ -79,16 +57,30 @@
     [headerView setHeaderViewDidPressAvatarButton:^{
         [SGUser logOut];
     }];
-    self.tableView.tableHeaderView = headerView;
+    tableView.tableHeaderView = headerView;
 }
 - (void)bindConstraints
 {
+    [super bindConstraints];
+
+    [tableView mas_makeConstraints:^(MASConstraintMaker* make) {
+        make.top.bottom.right.left.offset(0);
+    }];
+
     [headerView mas_makeConstraints:^(MASConstraintMaker* make) {
         make.top.left.offset(0);
         make.width.offset(kScreenWidth);
         make.height.offset(kScreenHeight * 0.6);
     }];
 }
-#pragma mark -
+#pragma mark - tableview
+- (NSInteger)tableView:(UITableView*)tableView numberOfRowsInSection:(NSInteger)section
+{
+    return 0;
+}
+- (UITableViewCell*)tableView:(UITableView*)tableView cellForRowAtIndexPath:(NSIndexPath*)indexPath
+{
+    return [UITableViewCell new];
+}
 
 @end

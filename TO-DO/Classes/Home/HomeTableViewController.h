@@ -6,8 +6,11 @@
 //  Copyright © 2016年 com.siegrain. All rights reserved.
 //
 
+#import "BaseViewController.h"
 #import "Localizable.h"
-#import "ViewController.h"
 
-@interface HomeTableViewController : UITableViewController<Localizable>
+/**
+ *  首页
+ */
+@interface HomeTableViewController : BaseViewController<Localizable, UITableViewDelegate, UITableViewDataSource>
 @end
