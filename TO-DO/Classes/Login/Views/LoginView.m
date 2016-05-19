@@ -10,6 +10,7 @@
 #import "LoginView.h"
 #import "Macros.h"
 #import "Masonry.h"
+#import "SGCommitButton.h"
 #import "SGTextField.h"
 #import "SGUser.h"
 #import "TodoHelper.h"
@@ -23,10 +24,9 @@ static NSInteger const kPopHeightWhenKeyboardShow = 170;
     SGTextField* nameTextField;
     SGTextField* usernameTextField;
     SGTextField* passwordTextField;
-    UIButton* commitButton;
+    SGCommitButton* commitButton;
     UIButton* leftOperationButton;
     UIButton* rightOperationButton;
-    UIActivityIndicatorView* commitIndicatorView;
 
     BOOL isSignUp;
     CGFloat textFieldHeight;
@@ -45,14 +45,14 @@ static NSInteger const kPopHeightWhenKeyboardShow = 170;
 {
     if (isSignUp) {
         usernameTextField.title = NSLocalizedString(@"LABEL_EMAIL", nil);
-        [commitButton setTitle:NSLocalizedString(@"BUTTON_SIGNUP", nil) forState:UIControlStateNormal];
+        [commitButton.button setTitle:NSLocalizedString(@"BUTTON_SIGNUP", nil) forState:UIControlStateNormal];
         [rightOperationButton setTitle:NSLocalizedString(@"LABEL_SIGNIN", nil) forState:UIControlStateNormal];
         [leftOperationButton setTitle:NSLocalizedString(@"LABEL_TERMS&CONDITIONS", nil) forState:UIControlStateNormal];
         [headerView.avatarButton setBackgroundImage:avatarImage ? avatarImage : [UIImage imageAtResourcePath:@"mark-signup"] forState:UIControlStateNormal];
         headerView.userInteractionEnabled = YES;
     } else {
         usernameTextField.title = NSLocalizedString(@"LABEL_USERNAME", nil);
-        [commitButton setTitle:NSLocalizedString(@"BUTTON_SIGNIN", nil) forState:UIControlStateNormal];
+        [commitButton.button setTitle:NSLocalizedString(@"BUTTON_SIGNIN", nil) forState:UIControlStateNormal];
         [rightOperationButton setTitle:NSLocalizedString(@"LABEL_SIGNUP", nil) forState:UIControlStateNormal];
         [leftOperationButton setTitle:NSLocalizedString(@"LABEL_FORGOTPASSWORD", nil) forState:UIControlStateNormal];
         [headerView.avatarButton setBackgroundImage:[UIImage imageAtResourcePath:@"mark"] forState:UIControlStateNormal];
@@ -112,20 +112,11 @@ static NSInteger const kPopHeightWhenKeyboardShow = 170;
     }];
     [self addSubview:passwordTextField];
 
-    commitButton = [[UIButton alloc] init];
-    [commitButton setBackgroundImage:[UIImage imageWithColor:[TodoHelper buttonColorNormal]]
-                            forState:UIControlStateNormal];
-    [commitButton setBackgroundImage:[UIImage imageWithColor:[TodoHelper buttonColorHighlighted]]
-                            forState:UIControlStateHighlighted];
-    [commitButton setBackgroundImage:[UIImage imageWithColor:[TodoHelper buttonColorDisabled]]
-                            forState:UIControlStateDisabled];
-    commitButton.titleLabel.font = [TodoHelper themeFontWithSize:14];
-    [commitButton addTarget:self action:@selector(commitButtonDidPress) forControlEvents:UIControlEventTouchUpInside];
+    commitButton = [SGCommitButton commitButton];
+    [commitButton setCommitButtonDidPress:^{
+        [weakSelf commitButtonDidPress];
+    }];
     [self addSubview:commitButton];
-
-    commitIndicatorView = [[UIActivityIndicatorView alloc] init];
-    commitIndicatorView.hidesWhenStopped = YES;
-    [commitButton addSubview:commitIndicatorView];
 
     leftOperationButton = [[UIButton alloc] init];
     [leftOperationButton setTitleColor:[UIColor lightGrayColor] forState:UIControlStateNormal];
@@ -176,13 +167,6 @@ static NSInteger const kPopHeightWhenKeyboardShow = 170;
         make.height.equalTo(self).dividedBy(12);
     }];
 
-    [commitIndicatorView mas_makeConstraints:^(MASConstraintMaker* make) {
-        make.centerY.offset(0);
-        make.height.equalTo(commitButton).dividedBy(2);
-        make.width.equalTo(commitIndicatorView.mas_height);
-        make.centerX.offset(-40);
-    }];
-
     [leftOperationButton mas_makeConstraints:^(MASConstraintMaker* make) {
         make.left.equalTo(usernameTextField);
         make.top.equalTo(commitButton.mas_bottom).offset(15);
@@ -217,13 +201,14 @@ static NSInteger const kPopHeightWhenKeyboardShow = 170;
     // Mark: synchronized lock
     dispatch_queue_t serialQueue = dispatch_queue_create("LoginViewCommitSynchronizedLock", DISPATCH_QUEUE_SERIAL);
     dispatch_sync(serialQueue, ^{
-        if (commitIndicatorView.isAnimating)
+        if (commitButton.indicator.isAnimating)
             return;
 
         if ([_delegate respondsToSelector:@selector(loginViewDidPressCommitButton:isSignUp:)]) {
             __weak typeof(self) weakSelf = self;
 
             [weakSelf startCommitAnimation];
+            [weakSelf endEditing:YES];
 
             SGUser* user = [SGUser object];
             user.username = usernameTextField.text;
@@ -252,9 +237,9 @@ static NSInteger const kPopHeightWhenKeyboardShow = 170;
     commitButton.enabled = isEnable;
 
     if (isEnable)
-        [commitIndicatorView stopAnimating];
+        [commitButton.indicator stopAnimating];
     else
-        [commitIndicatorView startAnimating];
+        [commitButton.indicator startAnimating];
 }
 #pragma mark - avatar
 - (void)avatarButtonDidPress

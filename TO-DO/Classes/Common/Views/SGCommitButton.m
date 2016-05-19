@@ -48,12 +48,17 @@
         make.centerY.offset(0);
         make.height.equalTo(self).dividedBy(2);
         make.width.equalTo(_indicator.mas_height);
-        make.left.offset(40);
+        make.left.offset(20);
     }];
 }
 #pragma mark - event
 - (void)buttonDidPress
 {
     if (_commitButtonDidPress) _commitButtonDidPress();
+}
+#pragma mark - rewrite UIControl methods
+- (void)setEnabled:(BOOL)enabled
+{
+    _button.enabled = enabled;
 }
 @end
