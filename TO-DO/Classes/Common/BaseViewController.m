@@ -9,9 +9,14 @@
 #import "BaseViewController.h"
 #import "HeaderView.h"
 #import "SGUser.h"
+#import "TodoHelper.h"
 #import "UINavigationController+Transparent.h"
 
-@implementation BaseViewController
+@implementation BaseViewController {
+    UIButton* menuButton;
+    UILabel* titleLabel;
+    UIButton* searchButton;
+}
 - (void)viewDidLoad
 {
     [super viewDidLoad];
@@ -25,22 +30,40 @@
 {
     [self.navigationController transparentNavigationBar];
 
-    UIButton* menuBarbutton = [[UIButton alloc] init];
-    menuBarbutton.tintColor = [UIColor whiteColor];
-    menuBarbutton.frame = CGRectMake(0, 0, 20, 20);
-    [menuBarbutton setBackgroundImage:[UIImage imageNamed:@"menu"] forState:UIControlStateNormal];
-    self.navigationItem.leftBarButtonItem = [[UIBarButtonItem alloc] initWithCustomView:menuBarbutton];
+    menuButton = [[UIButton alloc] init];
+    menuButton.tintColor = [UIColor whiteColor];
+    menuButton.frame = CGRectMake(0, 0, 20, 17);
+    [menuButton setBackgroundImage:[UIImage imageNamed:@"menu"] forState:UIControlStateNormal];
 
-    UIButton* searchBarbutton = [[UIButton alloc] init];
-    searchBarbutton.tintColor = [UIColor whiteColor];
-    searchBarbutton.frame = CGRectMake(0, 0, 20, 20);
-    [searchBarbutton setBackgroundImage:[UIImage imageNamed:@"search"] forState:UIControlStateNormal];
-    self.navigationItem.rightBarButtonItem = [[UIBarButtonItem alloc] initWithCustomView:searchBarbutton];
+    UIView* placeholderView = [[UIView alloc] init];
+    placeholderView.frame = CGRectMake(0, 0, 5, 1);
+
+    titleLabel = [[UILabel alloc] init];
+    titleLabel.textColor = [UIColor whiteColor];
+    titleLabel.frame = CGRectMake(0, 0, 100, 20);
+    titleLabel.font = [TodoHelper themeFontWithSize:17];
+
+    UIBarButtonItem* menuBarButtonItem = [[UIBarButtonItem alloc] initWithCustomView:menuButton];
+    UIBarButtonItem* titleBarButtonItem = [[UIBarButtonItem alloc] initWithCustomView:titleLabel];
+    UIBarButtonItem* placeHolderBarButtonItem = [[UIBarButtonItem alloc] initWithCustomView:placeholderView];
+    [self.navigationItem setLeftBarButtonItems:@[ menuBarButtonItem, placeHolderBarButtonItem, titleBarButtonItem ] animated:YES];
+
+    searchButton = [[UIButton alloc] init];
+    searchButton.tintColor = [UIColor whiteColor];
+    searchButton.frame = CGRectMake(0, 0, 20, 20);
+    [searchButton setBackgroundImage:[UIImage imageNamed:@"search"] forState:UIControlStateNormal];
+    self.navigationItem.rightBarButtonItem = [[UIBarButtonItem alloc] initWithCustomView:searchButton];
 }
 - (void)setupView
 {
 }
 - (void)bindConstraints
 {
+}
+
+#pragma mark - modify the titile on navigation bar
+- (void)setMenuTitle:(NSString*)title
+{
+    titleLabel.text = title;
 }
 @end

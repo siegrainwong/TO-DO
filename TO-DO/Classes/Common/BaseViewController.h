@@ -20,4 +20,9 @@
 }
 - (void)setupView;
 - (void)bindConstraints;
+
+/**
+ *  设置 NavBar 上的标题
+ */
+- (void)setMenuTitle:(NSString*)title;
 @end

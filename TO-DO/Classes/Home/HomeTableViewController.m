@@ -46,6 +46,7 @@
     [super setupView];
 
     tableView = [[UITableView alloc] init];
+    tableView.bounces = NO;
     tableView.dataSource = self;
     tableView.delegate = self;
     [self.view addSubview:tableView];
