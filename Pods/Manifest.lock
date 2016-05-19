@@ -24,6 +24,7 @@ PODS:
   - AVOSCloud (3.2.9)
   - GTMBase64 (1.0.0)
   - HappyDNS (0.2.3)
+  - HSDatePickerViewController (1.0.4)
   - JSONModel (1.2.0)
   - JTNavigationController (1.0.1)
   - Masonry (1.0.0)
@@ -41,6 +42,7 @@ DEPENDENCIES:
   - AutoLinearLayoutView
   - AVOSCloud
   - GTMBase64
+  - HSDatePickerViewController (~> 1.0)
   - JSONModel
   - JTNavigationController
   - Masonry
@@ -56,6 +58,7 @@ SPEC CHECKSUMS:
   AVOSCloud: b020009b1f2e35c271d4d019075458c879fc1d21
   GTMBase64: 0da7372e95f5171f3f652db38cde6716f8eb5e24
   HappyDNS: 6d85942e64c28b4fa61f8c76580398f52d6d1d11
+  HSDatePickerViewController: 5a72b71f8c3b10e76f2c28a898f8572b551432a6
   JSONModel: 12523685c4b623553ccf844bbbf7007624317b2c
   JTNavigationController: a3563e6d1adbd00301af8f049e546342fad7ffa9
   Masonry: b529bb169217897b6354d4b56b1fada6d475b13d
@@ -65,6 +68,6 @@ SPEC CHECKSUMS:
   SDWebImage: c325cf02c30337336b95beff20a13df489ec0ec9
   TPKeyboardAvoiding: a5138f318c06fb3e151f886e18ce4a72695d9cbe
 
-PODFILE CHECKSUM: c6a8d1cf5bd4ccf132442d8009c594ddbe537957
+PODFILE CHECKSUM: ca6e06f82d30ba0b69f33f2f79c19e1cb8df6bd2
 
 COCOAPODS: 1.0.0

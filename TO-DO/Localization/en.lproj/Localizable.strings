@@ -9,6 +9,9 @@
 "LABEL_USERNAME(EMAIL)" = "Username(Email)";
 "LABEL_FORGOTPASSWORD" = "FORGOT PASSWORD?";
 "LABEL_TERMS&CONDITIONS" = "TERMS & CONDITIONS";
+"LABEL_DESCRIPTION" = "Description";
+"LABEL_DATETIME" = "Time";
+"LABEL_LOCATION" = "Location";
 
 /* Login */
 "BUTTON_SIGNIN" = "SIGN IN";
@@ -44,3 +47,4 @@
 
 /* Create */
 "LABEL_CREATENEW" = "Create New";
+"LABEL_TITLE" = "Title";

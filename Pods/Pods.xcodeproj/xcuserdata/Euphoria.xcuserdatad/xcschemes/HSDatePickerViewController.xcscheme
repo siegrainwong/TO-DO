@@ -14,10 +14,10 @@
             buildForArchiving = "YES">
             <BuildableReference
                BuildableIdentifier = 'primary'
-               BlueprintIdentifier = '0ED76175715942146BFEAC0288E562E1'
-               BlueprintName = 'SDWebImage'
+               BlueprintIdentifier = '6B0B9C928B05BA6346AB032DD0260C56'
+               BlueprintName = 'HSDatePickerViewController'
                ReferencedContainer = 'container:Pods.xcodeproj'
-               BuildableName = 'libSDWebImage.a'>
+               BuildableName = 'libHSDatePickerViewController.a'>
             </BuildableReference>
          </BuildActionEntry>
       </BuildActionEntries>

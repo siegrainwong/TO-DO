@@ -50,6 +50,7 @@
 		F95994611CE4898100B042BD /* UIImage+Compression.m in Sources */ = {isa = PBXBuildFile; fileRef = F95994601CE4898100B042BD /* UIImage+Compression.m */; };
 		F980EDCF1CE70F4E00A861FE /* HeaderView.m in Sources */ = {isa = PBXBuildFile; fileRef = F980EDCE1CE70F4E00A861FE /* HeaderView.m */; };
 		F99A902E1CE30CB600EC0762 /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = F99A90301CE30CB600EC0762 /* Localizable.strings */; };
+		F9A1E0801CEDFA4C00FFC453 /* SGCommitButton.m in Sources */ = {isa = PBXBuildFile; fileRef = F9A1E07F1CEDFA4C00FFC453 /* SGCommitButton.m */; };
 		F9A723731CDDF8A800E3BC8E /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = F9A723721CDDF8A800E3BC8E /* main.m */; };
 		F9A723791CDDF8A800E3BC8E /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = F9A723781CDDF8A800E3BC8E /* ViewController.m */; };
 		F9A7237C1CDDF8A800E3BC8E /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = F9A7237A1CDDF8A800E3BC8E /* Main.storyboard */; };
@@ -146,9 +147,9 @@
 		F94CA2591CE2FB940006904F /* SGUser.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SGUser.m; sourceTree = "<group>"; };
 		F94CA25B1CE2FB940006904F /* LoginView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LoginView.h; sourceTree = "<group>"; };
 		F94CA25C1CE2FB940006904F /* LoginView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LoginView.m; sourceTree = "<group>"; };
-		F94CA25D1CE2FB940006904F /* SGTextField.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SGTextField.h; sourceTree = "<group>"; };
-		F94CA25E1CE2FB940006904F /* SGTextField.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SGTextField.m; sourceTree = "<group>"; };
-		F94CA25F1CE2FB940006904F /* SGTextField.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = SGTextField.xib; sourceTree = "<group>"; };
+		F94CA25D1CE2FB940006904F /* SGTextField.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = SGTextField.h; path = ../../Login/Views/SGTextField.h; sourceTree = "<group>"; };
+		F94CA25E1CE2FB940006904F /* SGTextField.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = SGTextField.m; path = ../../Login/Views/SGTextField.m; sourceTree = "<group>"; };
+		F94CA25F1CE2FB940006904F /* SGTextField.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = SGTextField.xib; path = ../../Login/Views/SGTextField.xib; sourceTree = "<group>"; };
 		F94CA2681CE2FBC90006904F /* TO_DO.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = TO_DO.xcdatamodel; sourceTree = "<group>"; };
 		F95994511CE462E100B042BD /* QiniuTokenGenerator.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = QiniuTokenGenerator.h; sourceTree = "<group>"; };
 		F95994521CE462E100B042BD /* QiniuTokenGenerator.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = QiniuTokenGenerator.m; sourceTree = "<group>"; };
@@ -168,6 +169,8 @@
 		F99A90331CE317EE00EC0762 /* zh-Hans */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "zh-Hans"; path = "zh-Hans.lproj/Main.strings"; sourceTree = "<group>"; };
 		F99A90341CE317EE00EC0762 /* zh-Hans */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "zh-Hans"; path = "zh-Hans.lproj/LaunchScreen.strings"; sourceTree = "<group>"; };
 		F99A90351CE317EE00EC0762 /* zh-Hans */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "zh-Hans"; path = "zh-Hans.lproj/Localizable.strings"; sourceTree = "<group>"; };
+		F9A1E07E1CEDFA4C00FFC453 /* SGCommitButton.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SGCommitButton.h; sourceTree = "<group>"; };
+		F9A1E07F1CEDFA4C00FFC453 /* SGCommitButton.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SGCommitButton.m; sourceTree = "<group>"; };
 		F9A7236E1CDDF8A800E3BC8E /* TO-DO.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "TO-DO.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		F9A723721CDDF8A800E3BC8E /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
 		F9A723771CDDF8A800E3BC8E /* ViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ViewController.h; sourceTree = "<group>"; };
@@ -285,8 +288,13 @@
 		F93BC1591CE6087B000A34C5 /* Views */ = {
 			isa = PBXGroup;
 			children = (
+				F94CA25D1CE2FB940006904F /* SGTextField.h */,
+				F94CA25E1CE2FB940006904F /* SGTextField.m */,
+				F94CA25F1CE2FB940006904F /* SGTextField.xib */,
 				F980EDCD1CE70F4E00A861FE /* HeaderView.h */,
 				F980EDCE1CE70F4E00A861FE /* HeaderView.m */,
+				F9A1E07E1CEDFA4C00FFC453 /* SGCommitButton.h */,
+				F9A1E07F1CEDFA4C00FFC453 /* SGCommitButton.m */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -481,9 +489,6 @@
 			children = (
 				F94CA25B1CE2FB940006904F /* LoginView.h */,
 				F94CA25C1CE2FB940006904F /* LoginView.m */,
-				F94CA25D1CE2FB940006904F /* SGTextField.h */,
-				F94CA25E1CE2FB940006904F /* SGTextField.m */,
-				F94CA25F1CE2FB940006904F /* SGTextField.xib */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -866,6 +871,7 @@
 				F959945B1CE47BC200B042BD /* ImageUploader.m in Sources */,
 				F9A723731CDDF8A800E3BC8E /* main.m in Sources */,
 				F94CA24A1CE2FA9E0006904F /* GCDUtil.m in Sources */,
+				F9A1E0801CEDFA4C00FFC453 /* SGCommitButton.m in Sources */,
 				F94CA2421CE2FA9E0006904F /* NSObject+PropertyName.m in Sources */,
 				F94CA2631CE2FB940006904F /* LoginView.m in Sources */,
 			);

@@ -29,6 +29,10 @@ SGTextField ()<UITextFieldDelegate>
 {
     return _textField.text;
 }
+- (void)setText:(NSString*)text
+{
+    _textField.text = text;
+}
 - (void)setTitle:(NSString*)title
 {
     _label.text = title;
@@ -41,7 +45,7 @@ SGTextField ()<UITextFieldDelegate>
 {
     _textField.returnKeyType = returnKeyType;
 }
-#pragma mark - rewrite
+#pragma mark - rewrite UIControl methods & accessors
 - (void)layoutSubviews
 {
     [super layoutSubviews];
@@ -55,6 +59,17 @@ SGTextField ()<UITextFieldDelegate>
     [_textField becomeFirstResponder];
 
     return YES;
+}
+- (BOOL)resignFirstResponder
+{
+    [super resignFirstResponder];
+    [_textField resignFirstResponder];
+
+    return NO;
+}
+- (void)setEnabled:(BOOL)enabled
+{
+    _textField.enabled = enabled;
 }
 
 #pragma mark - helper

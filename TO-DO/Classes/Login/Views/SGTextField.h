@@ -9,7 +9,7 @@
 #import <UIKit/UIKit.h>
 
 @interface SGTextField : UIControl
-@property (nonatomic, readonly, strong) NSString* text;
+@property (nonatomic, readwrite, strong) NSString* text;
 @property (nonatomic, readwrite, strong) NSString* title;
 @property (nonatomic, readwrite, assign) BOOL secureTextEntry;
 @property (nonatomic, readwrite, assign) UIReturnKeyType returnKeyType;

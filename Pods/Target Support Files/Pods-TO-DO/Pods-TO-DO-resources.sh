@@ -81,9 +81,11 @@ EOM
 }
 if [[ "$CONFIGURATION" == "Debug" ]]; then
   install_resource "$PODS_CONFIGURATION_BUILD_DIR/AutoLinearLayoutView/AutoLinearLayoutView.bundle"
+  install_resource "HSDatePickerViewController/HSDatePickerViewControllerDemo/HSDatePickerViewController/HSDatePickerViewController.xib"
 fi
 if [[ "$CONFIGURATION" == "Release" ]]; then
   install_resource "$PODS_CONFIGURATION_BUILD_DIR/AutoLinearLayoutView/AutoLinearLayoutView.bundle"
+  install_resource "HSDatePickerViewController/HSDatePickerViewControllerDemo/HSDatePickerViewController/HSDatePickerViewController.xib"
 fi
 
 mkdir -p "${TARGET_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}"

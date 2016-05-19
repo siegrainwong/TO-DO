@@ -1,4 +1,4 @@
-platform :ios, '7.0'
+platform :ios, '8.0'
 
 target "TO-DO" do
 	
@@ -13,5 +13,6 @@ pod 'AVOSCloud'
 pod 'SDWebImage'
 pod 'JTNavigationController'
 pod 'AutoLinearLayoutView'
+pod 'HSDatePickerViewController', '~> 1.0'
 
 end

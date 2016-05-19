@@ -1,3 +1,6 @@
+/* HSDatePickerViewController */
+"Today" = "今天";
+
 /* Common */
 "LABEL_OK" = "确认";
 "LABEL_SIGNUP" = "注册";
@@ -9,6 +12,9 @@
 "LABEL_USERNAME(EMAIL)" = "用户名(邮箱)";
 "LABEL_FORGOTPASSWORD" = "忘记密码?";
 "LABEL_TERMS&CONDITIONS" = "条款和条件";
+"LABEL_DESCRIPTION" = "描述";
+"LABEL_DATETIME" = "时间";
+"LABEL_LOCATION" = "位置";
 
 /* Login */
 "BUTTON_SIGNIN" = "登录";
@@ -44,3 +50,4 @@
 
 /* Create */
 "LABEL_CREATENEW" = "添加";
+"LABEL_TITLE" = "标题";
