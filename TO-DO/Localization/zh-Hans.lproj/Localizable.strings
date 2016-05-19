@@ -1,6 +1,3 @@
-/* HSDatePickerViewController */
-"Today" = "今天";
-
 /* Common */
 "LABEL_OK" = "确认";
 "LABEL_SIGNUP" = "注册";
@@ -16,9 +13,10 @@
 "LABEL_DATETIME" = "时间";
 "LABEL_LOCATION" = "位置";
 
-/* Login */
+/* Button */
 "BUTTON_SIGNIN" = "登录";
 "BUTTON_SIGNUP" = "注册";
+"BUTTON_DONE" = "完成";
 
 /* Alert */
 "ALERT_ERROR" = "错误";
@@ -51,3 +49,8 @@
 /* Create */
 "LABEL_CREATENEW" = "添加";
 "LABEL_TITLE" = "标题";
+
+/* HSDatePickerViewController */
+"Today" = "今天";
+"Set date" = "设置时间";
+"Back" = "返回";

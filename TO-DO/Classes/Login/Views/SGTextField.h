@@ -8,14 +8,27 @@
 
 #import <UIKit/UIKit.h>
 
-@interface SGTextField : UIControl
-@property (nonatomic, readwrite, strong) NSString* text;
-@property (nonatomic, readwrite, strong) NSString* title;
-@property (nonatomic, readwrite, assign) BOOL secureTextEntry;
-@property (nonatomic, readwrite, assign) UIReturnKeyType returnKeyType;
+/**
+ *  文本框
+ */
+@interface SGTextField : UIControl<UITextFieldDelegate>
+/**
+ *  位于文本框上方的 Label
+ */
+@property (strong, readwrite, nonatomic) IBOutlet UILabel* label;
+/**
+ *  文本框
+ */
+@property (strong, readwrite, nonatomic) IBOutlet UITextField* field;
+/**
+ *  是否隐藏下划线
+ */
+@property (nonatomic, readwrite, assign) BOOL isUnderlineHidden;
 
-@property (nonatomic, readwrite, copy) void (^textFieldShouldReturn)(SGTextField* textField);
+/**
+ *  文本框的 Return 事件
+ */
+@property (nonatomic, readwrite, copy) void (^textFieldShouldReturn)(SGTextField* field);
 
 + (instancetype)textField;
-
 @end

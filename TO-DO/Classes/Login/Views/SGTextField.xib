@@ -23,7 +23,6 @@
                     <textInputTraits key="textInputTraits"/>
                 </textField>
             </subviews>
-            <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
             <constraints>
                 <constraint firstItem="vfq-9E-WQO" firstAttribute="leading" secondItem="V9T-C5-sdn" secondAttribute="leading" id="7Pn-E9-L5x"/>
                 <constraint firstItem="vfq-9E-WQO" firstAttribute="top" secondItem="CIE-TA-gd9" secondAttribute="bottom" constant="-6" id="E1q-Y7-6Zn"/>
@@ -35,8 +34,8 @@
             <nil key="simulatedStatusBarMetrics"/>
             <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
             <connections>
+                <outlet property="field" destination="vfq-9E-WQO" id="Mah-cU-UwX"/>
                 <outlet property="label" destination="CIE-TA-gd9" id="ckb-tF-CFd"/>
-                <outlet property="textField" destination="vfq-9E-WQO" id="tnz-NJ-JDK"/>
             </connections>
             <point key="canvasLocation" x="556" y="-321"/>
         </view>

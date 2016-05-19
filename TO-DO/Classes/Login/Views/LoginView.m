@@ -36,22 +36,22 @@ static NSInteger const kPopHeightWhenKeyboardShow = 170;
 - (void)localizeStrings
 {
     headerView.titleLabel.text = NSLocalizedString(@"LABEL_SIGNUP", nil);
-    nameTextField.title = NSLocalizedString(@"LABEL_NAME", nil);
-    passwordTextField.title = NSLocalizedString(@"LABEL_PASSWORD", nil);
+    nameTextField.label.text = NSLocalizedString(@"LABEL_NAME", nil);
+    passwordTextField.label.text = NSLocalizedString(@"LABEL_PASSWORD", nil);
 
     [self bindSwitchableDatas];
 }
 - (void)bindSwitchableDatas
 {
     if (isSignUp) {
-        usernameTextField.title = NSLocalizedString(@"LABEL_EMAIL", nil);
+        usernameTextField.label.text = NSLocalizedString(@"LABEL_EMAIL", nil);
         [commitButton.button setTitle:NSLocalizedString(@"BUTTON_SIGNUP", nil) forState:UIControlStateNormal];
         [rightOperationButton setTitle:NSLocalizedString(@"LABEL_SIGNIN", nil) forState:UIControlStateNormal];
         [leftOperationButton setTitle:NSLocalizedString(@"LABEL_TERMS&CONDITIONS", nil) forState:UIControlStateNormal];
         [headerView.avatarButton setBackgroundImage:avatarImage ? avatarImage : [UIImage imageAtResourcePath:@"mark-signup"] forState:UIControlStateNormal];
         headerView.userInteractionEnabled = YES;
     } else {
-        usernameTextField.title = NSLocalizedString(@"LABEL_USERNAME", nil);
+        usernameTextField.label.text = NSLocalizedString(@"LABEL_USERNAME", nil);
         [commitButton.button setTitle:NSLocalizedString(@"BUTTON_SIGNIN", nil) forState:UIControlStateNormal];
         [rightOperationButton setTitle:NSLocalizedString(@"LABEL_SIGNUP", nil) forState:UIControlStateNormal];
         [leftOperationButton setTitle:NSLocalizedString(@"LABEL_FORGOTPASSWORD", nil) forState:UIControlStateNormal];
@@ -86,7 +86,7 @@ static NSInteger const kPopHeightWhenKeyboardShow = 170;
     [self addSubview:headerView];
 
     nameTextField = [SGTextField textField];
-    nameTextField.returnKeyType = UIReturnKeyNext;
+    nameTextField.field.returnKeyType = UIReturnKeyNext;
     nameTextField.layer.opacity = 0;
     // Mark: 由于该 block 为属性，而在 block 内通过->访问私有成员变量在 ARC 下是不允许的，所以此刻要么在 block 内使用strongSelf，要么不持有该 block ,现在采用的方案是不持有该 block
     __weak SGTextField* weakNameTextField = nameTextField;
@@ -96,7 +96,7 @@ static NSInteger const kPopHeightWhenKeyboardShow = 170;
     [self addSubview:nameTextField];
 
     usernameTextField = [SGTextField textField];
-    usernameTextField.returnKeyType = UIReturnKeyNext;
+    usernameTextField.field.returnKeyType = UIReturnKeyNext;
     __weak SGTextField* weakUsernameTextField = usernameTextField;
     [weakUsernameTextField setTextFieldShouldReturn:^(SGTextField* textField) {
         [passwordTextField becomeFirstResponder];
@@ -104,8 +104,8 @@ static NSInteger const kPopHeightWhenKeyboardShow = 170;
     [self addSubview:usernameTextField];
 
     passwordTextField = [SGTextField textField];
-    passwordTextField.returnKeyType = UIReturnKeyJoin;
-    passwordTextField.secureTextEntry = YES;
+    passwordTextField.field.returnKeyType = UIReturnKeyJoin;
+    passwordTextField.field.secureTextEntry = YES;
     __weak SGTextField* weakPasswordTextField = passwordTextField;
     [weakPasswordTextField setTextFieldShouldReturn:^(SGTextField* textField) {
         [self commitButtonDidPress];
@@ -211,10 +211,10 @@ static NSInteger const kPopHeightWhenKeyboardShow = 170;
             [weakSelf endEditing:YES];
 
             SGUser* user = [SGUser object];
-            user.username = usernameTextField.text;
-            user.name = nameTextField.text;
+            user.username = usernameTextField.field.text;
+            user.name = nameTextField.field.text;
             user.email = user.username;
-            user.password = passwordTextField.text;
+            user.password = passwordTextField.field.text;
             user.avatarImage = avatarImage;
 
             [_delegate loginViewDidPressCommitButton:user isSignUp:isSignUp];

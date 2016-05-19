@@ -15,7 +15,6 @@
 {
     UIImage* result;
     NSString* url = [NSString stringWithFormat:@"%@%@-%@", kQiniuDomain, string, style];
-    NSLog(@"%@", url);
     NSData* data = [NSData dataWithContentsOfURL:[NSURL URLWithString:url]];
     result = [UIImage imageWithData:data];
 

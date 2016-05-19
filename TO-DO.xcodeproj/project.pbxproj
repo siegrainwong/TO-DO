@@ -51,6 +51,7 @@
 		F980EDCF1CE70F4E00A861FE /* HeaderView.m in Sources */ = {isa = PBXBuildFile; fileRef = F980EDCE1CE70F4E00A861FE /* HeaderView.m */; };
 		F99A902E1CE30CB600EC0762 /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = F99A90301CE30CB600EC0762 /* Localizable.strings */; };
 		F9A1E0801CEDFA4C00FFC453 /* SGCommitButton.m in Sources */ = {isa = PBXBuildFile; fileRef = F9A1E07F1CEDFA4C00FFC453 /* SGCommitButton.m */; };
+		F9A1E0831CEE180E00FFC453 /* NSDateFormatter+Extension.m in Sources */ = {isa = PBXBuildFile; fileRef = F9A1E0821CEE180E00FFC453 /* NSDateFormatter+Extension.m */; };
 		F9A723731CDDF8A800E3BC8E /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = F9A723721CDDF8A800E3BC8E /* main.m */; };
 		F9A723791CDDF8A800E3BC8E /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = F9A723781CDDF8A800E3BC8E /* ViewController.m */; };
 		F9A7237C1CDDF8A800E3BC8E /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = F9A7237A1CDDF8A800E3BC8E /* Main.storyboard */; };
@@ -171,6 +172,8 @@
 		F99A90351CE317EE00EC0762 /* zh-Hans */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "zh-Hans"; path = "zh-Hans.lproj/Localizable.strings"; sourceTree = "<group>"; };
 		F9A1E07E1CEDFA4C00FFC453 /* SGCommitButton.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SGCommitButton.h; sourceTree = "<group>"; };
 		F9A1E07F1CEDFA4C00FFC453 /* SGCommitButton.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SGCommitButton.m; sourceTree = "<group>"; };
+		F9A1E0811CEE180E00FFC453 /* NSDateFormatter+Extension.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSDateFormatter+Extension.h"; sourceTree = "<group>"; };
+		F9A1E0821CEE180E00FFC453 /* NSDateFormatter+Extension.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSDateFormatter+Extension.m"; sourceTree = "<group>"; };
 		F9A7236E1CDDF8A800E3BC8E /* TO-DO.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "TO-DO.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		F9A723721CDDF8A800E3BC8E /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
 		F9A723771CDDF8A800E3BC8E /* ViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ViewController.h; sourceTree = "<group>"; };
@@ -403,6 +406,8 @@
 				F945ABD91CED96B600C282F7 /* UITableView+Extension.m */,
 				F945ABDB1CED983800C282F7 /* UIScrollView+Extension.h */,
 				F945ABDC1CED983800C282F7 /* UIScrollView+Extension.m */,
+				F9A1E0811CEE180E00FFC453 /* NSDateFormatter+Extension.h */,
+				F9A1E0821CEE180E00FFC453 /* NSDateFormatter+Extension.m */,
 			);
 			path = Categories;
 			sourceTree = "<group>";
@@ -872,6 +877,7 @@
 				F9A723731CDDF8A800E3BC8E /* main.m in Sources */,
 				F94CA24A1CE2FA9E0006904F /* GCDUtil.m in Sources */,
 				F9A1E0801CEDFA4C00FFC453 /* SGCommitButton.m in Sources */,
+				F9A1E0831CEE180E00FFC453 /* NSDateFormatter+Extension.m in Sources */,
 				F94CA2421CE2FA9E0006904F /* NSObject+PropertyName.m in Sources */,
 				F94CA2631CE2FB940006904F /* LoginView.m in Sources */,
 			);

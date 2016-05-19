@@ -9,78 +9,57 @@
 #import "Macros.h"
 #import "SGTextField.h"
 
-@interface
-SGTextField ()<UITextFieldDelegate>
-@property (strong, nonatomic) IBOutlet UILabel* label;
-@property (strong, nonatomic) IBOutlet UITextField* textField;
-@end
-
-@implementation SGTextField
+@implementation SGTextField {
+    CALayer* underline;
+}
 #pragma mark - initial
 + (instancetype)textField
 {
     SGTextField* sgTextField = [[[NSBundle mainBundle] loadNibNamed:@"SGTextField" owner:nil options:nil] lastObject];
-    sgTextField.textField.delegate = sgTextField;
+    sgTextField.field.delegate = sgTextField;
     return sgTextField;
 }
 
-#pragma mark - accessors
-- (NSString*)text
-{
-    return _textField.text;
-}
-- (void)setText:(NSString*)text
-{
-    _textField.text = text;
-}
-- (void)setTitle:(NSString*)title
-{
-    _label.text = title;
-}
-- (void)setSecureTextEntry:(BOOL)secureTextEntry
-{
-    _textField.secureTextEntry = secureTextEntry;
-}
-- (void)setReturnKeyType:(UIReturnKeyType)returnKeyType
-{
-    _textField.returnKeyType = returnKeyType;
-}
 #pragma mark - rewrite UIControl methods & accessors
 - (void)layoutSubviews
 {
     [super layoutSubviews];
 
-    [self attachBottomBorder];
+    [self attachUnderline];
 }
 
 - (BOOL)becomeFirstResponder
 {
-    [super becomeFirstResponder];
-    [_textField becomeFirstResponder];
+    [_field becomeFirstResponder];
 
     return YES;
 }
 - (BOOL)resignFirstResponder
 {
-    [super resignFirstResponder];
-    [_textField resignFirstResponder];
+    [_field resignFirstResponder];
 
     return NO;
 }
 - (void)setEnabled:(BOOL)enabled
 {
-    _textField.enabled = enabled;
+    _field.enabled = enabled;
 }
 
 #pragma mark - helper
-- (void)attachBottomBorder
+- (void)attachUnderline
 {
-    CALayer* border = [CALayer layer];
-    CGFloat borderWidth = 1;
-    border.frame = CGRectMake(0, self.frame.size.height - borderWidth, self.frame.size.width, 1);
-    border.borderColor = ColorWithRGB(0xDDDDDD).CGColor;
-    border.borderWidth = borderWidth;
-    [self.layer addSublayer:border];
+    if (_isUnderlineHidden) return;
+
+    // Mark: 在控件完成布局后添加下划线，由于控件可能会布局多次，所以要确保只添加了一次下划线
+    if (!underline) {
+        underline = [CALayer layer];
+        [self.layer addSublayer:underline];
+    }
+
+    CGFloat lineWidth = 1;
+    underline.frame = CGRectMake(0, self.frame.size.height - lineWidth, self.frame.size.width, lineWidth);
+    underline.borderColor = ColorWithRGB(0xDDDDDD).CGColor;
+    underline.borderWidth = lineWidth;
     self.layer.masksToBounds = YES;
 }
 

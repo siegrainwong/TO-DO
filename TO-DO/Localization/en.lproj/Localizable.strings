@@ -13,9 +13,10 @@
 "LABEL_DATETIME" = "Time";
 "LABEL_LOCATION" = "Location";
 
-/* Login */
+/* Button */
 "BUTTON_SIGNIN" = "SIGN IN";
 "BUTTON_SIGNUP" = "DONE";
+"BUTTON_DONE" = "DONE";
 
 /* Alert */
 "ALERT_ERROR" = "Error";
