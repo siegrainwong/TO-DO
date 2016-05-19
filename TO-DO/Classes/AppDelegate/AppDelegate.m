@@ -8,7 +8,7 @@
 
 #import "AppDelegate.h"
 #import "DataKeys.h"
-#import "HomeTableViewController.h"
+#import "HomeViewController.h"
 #import "JTNavigationController.h"
 #import "LoginViewController.h"
 #import "Macros.h"
@@ -28,7 +28,7 @@
     SGUser* user = [SGUser currentUser];
     if (user) {
         NSLog(@"当前用户：%@", user.username);
-        [self switchRootViewController:[[HomeTableViewController alloc] init] isNavigation:YES];
+        [self switchRootViewController:[[HomeViewController alloc] init] isNavigation:YES];
     } else {
         [self switchRootViewController:[[LoginViewController alloc] init] isNavigation:NO];
     }

@@ -41,3 +41,6 @@
 
 /* Home */
 "LABEL_TASKS" = "Tasks";
+
+/* Create */
+"LABEL_CREATENEW" = "Create New";

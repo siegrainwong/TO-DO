@@ -12,5 +12,5 @@
 /**
  *  首页
  */
-@interface HomeTableViewController : BaseViewController<Localizable, UITableViewDelegate, UITableViewDataSource>
+@interface HomeViewController : BaseViewController<Localizable, UITableViewDelegate, UITableViewDataSource>
 @end

@@ -7,7 +7,7 @@
 //
 
 #import "AppDelegate.h"
-#import "HomeTableViewController.h"
+#import "HomeViewController.h"
 #import "LoginDataManager.h"
 #import "LoginViewController.h"
 #import "Masonry.h"
@@ -76,7 +76,7 @@ static NSString* const kAvatarCancelKey = @"cancel";
                          if (!succeed) return;
 
                          AppDelegate* delegate = (AppDelegate*)[UIApplication sharedApplication].delegate;
-                         [delegate switchRootViewController:[[HomeTableViewController alloc] init] isNavigation:YES];
+                         [delegate switchRootViewController:[[HomeViewController alloc] init] isNavigation:YES];
                      }];
 }
 #pragma mark - avatar

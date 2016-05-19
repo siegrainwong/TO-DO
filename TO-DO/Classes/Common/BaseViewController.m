@@ -7,8 +7,6 @@
 //
 
 #import "BaseViewController.h"
-#import "HeaderView.h"
-#import "SGUser.h"
 #import "TodoHelper.h"
 #import "UINavigationController+Transparent.h"
 

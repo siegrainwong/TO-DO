@@ -11,7 +11,7 @@
 		F921F4D41CECA023004AC07E /* UINavigationController+Transparent.m in Sources */ = {isa = PBXBuildFile; fileRef = F921F4D31CECA023004AC07E /* UINavigationController+Transparent.m */; };
 		F92B876D1CE368B300D15EAE /* UIView+Extentsion.m in Sources */ = {isa = PBXBuildFile; fileRef = F92B876C1CE368B300D15EAE /* UIView+Extentsion.m */; };
 		F93BC14E1CE5E961000A34C5 /* header bg.png in Resources */ = {isa = PBXBuildFile; fileRef = F93BC14B1CE5E961000A34C5 /* header bg.png */; };
-		F93BC1571CE5E9EE000A34C5 /* HomeTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = F93BC1561CE5E9EE000A34C5 /* HomeTableViewController.m */; };
+		F93BC1571CE5E9EE000A34C5 /* HomeViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = F93BC1561CE5E9EE000A34C5 /* HomeViewController.m */; };
 		F945ABD71CED913E00C282F7 /* BaseViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = F945ABD61CED913E00C282F7 /* BaseViewController.m */; };
 		F945ABDA1CED96B600C282F7 /* UITableView+Extension.m in Sources */ = {isa = PBXBuildFile; fileRef = F945ABD91CED96B600C282F7 /* UITableView+Extension.m */; };
 		F945ABDD1CED983800C282F7 /* UIScrollView+Extension.m in Sources */ = {isa = PBXBuildFile; fileRef = F945ABDC1CED983800C282F7 /* UIScrollView+Extension.m */; };
@@ -57,6 +57,8 @@
 		F9A723841CDDF8A800E3BC8E /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = F9A723821CDDF8A800E3BC8E /* LaunchScreen.storyboard */; };
 		F9A7238F1CDDF8A900E3BC8E /* TO_DOTests.m in Sources */ = {isa = PBXBuildFile; fileRef = F9A7238E1CDDF8A900E3BC8E /* TO_DOTests.m */; };
 		F9A7239A1CDDF8A900E3BC8E /* TO_DOUITests.m in Sources */ = {isa = PBXBuildFile; fileRef = F9A723991CDDF8A900E3BC8E /* TO_DOUITests.m */; };
+		F9BCE5321CEDB54B003376C7 /* CreateViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = F9BCE5311CEDB54B003376C7 /* CreateViewController.m */; };
+		F9BCE5391CEDBF02003376C7 /* create header bg.png in Resources */ = {isa = PBXBuildFile; fileRef = F9BCE5381CEDBF02003376C7 /* create header bg.png */; };
 		F9D0E9781CEC46D10005027B /* UIImage+Qiniu.m in Sources */ = {isa = PBXBuildFile; fileRef = F9D0E9771CEC46D10005027B /* UIImage+Qiniu.m */; };
 /* End PBXBuildFile section */
 
@@ -86,8 +88,8 @@
 		F92B876B1CE368B300D15EAE /* UIView+Extentsion.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIView+Extentsion.h"; sourceTree = "<group>"; };
 		F92B876C1CE368B300D15EAE /* UIView+Extentsion.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIView+Extentsion.m"; sourceTree = "<group>"; };
 		F93BC14B1CE5E961000A34C5 /* header bg.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "header bg.png"; sourceTree = "<group>"; };
-		F93BC1551CE5E9EE000A34C5 /* HomeTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HomeTableViewController.h; sourceTree = "<group>"; };
-		F93BC1561CE5E9EE000A34C5 /* HomeTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HomeTableViewController.m; sourceTree = "<group>"; };
+		F93BC1551CE5E9EE000A34C5 /* HomeViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HomeViewController.h; sourceTree = "<group>"; };
+		F93BC1561CE5E9EE000A34C5 /* HomeViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HomeViewController.m; sourceTree = "<group>"; };
 		F945ABD51CED913E00C282F7 /* BaseViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BaseViewController.h; sourceTree = "<group>"; };
 		F945ABD61CED913E00C282F7 /* BaseViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BaseViewController.m; sourceTree = "<group>"; };
 		F945ABD81CED96B600C282F7 /* UITableView+Extension.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UITableView+Extension.h"; sourceTree = "<group>"; };
@@ -180,6 +182,9 @@
 		F9A723951CDDF8A900E3BC8E /* TO-DOUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "TO-DOUITests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
 		F9A723991CDDF8A900E3BC8E /* TO_DOUITests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = TO_DOUITests.m; sourceTree = "<group>"; };
 		F9A7239B1CDDF8A900E3BC8E /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		F9BCE5301CEDB54B003376C7 /* CreateViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CreateViewController.h; sourceTree = "<group>"; };
+		F9BCE5311CEDB54B003376C7 /* CreateViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CreateViewController.m; sourceTree = "<group>"; };
+		F9BCE5381CEDBF02003376C7 /* create header bg.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "create header bg.png"; sourceTree = "<group>"; };
 		F9D0E9761CEC46D10005027B /* UIImage+Qiniu.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIImage+Qiniu.h"; sourceTree = "<group>"; };
 		F9D0E9771CEC46D10005027B /* UIImage+Qiniu.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIImage+Qiniu.m"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -250,8 +255,8 @@
 		F93BC1511CE5E99A000A34C5 /* Controllers */ = {
 			isa = PBXGroup;
 			children = (
-				F93BC1551CE5E9EE000A34C5 /* HomeTableViewController.h */,
-				F93BC1561CE5E9EE000A34C5 /* HomeTableViewController.m */,
+				F93BC1551CE5E9EE000A34C5 /* HomeViewController.h */,
+				F93BC1561CE5E9EE000A34C5 /* HomeViewController.m */,
 			);
 			name = Controllers;
 			sourceTree = "<group>";
@@ -301,6 +306,7 @@
 				F9A723801CDDF8A800E3BC8E /* Assets.xcassets */,
 				F94CA1E91CE2F91F0006904F /* 1. Login */,
 				F93BC14A1CE5E961000A34C5 /* 2. Home */,
+				F9BCE5331CEDB888003376C7 /* 3. Create */,
 			);
 			path = Images;
 			sourceTree = "<group>";
@@ -587,6 +593,7 @@
 				F9A723B01CDDF99800E3BC8E /* Main */,
 				F94CA2501CE2FB940006904F /* Login */,
 				F93BC1491CE5E813000A34C5 /* Home */,
+				F9BCE52E1CEDB438003376C7 /* Create */,
 			);
 			name = Classes;
 			sourceTree = "<group>";
@@ -600,6 +607,33 @@
 				F9A723821CDDF8A800E3BC8E /* LaunchScreen.storyboard */,
 			);
 			name = Main;
+			sourceTree = "<group>";
+		};
+		F9BCE52E1CEDB438003376C7 /* Create */ = {
+			isa = PBXGroup;
+			children = (
+				F9BCE52F1CEDB535003376C7 /* Controllers */,
+			);
+			name = Create;
+			path = Classes/Create;
+			sourceTree = "<group>";
+		};
+		F9BCE52F1CEDB535003376C7 /* Controllers */ = {
+			isa = PBXGroup;
+			children = (
+				F9BCE5301CEDB54B003376C7 /* CreateViewController.h */,
+				F9BCE5311CEDB54B003376C7 /* CreateViewController.m */,
+			);
+			name = Controllers;
+			sourceTree = "<group>";
+		};
+		F9BCE5331CEDB888003376C7 /* 3. Create */ = {
+			isa = PBXGroup;
+			children = (
+				F9BCE5381CEDBF02003376C7 /* create header bg.png */,
+			);
+			name = "3. Create";
+			path = "2. Home/3. Create";
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -721,6 +755,7 @@
 				F99A902E1CE30CB600EC0762 /* Localizable.strings in Resources */,
 				F94CA1EF1CE2F91F0006904F /* mark.png in Resources */,
 				F9A7237C1CDDF8A800E3BC8E /* Main.storyboard in Resources */,
+				F9BCE5391CEDBF02003376C7 /* create header bg.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -805,6 +840,7 @@
 				F94CA2441CE2FA9E0006904F /* UIImage+Extension.m in Sources */,
 				F92B876D1CE368B300D15EAE /* UIView+Extentsion.m in Sources */,
 				F94CA2451CE2FA9E0006904F /* UITextField+BottomBorder.m in Sources */,
+				F9BCE5321CEDB54B003376C7 /* CreateViewController.m in Sources */,
 				F94CA2041CE2F9780006904F /* SCLAlertViewResponder.m in Sources */,
 				F94CA2621CE2FB940006904F /* SGUser.m in Sources */,
 				F94CA2431CE2FA9E0006904F /* NSString+Extension.m in Sources */,
@@ -823,7 +859,7 @@
 				F94CA2481CE2FA9E0006904F /* TodoHelper.m in Sources */,
 				F94CA2091CE2F9780006904F /* SCLTimerDisplay.m in Sources */,
 				F94CA2691CE2FBC90006904F /* TO_DO.xcdatamodeld in Sources */,
-				F93BC1571CE5E9EE000A34C5 /* HomeTableViewController.m in Sources */,
+				F93BC1571CE5E9EE000A34C5 /* HomeViewController.m in Sources */,
 				F94CA2051CE2F9780006904F /* SCLAlertViewStyleKit.m in Sources */,
 				F94CA2471CE2FA9E0006904F /* SCLAlertHelper.m in Sources */,
 				F94CA2071CE2F9780006904F /* SCLSwitchView.m in Sources */,

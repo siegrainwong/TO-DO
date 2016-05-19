@@ -6,10 +6,10 @@
 //  Copyright © 2016年 com.siegrain. All rights reserved.
 //
 
+#import "HeaderView.h"
+#import "Masonry.h"
+#import "SGUser.h"
 #import <UIKit/UIKit.h>
-
-@class HeaderView;
-@class SGUser;
 
 /**
  *  基页（除登录）

@@ -6,19 +6,16 @@
 //  Copyright © 2016年 com.siegrain. All rights reserved.
 //
 
-#import "AVOSCloud.h"
-#import "HeaderView.h"
-#import "HomeTableViewController.h"
+#import "CreateViewController.h"
+#import "HomeViewController.h"
 #import "Macros.h"
-#import "Masonry.h"
-#import "SGUser.h"
 #import "UIImage+Extension.h"
 #import "UIImage+Qiniu.h"
 #import "UINavigationController+Transparent.h"
 #import "UIScrollView+Extension.h"
 #import "UITableView+Extension.h"
 
-@implementation HomeTableViewController {
+@implementation HomeViewController {
     UITableView* tableView;
 }
 #pragma mark - localization
@@ -57,6 +54,11 @@
     headerView.backgroundImageView.image = [UIImage imageAtResourcePath:@"header bg"];
     [headerView setHeaderViewDidPressAvatarButton:^{
         [SGUser logOut];
+    }];
+    __weak typeof(self) weakSelf = self;
+    [headerView setHeaderViewDidPressRightOperationButton:^{
+        CreateViewController* createViewController = [[CreateViewController alloc] init];
+        [weakSelf.navigationController pushViewController:createViewController animated:YES];
     }];
     tableView.tableHeaderView = headerView;
 }

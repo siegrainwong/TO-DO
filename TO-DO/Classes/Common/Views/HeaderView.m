@@ -106,5 +106,6 @@ static CGFloat const kTitleLabelHeight = 40;
 #pragma mark - right operation button event
 - (void)rightOperationButtonDidPress
 {
+    if (_headerViewDidPressRightOperationButton) _headerViewDidPressRightOperationButton();
 }
 @end

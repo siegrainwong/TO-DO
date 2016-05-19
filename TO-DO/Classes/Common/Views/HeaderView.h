@@ -44,6 +44,10 @@ typedef NS_ENUM(NSInteger, HeaderTitleAlignement) {
  *  头像按钮被按下的事件
  */
 @property (nonatomic, readwrite, copy) void (^headerViewDidPressAvatarButton)();
+/**
+ *  按下右操作按钮
+ */
+@property (nonatomic, readwrite, copy) void (^headerViewDidPressRightOperationButton)();
 
 + (instancetype)headerViewWithAvatarPosition:(HeaderAvatarPosition)avatarPosition titleAlignement:(HeaderTitleAlignement)titleAlignement;
 @end

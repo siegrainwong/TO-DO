@@ -12,5 +12,6 @@ pod 'GTMBase64'
 pod 'AVOSCloud'
 pod 'SDWebImage'
 pod 'JTNavigationController'
+pod 'AutoLinearLayoutView'
 
 end

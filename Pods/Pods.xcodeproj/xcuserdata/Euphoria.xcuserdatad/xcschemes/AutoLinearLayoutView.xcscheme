@@ -14,10 +14,10 @@
             buildForArchiving = "YES">
             <BuildableReference
                BuildableIdentifier = 'primary'
-               BlueprintIdentifier = 'F6519F7D80EAC6CF5970409493AB10E3'
-               BlueprintName = 'TPKeyboardAvoiding'
+               BlueprintIdentifier = '97D26B5AF5AEC74375C947371A1EF471'
+               BlueprintName = 'AutoLinearLayoutView'
                ReferencedContainer = 'container:Pods.xcodeproj'
-               BuildableName = 'libTPKeyboardAvoiding.a'>
+               BuildableName = 'libAutoLinearLayoutView.a'>
             </BuildableReference>
          </BuildActionEntry>
       </BuildActionEntries>

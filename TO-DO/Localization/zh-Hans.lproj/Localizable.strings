@@ -41,3 +41,6 @@
 
 /* Home */
 "LABEL_TASKS" = "个任务";
+
+/* Create */
+"LABEL_CREATENEW" = "添加";

@@ -20,6 +20,7 @@ PODS:
   - AFNetworking/UIKit (2.6.3):
     - AFNetworking/NSURLConnection
     - AFNetworking/NSURLSession
+  - AutoLinearLayoutView (0.2.0)
   - AVOSCloud (3.2.9)
   - GTMBase64 (1.0.0)
   - HappyDNS (0.2.3)
@@ -37,6 +38,7 @@ PODS:
   - TPKeyboardAvoiding (1.3)
 
 DEPENDENCIES:
+  - AutoLinearLayoutView
   - AVOSCloud
   - GTMBase64
   - JSONModel
@@ -50,6 +52,7 @@ DEPENDENCIES:
 
 SPEC CHECKSUMS:
   AFNetworking: cb8d14a848e831097108418f5d49217339d4eb60
+  AutoLinearLayoutView: 1370d70257b925f4eccb3356d3092132ce613df6
   AVOSCloud: b020009b1f2e35c271d4d019075458c879fc1d21
   GTMBase64: 0da7372e95f5171f3f652db38cde6716f8eb5e24
   HappyDNS: 6d85942e64c28b4fa61f8c76580398f52d6d1d11
@@ -62,6 +65,6 @@ SPEC CHECKSUMS:
   SDWebImage: c325cf02c30337336b95beff20a13df489ec0ec9
   TPKeyboardAvoiding: a5138f318c06fb3e151f886e18ce4a72695d9cbe
 
-PODFILE CHECKSUM: c3f0bc9a5302f936548ecd3530dc32dfe48df984
+PODFILE CHECKSUM: c6a8d1cf5bd4ccf132442d8009c594ddbe537957
 
 COCOAPODS: 1.0.0
