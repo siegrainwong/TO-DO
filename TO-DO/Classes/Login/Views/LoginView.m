@@ -69,7 +69,7 @@
     [loginView bindConstraints];
     [loginView localizeStrings];
 
-    [NSNotificationCenter attachKeyboardObservers:self keyboardWillShowSelector:@selector(keyboardWillShow:) keyboardWillHideSelector:@selector(keyboardWillHide:)];
+    [NSNotificationCenter attachKeyboardObservers:loginView keyboardWillShowSelector:@selector(keyboardWillShow:) keyboardWillHideSelector:@selector(keyboardWillHide:)];
 
     return loginView;
 }
@@ -274,27 +274,17 @@
 }
 - (void)animateByKeyboard:(BOOL)isShowAnimation
 {
-    CGFloat viewPopHeight = isShowAnimation ? kPopHeightWhenKeyboardShow : 0;
-
-    // Mark: SDAutoLayout 更新约束有动画的话有 Bug ，只能用 Masonry
-    __weak typeof(self) weakSelf = self;
     [self mas_updateConstraints:^(MASConstraintMaker* make) {
-        make.top.offset(-viewPopHeight);
-        make.bottom.offset(-viewPopHeight);
+        make.top.bottom.offset(isShowAnimation ? -kPopHeightWhenKeyboardShow : 0);
     }];
-    if (isShowAnimation) {
-        [commitButton mas_remakeConstraints:^(MASConstraintMaker* make) {
-            make.left.right.equalTo(usernameTextField);
+    [commitButton mas_remakeConstraints:^(MASConstraintMaker* make) {
+        make.left.right.equalTo(usernameTextField);
+        make.height.equalTo(self).dividedBy(12);
+        if (isShowAnimation)
             make.top.equalTo(passwordTextField.mas_bottom).offset(20);
-            make.height.equalTo(weakSelf).dividedBy(12);
-        }];
-    } else {
-        [commitButton mas_remakeConstraints:^(MASConstraintMaker* make) {
-            make.left.right.equalTo(usernameTextField);
+        else
             make.bottom.offset(-55);
-            make.height.equalTo(weakSelf).dividedBy(12);
-        }];
-    }
+    }];
 
     [UIView animateWithDuration:1 animations:^{ [self.superview layoutIfNeeded]; }];
 }

@@ -76,7 +76,6 @@
     JTNavigationController* nav;
     if (isNavigation) {
         nav = [[JTNavigationController alloc] initWithRootViewController:viewController];
-        nav.fullScreenPopGestureEnabled = YES;
     }
 
     self.window.rootViewController = isNavigation ? nav : viewController;

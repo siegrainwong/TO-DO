@@ -27,6 +27,8 @@
 
     NSDate* selectedDate;
     CGFloat fieldHeight;
+    CGFloat fieldSpacing;
+    __block MASConstraintMaker* commitButtonCommonConstraints;
     // TODO: 人物选择框
 }
 #pragma mark - localization
@@ -50,21 +52,21 @@
 {
     [super setupView];
 
-    self.view.translatesAutoresizingMaskIntoConstraints = NO;
     [NSNotificationCenter attachKeyboardObservers:self keyboardWillShowSelector:@selector(keyboardWillShow:) keyboardWillHideSelector:@selector(keyboardWillHide:)];
-    [self.view setBackgroundColor:[UIColor whiteColor]];
     fieldHeight = kScreenHeight * 0.08;
+    fieldSpacing = kScreenHeight * 0.03;
 
     __weak typeof(self) weakSelf = self;
+    // Mark: 需要这个的原因是 self.view 在视图加载时还不在窗口层级中，无法为其绑定约束
     containerView = [UIView new];
-    [containerView setBackgroundColor:[UIColor redColor]];
+    containerView.backgroundColor = [UIColor whiteColor];
     [self.view addSubview:containerView];
 
     headerView = [HeaderView headerViewWithAvatarPosition:HeaderAvatarPositionCenter titleAlignement:HeaderTitleAlignementCenter];
     headerView.backgroundImageView.image = [UIImage imageAtResourcePath:@"create header bg"];
     headerView.avatarButton.hidden = YES;
     headerView.rightOperationButton.hidden = YES;
-    [self.view addSubview:headerView];
+    [containerView addSubview:headerView];
 
     titleTextField = [SGTextField textField];
     titleTextField.field.font = [TodoHelper themeFontWithSize:32];
@@ -79,8 +81,8 @@
 
     linearView = [[AutoLinearLayoutView alloc] init];
     linearView.axisVertical = YES;
-    linearView.spacing = kScreenHeight * 0.03;
-    [self.view addSubview:linearView];
+    linearView.spacing = fieldSpacing;
+    [containerView addSubview:linearView];
 
     descriptionTextField = [SGTextField textField];
     descriptionTextField.field.returnKeyType = UIReturnKeyNext;
@@ -105,16 +107,14 @@
     [linearView addSubview:locationTextField];
 
     commitButton = [SGCommitButton commitButton];
-    [self.view addSubview:commitButton];
+    [containerView addSubview:commitButton];
 }
 - (void)bindConstraints
 {
     [super bindConstraints];
 
-    MASAttachKeys(self.view, headerView, titleTextField, linearView, descriptionTextField, datetimePicker, locationTextField, commitButton);
-
     [containerView mas_makeConstraints:^(MASConstraintMaker* make) {
-        make.top.left.right.bottom.offset(0);
+        make.left.top.right.bottom.offset(0);
     }];
 
     [headerView mas_makeConstraints:^(MASConstraintMaker* make) {
@@ -133,7 +133,7 @@
         make.left.offset(20);
         make.right.offset(-20);
         make.top.equalTo(headerView.mas_bottom).offset(20);
-        make.height.offset(fieldHeight * 3);
+        make.height.offset((fieldHeight + fieldSpacing) * 3);
     }];
 
     [@[ descriptionTextField, datetimePicker, locationTextField ] mas_makeConstraints:^(MASConstraintMaker* make) {
@@ -167,26 +167,19 @@
 }
 - (void)animateByKeyboard:(BOOL)isShowAnimation
 {
-    CGFloat viewPopHeight = isShowAnimation ? kPopHeightWhenKeyboardShow : 0;
+    if (titleTextField.field.isFirstResponder) return;
 
-    [self.view mas_updateConstraints:^(MASConstraintMaker* make) {
-        make.left.right.offset(0);
-        make.top.offset(-viewPopHeight);
-        make.bottom.offset(-viewPopHeight);
+    [containerView mas_updateConstraints:^(MASConstraintMaker* make) {
+        make.top.bottom.offset(isShowAnimation ? -kPopHeightWhenKeyboardShow + 10 : 0);
     }];
-    if (isShowAnimation) {
-        [commitButton mas_remakeConstraints:^(MASConstraintMaker* make) {
-            make.left.right.equalTo(linearView);
-            make.height.offset(fieldHeight);
+    [commitButton mas_remakeConstraints:^(MASConstraintMaker* make) {
+        make.left.right.equalTo(linearView);
+        make.height.offset(fieldHeight);
+        if (isShowAnimation)
             make.top.equalTo(locationTextField.mas_bottom).offset(20);
-        }];
-    } else {
-        [commitButton mas_remakeConstraints:^(MASConstraintMaker* make) {
-            make.left.right.equalTo(linearView);
-            make.height.offset(fieldHeight);
+        else
             make.bottom.offset(-20);
-        }];
-    }
+    }];
 
     [UIView animateWithDuration:1 animations:^{ [containerView.superview layoutIfNeeded]; }];
 }

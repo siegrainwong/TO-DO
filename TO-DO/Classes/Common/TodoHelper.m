@@ -7,6 +7,7 @@
 //
 
 #import "Macros.h"
+#import "Masonry.h"
 #import "SCLAlertHelper.h"
 #import "TodoHelper.h"
 #import <AVFoundation/AVFoundation.h>
@@ -57,4 +58,40 @@
         return;
     }
 }
+#pragma mark - strange
+/** 或许还会有用的方法...
+ *      [self keyboardAnimationWithContainer:containerView
+ bottomView:commitButton
+ stickToView:locationTextField
+ showKeyboard:isShowAnimation
+ bottomViewCommonConstraints:^(MASConstraintMaker* make) {
+ make.left.right.equalTo(linearView);
+ make.height.offset(fieldHeight);
+ }];
+ *
+ *  @param container       <#container description#>
+ *  @param bottomView      <#bottomView description#>
+ *  @param stickedView     <#stickedView description#>
+ *  @param isShowAnimation <#isShowAnimation description#>
+ *  @param block           <#block description#>
+ */
+//- (void)keyboardAnimationWithContainer:(UIView*)container bottomView:(UIView*)bottomView stickToView:(UIView*)stickedView showKeyboard:(BOOL)isShowAnimation bottomViewCommonConstraints:(void (^)(MASConstraintMaker* make))block
+//{
+//    CGFloat viewPopHeight = isShowAnimation ? kPopHeightWhenKeyboardShow : 0;
+//    [container mas_updateConstraints:^(MASConstraintMaker* make) {
+//        make.top.bottom.offset(-viewPopHeight);
+//    }];
+//
+//    [bottomView mas_remakeConstraints:^(MASConstraintMaker* make) {
+//        block(make);
+//        if (isShowAnimation) {
+//            make.top.equalTo(stickedView.mas_bottom).offset(20);
+//        } else {
+//            make.bottom.offset(-20);
+//        }
+//
+//    }];
+//
+//    [UIView animateWithDuration:1 animations:^{ [container.superview layoutIfNeeded]; }];
+//}
 @end
