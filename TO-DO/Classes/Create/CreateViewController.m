@@ -59,6 +59,7 @@
     titleTextField = [SGTextField textField];
     titleTextField.field.font = [TodoHelper themeFontWithSize:32];
     titleTextField.field.textColor = [UIColor whiteColor];
+    titleTextField.field.returnKeyType = UIReturnKeyNext;
     titleTextField.isUnderlineHidden = YES;
     [titleTextField setTextFieldShouldReturn:^(SGTextField* textField) {
         __strong typeof(self) strongSelf = weakSelf;
