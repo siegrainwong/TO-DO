@@ -11,11 +11,13 @@
 #import "DateUtil.h"
 #import "Macros.h"
 #import "NSDateFormatter+Extension.h"
+#import "NSNotificationCenter+Extension.h"
 #import "SGCommitButton.h"
 #import "SGTextField.h"
 #import "UIImage+Extension.h"
 
 @implementation CreateViewController {
+    UIView* containerView;
     SGTextField* titleTextField;
     AutoLinearLayoutView* linearView;
     SGTextField* descriptionTextField;
@@ -24,6 +26,7 @@
     SGCommitButton* commitButton;
 
     NSDate* selectedDate;
+    CGFloat fieldHeight;
     // TODO: 人物选择框
 }
 #pragma mark - localization
@@ -47,9 +50,16 @@
 {
     [super setupView];
 
+    self.view.translatesAutoresizingMaskIntoConstraints = NO;
+    [NSNotificationCenter attachKeyboardObservers:self keyboardWillShowSelector:@selector(keyboardWillShow:) keyboardWillHideSelector:@selector(keyboardWillHide:)];
     [self.view setBackgroundColor:[UIColor whiteColor]];
+    fieldHeight = kScreenHeight * 0.08;
 
     __weak typeof(self) weakSelf = self;
+    containerView = [UIView new];
+    [containerView setBackgroundColor:[UIColor redColor]];
+    [self.view addSubview:containerView];
+
     headerView = [HeaderView headerViewWithAvatarPosition:HeaderAvatarPositionCenter titleAlignement:HeaderTitleAlignementCenter];
     headerView.backgroundImageView.image = [UIImage imageAtResourcePath:@"create header bg"];
     headerView.avatarButton.hidden = YES;
@@ -101,6 +111,12 @@
 {
     [super bindConstraints];
 
+    MASAttachKeys(self.view, headerView, titleTextField, linearView, descriptionTextField, datetimePicker, locationTextField, commitButton);
+
+    [containerView mas_makeConstraints:^(MASConstraintMaker* make) {
+        make.top.left.right.bottom.offset(0);
+    }];
+
     [headerView mas_makeConstraints:^(MASConstraintMaker* make) {
         make.top.left.offset(0);
         make.width.offset(kScreenWidth);
@@ -117,23 +133,62 @@
         make.left.offset(20);
         make.right.offset(-20);
         make.top.equalTo(headerView.mas_bottom).offset(20);
+        make.height.offset(fieldHeight * 3);
     }];
 
     [@[ descriptionTextField, datetimePicker, locationTextField ] mas_makeConstraints:^(MASConstraintMaker* make) {
         make.left.right.offset(0);
-        make.height.offset(kScreenHeight * 0.08);
+        make.height.offset(fieldHeight);
     }];
 
     [commitButton mas_makeConstraints:^(MASConstraintMaker* make) {
         make.left.right.equalTo(linearView);
-        make.bottom.offset(-15);
-        make.height.offset(kScreenHeight * 0.08);
+        make.height.offset(fieldHeight);
+        make.bottom.offset(-20);
     }];
 }
 #pragma mark - commit
 - (void)commitButtonDidPress
 {
-    // TODO: 上传数据
+    dispatch_queue_t serialQueue = dispatch_queue_create("TO-DOCreateSerialQueue", DISPATCH_QUEUE_SERIAL);
+    dispatch_sync(
+      serialQueue, ^{
+
+      });
+}
+#pragma mark - keyboard events & animation
+- (void)keyboardWillShow:(NSNotification*)notification
+{
+    [self animateByKeyboard:YES];
+}
+- (void)keyboardWillHide:(NSNotification*)notification
+{
+    [self animateByKeyboard:NO];
+}
+- (void)animateByKeyboard:(BOOL)isShowAnimation
+{
+    CGFloat viewPopHeight = isShowAnimation ? kPopHeightWhenKeyboardShow : 0;
+
+    [self.view mas_updateConstraints:^(MASConstraintMaker* make) {
+        make.left.right.offset(0);
+        make.top.offset(-viewPopHeight);
+        make.bottom.offset(-viewPopHeight);
+    }];
+    if (isShowAnimation) {
+        [commitButton mas_remakeConstraints:^(MASConstraintMaker* make) {
+            make.left.right.equalTo(linearView);
+            make.height.offset(fieldHeight);
+            make.top.equalTo(locationTextField.mas_bottom).offset(20);
+        }];
+    } else {
+        [commitButton mas_remakeConstraints:^(MASConstraintMaker* make) {
+            make.left.right.equalTo(linearView);
+            make.height.offset(fieldHeight);
+            make.bottom.offset(-20);
+        }];
+    }
+
+    [UIView animateWithDuration:1 animations:^{ [containerView.superview layoutIfNeeded]; }];
 }
 #pragma mark - show date picker
 - (void)datetimePickerDidPress

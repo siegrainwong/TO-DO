@@ -10,14 +10,13 @@
 #import "LoginView.h"
 #import "Macros.h"
 #import "Masonry.h"
+#import "NSNotificationCenter+Extension.h"
 #import "SGCommitButton.h"
 #import "SGTextField.h"
 #import "SGUser.h"
 #import "TodoHelper.h"
 #import "UIImage+Extension.h"
 #import "UIView+Extentsion.h"
-
-static NSInteger const kPopHeightWhenKeyboardShow = 170;
 
 @implementation LoginView {
     HeaderView* headerView;
@@ -68,8 +67,9 @@ static NSInteger const kPopHeightWhenKeyboardShow = 170;
 
     [loginView setup];
     [loginView bindConstraints];
-    [loginView attachKeyboardObserver];
     [loginView localizeStrings];
+
+    [NSNotificationCenter attachKeyboardObservers:self keyboardWillShowSelector:@selector(keyboardWillShow:) keyboardWillHideSelector:@selector(keyboardWillHide:)];
 
     return loginView;
 }
@@ -184,17 +184,6 @@ static NSInteger const kPopHeightWhenKeyboardShow = 170;
                   leftOperationButton, rightOperationButton);
 }
 
-- (void)attachKeyboardObserver
-{
-    [[NSNotificationCenter defaultCenter] addObserver:self
-                                             selector:@selector(keyboardWillShow:)
-                                                 name:UIKeyboardWillShowNotification
-                                               object:nil];
-    [[NSNotificationCenter defaultCenter] addObserver:self
-                                             selector:@selector(keyboardWillHide:)
-                                                 name:UIKeyboardWillHideNotification
-                                               object:nil];
-}
 #pragma mark - commit & commit animation
 - (void)commitButtonDidPress
 {
@@ -283,9 +272,9 @@ static NSInteger const kPopHeightWhenKeyboardShow = 170;
 {
     [self animateByKeyboard:NO];
 }
-- (void)animateByKeyboard:(BOOL)show
+- (void)animateByKeyboard:(BOOL)isShowAnimation
 {
-    CGFloat viewPopHeight = show ? kPopHeightWhenKeyboardShow : 0;
+    CGFloat viewPopHeight = isShowAnimation ? kPopHeightWhenKeyboardShow : 0;
 
     // Mark: SDAutoLayout 更新约束有动画的话有 Bug ，只能用 Masonry
     __weak typeof(self) weakSelf = self;
@@ -293,7 +282,7 @@ static NSInteger const kPopHeightWhenKeyboardShow = 170;
         make.top.offset(-viewPopHeight);
         make.bottom.offset(-viewPopHeight);
     }];
-    if (show) {
+    if (isShowAnimation) {
         [commitButton mas_remakeConstraints:^(MASConstraintMaker* make) {
             make.left.right.equalTo(usernameTextField);
             make.top.equalTo(passwordTextField.mas_bottom).offset(20);
@@ -307,10 +296,7 @@ static NSInteger const kPopHeightWhenKeyboardShow = 170;
         }];
     }
 
-    [UIView animateWithDuration:1
-                     animations:^{
-                         [self.superview layoutIfNeeded];
-                     }];
+    [UIView animateWithDuration:1 animations:^{ [self.superview layoutIfNeeded]; }];
 }
 
 #pragma mark - dealloc

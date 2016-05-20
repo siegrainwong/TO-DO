@@ -8,6 +8,8 @@
 
 #import <UIKit/UIKit.h>
 
+static NSInteger const kPopHeightWhenKeyboardShow = 170;
+
 @interface TodoHelper : NSObject
 /**
  *  获取指定大小的系统字体

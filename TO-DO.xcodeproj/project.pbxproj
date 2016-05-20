@@ -62,6 +62,7 @@
 		F9BCE5321CEDB54B003376C7 /* CreateViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = F9BCE5311CEDB54B003376C7 /* CreateViewController.m */; };
 		F9BCE5391CEDBF02003376C7 /* create header bg.png in Resources */ = {isa = PBXBuildFile; fileRef = F9BCE5381CEDBF02003376C7 /* create header bg.png */; };
 		F9D0E9781CEC46D10005027B /* UIImage+Qiniu.m in Sources */ = {isa = PBXBuildFile; fileRef = F9D0E9771CEC46D10005027B /* UIImage+Qiniu.m */; };
+		F9F723461CEEF40200128254 /* NSNotificationCenter+Extension.m in Sources */ = {isa = PBXBuildFile; fileRef = F9F723451CEEF40200128254 /* NSNotificationCenter+Extension.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -193,6 +194,8 @@
 		F9BCE5381CEDBF02003376C7 /* create header bg.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "create header bg.png"; sourceTree = "<group>"; };
 		F9D0E9761CEC46D10005027B /* UIImage+Qiniu.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIImage+Qiniu.h"; sourceTree = "<group>"; };
 		F9D0E9771CEC46D10005027B /* UIImage+Qiniu.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIImage+Qiniu.m"; sourceTree = "<group>"; };
+		F9F723441CEEF40200128254 /* NSNotificationCenter+Extension.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSNotificationCenter+Extension.h"; sourceTree = "<group>"; };
+		F9F723451CEEF40200128254 /* NSNotificationCenter+Extension.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSNotificationCenter+Extension.m"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -408,6 +411,8 @@
 				F945ABDC1CED983800C282F7 /* UIScrollView+Extension.m */,
 				F9A1E0811CEE180E00FFC453 /* NSDateFormatter+Extension.h */,
 				F9A1E0821CEE180E00FFC453 /* NSDateFormatter+Extension.m */,
+				F9F723441CEEF40200128254 /* NSNotificationCenter+Extension.h */,
+				F9F723451CEEF40200128254 /* NSNotificationCenter+Extension.m */,
 			);
 			path = Categories;
 			sourceTree = "<group>";
@@ -847,6 +852,7 @@
 				F94CA24F1CE2FB110006904F /* AppDelegate.m in Sources */,
 				F945ABDA1CED96B600C282F7 /* UITableView+Extension.m in Sources */,
 				F94CA2061CE2F9780006904F /* SCLButton.m in Sources */,
+				F9F723461CEEF40200128254 /* NSNotificationCenter+Extension.m in Sources */,
 				F94CA2441CE2FA9E0006904F /* UIImage+Extension.m in Sources */,
 				F92B876D1CE368B300D15EAE /* UIView+Extentsion.m in Sources */,
 				F94CA2451CE2FA9E0006904F /* UITextField+BottomBorder.m in Sources */,
