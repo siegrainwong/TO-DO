@@ -127,7 +127,7 @@
     [headerView mas_makeConstraints:^(MASConstraintMaker* make) {
         make.top.left.offset(0);
         make.width.offset(kScreenWidth);
-        make.height.offset(kScreenHeight * 0.35);
+        make.height.offset(kScreenHeight * 0.3);
     }];
 
     [titleTextField mas_makeConstraints:^(MASConstraintMaker* make) {
@@ -184,7 +184,7 @@
     if (titleTextField.field.isFirstResponder) return;
 
     [containerView mas_updateConstraints:^(MASConstraintMaker* make) {
-        make.top.bottom.offset(isShowAnimation ? -kPopHeightWhenKeyboardShow + 10 : 0);
+        make.top.bottom.offset(isShowAnimation ? -115 : 0);
     }];
     [commitButton mas_remakeConstraints:^(MASConstraintMaker* make) {
         make.left.right.equalTo(linearView);
@@ -195,7 +195,11 @@
             make.bottom.offset(-20);
     }];
 
-    [UIView animateWithDuration:1 animations:^{ [containerView.superview layoutIfNeeded]; }];
+    [UIView animateWithDuration:1
+                     animations:^{
+                         [containerView.superview layoutIfNeeded];
+                         [self.navigationController.navigationBar setHidden:isShowAnimation];
+                     }];
 }
 #pragma mark - show date picker
 - (void)datetimePickerDidPress
