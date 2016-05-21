@@ -53,7 +53,7 @@
     [headerView.avatarButton setImage:[UIImage qn_imageWithString:user.avatar andStyle:kImageStyleSmall] forState:UIControlStateNormal];
     headerView.backgroundImageView.image = [UIImage imageAtResourcePath:@"header bg"];
     [headerView setHeaderViewDidPressAvatarButton:^{
-        [SGUser logOut];
+        [LCUser logOut];
     }];
     __weak typeof(self) weakSelf = self;
     [headerView setHeaderViewDidPressRightOperationButton:^{

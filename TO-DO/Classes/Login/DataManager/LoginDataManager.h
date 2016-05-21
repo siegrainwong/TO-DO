@@ -9,7 +9,7 @@
 #import "Localized.h"
 #import <Foundation/Foundation.h>
 
-@class SGUser;
+@class LCUser;
 
 @interface LoginDataManager : NSObject<Localized>
 /**
@@ -21,5 +21,5 @@
  *
  *  @return <#return value description#>
  */
-- (void)handleCommit:(SGUser*)user isSignUp:(BOOL)signUp complete:(void (^)(bool succeed))complete;
+- (void)handleCommit:(LCUser*)user isSignUp:(BOOL)signUp complete:(void (^)(bool succeed))complete;
 @end

@@ -13,7 +13,7 @@
 #import "NSNotificationCenter+Extension.h"
 #import "SGCommitButton.h"
 #import "SGTextField.h"
-#import "SGUser.h"
+#import "LCUser.h"
 #import "TodoHelper.h"
 #import "UIImage+Extension.h"
 #import "UIView+Extentsion.h"
@@ -199,7 +199,7 @@
             [weakSelf startCommitAnimation];
             [weakSelf endEditing:YES];
 
-            SGUser* user = [SGUser object];
+            LCUser* user = [LCUser object];
             user.username = usernameTextField.field.text;
             user.name = nameTextField.field.text;
             user.email = user.username;

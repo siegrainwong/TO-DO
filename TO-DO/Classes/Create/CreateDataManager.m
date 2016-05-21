@@ -7,7 +7,7 @@
 //
 
 #import "CreateDataManager.h"
-#import "SGTodo.h"
+#import "LCTodo.h"
 
 /* localization dictionary keys */
 static NSString* const kEmailInvalidKey = @"EmailInvalid";
@@ -44,7 +44,7 @@ static NSString* const kAvatarUploadFailedKey = @"AvatarUploadFailed";
     return self;
 }
 #pragma mark - validate
-- (BOOL)validate:(SGTodo*)todo
+- (BOOL)validate:(LCTodo*)todo
 {
     //	// remove whitespaces
     //	user.name = [user.name stringByRemovingUnneccessaryWhitespaces];

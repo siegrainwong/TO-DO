@@ -16,7 +16,7 @@
 #import "NSString+Extension.h"
 #import "SCLAlertHelper.h"
 #import "SCLAlertView.h"
-#import "SGUser.h"
+#import "LCUser.h"
 #import <AVOSCloud.h>
 
 /* localization dictionary keys */
@@ -76,7 +76,7 @@ static NSInteger const kLoginFailCountOverLimitErrorCodeKey = 1;
     return self;
 }
 #pragma mark - handle sign up & sign in
-- (void)handleCommit:(SGUser*)user isSignUp:(BOOL)signUp complete:(void (^)(bool succeed))complete
+- (void)handleCommit:(LCUser*)user isSignUp:(BOOL)signUp complete:(void (^)(bool succeed))complete
 {
     isSignUp = signUp;
     if (![self validate:user]) return complete(NO);
@@ -84,7 +84,7 @@ static NSInteger const kLoginFailCountOverLimitErrorCodeKey = 1;
     [[UIApplication sharedApplication] setNetworkActivityIndicatorVisible:YES];
     // sign in
     if (!isSignUp) {
-        [SGUser logInWithUsernameInBackground:user.email
+        [LCUser logInWithUsernameInBackground:user.email
                                      password:user.password
                                         block:^(AVUser* user, NSError* error) {
                                             if (error)
@@ -116,7 +116,7 @@ static NSInteger const kLoginFailCountOverLimitErrorCodeKey = 1;
     }
 }
 #pragma mark - validate
-- (BOOL)validate:(SGUser*)user
+- (BOOL)validate:(LCUser*)user
 {
     // remove whitespaces
     user.name = [user.name stringByRemovingUnneccessaryWhitespaces];

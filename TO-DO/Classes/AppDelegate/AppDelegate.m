@@ -10,10 +10,10 @@
 #import "DataKeys.h"
 #import "HomeViewController.h"
 #import "JTNavigationController.h"
+#import "LCTodo.h"
+#import "LCUser.h"
 #import "LoginViewController.h"
 #import "Macros.h"
-#import "SGTodo.h"
-#import "SGUser.h"
 #import "UIImage+Extension.h"
 #import <AVOSCloud.h>
 
@@ -26,7 +26,7 @@
 
     // validate user's login state
     //    [SGUser logOut];
-    SGUser* user = [SGUser currentUser];
+    LCUser* user = [LCUser currentUser];
     if (user) {
         NSLog(@"当前用户：%@", user.username);
         [self switchRootViewController:[[HomeViewController alloc] init] isNavigation:YES];
@@ -64,8 +64,8 @@
     [AVOSCloud setApplicationId:kLeanCloudAppID clientKey:kLeanCloudAppKey];
 
     // register subclasses
-    [SGUser registerSubclass];
-    [SGTodo registerSubclass];
+    [LCUser registerSubclass];
+    [LCTodo registerSubclass];
 }
 #pragma mark - appdelegate methods
 - (void)switchRootViewController:(UIViewController*)viewController isNavigation:(BOOL)isNavigation

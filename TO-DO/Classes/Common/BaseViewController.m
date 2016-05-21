@@ -17,7 +17,7 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-    user = [SGUser currentUser];
+    user = [LCUser currentUser];
 
     [self setupView];
     [self bindConstraints];

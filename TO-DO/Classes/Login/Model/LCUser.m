@@ -6,9 +6,9 @@
 //  Copyright © 2016年 com.siegrain. All rights reserved.
 //
 
-#import "SGUser.h"
+#import "LCUser.h"
 
-@implementation SGUser
+@implementation LCUser
 @dynamic avatar;
 @dynamic name;
 

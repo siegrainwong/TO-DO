@@ -9,9 +9,9 @@
 #import "AVOSCloud.h"
 #import <Foundation/Foundation.h>
 
-@class SGUser;
+@class LCUser;
 
-@interface SGTodo : AVObject<AVSubclassing>
+@interface LCTodo : AVObject<AVSubclassing>
 //标题
 @property (nonatomic, readwrite, strong) NSString* title;
 //描述（被内置字段占用）
@@ -21,13 +21,13 @@
 //位置
 @property (nonatomic, readwrite, strong) NSString* location;
 //用户
-@property (nonatomic, readwrite, strong) SGUser* user;
+@property (nonatomic, readwrite, strong) LCUser* user;
 
 /**
  *  未实现
  */
 //相关人员
-@property (nonatomic, readwrite, copy) NSSet<SGUser*>* relatedPersonnel;
+@property (nonatomic, readwrite, copy) NSSet<LCUser*>* relatedPersonnel;
 //照片
 @property (nonatomic, readwrite, strong) NSString* photo;
 

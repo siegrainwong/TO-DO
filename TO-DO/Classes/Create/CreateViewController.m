@@ -9,12 +9,12 @@
 #import "AutoLinearLayoutView.h"
 #import "CreateViewController.h"
 #import "DateUtil.h"
+#import "LCTodo.h"
 #import "Macros.h"
 #import "NSDateFormatter+Extension.h"
 #import "NSNotificationCenter+Extension.h"
 #import "SGCommitButton.h"
 #import "SGTextField.h"
-#import "SGTodo.h"
 #import "UIImage+Extension.h"
 
 @implementation CreateViewController {
@@ -161,13 +161,13 @@
       serialQueue, ^{
           [self.view endEditing:YES];
 
-          SGTodo* todo = [SGTodo new];
+          LCTodo* todo = [LCTodo new];
           todo.title = titleTextField.field.text;
           todo.sgDescription = descriptionTextField.field.text;
           todo.deadline = [DateUtil stringToDate:datetimePicker.field.text format:@"yyyy.MM.dd HH:mm:ss"];
           todo.location = locationTextField.field.text;
           todo.user = user;
-          // TODO:datamanager
+          // TODO: 数据同步...
       });
 }
 #pragma mark - keyboard events & animation

@@ -14,7 +14,7 @@
  
  用JSONModel时尽量不要设置只读属性
  */
-@interface SGUser : AVUser<AVSubclassing>
+@interface LCUser : AVUser<AVSubclassing>
 //名称
 @property (nonatomic, copy) NSString* name;
 //头像地址

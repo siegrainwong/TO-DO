@@ -8,7 +8,7 @@
 
 #import "HeaderView.h"
 #import "Masonry.h"
-#import "SGUser.h"
+#import "LCUser.h"
 #import "TodoHelper.h"
 #import <UIKit/UIKit.h>
 
@@ -23,7 +23,7 @@
     /**
 	 *  当前用户
 	 */
-    SGUser* user;
+    LCUser* user;
 }
 - (void)setupView;
 - (void)bindConstraints;

@@ -12,7 +12,7 @@
 #import "LoginViewController.h"
 #import "Masonry.h"
 #import "SCLAlertView.h"
-#import "SGUser.h"
+#import "LCUser.h"
 #import "TodoHelper.h"
 #import "UIView+SDAutoLayout.h"
 
@@ -66,7 +66,7 @@ static NSString* const kAvatarCancelKey = @"cancel";
 
 #pragma mark - loginView delegate
 #pragma mark - commit
-- (void)loginViewDidPressCommitButton:(SGUser*)user isSignUp:(BOOL)isSignUp
+- (void)loginViewDidPressCommitButton:(LCUser*)user isSignUp:(BOOL)isSignUp
 {
     [dataManager handleCommit:user
                      isSignUp:isSignUp

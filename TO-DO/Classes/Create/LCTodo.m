@@ -6,9 +6,9 @@
 //  Copyright © 2016年 com.siegrain. All rights reserved.
 //
 
-#import "SGTodo.h"
+#import "LCTodo.h"
 
-@implementation SGTodo
+@implementation LCTodo
 @dynamic title;
 @dynamic sgDescription;
 @dynamic deadline;
@@ -17,6 +17,6 @@
 
 + (NSString*)parseClassName
 {
-    return @"SGTodo";
+    return @"LCTodo";
 }
 @end

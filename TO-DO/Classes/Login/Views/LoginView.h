@@ -9,10 +9,10 @@
 #import "Localized.h"
 #import <UIKit/UIKit.h>
 
-@class SGUser;
+@class LCUser;
 
 @protocol LoginViewDelegate<NSObject>
-- (void)loginViewDidPressCommitButton:(SGUser*)user isSignUp:(BOOL)isSignUp;
+- (void)loginViewDidPressCommitButton:(LCUser*)user isSignUp:(BOOL)isSignUp;
 - (void)loginViewDidPressAvatarButton;
 @end
 
