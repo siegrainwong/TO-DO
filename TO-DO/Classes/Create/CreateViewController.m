@@ -29,7 +29,7 @@
     CGFloat fieldHeight;
     CGFloat fieldSpacing;
     __block MASConstraintMaker* commitButtonCommonConstraints;
-    // TODO: 人物选择框
+    // TODO: 人物选择功能
 }
 #pragma mark - localization
 - (void)localizeStrings
@@ -47,6 +47,12 @@
     [super viewDidLoad];
 
     [self localizeStrings];
+}
+- (void)viewDidAppear:(BOOL)animated
+{
+    [super viewDidAppear:animated];
+
+    [titleTextField becomeFirstResponder];
 }
 - (void)setupView
 {

@@ -19,9 +19,16 @@
     [super viewDidLoad];
     user = [SGUser currentUser];
 
-    [self setupNavigation];
     [self setupView];
     [self bindConstraints];
+}
+- (void)setupView
+{
+    [self setupNavigation];
+    [self attachGestureRecognizer];
+}
+- (void)bindConstraints
+{
 }
 - (void)setupNavigation
 {
@@ -51,16 +58,19 @@
     [searchButton setBackgroundImage:[UIImage imageNamed:@"search"] forState:UIControlStateNormal];
     self.navigationItem.rightBarButtonItem = [[UIBarButtonItem alloc] initWithCustomView:searchButton];
 }
-- (void)setupView
+- (void)attachGestureRecognizer
 {
+    UITapGestureRecognizer* tapGestureRecognizer = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(hideKeyboard:)];
+    [self.view addGestureRecognizer:tapGestureRecognizer];
 }
-- (void)bindConstraints
-{
-}
-
 #pragma mark - modify the titile on navigation bar
 - (void)setMenuTitle:(NSString*)title
 {
     titleLabel.text = title;
+}
+#pragma mark - tap gesture method
+- (void)hideKeyboard:(UITapGestureRecognizer*)recognizer
+{
+    [self.view endEditing:YES];
 }
 @end
