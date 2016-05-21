@@ -59,8 +59,6 @@
     [headerView setHeaderViewDidPressRightOperationButton:^{
         CreateViewController* createViewController = [[CreateViewController alloc] init];
         [weakSelf.navigationController pushViewController:createViewController animated:YES];
-        //        [weakSelf.navigationController setViewControllers:@[ createViewController ] animated:YES];
-
     }];
     tableView.tableHeaderView = headerView;
 }

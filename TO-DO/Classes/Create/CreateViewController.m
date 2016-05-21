@@ -14,6 +14,7 @@
 #import "NSNotificationCenter+Extension.h"
 #import "SGCommitButton.h"
 #import "SGTextField.h"
+#import "SGTodo.h"
 #import "UIImage+Extension.h"
 
 @implementation CreateViewController {
@@ -70,8 +71,8 @@
 
     headerView = [HeaderView headerViewWithAvatarPosition:HeaderAvatarPositionCenter titleAlignement:HeaderTitleAlignementCenter];
     headerView.backgroundImageView.image = [UIImage imageAtResourcePath:@"create header bg"];
+    [headerView.rightOperationButton setImage:[UIImage imageNamed:@"photo"] forState:UIControlStateNormal];
     headerView.avatarButton.hidden = YES;
-    headerView.rightOperationButton.hidden = YES;
     [containerView addSubview:headerView];
 
     titleTextField = [SGTextField textField];
@@ -141,7 +142,6 @@
         make.top.equalTo(headerView.mas_bottom).offset(20);
         make.height.offset((fieldHeight + fieldSpacing) * 3);
     }];
-
     [@[ descriptionTextField, datetimePicker, locationTextField ] mas_makeConstraints:^(MASConstraintMaker* make) {
         make.left.right.offset(0);
         make.height.offset(fieldHeight);
@@ -159,7 +159,15 @@
     dispatch_queue_t serialQueue = dispatch_queue_create("TO-DOCreateSerialQueue", DISPATCH_QUEUE_SERIAL);
     dispatch_sync(
       serialQueue, ^{
+          [self.view endEditing:YES];
 
+          SGTodo* todo = [SGTodo new];
+          todo.title = titleTextField.field.text;
+          todo.sgDescription = descriptionTextField.field.text;
+          todo.deadline = [DateUtil stringToDate:datetimePicker.field.text format:@"yyyy.MM.dd HH:mm:ss"];
+          todo.location = locationTextField.field.text;
+          todo.user = user;
+          // TODO:datamanager
       });
 }
 #pragma mark - keyboard events & animation
@@ -194,9 +202,13 @@
 {
     HSDatePickerViewController* datePickerViewController = [[HSDatePickerViewController alloc] init];
     datePickerViewController.delegate = self;
-    // TODO: 判断地区，是中国才设置为这样的格式
-    datePickerViewController.dateFormatter = [NSDateFormatter dateFormatterWithFormatString:@"MMM d ccc"];
-    datePickerViewController.monthAndYearLabelDateFormater = [NSDateFormatter dateFormatterWithFormatString:@"yyyy MMMM"];
+
+    NSString* chinese = [SystemLanguege substringWithRange:NSMakeRange(0, 6)];
+    // zh-Hans or zh-Hant
+    if ([chinese isEqualToString:@"zh-Han"]) {
+        datePickerViewController.dateFormatter = [NSDateFormatter dateFormatterWithFormatString:@"MMM d ccc"];
+        datePickerViewController.monthAndYearLabelDateFormater = [NSDateFormatter dateFormatterWithFormatString:@"yyyy MMMM"];
+    }
 
     if (selectedDate) {
         datePickerViewController.date = selectedDate;

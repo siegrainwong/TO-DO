@@ -7,10 +7,10 @@
 //
 
 #import "BaseViewController.h"
-#import "Localizable.h"
+#import "Localized.h"
 
 /**
  *  首页
  */
-@interface HomeViewController : BaseViewController<Localizable, UITableViewDelegate, UITableViewDataSource>
+@interface HomeViewController : BaseViewController<Localized, UITableViewDelegate, UITableViewDataSource>
 @end

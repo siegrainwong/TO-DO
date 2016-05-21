@@ -19,7 +19,7 @@
 #import "SGUser.h"
 #import <AVOSCloud.h>
 
-/* local localization dictionary keys */
+/* localization dictionary keys */
 static NSString* const kEmailInvalidKey = @"EmailInvalid";
 static NSString* const kNameInvalidKey = @"NameInvalid";
 static NSString* const kPasswordInvalidKey = @"PasswordInvalid";
@@ -70,7 +70,7 @@ static NSInteger const kLoginFailCountOverLimitErrorCodeKey = 1;
 - (instancetype)init
 {
     if (self = [super init]) {
-        _localDictionary = [NSMutableDictionary dictionary];
+        _localDictionary = [NSMutableDictionary new];
         [self localizeStrings];
     }
     return self;

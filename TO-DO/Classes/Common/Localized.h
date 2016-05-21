@@ -10,7 +10,7 @@
 /**
  *  本地化协议
  */
-@protocol Localizable<NSObject>
+@protocol Localized<NSObject>
 @optional
 /**
  *  本地化字符串字典

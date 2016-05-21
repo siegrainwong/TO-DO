@@ -25,4 +25,10 @@
 
 //获取属性名
 #define PropertyName(object, property) ([object stringWithProperty:property])
+
+//获取系统语言
+#define SystemLanguege ([NSLocale preferredLanguages][0])
+
+//简化本地化字符串宏
+#define Localized(string) (NSLocalizedString(string, nil))
 #endif

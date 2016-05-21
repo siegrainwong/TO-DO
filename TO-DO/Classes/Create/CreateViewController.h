@@ -8,8 +8,8 @@
 
 #import "BaseViewController.h"
 #import "HSDatePickerViewController.h"
-#import "Localizable.h"
+#import "Localized.h"
 
-@interface CreateViewController : BaseViewController<Localizable, HSDatePickerViewControllerDelegate>
+@interface CreateViewController : BaseViewController<Localized, HSDatePickerViewControllerDelegate>
 
 @end

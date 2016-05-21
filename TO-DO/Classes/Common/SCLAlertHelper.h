@@ -6,12 +6,12 @@
 //  Copyright © 2016年 com.siegrain. All rights reserved.
 //
 
-#import "Localizable.h"
+#import "Localized.h"
 #import <Foundation/Foundation.h>
 
 @class SCLAlertView;
 
-@interface SCLAlertHelper : NSObject<Localizable>
+@interface SCLAlertHelper : NSObject<Localized>
 /**
  *  弹出错误信息窗口
  *

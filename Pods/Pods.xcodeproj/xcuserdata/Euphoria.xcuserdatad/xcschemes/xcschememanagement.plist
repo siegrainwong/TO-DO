@@ -54,6 +54,16 @@
 			<key>isShown</key>
 			<false/>
 		</dict>
+		<key>ObjectiveRecord.xcscheme</key>
+		<dict>
+			<key>isShown</key>
+			<false/>
+		</dict>
+		<key>ObjectiveSugar.xcscheme</key>
+		<dict>
+			<key>isShown</key>
+			<false/>
+		</dict>
 		<key>Pods-TO-DO.xcscheme</key>
 		<dict>
 			<key>isShown</key>
@@ -87,7 +97,7 @@
 			<key>primary</key>
 			<true/>
 		</dict>
-		<key>0ED76175715942146BFEAC0288E562E1</key>
+		<key>18E4787DD0E2EE7856F5F24821D6E6A6</key>
 		<dict>
 			<key>primary</key>
 			<true/>
@@ -97,7 +107,17 @@
 			<key>primary</key>
 			<true/>
 		</dict>
+		<key>3EF43BC60F9C76F2C750F06FF13C5C1A</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
 		<key>410B25DF16EA5C5B3E2698F74F9625FB</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
+		<key>4F293434BD473EE77E81F8BD06954767</key>
 		<dict>
 			<key>primary</key>
 			<true/>
@@ -107,12 +127,12 @@
 			<key>primary</key>
 			<true/>
 		</dict>
-		<key>54E5E8A55DAD99BB4057EE102C2B9F2B</key>
+		<key>5C62045F455139E6963539AC3EBD9960</key>
 		<dict>
 			<key>primary</key>
 			<true/>
 		</dict>
-		<key>5C62045F455139E6963539AC3EBD9960</key>
+		<key>65DF315E7916BBCB16AEC2941D45CA40</key>
 		<dict>
 			<key>primary</key>
 			<true/>
@@ -127,7 +147,12 @@
 			<key>primary</key>
 			<true/>
 		</dict>
-		<key>71473856FC667DD928A3545B02127529</key>
+		<key>8D27D6655AB539ED51F8A838A0157EB2</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
+		<key>92DF02F0F5F79F8E066069C340AFC606</key>
 		<dict>
 			<key>primary</key>
 			<true/>
@@ -137,17 +162,12 @@
 			<key>primary</key>
 			<true/>
 		</dict>
-		<key>AB3AF2E3AE754BBFE0D8DADECDC92348</key>
+		<key>C44DF30F61E0D691D121962AC68466DC</key>
 		<dict>
 			<key>primary</key>
 			<true/>
 		</dict>
 		<key>E694B7A9158D69735D08E399D0B8ED5C</key>
-		<dict>
-			<key>primary</key>
-			<true/>
-		</dict>
-		<key>E72BEE333792FAC4D8BDB37F10D24712</key>
 		<dict>
 			<key>primary</key>
 			<true/>

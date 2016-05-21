@@ -16,7 +16,13 @@
  *  基页（除登录）
  */
 @interface BaseViewController : UIViewController {
+    /**
+	 *  头视图
+	 */
     HeaderView* headerView;
+    /**
+	 *  当前用户
+	 */
     SGUser* user;
 }
 - (void)setupView;

@@ -12,6 +12,7 @@
 #import "JTNavigationController.h"
 #import "LoginViewController.h"
 #import "Macros.h"
+#import "SGTodo.h"
 #import "SGUser.h"
 #import "UIImage+Extension.h"
 #import <AVOSCloud.h>
@@ -64,6 +65,7 @@
 
     // register subclasses
     [SGUser registerSubclass];
+    [SGTodo registerSubclass];
 }
 #pragma mark - appdelegate methods
 - (void)switchRootViewController:(UIViewController*)viewController isNavigation:(BOOL)isNavigation

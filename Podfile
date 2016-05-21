@@ -14,5 +14,6 @@ pod 'SDWebImage'
 pod 'JTNavigationController'
 pod 'AutoLinearLayoutView'
 pod 'HSDatePickerViewController', '~> 1.0'
+pod 'ObjectiveRecord'
 
 end

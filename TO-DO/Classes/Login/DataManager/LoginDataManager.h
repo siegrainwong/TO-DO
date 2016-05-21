@@ -6,12 +6,12 @@
 //  Copyright © 2016年 com.siegrain. All rights reserved.
 //
 
-#import "Localizable.h"
+#import "Localized.h"
 #import <Foundation/Foundation.h>
 
 @class SGUser;
 
-@interface LoginDataManager : NSObject<Localizable>
+@interface LoginDataManager : NSObject<Localized>
 /**
  *  处理登录、注册请求
  *

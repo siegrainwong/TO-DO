@@ -6,7 +6,7 @@
 //  Copyright © 2016年 com.siegrain. All rights reserved.
 //
 
-#import "Localizable.h"
+#import "Localized.h"
 #import <UIKit/UIKit.h>
 
 @class SGUser;
@@ -19,7 +19,7 @@
 /**
  *  登录、注册界面
  */
-@interface LoginView : UIView<Localizable>
+@interface LoginView : UIView<Localized>
 @property (nonatomic, readwrite, weak) id<LoginViewDelegate> delegate;
 
 + (instancetype)loginView;
