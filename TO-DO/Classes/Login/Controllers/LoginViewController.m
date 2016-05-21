@@ -31,9 +31,9 @@ static NSString* const kAvatarCancelKey = @"cancel";
 #pragma mark - localization
 - (void)localizeStrings
 {
-    [_localDictionary setObject:NSLocalizedString(@"ACTION_TAKEPHOTO", nil) forKey:kAvatarTakePhotoKey];
-    [_localDictionary setObject:NSLocalizedString(@"ACTION_FROMALBUM", nil) forKey:kAvatarFromAlbumKey];
-    [_localDictionary setObject:NSLocalizedString(@"ACTION_CANCEL", nil) forKey:kAvatarCancelKey];
+    [_localDictionary setObject:NSLocalizedString(@"Take a photo", nil) forKey:kAvatarTakePhotoKey];
+    [_localDictionary setObject:NSLocalizedString(@"Pick from album", nil) forKey:kAvatarFromAlbumKey];
+    [_localDictionary setObject:NSLocalizedString(@"Cancel", nil) forKey:kAvatarCancelKey];
 }
 #pragma mark - initial
 - (void)viewDidLoad

@@ -35,12 +35,12 @@
 #pragma mark - localization
 - (void)localizeStrings
 {
-    [self setMenuTitle:NSLocalizedString(@"LABEL_CREATENEW", nil)];
-    titleTextField.field.text = NSLocalizedString(@"LABEL_TITLE", nil);
-    descriptionTextField.label.text = NSLocalizedString(@"LABEL_DESCRIPTION", nil);
-    datetimePicker.label.text = NSLocalizedString(@"LABEL_DATETIME", nil);
-    locationTextField.label.text = NSLocalizedString(@"LABEL_LOCATION", nil);
-    [commitButton.button setTitle:NSLocalizedString(@"BUTTON_DONE", nil) forState:UIControlStateNormal];
+    [self setMenuTitle:NSLocalizedString(@"Create New", nil)];
+    titleTextField.field.text = NSLocalizedString(@"Title", nil);
+    descriptionTextField.label.text = NSLocalizedString(@"Description", nil);
+    datetimePicker.label.text = NSLocalizedString(@"Time", nil);
+    locationTextField.label.text = NSLocalizedString(@"Location", nil);
+    [commitButton.button setTitle:NSLocalizedString(@"DONE", nil) forState:UIControlStateNormal];
 }
 #pragma mark - initial
 - (void)viewDidLoad

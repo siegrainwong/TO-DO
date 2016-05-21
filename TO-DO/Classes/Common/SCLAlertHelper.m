@@ -14,17 +14,17 @@
 + (void)errorAlertWithContent:(NSString*)content
 {
     SCLAlertView* alert = [[SCLAlertView alloc] initWithNewWindow];
-    [alert showError:NSLocalizedString(@"ALERT_ERROR", nil) subTitle:content closeButtonTitle:@"OK" duration:0];
+    [alert showError:NSLocalizedString(@"Error", nil) subTitle:content closeButtonTitle:@"OK" duration:0];
 }
 + (BOOL)errorAlertValidateLengthWithString:(NSString*)string minLength:(NSUInteger)min maxLength:(NSUInteger)max alertName:(NSString*)name
 {
     NSString* validateString = nil;
     NSUInteger errorLength = 0;
     if ([string bytesFromString] < min) {
-        validateString = NSLocalizedString(@"VALIDATE_LENGTHTOOSHORT", nil);
+        validateString = NSLocalizedString(@" is too short, minimum is ", nil);
         errorLength = min;
     } else if ([string bytesFromString] > max) {
-        validateString = NSLocalizedString(@"VALIDATE_LENGTHTOOLONG", nil);
+        validateString = NSLocalizedString(@" is too long, maximum is ", nil);
         errorLength = max;
     }
 

@@ -22,16 +22,16 @@ static NSString* const kAvatarUploadFailedKey = @"AvatarUploadFailed";
 - (void)localizeStrings
 {
     [_localDictionary setObject:
-                        [NSString stringWithFormat:@"%@%@", NSLocalizedString(@"LABLE_PASSWORD", nil), NSLocalizedString(@"VALIDATE_INVALID", nil)]
+                        [NSString stringWithFormat:@"%@%@", NSLocalizedString(@"Password", nil), NSLocalizedString(@" is invalid", nil)]
                          forKey:kPasswordInvalidKey];
     [_localDictionary setObject:
-                        [NSString stringWithFormat:@"%@%@", NSLocalizedString(@"LABEL_NAME", nil), NSLocalizedString(@"VALIDATE_INVALID", nil)]
+                        [NSString stringWithFormat:@"%@%@", NSLocalizedString(@"Name", nil), NSLocalizedString(@" is invalid", nil)]
                          forKey:kNameInvalidKey];
     [_localDictionary setObject:
-                        [NSString stringWithFormat:@"%@", NSLocalizedString(@"VALIDATE_NO_AVATAR", nil)]
+                        [NSString stringWithFormat:@"%@", NSLocalizedString(@"Please select your avatar", nil)]
                          forKey:kAvatarHaventSelectedKey];
     [_localDictionary setObject:
-                        [NSString stringWithFormat:@"%@", NSLocalizedString(@"ERROR_AVATAR_UPLOAD_FAILED", nil)]
+                        [NSString stringWithFormat:@"%@", NSLocalizedString(@"Failed to upload avatar, please try again", nil)]
                          forKey:kAvatarUploadFailedKey];
 }
 #pragma mark - initial

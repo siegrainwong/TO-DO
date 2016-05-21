@@ -1,51 +1,51 @@
 /* Common */
 "LABEL_OK" = "OK";
-"LABEL_SIGNUP" = "Sign Up";
-"LABEL_SIGNIN" = "Sign In";
-"LABEL_NAME" = "Name";
-"LABEL_USERNAME" = "Username";
-"LABEL_PASSWORD" = "Password";
-"LABEL_EMAIL" = "Email";
-"LABEL_USERNAME(EMAIL)" = "Username(Email)";
-"LABEL_FORGOTPASSWORD" = "FORGOT PASSWORD?";
-"LABEL_TERMS&CONDITIONS" = "TERMS & CONDITIONS";
-"LABEL_DESCRIPTION" = "Description";
-"LABEL_DATETIME" = "Time";
-"LABEL_LOCATION" = "Location";
+//"LABEL_SIGNUP" = "Sign Up";
+//"LABEL_SIGNIN" = "Sign In";
+//"LABEL_NAME" = "Name";
+//"LABEL_USERNAME" = "Username";
+//"LABEL_PASSWORD" = "Password";
+//"LABEL_EMAIL" = "Email";
+//"LABEL_USERNAME(EMAIL)" = "Username(Email)";
+//"LABEL_FORGOTPASSWORD" = "FORGOT PASSWORD?";
+//"LABEL_TERMS&CONDITIONS" = "TERMS & CONDITIONS";
+//"LABEL_DESCRIPTION" = "Description";
+//"LABEL_DATETIME" = "Time";
+//"LABEL_LOCATION" = "Location";
 
 /* Button */
-"BUTTON_SIGNIN" = "SIGN IN";
+//"BUTTON_SIGNIN" = "SIGN IN";
 "BUTTON_SIGNUP" = "DONE";
-"BUTTON_DONE" = "DONE";
+//"BUTTON_DONE" = "DONE";
 
 /* Alert */
-"ALERT_ERROR" = "Error";
+//"ALERT_ERROR" = "Error";
 
 /* Validate */
-"VALIDATE_LENGTHTOOLONG" = " is too long, maximum is ";
-"VALIDATE_LENGTHTOOSHORT" = " is too short, minimum is ";
-"VALIDATE_INVALID" = " is invalid";
-"VALIDATE_INCORRECT" = " is incorrect";
-"VALIDATE_NO_AVATAR" = "Please select your avatar";
-"VALIDATE_USER_DOESNT_EXIST" = "User doesn't exist";
-"VALIDATE_EMAIL_ALREADY_TAKEN" = "Email has already been taken";
-"VALIDATE_LOGIN_FAILCOUNT_OVERLIMIT" = "Failed login count over limit, reset your password or try again later(15 mins)";
+//"VALIDATE_LENGTHTOOLONG" = " is too long, maximum is ";
+//"VALIDATE_LENGTHTOOSHORT" = " is too short, minimum is ";
+//"VALIDATE_INVALID" = " is invalid";
+//"VALIDATE_INCORRECT" = " is incorrect";
+//"VALIDATE_NO_AVATAR" = "Please select your avatar";
+//"VALIDATE_USER_DOESNT_EXIST" = "User doesn't exist";
+//"VALIDATE_EMAIL_ALREADY_TAKEN" = "Email has already been taken";
+//"VALIDATE_LOGIN_FAILCOUNT_OVERLIMIT" = "Failed login count over limit, reset your password or try again later(15 mins)";
 
 /* Actions */
-"ACTION_TAKEPHOTO" = "Take a photo";
-"ACTION_FROMALBUM" = "Pick from album";
-"ACTION_CANCEL" = "Cancel";
+//"ACTION_TAKEPHOTO" = "Take a photo";
+//"ACTION_FROMALBUM" = "Pick from album";
+//"ACTION_CANCEL" = "Cancel";
 
 /* Errors */
-"ERROR_CAMERA_DENIED" = "Please allow app to access your device's camera in \"Settings\" -> \"Privacy\" -> \"Camera\"";
-"ERROR_AVATAR_UPLOAD_FAILED" = "Failed to upload avatar, please try again";
+//"ERROR_CAMERA_DENIED" = "Please allow app to access your device's camera in \"Settings\" -> \"Privacy\" -> \"Camera\"";
+//"ERROR_AVATAR_UPLOAD_FAILED" = "Failed to upload avatar, please try again";
 
 /* Exceptions */
-"EXCEPTION_CAMERA_OR_ALBUM_UNAVAILABLE" = "Unable to open your camera or album because of an unexpected error";
+//"EXCEPTION_CAMERA_OR_ALBUM_UNAVAILABLE" = "Unable to open your camera or album because of an unexpected error";
 
 /* Home */
-"LABEL_TASKS" = "Tasks";
+//"LABEL_TASKS" = "Tasks";
 
 /* Create */
-"LABEL_CREATENEW" = "Create New";
-"LABEL_TITLE" = "Title";
+//"LABEL_CREATENEW" = "Create New";
+//"LABEL_TITLE" = "Title";

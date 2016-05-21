@@ -39,7 +39,7 @@
     if (sourceType == UIImagePickerControllerSourceTypeCamera) {
         AVAuthorizationStatus authStatus = [AVCaptureDevice authorizationStatusForMediaType:AVMediaTypeVideo];
         if (authStatus == AVAuthorizationStatusRestricted || authStatus == AVAuthorizationStatusDenied) {
-            [SCLAlertHelper errorAlertWithContent:NSLocalizedString(@"ERROR_CAMERA_DENIED", nil)];
+            [SCLAlertHelper errorAlertWithContent:NSLocalizedString(@"Please allow app to access your device's camera in \"Settings\" -> \"Privacy\" -> \"Camera\"", nil)];
             *error = true;
             return;
         }
@@ -53,7 +53,7 @@
         picker.sourceType = sourceType;
         [target presentViewController:picker animated:true completion:nil];
     } else {
-        [SCLAlertHelper errorAlertWithContent:NSLocalizedString(@"EXCEPTION_CAMERA_OR_ALBUM_UNAVAILABLE", nil)];
+        [SCLAlertHelper errorAlertWithContent:NSLocalizedString(@"Unable to open your camera or album because of an unexpected error", nil)];
         *error = true;
         return;
     }

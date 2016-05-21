@@ -1,54 +1,53 @@
 /* Common */
-"LABEL_OK" = "确认";
-"LABEL_SIGNUP" = "注册";
-"LABEL_SIGNIN" = "登录";
-"LABEL_NAME" = "名称";
-"LABEL_USERNAME" = "用户名";
-"LABEL_PASSWORD" = "密码";
-"LABEL_EMAIL" = "邮箱";
-"LABEL_USERNAME(EMAIL)" = "用户名(邮箱)";
-"LABEL_FORGOTPASSWORD" = "忘记密码?";
-"LABEL_TERMS&CONDITIONS" = "条款和条件";
-"LABEL_DESCRIPTION" = "描述";
-"LABEL_DATETIME" = "时间";
-"LABEL_LOCATION" = "位置";
+"OK" = "确认";
+"Sign Up" = "注册";
+"Sign In" = "登录";
+"Name" = "名称";
+"Username" = "用户名";
+"Password" = "密码";
+"Email" = "邮箱";
+"Username(Email)" = "用户名(邮箱)";
+"FORGOT PASSWORD?" = "忘记密码?";
+"TERMS & CONDITIONS" = "条款和条件";
+"Description" = "描述";
+"Time" = "时间";
+"Location" = "位置";
 
 /* Button */
-"BUTTON_SIGNIN" = "登录";
-"BUTTON_SIGNUP" = "注册";
-"BUTTON_DONE" = "完成";
+"SIGN IN" = "登录";
+"DONE" = "完成";
 
 /* Alert */
-"ALERT_ERROR" = "错误";
+"Error" = "错误";
 
 /* Validate */
-"VALIDATE_LENGTHTOOLONG" = "太长，最大字符数（中文占两个字符）为";
-"VALIDATE_LENGTHTOOSHORT" = "太短，最小字符数（中文占两个字符）为";
-"VALIDATE_INVALID" = "无效";
-"VALIDATE_INCORRECT" = "不正确";
-"VALIDATE_NO_AVATAR" = "请在“+”处选择头像";
-"VALIDATE_USER_DOESNT_EXIST" = "用户不存在";
-"VALIDATE_EMAIL_ALREADY_TAKEN" = "邮箱已被占用";
-"VALIDATE_LOGIN_FAILCOUNT_OVERLIMIT" = "登录失败次数超过限制，请稍候再试（15分钟后），或者通过忘记密码重设密码。";
+" is too long, maximum is " = "太长，最大字符数（中文占两个字符）为";
+" is too short, minimum is " = "太短，最小字符数（中文占两个字符）为";
+" is invalid" = "无效";
+" is incorrect" = "不正确";
+"Please select your avatar" = "请在“+”处选择头像";
+"User doesn't exist" = "用户不存在";
+"Email has already been taken" = "邮箱已被占用";
+"Failed login count over limit, reset your password or try again later(15 mins)" = "登录失败次数超过限制，请稍候再试（15分钟后），或者通过忘记密码重设密码。";
 
 /* Actions */
-"ACTION_TAKEPHOTO" = "拍照";
-"ACTION_FROMALBUM" = "从相册选择";
-"ACTION_CANCEL" = "取消";
+"Take a photo" = "拍照";
+"Pick from album" = "从相册选择";
+"Cancel" = "取消";
 
 /* Errors */
-"ERROR_CAMERA_DENIED" = "请在iPhone的“设置-隐私-相机”选项中，允许本应用访问你的相机";
-"ERROR_AVATAR_UPLOAD_FAILED" = "上传图片失败，请重试";
+"Please allow app to access your device's camera in \"Settings\" -> \"Privacy\" -> \"Camera\"" = "请在iPhone的“设置-隐私-相机”选项中，允许本应用访问你的相机";
+"Failed to upload avatar, please try again" = "上传图片失败，请重试";
 
 /* Exceptions */
-"EXCEPTION_CAMERA_OR_ALBUM_UNAVAILABLE" = "因为未知原因，无法使用您的相机或相册";
+"Unable to open your camera or album because of an unexpected error" = "因为未知原因，无法使用您的相机或相册";
 
 /* Home */
-"LABEL_TASKS" = "个任务";
+"Tasks" = "个任务";
 
 /* Create */
-"LABEL_CREATENEW" = "添加";
-"LABEL_TITLE" = "标题";
+"Create New" = "添加";
+"Title" = "标题";
 
 /* HSDatePickerViewController */
 "Today" = "今天";

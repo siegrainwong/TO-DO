@@ -21,7 +21,7 @@
 #pragma mark - localization
 - (void)localizeStrings
 {
-    headerView.titleLabel.text = NSLocalizedString(@"LABEL_TASKS", nil);
+    headerView.titleLabel.text = NSLocalizedString(@"Tasks", nil);
     headerView.subtitleLabel.text = @"MAY 14, 2016";
 }
 #pragma mark - initial

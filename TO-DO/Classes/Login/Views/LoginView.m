@@ -34,26 +34,26 @@
 #pragma mark - localization
 - (void)localizeStrings
 {
-    headerView.titleLabel.text = NSLocalizedString(@"LABEL_SIGNUP", nil);
-    nameTextField.label.text = NSLocalizedString(@"LABEL_NAME", nil);
-    passwordTextField.label.text = NSLocalizedString(@"LABEL_PASSWORD", nil);
+    headerView.titleLabel.text = NSLocalizedString(@"Sign Up", nil);
+    nameTextField.label.text = NSLocalizedString(@"Name", nil);
+    passwordTextField.label.text = NSLocalizedString(@"Password", nil);
 
     [self bindSwitchableDatas];
 }
 - (void)bindSwitchableDatas
 {
     if (isSignUp) {
-        usernameTextField.label.text = NSLocalizedString(@"LABEL_EMAIL", nil);
-        [commitButton.button setTitle:NSLocalizedString(@"BUTTON_SIGNUP", nil) forState:UIControlStateNormal];
-        [rightOperationButton setTitle:NSLocalizedString(@"LABEL_SIGNIN", nil) forState:UIControlStateNormal];
-        [leftOperationButton setTitle:NSLocalizedString(@"LABEL_TERMS&CONDITIONS", nil) forState:UIControlStateNormal];
+        usernameTextField.label.text = NSLocalizedString(@"Email", nil);
+        [commitButton.button setTitle:NSLocalizedString(@"DONE", nil) forState:UIControlStateNormal];
+        [rightOperationButton setTitle:NSLocalizedString(@"SIGN IN", nil) forState:UIControlStateNormal];
+        [leftOperationButton setTitle:NSLocalizedString(@"TERMS & CONDITIONS", nil) forState:UIControlStateNormal];
         [headerView.avatarButton setBackgroundImage:avatarImage ? avatarImage : [UIImage imageAtResourcePath:@"mark-signup"] forState:UIControlStateNormal];
         headerView.userInteractionEnabled = YES;
     } else {
-        usernameTextField.label.text = NSLocalizedString(@"LABEL_USERNAME", nil);
-        [commitButton.button setTitle:NSLocalizedString(@"BUTTON_SIGNIN", nil) forState:UIControlStateNormal];
-        [rightOperationButton setTitle:NSLocalizedString(@"LABEL_SIGNUP", nil) forState:UIControlStateNormal];
-        [leftOperationButton setTitle:NSLocalizedString(@"LABEL_FORGOTPASSWORD", nil) forState:UIControlStateNormal];
+        usernameTextField.label.text = NSLocalizedString(@"Username", nil);
+        [commitButton.button setTitle:NSLocalizedString(@"SIGN IN", nil) forState:UIControlStateNormal];
+        [rightOperationButton setTitle:NSLocalizedString(@"Sign Up", nil) forState:UIControlStateNormal];
+        [leftOperationButton setTitle:NSLocalizedString(@"FORGOT PASSWORD?", nil) forState:UIControlStateNormal];
         [headerView.avatarButton setBackgroundImage:[UIImage imageAtResourcePath:@"mark"] forState:UIControlStateNormal];
         headerView.userInteractionEnabled = NO;
     }

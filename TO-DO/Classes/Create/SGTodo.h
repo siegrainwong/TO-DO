@@ -11,7 +11,7 @@
 
 @class SGUser;
 
-@interface SGTodo : NSObject<AVSubclassing>
+@interface SGTodo : AVObject<AVSubclassing>
 //标题
 @property (nonatomic, readwrite, strong) NSString* title;
 //描述（被内置字段占用）

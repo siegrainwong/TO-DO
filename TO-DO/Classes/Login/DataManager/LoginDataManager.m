@@ -38,32 +38,32 @@ static NSInteger const kLoginFailCountOverLimitErrorCodeKey = 1;
 - (void)localizeStrings
 {
     [_localDictionary setObject:
-                        [NSString stringWithFormat:@"%@%@", NSLocalizedString(@"LABLE_PASSWORD", nil), NSLocalizedString(@"VALIDATE_INVALID", nil)]
+                        [NSString stringWithFormat:@"%@%@", NSLocalizedString(@"Password", nil), NSLocalizedString(@" is invalid", nil)]
                          forKey:kPasswordInvalidKey];
     [_localDictionary setObject:
-                        [NSString stringWithFormat:@"%@%@", NSLocalizedString(@"LABEL_NAME", nil), NSLocalizedString(@"VALIDATE_INVALID", nil)]
+                        [NSString stringWithFormat:@"%@%@", NSLocalizedString(@"Name", nil), NSLocalizedString(@" is invalid", nil)]
                          forKey:kNameInvalidKey];
     [_localDictionary setObject:
-                        [NSString stringWithFormat:@"%@", NSLocalizedString(@"VALIDATE_NO_AVATAR", nil)]
+                        [NSString stringWithFormat:@"%@", NSLocalizedString(@"Please select your avatar", nil)]
                          forKey:kAvatarHaventSelectedKey];
     [_localDictionary setObject:
-                        [NSString stringWithFormat:@"%@", NSLocalizedString(@"ERROR_AVATAR_UPLOAD_FAILED", nil)]
+                        [NSString stringWithFormat:@"%@", NSLocalizedString(@"Failed to upload avatar, please try again", nil)]
                          forKey:kAvatarUploadFailedKey];
     [_localDictionary setObject:
                         [NSString stringWithFormat:@"%@%@",
-                                                   isSignUp ? NSLocalizedString(@"LABLE_EMAIL", nil) : NSLocalizedString(@"LABEL_USERNAME(EMAIL)", nil), NSLocalizedString(@"VALIDATE_INVALID", nil)]
+                                                   isSignUp ? NSLocalizedString(@"Email", nil) : NSLocalizedString(@"Username(Email)", nil), NSLocalizedString(@" is invalid", nil)]
                          forKey:kEmailInvalidKey];
     [_localDictionary setObject:
-                        [NSString stringWithFormat:@"%@%@", NSLocalizedString(@"LABEL_PASSWORD", nil), NSLocalizedString(@"VALIDATE_INCORRECT", nil)]
+                        [NSString stringWithFormat:@"%@%@", NSLocalizedString(@"Password", nil), NSLocalizedString(@" is incorrect", nil)]
                          forKey:@(kPasswordIncorrectErrorCodeKey)];
     [_localDictionary setObject:
-                        [NSString stringWithFormat:@"%@", NSLocalizedString(@"VALIDATE_USER_DOESNT_EXIST", nil)]
+                        [NSString stringWithFormat:@"%@", NSLocalizedString(@"User doesn't exist", nil)]
                          forKey:@(kUserDoesNotExistErrorCodeKey)];
     [_localDictionary setObject:
-                        [NSString stringWithFormat:@"%@", NSLocalizedString(@"VALIDATE_EMAIL_ALREADY_TAKEN", nil)]
+                        [NSString stringWithFormat:@"%@", NSLocalizedString(@"Email has already been taken", nil)]
                          forKey:@(kEmailAlreadyTakenErrorCodeKey)];
     [_localDictionary setObject:
-                        [NSString stringWithFormat:@"%@", NSLocalizedString(@"VALIDATE_LOGIN_FAILCOUNT_OVERLIMIT", nil)]
+                        [NSString stringWithFormat:@"%@", NSLocalizedString(@"Failed login count over limit, reset your password or try again later(15 mins)", nil)]
                          forKey:@(kLoginFailCountOverLimitErrorCodeKey)];
 }
 #pragma mark - initial
@@ -131,7 +131,7 @@ static NSInteger const kLoginFailCountOverLimitErrorCodeKey = 1;
         }
 
         // name validation
-        if ([SCLAlertHelper errorAlertValidateLengthWithString:user.name minLength:4 maxLength:20 alertName:NSLocalizedString(@"LABEL_NAME", nil)]) {
+        if ([SCLAlertHelper errorAlertValidateLengthWithString:user.name minLength:4 maxLength:20 alertName:NSLocalizedString(@"Name", nil)]) {
             return NO;
         } else if (![FieldValidator validateName:user.name]) {
             [SCLAlertHelper errorAlertWithContent:_localDictionary[kNameInvalidKey]];
@@ -149,7 +149,7 @@ static NSInteger const kLoginFailCountOverLimitErrorCodeKey = 1;
     if ([SCLAlertHelper errorAlertValidateLengthWithString:user.password
                                                  minLength:6
                                                  maxLength:20
-                                                 alertName:NSLocalizedString(@"LABEL_PASSWORD", nil)]) {
+                                                 alertName:NSLocalizedString(@"Password", nil)]) {
         return NO;
     } else if (![FieldValidator validatePassword:user.password]) {
         [SCLAlertHelper errorAlertWithContent:kPasswordInvalidKey];
