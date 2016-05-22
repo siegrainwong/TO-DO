@@ -10,6 +10,6 @@
 #import "HSDatePickerViewController.h"
 #import "Localized.h"
 
-@interface CreateViewController : BaseViewController<Localized, HSDatePickerViewControllerDelegate>
+@interface CreateViewController : BaseViewController<Localized, HSDatePickerViewControllerDelegate, UINavigationControllerDelegate, UIImagePickerControllerDelegate>
 
 @end

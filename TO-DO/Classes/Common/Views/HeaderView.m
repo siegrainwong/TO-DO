@@ -12,7 +12,8 @@
 #import "TodoHelper.h"
 #import "UIImage+Extension.h"
 
-static CGFloat const kAvatarSizeMultipliedByHeight = 0.16;
+static CGFloat const kAvatarButtonSizeMultipliedByHeight = 0.16;
+static CGFloat const kRightOperationButtonSizeMultipliedByHeight = 0.1;
 static CGFloat const kTitleLabelHeight = 40;
 
 @implementation HeaderView {
@@ -48,11 +49,13 @@ static CGFloat const kTitleLabelHeight = 40;
 
     _avatarButton = [[UIButton alloc] init];
     _avatarButton.layer.masksToBounds = YES;
-    _avatarButton.layer.cornerRadius = kScreenHeight * kAvatarSizeMultipliedByHeight / 2;
+    _avatarButton.layer.cornerRadius = kScreenHeight * kAvatarButtonSizeMultipliedByHeight / 2;
     [_avatarButton addTarget:self action:@selector(avatarButtonDidPress) forControlEvents:UIControlEventTouchUpInside];
     [self addSubview:_avatarButton];
 
     _rightOperationButton = [[UIButton alloc] init];
+    _rightOperationButton.layer.masksToBounds = YES;
+    _rightOperationButton.layer.cornerRadius = kScreenHeight * kRightOperationButtonSizeMultipliedByHeight / 2;
     [_rightOperationButton addTarget:self action:@selector(rightOperationButtonDidPress) forControlEvents:UIControlEventTouchUpInside];
     [self addSubview:_rightOperationButton];
 }
@@ -69,7 +72,7 @@ static CGFloat const kTitleLabelHeight = 40;
     [_rightOperationButton mas_makeConstraints:^(MASConstraintMaker* make) {
         make.bottom.offset(-kScreenHeight * 0.02);
         make.right.offset(-20);
-        make.width.offset(kScreenHeight * 0.1);
+        make.width.offset(kScreenHeight * kRightOperationButtonSizeMultipliedByHeight);
         make.height.equalTo(_rightOperationButton.mas_width);
     }];
 
@@ -79,7 +82,7 @@ static CGFloat const kTitleLabelHeight = 40;
             make.top.offset(kScreenHeight * 0.18);
         else
             make.bottom.offset(0);
-        make.width.offset(kScreenHeight * kAvatarSizeMultipliedByHeight);
+        make.width.offset(kScreenHeight * kAvatarButtonSizeMultipliedByHeight);
         make.height.equalTo(_avatarButton.mas_width);
     }];
 

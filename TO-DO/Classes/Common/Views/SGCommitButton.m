@@ -40,16 +40,28 @@
 }
 - (void)bindConstraints
 {
+    __weak typeof(self) weakSelf = self;
     [_button mas_makeConstraints:^(MASConstraintMaker* make) {
         make.left.right.bottom.top.offset(0);
     }];
 
     [_indicator mas_makeConstraints:^(MASConstraintMaker* make) {
         make.centerY.offset(0);
-        make.height.equalTo(self).dividedBy(2);
+        make.height.equalTo(weakSelf).dividedBy(2);
         make.width.equalTo(_indicator.mas_height);
         make.left.offset(20);
     }];
+}
+#pragma mark - methods
+- (void)setAnimating:(BOOL)isAnimating
+{
+    if (isAnimating)
+        [_indicator startAnimating];
+    else
+        [_indicator stopAnimating];
+
+    [_button setEnabled:!isAnimating];
+    [[UIApplication sharedApplication] setNetworkActivityIndicatorVisible:isAnimating];
 }
 #pragma mark - event
 - (void)buttonDidPress

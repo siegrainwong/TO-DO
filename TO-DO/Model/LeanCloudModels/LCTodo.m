@@ -14,9 +14,11 @@
 @dynamic deadline;
 @dynamic location;
 @dynamic user;
+@dynamic state;
+@dynamic photo;
 
 + (NSString*)parseClassName
 {
-    return @"LCTodo";
+    return @"Todo";
 }
 @end

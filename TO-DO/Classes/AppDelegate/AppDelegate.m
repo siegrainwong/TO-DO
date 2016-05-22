@@ -17,6 +17,8 @@
 #import "UIImage+Extension.h"
 #import <AVOSCloud.h>
 
+// FIXME: 每次进入一个新的ViewController，都会在AF库中的SecPolicy对象上发生内存泄漏，暂时无法解决
+
 @implementation AppDelegate
 
 - (BOOL)application:(UIApplication*)application
@@ -25,7 +27,7 @@
     [self setupLeanCloud];
 
     // validate user's login state
-    //    [SGUser logOut];
+    //    [LCUser logOut];
     LCUser* user = [LCUser currentUser];
     if (user) {
         NSLog(@"当前用户：%@", user.username);

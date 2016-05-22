@@ -10,6 +10,6 @@
 #import "LoginView.h"
 #import <UIKit/UIKit.h>
 
-@interface LoginViewController : UIViewController<LoginViewDelegate, UINavigationControllerDelegate, UIImagePickerControllerDelegate, Localized>
+@interface LoginViewController : UIViewController<LoginViewDelegate, UINavigationControllerDelegate, UIImagePickerControllerDelegate>
 
 @end

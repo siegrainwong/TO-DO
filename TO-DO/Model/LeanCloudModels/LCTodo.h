@@ -7,9 +7,16 @@
 //
 
 #import "AVOSCloud.h"
+#import "LCUser.h"
 #import <Foundation/Foundation.h>
 
-@class LCUser;
+typedef NS_ENUM(int8_t, LCTodoState) {
+    LCTodoStateDeleted = -1,
+    LCTodoStateNotComplete,
+    LCTodoStateCompleted,
+    LCTodoStateSnoozed,
+    LCTodoStateOverdue
+};
 
 @interface LCTodo : AVObject<AVSubclassing>
 //标题
@@ -22,14 +29,16 @@
 @property (nonatomic, readwrite, strong) NSString* location;
 //用户
 @property (nonatomic, readwrite, strong) LCUser* user;
+//状态
+@property (nonatomic, readwrite, assign) LCTodoState state;
+//照片
+@property (nonatomic, readwrite, strong) NSString* photo;
 
 /**
  *  未实现
  */
 //相关人员
 @property (nonatomic, readwrite, copy) NSSet<LCUser*>* relatedPersonnel;
-//照片
-@property (nonatomic, readwrite, strong) NSString* photo;
 
 /**
  *  辅助属性

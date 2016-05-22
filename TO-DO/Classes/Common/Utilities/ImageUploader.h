@@ -10,14 +10,16 @@
 
 typedef NS_ENUM(NSUInteger, UploadImageType) {
     UploadImageTypeOriginal,
-    UploadImageTypeAvatar
+    UploadImageTypeAvatar,
+    UploadImageTypeMidium
 };
 
 /* 
  upload path prefix
  example: o6yj5t1zc.bkt.clouddn.com/avatar/201605121823348059.jpg-thumb
  */
-static NSString* const kUploadPrefixAvatar = @"avatar";
+static NSString* const kUploadPrefixAvatar = @"avatar/";
+static NSString* const kUploadPrefixUser = @"user/";
 
 @interface ImageUploader : NSObject
 + (void)uploadImage:(UIImage*)image type:(UploadImageType)type prefix:(NSString*)prefix completion:(void (^)(bool error, NSString* path))completion;

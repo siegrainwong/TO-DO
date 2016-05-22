@@ -19,7 +19,7 @@
 + (BOOL)errorAlertValidateLengthWithString:(NSString*)string minLength:(NSUInteger)min maxLength:(NSUInteger)max alertName:(NSString*)name
 {
     NSString* validateString = nil;
-    NSUInteger errorLength = 0;
+    NSInteger errorLength = 0;
     if ([string bytesFromString] < min) {
         validateString = NSLocalizedString(@" is too short, minimum is ", nil);
         errorLength = min;
@@ -29,7 +29,7 @@
     }
 
     if (validateString)
-        [self errorAlertWithContent:[NSString stringWithFormat:@"%@%@%lu", name, validateString, errorLength]];
+        [self errorAlertWithContent:[NSString stringWithFormat:@"%@%@%ld", name, validateString, errorLength]];
 
     return validateString;
 }

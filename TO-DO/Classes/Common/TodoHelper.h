@@ -6,6 +6,7 @@
 //  Copyright © 2016年 com.siegrain. All rights reserved.
 //
 
+#import "Localized.h"
 #import <UIKit/UIKit.h>
 
 static NSInteger const kPopHeightWhenKeyboardShow = 170;
@@ -37,4 +38,13 @@ static NSInteger const kPopHeightWhenKeyboardShow = 170;
  *  @param target     <#target description#>
  */
 + (void)pickPictureFromSource:(UIImagePickerControllerSourceType)sourceType target:(UIViewController<UINavigationControllerDelegate, UIImagePickerControllerDelegate>*)target error:(BOOL*)error;
+
+/**
+ *  配置一个用来选取图像的 ActionSheet
+ *
+ *  @param viewController <#viewController description#>
+ *  @param cameraHandler  <#cameraHandler description#>
+ *  @param albumHandler   <#albumHandler description#>
+ */
++ (void)pictureActionSheetFrom:(UIViewController*)viewController selectCameraHandler:(void (^)())cameraHandler selectAlbumHandler:(void (^)())albumHandler;
 @end

@@ -23,7 +23,7 @@
         compressedImage = [compressedImage imageCompressForWidth:300];
     imageData = UIImageJPEGRepresentation(compressedImage, 1);
 
-    NSString* url = [NSString stringWithFormat:@"%@/%@%04d.jpg", prefix, [DateUtil dateIdentifierNow], arc4random() % 10000];
+    NSString* url = [NSString stringWithFormat:@"%@%@%04d.jpg", prefix, [DateUtil dateIdentifierNow], arc4random() % 10000];
     NSString* key = [url stringByAddingPercentEncodingWithAllowedCharacters:[NSCharacterSet URLQueryAllowedCharacterSet]];
 
     NSString* token = [QiniuTokenGenerator generateToken];
@@ -46,7 +46,8 @@
     switch (type) {
         case UploadImageTypeAvatar:
             return 300;
-
+        case UploadImageTypeMidium:
+            return 600;
         default:
             break;
     }

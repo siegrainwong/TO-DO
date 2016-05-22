@@ -9,6 +9,9 @@
 #import "Localized.h"
 #import <Foundation/Foundation.h>
 
+@class LCTodo;
+
 @interface CreateDataManager : NSObject<Localized>
+- (void)handleCommit:(LCTodo*)todo complete:(void (^)(bool succeed))complete;
 
 @end

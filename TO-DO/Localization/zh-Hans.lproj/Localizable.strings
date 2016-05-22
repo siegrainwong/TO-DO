@@ -25,6 +25,7 @@
 " is too short, minimum is " = "太短，最小字符数（中文占两个字符）为";
 " is invalid" = "无效";
 " is incorrect" = "不正确";
+" can not be empty" = "不能为空";
 "Please select your avatar" = "请在“+”处选择头像";
 "User doesn't exist" = "用户不存在";
 "Email has already been taken" = "邮箱已被占用";

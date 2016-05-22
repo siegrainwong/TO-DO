@@ -8,18 +8,13 @@
 
 #import "AppDelegate.h"
 #import "HomeViewController.h"
+#import "LCUser.h"
 #import "LoginDataManager.h"
 #import "LoginViewController.h"
 #import "Masonry.h"
 #import "SCLAlertView.h"
-#import "LCUser.h"
 #import "TodoHelper.h"
 #import "UIView+SDAutoLayout.h"
-
-/* localization dictionary keys */
-static NSString* const kAvatarTakePhotoKey = @"takePhoto";
-static NSString* const kAvatarFromAlbumKey = @"album";
-static NSString* const kAvatarCancelKey = @"cancel";
 
 @implementation LoginViewController {
     LoginView* loginView;
@@ -27,14 +22,7 @@ static NSString* const kAvatarCancelKey = @"cancel";
 
     BOOL releaseWhileDisappear;
 }
-@synthesize localDictionary = _localDictionary;
-#pragma mark - localization
-- (void)localizeStrings
-{
-    [_localDictionary setObject:NSLocalizedString(@"Take a photo", nil) forKey:kAvatarTakePhotoKey];
-    [_localDictionary setObject:NSLocalizedString(@"Pick from album", nil) forKey:kAvatarFromAlbumKey];
-    [_localDictionary setObject:NSLocalizedString(@"Cancel", nil) forKey:kAvatarCancelKey];
-}
+
 #pragma mark - initial
 - (void)viewDidLoad
 {
@@ -58,9 +46,6 @@ static NSString* const kAvatarCancelKey = @"cancel";
 
     dataManager = [[LoginDataManager alloc] init];
 
-    _localDictionary = [NSMutableDictionary dictionary];
-    [self localizeStrings];
-
     releaseWhileDisappear = true;
 }
 
@@ -83,26 +68,11 @@ static NSString* const kAvatarCancelKey = @"cancel";
 - (void)loginViewDidPressAvatarButton
 {
     __weak typeof(self) weakSelf = self;
-    UIAlertController* alertController = [UIAlertController alertControllerWithTitle:nil message:nil preferredStyle:UIAlertControllerStyleActionSheet];
-    UIAlertAction* photoAction = [UIAlertAction actionWithTitle:_localDictionary[kAvatarTakePhotoKey]
-                                                          style:UIAlertActionStyleDefault
-                                                        handler:^(UIAlertAction* action) {
-                                                            [weakSelf alertActionDidSelect:UIImagePickerControllerSourceTypeCamera];
-                                                        }];
-    UIAlertAction* albumAction = [UIAlertAction actionWithTitle:_localDictionary[kAvatarFromAlbumKey]
-                                                          style:UIAlertActionStyleDefault
-                                                        handler:^(UIAlertAction* action) {
-                                                            [weakSelf alertActionDidSelect:UIImagePickerControllerSourceTypePhotoLibrary];
-                                                        }];
-    UIAlertAction* cancelAction = [UIAlertAction actionWithTitle:_localDictionary[kAvatarCancelKey] style:UIAlertActionStyleCancel handler:nil];
-
-    [alertController addAction:photoAction];
-    [alertController addAction:albumAction];
-    [alertController addAction:cancelAction];
-
-    [self presentViewController:alertController animated:YES completion:nil];
+    [TodoHelper pictureActionSheetFrom:self
+      selectCameraHandler:^{ [weakSelf actionSheetItemDidSelect:UIImagePickerControllerSourceTypeCamera]; }
+      selectAlbumHandler:^{ [weakSelf actionSheetItemDidSelect:UIImagePickerControllerSourceTypePhotoLibrary]; }];
 }
-- (void)alertActionDidSelect:(UIImagePickerControllerSourceType)type
+- (void)actionSheetItemDidSelect:(UIImagePickerControllerSourceType)type
 {
     BOOL error = false;
     [TodoHelper pickPictureFromSource:type target:self error:&error];
@@ -131,14 +101,20 @@ static NSString* const kAvatarCancelKey = @"cancel";
     [super viewDidDisappear:animated];
 
     // 不能在UIImagePickerController作为TopController的时候释放
+    // 在切换RootViewController时，这个viewDidDisappear不一定会被调用...
     if (!releaseWhileDisappear)
         return;
 
     [loginView removeFromSuperview];
     loginView = nil;
-    dataManager = nil;
-    _localDictionary = nil;
 
-    [self removeFromParentViewController];
+    NSLog(@"%s", __func__);
+}
+- (void)dealloc
+{
+    [loginView removeFromSuperview];
+    loginView = nil;
+
+    NSLog(@"%s", __func__);
 }
 @end

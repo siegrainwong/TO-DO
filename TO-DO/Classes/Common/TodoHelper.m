@@ -32,6 +32,28 @@
 {
     return ColorWithRGB(0xFE7295);
 }
+#pragma mark - 创建一个选择照片的 action sheet
++ (void)pictureActionSheetFrom:(UIViewController*)viewController selectCameraHandler:(void (^)())cameraHandler selectAlbumHandler:(void (^)())albumHandler
+{
+    UIAlertController* alertController = [UIAlertController alertControllerWithTitle:nil message:nil preferredStyle:UIAlertControllerStyleActionSheet];
+    UIAlertAction* photoAction = [UIAlertAction actionWithTitle:NSLocalizedString(@"Take a photo", nil)
+                                                          style:UIAlertActionStyleDefault
+                                                        handler:^(UIAlertAction* action) {
+                                                            cameraHandler();
+                                                        }];
+    UIAlertAction* albumAction = [UIAlertAction actionWithTitle:NSLocalizedString(@"Pick from album", nil)
+                                                          style:UIAlertActionStyleDefault
+                                                        handler:^(UIAlertAction* action) {
+                                                            albumHandler();
+                                                        }];
+    UIAlertAction* cancelAction = [UIAlertAction actionWithTitle:NSLocalizedString(@"Cancel", nil) style:UIAlertActionStyleCancel handler:nil];
+
+    [alertController addAction:photoAction];
+    [alertController addAction:albumAction];
+    [alertController addAction:cancelAction];
+
+    [viewController presentViewController:alertController animated:YES completion:nil];
+}
 #pragma mark - pick a picture by camera or album
 + (void)pickPictureFromSource:(UIImagePickerControllerSourceType)sourceType target:(UIViewController<UINavigationControllerDelegate, UIImagePickerControllerDelegate>*)target error:(BOOL*)error
 {
@@ -58,40 +80,5 @@
         return;
     }
 }
-#pragma mark - strange
-/** 或许还会有用的方法...
- *      [self keyboardAnimationWithContainer:containerView
- bottomView:commitButton
- stickToView:locationTextField
- showKeyboard:isShowAnimation
- bottomViewCommonConstraints:^(MASConstraintMaker* make) {
- make.left.right.equalTo(linearView);
- make.height.offset(fieldHeight);
- }];
- *
- *  @param container       <#container description#>
- *  @param bottomView      <#bottomView description#>
- *  @param stickedView     <#stickedView description#>
- *  @param isShowAnimation <#isShowAnimation description#>
- *  @param block           <#block description#>
- */
-//- (void)keyboardAnimationWithContainer:(UIView*)container bottomView:(UIView*)bottomView stickToView:(UIView*)stickedView showKeyboard:(BOOL)isShowAnimation bottomViewCommonConstraints:(void (^)(MASConstraintMaker* make))block
-//{
-//    CGFloat viewPopHeight = isShowAnimation ? kPopHeightWhenKeyboardShow : 0;
-//    [container mas_updateConstraints:^(MASConstraintMaker* make) {
-//        make.top.bottom.offset(-viewPopHeight);
-//    }];
-//
-//    [bottomView mas_remakeConstraints:^(MASConstraintMaker* make) {
-//        block(make);
-//        if (isShowAnimation) {
-//            make.top.equalTo(stickedView.mas_bottom).offset(20);
-//        } else {
-//            make.bottom.offset(-20);
-//        }
-//
-//    }];
-//
-//    [UIView animateWithDuration:1 animations:^{ [container.superview layoutIfNeeded]; }];
-//}
+#pragma mark -
 @end

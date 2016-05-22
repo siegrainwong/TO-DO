@@ -10,13 +10,13 @@
 #import "DataKeys.h"
 #import "FieldValidator.h"
 #import "ImageUploader.h"
+#import "LCUser.h"
 #import "LoginDataManager.h"
 #import "Macros.h"
 #import "NSObject+PropertyName.h"
 #import "NSString+Extension.h"
 #import "SCLAlertHelper.h"
 #import "SCLAlertView.h"
-#import "LCUser.h"
 #import <AVOSCloud.h>
 
 /* localization dictionary keys */
@@ -24,7 +24,7 @@ static NSString* const kEmailInvalidKey = @"EmailInvalid";
 static NSString* const kNameInvalidKey = @"NameInvalid";
 static NSString* const kPasswordInvalidKey = @"PasswordInvalid";
 static NSString* const kAvatarHaventSelectedKey = @"AvatarHaventSelected";
-static NSString* const kAvatarUploadFailedKey = @"AvatarUploadFailed";
+static NSString* const kPictureUploadFailedKey = @"PictureUploadFailed";
 static NSInteger const kPasswordIncorrectErrorCodeKey = 210;
 static NSInteger const kUserDoesNotExistErrorCodeKey = 211;
 static NSInteger const kEmailAlreadyTakenErrorCodeKey = 201;
@@ -37,34 +37,15 @@ static NSInteger const kLoginFailCountOverLimitErrorCodeKey = 1;
 #pragma mark - localization
 - (void)localizeStrings
 {
-    [_localDictionary setObject:
-                        [NSString stringWithFormat:@"%@%@", NSLocalizedString(@"Password", nil), NSLocalizedString(@" is invalid", nil)]
-                         forKey:kPasswordInvalidKey];
-    [_localDictionary setObject:
-                        [NSString stringWithFormat:@"%@%@", NSLocalizedString(@"Name", nil), NSLocalizedString(@" is invalid", nil)]
-                         forKey:kNameInvalidKey];
-    [_localDictionary setObject:
-                        [NSString stringWithFormat:@"%@", NSLocalizedString(@"Please select your avatar", nil)]
-                         forKey:kAvatarHaventSelectedKey];
-    [_localDictionary setObject:
-                        [NSString stringWithFormat:@"%@", NSLocalizedString(@"Failed to upload avatar, please try again", nil)]
-                         forKey:kAvatarUploadFailedKey];
-    [_localDictionary setObject:
-                        [NSString stringWithFormat:@"%@%@",
-                                                   isSignUp ? NSLocalizedString(@"Email", nil) : NSLocalizedString(@"Username(Email)", nil), NSLocalizedString(@" is invalid", nil)]
-                         forKey:kEmailInvalidKey];
-    [_localDictionary setObject:
-                        [NSString stringWithFormat:@"%@%@", NSLocalizedString(@"Password", nil), NSLocalizedString(@" is incorrect", nil)]
-                         forKey:@(kPasswordIncorrectErrorCodeKey)];
-    [_localDictionary setObject:
-                        [NSString stringWithFormat:@"%@", NSLocalizedString(@"User doesn't exist", nil)]
-                         forKey:@(kUserDoesNotExistErrorCodeKey)];
-    [_localDictionary setObject:
-                        [NSString stringWithFormat:@"%@", NSLocalizedString(@"Email has already been taken", nil)]
-                         forKey:@(kEmailAlreadyTakenErrorCodeKey)];
-    [_localDictionary setObject:
-                        [NSString stringWithFormat:@"%@", NSLocalizedString(@"Failed login count over limit, reset your password or try again later(15 mins)", nil)]
-                         forKey:@(kLoginFailCountOverLimitErrorCodeKey)];
+    _localDictionary[kPasswordInvalidKey] = ConcatLocalizedString1(@"Password", @" is invalid");
+    _localDictionary[kNameInvalidKey] = ConcatLocalizedString1(@"Name", @" is invalid");
+    _localDictionary[kAvatarHaventSelectedKey] = NSLocalizedString(@"Please select your avatar", nil);
+    _localDictionary[kPictureUploadFailedKey] = NSLocalizedString(@"Failed to upload picture, please try again", nil);
+    _localDictionary[kEmailInvalidKey] = ConcatLocalizedString1(isSignUp ? @"Name" : @"Username(Email)", @" is invalid");
+    _localDictionary[@(kPasswordIncorrectErrorCodeKey)] = ConcatLocalizedString1(@"Password", @" is invalid");
+    _localDictionary[@(kUserDoesNotExistErrorCodeKey)] = NSLocalizedString(@"User doesn't exist", nil);
+    _localDictionary[@(kEmailAlreadyTakenErrorCodeKey)] = NSLocalizedString(@"Email has already been taken", nil);
+    _localDictionary[@(kLoginFailCountOverLimitErrorCodeKey)] = NSLocalizedString(@"Failed login count over limit, reset your password or try again later(15 mins)", nil);
 }
 #pragma mark - initial
 - (instancetype)init
@@ -99,7 +80,7 @@ static NSInteger const kLoginFailCountOverLimitErrorCodeKey = 1;
                prefix:kUploadPrefixAvatar
            completion:^(bool error, NSString* path) {
                if (error) {
-                   [SCLAlertHelper errorAlertWithContent:_localDictionary[kAvatarUploadFailedKey]];
+                   [SCLAlertHelper errorAlertWithContent:_localDictionary[kPictureUploadFailedKey]];
 
                    return complete(NO);
                }

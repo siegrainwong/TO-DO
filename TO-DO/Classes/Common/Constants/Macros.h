@@ -31,4 +31,14 @@
 
 //简化本地化字符串宏
 #define Localized(string) (NSLocalizedString(string, nil))
+
+//获取info.plist的值
+#define InfoDictionary(key) ([[NSBundle mainBundle] infoDictionary][key])
+
+//拼接本地化字符串
+#define ConcatLocalizedString1(str1, str2) ([NSString stringWithFormat:@"%@%@", NSLocalizedString(str1, nil), NSLocalizedString(str2, nil)])
+#define ConcatLocalizedString2(str1, str2, str3) ([NSString stringWithFormat:@"%@%@%@", NSLocalizedString(str1, nil), NSLocalizedString(str2, nil), NSLocalizedString(str3, nil)])
+
+//根据ID和类型获取图片前缀
+#define GetPicturePrefix(type, id) ([NSString stringWithFormat:@"%@%@/", type, id])
 #endif

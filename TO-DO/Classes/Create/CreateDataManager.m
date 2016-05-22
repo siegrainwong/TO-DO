@@ -7,32 +7,32 @@
 //
 
 #import "CreateDataManager.h"
+#import "FieldValidator.h"
+#import "ImageUploader.h"
 #import "LCTodo.h"
+#import "Macros.h"
+#import "NSString+Extension.h"
+#import "SCLAlertHelper.h"
 
 /* localization dictionary keys */
-static NSString* const kEmailInvalidKey = @"EmailInvalid";
-static NSString* const kNameInvalidKey = @"NameInvalid";
-static NSString* const kPasswordInvalidKey = @"PasswordInvalid";
-static NSString* const kAvatarHaventSelectedKey = @"AvatarHaventSelected";
-static NSString* const kAvatarUploadFailedKey = @"AvatarUploadFailed";
+static NSString* const kTitleInvalidKey = @"TitleInvalid";
+static NSString* const kDescriptionInvalidKey = @"DescriptionInvalid";
+static NSString* const kTimeInvalidKey = @"TimeInvalid";
+static NSString* const kLocationInvalidKey = @"LocationInvalid";
+static NSString* const kPictureUploadFailedKey = @"PictureUploadFailed";
 
-@implementation CreateDataManager
+@implementation CreateDataManager {
+    LCTodo* model;
+}
 @synthesize localDictionary = _localDictionary;
 #pragma mark - localization
 - (void)localizeStrings
 {
-    [_localDictionary setObject:
-                        [NSString stringWithFormat:@"%@%@", NSLocalizedString(@"Password", nil), NSLocalizedString(@" is invalid", nil)]
-                         forKey:kPasswordInvalidKey];
-    [_localDictionary setObject:
-                        [NSString stringWithFormat:@"%@%@", NSLocalizedString(@"Name", nil), NSLocalizedString(@" is invalid", nil)]
-                         forKey:kNameInvalidKey];
-    [_localDictionary setObject:
-                        [NSString stringWithFormat:@"%@", NSLocalizedString(@"Please select your avatar", nil)]
-                         forKey:kAvatarHaventSelectedKey];
-    [_localDictionary setObject:
-                        [NSString stringWithFormat:@"%@", NSLocalizedString(@"Failed to upload avatar, please try again", nil)]
-                         forKey:kAvatarUploadFailedKey];
+    _localDictionary[kTitleInvalidKey] = ConcatLocalizedString1(@"Title", @" can not be empty");
+    _localDictionary[kTimeInvalidKey] = ConcatLocalizedString1(@"Time", @" can not be empty");
+    _localDictionary[kDescriptionInvalidKey] = ConcatLocalizedString1(@"Description", @" is invalid");
+    _localDictionary[kLocationInvalidKey] = ConcatLocalizedString1(@"Location", @" is invalid");
+    _localDictionary[kPictureUploadFailedKey] = NSLocalizedString(@"Failed to upload picture, please try again", nil);
 }
 #pragma mark - initial
 - (instancetype)init
@@ -43,46 +43,72 @@ static NSString* const kAvatarUploadFailedKey = @"AvatarUploadFailed";
     }
     return self;
 }
-#pragma mark - validate
-- (BOOL)validate:(LCTodo*)todo
+#pragma mark - commit
+- (void)handleCommit:(LCTodo*)todo complete:(void (^)(bool succeed))complete
 {
-    //	// remove whitespaces
-    //	user.name = [user.name stringByRemovingUnneccessaryWhitespaces];
-    //	user.email = [user.email stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceAndNewlineCharacterSet]];
-    //	user.password = [user.password stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceAndNewlineCharacterSet]];
-    //
-    //	if (isSignUp) {
-    //		// avatar validation
-    //		if (!user.avatarImage) {
-    //			[SCLAlertHelper errorAlertWithContent:_localDictionary[kAvatarHaventSelectedKey]];
-    //			return NO;
-    //		}
-    //
-    //		// name validation
-    //		if ([SCLAlertHelper errorAlertValidateLengthWithString:user.name minLength:4 maxLength:20 alertName:NSLocalizedString(@"LABEL_NAME", nil)]) {
-    //			return NO;
-    //		} else if (![FieldValidator validateName:user.name]) {
-    //			[SCLAlertHelper errorAlertWithContent:_localDictionary[kNameInvalidKey]];
-    //			return NO;
-    //		}
-    //	}
-    //
-    //	// email validation
-    //	if (![FieldValidator validateEmail:user.email]) {
-    //		[SCLAlertHelper errorAlertWithContent:_localDictionary[kEmailInvalidKey]];
-    //		return NO;
-    //	}
-    //
-    //	// password validation
-    //	if ([SCLAlertHelper errorAlertValidateLengthWithString:user.password
-    //												 minLength:6
-    //												 maxLength:20
-    //												 alertName:NSLocalizedString(@"LABEL_PASSWORD", nil)]) {
-    //		return NO;
-    //	} else if (![FieldValidator validatePassword:user.password]) {
-    //		[SCLAlertHelper errorAlertWithContent:kPasswordInvalidKey];
-    //		return NO;
-    //	}
+    model = todo;
+    if (![self validate]) return complete(NO);
+
+    [self uploadPicture:^(bool succeed) {
+        if (!succeed) return complete(NO);
+
+        [model saveInBackgroundWithBlock:^(BOOL succeeded, NSError* error) {
+            if (!succeeded)
+                [SCLAlertHelper errorAlertWithContent:error.localizedDescription];
+
+            return complete(succeeded);
+        }];
+    }];
+}
+#pragma mark - uploadImage
+- (void)uploadPicture:(void (^)(bool succeed))complete
+{
+    if (!model.photoImage) return complete(YES);
+
+    [ImageUploader
+      uploadImage:model.photoImage
+             type:UploadImageTypeOriginal
+           prefix:GetPicturePrefix(kUploadPrefixUser, model.user.objectId)
+       completion:^(bool error, NSString* path) {
+           if (error) {
+               [SCLAlertHelper errorAlertWithContent:_localDictionary[kPictureUploadFailedKey]];
+
+               return complete(NO);
+           }
+
+           model.photo = path;
+           return complete(YES);
+       }];
+}
+#pragma mark - validate
+- (BOOL)validate
+{
+    // 暂时不做正则验证....
+    // remove whitespaces
+    model.title = [model.title stringByRemovingUnneccessaryWhitespaces];
+    model.sgDescription = [model.sgDescription stringByRemovingUnneccessaryWhitespaces];
+    model.location = [model.location stringByRemovingUnneccessaryWhitespaces];
+
+    // title validation
+    if (!model.title.length) {
+        [SCLAlertHelper errorAlertWithContent:_localDictionary[kTitleInvalidKey]];
+        return NO;
+    }
+    // deadline validation
+    if (!model.deadline) {
+        [SCLAlertHelper errorAlertWithContent:_localDictionary[kTimeInvalidKey]];
+        return NO;
+    }
+    // description validation
+    //    if (todo.sgDescription.length && ![FieldValidator validateName:todo.sgDescription]) {
+    //        [SCLAlertHelper errorAlertWithContent:_localDictionary[kDescriptionInvalidKey]];
+    //        return NO;
+    //    }
+    // location validation
+    //    if (todo.location.length && ![FieldValidator validateName:todo.location]) {
+    //        [SCLAlertHelper errorAlertWithContent:_localDictionary[kLocationInvalidKey]];
+    //        return NO;
+    //    }
 
     return YES;
 }

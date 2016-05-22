@@ -6,14 +6,16 @@
 //  Copyright © 2016年 com.siegrain. All rights reserved.
 //
 
+// FIXME: 该视图内存无法释放，在进入 CreateViewController 后，Masonry 检测到该视图已经不在 window hierachy 中，就崩了..
+
 #import "HeaderView.h"
+#import "LCUser.h"
 #import "LoginView.h"
 #import "Macros.h"
 #import "Masonry.h"
 #import "NSNotificationCenter+Extension.h"
 #import "SGCommitButton.h"
 #import "SGTextField.h"
-#import "LCUser.h"
 #import "TodoHelper.h"
 #import "UIImage+Extension.h"
 #import "UIView+Extentsion.h"
@@ -68,10 +70,18 @@
     [loginView setup];
     [loginView bindConstraints];
     [loginView localizeStrings];
+    [loginView debug];
 
     [NSNotificationCenter attachKeyboardObservers:loginView keyboardWillShowSelector:@selector(keyboardWillShow:) keyboardWillHideSelector:@selector(keyboardWillHide:)];
 
     return loginView;
+}
+- (void)debug
+{
+    if ([InfoDictionary(@"IsDebugging") boolValue]) {
+        usernameTextField.field.text = @"siegrain@qq.com";
+        passwordTextField.field.text = @"Weck33";
+    }
 }
 - (void)setup
 {
@@ -88,27 +98,26 @@
     nameTextField = [SGTextField textField];
     nameTextField.field.returnKeyType = UIReturnKeyNext;
     nameTextField.layer.opacity = 0;
-    // Mark: 由于该 block 为属性，而在 block 内通过->访问私有成员变量在 ARC 下是不允许的，所以此刻要么在 block 内使用strongSelf，要么不持有该 block ,现在采用的方案是不持有该 block
-    __weak SGTextField* weakNameTextField = nameTextField;
-    [weakNameTextField setTextFieldShouldReturn:^(SGTextField* textField) {
-        [usernameTextField becomeFirstResponder];
+    // Mark: 这个地方必须要用 weakSelf strongSelf 大法，弱持有 block 没用...
+    [nameTextField setTextFieldShouldReturn:^(SGTextField* textField) {
+        __strong typeof(self) strongSelf = weakSelf;
+        [strongSelf->usernameTextField becomeFirstResponder];
     }];
     [self addSubview:nameTextField];
 
     usernameTextField = [SGTextField textField];
     usernameTextField.field.returnKeyType = UIReturnKeyNext;
-    __weak SGTextField* weakUsernameTextField = usernameTextField;
-    [weakUsernameTextField setTextFieldShouldReturn:^(SGTextField* textField) {
-        [passwordTextField becomeFirstResponder];
+    [usernameTextField setTextFieldShouldReturn:^(SGTextField* textField) {
+        __strong typeof(self) strongSelf = weakSelf;
+        [strongSelf->passwordTextField becomeFirstResponder];
     }];
     [self addSubview:usernameTextField];
 
     passwordTextField = [SGTextField textField];
     passwordTextField.field.returnKeyType = UIReturnKeyJoin;
     passwordTextField.field.secureTextEntry = YES;
-    __weak SGTextField* weakPasswordTextField = passwordTextField;
-    [weakPasswordTextField setTextFieldShouldReturn:^(SGTextField* textField) {
-        [self commitButtonDidPress];
+    [passwordTextField setTextFieldShouldReturn:^(SGTextField* textField) {
+        [weakSelf commitButtonDidPress];
     }];
     [self addSubview:passwordTextField];
 
@@ -129,17 +138,16 @@
     rightOperationButton.titleLabel.font = [TodoHelper themeFontWithSize:12];
     rightOperationButton.titleLabel.textAlignment = NSTextAlignmentRight;
     rightOperationButton.contentHorizontalAlignment = UIControlContentHorizontalAlignmentRight;
-    [rightOperationButton addTarget:self
-                             action:@selector(switchModeAnimate)
-                   forControlEvents:UIControlEventTouchUpInside];
+    [rightOperationButton addTarget:self action:@selector(switchModeAnimate) forControlEvents:UIControlEventTouchUpInside];
     [self addSubview:rightOperationButton];
 }
 
 - (void)bindConstraints
 {
+    __weak typeof(self) weakSelf = self;
     [headerView mas_makeConstraints:^(MASConstraintMaker* make) {
         make.left.top.right.offset(0);
-        make.height.equalTo(self).multipliedBy(0.4);
+        make.height.equalTo(weakSelf).multipliedBy(0.4);
     }];
 
     [nameTextField mas_makeConstraints:^(MASConstraintMaker* make) {
@@ -164,7 +172,7 @@
     [commitButton mas_makeConstraints:^(MASConstraintMaker* make) {
         make.left.right.equalTo(usernameTextField);
         make.bottom.offset(-55);
-        make.height.equalTo(self).dividedBy(12);
+        make.height.equalTo(weakSelf).dividedBy(12);
     }];
 
     [leftOperationButton mas_makeConstraints:^(MASConstraintMaker* make) {
@@ -187,6 +195,7 @@
 #pragma mark - commit & commit animation
 - (void)commitButtonDidPress
 {
+    __weak typeof(self) weakSelf = self;
     // Mark: synchronized lock
     dispatch_queue_t serialQueue = dispatch_queue_create("LoginViewCommitSynchronizedLock", DISPATCH_QUEUE_SERIAL);
     dispatch_sync(serialQueue, ^{
@@ -194,7 +203,6 @@
             return;
 
         if ([_delegate respondsToSelector:@selector(loginViewDidPressCommitButton:isSignUp:)]) {
-            __weak typeof(self) weakSelf = self;
 
             [weakSelf startCommitAnimation];
             [weakSelf endEditing:YES];
@@ -274,25 +282,27 @@
 }
 - (void)animateByKeyboard:(BOOL)isShowAnimation
 {
+    __weak typeof(self) weakSelf = self;
     [self mas_updateConstraints:^(MASConstraintMaker* make) {
         make.top.bottom.offset(isShowAnimation ? -kPopHeightWhenKeyboardShow : 0);
     }];
     [commitButton mas_remakeConstraints:^(MASConstraintMaker* make) {
         make.left.right.equalTo(usernameTextField);
-        make.height.equalTo(self).dividedBy(12);
+        make.height.equalTo(weakSelf).dividedBy(12);
         if (isShowAnimation)
             make.top.equalTo(passwordTextField.mas_bottom).offset(20);
         else
             make.bottom.offset(-55);
     }];
 
-    [UIView animateWithDuration:1 animations:^{ [self.superview layoutIfNeeded]; }];
+    [UIView animateWithDuration:1 animations:^{ [weakSelf.superview layoutIfNeeded]; }];
 }
 
 #pragma mark - dealloc
 - (void)dealloc
 {
     [[NSNotificationCenter defaultCenter] removeObserver:self];
+    NSLog(@"%s", __func__);
 }
 
 @end

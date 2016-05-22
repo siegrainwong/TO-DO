@@ -7,6 +7,7 @@
 //
 
 #import "AutoLinearLayoutView.h"
+#import "CreateDataManager.h"
 #import "CreateViewController.h"
 #import "DateUtil.h"
 #import "LCTodo.h"
@@ -18,6 +19,7 @@
 #import "UIImage+Extension.h"
 
 @implementation CreateViewController {
+    CreateDataManager* dataManager;
     UIView* containerView;
     SGTextField* titleTextField;
     AutoLinearLayoutView* linearView;
@@ -29,24 +31,26 @@
     NSDate* selectedDate;
     CGFloat fieldHeight;
     CGFloat fieldSpacing;
-    __block MASConstraintMaker* commitButtonCommonConstraints;
+    UIImage* selectedImage;
+    BOOL releaseWhileDisappear;
     // TODO: 人物选择功能
 }
 #pragma mark - localization
 - (void)localizeStrings
 {
     [self setMenuTitle:NSLocalizedString(@"Create New", nil)];
-    titleTextField.field.text = NSLocalizedString(@"Title", nil);
     descriptionTextField.label.text = NSLocalizedString(@"Description", nil);
     datetimePicker.label.text = NSLocalizedString(@"Time", nil);
     locationTextField.label.text = NSLocalizedString(@"Location", nil);
     [commitButton.button setTitle:NSLocalizedString(@"DONE", nil) forState:UIControlStateNormal];
+    titleTextField.field.attributedPlaceholder = [[NSAttributedString alloc] initWithString:NSLocalizedString(@"Title", nil) attributes:@{ NSForegroundColorAttributeName : ColorWithRGB(0xCCCCCC), NSFontAttributeName : titleTextField.field.font }];
 }
 #pragma mark - initial
 - (void)viewDidLoad
 {
     [super viewDidLoad];
 
+    dataManager = [CreateDataManager new];
     [self localizeStrings];
 }
 - (void)viewDidAppear:(BOOL)animated
@@ -72,6 +76,7 @@
     headerView = [HeaderView headerViewWithAvatarPosition:HeaderAvatarPositionCenter titleAlignement:HeaderTitleAlignementCenter];
     headerView.backgroundImageView.image = [UIImage imageAtResourcePath:@"create header bg"];
     [headerView.rightOperationButton setImage:[UIImage imageNamed:@"photo"] forState:UIControlStateNormal];
+    [headerView setHeaderViewDidPressRightOperationButton:^{ [weakSelf headerViewDidPressRightOperationButton]; }];
     headerView.avatarButton.hidden = YES;
     [containerView addSubview:headerView];
 
@@ -81,8 +86,8 @@
     titleTextField.field.returnKeyType = UIReturnKeyNext;
     titleTextField.isUnderlineHidden = YES;
     [titleTextField setTextFieldShouldReturn:^(SGTextField* textField) {
-        __strong typeof(self) strongSelf = weakSelf;
-        [strongSelf->descriptionTextField becomeFirstResponder];
+        [textField resignFirstResponder];
+        [weakSelf datetimePickerDidPress];
     }];
     [headerView addSubview:titleTextField];
 
@@ -91,20 +96,19 @@
     linearView.spacing = fieldSpacing;
     [containerView addSubview:linearView];
 
-    descriptionTextField = [SGTextField textField];
-    descriptionTextField.field.returnKeyType = UIReturnKeyNext;
-    [descriptionTextField setTextFieldShouldReturn:^(SGTextField* textField) {
-        [textField resignFirstResponder];
-        [weakSelf datetimePickerDidPress];
-    }];
-    [linearView addSubview:descriptionTextField];
-
     datetimePicker = [SGTextField textField];
     datetimePicker.field.returnKeyType = UIReturnKeyNext;
     datetimePicker.enabled = NO;
-    datetimePicker.field.text = nil;
     [datetimePicker addTarget:self action:@selector(datetimePickerDidPress) forControlEvents:UIControlEventTouchUpInside];
     [linearView addSubview:datetimePicker];
+
+    descriptionTextField = [SGTextField textField];
+    descriptionTextField.field.returnKeyType = UIReturnKeyNext;
+    [descriptionTextField setTextFieldShouldReturn:^(SGTextField* textField) {
+        __strong typeof(self) strongSelf = weakSelf;
+        [strongSelf->locationTextField becomeFirstResponder];
+    }];
+    [linearView addSubview:descriptionTextField];
 
     locationTextField = [SGTextField textField];
     locationTextField.field.returnKeyType = UIReturnKeyDone;
@@ -114,6 +118,9 @@
     [linearView addSubview:locationTextField];
 
     commitButton = [SGCommitButton commitButton];
+    [commitButton setCommitButtonDidPress:^{
+        [weakSelf commitButtonDidPress];
+    }];
     [containerView addSubview:commitButton];
 }
 - (void)bindConstraints
@@ -156,19 +163,65 @@
 #pragma mark - commit
 - (void)commitButtonDidPress
 {
+    __weak typeof(self) weakSelf = self;
     dispatch_queue_t serialQueue = dispatch_queue_create("TO-DOCreateSerialQueue", DISPATCH_QUEUE_SERIAL);
     dispatch_sync(
       serialQueue, ^{
-          [self.view endEditing:YES];
+          if (commitButton.indicator.isAnimating) return;
 
-          LCTodo* todo = [LCTodo new];
+          [weakSelf.view endEditing:YES];
+          [weakSelf enableView:NO];
+
+          LCTodo* todo = [LCTodo object];
           todo.title = titleTextField.field.text;
           todo.sgDescription = descriptionTextField.field.text;
           todo.deadline = [DateUtil stringToDate:datetimePicker.field.text format:@"yyyy.MM.dd HH:mm:ss"];
           todo.location = locationTextField.field.text;
+          todo.photoImage = selectedImage;
           todo.user = user;
-          // TODO: 数据同步...
+          todo.state = LCTodoStateNotComplete;
+
+          [dataManager
+            handleCommit:todo
+                complete:^(bool succeed) {
+                    [weakSelf enableView:YES];
+                    if (!succeed) return;
+                    [weakSelf.navigationController popToRootViewControllerAnimated:YES];
+                }];
       });
+}
+- (void)enableView:(BOOL)isEnable
+{
+    [commitButton setAnimating:!isEnable];
+    headerView.userInteractionEnabled = isEnable;
+}
+#pragma mark - pick picture
+- (void)headerViewDidPressRightOperationButton
+{
+    __weak typeof(self) weakSelf = self;
+    [TodoHelper pictureActionSheetFrom:self
+      selectCameraHandler:^{ [weakSelf actionSheetItemDidSelect:UIImagePickerControllerSourceTypeCamera]; }
+      selectAlbumHandler:^{ [weakSelf actionSheetItemDidSelect:UIImagePickerControllerSourceTypePhotoLibrary]; }];
+}
+- (void)actionSheetItemDidSelect:(UIImagePickerControllerSourceType)type
+{
+    BOOL error = false;
+    [TodoHelper pickPictureFromSource:type target:self error:&error];
+    releaseWhileDisappear = error;
+}
+#pragma mark - imagePicker delegate
+- (void)imagePickerController:(UIImagePickerController*)picker
+  didFinishPickingMediaWithInfo:(NSDictionary<NSString*, id>*)info
+{
+    selectedImage = info[UIImagePickerControllerEditedImage];
+    [headerView.rightOperationButton setImage:selectedImage forState:UIControlStateNormal];
+    [picker dismissViewControllerAnimated:true completion:nil];
+    releaseWhileDisappear = true;
+}
+- (void)imagePickerControllerDidCancel:(UIImagePickerController*)picker
+{
+    [picker dismissViewControllerAnimated:true completion:nil];
+    releaseWhileDisappear = true;
 }
 #pragma mark - keyboard events & animation
 - (void)keyboardWillShow:(NSNotification*)notification
@@ -225,6 +278,22 @@
 {
     selectedDate = date;
     datetimePicker.field.text = [DateUtil dateString:date withFormat:@"yyyy.MM.dd HH:mm:ss"];
-    [locationTextField becomeFirstResponder];
+    [descriptionTextField becomeFirstResponder];
+}
+#pragma mark - release
+- (void)viewDidDisappear:(BOOL)animated
+{
+    [super viewDidDisappear:animated];
+
+    if (!releaseWhileDisappear) return;
+
+    [self.view removeFromSuperview];
+    self.view = nil;
+
+    [self removeFromParentViewController];
+}
+- (void)dealloc
+{
+    NSLog(@"%s", __func__);
 }
 @end
