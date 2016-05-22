@@ -179,7 +179,7 @@
           todo.location = locationTextField.field.text;
           todo.photoImage = selectedImage;
           todo.user = user;
-          todo.state = LCTodoStateNotComplete;
+          todo.status = LCTodoStatusNotComplete;
 
           [dataManager
             handleCommit:todo

@@ -10,12 +10,12 @@
 #import "LCUser.h"
 #import <Foundation/Foundation.h>
 
-typedef NS_ENUM(int8_t, LCTodoState) {
-    LCTodoStateDeleted = -1,
-    LCTodoStateNotComplete,
-    LCTodoStateCompleted,
-    LCTodoStateSnoozed,
-    LCTodoStateOverdue
+typedef NS_ENUM(int8_t, LCTodoStatus) {
+    LCTodoStatusDeleted = -1,
+    LCTodoStatusNotComplete,
+    LCTodoStatusCompleted,
+    LCTodoStatusSnoozed,
+    LCTodoStatusOverdue
 };
 
 @interface LCTodo : AVObject<AVSubclassing>
@@ -30,7 +30,7 @@ typedef NS_ENUM(int8_t, LCTodoState) {
 //用户
 @property (nonatomic, readwrite, strong) LCUser* user;
 //状态
-@property (nonatomic, readwrite, assign) LCTodoState state;
+@property (nonatomic, readwrite, assign) LCTodoStatus status;
 //照片
 @property (nonatomic, readwrite, strong) NSString* photo;
 
@@ -39,6 +39,8 @@ typedef NS_ENUM(int8_t, LCTodoState) {
  */
 //相关人员
 @property (nonatomic, readwrite, copy) NSSet<LCUser*>* relatedPersonnel;
+//坐标
+@property (nonatomic, readwrite, strong) NSString* coordinate;
 
 /**
  *  辅助属性

@@ -14,7 +14,7 @@
 @dynamic deadline;
 @dynamic location;
 @dynamic user;
-@dynamic state;
+@dynamic status;
 @dynamic photo;
 
 + (NSString*)parseClassName
