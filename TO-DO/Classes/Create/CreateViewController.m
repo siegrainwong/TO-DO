@@ -281,6 +281,12 @@
     [descriptionTextField becomeFirstResponder];
 }
 #pragma mark - release
+- (void)viewWillDisappear:(BOOL)animated
+{
+    [super viewWillDisappear:animated];
+
+    [self.view endEditing:YES];
+}
 - (void)viewDidDisappear:(BOOL)animated
 {
     [super viewDidDisappear:animated];

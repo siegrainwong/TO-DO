@@ -6,8 +6,6 @@
 //  Copyright © 2016年 com.siegrain. All rights reserved.
 //
 
-// FIXME: 该视图内存无法释放，在进入 CreateViewController 后，Masonry 检测到该视图已经不在 window hierachy 中，就崩了..
-
 #import "HeaderView.h"
 #import "LCUser.h"
 #import "LoginView.h"

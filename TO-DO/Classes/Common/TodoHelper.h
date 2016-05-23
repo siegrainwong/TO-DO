@@ -47,4 +47,9 @@ static NSInteger const kPopHeightWhenKeyboardShow = 170;
  *  @param albumHandler   <#albumHandler description#>
  */
 + (void)pictureActionSheetFrom:(UIViewController*)viewController selectCameraHandler:(void (^)())cameraHandler selectAlbumHandler:(void (^)())albumHandler;
+
+/**
+ *  非重点文字颜色
+ */
++ (UIColor*)subTextColor;
 @end

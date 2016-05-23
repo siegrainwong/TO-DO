@@ -20,6 +20,7 @@
 {
     NSString* validateString = nil;
     NSInteger errorLength = 0;
+
     if ([string bytesFromString] < min) {
         validateString = NSLocalizedString(@" is too short, minimum is ", nil);
         errorLength = min;

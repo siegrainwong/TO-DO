@@ -47,4 +47,6 @@ typedef NS_ENUM(int8_t, LCTodoStatus) {
  */
 //照片实例
 @property (nonatomic, readwrite, strong) UIImage* photoImage;
+//缓存表格单元高度
+@property (nonatomic, readwrite, assign) CGFloat cellHeight;
 @end

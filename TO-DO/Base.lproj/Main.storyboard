@@ -20,6 +20,12 @@
                             <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="header bg.png" translatesAutoresizingMaskIntoConstraints="NO" id="JyF-ZK-Vis">
                                 <rect key="frame" x="141" y="0.0" width="353" height="224"/>
                             </imageView>
+                            <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" fixedFrame="YES" text="我勒个去" textAlignment="center" translatesAutoresizingMaskIntoConstraints="NO" id="rlP-ik-43h">
+                                <rect key="frame" x="151" y="283" width="367" height="216"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
+                            </textView>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                     </view>

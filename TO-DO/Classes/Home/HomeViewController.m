@@ -8,12 +8,15 @@
 
 #import "CreateViewController.h"
 #import "HomeViewController.h"
+#import "LCTodo.h"
 #import "Macros.h"
+#import "TodoTableViewCell.h"
 #import "UIImage+Extension.h"
 #import "UIImage+Qiniu.h"
 #import "UINavigationController+Transparent.h"
 #import "UIScrollView+Extension.h"
 #import "UITableView+Extension.h"
+#import "UITableView+SDAutoTableViewCellHeight.h"
 
 @implementation HomeViewController {
     UITableView* tableView;
@@ -46,6 +49,8 @@
     tableView.bounces = NO;
     tableView.dataSource = self;
     tableView.delegate = self;
+    [tableView registerClass:[TodoTableViewCell class] forCellReuseIdentifier:kTodoIdentifierArray[TodoIdentifierNormal]];
+    tableView.separatorInset = UIEdgeInsetsMake(0, kScreenHeight * kCellHorizontalInsetsMuiltipledByHeight, 0, kScreenHeight * kCellHorizontalInsetsMuiltipledByHeight);
     [self.view addSubview:tableView];
 
     headerView = [HeaderView headerViewWithAvatarPosition:HeaderAvatarPositionCenter titleAlignement:HeaderTitleAlignementCenter];
@@ -77,13 +82,28 @@
     }];
 }
 #pragma mark - tableview
+- (CGFloat)tableView:(UITableView*)tableView
+  heightForRowAtIndexPath:(NSIndexPath*)indexPath
+{
+    //    Moment* model = self.momentsArray[indexPath.row];
+    //    if (!model.height) {
+    //        model.height = [self.tableView cellHeightForIndexPath:indexPath model:model keyPath:@"model" cellClass:[MomentTableViewCell class] contentViewWidth:[self cellContentViewWith]];
+    //    }
+
+    return [self->tableView cellHeightForIndexPath:indexPath model:[LCTodo object] keyPath:@"model" cellClass:[TodoTableViewCell class] contentViewWidth:kScreenWidth];
+}
 - (NSInteger)tableView:(UITableView*)tableView numberOfRowsInSection:(NSInteger)section
 {
-    return 0;
+    return 10;
 }
 - (UITableViewCell*)tableView:(UITableView*)tableView cellForRowAtIndexPath:(NSIndexPath*)indexPath
 {
-    return [UITableViewCell new];
+    TodoTableViewCell* cell = [self->tableView dequeueReusableCellWithIdentifier:kTodoIdentifierArray[TodoIdentifierNormal]];
+    [self configureCell:cell atIndexPath:indexPath];
+    return cell;
 }
-
+- (void)configureCell:(TodoTableViewCell*)cell atIndexPath:(NSIndexPath*)indexPath
+{
+    [cell setModel:[LCTodo object]];
+}
 @end

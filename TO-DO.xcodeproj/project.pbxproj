@@ -45,6 +45,7 @@
 		F94CA2641CE2FB940006904F /* SGTextField.m in Sources */ = {isa = PBXBuildFile; fileRef = F94CA25E1CE2FB940006904F /* SGTextField.m */; };
 		F94CA2651CE2FB940006904F /* SGTextField.xib in Resources */ = {isa = PBXBuildFile; fileRef = F94CA25F1CE2FB940006904F /* SGTextField.xib */; };
 		F94CA2691CE2FBC90006904F /* TO_DO.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = F94CA2671CE2FBC90006904F /* TO_DO.xcdatamodeld */; };
+		F94F2F371CF2D71200128A3A /* TodoTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = F94F2F361CF2D71200128A3A /* TodoTableViewCell.m */; };
 		F95994531CE462E100B042BD /* QiniuTokenGenerator.m in Sources */ = {isa = PBXBuildFile; fileRef = F95994521CE462E100B042BD /* QiniuTokenGenerator.m */; };
 		F95994561CE4692D00B042BD /* NSString+Encrytion.m in Sources */ = {isa = PBXBuildFile; fileRef = F95994551CE4692D00B042BD /* NSString+Encrytion.m */; };
 		F959945B1CE47BC200B042BD /* ImageUploader.m in Sources */ = {isa = PBXBuildFile; fileRef = F959945A1CE47BC200B042BD /* ImageUploader.m */; };
@@ -52,6 +53,9 @@
 		F95994611CE4898100B042BD /* UIImage+Compression.m in Sources */ = {isa = PBXBuildFile; fileRef = F95994601CE4898100B042BD /* UIImage+Compression.m */; };
 		F980EDCF1CE70F4E00A861FE /* HeaderView.m in Sources */ = {isa = PBXBuildFile; fileRef = F980EDCE1CE70F4E00A861FE /* HeaderView.m */; };
 		F99A902E1CE30CB600EC0762 /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = F99A90301CE30CB600EC0762 /* Localizable.strings */; };
+		F9A01FAF1CF2F60300699939 /* avatar1.png in Resources */ = {isa = PBXBuildFile; fileRef = F9A01FAC1CF2F60300699939 /* avatar1.png */; };
+		F9A01FB01CF2F60300699939 /* avatar2.png in Resources */ = {isa = PBXBuildFile; fileRef = F9A01FAD1CF2F60300699939 /* avatar2.png */; };
+		F9A01FB11CF2F60300699939 /* avatar3.png in Resources */ = {isa = PBXBuildFile; fileRef = F9A01FAE1CF2F60300699939 /* avatar3.png */; };
 		F9A1E0801CEDFA4C00FFC453 /* SGCommitButton.m in Sources */ = {isa = PBXBuildFile; fileRef = F9A1E07F1CEDFA4C00FFC453 /* SGCommitButton.m */; };
 		F9A1E0831CEE180E00FFC453 /* NSDateFormatter+Extension.m in Sources */ = {isa = PBXBuildFile; fileRef = F9A1E0821CEE180E00FFC453 /* NSDateFormatter+Extension.m */; };
 		F9A723731CDDF8A800E3BC8E /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = F9A723721CDDF8A800E3BC8E /* main.m */; };
@@ -159,6 +163,8 @@
 		F94CA25E1CE2FB940006904F /* SGTextField.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = SGTextField.m; path = ../../Login/Views/SGTextField.m; sourceTree = "<group>"; };
 		F94CA25F1CE2FB940006904F /* SGTextField.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = SGTextField.xib; path = ../../Login/Views/SGTextField.xib; sourceTree = "<group>"; };
 		F94CA2681CE2FBC90006904F /* TO_DO.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = TO_DO.xcdatamodel; sourceTree = "<group>"; };
+		F94F2F351CF2D71200128A3A /* TodoTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TodoTableViewCell.h; sourceTree = "<group>"; };
+		F94F2F361CF2D71200128A3A /* TodoTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TodoTableViewCell.m; sourceTree = "<group>"; };
 		F95994511CE462E100B042BD /* QiniuTokenGenerator.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = QiniuTokenGenerator.h; sourceTree = "<group>"; };
 		F95994521CE462E100B042BD /* QiniuTokenGenerator.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = QiniuTokenGenerator.m; sourceTree = "<group>"; };
 		F95994541CE4692D00B042BD /* NSString+Encrytion.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSString+Encrytion.h"; sourceTree = "<group>"; };
@@ -176,6 +182,9 @@
 		F99A90331CE317EE00EC0762 /* zh-Hans */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "zh-Hans"; path = "zh-Hans.lproj/Main.strings"; sourceTree = "<group>"; };
 		F99A90341CE317EE00EC0762 /* zh-Hans */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "zh-Hans"; path = "zh-Hans.lproj/LaunchScreen.strings"; sourceTree = "<group>"; };
 		F99A90351CE317EE00EC0762 /* zh-Hans */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "zh-Hans"; path = "zh-Hans.lproj/Localizable.strings"; sourceTree = "<group>"; };
+		F9A01FAC1CF2F60300699939 /* avatar1.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = avatar1.png; sourceTree = "<group>"; };
+		F9A01FAD1CF2F60300699939 /* avatar2.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = avatar2.png; sourceTree = "<group>"; };
+		F9A01FAE1CF2F60300699939 /* avatar3.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = avatar3.png; sourceTree = "<group>"; };
 		F9A1E07E1CEDFA4C00FFC453 /* SGCommitButton.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SGCommitButton.h; sourceTree = "<group>"; };
 		F9A1E07F1CEDFA4C00FFC453 /* SGCommitButton.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SGCommitButton.m; sourceTree = "<group>"; };
 		F9A1E0811CEE180E00FFC453 /* NSDateFormatter+Extension.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSDateFormatter+Extension.h"; sourceTree = "<group>"; };
@@ -325,6 +334,8 @@
 				F980EDCE1CE70F4E00A861FE /* HeaderView.m */,
 				F9A1E07E1CEDFA4C00FFC453 /* SGCommitButton.h */,
 				F9A1E07F1CEDFA4C00FFC453 /* SGCommitButton.m */,
+				F94F2F351CF2D71200128A3A /* TodoTableViewCell.h */,
+				F94F2F361CF2D71200128A3A /* TodoTableViewCell.m */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -341,6 +352,7 @@
 		F94CA1E81CE2F91F0006904F /* Images */ = {
 			isa = PBXGroup;
 			children = (
+				F9A01FAB1CF2F60300699939 /* examples */,
 				F9A723801CDDF8A800E3BC8E /* Assets.xcassets */,
 				F94CA1E91CE2F91F0006904F /* 1. Login */,
 				F93BC14A1CE5E961000A34C5 /* 2. Home */,
@@ -553,6 +565,16 @@
 				F99A90301CE30CB600EC0762 /* Localizable.strings */,
 			);
 			path = Localization;
+			sourceTree = "<group>";
+		};
+		F9A01FAB1CF2F60300699939 /* examples */ = {
+			isa = PBXGroup;
+			children = (
+				F9A01FAC1CF2F60300699939 /* avatar1.png */,
+				F9A01FAD1CF2F60300699939 /* avatar2.png */,
+				F9A01FAE1CF2F60300699939 /* avatar3.png */,
+			);
+			path = examples;
 			sourceTree = "<group>";
 		};
 		F9A723651CDDF8A800E3BC8E = {
@@ -788,7 +810,10 @@
 				F99A902E1CE30CB600EC0762 /* Localizable.strings in Resources */,
 				F94CA1EF1CE2F91F0006904F /* mark.png in Resources */,
 				F9A7237C1CDDF8A800E3BC8E /* Main.storyboard in Resources */,
+				F9A01FAF1CF2F60300699939 /* avatar1.png in Resources */,
+				F9A01FB11CF2F60300699939 /* avatar3.png in Resources */,
 				F9BCE5391CEDBF02003376C7 /* create header bg.png in Resources */,
+				F9A01FB01CF2F60300699939 /* avatar2.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -872,6 +897,7 @@
 				F94CA2061CE2F9780006904F /* SCLButton.m in Sources */,
 				F9F723461CEEF40200128254 /* NSNotificationCenter+Extension.m in Sources */,
 				F94CA2441CE2FA9E0006904F /* UIImage+Extension.m in Sources */,
+				F94F2F371CF2D71200128A3A /* TodoTableViewCell.m in Sources */,
 				F9331D861CF0A97200B36474 /* LCUser.m in Sources */,
 				F92B876D1CE368B300D15EAE /* UIView+Extentsion.m in Sources */,
 				F9331D851CF0A97200B36474 /* LCTodo.m in Sources */,

@@ -83,7 +83,7 @@ static NSString* const kPictureUploadFailedKey = @"PictureUploadFailed";
 #pragma mark - validate
 - (BOOL)validate
 {
-    // 暂时不做正则验证....
+    // 暂时不做正则验证
     // remove whitespaces
     model.title = [model.title stringByRemovingUnneccessaryWhitespaces];
     model.sgDescription = [model.sgDescription stringByRemovingUnneccessaryWhitespaces];
@@ -94,21 +94,22 @@ static NSString* const kPictureUploadFailedKey = @"PictureUploadFailed";
         [SCLAlertHelper errorAlertWithContent:_localDictionary[kTitleInvalidKey]];
         return NO;
     }
+    if (![SCLAlertHelper errorAlertValidateLengthWithString:model.title minLength:1 maxLength:20 alertName:NSLocalizedString(@"Title", nil)]) {
+        return NO;
+    }
     // deadline validation
     if (!model.deadline) {
         [SCLAlertHelper errorAlertWithContent:_localDictionary[kTimeInvalidKey]];
         return NO;
     }
     // description validation
-    //    if (todo.sgDescription.length && ![FieldValidator validateName:todo.sgDescription]) {
-    //        [SCLAlertHelper errorAlertWithContent:_localDictionary[kDescriptionInvalidKey]];
-    //        return NO;
-    //    }
-    // location validation
-    //    if (todo.location.length && ![FieldValidator validateName:todo.location]) {
-    //        [SCLAlertHelper errorAlertWithContent:_localDictionary[kLocationInvalidKey]];
-    //        return NO;
-    //    }
+    if (![SCLAlertHelper errorAlertValidateLengthWithString:model.sgDescription minLength:0 maxLength:200 alertName:NSLocalizedString(@"Description", nil)]) {
+        return NO;
+    }
+    //location validation
+    if (![SCLAlertHelper errorAlertValidateLengthWithString:model.location minLength:0 maxLength:50 alertName:NSLocalizedString(@"Location", nil)]) {
+        return NO;
+    }
 
     return YES;
 }

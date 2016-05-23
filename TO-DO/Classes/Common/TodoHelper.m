@@ -81,4 +81,8 @@
     }
 }
 #pragma mark -
++ (UIColor*)subTextColor
+{
+    return ColorWithRGB(0x777777);
+}
 @end
