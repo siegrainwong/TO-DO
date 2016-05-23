@@ -33,6 +33,7 @@
     CGFloat fieldSpacing;
     UIImage* selectedImage;
     BOOL releaseWhileDisappear;
+    BOOL viewIsDisappearing;
     // TODO: 人物选择功能
 }
 #pragma mark - localization
@@ -50,19 +51,14 @@
 {
     [super viewDidLoad];
 
-    dataManager = [CreateDataManager new];
     [self localizeStrings];
-}
-- (void)viewDidAppear:(BOOL)animated
-{
-    [super viewDidAppear:animated];
-
     [titleTextField becomeFirstResponder];
 }
 - (void)setupView
 {
     [super setupView];
 
+    dataManager = [CreateDataManager new];
     [NSNotificationCenter attachKeyboardObservers:self keyboardWillShowSelector:@selector(keyboardWillShow:) keyboardWillHideSelector:@selector(keyboardWillHide:)];
     fieldHeight = kScreenHeight * 0.08;
     fieldSpacing = kScreenHeight * 0.03;
@@ -234,7 +230,8 @@
 }
 - (void)animateByKeyboard:(BOOL)isShowAnimation
 {
-    if (titleTextField.field.isFirstResponder) return;
+    // Mark: 视图在 Disappear 之后再 Appear 时，会恢复键盘状态，但是这时不会知道是哪个控件的焦点，所以必须再判断一下
+    if (titleTextField.field.isFirstResponder || viewIsDisappearing) return;
 
     [containerView mas_updateConstraints:^(MASConstraintMaker* make) {
         make.top.bottom.offset(isShowAnimation ? -115 : 0);
@@ -253,6 +250,19 @@
                          [containerView.superview layoutIfNeeded];
                          [self.navigationController.navigationBar setHidden:isShowAnimation];
                      }];
+}
+- (void)viewWillAppear:(BOOL)animated
+{
+    [super viewWillAppear:animated];
+
+    viewIsDisappearing = YES;
+}
+- (void)viewWillDisappear:(BOOL)animated
+{
+    [super viewWillDisappear:animated];
+
+    viewIsDisappearing = YES;
+    [self.view endEditing:YES];
 }
 #pragma mark - show date picker
 - (void)datetimePickerDidPress
@@ -281,12 +291,6 @@
     [descriptionTextField becomeFirstResponder];
 }
 #pragma mark - release
-- (void)viewWillDisappear:(BOOL)animated
-{
-    [super viewWillDisappear:animated];
-
-    [self.view endEditing:YES];
-}
 - (void)viewDidDisappear:(BOOL)animated
 {
     [super viewDidDisappear:animated];
