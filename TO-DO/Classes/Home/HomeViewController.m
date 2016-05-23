@@ -77,6 +77,8 @@
     tableView.bounces = NO;
     tableView.dataSource = self;
     tableView.delegate = self;
+    tableView.showsHorizontalScrollIndicator = NO;
+    tableView.showsVerticalScrollIndicator = NO;
     [tableView registerClass:[TodoTableViewCell class] forCellReuseIdentifier:kTodoIdentifierArray[TodoIdentifierNormal]];
     tableView.separatorInset = UIEdgeInsetsMake(0, kScreenHeight * kCellHorizontalInsetsMuiltipledByHeight, 0, kScreenHeight * kCellHorizontalInsetsMuiltipledByHeight);
     [self.view addSubview:tableView];
