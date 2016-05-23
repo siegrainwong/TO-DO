@@ -49,7 +49,7 @@
 
     LCTodo* model4 = [LCTodo object];
     model4.title = @"没有图，没有描述";
-    model4.deadline = [[NSDate date] dateByAddingTimeInterval:60 * 60 * 24];
+    model4.deadline = [[NSDate date] dateByAddingTimeInterval:-60 * 60 * 3];
 
     [dataArray addObjectsFromArray:@[ model1, model2, model3, model4 ]];
 }

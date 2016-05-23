@@ -9,6 +9,7 @@
 #import "DateUtil.h"
 #import "LCTodo.h"
 #import "Macros.h"
+#import "NSDateFormatter+Extension.h"
 #import "TodoHelper.h"
 #import "TodoTableViewCell.h"
 #import "UIView+SDAutoLayout.h"
@@ -75,7 +76,7 @@ static NSInteger const kButtonSize = 45;
       .topSpaceToView(self.contentView, cellInsets.top + 2)
       .leftSpaceToView(self.contentView, cellInsets.left)
       .heightIs(22)
-      .widthIs(26);
+      .widthIs(30);
 
     meridiemLabel.sd_layout
       .topSpaceToView(timeLabel, 2)
@@ -111,8 +112,13 @@ static NSInteger const kButtonSize = 45;
 - (void)setModel:(LCTodo*)todo
 {
     _model = todo;
-    timeLabel.text = [DateUtil dateString:_model.deadline withFormat:@"hh"];
-    meridiemLabel.text = [[DateUtil dateString:_model.deadline withFormat:@"HH"] integerValue] > 12 ? @"pm" : @"am";
+    // Mark: 苹果的智障框架，系统是24小时制就打印不出12小时，非要设置地区
+    NSDateFormatter* formatter = [NSDateFormatter dateFormatterWithFormatString:@"h"];
+    formatter.locale = [[NSLocale alloc] initWithLocaleIdentifier:@"en_US_POSIX"];
+    timeLabel.text = [formatter stringFromDate:_model.deadline];
+    formatter.dateFormat = @"a";
+    meridiemLabel.text = [[formatter stringFromDate:_model.deadline] lowercaseString];
+	
     [photoButton setImage:_model.photoImage forState:UIControlStateNormal];
     [statusButton setImage:[UIImage imageNamed:[NSString stringWithFormat:@"status-%d", _model.status]] forState:UIControlStateNormal];
     titleLabel.text = _model.title;
@@ -123,9 +129,24 @@ static NSInteger const kButtonSize = 45;
 #pragma mark - update constraints
 - (void)updateConstraints
 {
-    if (!_model.sgDescription.length)
+    if (!_model.photoImage) {
+        titleLabel.sd_resetLayout
+          .leftSpaceToView(photoButton, 20)
+          .rightSpaceToView(statusButton, 10)
+          .heightIs(20)
+          .centerYEqualToView(photoButton);
+    }
+
+    if (!_model.sgDescription.length) {
         [self setupAutoHeightWithBottomView:photoButton bottomMargin:cellInsets.bottom];
-    else
+
+        titleLabel.sd_resetLayout
+          .leftSpaceToView(photoButton, 20)
+          .rightSpaceToView(statusButton, 10)
+          .heightIs(20)
+          .centerYEqualToView(photoButton);
+    } else {
         [self setupAutoHeightWithBottomView:contentLabel bottomMargin:cellInsets.bottom + 2];
+    }
 }
 @end
