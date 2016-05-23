@@ -18,6 +18,8 @@
 #import "SGTextField.h"
 #import "UIImage+Extension.h"
 
+// FIXME: iPhone4s 上 NavigationBar 会遮挡一部分标题文本框
+
 @implementation CreateViewController {
     CreateDataManager* dataManager;
     UIView* containerView;
@@ -182,6 +184,7 @@
                 complete:^(bool succeed) {
                     [weakSelf enableView:YES];
                     if (!succeed) return;
+                    if (_createViewControllerDidFinishCreate) _createViewControllerDidFinishCreate(todo);
                     [weakSelf.navigationController popToRootViewControllerAnimated:YES];
                 }];
       });

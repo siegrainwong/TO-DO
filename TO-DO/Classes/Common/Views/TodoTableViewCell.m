@@ -6,6 +6,7 @@
 //  Copyright © 2016年 com.siegrain. All rights reserved.
 //
 
+#import "DateUtil.h"
 #import "LCTodo.h"
 #import "Macros.h"
 #import "TodoHelper.h"
@@ -53,8 +54,6 @@ static NSInteger const kButtonSize = 45;
     photoButton = [UIButton new];
     photoButton.layer.masksToBounds = YES;
     photoButton.layer.cornerRadius = kButtonSize / 2;
-    [photoButton setImage:[UIImage imageNamed:@"avatar1"]
-                 forState:UIControlStateNormal];
     [self.contentView addSubview:photoButton];
 
     titleLabel = [UILabel new];
@@ -68,7 +67,6 @@ static NSInteger const kButtonSize = 45;
     [self.contentView addSubview:contentLabel];
 
     statusButton = [UIButton new];
-    [statusButton setImage:[UIImage imageNamed:@"status-1"] forState:UIControlStateNormal];
     [self.contentView addSubview:statusButton];
 }
 - (void)bindConstraints
@@ -115,9 +113,17 @@ static NSInteger const kButtonSize = 45;
 - (void)setModel:(LCTodo*)todo
 {
     _model = todo;
-    timeLabel.text = @"10";
-    meridiemLabel.text = @"am";
-    titleLabel.text = @"This is a Title!";
-    contentLabel.text = @"Starfucks";
+    timeLabel.text = [DateUtil dateString:_model.deadline withFormat:@"hh"];
+    meridiemLabel.text = [[DateUtil dateString:_model.deadline withFormat:@"HH"] integerValue] > 12 ? @"pm" : @"am";
+    [photoButton setImage:_model.photoImage forState:UIControlStateNormal];
+    [statusButton setImage:[UIImage imageNamed:[NSString stringWithFormat:@"status-%d", _model.status]] forState:UIControlStateNormal];
+    titleLabel.text = _model.title;
+    contentLabel.text = _model.sgDescription;
+
+    [self updateConstraints];
+}
+#pragma mark - update constraints
+- (void)updateConstraints
+{
 }
 @end

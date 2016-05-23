@@ -20,6 +20,7 @@
 
 @implementation HomeViewController {
     UITableView* tableView;
+    NSMutableArray<LCTodo*>* dataArray;
 }
 #pragma mark - localization
 - (void)localizeStrings
@@ -27,11 +28,38 @@
     headerView.titleLabel.text = NSLocalizedString(@"Tasks", nil);
     headerView.subtitleLabel.text = @"MAY 14, 2016";
 }
+#pragma mark -
+- (void)testData
+{
+    LCTodo* model1 = [LCTodo object];
+    model1.title = @"单标题";
+    model1.deadline = [[NSDate date] dateByAddingTimeInterval:60 * 30];
+    model1.photoImage = [UIImage imageNamed:@"avatar1"];
+
+    LCTodo* model2 = [LCTodo object];
+    model2.title = @"标题带描述";
+    model2.deadline = [[NSDate date] dateByAddingTimeInterval:60 * 60 * 12];
+    model2.photoImage = [UIImage imageNamed:@"avatar2"];
+    model2.sgDescription = @"我也是醉求了。。。";
+
+    LCTodo* model3 = [LCTodo object];
+    model3.title = @"没有图";
+    model3.deadline = [[NSDate date] dateByAddingTimeInterval:60 * 60 * 4];
+    model3.sgDescription = @"呵呵呵呵";
+
+    LCTodo* model4 = [LCTodo object];
+    model4.title = @"没有图，没有描述";
+    model4.deadline = [[NSDate date] dateByAddingTimeInterval:60 * 60 * 24];
+
+    [dataArray addObjectsFromArray:@[ model1, model2, model3, model4 ]];
+}
 #pragma mark - initial
 - (void)viewDidLoad
 {
     [super viewDidLoad];
 
+    dataArray = [NSMutableArray new];
+    [self testData];
     [self localizeStrings];
 }
 - (void)viewDidLayoutSubviews
@@ -63,6 +91,11 @@
     __weak typeof(self) weakSelf = self;
     [headerView setHeaderViewDidPressRightOperationButton:^{
         CreateViewController* createViewController = [[CreateViewController alloc] init];
+        [createViewController setCreateViewControllerDidFinishCreate:^(LCTodo* model) {
+            __strong typeof(self) strongSelf = weakSelf;
+            [strongSelf->dataArray insertObject:model atIndex:0];
+            [strongSelf->tableView reloadData];
+        }];
         [weakSelf.navigationController pushViewController:createViewController animated:YES];
     }];
     tableView.tableHeaderView = headerView;
@@ -85,16 +118,16 @@
 - (CGFloat)tableView:(UITableView*)tableView
   heightForRowAtIndexPath:(NSIndexPath*)indexPath
 {
-    //    Moment* model = self.momentsArray[indexPath.row];
-    //    if (!model.height) {
-    //        model.height = [self.tableView cellHeightForIndexPath:indexPath model:model keyPath:@"model" cellClass:[MomentTableViewCell class] contentViewWidth:[self cellContentViewWith]];
-    //    }
+    LCTodo* model = dataArray[indexPath.row];
+    if (!model.cellHeight) {
+        model.cellHeight = [self->tableView cellHeightForIndexPath:indexPath model:[LCTodo object] keyPath:@"model" cellClass:[TodoTableViewCell class] contentViewWidth:kScreenWidth];
+    }
 
-    return [self->tableView cellHeightForIndexPath:indexPath model:[LCTodo object] keyPath:@"model" cellClass:[TodoTableViewCell class] contentViewWidth:kScreenWidth];
+    return model.cellHeight;
 }
 - (NSInteger)tableView:(UITableView*)tableView numberOfRowsInSection:(NSInteger)section
 {
-    return 10;
+    return dataArray.count;
 }
 - (UITableViewCell*)tableView:(UITableView*)tableView cellForRowAtIndexPath:(NSIndexPath*)indexPath
 {
@@ -104,6 +137,6 @@
 }
 - (void)configureCell:(TodoTableViewCell*)cell atIndexPath:(NSIndexPath*)indexPath
 {
-    [cell setModel:[LCTodo object]];
+    [cell setModel:dataArray[indexPath.row]];
 }
 @end
