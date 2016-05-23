@@ -94,7 +94,7 @@ static NSString* const kPictureUploadFailedKey = @"PictureUploadFailed";
         [SCLAlertHelper errorAlertWithContent:_localDictionary[kTitleInvalidKey]];
         return NO;
     }
-    if (![SCLAlertHelper errorAlertValidateLengthWithString:model.title minLength:1 maxLength:20 alertName:NSLocalizedString(@"Title", nil)]) {
+    if ([SCLAlertHelper errorAlertValidateLengthWithString:model.title minLength:1 maxLength:20 alertName:NSLocalizedString(@"Title", nil)]) {
         return NO;
     }
     // deadline validation
@@ -103,11 +103,11 @@ static NSString* const kPictureUploadFailedKey = @"PictureUploadFailed";
         return NO;
     }
     // description validation
-    if (![SCLAlertHelper errorAlertValidateLengthWithString:model.sgDescription minLength:0 maxLength:200 alertName:NSLocalizedString(@"Description", nil)]) {
+    if ([SCLAlertHelper errorAlertValidateLengthWithString:model.sgDescription minLength:0 maxLength:200 alertName:NSLocalizedString(@"Description", nil)]) {
         return NO;
     }
     //location validation
-    if (![SCLAlertHelper errorAlertValidateLengthWithString:model.location minLength:0 maxLength:50 alertName:NSLocalizedString(@"Location", nil)]) {
+    if ([SCLAlertHelper errorAlertValidateLengthWithString:model.location minLength:0 maxLength:50 alertName:NSLocalizedString(@"Location", nil)]) {
         return NO;
     }
 

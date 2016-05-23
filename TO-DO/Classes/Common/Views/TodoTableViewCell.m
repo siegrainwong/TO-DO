@@ -132,12 +132,16 @@ static NSInteger const kButtonSize = 45;
     if (!_model.photoImage) {
         photoButton.sd_layout.widthIs(0);
         titleLabel.sd_layout.leftSpaceToView(photoButton, 0);
+    } else {
+        photoButton.sd_layout.widthIs(kButtonSize);
+        titleLabel.sd_layout.leftSpaceToView(photoButton, 20);
     }
 
     if (!_model.sgDescription.length) {
         [self setupAutoHeightWithBottomView:photoButton bottomMargin:cellInsets.bottom];
         titleLabel.sd_layout.topSpaceToView(self.contentView, cellInsets.top + 10);
     } else {
+        titleLabel.sd_layout.topSpaceToView(self.contentView, cellInsets.top);
         [self setupAutoHeightWithBottomView:contentLabel bottomMargin:cellInsets.bottom + 2];
     }
 }
