@@ -106,8 +106,6 @@ static NSInteger const kButtonSize = 45;
       .rightSpaceToView(self.contentView, cellInsets.right)
       .widthIs(15)
       .heightEqualToWidth();
-
-    [self setupAutoHeightWithBottomView:contentLabel bottomMargin:cellInsets.bottom + 2];
 }
 #pragma mark - set model
 - (void)setModel:(LCTodo*)todo
@@ -125,5 +123,9 @@ static NSInteger const kButtonSize = 45;
 #pragma mark - update constraints
 - (void)updateConstraints
 {
+    if (!_model.sgDescription.length)
+        [self setupAutoHeightWithBottomView:photoButton bottomMargin:cellInsets.bottom];
+    else
+        [self setupAutoHeightWithBottomView:contentLabel bottomMargin:cellInsets.bottom + 2];
 }
 @end
