@@ -14,6 +14,7 @@
 #import "TodoTableViewCell.h"
 #import "UIImage+Extension.h"
 #import "UIImage+Qiniu.h"
+#import "UIImage+Qiniu.h"
 #import "UINavigationController+Transparent.h"
 #import "UIScrollView+Extension.h"
 #import "UITableView+Extension.h"
@@ -22,49 +23,24 @@
 @implementation HomeViewController {
     HomeDataManager* dataManager;
     UITableView* tableView;
-    NSMutableDictionary* sectionDictionary;
-    NSMutableArray<LCTodo*>* dataArray;
+    NSMutableDictionary* dataDictionary;
+    NSMutableArray* dateArray;
 }
 #pragma mark - localization
 - (void)localizeStrings
 {
-    headerView.titleLabel.text = NSLocalizedString(@"Tasks", nil);
-    headerView.subtitleLabel.text = @"MAY 14, 2016";
-}
-#pragma mark -
-- (void)testData
-{
-    LCTodo* model1 = [LCTodo object];
-    model1.title = @"单标题";
-    model1.deadline = [[NSDate date] dateByAddingTimeInterval:60 * 30];
-    model1.photoImage = [UIImage imageNamed:@"avatar1"];
-
-    LCTodo* model2 = [LCTodo object];
-    model2.title = @"标题带描述";
-    model2.deadline = [[NSDate date] dateByAddingTimeInterval:60 * 60 * 12];
-    model2.photoImage = [UIImage imageNamed:@"avatar2"];
-    model2.sgDescription = @"我也是醉求了。。。";
-
-    LCTodo* model3 = [LCTodo object];
-    model3.title = @"没有图";
-    model3.deadline = [[NSDate date] dateByAddingTimeInterval:60 * 60 * 4];
-    model3.sgDescription = @"呵呵呵呵";
-
-    LCTodo* model4 = [LCTodo object];
-    model4.title = @"没有图，没有描述";
-    model4.deadline = [[NSDate date] dateByAddingTimeInterval:-60 * 60 * 3];
-
-    [dataArray addObjectsFromArray:@[ model1, model2, model3, model4 ]];
+    headerView.titleLabel.text = [NSString stringWithFormat:@"%ld %@", dataDictionary.allValues.count, NSLocalizedString(@"Tasks", nil)];
 }
 #pragma mark - initial
 - (void)viewDidLoad
 {
     [super viewDidLoad];
 
-    dataArray = [NSMutableArray new];
+    dataDictionary = [NSMutableDictionary new];
+    dateArray = [NSMutableArray new];
     dataManager = [HomeDataManager new];
 
-    [self testData];
+    //    [self testData];
     [self localizeStrings];
     [self retrieveDataFromServer];
 }
@@ -79,7 +55,7 @@
 {
     [super setupView];
 
-    tableView = [[UITableView alloc] init];
+    tableView = [UITableView new];
     tableView.bounces = NO;
     tableView.dataSource = self;
     tableView.delegate = self;
@@ -90,6 +66,7 @@
     [self.view addSubview:tableView];
 
     headerView = [HeaderView headerViewWithAvatarPosition:HeaderAvatarPositionCenter titleAlignement:HeaderTitleAlignementCenter];
+    headerView.subtitleLabel.text = [TodoHelper localizedFormatDate:[NSDate date]];
     [headerView.rightOperationButton setImage:[UIImage imageNamed:@"add"] forState:UIControlStateNormal];
     [headerView.avatarButton setImage:[UIImage qn_imageWithString:user.avatar andStyle:kImageStyleSmall] forState:UIControlStateNormal];
     headerView.backgroundImageView.image = [UIImage imageAtResourcePath:@"header bg"];
@@ -97,10 +74,10 @@
     __weak typeof(self) weakSelf = self;
     [headerView setHeaderViewDidPressRightOperationButton:^{
         CreateViewController* createViewController = [[CreateViewController alloc] init];
-        [createViewController setCreateViewControllerDidFinishCreate:^(LCTodo* model) {
-            __strong typeof(self) strongSelf = weakSelf;
-            [strongSelf->dataArray insertObject:model atIndex:0];
-            [strongSelf->tableView reloadData];
+        [createViewController setCreateViewControllerDidFinishCreate:^(LCTodo* model){
+          //            __strong typeof(self) strongSelf = weakSelf;
+          //            [strongSelf->dataArray insertObject:model atIndex:0];
+          //            [strongSelf->tableView reloadData];
         }];
         [weakSelf.navigationController pushViewController:createViewController animated:YES];
     }];
@@ -110,7 +87,9 @@
 {
     [super bindConstraints];
 
-    [tableView mas_makeConstraints:^(MASConstraintMaker* make) { make.top.bottom.right.left.offset(0); }];
+    [tableView mas_makeConstraints:^(MASConstraintMaker* make) {
+        make.top.bottom.right.left.offset(0);
+    }];
 
     [headerView mas_makeConstraints:^(MASConstraintMaker* make) {
         make.top.left.offset(0);
@@ -121,32 +100,63 @@
 #pragma mark - retreive data
 - (void)retrieveDataFromServer
 {
-    [dataManager retrieveDataWithUser:user complete:^(bool succeed, NSDictionary* data){
-
+    __weak typeof(self) weakSelf = self;
+    [dataManager retrieveDataWithUser:user complete:^(bool succeed, NSDictionary* data, NSArray* dates) {
+        dataDictionary = [NSMutableDictionary dictionaryWithDictionary:data];
+        dateArray = [NSMutableArray arrayWithArray:dates];
+        [tableView reloadData];
+        [weakSelf localizeStrings];
     }];
 }
 #pragma mark - tableview
+#pragma mark - tableview delegate
+- (CGFloat)tableView:(UITableView*)tableView estimatedHeightForRowAtIndexPath:(NSIndexPath*)indexPath
+{
+    return [self tableView:self->tableView heightForRowAtIndexPath:indexPath];
+}
 - (CGFloat)tableView:(UITableView*)tableView heightForRowAtIndexPath:(NSIndexPath*)indexPath
 {
-    LCTodo* model = dataArray[indexPath.row];
+    LCTodo* model = [self modelAtIndexPath:indexPath];
     if (!model.cellHeight) {
-        model.cellHeight = [self->tableView cellHeightForIndexPath:indexPath model:[LCTodo object] keyPath:@"model" cellClass:[TodoTableViewCell class] contentViewWidth:kScreenWidth];
+        model.cellHeight = [self->tableView cellHeightForIndexPath:indexPath model:model keyPath:@"model" cellClass:[TodoTableViewCell class] contentViewWidth:kScreenWidth];
     }
 
     return model.cellHeight;
 }
+#pragma mark - tableview datasource
+- (NSInteger)numberOfSectionsInTableView:(UITableView*)tableView
+{
+    return dateArray.count;
+}
+- (NSString*)tableView:(UITableView*)tableView titleForHeaderInSection:(NSInteger)section
+{
+    return dateArray[section];
+}
 - (NSInteger)tableView:(UITableView*)tableView numberOfRowsInSection:(NSInteger)section
 {
-    return dataArray.count;
+    return [self dataArrayAtSection:section].count;
 }
 - (UITableViewCell*)tableView:(UITableView*)tableView cellForRowAtIndexPath:(NSIndexPath*)indexPath
 {
-    TodoTableViewCell* cell = [self->tableView dequeueReusableCellWithIdentifier:kTodoIdentifierArray[TodoIdentifierNormal]];
+    TodoTableViewCell* cell = [self->tableView dequeueReusableCellWithIdentifier:kTodoIdentifierArray[TodoIdentifierNormal] forIndexPath:indexPath];
     [self configureCell:cell atIndexPath:indexPath];
     return cell;
 }
+#pragma mark - tableview helper
+- (NSArray<LCTodo*>*)dataArrayAtSection:(NSInteger)section
+{
+    return dataDictionary[dateArray[section]];
+}
+- (LCTodo*)modelAtIndexPath:(NSIndexPath*)indexPath
+{
+    NSArray<LCTodo*>* dataArray = [self dataArrayAtSection:indexPath.section];
+    return dataArray[indexPath.row];
+}
 - (void)configureCell:(TodoTableViewCell*)cell atIndexPath:(NSIndexPath*)indexPath
 {
-    [cell setModel:dataArray[indexPath.row]];
+    LCTodo* model = [self modelAtIndexPath:indexPath];
+    model.photoImage = [UIImage qn_imageWithString:model.photo andStyle:kImageStyleSmall];
+    cell.model = model;
 }
+#pragma mark - scrollview
 @end

@@ -12,9 +12,11 @@
 #import "NSDateFormatter+Extension.h"
 #import "TodoHelper.h"
 #import "TodoTableViewCell.h"
+#import "UIImage+Qiniu.h"
 #import "UIView+SDAutoLayout.h"
 
 static NSInteger const kButtonSize = 45;
+static NSInteger const kStatusButtonSize = 15;
 
 @implementation TodoTableViewCell {
     UIEdgeInsets cellInsets;
@@ -22,8 +24,8 @@ static NSInteger const kButtonSize = 45;
     UILabel* timeLabel;
     UILabel* meridiemLabel;
     UIButton* photoButton;
-    UILabel* titleLabel;
-    UILabel* contentLabel;
+    UILabel* todoTitleLabel;
+    UILabel* todoContentLabel;
     UIButton* statusButton;
 }
 #pragma mark - initial
@@ -52,20 +54,21 @@ static NSInteger const kButtonSize = 45;
     meridiemLabel.textAlignment = NSTextAlignmentCenter;
     [self.contentView addSubview:meridiemLabel];
 
+    // TODO: 这个地方圆角需要用其他方法来绘制
     photoButton = [UIButton new];
     photoButton.layer.masksToBounds = YES;
     photoButton.layer.cornerRadius = kButtonSize / 2;
     [self.contentView addSubview:photoButton];
 
-    titleLabel = [UILabel new];
-    titleLabel.font = [TodoHelper themeFontWithSize:18];
-    [self.contentView addSubview:titleLabel];
+    todoTitleLabel = [UILabel new];
+    todoTitleLabel.font = [TodoHelper themeFontWithSize:18];
+    [self.contentView addSubview:todoTitleLabel];
 
-    contentLabel = [UILabel new];
-    contentLabel.font = [TodoHelper themeFontWithSize:13];
-    contentLabel.textColor = [TodoHelper subTextColor];
-    contentLabel.numberOfLines = 0;
-    [self.contentView addSubview:contentLabel];
+    todoContentLabel = [UILabel new];
+    todoContentLabel.font = [TodoHelper themeFontWithSize:13];
+    todoContentLabel.textColor = [TodoHelper subTextColor];
+    todoContentLabel.numberOfLines = 0;
+    [self.contentView addSubview:todoContentLabel];
 
     statusButton = [UIButton new];
     [self.contentView addSubview:statusButton];
@@ -90,23 +93,25 @@ static NSInteger const kButtonSize = 45;
       .widthIs(kButtonSize)
       .heightIs(kButtonSize);
 
-    titleLabel.sd_layout
+    statusButton.sd_layout
+      .centerYEqualToView(photoButton)
+      .rightSpaceToView(self.contentView, cellInsets.right)
+      .widthIs(kStatusButtonSize)
+      .heightEqualToWidth();
+
+    // Mark: SDAutoLayout 在设置约束时要注意设置的顺序，不能在约束中使用未被约束的控件。
+    todoTitleLabel.sd_layout
       .leftSpaceToView(photoButton, 20)
       .topSpaceToView(self.contentView, cellInsets.top)
       .rightSpaceToView(statusButton, 10)
       .heightIs(20);
 
-    contentLabel.sd_layout
-      .topSpaceToView(titleLabel, 2)
-      .leftEqualToView(titleLabel)
-      .rightEqualToView(titleLabel)
-      .autoHeightRatio(0);
-
-    statusButton.sd_layout
-      .centerYEqualToView(photoButton)
-      .rightSpaceToView(self.contentView, cellInsets.right)
-      .widthIs(15)
-      .heightEqualToWidth();
+    todoContentLabel.sd_layout
+      .topSpaceToView(todoTitleLabel, 2)
+      .leftEqualToView(todoTitleLabel)
+      .rightEqualToView(todoTitleLabel)
+      .autoHeightRatio(0)
+      .maxHeightIs(MAXFLOAT);
 }
 #pragma mark - set model
 - (void)setModel:(LCTodo*)todo
@@ -121,29 +126,33 @@ static NSInteger const kButtonSize = 45;
 
     [photoButton setImage:_model.photoImage forState:UIControlStateNormal];
     [statusButton setImage:[UIImage imageNamed:[NSString stringWithFormat:@"status-%d", _model.status]] forState:UIControlStateNormal];
-    titleLabel.text = _model.title;
-    contentLabel.text = _model.sgDescription;
+
+    todoTitleLabel.text = _model.title;
+    todoContentLabel.text = _model.sgDescription;
+
+    [self setupAutoHeightWithBottomView:photoButton bottomMargin:cellInsets.bottom];
 
     [self updateConstraints];
 }
-#pragma mark - update constraints
+//#pragma mark - update constraints
 - (void)updateConstraints
 {
-    // FIXME: 多行描述回传后有Bug
     if (!_model.photoImage) {
         photoButton.sd_layout.widthIs(0);
-        titleLabel.sd_layout.leftSpaceToView(photoButton, 0);
+        todoTitleLabel.sd_layout.leftSpaceToView(photoButton, 0);
     } else {
         photoButton.sd_layout.widthIs(kButtonSize);
-        titleLabel.sd_layout.leftSpaceToView(photoButton, 20);
+        todoTitleLabel.sd_layout.leftSpaceToView(photoButton, 20);
     }
 
     if (!_model.sgDescription.length) {
+        todoTitleLabel.sd_layout.topSpaceToView(self.contentView, cellInsets.top + 10);
         [self setupAutoHeightWithBottomView:photoButton bottomMargin:cellInsets.bottom];
-        titleLabel.sd_layout.topSpaceToView(self.contentView, cellInsets.top + 10);
     } else {
-        titleLabel.sd_layout.topSpaceToView(self.contentView, cellInsets.top);
-        [self setupAutoHeightWithBottomView:contentLabel bottomMargin:cellInsets.bottom + 2];
+        todoTitleLabel.sd_layout.topSpaceToView(self.contentView, cellInsets.top);
+        [self setupAutoHeightWithBottomView:todoContentLabel bottomMargin:cellInsets.bottom + 2];
     }
+
+    [super updateConstraints];
 }
 @end

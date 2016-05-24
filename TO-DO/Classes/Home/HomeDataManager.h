@@ -11,5 +11,5 @@
 @class LCUser;
 
 @interface HomeDataManager : UITableViewCell
-- (void)retrieveDataWithUser:(LCUser*)user complete:(void (^)(bool succeed, NSDictionary* data))complete;
+- (void)retrieveDataWithUser:(LCUser*)user complete:(void (^)(bool succeed, NSDictionary* dataDictionary, NSArray* dateArray))complete;
 @end

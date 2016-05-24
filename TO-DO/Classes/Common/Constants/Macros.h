@@ -31,6 +31,9 @@
 //获取系统语言
 #define SystemLanguege ([NSLocale preferredLanguages][0])
 
+//判断是否是中国地区
+#define isChina ([[SystemLanguege substringWithRange:NSMakeRange(0, 6)] isEqualToString:@"zh-Han"])
+
 //简化本地化字符串宏
 #define Localized(string) (NSLocalizedString(string, nil))
 

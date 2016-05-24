@@ -19,6 +19,7 @@
 #import "UIImage+Extension.h"
 
 // FIXME: iPhone4s 上 NavigationBar 会遮挡一部分标题文本框
+// TODO: 日期选择判断只能选择将来的时间
 
 @implementation CreateViewController {
     CreateDataManager* dataManager;
@@ -163,31 +164,28 @@
 {
     __weak typeof(self) weakSelf = self;
     dispatch_queue_t serialQueue = dispatch_queue_create("TO-DOCreateSerialQueue", DISPATCH_QUEUE_SERIAL);
-    dispatch_sync(
-      serialQueue, ^{
-          if (commitButton.indicator.isAnimating) return;
+    dispatch_sync(serialQueue, ^{
+        if (commitButton.indicator.isAnimating) return;
 
-          [weakSelf.view endEditing:YES];
-          [weakSelf enableView:NO];
+        [weakSelf.view endEditing:YES];
+        [weakSelf enableView:NO];
 
-          LCTodo* todo = [LCTodo object];
-          todo.title = titleTextField.field.text;
-          todo.sgDescription = descriptionTextField.field.text;
-          todo.deadline = [DateUtil stringToDate:datetimePicker.field.text format:@"yyyy.MM.dd HH:mm:ss"];
-          todo.location = locationTextField.field.text;
-          todo.photoImage = selectedImage;
-          todo.user = user;
-          todo.status = LCTodoStatusNotComplete;
+        LCTodo* todo = [LCTodo object];
+        todo.title = titleTextField.field.text;
+        todo.sgDescription = descriptionTextField.field.text;
+        todo.deadline = [DateUtil stringToDate:datetimePicker.field.text format:@"yyyy.MM.dd HH:mm:ss"];
+        todo.location = locationTextField.field.text;
+        todo.photoImage = selectedImage;
+        todo.user = user;
+        todo.status = LCTodoStatusNotComplete;
 
-          [dataManager
-            handleCommit:todo
-                complete:^(bool succeed) {
-                    [weakSelf enableView:YES];
-                    if (!succeed) return;
-                    if (_createViewControllerDidFinishCreate) _createViewControllerDidFinishCreate(todo);
-                    [weakSelf.navigationController popToRootViewControllerAnimated:YES];
-                }];
-      });
+        [dataManager handleCommit:todo complete:^(bool succeed) {
+            [weakSelf enableView:YES];
+            if (!succeed) return;
+            if (_createViewControllerDidFinishCreate) _createViewControllerDidFinishCreate(todo);
+            [weakSelf.navigationController popToRootViewControllerAnimated:YES];
+        }];
+    });
 }
 - (void)enableView:(BOOL)isEnable
 {
@@ -210,7 +208,7 @@
 }
 #pragma mark - imagePicker delegate
 - (void)imagePickerController:(UIImagePickerController*)picker
-  didFinishPickingMediaWithInfo:(NSDictionary<NSString*, id>*)info
+didFinishPickingMediaWithInfo:(NSDictionary<NSString*, id>*)info
 {
     selectedImage = info[UIImagePickerControllerEditedImage];
     [headerView.rightOperationButton setImage:selectedImage forState:UIControlStateNormal];
@@ -248,11 +246,10 @@
             make.bottom.offset(-20);
     }];
 
-    [UIView animateWithDuration:1
-                     animations:^{
-                         [containerView.superview layoutIfNeeded];
-                         [self.navigationController.navigationBar setHidden:isShowAnimation];
-                     }];
+    [UIView animateWithDuration:1 animations:^{
+        [containerView.superview layoutIfNeeded];
+        [self.navigationController.navigationBar setHidden:isShowAnimation];
+    }];
 }
 - (void)viewWillAppear:(BOOL)animated
 {
@@ -273,16 +270,13 @@
     HSDatePickerViewController* datePickerViewController = [[HSDatePickerViewController alloc] init];
     datePickerViewController.delegate = self;
 
-    NSString* chinese = [SystemLanguege substringWithRange:NSMakeRange(0, 6)];
-    // zh-Hans or zh-Hant
-    if ([chinese isEqualToString:@"zh-Han"]) {
+    if (isChina) {
         datePickerViewController.dateFormatter = [NSDateFormatter dateFormatterWithFormatString:@"MMM d ccc"];
         datePickerViewController.monthAndYearLabelDateFormater = [NSDateFormatter dateFormatterWithFormatString:@"yyyy MMMM"];
     }
 
-    if (selectedDate) {
-        datePickerViewController.date = selectedDate;
-    }
+    if (selectedDate) datePickerViewController.date = selectedDate;
+
     datePickerViewController.modalTransitionStyle = UIModalTransitionStyleCrossDissolve;
     [self presentViewController:datePickerViewController animated:YES completion:nil];
 }

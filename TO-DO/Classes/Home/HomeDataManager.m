@@ -10,24 +10,43 @@
 #import "HomeDataManager.h"
 #import "LCTodo.h"
 #import "LCUser.h"
+#import "NSDate+Extension.h"
+#import "SCLAlertHelper.h"
 
 @implementation HomeDataManager
-- (void)retrieveDataWithUser:(LCUser*)user complete:(void (^)(bool succeed, NSDictionary* data))complete
+- (void)retrieveDataWithUser:(LCUser*)user complete:(void (^)(bool succeed, NSDictionary* dataDictionary, NSArray* dateArray))complete
 {
     AVQuery* query = [AVQuery queryWithClassName:[LCTodo parseClassName]];
     [query whereKey:@"user" equalTo:user];
-    [query whereKey:@"status" equalTo:@(LCTodoStatusNotComplete)];
-    [query whereKey:@"status" equalTo:@(LCTodoStatusOverdue)];
-    [query whereKey:@"deadline" greaterThanOrEqualTo:[DateUtil dateString:[NSDate date] withFormat:@"yyyy-MM-dd"]];
-    [query whereKey:@"deadline" lessThanOrEqualTo:[DateUtil dateString:[[NSDate date] dateByAddingTimeInterval:60 * 60 * 7] withFormat:@"yyyy-MM-dd"]];
-    [query orderByDescending:@"deadline"];
-    [query findObjectsInBackgroundWithBlock:^(NSArray* objects, NSError* error) {
-        if (!error) {
-            NSLog(@"%@", objects);
-        } else {
-            // 输出错误信息
-            NSLog(@"Error: %@ %@", error, [error userInfo]);
+    [query whereKey:@"status" containedIn:@[ @(LCTodoStatusNotComplete), @(LCTodoStatusOverdue) ]];
+    NSDate* today = [DateUtil dateInYearMonthDay:[NSDate date]];
+    NSDate* yesterday = [today dateByAddingTimeInterval:-kTimeIntervalDay];
+    [query whereKey:@"deadline" greaterThanOrEqualTo:yesterday];
+    [query whereKey:@"deadline" lessThanOrEqualTo:[DateUtil dateInYearMonthDay:[today dateByAddingTimeInterval:kTimeIntervalDay * 1]]];
+    [query orderByAscending:@"deadline"];
+    [query findObjectsInBackgroundWithBlock:^(NSArray<LCTodo*>* objects, NSError* error) {
+        if (error) {
+            [SCLAlertHelper errorAlertWithContent:error.localizedDescription];
+            return complete(NO, nil, nil);
         }
+
+        NSMutableDictionary* dataDictionary = [NSMutableDictionary new];
+        NSMutableArray* dateArray = [NSMutableArray new];
+
+        NSMutableArray* dataInSameDay;
+        NSString* dateString;
+        for (LCTodo* todo in objects) {
+            NSString* newDateString = todo.deadline.stringInYearMonthDay;
+            if (![dateString isEqualToString:newDateString]) {
+                dateString = newDateString;
+                [dateArray addObject:dateString];
+                dataInSameDay = [NSMutableArray new];
+                dataDictionary[dateString] = dataInSameDay;
+            }
+            [dataInSameDay addObject:todo];
+        }
+
+        return complete(YES, [dataDictionary copy], [dateArray copy]);
     }];
 }
 @end

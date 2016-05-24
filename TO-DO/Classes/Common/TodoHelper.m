@@ -6,6 +6,7 @@
 //  Copyright © 2016年 com.siegrain. All rights reserved.
 //
 
+#import "DateUtil.h"
 #import "Macros.h"
 #import "Masonry.h"
 #import "SCLAlertHelper.h"
@@ -79,6 +80,12 @@
         *error = true;
         return;
     }
+}
+#pragma mark - get localized format date string
++ (NSString*)localizedFormatDate:(NSDate*)date
+{
+    NSString* dateFormat = isChina ? @"yyyy-M-d" : @"MMM d, yyyy";
+    return [DateUtil dateString:date withFormat:dateFormat];
 }
 #pragma mark -
 + (UIColor*)subTextColor

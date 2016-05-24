@@ -8,11 +8,16 @@
 
 #import <Foundation/Foundation.h>
 
+static NSInteger const kTimeIntervalHour = 60 * 60 * 60;
+static NSInteger const kTimeIntervalDay = kTimeIntervalHour * 24;
+
 @interface DateUtil : NSObject
 + (NSDateFormatter*)sharedDateFormatter;
 
 /*字符串转NSDate*/
 + (NSDate*)stringToDate:(NSString*)dateString format:(NSString*)format;
+/*获取该NSDate中的日期部分*/
++ (NSDate*)dateInYearMonthDay:(NSDate*)date;
 /*NSDate转字符串*/
 + (NSString*)dateString:(NSDate*)date withFormat:(NSString*)format;
 /*获取当前的时间标识*/
@@ -24,4 +29,6 @@
 /*获取尽量短的本地化时间字符串*/
 + (NSString*)localizedShortDateString:(NSDate*)date;
 + (NSString*)localizedShortDateStringFromInterval:(NSTimeInterval)interval;
+/*获取两个日期之间的DateComponent*/
++ (NSDateComponents*)componentsBetweenDate:(NSDate*)date andDate:(NSDate*)otherDate;
 @end

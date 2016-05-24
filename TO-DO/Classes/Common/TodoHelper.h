@@ -49,6 +49,15 @@ static NSInteger const kPopHeightWhenKeyboardShow = 170;
 + (void)pictureActionSheetFrom:(UIViewController*)viewController selectCameraHandler:(void (^)())cameraHandler selectAlbumHandler:(void (^)())albumHandler;
 
 /**
+ *  获取本地化格式的日期字符串
+ *
+ *  @param date <#date description#>
+ *
+ *  @return <#return value description#>
+ */
++ (NSString*)localizedFormatDate:(NSDate*)date;
+
+/**
  *  非重点文字颜色
  */
 + (UIColor*)subTextColor;

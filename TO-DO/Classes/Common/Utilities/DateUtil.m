@@ -28,6 +28,12 @@
     dateFormatter.dateFormat = format;
     return [dateFormatter dateFromString:dateString];
 }
++ (NSDate*)dateInYearMonthDay:(NSDate*)date
+{
+    NSString* dateFormat = @"yyyy-MM-dd";
+    NSString* dateStr = [self dateString:date withFormat:dateFormat];
+    return [self stringToDate:dateStr format:dateFormat];
+}
 + (NSString*)dateString:(NSDate*)date withFormat:(NSString*)format
 {
     NSDateFormatter* dateFormatter = [self sharedDateFormatter];
@@ -46,8 +52,7 @@
     return [dateFormatter stringFromDate:date];
 }
 #pragma mark - calculate
-+ (NSDateComponents*)differsDaysFromDate:(NSDate*)date
-                                 andDate:(NSDate*)otherDate
++ (NSDateComponents*)componentsBetweenDate:(NSDate*)date andDate:(NSDate*)otherDate
 
 {
     NSCalendar* calendar = [NSCalendar currentCalendar];
@@ -90,9 +95,7 @@
 }
 + (NSString*)localizedShortDateString:(NSDate*)date
 {
-    NSDateComponents* dateComponents =
-      [self differsDaysFromDate:[NSDate date]
-                        andDate:date];
+    NSDateComponents* dateComponents = [self componentsBetweenDate:[NSDate date] andDate:date];
 
     if (dateComponents.day == 0)
         return [self dateString:date withFormat:@"HH:mm"];
@@ -105,7 +108,6 @@
 }
 + (NSString*)localizedShortDateStringFromInterval:(NSTimeInterval)interval
 {
-    return [self localizedShortDateString:
-                   [NSDate dateWithTimeIntervalSinceReferenceDate:interval]];
+    return [self localizedShortDateString:[NSDate dateWithTimeIntervalSinceReferenceDate:interval]];
 }
 @end
