@@ -2,21 +2,12 @@
 Language:        Cpp
 # BasedOnStyle:  Mozilla
 AccessModifierOffset: -2
-AlignAfterOpenBracket: Align
 AlignConsecutiveAssignments: false
 AlignConsecutiveDeclarations: false
-AlignEscapedNewlinesLeft: false
 AlignOperands:   true
-AllowAllParametersOfDeclarationOnNextLine: true
-AllowShortCaseLabelsOnASingleLine: false
-AllowShortFunctionsOnASingleLine: Inline
-AllowShortLoopsOnASingleLine: false
 AlwaysBreakAfterDefinitionReturnType: TopLevel
-AlwaysBreakAfterReturnType: TopLevelDefinitions
 AlwaysBreakBeforeMultilineStrings: false
 AlwaysBreakTemplateDeclarations: true
-BinPackArguments: true
-BinPackParameters: true
 BraceWrapping:   
   AfterClass:      true
   AfterControlStatement: false
@@ -36,7 +27,6 @@ BreakConstructorInitializersBeforeComma: true
 CommentPragmas:  '^ IWYU pragma:'
 ConstructorInitializerAllOnOneLineOrOnePerLine: false
 ConstructorInitializerIndentWidth: 2
-ContinuationIndentWidth: 2
 Cpp11BracedListStyle: false
 DerivePointerAlignment: false
 DisableFormat:   false
@@ -58,7 +48,6 @@ MaxEmptyLinesToKeep: 1
 NamespaceIndentation: None
 ObjCSpaceAfterProperty: true
 ObjCSpaceBeforeProtocolList: false
-PenaltyBreakBeforeFirstCallParameter: 19
 PenaltyBreakComment: 300
 PenaltyBreakFirstLessLess: 120
 PenaltyBreakString: 1000
@@ -71,7 +60,6 @@ SpaceAfterCStyleCast: false
 SpaceBeforeAssignmentOperators: true
 SpaceBeforeParens: ControlStatements
 SpaceInEmptyParentheses: false
-SpacesBeforeTrailingComments: 1
 SpacesInAngles:  false
 SpacesInContainerLiterals: true
 SpacesInCStyleCastParentheses: false
@@ -82,11 +70,22 @@ TabWidth:        8
 UseTab:          Never
 
 # Siegrain Objective-C Configuration
-AlignTrailingComments: false
-AllowShortBlocksOnASingleLine: true
-AllowShortIfStatementsOnASingleLine: true
-ColumnLimit:     0
+AlignTrailingComments: true
+SpacesBeforeTrailingComments: 2
 IndentWidth:     4
 ObjCBlockIndentWidth: 4
-...
+AlignAfterOpenBracket:  DontAlign
+AlignEscapedNewlinesLeft: true
+ContinuationIndentWidth:  2
+AllowAllParametersOfDeclarationOnNextLine: false
 
+AllowShortCaseLabelsOnASingleLine: false
+AllowShortFunctionsOnASingleLine: false
+AllowShortLoopsOnASingleLine: false
+AllowShortBlocksOnASingleLine: true
+AllowShortIfStatementsOnASingleLine: true
+
+BinPackArguments: false
+BinPackParameters: false
+
+ColumnLimit: 0

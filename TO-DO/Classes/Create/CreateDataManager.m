@@ -65,20 +65,16 @@ static NSString* const kPictureUploadFailedKey = @"PictureUploadFailed";
 {
     if (!model.photoImage) return complete(YES);
 
-    [ImageUploader
-      uploadImage:model.photoImage
-             type:UploadImageTypeOriginal
-           prefix:GetPicturePrefix(kUploadPrefixUser, model.user.objectId)
-       completion:^(bool error, NSString* path) {
-           if (error) {
-               [SCLAlertHelper errorAlertWithContent:_localDictionary[kPictureUploadFailedKey]];
+    [ImageUploader uploadImage:model.photoImage type:UploadImageTypeOriginal prefix:GetPicturePrefix(kUploadPrefixUser, model.user.objectId) completion:^(bool error, NSString* path) {
+        if (error) {
+            [SCLAlertHelper errorAlertWithContent:_localDictionary[kPictureUploadFailedKey]];
 
-               return complete(NO);
-           }
+            return complete(NO);
+        }
 
-           model.photo = path;
-           return complete(YES);
-       }];
+        model.photo = path;
+        return complete(YES);
+    }];
 }
 #pragma mark - validate
 - (BOOL)validate

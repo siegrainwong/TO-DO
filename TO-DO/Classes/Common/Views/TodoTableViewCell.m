@@ -129,6 +129,7 @@ static NSInteger const kButtonSize = 45;
 #pragma mark - update constraints
 - (void)updateConstraints
 {
+    // FIXME: 多行描述回传后有Bug
     if (!_model.photoImage) {
         photoButton.sd_layout.widthIs(0);
         titleLabel.sd_layout.leftSpaceToView(photoButton, 0);

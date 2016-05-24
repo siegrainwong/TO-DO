@@ -7,6 +7,7 @@
 //
 
 #import "CreateViewController.h"
+#import "HomeDataManager.h"
 #import "HomeViewController.h"
 #import "LCTodo.h"
 #import "Macros.h"
@@ -19,7 +20,9 @@
 #import "UITableView+SDAutoTableViewCellHeight.h"
 
 @implementation HomeViewController {
+    HomeDataManager* dataManager;
     UITableView* tableView;
+    NSMutableDictionary* sectionDictionary;
     NSMutableArray<LCTodo*>* dataArray;
 }
 #pragma mark - localization
@@ -59,8 +62,11 @@
     [super viewDidLoad];
 
     dataArray = [NSMutableArray new];
+    dataManager = [HomeDataManager new];
+
     [self testData];
     [self localizeStrings];
+    [self retrieveDataFromServer];
 }
 - (void)viewDidLayoutSubviews
 {
@@ -87,9 +93,7 @@
     [headerView.rightOperationButton setImage:[UIImage imageNamed:@"add"] forState:UIControlStateNormal];
     [headerView.avatarButton setImage:[UIImage qn_imageWithString:user.avatar andStyle:kImageStyleSmall] forState:UIControlStateNormal];
     headerView.backgroundImageView.image = [UIImage imageAtResourcePath:@"header bg"];
-    [headerView setHeaderViewDidPressAvatarButton:^{
-        [LCUser logOut];
-    }];
+    [headerView setHeaderViewDidPressAvatarButton:^{ [LCUser logOut]; }];
     __weak typeof(self) weakSelf = self;
     [headerView setHeaderViewDidPressRightOperationButton:^{
         CreateViewController* createViewController = [[CreateViewController alloc] init];
@@ -106,9 +110,7 @@
 {
     [super bindConstraints];
 
-    [tableView mas_makeConstraints:^(MASConstraintMaker* make) {
-        make.top.bottom.right.left.offset(0);
-    }];
+    [tableView mas_makeConstraints:^(MASConstraintMaker* make) { make.top.bottom.right.left.offset(0); }];
 
     [headerView mas_makeConstraints:^(MASConstraintMaker* make) {
         make.top.left.offset(0);
@@ -116,9 +118,15 @@
         make.height.offset(kScreenHeight * 0.6);
     }];
 }
+#pragma mark - retreive data
+- (void)retrieveDataFromServer
+{
+    [dataManager retrieveDataWithUser:user complete:^(bool succeed, NSDictionary* data){
+
+    }];
+}
 #pragma mark - tableview
-- (CGFloat)tableView:(UITableView*)tableView
-  heightForRowAtIndexPath:(NSIndexPath*)indexPath
+- (CGFloat)tableView:(UITableView*)tableView heightForRowAtIndexPath:(NSIndexPath*)indexPath
 {
     LCTodo* model = dataArray[indexPath.row];
     if (!model.cellHeight) {

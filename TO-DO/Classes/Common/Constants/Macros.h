@@ -12,6 +12,8 @@
 #ifndef Macros_h
 #define Macros_h
 
+#import "NSObject+PropertyName.h"
+
 //获取颜色，格式0xFFFFFF
 #define ColorWithRGB(rgbValue)                                           \
     [UIColor colorWithRed:((float)((rgbValue & 0xFF0000) >> 16)) / 255.0 \

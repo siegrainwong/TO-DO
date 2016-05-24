@@ -65,35 +65,28 @@ static NSInteger const kLoginFailCountOverLimitErrorCodeKey = 1;
     [[UIApplication sharedApplication] setNetworkActivityIndicatorVisible:YES];
     // sign in
     if (!isSignUp) {
-        [LCUser logInWithUsernameInBackground:user.email
-                                     password:user.password
-                                        block:^(AVUser* user, NSError* error) {
-                                            if (error)
-                                                [SCLAlertHelper errorAlertWithContent:_localDictionary[@(error.code)] ? _localDictionary[@(error.code)] : error.localizedDescription];
+        [LCUser logInWithUsernameInBackground:user.email password:user.password block:^(AVUser* user, NSError* error) {
+            if (error)
+                [SCLAlertHelper errorAlertWithContent:_localDictionary[@(error.code)] ? _localDictionary[@(error.code)] : error.localizedDescription];
 
-                                            return complete(!error);
-                                        }];
+            return complete(!error);
+        }];
     } else {
-        [ImageUploader
-          uploadImage:user.avatarImage
-                 type:UploadImageTypeAvatar
-               prefix:kUploadPrefixAvatar
-           completion:^(bool error, NSString* path) {
-               if (error) {
-                   [SCLAlertHelper errorAlertWithContent:_localDictionary[kPictureUploadFailedKey]];
+        [ImageUploader uploadImage:user.avatarImage type:UploadImageTypeAvatar prefix:kUploadPrefixAvatar completion:^(bool error, NSString* path) {
+            if (error) {
+                [SCLAlertHelper errorAlertWithContent:_localDictionary[kPictureUploadFailedKey]];
 
-                   return complete(NO);
-               }
+                return complete(NO);
+            }
 
-               user.avatar = path;
+            user.avatar = path;
+            [user signUpInBackgroundWithBlock:^(BOOL succeeded, NSError* error) {
+                if (error)
+                    [SCLAlertHelper errorAlertWithContent:_localDictionary[@(error.code)] ? _localDictionary[@(error.code)] : error.localizedDescription];
 
-               [user signUpInBackgroundWithBlock:^(BOOL succeeded, NSError* error) {
-                   if (error)
-                       [SCLAlertHelper errorAlertWithContent:_localDictionary[@(error.code)] ? _localDictionary[@(error.code)] : error.localizedDescription];
-
-                   return complete(!error);
-               }];
-           }];
+                return complete(!error);
+            }];
+        }];
     }
 }
 #pragma mark - validate
@@ -127,10 +120,7 @@ static NSInteger const kLoginFailCountOverLimitErrorCodeKey = 1;
     }
 
     // password validation
-    if ([SCLAlertHelper errorAlertValidateLengthWithString:user.password
-                                                 minLength:6
-                                                 maxLength:20
-                                                 alertName:NSLocalizedString(@"Password", nil)]) {
+    if ([SCLAlertHelper errorAlertValidateLengthWithString:user.password minLength:6 maxLength:20 alertName:NSLocalizedString(@"Password", nil)]) {
         return NO;
     } else if (![FieldValidator validatePassword:user.password]) {
         [SCLAlertHelper errorAlertWithContent:kPasswordInvalidKey];
