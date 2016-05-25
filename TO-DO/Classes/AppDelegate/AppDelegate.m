@@ -8,6 +8,7 @@
 
 #import "AppDelegate.h"
 #import "DataKeys.h"
+#import "DrawerTableViewController.h"
 #import "HomeViewController.h"
 #import "JTNavigationController.h"
 #import "JVFloatingDrawerSpringAnimator.h"
@@ -23,69 +24,6 @@
 
 @implementation AppDelegate {
     JVFloatingDrawerViewController* drawerViewController;
-}
-#pragma mark - initial
-- (void)setup
-{
-    [self setupLeanCloud];
-
-    // validate user's login state
-    //    [LCUser logOut];
-    LCUser* user = [LCUser currentUser];
-    if (user) {
-        NSLog(@"当前用户：%@", user.username);
-        HomeViewController* homeViewController = [HomeViewController new];
-        [self switchRootViewController:homeViewController isNavigation:YES];
-    } else {
-        [self switchRootViewController:[LoginViewController new] isNavigation:NO];
-    }
-}
-#pragma mark - LeanCloud methods
-- (void)setupLeanCloud
-{
-    // setup leanCloud with appId and key
-    [AVOSCloud setApplicationId:kLeanCloudAppID clientKey:kLeanCloudAppKey];
-
-    // register subclasses
-    [LCUser registerSubclass];
-    [LCTodo registerSubclass];
-}
-#pragma mark - app delegate methods
-- (void)switchRootViewController:(UIViewController*)viewController isNavigation:(BOOL)isNavigation
-{
-    [UIApplication sharedApplication].statusBarStyle = UIStatusBarStyleLightContent;
-
-    self.window = [[UIWindow alloc] initWithFrame:[[UIScreen mainScreen] bounds]];
-    self.window.backgroundColor = [UIColor whiteColor];
-
-    JTNavigationController* nav;
-    if (isNavigation) {
-        nav = [[JTNavigationController alloc] initWithRootViewController:viewController];
-
-        drawerViewController = [JVFloatingDrawerViewController new];
-        [self configureDrawerViewController:nav];
-    }
-
-    self.window.rootViewController = isNavigation ? drawerViewController : viewController;
-
-    [self.window makeKeyAndVisible];
-}
-- (void)configureDrawerViewController:(UIViewController*)centerViewController
-{
-    drawerViewController.leftViewController = [UIViewController new];
-    drawerViewController.animator = [JVFloatingDrawerSpringAnimator new];
-    drawerViewController.centerViewController = centerViewController;
-
-    drawerViewController.backgroundImage = [UIImage imageAtResourcePath:@"drawerbg"];
-}
-#pragma mark - Global Access Helper
-+ (AppDelegate*)globalDelegate
-{
-    return (AppDelegate*)[UIApplication sharedApplication].delegate;
-}
-- (void)toggleDrawer:(id)sender animated:(BOOL)animated
-{
-    [drawerViewController toggleDrawerWithSide:JVFloatingDrawerSideLeft animated:animated completion:nil];
 }
 #pragma mark - application delegate
 - (BOOL)application:(UIApplication*)application
@@ -114,6 +52,75 @@
 - (void)applicationWillTerminate:(UIApplication*)application
 {
     [self saveContext];
+}
+#pragma mark - initial
+- (void)setup
+{
+    [UIApplication sharedApplication].statusBarStyle = UIStatusBarStyleLightContent;
+    self.window = [[UIWindow alloc] initWithFrame:[[UIScreen mainScreen] bounds]];
+    self.window.backgroundColor = [UIColor whiteColor];
+
+    [self setupLeanCloud];
+    [self setupDrawerViewController];
+
+    // validate user's login state
+    //    [LCUser logOut];
+    LCUser* user = [LCUser currentUser];
+    if (user) {
+        NSLog(@"当前用户：%@", user.username);
+        HomeViewController* homeViewController = [HomeViewController new];
+        [self switchRootViewController:homeViewController isNavigation:YES];
+    } else {
+        [self switchRootViewController:[LoginViewController new] isNavigation:NO];
+    }
+
+    [self.window makeKeyAndVisible];
+}
+- (void)setupLeanCloud
+{
+    // setup leanCloud with appId and key
+    [AVOSCloud setApplicationId:kLeanCloudAppID clientKey:kLeanCloudAppKey];
+
+    // register subclasses
+    [LCUser registerSubclass];
+    [LCTodo registerSubclass];
+}
+- (void)setupDrawerViewController
+{
+    drawerViewController = [JVFloatingDrawerViewController new];
+    JVFloatingDrawerSpringAnimator* animator = [JVFloatingDrawerSpringAnimator new];
+    animator.animationDuration = 0.5;
+    animator.initialSpringVelocity = 2;
+    animator.springDamping = 0.8;
+    drawerViewController.animator = animator;
+
+    drawerViewController.leftViewController = [DrawerTableViewController new];
+
+    drawerViewController.backgroundImage = [UIImage imageAtResourcePath:@"drawerbg"];
+}
+#pragma mark -
+- (void)switchRootViewController:(UIViewController*)viewController isNavigation:(BOOL)isNavigation
+{
+    if (isNavigation) {
+        JTNavigationController* navigationController = [[JTNavigationController alloc] initWithRootViewController:viewController];
+        drawerViewController.centerViewController = navigationController;
+    }
+
+    self.window.rootViewController = isNavigation ? drawerViewController : viewController;
+}
+#pragma mark - JVDrawer
+- (void)toggleDrawer:(id)sender animated:(BOOL)animated
+{
+    [drawerViewController toggleDrawerWithSide:JVFloatingDrawerSideLeft animated:animated completion:nil];
+}
+- (void)setCenterViewController:(UIViewController*)viewController
+{
+    drawerViewController.centerViewController = viewController;
+}
+#pragma mark -
++ (AppDelegate*)globalDelegate
+{
+    return (AppDelegate*)[UIApplication sharedApplication].delegate;
 }
 
 #pragma mark - Core Data stack

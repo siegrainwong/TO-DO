@@ -30,4 +30,8 @@
  *  切换到抽屉视图
  */
 - (void)toggleDrawer:(id)sender animated:(BOOL)animated;
+/**
+ *  切换目标视图
+ */
+- (void)setCenterViewController:(UIViewController*)viewController;
 @end

@@ -17,6 +17,8 @@
 		F93BC1571CE5E9EE000A34C5 /* HomeViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = F93BC1561CE5E9EE000A34C5 /* HomeViewController.m */; };
 		F943885B1CF5579100E44379 /* TodoHeaderCell.m in Sources */ = {isa = PBXBuildFile; fileRef = F943885A1CF5579100E44379 /* TodoHeaderCell.m */; };
 		F943885D1CF5A2C800E44379 /* drawerbg.png in Resources */ = {isa = PBXBuildFile; fileRef = F943885C1CF5A2C800E44379 /* drawerbg.png */; };
+		F94388621CF5C38500E44379 /* DrawerTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = F943885F1CF5C38500E44379 /* DrawerTableViewCell.m */; };
+		F94388631CF5C38500E44379 /* DrawerTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = F94388611CF5C38500E44379 /* DrawerTableViewController.m */; };
 		F945ABD71CED913E00C282F7 /* BaseViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = F945ABD61CED913E00C282F7 /* BaseViewController.m */; };
 		F945ABDA1CED96B600C282F7 /* UITableView+Extension.m in Sources */ = {isa = PBXBuildFile; fileRef = F945ABD91CED96B600C282F7 /* UITableView+Extension.m */; };
 		F945ABDD1CED983800C282F7 /* UIScrollView+Extension.m in Sources */ = {isa = PBXBuildFile; fileRef = F945ABDC1CED983800C282F7 /* UIScrollView+Extension.m */; };
@@ -112,6 +114,10 @@
 		F94388591CF5579100E44379 /* TodoHeaderCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TodoHeaderCell.h; sourceTree = "<group>"; };
 		F943885A1CF5579100E44379 /* TodoHeaderCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TodoHeaderCell.m; sourceTree = "<group>"; };
 		F943885C1CF5A2C800E44379 /* drawerbg.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = drawerbg.png; sourceTree = "<group>"; };
+		F943885E1CF5C38500E44379 /* DrawerTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = DrawerTableViewCell.h; path = ../Classes/Common/DrawerTableViewCell.h; sourceTree = "<group>"; };
+		F943885F1CF5C38500E44379 /* DrawerTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = DrawerTableViewCell.m; path = ../Classes/Common/DrawerTableViewCell.m; sourceTree = "<group>"; };
+		F94388601CF5C38500E44379 /* DrawerTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = DrawerTableViewController.h; path = ../Classes/Common/DrawerTableViewController.h; sourceTree = "<group>"; };
+		F94388611CF5C38500E44379 /* DrawerTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = DrawerTableViewController.m; path = ../Classes/Common/DrawerTableViewController.m; sourceTree = "<group>"; };
 		F945ABD51CED913E00C282F7 /* BaseViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BaseViewController.h; sourceTree = "<group>"; };
 		F945ABD61CED913E00C282F7 /* BaseViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BaseViewController.m; sourceTree = "<group>"; };
 		F945ABD81CED96B600C282F7 /* UITableView+Extension.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UITableView+Extension.h"; sourceTree = "<group>"; };
@@ -361,6 +367,17 @@
 				F943885A1CF5579100E44379 /* TodoHeaderCell.m */,
 			);
 			path = Cells;
+			sourceTree = "<group>";
+		};
+		F94388641CF5CD2200E44379 /* Drawer */ = {
+			isa = PBXGroup;
+			children = (
+				F94388601CF5C38500E44379 /* DrawerTableViewController.h */,
+				F94388611CF5C38500E44379 /* DrawerTableViewController.m */,
+				F943885E1CF5C38500E44379 /* DrawerTableViewCell.h */,
+				F943885F1CF5C38500E44379 /* DrawerTableViewCell.m */,
+			);
+			path = Drawer;
 			sourceTree = "<group>";
 		};
 		F945ABD41CED912500C282F7 /* Controllers */ = {
@@ -671,6 +688,7 @@
 				F94CA2281CE2FA9E0006904F /* Common */,
 				F94CA24C1CE2FB110006904F /* AppDelegate */,
 				F9A723B01CDDF99800E3BC8E /* Main */,
+				F94388641CF5CD2200E44379 /* Drawer */,
 				F94CA2501CE2FB940006904F /* Login */,
 				F93BC1491CE5E813000A34C5 /* Home */,
 				F9BCE52E1CEDB438003376C7 /* Create */,
@@ -920,6 +938,7 @@
 				F94CA20A1CE2F9780006904F /* UIImage+ImageEffects.m in Sources */,
 				F95994531CE462E100B042BD /* QiniuTokenGenerator.m in Sources */,
 				F94CA24F1CE2FB110006904F /* AppDelegate.m in Sources */,
+				F94388621CF5C38500E44379 /* DrawerTableViewCell.m in Sources */,
 				F945ABDA1CED96B600C282F7 /* UITableView+Extension.m in Sources */,
 				F94CA2061CE2F9780006904F /* SCLButton.m in Sources */,
 				F9F723461CEEF40200128254 /* NSNotificationCenter+Extension.m in Sources */,
@@ -930,6 +949,7 @@
 				F9331D851CF0A97200B36474 /* LCTodo.m in Sources */,
 				F961B55B1CF42DED0096DAF4 /* HomeDataManager.m in Sources */,
 				F94CA2451CE2FA9E0006904F /* UITextField+BottomBorder.m in Sources */,
+				F94388631CF5C38500E44379 /* DrawerTableViewController.m in Sources */,
 				F9BCE5321CEDB54B003376C7 /* CreateViewController.m in Sources */,
 				F94CA2041CE2F9780006904F /* SCLAlertViewResponder.m in Sources */,
 				F928FF671CF04D1600295BA6 /* CreateDataManager.m in Sources */,
