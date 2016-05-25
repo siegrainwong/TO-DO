@@ -10,6 +10,8 @@
 #import "DataKeys.h"
 #import "HomeViewController.h"
 #import "JTNavigationController.h"
+#import "JVFloatingDrawerSpringAnimator.h"
+#import "JVFloatingDrawerView.h"
 #import "LCTodo.h"
 #import "LCUser.h"
 #import "LoginViewController.h"
@@ -17,12 +19,13 @@
 #import "UIImage+Extension.h"
 #import <AVOSCloud.h>
 
-// FIXME: 每次进入一个新的ViewController，都会在AF库中的SecPolicy对象上发生内存泄漏，暂时无法解决
+// FIXME: 每次进入一个新的ViewController，都会在AF库中的SecPolicy对象上发生几百b的内存泄漏，暂时无法解决
 
-@implementation AppDelegate
-
-- (BOOL)application:(UIApplication*)application
-  didFinishLaunchingWithOptions:(NSDictionary*)launchOptions
+@implementation AppDelegate {
+    JVFloatingDrawerViewController* drawerViewController;
+}
+#pragma mark - initial
+- (void)setup
 {
     [self setupLeanCloud];
 
@@ -31,14 +34,67 @@
     LCUser* user = [LCUser currentUser];
     if (user) {
         NSLog(@"当前用户：%@", user.username);
-        [self switchRootViewController:[[HomeViewController alloc] init] isNavigation:YES];
+        HomeViewController* homeViewController = [HomeViewController new];
+        [self switchRootViewController:homeViewController isNavigation:YES];
     } else {
-        [self switchRootViewController:[[LoginViewController alloc] init] isNavigation:NO];
+        [self switchRootViewController:[LoginViewController new] isNavigation:NO];
     }
+}
+#pragma mark - LeanCloud methods
+- (void)setupLeanCloud
+{
+    // setup leanCloud with appId and key
+    [AVOSCloud setApplicationId:kLeanCloudAppID clientKey:kLeanCloudAppKey];
+
+    // register subclasses
+    [LCUser registerSubclass];
+    [LCTodo registerSubclass];
+}
+#pragma mark - app delegate methods
+- (void)switchRootViewController:(UIViewController*)viewController isNavigation:(BOOL)isNavigation
+{
+    [UIApplication sharedApplication].statusBarStyle = UIStatusBarStyleLightContent;
+
+    self.window = [[UIWindow alloc] initWithFrame:[[UIScreen mainScreen] bounds]];
+    self.window.backgroundColor = [UIColor whiteColor];
+
+    JTNavigationController* nav;
+    if (isNavigation) {
+        nav = [[JTNavigationController alloc] initWithRootViewController:viewController];
+
+        drawerViewController = [JVFloatingDrawerViewController new];
+        [self configureDrawerViewController:nav];
+    }
+
+    self.window.rootViewController = isNavigation ? drawerViewController : viewController;
+
+    [self.window makeKeyAndVisible];
+}
+- (void)configureDrawerViewController:(UIViewController*)centerViewController
+{
+    drawerViewController.leftViewController = [UIViewController new];
+    drawerViewController.animator = [JVFloatingDrawerSpringAnimator new];
+    drawerViewController.centerViewController = centerViewController;
+
+    drawerViewController.backgroundImage = [UIImage imageAtResourcePath:@"drawerbg"];
+}
+#pragma mark - Global Access Helper
++ (AppDelegate*)globalDelegate
+{
+    return (AppDelegate*)[UIApplication sharedApplication].delegate;
+}
+- (void)toggleDrawer:(id)sender animated:(BOOL)animated
+{
+    [drawerViewController toggleDrawerWithSide:JVFloatingDrawerSideLeft animated:animated completion:nil];
+}
+#pragma mark - application delegate
+- (BOOL)application:(UIApplication*)application
+  didFinishLaunchingWithOptions:(NSDictionary*)launchOptions
+{
+    [self setup];
 
     return YES;
 }
-
 - (void)applicationWillResignActive:(UIApplication*)application
 {
 }
@@ -58,33 +114,6 @@
 - (void)applicationWillTerminate:(UIApplication*)application
 {
     [self saveContext];
-}
-#pragma mark - LeanCloud methods
-- (void)setupLeanCloud
-{
-    // setup leanCloud with appId and key
-    [AVOSCloud setApplicationId:kLeanCloudAppID clientKey:kLeanCloudAppKey];
-
-    // register subclasses
-    [LCUser registerSubclass];
-    [LCTodo registerSubclass];
-}
-#pragma mark - appdelegate methods
-- (void)switchRootViewController:(UIViewController*)viewController isNavigation:(BOOL)isNavigation
-{
-    [UIApplication sharedApplication].statusBarStyle = UIStatusBarStyleLightContent;
-
-    self.window = [[UIWindow alloc] initWithFrame:[[UIScreen mainScreen] bounds]];
-    self.window.backgroundColor = [UIColor whiteColor];
-
-    JTNavigationController* nav;
-    if (isNavigation) {
-        nav = [[JTNavigationController alloc] initWithRootViewController:viewController];
-    }
-
-    self.window.rootViewController = isNavigation ? nav : viewController;
-
-    [self.window makeKeyAndVisible];
 }
 
 #pragma mark - Core Data stack

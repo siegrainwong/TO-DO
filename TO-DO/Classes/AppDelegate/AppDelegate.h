@@ -20,8 +20,14 @@
 - (void)saveContext;
 - (NSURL*)applicationDocumentsDirectory;
 
++ (AppDelegate*)globalDelegate;
+
 /**
  *  切换根控制器
  */
 - (void)switchRootViewController:(UIViewController*)viewController isNavigation:(BOOL)isNavigation;
+/**
+ *  切换到抽屉视图
+ */
+- (void)toggleDrawer:(id)sender animated:(BOOL)animated;
 @end

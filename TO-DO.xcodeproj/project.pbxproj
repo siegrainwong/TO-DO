@@ -16,6 +16,7 @@
 		F93BC14E1CE5E961000A34C5 /* header bg.png in Resources */ = {isa = PBXBuildFile; fileRef = F93BC14B1CE5E961000A34C5 /* header bg.png */; };
 		F93BC1571CE5E9EE000A34C5 /* HomeViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = F93BC1561CE5E9EE000A34C5 /* HomeViewController.m */; };
 		F943885B1CF5579100E44379 /* TodoHeaderCell.m in Sources */ = {isa = PBXBuildFile; fileRef = F943885A1CF5579100E44379 /* TodoHeaderCell.m */; };
+		F943885D1CF5A2C800E44379 /* drawerbg.png in Resources */ = {isa = PBXBuildFile; fileRef = F943885C1CF5A2C800E44379 /* drawerbg.png */; };
 		F945ABD71CED913E00C282F7 /* BaseViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = F945ABD61CED913E00C282F7 /* BaseViewController.m */; };
 		F945ABDA1CED96B600C282F7 /* UITableView+Extension.m in Sources */ = {isa = PBXBuildFile; fileRef = F945ABD91CED96B600C282F7 /* UITableView+Extension.m */; };
 		F945ABDD1CED983800C282F7 /* UIScrollView+Extension.m in Sources */ = {isa = PBXBuildFile; fileRef = F945ABDC1CED983800C282F7 /* UIScrollView+Extension.m */; };
@@ -110,6 +111,7 @@
 		F93BC1561CE5E9EE000A34C5 /* HomeViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HomeViewController.m; sourceTree = "<group>"; };
 		F94388591CF5579100E44379 /* TodoHeaderCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TodoHeaderCell.h; sourceTree = "<group>"; };
 		F943885A1CF5579100E44379 /* TodoHeaderCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TodoHeaderCell.m; sourceTree = "<group>"; };
+		F943885C1CF5A2C800E44379 /* drawerbg.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = drawerbg.png; sourceTree = "<group>"; };
 		F945ABD51CED913E00C282F7 /* BaseViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BaseViewController.h; sourceTree = "<group>"; };
 		F945ABD61CED913E00C282F7 /* BaseViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BaseViewController.m; sourceTree = "<group>"; };
 		F945ABD81CED96B600C282F7 /* UITableView+Extension.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UITableView+Extension.h"; sourceTree = "<group>"; };
@@ -373,11 +375,12 @@
 		F94CA1E81CE2F91F0006904F /* Images */ = {
 			isa = PBXGroup;
 			children = (
-				F9A01FAB1CF2F60300699939 /* examples */,
 				F9A723801CDDF8A800E3BC8E /* Assets.xcassets */,
+				F9A01FAB1CF2F60300699939 /* examples */,
 				F94CA1E91CE2F91F0006904F /* 1. Login */,
 				F93BC14A1CE5E961000A34C5 /* 2. Home */,
 				F9BCE5331CEDB888003376C7 /* 3. Create */,
+				F943885C1CF5A2C800E44379 /* drawerbg.png */,
 			);
 			path = Images;
 			sourceTree = "<group>";
@@ -835,6 +838,7 @@
 				F9A7237C1CDDF8A800E3BC8E /* Main.storyboard in Resources */,
 				F9A01FAF1CF2F60300699939 /* avatar1.png in Resources */,
 				F9A01FB11CF2F60300699939 /* avatar3.png in Resources */,
+				F943885D1CF5A2C800E44379 /* drawerbg.png in Resources */,
 				F9BCE5391CEDBF02003376C7 /* create header bg.png in Resources */,
 				F9A01FB01CF2F60300699939 /* avatar2.png in Resources */,
 			);

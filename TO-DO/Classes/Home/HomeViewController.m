@@ -31,7 +31,7 @@
 #pragma mark - localization
 - (void)localizeStrings
 {
-    headerView.titleLabel.text = [NSString stringWithFormat:@"%d %@", dataCount, NSLocalizedString(@"Tasks", nil)];
+    headerView.titleLabel.text = [NSString stringWithFormat:@"%ld %@", dataCount, NSLocalizedString(@"Tasks", nil)];
 }
 #pragma mark - initial
 - (void)viewDidLoad

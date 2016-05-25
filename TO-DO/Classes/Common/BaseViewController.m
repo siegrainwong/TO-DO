@@ -6,6 +6,7 @@
 //  Copyright © 2016年 com.siegrain. All rights reserved.
 //
 
+#import "AppDelegate.h"
 #import "BaseViewController.h"
 #import "UINavigationController+Transparent.h"
 
@@ -37,6 +38,7 @@
     menuButton = [[UIButton alloc] init];
     menuButton.tintColor = [UIColor whiteColor];
     menuButton.frame = CGRectMake(0, 0, 20, 17);
+    [menuButton addTarget:self action:@selector(didPressMenuButton) forControlEvents:UIControlEventTouchUpInside];
     [menuButton setBackgroundImage:[UIImage imageNamed:@"menu"] forState:UIControlStateNormal];
 
     UIView* placeholderView = [[UIView alloc] init];
@@ -64,6 +66,11 @@
     // Mark: 意为不要取消其他视图的触摸事件，为YES的话就不能触发为其他控件添加的触摸事件
     tapGestureRecognizer.cancelsTouchesInView = NO;
     [self.view addGestureRecognizer:tapGestureRecognizer];
+}
+#pragma mark - toggle to drawer
+- (void)didPressMenuButton
+{
+    [[AppDelegate globalDelegate] toggleDrawer:self animated:YES];
 }
 #pragma mark - modify the titile on navigation bar
 - (void)setMenuTitle:(NSString*)title
