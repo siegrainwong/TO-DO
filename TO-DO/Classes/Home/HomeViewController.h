@@ -8,9 +8,10 @@
 
 #import "BaseViewController.h"
 #import "Localized.h"
+#import "MGSwipeTableCell.h"
 
 /**
  *  首页
  */
-@interface HomeViewController : BaseViewController<Localized, UITableViewDelegate, UITableViewDataSource>
+@interface HomeViewController : BaseViewController<Localized, UITableViewDelegate, UITableViewDataSource, MGSwipeTableCellDelegate>
 @end

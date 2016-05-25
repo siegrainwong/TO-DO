@@ -84,7 +84,7 @@
 #pragma mark - get localized format date string
 + (NSString*)localizedFormatDate:(NSDate*)date
 {
-    NSString* dateFormat = isChina ? @"yyyy.MMM.d" : @"MMM d, yyyy";
+    NSString* dateFormat = isChina ? @"yyyy MMM d" : @"MMM d, yyyy";
     return [DateUtil dateString:date withFormat:dateFormat];
 }
 #pragma mark -

@@ -16,5 +16,6 @@ pod 'AutoLinearLayoutView'
 pod 'HSDatePickerViewController', '~> 1.0'
 pod 'ObjectiveRecord'
 pod 'JVFloatingDrawer'
+pod 'MGSwipeTableCell'
 
 end

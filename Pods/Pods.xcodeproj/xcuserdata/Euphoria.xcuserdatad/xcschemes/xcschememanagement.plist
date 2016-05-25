@@ -54,6 +54,11 @@
 			<key>isShown</key>
 			<false/>
 		</dict>
+		<key>MGSwipeTableCell.xcscheme</key>
+		<dict>
+			<key>isShown</key>
+			<false/>
+		</dict>
 		<key>Masonry.xcscheme</key>
 		<dict>
 			<key>isShown</key>
@@ -97,6 +102,11 @@
 	</dict>
 	<key>SuppressBuildableAutocreation</key>
 	<dict>
+		<key>012F75E71273C92857018BF39ACB5697</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
 		<key>09FA060F1A0492FB25232F489AC4E573</key>
 		<dict>
 			<key>primary</key>
@@ -112,22 +122,12 @@
 			<key>primary</key>
 			<true/>
 		</dict>
-		<key>3D90331C28CADACA3EA397D54FE6CF15</key>
-		<dict>
-			<key>primary</key>
-			<true/>
-		</dict>
-		<key>4065694E9A29781A736984C198E03EA1</key>
+		<key>36E6B1FBDF8355002C3B0742AA8A6F0D</key>
 		<dict>
 			<key>primary</key>
 			<true/>
 		</dict>
 		<key>410B25DF16EA5C5B3E2698F74F9625FB</key>
-		<dict>
-			<key>primary</key>
-			<true/>
-		</dict>
-		<key>4FDEB1762EAD29F9669209670E398715</key>
 		<dict>
 			<key>primary</key>
 			<true/>
@@ -157,7 +157,17 @@
 			<key>primary</key>
 			<true/>
 		</dict>
-		<key>92FE2E3D75A1120FC4E39F84F6A28E8E</key>
+		<key>7096DC47CED955719C11B14633434BF1</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
+		<key>82C0027A2B32B682DA0D4A08BDBA4D6D</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
+		<key>8C463CD491D989B457394A7AA95384BC</key>
 		<dict>
 			<key>primary</key>
 			<true/>
@@ -167,12 +177,12 @@
 			<key>primary</key>
 			<true/>
 		</dict>
-		<key>BA7F2B1A9DEFE2064DE025864BE71E4F</key>
+		<key>C44DF30F61E0D691D121962AC68466DC</key>
 		<dict>
 			<key>primary</key>
 			<true/>
 		</dict>
-		<key>C44DF30F61E0D691D121962AC68466DC</key>
+		<key>D83183A7F37BEF56A856B3B2CB7E24CA</key>
 		<dict>
 			<key>primary</key>
 			<true/>

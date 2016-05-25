@@ -21,7 +21,6 @@
     [query whereKey:@"status" containedIn:@[ @(LCTodoStatusNotComplete), @(LCTodoStatusOverdue) ]];
     NSDate* today = [DateUtil dateInYearMonthDay:[NSDate date]];
     NSDate* yesterday = [today dateByAddingTimeInterval:-kTimeIntervalDay];
-    // FIXME: 明明条件是大于昨天的时间，为什么会检索出12号的数据？
     [query whereKey:@"deadline" greaterThanOrEqualTo:yesterday];
     [query whereKey:@"deadline" lessThanOrEqualTo:[DateUtil dateInYearMonthDay:[today dateByAddingTimeInterval:kTimeIntervalDay * 1]]];
     [query orderByAscending:@"deadline"];

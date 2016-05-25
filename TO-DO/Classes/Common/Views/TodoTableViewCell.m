@@ -38,6 +38,7 @@ static NSInteger const kStatusButtonSize = 15;
 
         [self setup];
         [self bindConstraints];
+        [self configureSwipeBehavior];
     }
     return self;
 }
@@ -110,6 +111,22 @@ static NSInteger const kStatusButtonSize = 15;
       .rightEqualToView(todoTitleLabel)
       .autoHeightRatio(0)
       .maxHeightIs(MAXFLOAT);
+}
+- (void)configureSwipeBehavior
+{
+    self.rightSwipeSettings.transition = MGSwipeTransitionBorder;
+    self.rightSwipeSettings.keepButtonsSwiped = YES;
+    self.rightExpansion.fillOnTrigger = YES;
+    self.rightExpansion.buttonIndex = 0;
+    self.rightExpansion.threshold = 1;
+    self.rightExpansion.expansionLayout = MGSwipeExpansionLayoutCenter;
+    self.rightExpansion.triggerAnimation.easingFunction = MGSwipeEasingFunctionQuadIn;
+    MGSwipeButton* completeButton = [MGSwipeButton buttonWithTitle:@"" icon:[UIImage imageNamed:@"check"] backgroundColor:ColorWithRGB(0x33AF67) callback:_todoDidComplete];
+    completeButton.width = 60;
+    MGSwipeButton* snoozeButton = [MGSwipeButton buttonWithTitle:@"" icon:[UIImage imageNamed:@"clock"] backgroundColor:[UIColor brownColor] callback:_todoDidSnooze];
+    MGSwipeButton* deleteButton = [MGSwipeButton buttonWithTitle:@"" icon:[UIImage imageNamed:@"cross"] backgroundColor:[UIColor redColor] callback:_todoDidRemove];
+
+    self.rightButtons = @[ completeButton, snoozeButton, deleteButton ];
 }
 #pragma mark - set model
 - (void)setModel:(LCTodo*)todo

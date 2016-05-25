@@ -8,7 +8,7 @@
 
 #import <Foundation/Foundation.h>
 
-static NSInteger const kTimeIntervalHour = 60 * 60 * 60;
+static NSInteger const kTimeIntervalHour = 60 * 60;
 static NSInteger const kTimeIntervalDay = kTimeIntervalHour * 24;
 
 @interface DateUtil : NSObject
