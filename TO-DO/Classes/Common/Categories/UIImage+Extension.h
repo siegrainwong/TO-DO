@@ -25,4 +25,13 @@
  *  @return <#return value description#>
  */
 + (UIImage*)imageWithColor:(UIColor*)color;
+/**
+ *  高效率绘制圆角的方法
+ *
+ *  @param radius <#radius description#>
+ *  @param size   <#size description#>
+ *
+ *  @return <#return value description#>
+ */
+- (UIImage*)imageAddCornerWithRadius:(CGFloat)radius andSize:(CGSize)size;
 @end

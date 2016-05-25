@@ -14,22 +14,24 @@
 #import "SCLAlertHelper.h"
 
 @implementation HomeDataManager
-- (void)retrieveDataWithUser:(LCUser*)user complete:(void (^)(bool succeed, NSDictionary* dataDictionary, NSArray* dateArray))complete
+- (void)retrieveDataWithUser:(LCUser*)user complete:(void (^)(bool succeed, NSDictionary* dataDictionary, NSArray* dateArray, NSInteger dataCount))complete
 {
     AVQuery* query = [AVQuery queryWithClassName:[LCTodo parseClassName]];
     [query whereKey:@"user" equalTo:user];
     [query whereKey:@"status" containedIn:@[ @(LCTodoStatusNotComplete), @(LCTodoStatusOverdue) ]];
     NSDate* today = [DateUtil dateInYearMonthDay:[NSDate date]];
     NSDate* yesterday = [today dateByAddingTimeInterval:-kTimeIntervalDay];
+    // FIXME: 明明条件是大于昨天的时间，为什么会检索出12号的数据？
     [query whereKey:@"deadline" greaterThanOrEqualTo:yesterday];
     [query whereKey:@"deadline" lessThanOrEqualTo:[DateUtil dateInYearMonthDay:[today dateByAddingTimeInterval:kTimeIntervalDay * 1]]];
     [query orderByAscending:@"deadline"];
     [query findObjectsInBackgroundWithBlock:^(NSArray<LCTodo*>* objects, NSError* error) {
         if (error) {
             [SCLAlertHelper errorAlertWithContent:error.localizedDescription];
-            return complete(NO, nil, nil);
+            return complete(NO, nil, nil, 0);
         }
 
+        NSInteger dataCount = objects.count;
         NSMutableDictionary* dataDictionary = [NSMutableDictionary new];
         NSMutableArray* dateArray = [NSMutableArray new];
 
@@ -46,7 +48,7 @@
             [dataInSameDay addObject:todo];
         }
 
-        return complete(YES, [dataDictionary copy], [dateArray copy]);
+        return complete(YES, [dataDictionary copy], [dateArray copy], dataCount);
     }];
 }
 @end

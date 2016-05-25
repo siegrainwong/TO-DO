@@ -15,6 +15,7 @@
 		F9331D861CF0A97200B36474 /* LCUser.m in Sources */ = {isa = PBXBuildFile; fileRef = F9331D841CF0A97200B36474 /* LCUser.m */; };
 		F93BC14E1CE5E961000A34C5 /* header bg.png in Resources */ = {isa = PBXBuildFile; fileRef = F93BC14B1CE5E961000A34C5 /* header bg.png */; };
 		F93BC1571CE5E9EE000A34C5 /* HomeViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = F93BC1561CE5E9EE000A34C5 /* HomeViewController.m */; };
+		F943885B1CF5579100E44379 /* TodoHeaderCell.m in Sources */ = {isa = PBXBuildFile; fileRef = F943885A1CF5579100E44379 /* TodoHeaderCell.m */; };
 		F945ABD71CED913E00C282F7 /* BaseViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = F945ABD61CED913E00C282F7 /* BaseViewController.m */; };
 		F945ABDA1CED96B600C282F7 /* UITableView+Extension.m in Sources */ = {isa = PBXBuildFile; fileRef = F945ABD91CED96B600C282F7 /* UITableView+Extension.m */; };
 		F945ABDD1CED983800C282F7 /* UIScrollView+Extension.m in Sources */ = {isa = PBXBuildFile; fileRef = F945ABDC1CED983800C282F7 /* UIScrollView+Extension.m */; };
@@ -107,6 +108,8 @@
 		F93BC14B1CE5E961000A34C5 /* header bg.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "header bg.png"; sourceTree = "<group>"; };
 		F93BC1551CE5E9EE000A34C5 /* HomeViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HomeViewController.h; sourceTree = "<group>"; };
 		F93BC1561CE5E9EE000A34C5 /* HomeViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HomeViewController.m; sourceTree = "<group>"; };
+		F94388591CF5579100E44379 /* TodoHeaderCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TodoHeaderCell.h; sourceTree = "<group>"; };
+		F943885A1CF5579100E44379 /* TodoHeaderCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TodoHeaderCell.m; sourceTree = "<group>"; };
 		F945ABD51CED913E00C282F7 /* BaseViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BaseViewController.h; sourceTree = "<group>"; };
 		F945ABD61CED913E00C282F7 /* BaseViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BaseViewController.m; sourceTree = "<group>"; };
 		F945ABD81CED96B600C282F7 /* UITableView+Extension.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UITableView+Extension.h"; sourceTree = "<group>"; };
@@ -165,8 +168,8 @@
 		F94CA25E1CE2FB940006904F /* SGTextField.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = SGTextField.m; path = ../../Login/Views/SGTextField.m; sourceTree = "<group>"; };
 		F94CA25F1CE2FB940006904F /* SGTextField.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = SGTextField.xib; path = ../../Login/Views/SGTextField.xib; sourceTree = "<group>"; };
 		F94CA2681CE2FBC90006904F /* TO_DO.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = TO_DO.xcdatamodel; sourceTree = "<group>"; };
-		F94F2F351CF2D71200128A3A /* TodoTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TodoTableViewCell.h; sourceTree = "<group>"; };
-		F94F2F361CF2D71200128A3A /* TodoTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TodoTableViewCell.m; sourceTree = "<group>"; };
+		F94F2F351CF2D71200128A3A /* TodoTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = TodoTableViewCell.h; path = ../TodoTableViewCell.h; sourceTree = "<group>"; };
+		F94F2F361CF2D71200128A3A /* TodoTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = TodoTableViewCell.m; path = ../TodoTableViewCell.m; sourceTree = "<group>"; };
 		F95994511CE462E100B042BD /* QiniuTokenGenerator.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = QiniuTokenGenerator.h; sourceTree = "<group>"; };
 		F95994521CE462E100B042BD /* QiniuTokenGenerator.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = QiniuTokenGenerator.m; sourceTree = "<group>"; };
 		F95994541CE4692D00B042BD /* NSString+Encrytion.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSString+Encrytion.h"; sourceTree = "<group>"; };
@@ -335,6 +338,7 @@
 		F93BC1591CE6087B000A34C5 /* Views */ = {
 			isa = PBXGroup;
 			children = (
+				F94388581CF5570500E44379 /* Cells */,
 				F94CA25D1CE2FB940006904F /* SGTextField.h */,
 				F94CA25E1CE2FB940006904F /* SGTextField.m */,
 				F94CA25F1CE2FB940006904F /* SGTextField.xib */,
@@ -342,10 +346,19 @@
 				F980EDCE1CE70F4E00A861FE /* HeaderView.m */,
 				F9A1E07E1CEDFA4C00FFC453 /* SGCommitButton.h */,
 				F9A1E07F1CEDFA4C00FFC453 /* SGCommitButton.m */,
-				F94F2F351CF2D71200128A3A /* TodoTableViewCell.h */,
-				F94F2F361CF2D71200128A3A /* TodoTableViewCell.m */,
 			);
 			path = Views;
+			sourceTree = "<group>";
+		};
+		F94388581CF5570500E44379 /* Cells */ = {
+			isa = PBXGroup;
+			children = (
+				F94F2F351CF2D71200128A3A /* TodoTableViewCell.h */,
+				F94F2F361CF2D71200128A3A /* TodoTableViewCell.m */,
+				F94388591CF5579100E44379 /* TodoHeaderCell.h */,
+				F943885A1CF5579100E44379 /* TodoHeaderCell.m */,
+			);
+			path = Cells;
 			sourceTree = "<group>";
 		};
 		F945ABD41CED912500C282F7 /* Controllers */ = {
@@ -933,6 +946,7 @@
 				F94CA2481CE2FA9E0006904F /* TodoHelper.m in Sources */,
 				F94CA2091CE2F9780006904F /* SCLTimerDisplay.m in Sources */,
 				F94CA2691CE2FBC90006904F /* TO_DO.xcdatamodeld in Sources */,
+				F943885B1CF5579100E44379 /* TodoHeaderCell.m in Sources */,
 				F93BC1571CE5E9EE000A34C5 /* HomeViewController.m in Sources */,
 				F94CA2051CE2F9780006904F /* SCLAlertViewStyleKit.m in Sources */,
 				F94CA2471CE2FA9E0006904F /* SCLAlertHelper.m in Sources */,

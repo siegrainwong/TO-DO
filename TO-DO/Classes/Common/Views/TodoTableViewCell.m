@@ -56,8 +56,6 @@ static NSInteger const kStatusButtonSize = 15;
 
     // TODO: 这个地方圆角需要用其他方法来绘制
     photoButton = [UIButton new];
-    photoButton.layer.masksToBounds = YES;
-    photoButton.layer.cornerRadius = kButtonSize / 2;
     [self.contentView addSubview:photoButton];
 
     todoTitleLabel = [UILabel new];

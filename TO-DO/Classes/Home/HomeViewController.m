@@ -11,9 +11,9 @@
 #import "HomeViewController.h"
 #import "LCTodo.h"
 #import "Macros.h"
+#import "TodoHeaderCell.h"
 #import "TodoTableViewCell.h"
 #import "UIImage+Extension.h"
-#import "UIImage+Qiniu.h"
 #import "UIImage+Qiniu.h"
 #import "UINavigationController+Transparent.h"
 #import "UIScrollView+Extension.h"
@@ -25,11 +25,13 @@
     UITableView* tableView;
     NSMutableDictionary* dataDictionary;
     NSMutableArray* dateArray;
+
+    NSInteger dataCount;
 }
 #pragma mark - localization
 - (void)localizeStrings
 {
-    headerView.titleLabel.text = [NSString stringWithFormat:@"%ld %@", dataDictionary.allValues.count, NSLocalizedString(@"Tasks", nil)];
+    headerView.titleLabel.text = [NSString stringWithFormat:@"%d %@", dataCount, NSLocalizedString(@"Tasks", nil)];
 }
 #pragma mark - initial
 - (void)viewDidLoad
@@ -40,7 +42,6 @@
     dateArray = [NSMutableArray new];
     dataManager = [HomeDataManager new];
 
-    //    [self testData];
     [self localizeStrings];
     [self retrieveDataFromServer];
 }
@@ -61,6 +62,7 @@
     tableView.delegate = self;
     tableView.showsHorizontalScrollIndicator = NO;
     tableView.showsVerticalScrollIndicator = NO;
+    tableView.sectionHeaderHeight = 15;
     [tableView registerClass:[TodoTableViewCell class] forCellReuseIdentifier:kTodoIdentifierArray[TodoIdentifierNormal]];
     tableView.separatorInset = UIEdgeInsetsMake(0, kScreenHeight * kCellHorizontalInsetsMuiltipledByHeight, 0, kScreenHeight * kCellHorizontalInsetsMuiltipledByHeight);
     [self.view addSubview:tableView];
@@ -101,9 +103,10 @@
 - (void)retrieveDataFromServer
 {
     __weak typeof(self) weakSelf = self;
-    [dataManager retrieveDataWithUser:user complete:^(bool succeed, NSDictionary* data, NSArray* dates) {
+    [dataManager retrieveDataWithUser:user complete:^(bool succeed, NSDictionary* data, NSArray* dates, NSInteger count) {
         dataDictionary = [NSMutableDictionary dictionaryWithDictionary:data];
         dateArray = [NSMutableArray arrayWithArray:dates];
+        dataCount = count;
         [tableView reloadData];
         [weakSelf localizeStrings];
     }];
@@ -128,9 +131,11 @@
 {
     return dateArray.count;
 }
-- (NSString*)tableView:(UITableView*)tableView titleForHeaderInSection:(NSInteger)section
+- (UIView*)tableView:(UITableView*)tableView viewForHeaderInSection:(NSInteger)section
 {
-    return dateArray[section];
+    TodoHeaderCell* header = [TodoHeaderCell headerCell];
+    header.text = dateArray[section];
+    return header;
 }
 - (NSInteger)tableView:(UITableView*)tableView numberOfRowsInSection:(NSInteger)section
 {
@@ -155,7 +160,10 @@
 - (void)configureCell:(TodoTableViewCell*)cell atIndexPath:(NSIndexPath*)indexPath
 {
     LCTodo* model = [self modelAtIndexPath:indexPath];
-    model.photoImage = [UIImage qn_imageWithString:model.photo andStyle:kImageStyleSmall];
+    if (model.photo.length && !model.photoImage) {
+        UIImage* photo = [UIImage qn_imageWithString:model.photo andStyle:kImageStyleSmall];
+        model.photoImage = [photo imageAddCornerWithRadius:photo.size.width / 2 andSize:photo.size];
+    }
     cell.model = model;
 }
 #pragma mark - scrollview
