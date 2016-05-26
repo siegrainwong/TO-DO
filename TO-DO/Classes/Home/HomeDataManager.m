@@ -14,15 +14,15 @@
 #import "SCLAlertHelper.h"
 
 @implementation HomeDataManager
+#pragma mark - retrieve
 - (void)retrieveDataWithUser:(LCUser*)user complete:(void (^)(bool succeed, NSDictionary* dataDictionary, NSArray* dateArray, NSInteger dataCount))complete
 {
     AVQuery* query = [AVQuery queryWithClassName:[LCTodo parseClassName]];
     [query whereKey:@"user" equalTo:user];
     [query whereKey:@"status" containedIn:@[ @(LCTodoStatusNotComplete), @(LCTodoStatusOverdue) ]];
     NSDate* today = [DateUtil dateInYearMonthDay:[NSDate date]];
-    NSDate* yesterday = [today dateByAddingTimeInterval:-kTimeIntervalDay];
-    [query whereKey:@"deadline" greaterThanOrEqualTo:yesterday];
-    [query whereKey:@"deadline" lessThanOrEqualTo:[DateUtil dateInYearMonthDay:[today dateByAddingTimeInterval:kTimeIntervalDay * 1]]];
+    [query whereKey:@"deadline" greaterThanOrEqualTo:[today dateByAddingTimeInterval:-kTimeIntervalDay]];
+    [query whereKey:@"deadline" lessThanOrEqualTo:[today dateByAddingTimeInterval:kTimeIntervalDay]];
     [query orderByAscending:@"deadline"];
     [query findObjectsInBackgroundWithBlock:^(NSArray<LCTodo*>* objects, NSError* error) {
         if (error) {
@@ -48,6 +48,17 @@
         }
 
         return complete(YES, [dataDictionary copy], [dateArray copy], dataCount);
+    }];
+}
+#pragma mark - modify
+- (void)modifyTodo:(LCTodo*)todo complete:(void (^)(bool succeed))complete
+{
+    [todo saveInBackgroundWithBlock:^(BOOL succeeded, NSError* error) {
+        if (error) {
+            [SCLAlertHelper errorAlertWithContent:error.localizedDescription];
+            return complete(NO);
+        }
+        return complete(YES);
     }];
 }
 @end

@@ -38,7 +38,7 @@
     menuButton = [[UIButton alloc] init];
     menuButton.tintColor = [UIColor whiteColor];
     menuButton.frame = CGRectMake(0, 0, 20, 17);
-    [menuButton addTarget:self action:@selector(didPressMenuButton) forControlEvents:UIControlEventTouchUpInside];
+    [menuButton addTarget:self action:@selector(toggleDrawer) forControlEvents:UIControlEventTouchUpInside];
     [menuButton setBackgroundImage:[UIImage imageNamed:@"menu"] forState:UIControlStateNormal];
 
     UIView* placeholderView = [[UIView alloc] init];
@@ -66,13 +66,17 @@
     // Mark: 意为不要取消其他视图的触摸事件，为YES的话就不能触发为其他控件添加的触摸事件
     tapGestureRecognizer.cancelsTouchesInView = NO;
     [self.view addGestureRecognizer:tapGestureRecognizer];
+
+    UISwipeGestureRecognizer* leftSwipeGestureRecognizer = [[UISwipeGestureRecognizer alloc] initWithTarget:self action:@selector(toggleDrawer)];
+    leftSwipeGestureRecognizer.direction = UISwipeGestureRecognizerDirectionRight;
+    [self.view addGestureRecognizer:leftSwipeGestureRecognizer];
 }
-#pragma mark - toggle to drawer
-- (void)didPressMenuButton
+#pragma mark - drawer
+- (void)toggleDrawer
 {
     [[AppDelegate globalDelegate] toggleDrawer:self animated:YES];
 }
-#pragma mark - modify the titile on navigation bar
+#pragma mark - navigationbar text
 - (void)setMenuTitle:(NSString*)title
 {
     titleLabel.text = title;

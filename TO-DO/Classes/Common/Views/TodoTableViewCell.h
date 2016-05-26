@@ -26,8 +26,8 @@ typedef NS_ENUM(NSInteger, TodoIdentifier) {
 @interface TodoTableViewCell : MGSwipeTableCell
 @property (nonatomic, readwrite, strong) LCTodo* model;
 
-@property (nonatomic, readwrite, copy) BOOL (^todoDidComplete)(MGSwipeTableCell* cell);
-@property (nonatomic, readwrite, copy) BOOL (^todoDidSnooze)(MGSwipeTableCell* cell);
-@property (nonatomic, readwrite, copy) BOOL (^todoDidRemove)(MGSwipeTableCell* cell);
+@property (nonatomic, readwrite, copy) BOOL (^todoDidComplete)(TodoTableViewCell* cell);
+@property (nonatomic, readwrite, copy) BOOL (^todoDidSnooze)(TodoTableViewCell* cell);
+@property (nonatomic, readwrite, copy) BOOL (^todoDidRemove)(TodoTableViewCell* cell);
 
 @end

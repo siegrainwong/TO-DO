@@ -269,7 +269,7 @@ didFinishPickingMediaWithInfo:(NSDictionary<NSString*, id>*)info
 {
     HSDatePickerViewController* datePickerViewController = [[HSDatePickerViewController alloc] init];
     datePickerViewController.delegate = self;
-
+    datePickerViewController.minDate = [NSDate date];
     if (isChina) {
         datePickerViewController.dateFormatter = [NSDateFormatter dateFormatterWithFormatString:@"MMM d ccc"];
         datePickerViewController.monthAndYearLabelDateFormater = [NSDateFormatter dateFormatterWithFormatString:@"yyyy MMMM"];

@@ -11,6 +11,7 @@
 #import "HomeViewController.h"
 #import "LCTodo.h"
 #import "Macros.h"
+#import "NSDate+Extension.h"
 #import "TodoHeaderCell.h"
 #import "TodoTableViewCell.h"
 #import "UIImage+Extension.h"
@@ -165,7 +166,48 @@
         UIImage* photo = [UIImage qn_imageWithString:model.photo andStyle:kImageStyleSmall];
         model.photoImage = [photo imageAddCornerWithRadius:photo.size.width / 2 andSize:photo.size];
     }
+
+    [self setupCellEvents:cell];
     cell.model = model;
+}
+- (void)setupCellEvents:(TodoTableViewCell*)cell
+{
+    __weak typeof(self) weakSelf = self;
+    if (!cell.todoDidComplete) {
+        [cell setTodoDidComplete:^BOOL(TodoTableViewCell* sender) {
+            sender.model.status = LCTodoStatusCompleted;
+            [dataManager modifyTodo:sender.model complete:^(bool succeed) {
+                if (succeed) [weakSelf removeCell:sender];
+            }];
+            return NO;
+        }];
+    }
+    if (!cell.todoDidSnooze) {
+        [cell setTodoDidSnooze:^BOOL(TodoTableViewCell* sender) {
+            return YES;
+        }];
+    }
+    if (!cell.todoDidRemove) {
+        [cell setTodoDidRemove:^BOOL(TodoTableViewCell* sender) {
+            return YES;
+        }];
+    }
+}
+- (void)removeCell:(TodoTableViewCell*)cell
+{
+    LCTodo* model = cell.model;
+    NSIndexPath* indexPath = [tableView indexPathForCell:cell];
+    NSString* date = model.deadline.stringInYearMonthDay;
+    NSMutableArray<LCTodo*>* array = dataDictionary[date];
+    [array removeObject:model];
+
+    if (!array.count) {
+        [dataDictionary removeObjectForKey:date];
+        [dateArray removeObject:date];
+        [tableView deleteSections:[NSIndexSet indexSetWithIndex:indexPath.section] withRowAnimation:UITableViewRowAnimationLeft];
+    } else {
+        [tableView deleteRowsAtIndexPaths:@[ indexPath ] withRowAnimation:UITableViewRowAnimationLeft];
+    }
 }
 #pragma mark - scrollview
 @end

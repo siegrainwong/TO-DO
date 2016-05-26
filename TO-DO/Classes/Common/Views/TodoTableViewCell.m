@@ -119,12 +119,26 @@ static NSInteger const kStatusButtonSize = 15;
     self.rightExpansion.fillOnTrigger = YES;
     self.rightExpansion.buttonIndex = 0;
     self.rightExpansion.threshold = 1;
-    self.rightExpansion.expansionLayout = MGSwipeExpansionLayoutCenter;
+    self.rightExpansion.expansionLayout = MGSwipeExpansionLayoutBorder;
     self.rightExpansion.triggerAnimation.easingFunction = MGSwipeEasingFunctionQuadIn;
-    MGSwipeButton* completeButton = [MGSwipeButton buttonWithTitle:@"" icon:[UIImage imageNamed:@"check"] backgroundColor:ColorWithRGB(0x33AF67) callback:_todoDidComplete];
+
+    __weak typeof(self) weakSelf = self;
+    MGSwipeButton* completeButton = [MGSwipeButton buttonWithTitle:@"" icon:[UIImage imageNamed:@"check"] backgroundColor:ColorWithRGB(0x33AF67) callback:^BOOL(MGSwipeTableCell* sender) {
+        if (_todoDidComplete) return _todoDidComplete(weakSelf);
+        return NO;
+    }];
+    MGSwipeButton* snoozeButton = [MGSwipeButton buttonWithTitle:@"" icon:[UIImage imageNamed:@"clock"] backgroundColor:[UIColor brownColor] callback:^BOOL(MGSwipeTableCell* sender) {
+        if (_todoDidSnooze) return _todoDidSnooze(weakSelf);
+        return NO;
+    }];
+    MGSwipeButton* deleteButton = [MGSwipeButton buttonWithTitle:@"" icon:[UIImage imageNamed:@"cross"] backgroundColor:[UIColor redColor] callback:^BOOL(MGSwipeTableCell* sender) {
+        if (_todoDidRemove) return _todoDidRemove(weakSelf);
+        return NO;
+    }];
+
     completeButton.width = 60;
-    MGSwipeButton* snoozeButton = [MGSwipeButton buttonWithTitle:@"" icon:[UIImage imageNamed:@"clock"] backgroundColor:[UIColor brownColor] callback:_todoDidSnooze];
-    MGSwipeButton* deleteButton = [MGSwipeButton buttonWithTitle:@"" icon:[UIImage imageNamed:@"cross"] backgroundColor:[UIColor redColor] callback:_todoDidRemove];
+    snoozeButton.width = completeButton.width;
+    deleteButton.width = completeButton.width;
 
     self.rightButtons = @[ completeButton, snoozeButton, deleteButton ];
 }
