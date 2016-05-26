@@ -22,7 +22,7 @@
     [query whereKey:@"status" containedIn:@[ @(LCTodoStatusNotComplete), @(LCTodoStatusOverdue) ]];
     NSDate* today = [DateUtil dateInYearMonthDay:[NSDate date]];
     [query whereKey:@"deadline" greaterThanOrEqualTo:[today dateByAddingTimeInterval:-kTimeIntervalDay]];
-    [query whereKey:@"deadline" lessThanOrEqualTo:[today dateByAddingTimeInterval:kTimeIntervalDay]];
+    [query whereKey:@"deadline" lessThanOrEqualTo:[today dateByAddingTimeInterval:kTimeIntervalDay * 2]];
     [query orderByAscending:@"deadline"];
     [query findObjectsInBackgroundWithBlock:^(NSArray<LCTodo*>* objects, NSError* error) {
         if (error) {
