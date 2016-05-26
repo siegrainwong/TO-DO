@@ -57,6 +57,7 @@
 		F959945E1CE481CD00B042BD /* DateUtil.m in Sources */ = {isa = PBXBuildFile; fileRef = F959945D1CE481CD00B042BD /* DateUtil.m */; };
 		F95994611CE4898100B042BD /* UIImage+Compression.m in Sources */ = {isa = PBXBuildFile; fileRef = F95994601CE4898100B042BD /* UIImage+Compression.m */; };
 		F961B55B1CF42DED0096DAF4 /* HomeDataManager.m in Sources */ = {isa = PBXBuildFile; fileRef = F961B55A1CF42DED0096DAF4 /* HomeDataManager.m */; };
+		F97E31381CF752D600D911C8 /* SBFlatDatePicker.m in Sources */ = {isa = PBXBuildFile; fileRef = F97E31361CF752D600D911C8 /* SBFlatDatePicker.m */; };
 		F980EDCF1CE70F4E00A861FE /* HeaderView.m in Sources */ = {isa = PBXBuildFile; fileRef = F980EDCE1CE70F4E00A861FE /* HeaderView.m */; };
 		F99A902E1CE30CB600EC0762 /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = F99A90301CE30CB600EC0762 /* Localizable.strings */; };
 		F9A01FAF1CF2F60300699939 /* avatar1.png in Resources */ = {isa = PBXBuildFile; fileRef = F9A01FAC1CF2F60300699939 /* avatar1.png */; };
@@ -193,6 +194,9 @@
 		F95994601CE4898100B042BD /* UIImage+Compression.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIImage+Compression.m"; sourceTree = "<group>"; };
 		F961B5591CF42DED0096DAF4 /* HomeDataManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HomeDataManager.h; sourceTree = "<group>"; };
 		F961B55A1CF42DED0096DAF4 /* HomeDataManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HomeDataManager.m; sourceTree = "<group>"; };
+		F97E31351CF752D600D911C8 /* SBFlatDatePicker.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SBFlatDatePicker.h; sourceTree = "<group>"; };
+		F97E31361CF752D600D911C8 /* SBFlatDatePicker.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SBFlatDatePicker.m; sourceTree = "<group>"; };
+		F97E31371CF752D600D911C8 /* SBFlatDatePickerDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SBFlatDatePickerDelegate.h; sourceTree = "<group>"; };
 		F980EDCD1CE70F4E00A861FE /* HeaderView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HeaderView.h; sourceTree = "<group>"; };
 		F980EDCE1CE70F4E00A861FE /* HeaderView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HeaderView.m; sourceTree = "<group>"; };
 		F99A902F1CE30CB600EC0762 /* Base */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = Base; path = Base.lproj/Localizable.strings; sourceTree = "<group>"; };
@@ -418,6 +422,7 @@
 		F94CA1F01CE2F9780006904F /* Libraries */ = {
 			isa = PBXGroup;
 			children = (
+				F97E31341CF752CC00D911C8 /* SBFlatDatePicker */,
 				F94CA1F11CE2F9780006904F /* SCLAlertView */,
 			);
 			name = Libraries;
@@ -605,6 +610,16 @@
 				F94CA2381CE2FA9E0006904F /* SCLAlertHelper.m */,
 			);
 			name = SCLAlertView;
+			sourceTree = "<group>";
+		};
+		F97E31341CF752CC00D911C8 /* SBFlatDatePicker */ = {
+			isa = PBXGroup;
+			children = (
+				F97E31351CF752D600D911C8 /* SBFlatDatePicker.h */,
+				F97E31361CF752D600D911C8 /* SBFlatDatePicker.m */,
+				F97E31371CF752D600D911C8 /* SBFlatDatePickerDelegate.h */,
+			);
+			path = SBFlatDatePicker;
 			sourceTree = "<group>";
 		};
 		F99A90251CE30B5100EC0762 /* Localization */ = {
@@ -986,6 +1001,7 @@
 				F94CA24A1CE2FA9E0006904F /* GCDUtil.m in Sources */,
 				F9A1E0801CEDFA4C00FFC453 /* SGCommitButton.m in Sources */,
 				F9A1E0831CEE180E00FFC453 /* NSDateFormatter+Extension.m in Sources */,
+				F97E31381CF752D600D911C8 /* SBFlatDatePicker.m in Sources */,
 				F94CA2421CE2FA9E0006904F /* NSObject+PropertyName.m in Sources */,
 				F94CA2631CE2FB940006904F /* LoginView.m in Sources */,
 			);

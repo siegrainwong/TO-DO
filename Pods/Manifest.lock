@@ -42,6 +42,7 @@ PODS:
     - SDWebImage/Core (= 3.7.6)
   - SDWebImage/Core (3.7.6)
   - TPKeyboardAvoiding (1.3)
+  - ZFDragableModalTransition (0.6)
 
 DEPENDENCIES:
   - AutoLinearLayoutView
@@ -59,6 +60,7 @@ DEPENDENCIES:
   - SDAutoLayout
   - SDWebImage
   - TPKeyboardAvoiding
+  - ZFDragableModalTransition
 
 SPEC CHECKSUMS:
   AFNetworking: cb8d14a848e831097108418f5d49217339d4eb60
@@ -79,7 +81,8 @@ SPEC CHECKSUMS:
   SDAutoLayout: ea6e2ae9fbb438aa2feb0c4363dba9297e98638a
   SDWebImage: c325cf02c30337336b95beff20a13df489ec0ec9
   TPKeyboardAvoiding: a5138f318c06fb3e151f886e18ce4a72695d9cbe
+  ZFDragableModalTransition: 0d294eaaba6edfcb9839595de765f9ca06a4b524
 
-PODFILE CHECKSUM: 8c7fd4c8f24ef84c4d89298c7af1da5e6d25339d
+PODFILE CHECKSUM: 73d9170cdac74ea057409cb9e66efd0f6f26fd87
 
 COCOAPODS: 1.0.0

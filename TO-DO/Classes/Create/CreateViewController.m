@@ -20,6 +20,7 @@
 #import "UIImage+Extension.h"
 
 // FIXME: iPhone4s 上 NavigationBar 会遮挡一部分标题文本框
+// TODO: 需要更换DatePicker
 
 @implementation CreateViewController {
     CreateDataManager* dataManager;

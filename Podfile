@@ -17,5 +17,6 @@ pod 'HSDatePickerViewController', '~> 1.0'
 pod 'ObjectiveRecord'
 pod 'JVFloatingDrawer'
 pod 'MGSwipeTableCell'
+pod 'ZFDragableModalTransition'
 
 end
