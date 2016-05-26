@@ -10,6 +10,7 @@
 #import "CreateDataManager.h"
 #import "CreateViewController.h"
 #import "DateUtil.h"
+#import "HSDatePickerViewController+configure.h"
 #import "LCTodo.h"
 #import "Macros.h"
 #import "NSDateFormatter+Extension.h"
@@ -19,7 +20,6 @@
 #import "UIImage+Extension.h"
 
 // FIXME: iPhone4s 上 NavigationBar 会遮挡一部分标题文本框
-// TODO: 日期选择判断只能选择将来的时间
 
 @implementation CreateViewController {
     CreateDataManager* dataManager;
@@ -30,6 +30,8 @@
     SGTextField* datetimePicker;
     SGTextField* locationTextField;
     SGCommitButton* commitButton;
+
+    HSDatePickerViewController* datePickerViewController;
 
     NSDate* selectedDate;
     CGFloat fieldHeight;
@@ -61,10 +63,15 @@
 {
     [super setupView];
 
-    dataManager = [CreateDataManager new];
-    [NSNotificationCenter attachKeyboardObservers:self keyboardWillShowSelector:@selector(keyboardWillShow:) keyboardWillHideSelector:@selector(keyboardWillHide:)];
     fieldHeight = kScreenHeight * 0.08;
     fieldSpacing = kScreenHeight * 0.03;
+    [NSNotificationCenter attachKeyboardObservers:self keyboardWillShowSelector:@selector(keyboardWillShow:) keyboardWillHideSelector:@selector(keyboardWillHide:)];
+
+    dataManager = [CreateDataManager new];
+
+    datePickerViewController = [[HSDatePickerViewController alloc] init];
+    [datePickerViewController configure];
+    datePickerViewController.delegate = self;
 
     __weak typeof(self) weakSelf = self;
     // Mark: 需要这个的原因是 self.view 在视图加载时还不在窗口层级中，无法为其绑定约束
@@ -148,6 +155,7 @@
         make.top.equalTo(headerView.mas_bottom).offset(20);
         make.height.offset((fieldHeight + fieldSpacing) * 3);
     }];
+
     [@[ descriptionTextField, datetimePicker, locationTextField ] mas_makeConstraints:^(MASConstraintMaker* make) {
         make.left.right.offset(0);
         make.height.offset(fieldHeight);
@@ -264,20 +272,11 @@ didFinishPickingMediaWithInfo:(NSDictionary<NSString*, id>*)info
     viewIsDisappearing = YES;
     [self.view endEditing:YES];
 }
+#pragma mark - datetime picker
 #pragma mark - show date picker
 - (void)datetimePickerDidPress
 {
-    HSDatePickerViewController* datePickerViewController = [[HSDatePickerViewController alloc] init];
-    datePickerViewController.delegate = self;
-    datePickerViewController.minDate = [NSDate date];
-    if (isChina) {
-        datePickerViewController.dateFormatter = [NSDateFormatter dateFormatterWithFormatString:@"MMM d ccc"];
-        datePickerViewController.monthAndYearLabelDateFormater = [NSDateFormatter dateFormatterWithFormatString:@"yyyy MMMM"];
-    }
-
     if (selectedDate) datePickerViewController.date = selectedDate;
-
-    datePickerViewController.modalTransitionStyle = UIModalTransitionStyleCrossDissolve;
     [self presentViewController:datePickerViewController animated:YES completion:nil];
 }
 #pragma mark - date picker delegate
@@ -285,7 +284,6 @@ didFinishPickingMediaWithInfo:(NSDictionary<NSString*, id>*)info
 {
     selectedDate = date;
     datetimePicker.field.text = [DateUtil dateString:date withFormat:@"yyyy.MM.dd HH:mm:ss"];
-    [descriptionTextField becomeFirstResponder];
 }
 #pragma mark - release
 - (void)viewDidDisappear:(BOOL)animated

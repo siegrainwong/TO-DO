@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		8A80814723BDF84A9866A1C1 /* libPods-TO-DO.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 874BB13DFF8BBE53341474BC /* libPods-TO-DO.a */; };
+		F9044FF01CF71B2000807813 /* HSDatePickerViewController+configure.m in Sources */ = {isa = PBXBuildFile; fileRef = F9044FEF1CF71B2000807813 /* HSDatePickerViewController+configure.m */; };
 		F921F4D41CECA023004AC07E /* UINavigationController+Transparent.m in Sources */ = {isa = PBXBuildFile; fileRef = F921F4D31CECA023004AC07E /* UINavigationController+Transparent.m */; };
 		F928FF671CF04D1600295BA6 /* CreateDataManager.m in Sources */ = {isa = PBXBuildFile; fileRef = F928FF661CF04D1600295BA6 /* CreateDataManager.m */; };
 		F92B876D1CE368B300D15EAE /* UIView+Extentsion.m in Sources */ = {isa = PBXBuildFile; fileRef = F92B876C1CE368B300D15EAE /* UIView+Extentsion.m */; };
@@ -98,6 +99,8 @@
 		36E2DF670BBA7C56A7B0B215 /* Pods-TO-DO.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-TO-DO.release.xcconfig"; path = "Pods/Target Support Files/Pods-TO-DO/Pods-TO-DO.release.xcconfig"; sourceTree = "<group>"; };
 		82F62EB9CE69A5ADAEC271F2 /* Pods-TO-DO.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-TO-DO.debug.xcconfig"; path = "Pods/Target Support Files/Pods-TO-DO/Pods-TO-DO.debug.xcconfig"; sourceTree = "<group>"; };
 		874BB13DFF8BBE53341474BC /* libPods-TO-DO.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-TO-DO.a"; sourceTree = BUILT_PRODUCTS_DIR; };
+		F9044FEE1CF71B2000807813 /* HSDatePickerViewController+configure.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "HSDatePickerViewController+configure.h"; sourceTree = "<group>"; };
+		F9044FEF1CF71B2000807813 /* HSDatePickerViewController+configure.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "HSDatePickerViewController+configure.m"; sourceTree = "<group>"; };
 		F921F4D21CECA023004AC07E /* UINavigationController+Transparent.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UINavigationController+Transparent.h"; sourceTree = "<group>"; };
 		F921F4D31CECA023004AC07E /* UINavigationController+Transparent.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UINavigationController+Transparent.m"; sourceTree = "<group>"; };
 		F928FF651CF04D1600295BA6 /* CreateDataManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CreateDataManager.h; sourceTree = "<group>"; };
@@ -492,6 +495,8 @@
 				F9F723451CEEF40200128254 /* NSNotificationCenter+Extension.m */,
 				F9DE3ED21CF4849F00653A56 /* NSDate+Extension.h */,
 				F9DE3ED31CF4849F00653A56 /* NSDate+Extension.m */,
+				F9044FEE1CF71B2000807813 /* HSDatePickerViewController+configure.h */,
+				F9044FEF1CF71B2000807813 /* HSDatePickerViewController+configure.m */,
 			);
 			path = Categories;
 			sourceTree = "<group>";
@@ -946,6 +951,7 @@
 				F94F2F371CF2D71200128A3A /* TodoTableViewCell.m in Sources */,
 				F9331D861CF0A97200B36474 /* LCUser.m in Sources */,
 				F92B876D1CE368B300D15EAE /* UIView+Extentsion.m in Sources */,
+				F9044FF01CF71B2000807813 /* HSDatePickerViewController+configure.m in Sources */,
 				F9331D851CF0A97200B36474 /* LCTodo.m in Sources */,
 				F961B55B1CF42DED0096DAF4 /* HomeDataManager.m in Sources */,
 				F94CA2451CE2FA9E0006904F /* UITextField+BottomBorder.m in Sources */,

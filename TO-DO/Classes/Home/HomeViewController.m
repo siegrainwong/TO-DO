@@ -77,11 +77,12 @@
     __weak typeof(self) weakSelf = self;
     [headerView setHeaderViewDidPressRightOperationButton:^{
         CreateViewController* createViewController = [[CreateViewController alloc] init];
-        [createViewController setCreateViewControllerDidFinishCreate:^(LCTodo* model){
-          // TODO: 回传后根据情况放入数据
-          //            __strong typeof(self) strongSelf = weakSelf;
-          //            [strongSelf->dataArray insertObject:model atIndex:0];
-          //            [strongSelf->tableView reloadData];
+        [createViewController setCreateViewControllerDidFinishCreate:^(LCTodo* model) {
+            NSLog(@"%@", model);
+            // TODO: 回传后根据情况放入数据
+            //            __strong typeof(self) strongSelf = weakSelf;
+            //            [strongSelf->dataArray insertObject:model atIndex:0];
+            //            [strongSelf->tableView reloadData];
         }];
         [weakSelf.navigationController pushViewController:createViewController animated:YES];
     }];
@@ -189,6 +190,10 @@
     }
     if (!cell.todoDidRemove) {
         [cell setTodoDidRemove:^BOOL(TodoTableViewCell* sender) {
+            sender.model.status = LCTodoStatusDeleted;
+            [dataManager modifyTodo:sender.model complete:^(bool succeed) {
+                if (succeed) [weakSelf removeCell:sender];
+            }];
             return YES;
         }];
     }
@@ -208,6 +213,8 @@
     } else {
         [tableView deleteRowsAtIndexPaths:@[ indexPath ] withRowAnimation:UITableViewRowAnimationLeft];
     }
+
+    [self localizeStrings];
 }
 #pragma mark - scrollview
 @end

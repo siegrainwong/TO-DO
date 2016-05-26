@@ -10,7 +10,7 @@
 #import "LCUser.h"
 #import <Foundation/Foundation.h>
 
-typedef NS_ENUM(int8_t, LCTodoStatus) {
+typedef NS_ENUM(NSInteger, LCTodoStatus) {
     LCTodoStatusDeleted = -1,
     LCTodoStatusNotComplete,
     LCTodoStatusCompleted,
