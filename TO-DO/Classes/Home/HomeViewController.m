@@ -7,6 +7,7 @@
 //
 
 #import "CreateViewController.h"
+#import "DateUtil.h"
 #import "HomeDataManager.h"
 #import "HomeViewController.h"
 #import "LCTodo.h"
@@ -22,6 +23,7 @@
 #import "UITableView+SDAutoTableViewCellHeight.h"
 
 @implementation HomeViewController {
+    HSDatePickerViewController* datePickerViewController;
     HomeDataManager* dataManager;
     UITableView* tableView;
     NSMutableDictionary* dataDictionary;
@@ -78,11 +80,7 @@
     [headerView setHeaderViewDidPressRightOperationButton:^{
         CreateViewController* createViewController = [[CreateViewController alloc] init];
         [createViewController setCreateViewControllerDidFinishCreate:^(LCTodo* model) {
-            NSLog(@"%@", model);
-            // TODO: 回传后根据情况放入数据
-            //            __strong typeof(self) strongSelf = weakSelf;
-            //            [strongSelf->dataArray insertObject:model atIndex:0];
-            //            [strongSelf->tableView reloadData];
+            [weakSelf insertTodo:model];
         }];
         [weakSelf.navigationController pushViewController:createViewController animated:YES];
     }];
@@ -106,13 +104,24 @@
 - (void)retrieveDataFromServer
 {
     __weak typeof(self) weakSelf = self;
-    [dataManager retrieveDataWithUser:user complete:^(bool succeed, NSDictionary* data, NSArray* dates, NSInteger count) {
+    [dataManager retrieveDataWithUser:user complete:^(bool succeed, NSDictionary* data, NSInteger count) {
         dataDictionary = [NSMutableDictionary dictionaryWithDictionary:data];
-        dateArray = [NSMutableArray arrayWithArray:dates];
         dataCount = count;
-        [tableView reloadData];
-        [weakSelf localizeStrings];
+        [weakSelf reloadData];
     }];
+}
+#pragma mark - reloadData
+- (void)reloadData
+{
+    dateArray = [NSMutableArray arrayWithArray:dataDictionary.allKeys];
+    [dateArray sortedArrayUsingComparator:^NSComparisonResult(NSString* dateString1, NSString* dateString2) {
+        NSString* format = @"yyyy-MM-dd";
+        NSNumber* interval1 = @([DateUtil stringToDate:dateString1 format:format].timeIntervalSince1970);
+        NSNumber* interval2 = @([DateUtil stringToDate:dateString2 format:format].timeIntervalSince1970);
+        return [interval1 compare:interval2];
+    }];
+    [self localizeStrings];
+    [tableView reloadData];
 }
 #pragma mark - tableview
 #pragma mark - tableview delegate
@@ -178,7 +187,7 @@
         [cell setTodoDidComplete:^BOOL(TodoTableViewCell* sender) {
             sender.model.status = LCTodoStatusCompleted;
             [dataManager modifyTodo:sender.model complete:^(bool succeed) {
-                if (succeed) [weakSelf removeCell:sender];
+                if (succeed) [weakSelf removeTodo:sender.model atIndexPath:[tableView indexPathForCell:sender]];
             }];
             return NO;
         }];
@@ -192,16 +201,14 @@
         [cell setTodoDidRemove:^BOOL(TodoTableViewCell* sender) {
             sender.model.status = LCTodoStatusDeleted;
             [dataManager modifyTodo:sender.model complete:^(bool succeed) {
-                if (succeed) [weakSelf removeCell:sender];
+                if (succeed) [weakSelf removeTodo:sender.model atIndexPath:[tableView indexPathForCell:sender]];
             }];
             return YES;
         }];
     }
 }
-- (void)removeCell:(TodoTableViewCell*)cell
+- (void)removeTodo:(LCTodo*)model atIndexPath:(NSIndexPath*)indexPath
 {
-    LCTodo* model = cell.model;
-    NSIndexPath* indexPath = [tableView indexPathForCell:cell];
     NSString* date = model.deadline.stringInYearMonthDay;
     NSMutableArray<LCTodo*>* array = dataDictionary[date];
     [array removeObject:model];
@@ -215,6 +222,22 @@
     }
 
     [self localizeStrings];
+}
+- (void)insertTodo:(LCTodo*)model
+{
+    NSString* dateString = model.deadline.stringInYearMonthDay;
+    NSMutableArray<LCTodo*>* array = dataDictionary[dateString];
+    if (!array) dataDictionary[dateString] = [NSMutableArray new];
+
+    [array addObject:model];
+    NSSortDescriptor* sort = [NSSortDescriptor sortDescriptorWithKey:@"self.deadline.timeIntervalSince1970"
+                                                           ascending:YES];
+    [array sortUsingDescriptors:@[ sort ]];
+
+    if (![dateArray containsObject:dateString])
+        [dateArray addObject:dateString];
+
+    [self reloadData];
 }
 #pragma mark - scrollview
 @end

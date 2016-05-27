@@ -13,5 +13,5 @@
 /**
  *  首页
  */
-@interface HomeViewController : BaseViewController<Localized, UITableViewDelegate, UITableViewDataSource, MGSwipeTableCellDelegate>
+@interface HomeViewController : BaseViewController<Localized, HSDatePickerViewControllerDelegate, UITableViewDelegate, UITableViewDataSource, MGSwipeTableCellDelegate>
 @end

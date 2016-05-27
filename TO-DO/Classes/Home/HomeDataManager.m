@@ -15,7 +15,7 @@
 
 @implementation HomeDataManager
 #pragma mark - retrieve
-- (void)retrieveDataWithUser:(LCUser*)user complete:(void (^)(bool succeed, NSDictionary* dataDictionary, NSArray* dateArray, NSInteger dataCount))complete
+- (void)retrieveDataWithUser:(LCUser*)user complete:(void (^)(bool succeed, NSDictionary* dataDictionary, NSInteger dataCount))complete
 {
     AVQuery* query = [AVQuery queryWithClassName:[LCTodo parseClassName]];
     [query whereKey:@"user" equalTo:user];
@@ -27,12 +27,11 @@
     [query findObjectsInBackgroundWithBlock:^(NSArray<LCTodo*>* objects, NSError* error) {
         if (error) {
             [SCLAlertHelper errorAlertWithContent:error.localizedDescription];
-            return complete(NO, nil, nil, 0);
+            return complete(NO, nil, 0);
         }
 
         NSInteger dataCount = objects.count;
         NSMutableDictionary* dataDictionary = [NSMutableDictionary new];
-        NSMutableArray* dateArray = [NSMutableArray new];
 
         NSMutableArray* dataInSameDay;
         NSString* dateString;
@@ -40,14 +39,13 @@
             NSString* newDateString = todo.deadline.stringInYearMonthDay;
             if (![dateString isEqualToString:newDateString]) {
                 dateString = newDateString;
-                [dateArray addObject:dateString];
                 dataInSameDay = [NSMutableArray new];
                 dataDictionary[dateString] = dataInSameDay;
             }
             [dataInSameDay addObject:todo];
         }
 
-        return complete(YES, [dataDictionary copy], [dateArray copy], dataCount);
+        return complete(YES, [dataDictionary copy], dataCount);
     }];
 }
 #pragma mark - modify

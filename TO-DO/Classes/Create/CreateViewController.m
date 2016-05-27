@@ -187,7 +187,7 @@
         LCTodo* todo = [LCTodo object];
         todo.title = titleTextField.field.text;
         todo.sgDescription = descriptionTextField.field.text;
-        todo.deadline = [DateUtil stringToDate:datetimePickerField.field.text format:@"yyyy.MM.dd HH:mm:ss"];
+        todo.deadline = selectedDate;
         todo.location = locationTextField.field.text;
         todo.photoImage = selectedImage;
         todo.user = user;
@@ -286,9 +286,8 @@ didFinishPickingMediaWithInfo:(NSDictionary<NSString*, id>*)info
 }
 - (BOOL)hsDatePickerPickedDate:(NSDate*)date
 {
-    if ([date timeIntervalSinceReferenceDate] < [datePickerViewController.minDate timeIntervalSinceReferenceDate]) {
+    if ([date timeIntervalSince1970] < [datePickerViewController.minDate timeIntervalSince1970])
         date = [NSDate date];
-    };
 
     selectedDate = date;
     datetimePickerField.field.text = [DateUtil dateString:date withFormat:@"yyyy.MM.dd HH:mm"];
