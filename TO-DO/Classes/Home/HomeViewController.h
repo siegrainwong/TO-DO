@@ -7,6 +7,7 @@
 //
 
 #import "BaseViewController.h"
+#import "HSDatePickerViewController.h"
 #import "Localized.h"
 #import "MGSwipeTableCell.h"
 

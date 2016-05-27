@@ -226,8 +226,8 @@
 - (void)insertTodo:(LCTodo*)model
 {
     NSString* dateString = model.deadline.stringInYearMonthDay;
-    NSMutableArray<LCTodo*>* array = dataDictionary[dateString];
-    if (!array) dataDictionary[dateString] = [NSMutableArray new];
+    NSMutableArray<LCTodo*>* array;
+    if (!array) array = dataDictionary[dateString] = [NSMutableArray new];
 
     [array addObject:model];
     NSSortDescriptor* sort = [NSSortDescriptor sortDescriptorWithKey:@"self.deadline.timeIntervalSince1970"
