@@ -93,6 +93,7 @@ static NSString* const kPictureUploadFailedKey = @"PictureUploadFailed";
     if ([SCLAlertHelper errorAlertValidateLengthWithString:model.title minLength:1 maxLength:20 alertName:NSLocalizedString(@"Title", nil)]) {
         return NO;
     }
+
     // deadline validation
     if (!model.deadline) {
         [SCLAlertHelper errorAlertWithContent:_localDictionary[kTimeInvalidKey]];

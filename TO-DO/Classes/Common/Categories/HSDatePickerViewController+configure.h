@@ -1,17 +1,13 @@
 //
-//  HSDatePickerViewController+configure.h
+//  HSDatePickerViewController+Configure.h
 //  TO-DO
 //
-//  Created by Siegrain on 16/5/26.
+//  Created by Siegrain on 16/5/27.
 //  Copyright © 2016年 com.siegrain. All rights reserved.
 //
 
-#import <HSDatePickerViewController/HSDatePickerViewController.h>
+#import "HSDatePickerViewController.h"
 
-@interface HSDatePickerViewController (configure)
-/**
- *  配置 DatePicker
- *  继承会挂，只有用分类了
- */
+@interface HSDatePickerViewController (Configure)
 - (void)configure;
 @end

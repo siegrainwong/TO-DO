@@ -8,7 +8,6 @@
 
 /* Begin PBXBuildFile section */
 		8A80814723BDF84A9866A1C1 /* libPods-TO-DO.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 874BB13DFF8BBE53341474BC /* libPods-TO-DO.a */; };
-		F9044FF01CF71B2000807813 /* HSDatePickerViewController+configure.m in Sources */ = {isa = PBXBuildFile; fileRef = F9044FEF1CF71B2000807813 /* HSDatePickerViewController+configure.m */; };
 		F921F4D41CECA023004AC07E /* UINavigationController+Transparent.m in Sources */ = {isa = PBXBuildFile; fileRef = F921F4D31CECA023004AC07E /* UINavigationController+Transparent.m */; };
 		F928FF671CF04D1600295BA6 /* CreateDataManager.m in Sources */ = {isa = PBXBuildFile; fileRef = F928FF661CF04D1600295BA6 /* CreateDataManager.m */; };
 		F92B876D1CE368B300D15EAE /* UIView+Extentsion.m in Sources */ = {isa = PBXBuildFile; fileRef = F92B876C1CE368B300D15EAE /* UIView+Extentsion.m */; };
@@ -57,8 +56,12 @@
 		F959945E1CE481CD00B042BD /* DateUtil.m in Sources */ = {isa = PBXBuildFile; fileRef = F959945D1CE481CD00B042BD /* DateUtil.m */; };
 		F95994611CE4898100B042BD /* UIImage+Compression.m in Sources */ = {isa = PBXBuildFile; fileRef = F95994601CE4898100B042BD /* UIImage+Compression.m */; };
 		F961B55B1CF42DED0096DAF4 /* HomeDataManager.m in Sources */ = {isa = PBXBuildFile; fileRef = F961B55A1CF42DED0096DAF4 /* HomeDataManager.m */; };
-		F97E31381CF752D600D911C8 /* SBFlatDatePicker.m in Sources */ = {isa = PBXBuildFile; fileRef = F97E31361CF752D600D911C8 /* SBFlatDatePicker.m */; };
 		F980EDCF1CE70F4E00A861FE /* HeaderView.m in Sources */ = {isa = PBXBuildFile; fileRef = F980EDCE1CE70F4E00A861FE /* HeaderView.m */; };
+		F997BF9F1CF8376A00DD155B /* UIViewController+KNSemiModal.m in Sources */ = {isa = PBXBuildFile; fileRef = F997BF9E1CF8376A00DD155B /* UIViewController+KNSemiModal.m */; };
+		F997BFA11CF8391C00DD155B /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F997BFA01CF8391C00DD155B /* QuartzCore.framework */; };
+		F997BFA31CF83A6600DD155B /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F997BFA21CF83A6600DD155B /* UIKit.framework */; };
+		F997BFA51CF83A6C00DD155B /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F997BFA41CF83A6C00DD155B /* Foundation.framework */; };
+		F997BFA71CF83A7C00DD155B /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F997BFA61CF83A7C00DD155B /* CoreGraphics.framework */; };
 		F99A902E1CE30CB600EC0762 /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = F99A90301CE30CB600EC0762 /* Localizable.strings */; };
 		F9A01FAF1CF2F60300699939 /* avatar1.png in Resources */ = {isa = PBXBuildFile; fileRef = F9A01FAC1CF2F60300699939 /* avatar1.png */; };
 		F9A01FB01CF2F60300699939 /* avatar2.png in Resources */ = {isa = PBXBuildFile; fileRef = F9A01FAD1CF2F60300699939 /* avatar2.png */; };
@@ -76,6 +79,11 @@
 		F9BCE5391CEDBF02003376C7 /* create header bg.png in Resources */ = {isa = PBXBuildFile; fileRef = F9BCE5381CEDBF02003376C7 /* create header bg.png */; };
 		F9D0E9781CEC46D10005027B /* UIImage+Qiniu.m in Sources */ = {isa = PBXBuildFile; fileRef = F9D0E9771CEC46D10005027B /* UIImage+Qiniu.m */; };
 		F9DE3ED41CF4849F00653A56 /* NSDate+Extension.m in Sources */ = {isa = PBXBuildFile; fileRef = F9DE3ED31CF4849F00653A56 /* NSDate+Extension.m */; };
+		F9E953481CF853A00046E1C9 /* UUDatePicker_DateModel.m in Sources */ = {isa = PBXBuildFile; fileRef = F9E953451CF853A00046E1C9 /* UUDatePicker_DateModel.m */; };
+		F9E953491CF853A00046E1C9 /* UUDatePicker.m in Sources */ = {isa = PBXBuildFile; fileRef = F9E953471CF853A00046E1C9 /* UUDatePicker.m */; };
+		F9E9534E1CF8708C0046E1C9 /* HSDatePickerViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = F9E9534C1CF8708C0046E1C9 /* HSDatePickerViewController.m */; };
+		F9E9534F1CF8708C0046E1C9 /* HSDatePickerViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = F9E9534D1CF8708C0046E1C9 /* HSDatePickerViewController.xib */; };
+		F9E953521CF875B70046E1C9 /* HSDatePickerViewController+Configure.m in Sources */ = {isa = PBXBuildFile; fileRef = F9E953511CF875B70046E1C9 /* HSDatePickerViewController+Configure.m */; };
 		F9F723461CEEF40200128254 /* NSNotificationCenter+Extension.m in Sources */ = {isa = PBXBuildFile; fileRef = F9F723451CEEF40200128254 /* NSNotificationCenter+Extension.m */; };
 /* End PBXBuildFile section */
 
@@ -100,8 +108,6 @@
 		36E2DF670BBA7C56A7B0B215 /* Pods-TO-DO.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-TO-DO.release.xcconfig"; path = "Pods/Target Support Files/Pods-TO-DO/Pods-TO-DO.release.xcconfig"; sourceTree = "<group>"; };
 		82F62EB9CE69A5ADAEC271F2 /* Pods-TO-DO.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-TO-DO.debug.xcconfig"; path = "Pods/Target Support Files/Pods-TO-DO/Pods-TO-DO.debug.xcconfig"; sourceTree = "<group>"; };
 		874BB13DFF8BBE53341474BC /* libPods-TO-DO.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-TO-DO.a"; sourceTree = BUILT_PRODUCTS_DIR; };
-		F9044FEE1CF71B2000807813 /* HSDatePickerViewController+configure.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "HSDatePickerViewController+configure.h"; sourceTree = "<group>"; };
-		F9044FEF1CF71B2000807813 /* HSDatePickerViewController+configure.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "HSDatePickerViewController+configure.m"; sourceTree = "<group>"; };
 		F921F4D21CECA023004AC07E /* UINavigationController+Transparent.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UINavigationController+Transparent.h"; sourceTree = "<group>"; };
 		F921F4D31CECA023004AC07E /* UINavigationController+Transparent.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UINavigationController+Transparent.m"; sourceTree = "<group>"; };
 		F928FF651CF04D1600295BA6 /* CreateDataManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CreateDataManager.h; sourceTree = "<group>"; };
@@ -194,11 +200,14 @@
 		F95994601CE4898100B042BD /* UIImage+Compression.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIImage+Compression.m"; sourceTree = "<group>"; };
 		F961B5591CF42DED0096DAF4 /* HomeDataManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HomeDataManager.h; sourceTree = "<group>"; };
 		F961B55A1CF42DED0096DAF4 /* HomeDataManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HomeDataManager.m; sourceTree = "<group>"; };
-		F97E31351CF752D600D911C8 /* SBFlatDatePicker.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SBFlatDatePicker.h; sourceTree = "<group>"; };
-		F97E31361CF752D600D911C8 /* SBFlatDatePicker.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SBFlatDatePicker.m; sourceTree = "<group>"; };
-		F97E31371CF752D600D911C8 /* SBFlatDatePickerDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SBFlatDatePickerDelegate.h; sourceTree = "<group>"; };
 		F980EDCD1CE70F4E00A861FE /* HeaderView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HeaderView.h; sourceTree = "<group>"; };
 		F980EDCE1CE70F4E00A861FE /* HeaderView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HeaderView.m; sourceTree = "<group>"; };
+		F997BF9D1CF8376A00DD155B /* UIViewController+KNSemiModal.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIViewController+KNSemiModal.h"; sourceTree = "<group>"; };
+		F997BF9E1CF8376A00DD155B /* UIViewController+KNSemiModal.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIViewController+KNSemiModal.m"; sourceTree = "<group>"; };
+		F997BFA01CF8391C00DD155B /* QuartzCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = QuartzCore.framework; path = System/Library/Frameworks/QuartzCore.framework; sourceTree = SDKROOT; };
+		F997BFA21CF83A6600DD155B /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
+		F997BFA41CF83A6C00DD155B /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
+		F997BFA61CF83A7C00DD155B /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
 		F99A902F1CE30CB600EC0762 /* Base */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = Base; path = Base.lproj/Localizable.strings; sourceTree = "<group>"; };
 		F99A90321CE30D9B00EC0762 /* Localized.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Localized.h; sourceTree = "<group>"; };
 		F99A90331CE317EE00EC0762 /* zh-Hans */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "zh-Hans"; path = "zh-Hans.lproj/Main.strings"; sourceTree = "<group>"; };
@@ -232,6 +241,15 @@
 		F9D0E9771CEC46D10005027B /* UIImage+Qiniu.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIImage+Qiniu.m"; sourceTree = "<group>"; };
 		F9DE3ED21CF4849F00653A56 /* NSDate+Extension.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSDate+Extension.h"; sourceTree = "<group>"; };
 		F9DE3ED31CF4849F00653A56 /* NSDate+Extension.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSDate+Extension.m"; sourceTree = "<group>"; };
+		F9E953441CF853A00046E1C9 /* UUDatePicker_DateModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UUDatePicker_DateModel.h; sourceTree = "<group>"; };
+		F9E953451CF853A00046E1C9 /* UUDatePicker_DateModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UUDatePicker_DateModel.m; sourceTree = "<group>"; };
+		F9E953461CF853A00046E1C9 /* UUDatePicker.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UUDatePicker.h; sourceTree = "<group>"; };
+		F9E953471CF853A00046E1C9 /* UUDatePicker.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UUDatePicker.m; sourceTree = "<group>"; };
+		F9E9534B1CF8708C0046E1C9 /* HSDatePickerViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HSDatePickerViewController.h; sourceTree = "<group>"; };
+		F9E9534C1CF8708C0046E1C9 /* HSDatePickerViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HSDatePickerViewController.m; sourceTree = "<group>"; };
+		F9E9534D1CF8708C0046E1C9 /* HSDatePickerViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = HSDatePickerViewController.xib; sourceTree = "<group>"; };
+		F9E953501CF875B70046E1C9 /* HSDatePickerViewController+Configure.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "HSDatePickerViewController+Configure.h"; sourceTree = "<group>"; };
+		F9E953511CF875B70046E1C9 /* HSDatePickerViewController+Configure.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "HSDatePickerViewController+Configure.m"; sourceTree = "<group>"; };
 		F9F723441CEEF40200128254 /* NSNotificationCenter+Extension.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSNotificationCenter+Extension.h"; sourceTree = "<group>"; };
 		F9F723451CEEF40200128254 /* NSNotificationCenter+Extension.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSNotificationCenter+Extension.m"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -241,6 +259,10 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				F997BFA71CF83A7C00DD155B /* CoreGraphics.framework in Frameworks */,
+				F997BFA51CF83A6C00DD155B /* Foundation.framework in Frameworks */,
+				F997BFA31CF83A6600DD155B /* UIKit.framework in Frameworks */,
+				F997BFA11CF8391C00DD155B /* QuartzCore.framework in Frameworks */,
 				8A80814723BDF84A9866A1C1 /* libPods-TO-DO.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -265,6 +287,10 @@
 		BE17E2C135B91D0BA1E642E0 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				F997BFA61CF83A7C00DD155B /* CoreGraphics.framework */,
+				F997BFA41CF83A6C00DD155B /* Foundation.framework */,
+				F997BFA21CF83A6600DD155B /* UIKit.framework */,
+				F997BFA01CF8391C00DD155B /* QuartzCore.framework */,
 				874BB13DFF8BBE53341474BC /* libPods-TO-DO.a */,
 			);
 			name = Frameworks;
@@ -422,7 +448,9 @@
 		F94CA1F01CE2F9780006904F /* Libraries */ = {
 			isa = PBXGroup;
 			children = (
-				F97E31341CF752CC00D911C8 /* SBFlatDatePicker */,
+				F9E9534A1CF870830046E1C9 /* HSDatePickerViewController */,
+				F9E953431CF853930046E1C9 /* UUDatePicker */,
+				F997BF9C1CF8375700DD155B /* KNSemiModalViewController */,
 				F94CA1F11CE2F9780006904F /* SCLAlertView */,
 			);
 			name = Libraries;
@@ -500,8 +528,8 @@
 				F9F723451CEEF40200128254 /* NSNotificationCenter+Extension.m */,
 				F9DE3ED21CF4849F00653A56 /* NSDate+Extension.h */,
 				F9DE3ED31CF4849F00653A56 /* NSDate+Extension.m */,
-				F9044FEE1CF71B2000807813 /* HSDatePickerViewController+configure.h */,
-				F9044FEF1CF71B2000807813 /* HSDatePickerViewController+configure.m */,
+				F9E953501CF875B70046E1C9 /* HSDatePickerViewController+Configure.h */,
+				F9E953511CF875B70046E1C9 /* HSDatePickerViewController+Configure.m */,
 			);
 			path = Categories;
 			sourceTree = "<group>";
@@ -612,14 +640,13 @@
 			name = SCLAlertView;
 			sourceTree = "<group>";
 		};
-		F97E31341CF752CC00D911C8 /* SBFlatDatePicker */ = {
+		F997BF9C1CF8375700DD155B /* KNSemiModalViewController */ = {
 			isa = PBXGroup;
 			children = (
-				F97E31351CF752D600D911C8 /* SBFlatDatePicker.h */,
-				F97E31361CF752D600D911C8 /* SBFlatDatePicker.m */,
-				F97E31371CF752D600D911C8 /* SBFlatDatePickerDelegate.h */,
+				F997BF9D1CF8376A00DD155B /* UIViewController+KNSemiModal.h */,
+				F997BF9E1CF8376A00DD155B /* UIViewController+KNSemiModal.m */,
 			);
-			path = SBFlatDatePicker;
+			path = KNSemiModalViewController;
 			sourceTree = "<group>";
 		};
 		F99A90251CE30B5100EC0762 /* Localization */ = {
@@ -755,6 +782,27 @@
 			path = "2. Home/3. Create";
 			sourceTree = "<group>";
 		};
+		F9E953431CF853930046E1C9 /* UUDatePicker */ = {
+			isa = PBXGroup;
+			children = (
+				F9E953441CF853A00046E1C9 /* UUDatePicker_DateModel.h */,
+				F9E953451CF853A00046E1C9 /* UUDatePicker_DateModel.m */,
+				F9E953461CF853A00046E1C9 /* UUDatePicker.h */,
+				F9E953471CF853A00046E1C9 /* UUDatePicker.m */,
+			);
+			path = UUDatePicker;
+			sourceTree = "<group>";
+		};
+		F9E9534A1CF870830046E1C9 /* HSDatePickerViewController */ = {
+			isa = PBXGroup;
+			children = (
+				F9E9534B1CF8708C0046E1C9 /* HSDatePickerViewController.h */,
+				F9E9534C1CF8708C0046E1C9 /* HSDatePickerViewController.m */,
+				F9E9534D1CF8708C0046E1C9 /* HSDatePickerViewController.xib */,
+			);
+			path = HSDatePickerViewController;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -874,6 +922,7 @@
 				F99A902E1CE30CB600EC0762 /* Localizable.strings in Resources */,
 				F94CA1EF1CE2F91F0006904F /* mark.png in Resources */,
 				F9A7237C1CDDF8A800E3BC8E /* Main.storyboard in Resources */,
+				F9E9534F1CF8708C0046E1C9 /* HSDatePickerViewController.xib in Resources */,
 				F9A01FAF1CF2F60300699939 /* avatar1.png in Resources */,
 				F9A01FB11CF2F60300699939 /* avatar3.png in Resources */,
 				F943885D1CF5A2C800E44379 /* drawerbg.png in Resources */,
@@ -960,19 +1009,20 @@
 				F94CA24F1CE2FB110006904F /* AppDelegate.m in Sources */,
 				F94388621CF5C38500E44379 /* DrawerTableViewCell.m in Sources */,
 				F945ABDA1CED96B600C282F7 /* UITableView+Extension.m in Sources */,
+				F9E953491CF853A00046E1C9 /* UUDatePicker.m in Sources */,
 				F94CA2061CE2F9780006904F /* SCLButton.m in Sources */,
 				F9F723461CEEF40200128254 /* NSNotificationCenter+Extension.m in Sources */,
 				F94CA2441CE2FA9E0006904F /* UIImage+Extension.m in Sources */,
 				F94F2F371CF2D71200128A3A /* TodoTableViewCell.m in Sources */,
 				F9331D861CF0A97200B36474 /* LCUser.m in Sources */,
 				F92B876D1CE368B300D15EAE /* UIView+Extentsion.m in Sources */,
-				F9044FF01CF71B2000807813 /* HSDatePickerViewController+configure.m in Sources */,
 				F9331D851CF0A97200B36474 /* LCTodo.m in Sources */,
 				F961B55B1CF42DED0096DAF4 /* HomeDataManager.m in Sources */,
 				F94CA2451CE2FA9E0006904F /* UITextField+BottomBorder.m in Sources */,
 				F94388631CF5C38500E44379 /* DrawerTableViewController.m in Sources */,
 				F9BCE5321CEDB54B003376C7 /* CreateViewController.m in Sources */,
 				F94CA2041CE2F9780006904F /* SCLAlertViewResponder.m in Sources */,
+				F9E9534E1CF8708C0046E1C9 /* HSDatePickerViewController.m in Sources */,
 				F928FF671CF04D1600295BA6 /* CreateDataManager.m in Sources */,
 				F9DE3ED41CF4849F00653A56 /* NSDate+Extension.m in Sources */,
 				F94CA2431CE2FA9E0006904F /* NSString+Extension.m in Sources */,
@@ -986,12 +1036,14 @@
 				F94CA2081CE2F9780006904F /* SCLTextView.m in Sources */,
 				F9D0E9781CEC46D10005027B /* UIImage+Qiniu.m in Sources */,
 				F94CA2641CE2FB940006904F /* SGTextField.m in Sources */,
+				F9E953521CF875B70046E1C9 /* HSDatePickerViewController+Configure.m in Sources */,
 				F980EDCF1CE70F4E00A861FE /* HeaderView.m in Sources */,
 				F94CA24B1CE2FA9E0006904F /* MD5Util.m in Sources */,
 				F94CA2481CE2FA9E0006904F /* TodoHelper.m in Sources */,
 				F94CA2091CE2F9780006904F /* SCLTimerDisplay.m in Sources */,
 				F94CA2691CE2FBC90006904F /* TO_DO.xcdatamodeld in Sources */,
 				F943885B1CF5579100E44379 /* TodoHeaderCell.m in Sources */,
+				F997BF9F1CF8376A00DD155B /* UIViewController+KNSemiModal.m in Sources */,
 				F93BC1571CE5E9EE000A34C5 /* HomeViewController.m in Sources */,
 				F94CA2051CE2F9780006904F /* SCLAlertViewStyleKit.m in Sources */,
 				F94CA2471CE2FA9E0006904F /* SCLAlertHelper.m in Sources */,
@@ -1001,9 +1053,9 @@
 				F94CA24A1CE2FA9E0006904F /* GCDUtil.m in Sources */,
 				F9A1E0801CEDFA4C00FFC453 /* SGCommitButton.m in Sources */,
 				F9A1E0831CEE180E00FFC453 /* NSDateFormatter+Extension.m in Sources */,
-				F97E31381CF752D600D911C8 /* SBFlatDatePicker.m in Sources */,
 				F94CA2421CE2FA9E0006904F /* NSObject+PropertyName.m in Sources */,
 				F94CA2631CE2FB940006904F /* LoginView.m in Sources */,
+				F9E953481CF853A00046E1C9 /* UUDatePicker_DateModel.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

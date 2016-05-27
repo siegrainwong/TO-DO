@@ -14,4 +14,8 @@
 {
     return [DateUtil dateString:self withFormat:@"yyyy-MM-dd"];
 }
+- (NSDate*)dateInYearMonthDay
+{
+    return [DateUtil stringToDate:[self stringInYearMonthDay] format:@"yyyy-MM-dd"];
+}
 @end

@@ -10,4 +10,5 @@
 
 @interface NSDate (Extension)
 - (NSString*)stringInYearMonthDay;
+- (NSDate*)dateInYearMonthDay;
 @end

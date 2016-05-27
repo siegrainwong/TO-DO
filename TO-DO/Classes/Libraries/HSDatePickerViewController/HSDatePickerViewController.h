@@ -9,9 +9,9 @@
 #import <UIKit/UIKit.h>
 
 typedef enum : NSUInteger {
-    QuitWithResult, //When confirm button is pressed
-    QuitWithBackButton, //When back button is pressed
-    QuitWithCancel, //when View outside date picker is pressed
+    QuitWithResult,      //When confirm button is pressed
+    QuitWithBackButton,  //When back button is pressed
+    QuitWithCancel,      //when View outside date picker is pressed
 } HSDatePickerQuitMethod;
 
 typedef enum : NSUInteger {
@@ -26,13 +26,15 @@ typedef enum : NSUInteger {
 /**
  *  Implement this protocol to take results from HSDatePickerViewController
  */
-@protocol HSDatePickerViewControllerDelegate <NSObject>
+@protocol HSDatePickerViewControllerDelegate<NSObject>
 /**
  *  This method is called when user touch confrim button.
  *
  *  @param date selected date and time
+ *
+ *  @return date picker view controller will not dismiss if return false
  */
-- (void)hsDatePickerPickedDate:(NSDate *)date;
+- (BOOL)hsDatePickerPickedDate:(NSDate*)date;
 @optional
 /**
  *  This method is called when view will be dismissed.
@@ -68,34 +70,34 @@ typedef enum : NSUInteger {
 /**
  *  Color of interface elements
  */
-@property (nonatomic, strong) UIColor *mainColor;
+@property (nonatomic, strong) UIColor* mainColor;
 /**
  *  Selected date. Warning! Don't read selected date from this variable. User NSDatePickerViewControllerDelegate protocol instead.
  */
-@property (nonatomic, strong) NSDate *date;
+@property (nonatomic, strong) NSDate* date;
 /**
  *  Minimum avaiable date on picker
  */
-@property (nonatomic, strong) NSDate *minDate;
+@property (nonatomic, strong) NSDate* minDate;
 /**
  *  Maximum avaiable date on picker
  */
-@property (nonatomic, strong) NSDate *maxDate;
+@property (nonatomic, strong) NSDate* maxDate;
 /**
  *  Formater for date in picker. Default format is "ccc d MMM"
  */
-@property (nonatomic, strong) NSDateFormatter *dateFormatter;
+@property (nonatomic, strong) NSDateFormatter* dateFormatter;
 /**
  *  Format month and date label above date picker. Default format is "MMMM yyyy"
  */
-@property (nonatomic, strong) NSDateFormatter *monthAndYearLabelDateFormater;
+@property (nonatomic, strong) NSDateFormatter* monthAndYearLabelDateFormater;
 /**
  *  Title of picker confirm button
  */
-@property (nonatomic, strong) NSString *confirmButtonTitle;
+@property (nonatomic, strong) NSString* confirmButtonTitle;
 /**
  *  Back button title
  */
-@property (nonatomic, strong) NSString *backButtonTitle;
+@property (nonatomic, strong) NSString* backButtonTitle;
 
 @end

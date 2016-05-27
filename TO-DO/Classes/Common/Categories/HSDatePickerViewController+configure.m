@@ -1,19 +1,19 @@
 //
-//  HSDatePickerViewController+configure.m
+//  HSDatePickerViewController+Configure.m
 //  TO-DO
 //
-//  Created by Siegrain on 16/5/26.
+//  Created by Siegrain on 16/5/27.
 //  Copyright © 2016年 com.siegrain. All rights reserved.
 //
 
-#import "HSDatePickerViewController+configure.h"
+#import "HSDatePickerViewController+Configure.h"
 #import "Macros.h"
 #import "NSDateFormatter+Extension.h"
 
-@implementation HSDatePickerViewController (configure)
+@implementation HSDatePickerViewController (Configure)
 - (void)configure
 {
-    self.minDate = [[NSDate date] dateByAddingTimeInterval:-60 * 60];
+    self.minDate = [[NSDate date] dateByAddingTimeInterval:-60];
     if (isChina) {
         self.dateFormatter = [NSDateFormatter dateFormatterWithFormatString:@"MMM d ccc"];
         self.monthAndYearLabelDateFormater = [NSDateFormatter dateFormatterWithFormatString:@"yyyy MMMM"];

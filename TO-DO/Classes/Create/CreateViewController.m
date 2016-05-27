@@ -10,14 +10,18 @@
 #import "CreateDataManager.h"
 #import "CreateViewController.h"
 #import "DateUtil.h"
-#import "HSDatePickerViewController+configure.h"
+#import "HSDatePickerViewController+Configure.h"
 #import "LCTodo.h"
 #import "Macros.h"
+#import "NSDate+Extension.h"
 #import "NSDateFormatter+Extension.h"
 #import "NSNotificationCenter+Extension.h"
+#import "SCLAlertHelper.h"
 #import "SGCommitButton.h"
 #import "SGTextField.h"
 #import "UIImage+Extension.h"
+#import "UIViewController+KNSemiModal.h"
+#import "ZFModalTransitionAnimator.h"
 
 // FIXME: iPhone4s 上 NavigationBar 会遮挡一部分标题文本框
 // TODO: 需要更换DatePicker
@@ -28,10 +32,10 @@
     SGTextField* titleTextField;
     AutoLinearLayoutView* linearView;
     SGTextField* descriptionTextField;
-    SGTextField* datetimePicker;
+    SGTextField* datetimePickerField;
     SGTextField* locationTextField;
     SGCommitButton* commitButton;
-
+    ZFModalTransitionAnimator* animator;
     HSDatePickerViewController* datePickerViewController;
 
     NSDate* selectedDate;
@@ -47,7 +51,7 @@
 {
     [self setMenuTitle:NSLocalizedString(@"Create New", nil)];
     descriptionTextField.label.text = NSLocalizedString(@"Description", nil);
-    datetimePicker.label.text = NSLocalizedString(@"Time", nil);
+    datetimePickerField.label.text = NSLocalizedString(@"Time", nil);
     locationTextField.label.text = NSLocalizedString(@"Location", nil);
     [commitButton.button setTitle:NSLocalizedString(@"DONE", nil) forState:UIControlStateNormal];
     titleTextField.field.attributedPlaceholder = [[NSAttributedString alloc] initWithString:NSLocalizedString(@"Title", nil) attributes:@{ NSForegroundColorAttributeName : ColorWithRGB(0xCCCCCC), NSFontAttributeName : titleTextField.field.font }];
@@ -94,7 +98,8 @@
     titleTextField.isUnderlineHidden = YES;
     [titleTextField setTextFieldShouldReturn:^(SGTextField* textField) {
         [textField resignFirstResponder];
-        [weakSelf datetimePickerDidPress];
+
+        // TODO: [weakSelf datetimePickerFieldDidPress];
     }];
     [headerView addSubview:titleTextField];
 
@@ -103,11 +108,11 @@
     linearView.spacing = fieldSpacing;
     [containerView addSubview:linearView];
 
-    datetimePicker = [SGTextField textField];
-    datetimePicker.field.returnKeyType = UIReturnKeyNext;
-    datetimePicker.enabled = NO;
-    [datetimePicker addTarget:self action:@selector(datetimePickerDidPress) forControlEvents:UIControlEventTouchUpInside];
-    [linearView addSubview:datetimePicker];
+    datetimePickerField = [SGTextField textField];
+    datetimePickerField.field.returnKeyType = UIReturnKeyNext;
+    datetimePickerField.enabled = NO;
+    [datetimePickerField addTarget:self action:@selector(showDatetimePicker) forControlEvents:UIControlEventTouchUpInside];
+    [linearView addSubview:datetimePickerField];
 
     descriptionTextField = [SGTextField textField];
     descriptionTextField.field.returnKeyType = UIReturnKeyNext;
@@ -157,7 +162,7 @@
         make.height.offset((fieldHeight + fieldSpacing) * 3);
     }];
 
-    [@[ descriptionTextField, datetimePicker, locationTextField ] mas_makeConstraints:^(MASConstraintMaker* make) {
+    [@[ descriptionTextField, datetimePickerField, locationTextField ] mas_makeConstraints:^(MASConstraintMaker* make) {
         make.left.right.offset(0);
         make.height.offset(fieldHeight);
     }];
@@ -182,7 +187,7 @@
         LCTodo* todo = [LCTodo object];
         todo.title = titleTextField.field.text;
         todo.sgDescription = descriptionTextField.field.text;
-        todo.deadline = [DateUtil stringToDate:datetimePicker.field.text format:@"yyyy.MM.dd HH:mm:ss"];
+        todo.deadline = [DateUtil stringToDate:datetimePickerField.field.text format:@"yyyy.MM.dd HH:mm:ss"];
         todo.location = locationTextField.field.text;
         todo.photoImage = selectedImage;
         todo.user = user;
@@ -274,17 +279,21 @@ didFinishPickingMediaWithInfo:(NSDictionary<NSString*, id>*)info
     [self.view endEditing:YES];
 }
 #pragma mark - datetime picker
-#pragma mark - show date picker
-- (void)datetimePickerDidPress
+- (void)showDatetimePicker
 {
     if (selectedDate) datePickerViewController.date = selectedDate;
     [self presentViewController:datePickerViewController animated:YES completion:nil];
 }
-#pragma mark - date picker delegate
-- (void)hsDatePickerPickedDate:(NSDate*)date
+- (BOOL)hsDatePickerPickedDate:(NSDate*)date
 {
+    if ([date timeIntervalSinceReferenceDate] < [datePickerViewController.minDate timeIntervalSinceReferenceDate]) {
+        date = [NSDate date];
+    };
+
     selectedDate = date;
-    datetimePicker.field.text = [DateUtil dateString:date withFormat:@"yyyy.MM.dd HH:mm:ss"];
+    datetimePickerField.field.text = [DateUtil dateString:date withFormat:@"yyyy.MM.dd HH:mm"];
+
+    return true;
 }
 #pragma mark - release
 - (void)viewDidDisappear:(BOOL)animated
