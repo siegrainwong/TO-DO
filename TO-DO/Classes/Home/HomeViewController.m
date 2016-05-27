@@ -113,13 +113,13 @@
 #pragma mark - reloadData
 - (void)reloadData
 {
-    dateArray = [NSMutableArray arrayWithArray:dataDictionary.allKeys];
-    [dateArray sortedArrayUsingComparator:^NSComparisonResult(NSString* dateString1, NSString* dateString2) {
+    NSArray* dateArrayOrder = [dataDictionary.allKeys sortedArrayUsingComparator:^NSComparisonResult(NSString* dateString1, NSString* dateString2) {
         NSString* format = @"yyyy-MM-dd";
         NSNumber* interval1 = @([DateUtil stringToDate:dateString1 format:format].timeIntervalSince1970);
         NSNumber* interval2 = @([DateUtil stringToDate:dateString2 format:format].timeIntervalSince1970);
         return [interval1 compare:interval2];
     }];
+    dateArray = [NSMutableArray arrayWithArray:dateArrayOrder];
     [self localizeStrings];
     [tableView reloadData];
 }
@@ -159,27 +159,7 @@
     [self configureCell:cell atIndexPath:indexPath];
     return cell;
 }
-#pragma mark - tableview helper
-- (NSArray<LCTodo*>*)dataArrayAtSection:(NSInteger)section
-{
-    return dataDictionary[dateArray[section]];
-}
-- (LCTodo*)modelAtIndexPath:(NSIndexPath*)indexPath
-{
-    NSArray<LCTodo*>* dataArray = [self dataArrayAtSection:indexPath.section];
-    return dataArray[indexPath.row];
-}
-- (void)configureCell:(TodoTableViewCell*)cell atIndexPath:(NSIndexPath*)indexPath
-{
-    LCTodo* model = [self modelAtIndexPath:indexPath];
-    if (model.photo.length && !model.photoImage) {
-        UIImage* photo = [UIImage qn_imageWithString:model.photo andStyle:kImageStyleSmall];
-        model.photoImage = [photo imageAddCornerWithRadius:photo.size.width / 2 andSize:photo.size];
-    }
-
-    [self setupCellEvents:cell];
-    cell.model = model;
-}
+#pragma mark - swipe left cell events
 - (void)setupCellEvents:(TodoTableViewCell*)cell
 {
     __weak typeof(self) weakSelf = self;
@@ -207,6 +187,27 @@
         }];
     }
 }
+#pragma mark - tableview helper
+- (NSArray<LCTodo*>*)dataArrayAtSection:(NSInteger)section
+{
+    return dataDictionary[dateArray[section]];
+}
+- (LCTodo*)modelAtIndexPath:(NSIndexPath*)indexPath
+{
+    NSArray<LCTodo*>* dataArray = [self dataArrayAtSection:indexPath.section];
+    return dataArray[indexPath.row];
+}
+- (void)configureCell:(TodoTableViewCell*)cell atIndexPath:(NSIndexPath*)indexPath
+{
+    LCTodo* model = [self modelAtIndexPath:indexPath];
+    if (model.photo.length && !model.photoImage) {
+        UIImage* photo = [UIImage qn_imageWithString:model.photo andStyle:kImageStyleSmall];
+        model.photoImage = [photo imageAddCornerWithRadius:photo.size.width / 2 andSize:photo.size];
+    }
+
+    [self setupCellEvents:cell];
+    cell.model = model;
+}
 - (void)removeTodo:(LCTodo*)model atIndexPath:(NSIndexPath*)indexPath
 {
     NSString* date = model.deadline.stringInYearMonthDay;
@@ -221,12 +222,13 @@
         [tableView deleteRowsAtIndexPaths:@[ indexPath ] withRowAnimation:UITableViewRowAnimationLeft];
     }
 
-    [self localizeStrings];
+    dataCount--;
+    [self reloadData];
 }
 - (void)insertTodo:(LCTodo*)model
 {
     NSString* dateString = model.deadline.stringInYearMonthDay;
-    NSMutableArray<LCTodo*>* array;
+    NSMutableArray<LCTodo*>* array = dataDictionary[dateString];
     if (!array) array = dataDictionary[dateString] = [NSMutableArray new];
 
     [array addObject:model];
@@ -237,6 +239,7 @@
     if (![dateArray containsObject:dateString])
         [dateArray addObject:dateString];
 
+    dataCount++;
     [self reloadData];
 }
 #pragma mark - scrollview
