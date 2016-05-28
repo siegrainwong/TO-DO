@@ -81,7 +81,7 @@
     [headerView setHeaderViewDidPressRightOperationButton:^{
         CreateViewController* createViewController = [[CreateViewController alloc] init];
         [createViewController setCreateViewControllerDidFinishCreate:^(LCTodo* model) {
-            //            model.photoImage = [model.photoImage imageAddCornerWithRadius:model.photoImage.size.width / 2 andSize:model.photoImage.size];
+            model.photoImage = [model.photoImage imageAddCornerWithRadius:model.photoImage.size.width / 2 andSize:model.photoImage.size];
             [weakSelf insertTodo:model];
         }];
         [weakSelf.navigationController pushViewController:createViewController animated:YES];
@@ -220,6 +220,7 @@
     }
 
     dataCount--;
+    // Mark:光用 deleteRows 方法删除该 Section 最后一行时，上一行会冒出一条迷之分割线，所以必须调用 tableview 的 reloadData
     [self reloadData];
 }
 - (void)insertTodo:(LCTodo*)model

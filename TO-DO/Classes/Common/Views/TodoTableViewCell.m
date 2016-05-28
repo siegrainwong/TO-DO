@@ -147,12 +147,15 @@ static NSInteger const kStatusButtonSize = 15;
 #pragma mark - set model
 - (void)setModel:(LCTodo*)todo
 {
-    if (todo.photo.length && !_model.photoImage) {
-        __weak typeof(self) weakSelf = self;
-        [[SDWebImageManager sharedManager] downloadImageWithURL:GetPictureUrl(_model.photo, kQiniuImageStyleSmall) options:SDWebImageLowPriority progress:nil completed:^(UIImage* image, NSError* error, SDImageCacheType cacheType, BOOL finished, NSURL* imageURL) {
-            weakSelf.model.photoImage = [image imageAddCornerWithRadius:image.size.width / 2 andSize:image.size];
-            [photoButton setImage:_model.photoImage forState:UIControlStateNormal];
-        }];
+    if (todo.photo.length) {
+        if (!_model.photoImage) {
+            [[SDWebImageManager sharedManager] downloadImageWithURL:GetPictureUrl(todo.photo, kQiniuImageStyleThumbnail) options:SDWebImageRefreshCached progress:nil completed:^(UIImage* image, NSError* error, SDImageCacheType cacheType, BOOL finished, NSURL* imageURL) {
+                todo.photoImage = [image imageAddCornerWithRadius:image.size.width / 2 andSize:image.size];
+                [photoButton setImage:todo.photoImage forState:UIControlStateNormal];
+            }];
+        } else {
+            [photoButton setImage:todo.photoImage forState:UIControlStateNormal];
+        }
     }
 
     _model = todo;
