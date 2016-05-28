@@ -15,6 +15,7 @@
 #import "NSDate+Extension.h"
 #import "TodoHeaderCell.h"
 #import "TodoTableViewCell.h"
+#import "UIButton+WebCache.h"
 #import "UIImage+Extension.h"
 #import "UIImage+Qiniu.h"
 #import "UINavigationController+Transparent.h"
@@ -73,13 +74,14 @@
     headerView = [HeaderView headerViewWithAvatarPosition:HeaderAvatarPositionCenter titleAlignement:HeaderTitleAlignementCenter];
     headerView.subtitleLabel.text = [TodoHelper localizedFormatDate:[NSDate date]];
     [headerView.rightOperationButton setImage:[UIImage imageNamed:@"add"] forState:UIControlStateNormal];
-    [headerView.avatarButton setImage:[UIImage qn_imageWithString:user.avatar andStyle:kImageStyleSmall] forState:UIControlStateNormal];
+    [headerView.avatarButton sd_setImageWithURL:GetPictureUrl(user.avatar, kQiniuImageStyleSmall) forState:UIControlStateNormal];
     headerView.backgroundImageView.image = [UIImage imageAtResourcePath:@"header bg"];
     [headerView setHeaderViewDidPressAvatarButton:^{ [LCUser logOut]; }];
     __weak typeof(self) weakSelf = self;
     [headerView setHeaderViewDidPressRightOperationButton:^{
         CreateViewController* createViewController = [[CreateViewController alloc] init];
         [createViewController setCreateViewControllerDidFinishCreate:^(LCTodo* model) {
+            //            model.photoImage = [model.photoImage imageAddCornerWithRadius:model.photoImage.size.width / 2 andSize:model.photoImage.size];
             [weakSelf insertTodo:model];
         }];
         [weakSelf.navigationController pushViewController:createViewController animated:YES];
@@ -200,11 +202,6 @@
 - (void)configureCell:(TodoTableViewCell*)cell atIndexPath:(NSIndexPath*)indexPath
 {
     LCTodo* model = [self modelAtIndexPath:indexPath];
-    if (model.photo.length && !model.photoImage) {
-        UIImage* photo = [UIImage qn_imageWithString:model.photo andStyle:kImageStyleSmall];
-        model.photoImage = [photo imageAddCornerWithRadius:photo.size.width / 2 andSize:photo.size];
-    }
-
     [self setupCellEvents:cell];
     cell.model = model;
 }

@@ -10,8 +10,10 @@
 #import "LCTodo.h"
 #import "Macros.h"
 #import "NSDateFormatter+Extension.h"
+#import "SDWebImageManager.h"
 #import "TodoHelper.h"
 #import "TodoTableViewCell.h"
+#import "UIImage+Extension.h"
 #import "UIImage+Qiniu.h"
 #import "UIView+SDAutoLayout.h"
 
@@ -145,6 +147,14 @@ static NSInteger const kStatusButtonSize = 15;
 #pragma mark - set model
 - (void)setModel:(LCTodo*)todo
 {
+    if (todo.photo.length && !_model.photoImage) {
+        __weak typeof(self) weakSelf = self;
+        [[SDWebImageManager sharedManager] downloadImageWithURL:GetPictureUrl(_model.photo, kQiniuImageStyleSmall) options:SDWebImageLowPriority progress:nil completed:^(UIImage* image, NSError* error, SDImageCacheType cacheType, BOOL finished, NSURL* imageURL) {
+            weakSelf.model.photoImage = [image imageAddCornerWithRadius:image.size.width / 2 andSize:image.size];
+            [photoButton setImage:_model.photoImage forState:UIControlStateNormal];
+        }];
+    }
+
     _model = todo;
     // Mark: 苹果的智障框架，系统是24小时制就打印不出12小时，非要设置地区，且该地区只能转换为12小时制
     NSDateFormatter* formatter = [NSDateFormatter dateFormatterWithFormatString:@"h"];
@@ -153,8 +163,7 @@ static NSInteger const kStatusButtonSize = 15;
     formatter.dateFormat = @"a";
     meridiemLabel.text = [[formatter stringFromDate:_model.deadline] lowercaseString];
 
-    [photoButton setImage:_model.photoImage forState:UIControlStateNormal];
-    [statusButton setImage:[UIImage imageNamed:[NSString stringWithFormat:@"status-%d", _model.status]] forState:UIControlStateNormal];
+    [statusButton setImage:[UIImage imageNamed:[NSString stringWithFormat:@"status-%ld", _model.status]] forState:UIControlStateNormal];
 
     todoTitleLabel.text = _model.title;
     todoContentLabel.text = _model.sgDescription;
@@ -163,10 +172,10 @@ static NSInteger const kStatusButtonSize = 15;
 
     [self updateConstraints];
 }
-//#pragma mark - update constraints
+#pragma mark - update constraints
 - (void)updateConstraints
 {
-    if (!_model.photoImage) {
+    if (!_model.photo.length) {
         photoButton.sd_layout.widthIs(0);
         todoTitleLabel.sd_layout.leftSpaceToView(photoButton, 0);
     } else {

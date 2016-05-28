@@ -12,6 +12,7 @@
 #ifndef Macros_h
 #define Macros_h
 
+#import "DataKeys.h"
 #import "NSObject+PropertyName.h"
 
 //获取颜色，格式0xFFFFFF
@@ -46,4 +47,7 @@
 
 //根据ID和类型获取图片前缀
 #define GetPicturePrefix(type, id) ([NSString stringWithFormat:@"%@%@/", type, id])
+
+//根据图片相对路径获取完整的NSURL
+#define GetPictureUrl(urlStr, style) ([NSURL URLWithString:[NSString stringWithFormat:@"%@%@-%@", kQiniuDomain, urlStr, style]])
 #endif
