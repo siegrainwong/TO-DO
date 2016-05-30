@@ -18,7 +18,7 @@
 
 @implementation LoginViewController {
     LoginView* loginView;
-    LoginDataManager* dataManager;
+    LoginDataManager* _dataManager;
 
     BOOL releaseWhileDisappear;
 }
@@ -44,7 +44,7 @@
         make.left.right.top.bottom.offset(0);
     }];
 
-    dataManager = [[LoginDataManager alloc] init];
+    _dataManager = [[LoginDataManager alloc] init];
 
     releaseWhileDisappear = true;
 }
@@ -53,7 +53,7 @@
 #pragma mark - commit
 - (void)loginViewDidPressCommitButton:(LCUser*)user isSignUp:(BOOL)isSignUp
 {
-    [dataManager handleCommit:user
+    [_dataManager handleCommit:user
                      isSignUp:isSignUp
                      complete:^(bool succeed) {
                          [loginView stopCommitAnimation];

@@ -26,8 +26,8 @@
 #import "UITableView+SDAutoTableViewCellHeight.h"
 
 @implementation CalendarViewController {
-    //	CalendarDataManager* dataManager;
-    UITableView* tableView;
+    //	CalendarDataManager* _dataManager;
+    UITableView* _tableView;
 }
 #pragma mark - initial
 - (void)viewDidLoad
@@ -36,7 +36,7 @@
 
     //	dataDictionary = [NSMutableDictionary new];
     //	dateArray = [NSMutableArray new];
-    //	dataManager = [HomeDataManager new];
+    //	_dataManager = [HomeDataManager new];
 
     //    [self localizeStrings];
     //	[self retrieveDataFromServer];
@@ -45,23 +45,23 @@
 {
     [super viewDidLayoutSubviews];
 
-    [tableView ignoreNavigationHeight];
-    [tableView resizeTableHeaderView];
+    [_tableView ignoreNavigationHeight];
+    [_tableView resizeTableHeaderView];
 }
 - (void)setupView
 {
     [super setupView];
 
-    tableView = [UITableView new];
-    tableView.bounces = NO;
-    tableView.dataSource = self;
-    tableView.delegate = self;
-    tableView.showsHorizontalScrollIndicator = NO;
-    tableView.showsVerticalScrollIndicator = NO;
-    tableView.sectionHeaderHeight = 15;
-    [tableView registerClass:[TodoTableViewCell class] forCellReuseIdentifier:kTodoIdentifierArray[TodoIdentifierNormal]];
-    tableView.separatorInset = UIEdgeInsetsMake(0, kScreenHeight * kCellHorizontalInsetsMuiltipledByHeight, 0, kScreenHeight * kCellHorizontalInsetsMuiltipledByHeight);
-    [self.view addSubview:tableView];
+    _tableView = [UITableView new];
+    _tableView.bounces = NO;
+    _tableView.dataSource = self;
+    _tableView.delegate = self;
+    _tableView.showsHorizontalScrollIndicator = NO;
+    _tableView.showsVerticalScrollIndicator = NO;
+    _tableView.sectionHeaderHeight = 15;
+    [_tableView registerClass:[TodoTableViewCell class] forCellReuseIdentifier:kTodoIdentifierArray[TodoIdentifierNormal]];
+    _tableView.separatorInset = UIEdgeInsetsMake(0, kScreenHeight * kCellHorizontalInsetsMuiltipledByHeight, 0, kScreenHeight * kCellHorizontalInsetsMuiltipledByHeight);
+    [self.view addSubview:_tableView];
 
     headerView = [HeaderView headerViewWithAvatarPosition:HeaderAvatarPositionCenter titleAlignement:HeaderTitleAlignementCenter];
     [headerView.avatarButton setHidden:YES];
@@ -77,13 +77,13 @@
         //        }];
         [weakSelf.navigationController pushViewController:createViewController animated:YES];
     }];
-    tableView.tableHeaderView = headerView;
+    _tableView.tableHeaderView = headerView;
 }
 - (void)bindConstraints
 {
     [super bindConstraints];
 
-    [tableView mas_makeConstraints:^(MASConstraintMaker* make) {
+    [_tableView mas_makeConstraints:^(MASConstraintMaker* make) {
         make.top.bottom.right.left.offset(0);
     }];
 

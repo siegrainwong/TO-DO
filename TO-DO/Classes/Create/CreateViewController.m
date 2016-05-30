@@ -27,7 +27,7 @@
 // TODO: 需要更换DatePicker
 
 @implementation CreateViewController {
-    CreateDataManager* dataManager;
+    CreateDataManager* _dataManager;
     UIView* containerView;
     SGTextField* titleTextField;
     AutoLinearLayoutView* linearView;
@@ -72,7 +72,7 @@
     fieldSpacing = kScreenHeight * 0.03;
     [NSNotificationCenter attachKeyboardObservers:self keyboardWillShowSelector:@selector(keyboardWillShow:) keyboardWillHideSelector:@selector(keyboardWillHide:)];
 
-    dataManager = [CreateDataManager new];
+    _dataManager = [CreateDataManager new];
 
     datePickerViewController = [[HSDatePickerViewController alloc] init];
     [datePickerViewController configure];
@@ -195,7 +195,7 @@
         todo.isCompleted = NO;
         todo.isDeleted = NO;
 
-        [dataManager handleCommit:todo complete:^(bool succeed) {
+        [_dataManager handleCommit:todo complete:^(bool succeed) {
             [weakSelf enableView:YES];
             if (!succeed) return;
             if (_createViewControllerDidFinishCreate) _createViewControllerDidFinishCreate(todo);

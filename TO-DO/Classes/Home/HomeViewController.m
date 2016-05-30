@@ -28,29 +28,32 @@
 // TODO: 搜索功能
 // Mark: 再不能全局变量都用成员变量了，内存释放太操心
 
-@implementation HomeViewController {
-    HSDatePickerViewController* datePickerViewController;
-    HomeDataManager* dataManager;
-    UITableView* tableView;
-    NSMutableDictionary* dataDictionary;
-    NSMutableArray* dateArray;
+@interface
+HomeViewController ()
+@property (nonatomic, readwrite, strong) HSDatePickerViewController* datePickerViewController;
+@property (nonatomic, readwrite, strong) HomeDataManager* dataManager;
+@property (nonatomic, readwrite, strong) UITableView* tableView;
+@property (nonatomic, readwrite, strong) NSMutableDictionary* dataDictionary;
+@property (nonatomic, readwrite, strong) NSMutableArray* dateArray;
 
-    NSInteger dataCount;
-    TodoTableViewCell* snoozingCell;
-}
+@property (nonatomic, readwrite, assign) NSInteger dataCount;
+@property (nonatomic, readwrite, strong) TodoTableViewCell* snoozingCell;
+@end
+
+@implementation HomeViewController
 #pragma mark - localization
 - (void)localizeStrings
 {
-    headerView.titleLabel.text = [NSString stringWithFormat:@"%ld %@", (long)dataCount, NSLocalizedString(@"Tasks", nil)];
+    headerView.titleLabel.text = [NSString stringWithFormat:@"%ld %@", (long)_dataCount, NSLocalizedString(@"Tasks", nil)];
 }
 #pragma mark - initial
 - (void)viewDidLoad
 {
     [super viewDidLoad];
 
-    dataDictionary = [NSMutableDictionary new];
-    dateArray = [NSMutableArray new];
-    dataManager = [HomeDataManager new];
+    _dataDictionary = [NSMutableDictionary new];
+    _dateArray = [NSMutableArray new];
+    _dataManager = [HomeDataManager new];
 
     [self localizeStrings];
     [self retrieveDataFromServer];
@@ -59,23 +62,23 @@
 {
     [super viewDidLayoutSubviews];
 
-    [tableView ignoreNavigationHeight];
-    [tableView resizeTableHeaderView];
+    [_tableView ignoreNavigationHeight];
+    [_tableView resizeTableHeaderView];
 }
 - (void)setupView
 {
     [super setupView];
 
-    tableView = [UITableView new];
-    tableView.bounces = NO;
-    tableView.dataSource = self;
-    tableView.delegate = self;
-    tableView.showsHorizontalScrollIndicator = NO;
-    tableView.showsVerticalScrollIndicator = NO;
-    tableView.sectionHeaderHeight = 15;
-    [tableView registerClass:[TodoTableViewCell class] forCellReuseIdentifier:kTodoIdentifierArray[TodoIdentifierNormal]];
-    tableView.separatorInset = UIEdgeInsetsMake(0, kScreenHeight * kCellHorizontalInsetsMuiltipledByHeight, 0, kScreenHeight * kCellHorizontalInsetsMuiltipledByHeight);
-    [self.view addSubview:tableView];
+    _tableView = [UITableView new];
+    _tableView.bounces = NO;
+    _tableView.dataSource = self;
+    _tableView.delegate = self;
+    _tableView.showsHorizontalScrollIndicator = NO;
+    _tableView.showsVerticalScrollIndicator = NO;
+    _tableView.sectionHeaderHeight = 15;
+    [_tableView registerClass:[TodoTableViewCell class] forCellReuseIdentifier:kTodoIdentifierArray[TodoIdentifierNormal]];
+    _tableView.separatorInset = UIEdgeInsetsMake(0, kScreenHeight * kCellHorizontalInsetsMuiltipledByHeight, 0, kScreenHeight * kCellHorizontalInsetsMuiltipledByHeight);
+    [self.view addSubview:_tableView];
 
     headerView = [HeaderView headerViewWithAvatarPosition:HeaderAvatarPositionCenter titleAlignement:HeaderTitleAlignementCenter];
     headerView.subtitleLabel.text = [TodoHelper localizedFormatDate:[NSDate date]];
@@ -96,17 +99,17 @@
         }];
         [weakSelf.navigationController pushViewController:createViewController animated:YES];
     }];
-    tableView.tableHeaderView = headerView;
+    _tableView.tableHeaderView = headerView;
 
-    datePickerViewController = [HSDatePickerViewController new];
-    [datePickerViewController configure];
-    datePickerViewController.delegate = self;
+    _datePickerViewController = [HSDatePickerViewController new];
+    [_datePickerViewController configure];
+    _datePickerViewController.delegate = self;
 }
 - (void)bindConstraints
 {
     [super bindConstraints];
 
-    [tableView mas_makeConstraints:^(MASConstraintMaker* make) {
+    [_tableView mas_makeConstraints:^(MASConstraintMaker* make) {
         make.top.bottom.right.left.offset(0);
     }];
 
@@ -120,47 +123,46 @@
 - (void)retrieveDataFromServer
 {
     __weak typeof(self) weakSelf = self;
-    [dataManager retrieveDataWithUser:user complete:^(bool succeed, NSDictionary* data, NSInteger count) {
-        __strong typeof(self) strongSelf = weakSelf;
-        strongSelf->dataDictionary = [NSMutableDictionary dictionaryWithDictionary:data];
-        dataCount = count;
+    [_dataManager retrieveDataWithUser:user complete:^(bool succeed, NSDictionary* data, NSInteger count) {
+        weakSelf.dataDictionary = [NSMutableDictionary dictionaryWithDictionary:data];
+        _dataCount = count;
         [weakSelf reloadData];
     }];
 }
 #pragma mark - reloadData
 - (void)reloadData
 {
-    NSArray* dateArrayOrder = [dataDictionary.allKeys sortedArrayUsingComparator:^NSComparisonResult(NSString* dateString1, NSString* dateString2) {
+    NSArray* dateArrayOrder = [_dataDictionary.allKeys sortedArrayUsingComparator:^NSComparisonResult(NSString* dateString1, NSString* dateString2) {
         NSString* format = @"yyyy-MM-dd";
         NSNumber* interval1 = @([DateUtil stringToDate:dateString1 format:format].timeIntervalSince1970);
         NSNumber* interval2 = @([DateUtil stringToDate:dateString2 format:format].timeIntervalSince1970);
         return [interval1 compare:interval2];
     }];
-    dateArray = [NSMutableArray arrayWithArray:dateArrayOrder];
+    _dateArray = [NSMutableArray arrayWithArray:dateArrayOrder];
     [self localizeStrings];
-    [tableView reloadData];
+    [_tableView reloadData];
 }
 - (void)removeEmptySection:(NSString*)dateString
 {
-    NSMutableArray<LCTodo*>* array = dataDictionary[dateString];
+    NSMutableArray<LCTodo*>* array = _dataDictionary[dateString];
     if (!array.count) {
-        [dataDictionary removeObjectForKey:dateString];
-        NSInteger index = [dateArray indexOfObject:dateString];
-        [dateArray removeObject:dateString];
-        [tableView deleteSections:[NSIndexSet indexSetWithIndex:index] withRowAnimation:UITableViewRowAnimationLeft];
+        [_dataDictionary removeObjectForKey:dateString];
+        NSInteger index = [_dateArray indexOfObject:dateString];
+        [_dateArray removeObject:dateString];
+        [_tableView deleteSections:[NSIndexSet indexSetWithIndex:index] withRowAnimation:UITableViewRowAnimationLeft];
     }
 }
 #pragma mark - tableview
 #pragma mark - tableview delegate
 - (CGFloat)tableView:(UITableView*)tableView estimatedHeightForRowAtIndexPath:(NSIndexPath*)indexPath
 {
-    return [self tableView:self->tableView heightForRowAtIndexPath:indexPath];
+    return [self tableView:self->_tableView heightForRowAtIndexPath:indexPath];
 }
 - (CGFloat)tableView:(UITableView*)tableView heightForRowAtIndexPath:(NSIndexPath*)indexPath
 {
     LCTodo* model = [self modelAtIndexPath:indexPath];
     if (!model.cellHeight) {
-        model.cellHeight = [self->tableView cellHeightForIndexPath:indexPath model:model keyPath:@"model" cellClass:[TodoTableViewCell class] contentViewWidth:kScreenWidth];
+        model.cellHeight = [tableView cellHeightForIndexPath:indexPath model:model keyPath:@"model" cellClass:[TodoTableViewCell class] contentViewWidth:kScreenWidth];
     }
 
     return model.cellHeight;
@@ -168,12 +170,12 @@
 #pragma mark - tableview datasource
 - (NSInteger)numberOfSectionsInTableView:(UITableView*)tableView
 {
-    return dateArray.count;
+    return _dateArray.count;
 }
 - (UIView*)tableView:(UITableView*)tableView viewForHeaderInSection:(NSInteger)section
 {
     TodoHeaderCell* header = [TodoHeaderCell headerCell];
-    header.text = dateArray[section];
+    header.text = _dateArray[section];
     return header;
 }
 - (NSInteger)tableView:(UITableView*)tableView numberOfRowsInSection:(NSInteger)section
@@ -182,7 +184,7 @@
 }
 - (UITableViewCell*)tableView:(UITableView*)tableView cellForRowAtIndexPath:(NSIndexPath*)indexPath
 {
-    TodoTableViewCell* cell = [self->tableView dequeueReusableCellWithIdentifier:kTodoIdentifierArray[TodoIdentifierNormal] forIndexPath:indexPath];
+    TodoTableViewCell* cell = [tableView dequeueReusableCellWithIdentifier:kTodoIdentifierArray[TodoIdentifierNormal] forIndexPath:indexPath];
     [self configureCell:cell atIndexPath:indexPath];
     return cell;
 }
@@ -192,33 +194,30 @@
     __weak typeof(self) weakSelf = self;
     if (!cell.todoDidComplete) {
         [cell setTodoDidComplete:^BOOL(TodoTableViewCell* sender) {
-            __strong typeof(self) strongSelf = weakSelf;
             [sender setUserInteractionEnabled:NO];
             sender.model.isCompleted = YES;
-            [strongSelf->dataManager modifyTodo:sender.model complete:^(bool succeed) {
+            [weakSelf.dataManager modifyTodo:sender.model complete:^(bool succeed) {
                 [sender setUserInteractionEnabled:YES];
-                if (succeed) [weakSelf removeTodo:sender.model atIndexPath:[strongSelf->tableView indexPathForCell:sender]];
+                if (succeed) [weakSelf removeTodo:sender.model atIndexPath:[weakSelf.tableView indexPathForCell:sender]];
             }];
             return NO;
         }];
     }
     if (!cell.todoDidSnooze) {
         [cell setTodoDidSnooze:^BOOL(TodoTableViewCell* sender) {
-            __strong typeof(self) strongSelf = weakSelf;
             [sender setUserInteractionEnabled:NO];
-            strongSelf->snoozingCell = sender;
+            weakSelf.snoozingCell = sender;
             [weakSelf showDatetimePicker:sender.model.deadline];
             return YES;
         }];
     }
     if (!cell.todoDidRemove) {
         [cell setTodoDidRemove:^BOOL(TodoTableViewCell* sender) {
-            __strong typeof(self) strongSelf = weakSelf;
             [sender setUserInteractionEnabled:NO];
             sender.model.isDeleted = YES;
-            [strongSelf->dataManager modifyTodo:sender.model complete:^(bool succeed) {
+            [weakSelf.dataManager modifyTodo:sender.model complete:^(bool succeed) {
                 [sender setUserInteractionEnabled:YES];
-                if (succeed) [weakSelf removeTodo:sender.model atIndexPath:[strongSelf->tableView indexPathForCell:sender]];
+                if (succeed) [weakSelf removeTodo:sender.model atIndexPath:[weakSelf.tableView indexPathForCell:sender]];
             }];
             return YES;
         }];
@@ -227,7 +226,7 @@
 #pragma mark - tableview helper
 - (NSArray<LCTodo*>*)dataArrayAtSection:(NSInteger)section
 {
-    return dataDictionary[dateArray[section]];
+    return _dataDictionary[_dateArray[section]];
 }
 - (LCTodo*)modelAtIndexPath:(NSIndexPath*)indexPath
 {
@@ -244,16 +243,16 @@
 {
     // FIXME: 多次请求会异常
     NSString* deadline = model.deadline.stringInYearMonthDay;
-    NSMutableArray<LCTodo*>* array = dataDictionary[deadline];
+    NSMutableArray<LCTodo*>* array = _dataDictionary[deadline];
     [array removeObject:model];
 
     if (!array.count) {
         [self removeEmptySection:deadline];
     } else {
-        [tableView deleteRowsAtIndexPaths:@[ indexPath ] withRowAnimation:UITableViewRowAnimationLeft];
+        [_tableView deleteRowsAtIndexPaths:@[ indexPath ] withRowAnimation:UITableViewRowAnimationLeft];
     }
 
-    dataCount--;
+    _dataCount--;
     // Mark:光用 deleteRows 方法删除该 Section 最后一行时，上一行会冒出一条迷の分割线，所以必须 reloadData
     [self reloadData];
 }
@@ -265,22 +264,22 @@
 {
     NSString* deadline = model.deadline.stringInYearMonthDay;
 
-    NSMutableArray<LCTodo*>* array = dataDictionary[deadline];
-    if (!array) array = dataDictionary[deadline] = [NSMutableArray new];
-    if (![dateArray containsObject:deadline]) [dateArray addObject:deadline];
+    NSMutableArray<LCTodo*>* array = _dataDictionary[deadline];
+    if (!array) array = _dataDictionary[deadline] = [NSMutableArray new];
+    if (![_dateArray containsObject:deadline]) [_dateArray addObject:deadline];
 
     // 检查是否是同一天，是同一天只需要重新排序即可
     // 不是则需要移除当前位置的 cell，加到另一个 section 中
     if (model.lastDeadline && ![model.lastDeadline.stringInYearMonthDay isEqualToString:deadline]) {
         NSString* lastDeadline = model.lastDeadline.stringInYearMonthDay;
-        NSMutableArray<LCTodo*>* lastDateArray = dataDictionary[lastDeadline];
+        NSMutableArray<LCTodo*>* lastDateArray = _dataDictionary[lastDeadline];
         [lastDateArray removeObject:model];
 
         [self removeEmptySection:lastDeadline];
         // Mark: 必须在 remove sections 后再添加到数据源中，不然 remove 时会报错，即使该数据源不在原来的位置上..
         [array addObject:model];
     } else if (!model.lastDeadline) {
-        dataCount++;
+        _dataCount++;
         [array addObject:model];
     }
 
@@ -294,28 +293,27 @@
 {
     releaseWhileDisappear = NO;
 
-    datePickerViewController.minDate = [[NSDate date] dateByAddingTimeInterval:-60];
-    if ([deadline timeIntervalSince1970] > [datePickerViewController.minDate timeIntervalSince1970])
-        datePickerViewController.minDate = deadline;
+    _datePickerViewController.minDate = [[NSDate date] dateByAddingTimeInterval:-60];
+    if ([deadline timeIntervalSince1970] > [_datePickerViewController.minDate timeIntervalSince1970])
+        _datePickerViewController.minDate = deadline;
 
-    [self presentViewController:datePickerViewController animated:YES completion:nil];
+    [self presentViewController:_datePickerViewController animated:YES completion:nil];
 }
 - (BOOL)hsDatePickerPickedDate:(NSDate*)date
 {
     releaseWhileDisappear = YES;
 
-    if ([date timeIntervalSince1970] < [datePickerViewController.minDate timeIntervalSince1970])
+    if ([date timeIntervalSince1970] < [_datePickerViewController.minDate timeIntervalSince1970])
         date = [NSDate date];
 
     __weak typeof(self) weakSelf = self;
-    LCTodo* todo = snoozingCell.model;
+    LCTodo* todo = _snoozingCell.model;
     todo.lastDeadline = todo.deadline;
     todo.deadline = date;
     todo.status = LCTodoStatusSnoozed;
-    [dataManager modifyTodo:todo complete:^(bool succeed) {
-        __strong typeof(self) strongSelf = weakSelf;
-        [strongSelf->snoozingCell setUserInteractionEnabled:YES];
-        strongSelf->snoozingCell = nil;
+    [_dataManager modifyTodo:todo complete:^(bool succeed) {
+        [weakSelf.snoozingCell setUserInteractionEnabled:YES];
+        weakSelf.snoozingCell = nil;
         if (succeed)
             [weakSelf reorderTodo:todo];
     }];
@@ -330,8 +328,8 @@
 
     if (!releaseWhileDisappear) return;
 
-    [tableView removeFromSuperview];
-    tableView = nil;
+    [_tableView removeFromSuperview];
+    _tableView = nil;
 
     [self.view removeFromSuperview];
     self.view = nil;
