@@ -177,11 +177,12 @@ HSDatePickerViewController ()<UIPickerViewDataSource,
 
 - (void)setMinDate:(NSDate*)minDate
 {
-    if ([minDate compare:self.date] == NSOrderedDescending) {
-        NSLog(@"minDate=%@ is after date=%@. Value will not be set.", minDate, self.date);
-    } else {
-        _minDate = minDate;
-    }
+    // Mark: 他这里这个判断的意思是 minDate 不能大于当前时间，不符合需求，屏蔽
+    //    if ([minDate compare:self.date] == NSOrderedDescending) {
+    //        NSLog(@"minDate=%@ is after date=%@. Value will not be set.", minDate, self.date);
+    //    } else {
+    _minDate = minDate;
+    //    }
 }
 
 - (NSDate*)minDate

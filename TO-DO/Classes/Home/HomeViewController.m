@@ -197,7 +197,7 @@
     if (!cell.todoDidSnooze) {
         [cell setTodoDidSnooze:^BOOL(TodoTableViewCell* sender) {
             snoozingCell = sender;
-            [weakSelf showDatetimePicker];
+            [weakSelf showDatetimePicker:sender.model.deadline];
             return YES;
         }];
     }
@@ -264,11 +264,12 @@
         [lastDateArray removeObject:model];
 
         [self removeEmptySection:lastDeadline];
-    } else {
+        // Mark: 必须在 remove sections 后再添加到数据源中，不然 remove 时会报错，即使该数据源不在原来的位置上..
+        [array addObject:model];
+    } else if (!model.lastDeadline) {
         dataCount++;
+        [array addObject:model];
     }
-    // Mark: 必须在 remove sections 后再添加到数据源中，不然 remove 时会报错，即使该数据源不在原来的位置上..
-    [array addObject:model];
 
     NSSortDescriptor* sort = [NSSortDescriptor sortDescriptorWithKey:@"self.deadline.timeIntervalSince1970" ascending:YES];
     [array sortUsingDescriptors:@[ sort ]];
@@ -276,9 +277,12 @@
     [self reloadData];
 }
 #pragma mark - date time picker delegate
-- (void)showDatetimePicker
+- (void)showDatetimePicker:(NSDate*)deadline
 {
-    datePickerViewController.minDate = [[NSDate date] dateByAddingTimeInterval:-1];
+    datePickerViewController.minDate = [[NSDate date] dateByAddingTimeInterval:-60];
+    if ([deadline timeIntervalSince1970] > [datePickerViewController.minDate timeIntervalSince1970])
+        datePickerViewController.minDate = deadline;
+
     [self presentViewController:datePickerViewController animated:YES completion:nil];
 }
 - (BOOL)hsDatePickerPickedDate:(NSDate*)date
