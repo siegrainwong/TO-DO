@@ -24,7 +24,7 @@ typedef NS_ENUM(NSInteger, LCTodoStatus) {
 @property (nonatomic, readwrite, strong) NSString* title;
 /* 描述（被内置字段占用） */
 @property (nonatomic, readwrite, strong) NSString* sgDescription;
-/* 截止事件 */
+/* 过期时间 */
 @property (nonatomic, readwrite, strong) NSDate* deadline;
 /* 位置 */
 @property (nonatomic, readwrite, strong) NSString* location;
@@ -54,4 +54,6 @@ typedef NS_ENUM(NSInteger, LCTodoStatus) {
 @property (nonatomic, readwrite, strong) UIImage* photoImage;
 /* 缓存表格单元高度 */
 @property (nonatomic, readwrite, assign) CGFloat cellHeight;
+/* 上次过期时间，该字段用于 snooze 后移除老位置的数据所用 */
+@property (nonatomic, readwrite, strong) NSDate* lastDeadline;
 @end

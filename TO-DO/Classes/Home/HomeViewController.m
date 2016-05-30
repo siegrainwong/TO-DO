@@ -92,6 +92,7 @@
 
     datePickerViewController = [HSDatePickerViewController new];
     [datePickerViewController configure];
+    datePickerViewController.delegate = self;
 }
 - (void)bindConstraints
 {
@@ -129,6 +130,16 @@
     dateArray = [NSMutableArray arrayWithArray:dateArrayOrder];
     [self localizeStrings];
     [tableView reloadData];
+}
+- (void)removeEmptySection:(NSString*)dateString
+{
+    NSMutableArray<LCTodo*>* array = dataDictionary[dateString];
+    if (!array.count) {
+        [dataDictionary removeObjectForKey:dateString];
+        NSInteger index = [dateArray indexOfObject:dateString];
+        [dateArray removeObject:dateString];
+        [tableView deleteSections:[NSIndexSet indexSetWithIndex:index] withRowAnimation:UITableViewRowAnimationLeft];
+    }
 }
 #pragma mark - tableview
 #pragma mark - tableview delegate
@@ -219,14 +230,12 @@
 - (void)removeTodo:(LCTodo*)model atIndexPath:(NSIndexPath*)indexPath
 {
     // FIXME: 多次请求会异常
-    NSString* date = model.deadline.stringInYearMonthDay;
-    NSMutableArray<LCTodo*>* array = dataDictionary[date];
+    NSString* deadline = model.deadline.stringInYearMonthDay;
+    NSMutableArray<LCTodo*>* array = dataDictionary[deadline];
     [array removeObject:model];
 
     if (!array.count) {
-        [dataDictionary removeObjectForKey:date];
-        [dateArray removeObject:date];
-        [tableView deleteSections:[NSIndexSet indexSetWithIndex:indexPath.section] withRowAnimation:UITableViewRowAnimationLeft];
+        [self removeEmptySection:deadline];
     } else {
         [tableView deleteRowsAtIndexPaths:@[ indexPath ] withRowAnimation:UITableViewRowAnimationLeft];
     }
@@ -237,20 +246,29 @@
 }
 - (void)insertTodo:(LCTodo*)model
 {
-    [self reorderTodo:model needsToInsert:YES];
+    [self reorderTodo:model];
 }
-- (void)reorderTodo:(LCTodo*)model needsToInsert:(BOOL)needsToInsert
+- (void)reorderTodo:(LCTodo*)model
 {
-    NSString* dateString = model.deadline.stringInYearMonthDay;
+    NSString* deadline = model.deadline.stringInYearMonthDay;
 
-    NSMutableArray<LCTodo*>* array = dataDictionary[dateString];
-    if (!array) array = dataDictionary[dateString] = [NSMutableArray new];
-    if (![dateArray containsObject:dateString]) [dateArray addObject:dateString];
+    NSMutableArray<LCTodo*>* array = dataDictionary[deadline];
+    if (!array) array = dataDictionary[deadline] = [NSMutableArray new];
+    if (![dateArray containsObject:deadline]) [dateArray addObject:deadline];
 
-    if (needsToInsert) {
-        [array addObject:model];
+    if (model.lastDeadline) {
+        // 移除老位置的数据
+        NSString* lastDeadline = model.lastDeadline.stringInYearMonthDay;
+        NSMutableArray<LCTodo*>* lastDateArray = dataDictionary[lastDeadline];
+        [lastDateArray removeObject:model];
+
+        [self removeEmptySection:lastDeadline];
+    } else {
         dataCount++;
     }
+    // Mark: 必须在 remove sections 后再添加到数据源中，不然 remove 时会报错，即使该数据源不在原来的位置上..
+    [array addObject:model];
+
     NSSortDescriptor* sort = [NSSortDescriptor sortDescriptorWithKey:@"self.deadline.timeIntervalSince1970" ascending:YES];
     [array sortUsingDescriptors:@[ sort ]];
 
@@ -268,12 +286,13 @@
 
     __weak typeof(self) weakSelf = self;
     LCTodo* todo = snoozingCell.model;
+    todo.lastDeadline = todo.deadline;
     todo.deadline = date;
     todo.status = LCTodoStatusSnoozed;
     [dataManager modifyTodo:todo complete:^(bool succeed) {
         snoozingCell = nil;
         if (succeed)
-            [weakSelf reorderTodo:todo needsToInsert:NO];
+            [weakSelf reorderTodo:todo];
     }];
 
     return YES;
