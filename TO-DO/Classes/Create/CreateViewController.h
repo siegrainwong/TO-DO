@@ -18,4 +18,8 @@
  *  用于回传刚提交成功的数据
  */
 @property (nonatomic, readwrite, copy) void (^createViewControllerDidFinishCreate)(LCTodo* model);
+/**
+ *  在该控制器引发viewDidDisappear时引发
+ */
+@property (nonatomic, readwrite, copy) void (^createViewControllerDidDisappear)();
 @end

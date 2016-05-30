@@ -19,6 +19,7 @@
 {
     [super viewDidLoad];
     user = [LCUser currentUser];
+    releaseWhileDisappear = YES;
 
     [self setupView];
     [self bindConstraints];
@@ -85,5 +86,15 @@
 - (void)hideKeyboard:(UITapGestureRecognizer*)recognizer
 {
     [self.view endEditing:YES];
+}
+#pragma mark - release
+- (void)viewDidDisappear:(BOOL)animated
+{
+    [super viewDidDisappear:animated];
+
+    if (!releaseWhileDisappear) return;
+
+    [headerView removeFromSuperview];
+    headerView = nil;
 }
 @end

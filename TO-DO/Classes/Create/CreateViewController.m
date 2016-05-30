@@ -303,6 +303,8 @@ didFinishPickingMediaWithInfo:(NSDictionary<NSString*, id>*)info
 
     if (!releaseWhileDisappear) return;
 
+    if (_createViewControllerDidDisappear) _createViewControllerDidDisappear();
+
     [self.view removeFromSuperview];
     self.view = nil;
 

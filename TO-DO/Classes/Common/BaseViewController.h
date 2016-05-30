@@ -7,8 +7,8 @@
 //
 
 #import "HeaderView.h"
-#import "Masonry.h"
 #import "LCUser.h"
+#import "Masonry.h"
 #import "TodoHelper.h"
 #import <UIKit/UIKit.h>
 
@@ -24,6 +24,10 @@
 	 *  当前用户
 	 */
     LCUser* user;
+    /**
+	 *  在viewDidDisappear时释放该视图
+	 */
+    __block BOOL releaseWhileDisappear;
 }
 - (void)setupView;
 - (void)bindConstraints;

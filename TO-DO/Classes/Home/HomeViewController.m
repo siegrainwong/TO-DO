@@ -24,6 +24,10 @@
 #import "UITableView+Extension.h"
 #import "UITableView+SDAutoTableViewCellHeight.h"
 
+// TODO: 滚动到一定高度后需要修改导航栏颜色为不透明，同样需要调整状态栏字体颜色
+// TODO: 搜索功能
+// Mark: 再不能全局变量都用成员变量了，内存释放太操心
+
 @implementation HomeViewController {
     HSDatePickerViewController* datePickerViewController;
     HomeDataManager* dataManager;
@@ -37,7 +41,7 @@
 #pragma mark - localization
 - (void)localizeStrings
 {
-    headerView.titleLabel.text = [NSString stringWithFormat:@"%ld %@", dataCount, NSLocalizedString(@"Tasks", nil)];
+    headerView.titleLabel.text = [NSString stringWithFormat:@"%ld %@", (long)dataCount, NSLocalizedString(@"Tasks", nil)];
 }
 #pragma mark - initial
 - (void)viewDidLoad
@@ -81,10 +85,14 @@
     [headerView setHeaderViewDidPressAvatarButton:^{ [LCUser logOut]; }];
     __weak typeof(self) weakSelf = self;
     [headerView setHeaderViewDidPressRightOperationButton:^{
+        releaseWhileDisappear = NO;
         CreateViewController* createViewController = [[CreateViewController alloc] init];
         [createViewController setCreateViewControllerDidFinishCreate:^(LCTodo* model) {
             model.photoImage = [model.photoImage imageAddCornerWithRadius:model.photoImage.size.width / 2 andSize:model.photoImage.size];
             [weakSelf insertTodo:model];
+        }];
+        [createViewController setCreateViewControllerDidDisappear:^{
+            releaseWhileDisappear = YES;
         }];
         [weakSelf.navigationController pushViewController:createViewController animated:YES];
     }];
@@ -113,7 +121,8 @@
 {
     __weak typeof(self) weakSelf = self;
     [dataManager retrieveDataWithUser:user complete:^(bool succeed, NSDictionary* data, NSInteger count) {
-        dataDictionary = [NSMutableDictionary dictionaryWithDictionary:data];
+        __strong typeof(self) strongSelf = weakSelf;
+        strongSelf->dataDictionary = [NSMutableDictionary dictionaryWithDictionary:data];
         dataCount = count;
         [weakSelf reloadData];
     }];
@@ -181,31 +190,35 @@
 - (void)setupCellEvents:(TodoTableViewCell*)cell
 {
     __weak typeof(self) weakSelf = self;
-    __block TodoTableViewCell* blockCell = cell;
     if (!cell.todoDidComplete) {
         [cell setTodoDidComplete:^BOOL(TodoTableViewCell* sender) {
-            NSLog(@"didComplete");
-            [blockCell setUserInteractionEnabled:NO];
+            __strong typeof(self) strongSelf = weakSelf;
+            [sender setUserInteractionEnabled:NO];
             sender.model.isCompleted = YES;
-            [dataManager modifyTodo:sender.model complete:^(bool succeed) {
-                [blockCell setUserInteractionEnabled:YES];
-                if (succeed) [weakSelf removeTodo:sender.model atIndexPath:[tableView indexPathForCell:sender]];
+            [strongSelf->dataManager modifyTodo:sender.model complete:^(bool succeed) {
+                [sender setUserInteractionEnabled:YES];
+                if (succeed) [weakSelf removeTodo:sender.model atIndexPath:[strongSelf->tableView indexPathForCell:sender]];
             }];
             return NO;
         }];
     }
     if (!cell.todoDidSnooze) {
         [cell setTodoDidSnooze:^BOOL(TodoTableViewCell* sender) {
-            snoozingCell = sender;
+            __strong typeof(self) strongSelf = weakSelf;
+            [sender setUserInteractionEnabled:NO];
+            strongSelf->snoozingCell = sender;
             [weakSelf showDatetimePicker:sender.model.deadline];
             return YES;
         }];
     }
     if (!cell.todoDidRemove) {
         [cell setTodoDidRemove:^BOOL(TodoTableViewCell* sender) {
+            __strong typeof(self) strongSelf = weakSelf;
+            [sender setUserInteractionEnabled:NO];
             sender.model.isDeleted = YES;
-            [dataManager modifyTodo:sender.model complete:^(bool succeed) {
-                if (succeed) [weakSelf removeTodo:sender.model atIndexPath:[tableView indexPathForCell:sender]];
+            [strongSelf->dataManager modifyTodo:sender.model complete:^(bool succeed) {
+                [sender setUserInteractionEnabled:YES];
+                if (succeed) [weakSelf removeTodo:sender.model atIndexPath:[strongSelf->tableView indexPathForCell:sender]];
             }];
             return YES;
         }];
@@ -279,6 +292,8 @@
 #pragma mark - date time picker delegate
 - (void)showDatetimePicker:(NSDate*)deadline
 {
+    releaseWhileDisappear = NO;
+
     datePickerViewController.minDate = [[NSDate date] dateByAddingTimeInterval:-60];
     if ([deadline timeIntervalSince1970] > [datePickerViewController.minDate timeIntervalSince1970])
         datePickerViewController.minDate = deadline;
@@ -287,6 +302,8 @@
 }
 - (BOOL)hsDatePickerPickedDate:(NSDate*)date
 {
+    releaseWhileDisappear = YES;
+
     if ([date timeIntervalSince1970] < [datePickerViewController.minDate timeIntervalSince1970])
         date = [NSDate date];
 
@@ -296,7 +313,9 @@
     todo.deadline = date;
     todo.status = LCTodoStatusSnoozed;
     [dataManager modifyTodo:todo complete:^(bool succeed) {
-        snoozingCell = nil;
+        __strong typeof(self) strongSelf = weakSelf;
+        [strongSelf->snoozingCell setUserInteractionEnabled:YES];
+        strongSelf->snoozingCell = nil;
         if (succeed)
             [weakSelf reorderTodo:todo];
     }];
@@ -304,4 +323,22 @@
     return YES;
 }
 #pragma mark - scrollview
+#pragma mark - release
+- (void)viewDidDisappear:(BOOL)animated
+{
+    [super viewDidDisappear:animated];
+
+    if (!releaseWhileDisappear) return;
+
+    [tableView removeFromSuperview];
+    tableView = nil;
+
+    [self.view removeFromSuperview];
+    self.view = nil;
+    [self removeFromParentViewController];
+}
+- (void)dealloc
+{
+    NSLog(@"%s", __func__);
+}
 @end

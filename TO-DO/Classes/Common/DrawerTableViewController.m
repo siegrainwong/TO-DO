@@ -7,6 +7,7 @@
 //
 
 #import "AppDelegate.h"
+#import "CalendarViewController.h"
 #import "DrawerTableViewCell.h"
 #import "DrawerTableViewController.h"
 #import "HomeViewController.h"
@@ -36,7 +37,10 @@ static NSString* const kDrawerCellReuseIdentifier = @"Identifier";
     dataArray = @[
         @{ kDataKeyTitle : NSLocalizedString(@"Home", nil),
             kDataKeyIcon : @"",
-            kDataKeyClass : [HomeViewController class] }
+            kDataKeyClass : [HomeViewController class] },
+        @{ kDataKeyTitle : NSLocalizedString(@"Calendar", nil),
+            kDataKeyIcon : @"",
+            kDataKeyClass : [CalendarViewController class] }
     ];
 }
 #pragma mark - initial

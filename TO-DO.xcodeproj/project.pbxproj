@@ -85,6 +85,8 @@
 		F9E9534F1CF8708C0046E1C9 /* HSDatePickerViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = F9E9534D1CF8708C0046E1C9 /* HSDatePickerViewController.xib */; };
 		F9E953521CF875B70046E1C9 /* HSDatePickerViewController+Configure.m in Sources */ = {isa = PBXBuildFile; fileRef = F9E953511CF875B70046E1C9 /* HSDatePickerViewController+Configure.m */; };
 		F9F723461CEEF40200128254 /* NSNotificationCenter+Extension.m in Sources */ = {isa = PBXBuildFile; fileRef = F9F723451CEEF40200128254 /* NSNotificationCenter+Extension.m */; };
+		F9FB96C41CFC74C6002581A0 /* CalendarViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = F9FB96C31CFC74C6002581A0 /* CalendarViewController.m */; };
+		F9FB96C71CFC77D1002581A0 /* calendar header bg.png in Resources */ = {isa = PBXBuildFile; fileRef = F9FB96C61CFC77D1002581A0 /* calendar header bg.png */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -252,6 +254,9 @@
 		F9E953511CF875B70046E1C9 /* HSDatePickerViewController+Configure.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "HSDatePickerViewController+Configure.m"; sourceTree = "<group>"; };
 		F9F723441CEEF40200128254 /* NSNotificationCenter+Extension.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSNotificationCenter+Extension.h"; sourceTree = "<group>"; };
 		F9F723451CEEF40200128254 /* NSNotificationCenter+Extension.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSNotificationCenter+Extension.m"; sourceTree = "<group>"; };
+		F9FB96C21CFC74C6002581A0 /* CalendarViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CalendarViewController.h; sourceTree = "<group>"; };
+		F9FB96C31CFC74C6002581A0 /* CalendarViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CalendarViewController.m; sourceTree = "<group>"; };
+		F9FB96C61CFC77D1002581A0 /* calendar header bg.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "calendar header bg.png"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -430,6 +435,7 @@
 				F94CA1E91CE2F91F0006904F /* 1. Login */,
 				F93BC14A1CE5E961000A34C5 /* 2. Home */,
 				F9BCE5331CEDB888003376C7 /* 3. Create */,
+				F9FB96C51CFC77D1002581A0 /* 4. Calendar */,
 				F943885C1CF5A2C800E44379 /* drawerbg.png */,
 			);
 			path = Images;
@@ -739,6 +745,7 @@
 				F94CA2501CE2FB940006904F /* Login */,
 				F93BC1491CE5E813000A34C5 /* Home */,
 				F9BCE52E1CEDB438003376C7 /* Create */,
+				F9FB96C01CFC739C002581A0 /* Calendar */,
 			);
 			name = Classes;
 			sourceTree = "<group>";
@@ -801,6 +808,31 @@
 				F9E9534D1CF8708C0046E1C9 /* HSDatePickerViewController.xib */,
 			);
 			path = HSDatePickerViewController;
+			sourceTree = "<group>";
+		};
+		F9FB96C01CFC739C002581A0 /* Calendar */ = {
+			isa = PBXGroup;
+			children = (
+				F9FB96C11CFC73B9002581A0 /* Controllers */,
+			);
+			path = Calendar;
+			sourceTree = "<group>";
+		};
+		F9FB96C11CFC73B9002581A0 /* Controllers */ = {
+			isa = PBXGroup;
+			children = (
+				F9FB96C21CFC74C6002581A0 /* CalendarViewController.h */,
+				F9FB96C31CFC74C6002581A0 /* CalendarViewController.m */,
+			);
+			path = Controllers;
+			sourceTree = "<group>";
+		};
+		F9FB96C51CFC77D1002581A0 /* 4. Calendar */ = {
+			isa = PBXGroup;
+			children = (
+				F9FB96C61CFC77D1002581A0 /* calendar header bg.png */,
+			);
+			path = "4. Calendar";
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -918,6 +950,7 @@
 				F94CA1EE1CE2F91F0006904F /* mark-signup.png in Resources */,
 				F93BC14E1CE5E961000A34C5 /* header bg.png in Resources */,
 				F94CA1ED1CE2F91F0006904F /* login header bg.png in Resources */,
+				F9FB96C71CFC77D1002581A0 /* calendar header bg.png in Resources */,
 				F9A723811CDDF8A800E3BC8E /* Assets.xcassets in Resources */,
 				F99A902E1CE30CB600EC0762 /* Localizable.strings in Resources */,
 				F94CA1EF1CE2F91F0006904F /* mark.png in Resources */,
@@ -1016,6 +1049,7 @@
 				F94F2F371CF2D71200128A3A /* TodoTableViewCell.m in Sources */,
 				F9331D861CF0A97200B36474 /* LCUser.m in Sources */,
 				F92B876D1CE368B300D15EAE /* UIView+Extentsion.m in Sources */,
+				F9FB96C41CFC74C6002581A0 /* CalendarViewController.m in Sources */,
 				F9331D851CF0A97200B36474 /* LCTodo.m in Sources */,
 				F961B55B1CF42DED0096DAF4 /* HomeDataManager.m in Sources */,
 				F94CA2451CE2FA9E0006904F /* UITextField+BottomBorder.m in Sources */,

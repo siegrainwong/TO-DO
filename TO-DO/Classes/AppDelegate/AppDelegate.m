@@ -105,7 +105,6 @@
         JTNavigationController* navigationController = [[JTNavigationController alloc] initWithRootViewController:viewController];
         drawerViewController.centerViewController = navigationController;
     }
-
     self.window.rootViewController = isNavigation ? drawerViewController : viewController;
 }
 #pragma mark - JVDrawer
