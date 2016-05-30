@@ -256,8 +256,9 @@
     if (!array) array = dataDictionary[deadline] = [NSMutableArray new];
     if (![dateArray containsObject:deadline]) [dateArray addObject:deadline];
 
-    if (model.lastDeadline) {
-        // 移除老位置的数据
+    // 检查是否是同一天，是同一天只需要重新排序即可
+    // 不是则需要移除当前位置的 cell，加到另一个 section 中
+    if (model.lastDeadline && ![model.lastDeadline.stringInYearMonthDay isEqualToString:deadline]) {
         NSString* lastDeadline = model.lastDeadline.stringInYearMonthDay;
         NSMutableArray<LCTodo*>* lastDateArray = dataDictionary[lastDeadline];
         [lastDateArray removeObject:model];
@@ -277,6 +278,7 @@
 #pragma mark - date time picker delegate
 - (void)showDatetimePicker
 {
+    datePickerViewController.minDate = [[NSDate date] dateByAddingTimeInterval:-1];
     [self presentViewController:datePickerViewController animated:YES completion:nil];
 }
 - (BOOL)hsDatePickerPickedDate:(NSDate*)date
