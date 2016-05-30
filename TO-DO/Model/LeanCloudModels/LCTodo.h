@@ -11,42 +11,47 @@
 #import <Foundation/Foundation.h>
 
 typedef NS_ENUM(NSInteger, LCTodoStatus) {
-    LCTodoStatusDeleted = -1,
-    LCTodoStatusNotComplete,
-    LCTodoStatusCompleted,
+    /* 普通 */
+    LCTodoStatusNormal,
+    /* 延迟 */
     LCTodoStatusSnoozed,
+    /* 过期 */
     LCTodoStatusOverdue
 };
 
 @interface LCTodo : AVObject<AVSubclassing>
-//标题
+/* 标题 */
 @property (nonatomic, readwrite, strong) NSString* title;
-//描述（被内置字段占用）
+/* 描述（被内置字段占用） */
 @property (nonatomic, readwrite, strong) NSString* sgDescription;
-//截止事件
+/* 截止事件 */
 @property (nonatomic, readwrite, strong) NSDate* deadline;
-//位置
+/* 位置 */
 @property (nonatomic, readwrite, strong) NSString* location;
-//用户
+/* 用户 */
 @property (nonatomic, readwrite, strong) LCUser* user;
-//状态
+/* 状态 */
 @property (nonatomic, readwrite, assign) LCTodoStatus status;
-//照片
+/* 是否删除 */
+@property (nonatomic, readwrite, assign) BOOL isDeleted;
+/* 是否完成 */
+@property (nonatomic, readwrite, assign) BOOL isCompleted;
+/* 照片 */
 @property (nonatomic, readwrite, strong) NSString* photo;
 
 /**
  *  未实现
  */
-//相关人员
+/* 相关人员 */
 @property (nonatomic, readwrite, copy) NSSet<LCUser*>* relatedPersonnel;
-//坐标
+/* 坐标 */
 @property (nonatomic, readwrite, strong) NSString* coordinate;
 
 /**
  *  辅助属性
  */
-//照片实例
+/* 照片实例 */
 @property (nonatomic, readwrite, strong) UIImage* photoImage;
-//缓存表格单元高度
+/* 缓存表格单元高度 */
 @property (nonatomic, readwrite, assign) CGFloat cellHeight;
 @end

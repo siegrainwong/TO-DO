@@ -8,6 +8,7 @@
 
 #import "CreateViewController.h"
 #import "DateUtil.h"
+#import "HSDatePickerViewController+Configure.h"
 #import "HomeDataManager.h"
 #import "HomeViewController.h"
 #import "LCTodo.h"
@@ -31,6 +32,7 @@
     NSMutableArray* dateArray;
 
     NSInteger dataCount;
+    TodoTableViewCell* snoozingCell;
 }
 #pragma mark - localization
 - (void)localizeStrings
@@ -87,6 +89,9 @@
         [weakSelf.navigationController pushViewController:createViewController animated:YES];
     }];
     tableView.tableHeaderView = headerView;
+
+    datePickerViewController = [HSDatePickerViewController new];
+    [datePickerViewController configure];
 }
 - (void)bindConstraints
 {
@@ -165,10 +170,14 @@
 - (void)setupCellEvents:(TodoTableViewCell*)cell
 {
     __weak typeof(self) weakSelf = self;
+    __block TodoTableViewCell* blockCell = cell;
     if (!cell.todoDidComplete) {
         [cell setTodoDidComplete:^BOOL(TodoTableViewCell* sender) {
-            sender.model.status = LCTodoStatusCompleted;
+            NSLog(@"didComplete");
+            [blockCell setUserInteractionEnabled:NO];
+            sender.model.isCompleted = YES;
             [dataManager modifyTodo:sender.model complete:^(bool succeed) {
+                [blockCell setUserInteractionEnabled:YES];
                 if (succeed) [weakSelf removeTodo:sender.model atIndexPath:[tableView indexPathForCell:sender]];
             }];
             return NO;
@@ -176,12 +185,14 @@
     }
     if (!cell.todoDidSnooze) {
         [cell setTodoDidSnooze:^BOOL(TodoTableViewCell* sender) {
+            snoozingCell = sender;
+            [weakSelf showDatetimePicker];
             return YES;
         }];
     }
     if (!cell.todoDidRemove) {
         [cell setTodoDidRemove:^BOOL(TodoTableViewCell* sender) {
-            sender.model.status = LCTodoStatusDeleted;
+            sender.model.isDeleted = YES;
             [dataManager modifyTodo:sender.model complete:^(bool succeed) {
                 if (succeed) [weakSelf removeTodo:sender.model atIndexPath:[tableView indexPathForCell:sender]];
             }];
@@ -207,6 +218,7 @@
 }
 - (void)removeTodo:(LCTodo*)model atIndexPath:(NSIndexPath*)indexPath
 {
+    // FIXME: 多次请求会异常
     NSString* date = model.deadline.stringInYearMonthDay;
     NSMutableArray<LCTodo*>* array = dataDictionary[date];
     [array removeObject:model];
@@ -220,25 +232,51 @@
     }
 
     dataCount--;
-    // Mark:光用 deleteRows 方法删除该 Section 最后一行时，上一行会冒出一条迷之分割线，所以必须调用 tableview 的 reloadData
+    // Mark:光用 deleteRows 方法删除该 Section 最后一行时，上一行会冒出一条迷の分割线，所以必须 reloadData
     [self reloadData];
 }
 - (void)insertTodo:(LCTodo*)model
 {
+    [self reorderTodo:model needsToInsert:YES];
+}
+- (void)reorderTodo:(LCTodo*)model needsToInsert:(BOOL)needsToInsert
+{
     NSString* dateString = model.deadline.stringInYearMonthDay;
+
     NSMutableArray<LCTodo*>* array = dataDictionary[dateString];
     if (!array) array = dataDictionary[dateString] = [NSMutableArray new];
+    if (![dateArray containsObject:dateString]) [dateArray addObject:dateString];
 
-    [array addObject:model];
-    NSSortDescriptor* sort = [NSSortDescriptor sortDescriptorWithKey:@"self.deadline.timeIntervalSince1970"
-                                                           ascending:YES];
+    if (needsToInsert) {
+        [array addObject:model];
+        dataCount++;
+    }
+    NSSortDescriptor* sort = [NSSortDescriptor sortDescriptorWithKey:@"self.deadline.timeIntervalSince1970" ascending:YES];
     [array sortUsingDescriptors:@[ sort ]];
 
-    if (![dateArray containsObject:dateString])
-        [dateArray addObject:dateString];
-
-    dataCount++;
     [self reloadData];
+}
+#pragma mark - date time picker delegate
+- (void)showDatetimePicker
+{
+    [self presentViewController:datePickerViewController animated:YES completion:nil];
+}
+- (BOOL)hsDatePickerPickedDate:(NSDate*)date
+{
+    if ([date timeIntervalSince1970] < [datePickerViewController.minDate timeIntervalSince1970])
+        date = [NSDate date];
+
+    __weak typeof(self) weakSelf = self;
+    LCTodo* todo = snoozingCell.model;
+    todo.deadline = date;
+    todo.status = LCTodoStatusSnoozed;
+    [dataManager modifyTodo:todo complete:^(bool succeed) {
+        snoozingCell = nil;
+        if (succeed)
+            [weakSelf reorderTodo:todo needsToInsert:NO];
+    }];
+
+    return YES;
 }
 #pragma mark - scrollview
 @end

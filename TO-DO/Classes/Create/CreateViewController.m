@@ -191,7 +191,9 @@
         todo.location = locationTextField.field.text;
         todo.photoImage = selectedImage;
         todo.user = user;
-        todo.status = LCTodoStatusNotComplete;
+        todo.status = LCTodoStatusNormal;
+        todo.isCompleted = NO;
+        todo.isDeleted = NO;
 
         [dataManager handleCommit:todo complete:^(bool succeed) {
             [weakSelf enableView:YES];

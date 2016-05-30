@@ -15,6 +15,8 @@
 @dynamic location;
 @dynamic user;
 @dynamic status;
+@dynamic isDeleted;
+@dynamic isCompleted;
 @dynamic photo;
 
 + (NSString*)parseClassName

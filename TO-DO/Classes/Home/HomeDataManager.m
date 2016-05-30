@@ -19,7 +19,8 @@
 {
     AVQuery* query = [AVQuery queryWithClassName:[LCTodo parseClassName]];
     [query whereKey:@"user" equalTo:user];
-    [query whereKey:@"status" containedIn:@[ @(LCTodoStatusNotComplete), @(LCTodoStatusOverdue), @(LCTodoStatusSnoozed) ]];
+    [query whereKey:@"isDeleted" equalTo:@(NO)];
+    [query whereKey:@"isCompleted" equalTo:@(NO)];
     // 首页不筛时间了，显示所有未完成的待办事项
     // NSDate* today = [DateUtil dateInYearMonthDay:[NSDate date]];
     // [query whereKey:@"deadline" greaterThanOrEqualTo:[today dateByAddingTimeInterval:-kTimeIntervalDay]];
