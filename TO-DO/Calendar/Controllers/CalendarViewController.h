@@ -8,7 +8,7 @@
 
 #import "BaseViewController.h"
 #import "FSCalendar.h"
+#import "TodoTableViewController.h"
 
-@interface CalendarViewController : BaseViewController<Localized, FSCalendarDelegate, FSCalendarDelegateAppearance, FSCalendarDataSource, UITableViewDelegate, UITableViewDataSource>
-
+@interface CalendarViewController : BaseViewController<Localized, FSCalendarDelegate, FSCalendarDelegateAppearance, FSCalendarDataSource,TodoTableViewControllerDelegate>
 @end

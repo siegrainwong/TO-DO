@@ -72,7 +72,7 @@ TodoTableViewController ()
     self.tableView.delegate = self;
     self.tableView.showsHorizontalScrollIndicator = NO;
     self.tableView.showsVerticalScrollIndicator = NO;
-    self.tableView.sectionHeaderHeight = 15;
+    self.tableView.sectionHeaderHeight = _style == TodoTableViewControllerStyleWithoutSection ? 0 : 15;
     [self.tableView registerClass:[TodoTableViewCell class] forCellReuseIdentifier:kTodoIdentifierArray[TodoIdentifierNormal]];
     self.tableView.separatorInset = UIEdgeInsetsMake(0, kScreenHeight * kCellHorizontalInsetsMuiltipledByHeight, 0, kScreenHeight * kCellHorizontalInsetsMuiltipledByHeight);
 
@@ -84,7 +84,7 @@ TodoTableViewController ()
 - (void)retrieveDataWithUser:(LCUser*)user date:(NSDate*)date
 {
     __weak typeof(self) weakSelf = self;
-    [_dataManager retrieveDataWithUser:user date:nil complete:^(bool succeed, NSDictionary* data, NSInteger count) {
+    [_dataManager retrieveDataWithUser:user date:date complete:^(bool succeed, NSDictionary* data, NSInteger count) {
         weakSelf.dataDictionary = [NSMutableDictionary dictionaryWithDictionary:data];
         weakSelf.dataCount = count;
         [weakSelf reloadData];
@@ -137,7 +137,7 @@ TodoTableViewController ()
 #pragma mark - tableview datasource
 - (NSInteger)numberOfSectionsInTableView:(UITableView*)tableView
 {
-    if (_style == TodoTableViewControllerStyleWithoutSection) return 0;
+    //    if (_style == TodoTableViewControllerStyleWithoutSection) return 0;
     return _dateArray.count;
 }
 - (UIView*)tableView:(UITableView*)tableView viewForHeaderInSection:(NSInteger)section

@@ -9,29 +9,16 @@
 #import "CalendarViewController.h"
 #import "CreateViewController.h"
 #import "DateUtil.h"
-#import "HSDatePickerViewController+Configure.h"
-#import "HomeViewController.h"
 #import "LCTodo.h"
 #import "Macros.h"
 #import "NSDate+Extension.h"
-#import "TodoDataManager.h"
-#import "TodoHeaderCell.h"
-#import "TodoTableViewCell.h"
-#import "UIButton+WebCache.h"
 #import "UIImage+Extension.h"
-#import "UIImage+Qiniu.h"
-#import "UINavigationController+Transparent.h"
-#import "UIScrollView+Extension.h"
-#import "UITableView+Extension.h"
-#import "UITableView+SDAutoTableViewCellHeight.h"
 
 @interface
 CalendarViewController ()
-@property (nonatomic, readwrite, strong) UITableView* tableView;
 @property (nonatomic, readwrite, strong) FSCalendar* calendar;
+@property (nonatomic, readwrite, strong) TodoTableViewController* todoTableViewController;
 
-@property (nonatomic, readwrite, strong) TodoDataManager* dataManager;
-@property (nonatomic, readwrite, strong) NSMutableArray<LCTodo*>* dataArray;
 @end
 
 // TODO:日历收缩
@@ -41,16 +28,13 @@ CalendarViewController ()
 #pragma mark - initial
 - (void)viewDidLoad
 {
-    _dataArray = [NSMutableArray new];
-    _dataManager = [TodoDataManager new];
-
     [super viewDidLoad];
+
+    [self retrieveDataFromServer:[NSDate date]];
 }
 - (void)viewDidLayoutSubviews
 {
     [super viewDidLayoutSubviews];
-
-    [_tableView ignoreNavigationHeight];
 }
 - (void)setupView
 {
@@ -58,16 +42,10 @@ CalendarViewController ()
 
     self.view.backgroundColor = [UIColor whiteColor];
 
-    _tableView = [UITableView new];
-    _tableView.bounces = NO;
-    _tableView.dataSource = self;
-    _tableView.delegate = self;
-    _tableView.showsHorizontalScrollIndicator = NO;
-    _tableView.showsVerticalScrollIndicator = NO;
-    _tableView.sectionHeaderHeight = 15;
-    [_tableView registerClass:[TodoTableViewCell class] forCellReuseIdentifier:kTodoIdentifierArray[TodoIdentifierNormal]];
-    _tableView.separatorInset = UIEdgeInsetsMake(0, kScreenHeight * kCellHorizontalInsetsMuiltipledByHeight, 0, kScreenHeight * kCellHorizontalInsetsMuiltipledByHeight);
-    [self.view addSubview:_tableView];
+    _todoTableViewController = [TodoTableViewController todoTableViewControllerWithStyle:TodoTableViewControllerStyleWithoutSection];
+    _todoTableViewController.delegate = self;
+    [self addChildViewController:_todoTableViewController];
+    [self.view addSubview:_todoTableViewController.tableView];
 
     self.headerView = [HeaderView headerViewWithAvatarPosition:HeaderAvatarPositionCenter titleAlignement:HeaderTitleAlignementCenter];
     [self.headerView.avatarButton setHidden:YES];
@@ -102,9 +80,7 @@ CalendarViewController ()
     _calendar.appearance.selectionColor = [UIColor whiteColor];
     _calendar.appearance.titleSelectionColor = [TodoHelper themeColorNormal];
     _calendar.appearance.todayColor = [TodoHelper themeColorNormal];
-    NSDate* now = [NSDate date];
-    [_calendar selectDate:now];
-    [self retrieveDataFromServer:now];
+    [_calendar selectDate:[NSDate date]];
     [self.headerView addSubview:_calendar];
 
     [self.headerView bringSubviewToFront:self.headerView.rightOperationButton];
@@ -126,7 +102,7 @@ CalendarViewController ()
         make.height.offset(kScreenHeight * 0.47);
     }];
 
-    [_tableView mas_makeConstraints:^(MASConstraintMaker* make) {
+    [_todoTableViewController.tableView mas_makeConstraints:^(MASConstraintMaker* make) {
         make.top.equalTo(self.headerView.mas_bottom);
         make.bottom.right.left.offset(0);
     }];
@@ -134,47 +110,7 @@ CalendarViewController ()
 #pragma mark - retrieve data
 - (void)retrieveDataFromServer:(NSDate*)date
 {
-    [_calendar setUserInteractionEnabled:NO];
-    __weak typeof(self) weakSelf = self;
-    [_dataManager retrieveDataWithUser:self.user date:date complete:^(bool succeed, NSDictionary* dataDictionary, NSInteger dataCount) {
-        [_calendar setUserInteractionEnabled:YES];
-        if (!succeed || !dataDictionary.count) return;
-
-        weakSelf.dataArray = [NSMutableArray arrayWithArray:dataDictionary.allValues[0]];
-        [weakSelf.tableView reloadData];
-    }];
-}
-#pragma mark - tableview
-#pragma mark - tableview delegate
-- (CGFloat)tableView:(UITableView*)tableView estimatedHeightForRowAtIndexPath:(NSIndexPath*)indexPath
-{
-    return [self tableView:tableView heightForRowAtIndexPath:indexPath];
-}
-- (CGFloat)tableView:(UITableView*)tableView heightForRowAtIndexPath:(NSIndexPath*)indexPath
-{
-    LCTodo* model = _dataArray[indexPath.row];
-    if (!model.cellHeight) {
-        model.cellHeight = [tableView cellHeightForIndexPath:indexPath model:model keyPath:@"model" cellClass:[TodoTableViewCell class] contentViewWidth:kScreenWidth];
-    }
-
-    return model.cellHeight;
-}
-#pragma mark - tableview datasource
-- (NSInteger)tableView:(UITableView*)tableView numberOfRowsInSection:(NSInteger)section
-{
-    return _dataArray.count;
-}
-- (UITableViewCell*)tableView:(UITableView*)tableView cellForRowAtIndexPath:(NSIndexPath*)indexPath
-{
-    TodoTableViewCell* cell = [tableView dequeueReusableCellWithIdentifier:kTodoIdentifierArray[TodoIdentifierNormal] forIndexPath:indexPath];
-    [self configureCell:cell atIndexPath:indexPath];
-    return cell;
-}
-- (void)configureCell:(TodoTableViewCell*)cell atIndexPath:(NSIndexPath*)indexPath
-{
-    LCTodo* model = _dataArray[indexPath.row];
-    //	[self setupCellEvents:cell];
-    cell.model = model;
+    [_todoTableViewController retrieveDataWithUser:self.user date:date];
 }
 
 #pragma mark - calendar delegate

@@ -23,7 +23,7 @@
     [query whereKey:@"isDeleted" equalTo:@(NO)];
     [query whereKey:@"isCompleted" equalTo:@(NO)];
     if (date) {
-        date = [DateUtil dateInYearMonthDay:[NSDate date]];
+        date = [DateUtil dateInYearMonthDay:date];
         [query whereKey:@"deadline" greaterThanOrEqualTo:date];
         [query whereKey:@"deadline" lessThanOrEqualTo:[date dateByAddingTimeInterval:kTimeIntervalDay]];
     }

@@ -16,6 +16,7 @@ typedef NS_ENUM(NSInteger, TodoTableViewControllerStyle) {
 };
 
 @protocol TodoTableViewControllerDelegate<NSObject>
+@optional
 - (void)todoTableViewControllerDidReloadData;
 @end
 
