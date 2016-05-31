@@ -114,4 +114,9 @@ HeaderView ()
 {
     if (_headerViewDidPressRightOperationButton) _headerViewDidPressRightOperationButton();
 }
+#pragma mark - release
+- (void)dealloc
+{
+    NSLog(@"%s", __func__);
+}
 @end

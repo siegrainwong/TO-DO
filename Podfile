@@ -17,5 +17,6 @@ pod 'ObjectiveRecord'
 pod 'JVFloatingDrawer'
 pod 'MGSwipeTableCell'
 pod 'ZFDragableModalTransition'
+pod 'FSCalendar'
 
 end

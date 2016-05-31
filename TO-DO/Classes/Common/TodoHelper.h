@@ -22,13 +22,13 @@ static NSInteger const kPopHeightWhenKeyboardShow = 170;
 + (UIFont*)themeFontWithSize:(CGFloat)size;
 
 /**
- *  根据状态获取按钮颜色
+ *  根据状态获取主题颜色
  *
  *  @return <#return value description#>
  */
-+ (UIColor*)buttonColorNormal;
-+ (UIColor*)buttonColorHighlighted;
-+ (UIColor*)buttonColorDisabled;
++ (UIColor*)themeColorNormal;
++ (UIColor*)themeColorHighlighted;
++ (UIColor*)themeColorDisabled;
 
 /**
  *

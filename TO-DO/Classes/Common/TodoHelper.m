@@ -21,15 +21,15 @@
     return [UIFont fontWithName:@"Avenir" size:size];
 }
 #pragma mark - color
-+ (UIColor*)buttonColorNormal
++ (UIColor*)themeColorNormal
 {
     return ColorWithRGB(0xFF3366);
 }
-+ (UIColor*)buttonColorHighlighted
++ (UIColor*)themeColorHighlighted
 {
     return ColorWithRGB(0xEE2B5B);
 }
-+ (UIColor*)buttonColorDisabled
++ (UIColor*)themeColorDisabled
 {
     return ColorWithRGB(0xFE7295);
 }

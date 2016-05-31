@@ -83,12 +83,12 @@
     containerView.backgroundColor = [UIColor whiteColor];
     [self.view addSubview:containerView];
 
-    super.headerView = [HeaderView headerViewWithAvatarPosition:HeaderAvatarPositionCenter titleAlignement:HeaderTitleAlignementCenter];
-    super.headerView.backgroundImageView.image = [UIImage imageAtResourcePath:@"create header bg"];
-    [super.headerView.rightOperationButton setImage:[UIImage imageNamed:@"photo"] forState:UIControlStateNormal];
-    [super.headerView setHeaderViewDidPressRightOperationButton:^{ [weakSelf headerViewDidPressRightOperationButton]; }];
-    super.headerView.avatarButton.hidden = YES;
-    [containerView addSubview:super.headerView];
+    self.headerView = [HeaderView headerViewWithAvatarPosition:HeaderAvatarPositionCenter titleAlignement:HeaderTitleAlignementCenter];
+    self.headerView.backgroundImageView.image = [UIImage imageAtResourcePath:@"create header bg"];
+    [self.headerView.rightOperationButton setImage:[UIImage imageNamed:@"photo"] forState:UIControlStateNormal];
+    [self.headerView setHeaderViewDidPressRightOperationButton:^{ [weakSelf headerViewDidPressRightOperationButton]; }];
+    self.headerView.avatarButton.hidden = YES;
+    [containerView addSubview:self.headerView];
 
     titleTextField = [SGTextField textField];
     titleTextField.field.font = [TodoHelper themeFontWithSize:32];
@@ -100,7 +100,7 @@
 
         // TODO: [weakSelf datetimePickerFieldDidPress];
     }];
-    [super.headerView addSubview:titleTextField];
+    [self.headerView addSubview:titleTextField];
 
     linearView = [[AutoLinearLayoutView alloc] init];
     linearView.axisVertical = YES;
@@ -142,7 +142,7 @@
         make.left.top.right.bottom.offset(0);
     }];
 
-    [super.headerView mas_makeConstraints:^(MASConstraintMaker* make) {
+    [self.headerView mas_makeConstraints:^(MASConstraintMaker* make) {
         make.top.left.offset(0);
         make.width.offset(kScreenWidth);
         make.height.offset(kScreenHeight * 0.3);
@@ -157,7 +157,7 @@
     [linearView mas_makeConstraints:^(MASConstraintMaker* make) {
         make.left.offset(20);
         make.right.offset(-20);
-        make.top.equalTo(super.headerView.mas_bottom).offset(20);
+        make.top.equalTo(self.headerView.mas_bottom).offset(20);
         make.height.offset((fieldHeight + fieldSpacing) * 3);
     }];
 
@@ -205,7 +205,7 @@
 - (void)enableView:(BOOL)isEnable
 {
     [commitButton setAnimating:!isEnable];
-    super.headerView.userInteractionEnabled = isEnable;
+    self.headerView.userInteractionEnabled = isEnable;
 }
 #pragma mark - pick picture
 - (void)headerViewDidPressRightOperationButton
@@ -226,7 +226,7 @@
 didFinishPickingMediaWithInfo:(NSDictionary<NSString*, id>*)info
 {
     selectedImage = info[UIImagePickerControllerEditedImage];
-    [super.headerView.rightOperationButton setImage:selectedImage forState:UIControlStateNormal];
+    [self.headerView.rightOperationButton setImage:selectedImage forState:UIControlStateNormal];
     [picker dismissViewControllerAnimated:true completion:nil];
     super.releaseWhileDisappear = true;
 }

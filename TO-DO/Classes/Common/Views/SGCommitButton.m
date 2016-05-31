@@ -24,11 +24,11 @@
 - (void)setup
 {
     _button = [[UIButton alloc] init];
-    [_button setBackgroundImage:[UIImage imageWithColor:[TodoHelper buttonColorNormal]]
+    [_button setBackgroundImage:[UIImage imageWithColor:[TodoHelper themeColorNormal]]
                        forState:UIControlStateNormal];
-    [_button setBackgroundImage:[UIImage imageWithColor:[TodoHelper buttonColorHighlighted]]
+    [_button setBackgroundImage:[UIImage imageWithColor:[TodoHelper themeColorHighlighted]]
                        forState:UIControlStateHighlighted];
-    [_button setBackgroundImage:[UIImage imageWithColor:[TodoHelper buttonColorDisabled]]
+    [_button setBackgroundImage:[UIImage imageWithColor:[TodoHelper themeColorDisabled]]
                        forState:UIControlStateDisabled];
     _button.titleLabel.font = [TodoHelper themeFontWithSize:14];
     [_button addTarget:self action:@selector(buttonDidPress) forControlEvents:UIControlEventTouchUpInside];

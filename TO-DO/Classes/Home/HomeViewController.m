@@ -26,6 +26,7 @@
 
 // TODO: 滚动到一定高度后需要修改导航栏颜色为不透明，同样需要调整状态栏字体颜色
 // TODO: 搜索功能
+// TODO: 待办事项展开功能
 // Mark: 再不能全局变量都用成员变量了，内存释放太操心
 
 @interface
@@ -34,8 +35,9 @@ HomeViewController ()
 @property (nonatomic, readwrite, strong) HomeDataManager* dataManager;
 @property (nonatomic, readwrite, strong) UITableView* tableView;
 @property (nonatomic, readwrite, strong) NSMutableDictionary* dataDictionary;
-@property (nonatomic, readwrite, strong) NSMutableArray* dateArray;
+@property (nonatomic, readwrite, strong) NSMutableArray<NSString*>* dateArray;
 
+@property (nonatomic, readwrite, strong) NSTimer* timer;
 @property (nonatomic, readwrite, assign) NSInteger dataCount;
 @property (nonatomic, readwrite, strong) TodoTableViewCell* snoozingCell;
 @end
@@ -44,7 +46,7 @@ HomeViewController ()
 #pragma mark - localization
 - (void)localizeStrings
 {
-    super.headerView.titleLabel.text = [NSString stringWithFormat:@"%ld %@", (long)_dataCount, NSLocalizedString(@"Tasks", nil)];
+    self.headerView.titleLabel.text = [NSString stringWithFormat:@"%ld %@", (long)_dataCount, NSLocalizedString(@"Tasks", nil)];
 }
 #pragma mark - initial
 - (void)viewDidLoad
@@ -80,26 +82,26 @@ HomeViewController ()
     _tableView.separatorInset = UIEdgeInsetsMake(0, kScreenHeight * kCellHorizontalInsetsMuiltipledByHeight, 0, kScreenHeight * kCellHorizontalInsetsMuiltipledByHeight);
     [self.view addSubview:_tableView];
 
-    super.headerView = [HeaderView headerViewWithAvatarPosition:HeaderAvatarPositionCenter titleAlignement:HeaderTitleAlignementCenter];
-    super.headerView.subtitleLabel.text = [TodoHelper localizedFormatDate:[NSDate date]];
-    [super.headerView.rightOperationButton setImage:[UIImage imageNamed:@"add"] forState:UIControlStateNormal];
-    [super.headerView.avatarButton sd_setImageWithURL:GetPictureUrl(super.user.avatar, kQiniuImageStyleSmall) forState:UIControlStateNormal];
-    super.headerView.backgroundImageView.image = [UIImage imageAtResourcePath:@"header bg"];
-    [super.headerView setHeaderViewDidPressAvatarButton:^{ [LCUser logOut]; }];
+    self.headerView = [HeaderView headerViewWithAvatarPosition:HeaderAvatarPositionCenter titleAlignement:HeaderTitleAlignementCenter];
+    self.headerView.subtitleLabel.text = [TodoHelper localizedFormatDate:[NSDate date]];
+    [self.headerView.rightOperationButton setImage:[UIImage imageNamed:@"add"] forState:UIControlStateNormal];
+    [self.headerView.avatarButton sd_setImageWithURL:GetPictureUrl(super.user.avatar, kQiniuImageStyleSmall) forState:UIControlStateNormal];
+    self.headerView.backgroundImageView.image = [UIImage imageAtResourcePath:@"header bg"];
+    [self.headerView setHeaderViewDidPressAvatarButton:^{ [LCUser logOut]; }];
     __weak typeof(self) weakSelf = self;
-    [super.headerView setHeaderViewDidPressRightOperationButton:^{
-        super.releaseWhileDisappear = NO;
+    [self.headerView setHeaderViewDidPressRightOperationButton:^{
+        weakSelf.releaseWhileDisappear = NO;
         CreateViewController* createViewController = [[CreateViewController alloc] init];
         [createViewController setCreateViewControllerDidFinishCreate:^(LCTodo* model) {
             model.photoImage = [model.photoImage imageAddCornerWithRadius:model.photoImage.size.width / 2 andSize:model.photoImage.size];
             [weakSelf insertTodo:model];
         }];
         [createViewController setCreateViewControllerDidDisappear:^{
-            super.releaseWhileDisappear = YES;
+            weakSelf.releaseWhileDisappear = YES;
         }];
         [weakSelf.navigationController pushViewController:createViewController animated:YES];
     }];
-    _tableView.tableHeaderView = super.headerView;
+    _tableView.tableHeaderView = self.headerView;
 
     _datePickerViewController = [HSDatePickerViewController new];
     [_datePickerViewController configure];
@@ -113,7 +115,7 @@ HomeViewController ()
         make.top.bottom.right.left.offset(0);
     }];
 
-    [super.headerView mas_makeConstraints:^(MASConstraintMaker* make) {
+    [self.headerView mas_makeConstraints:^(MASConstraintMaker* make) {
         make.top.left.offset(0);
         make.width.offset(kScreenWidth);
         make.height.offset(kScreenHeight * 0.6);
@@ -125,8 +127,9 @@ HomeViewController ()
     __weak typeof(self) weakSelf = self;
     [_dataManager retrieveDataWithUser:super.user complete:^(bool succeed, NSDictionary* data, NSInteger count) {
         weakSelf.dataDictionary = [NSMutableDictionary dictionaryWithDictionary:data];
-        _dataCount = count;
+        weakSelf.dataCount = count;
         [weakSelf reloadData];
+        [weakSelf setupTimer];
     }];
 }
 #pragma mark - reloadData
@@ -321,6 +324,27 @@ HomeViewController ()
     return YES;
 }
 #pragma mark - scrollview
+#pragma mark - timer to overdue
+- (void)setupTimer
+{
+    if (_timer.valid) return;
+
+    _timer = [NSTimer scheduledTimerWithTimeInterval:5 target:self selector:@selector(expireTasksWhenTimerTick) userInfo:nil repeats:YES];
+}
+- (void)expireTasksWhenTimerTick
+{
+    NSDate* today = [NSDate date].dateInYearMonthDay;
+    for (NSString* dateString in _dateArray) {
+        NSDate* date = [DateUtil stringToDate:dateString format:@"yyyy-MM-dd"];
+        // 只需要遍历今天及今天以前的任务
+        if ([date compare:today] == NSOrderedDescending) continue;
+
+        NSArray<LCTodo*>* array = _dataDictionary[dateString];
+        for (LCTodo* todo in array) {
+            if ([todo.deadline compare:[NSDate date]] == NSOrderedAscending) todo.status = LCTodoStatusOverdue;
+        }
+    }
+}
 #pragma mark - release
 - (void)viewDidDisappear:(BOOL)animated
 {
