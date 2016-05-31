@@ -42,7 +42,6 @@
     CGFloat fieldHeight;
     CGFloat fieldSpacing;
     UIImage* selectedImage;
-    BOOL releaseWhileDisappear;
     BOOL viewIsDisappearing;
     // TODO: 人物选择功能
 }
@@ -84,12 +83,12 @@
     containerView.backgroundColor = [UIColor whiteColor];
     [self.view addSubview:containerView];
 
-    headerView = [HeaderView headerViewWithAvatarPosition:HeaderAvatarPositionCenter titleAlignement:HeaderTitleAlignementCenter];
-    headerView.backgroundImageView.image = [UIImage imageAtResourcePath:@"create header bg"];
-    [headerView.rightOperationButton setImage:[UIImage imageNamed:@"photo"] forState:UIControlStateNormal];
-    [headerView setHeaderViewDidPressRightOperationButton:^{ [weakSelf headerViewDidPressRightOperationButton]; }];
-    headerView.avatarButton.hidden = YES;
-    [containerView addSubview:headerView];
+    super.headerView = [HeaderView headerViewWithAvatarPosition:HeaderAvatarPositionCenter titleAlignement:HeaderTitleAlignementCenter];
+    super.headerView.backgroundImageView.image = [UIImage imageAtResourcePath:@"create header bg"];
+    [super.headerView.rightOperationButton setImage:[UIImage imageNamed:@"photo"] forState:UIControlStateNormal];
+    [super.headerView setHeaderViewDidPressRightOperationButton:^{ [weakSelf headerViewDidPressRightOperationButton]; }];
+    super.headerView.avatarButton.hidden = YES;
+    [containerView addSubview:super.headerView];
 
     titleTextField = [SGTextField textField];
     titleTextField.field.font = [TodoHelper themeFontWithSize:32];
@@ -101,7 +100,7 @@
 
         // TODO: [weakSelf datetimePickerFieldDidPress];
     }];
-    [headerView addSubview:titleTextField];
+    [super.headerView addSubview:titleTextField];
 
     linearView = [[AutoLinearLayoutView alloc] init];
     linearView.axisVertical = YES;
@@ -143,7 +142,7 @@
         make.left.top.right.bottom.offset(0);
     }];
 
-    [headerView mas_makeConstraints:^(MASConstraintMaker* make) {
+    [super.headerView mas_makeConstraints:^(MASConstraintMaker* make) {
         make.top.left.offset(0);
         make.width.offset(kScreenWidth);
         make.height.offset(kScreenHeight * 0.3);
@@ -158,7 +157,7 @@
     [linearView mas_makeConstraints:^(MASConstraintMaker* make) {
         make.left.offset(20);
         make.right.offset(-20);
-        make.top.equalTo(headerView.mas_bottom).offset(20);
+        make.top.equalTo(super.headerView.mas_bottom).offset(20);
         make.height.offset((fieldHeight + fieldSpacing) * 3);
     }];
 
@@ -190,7 +189,7 @@
         todo.deadline = selectedDate;
         todo.location = locationTextField.field.text;
         todo.photoImage = selectedImage;
-        todo.user = user;
+        todo.user = super.user;
         todo.status = LCTodoStatusNormal;
         todo.isCompleted = NO;
         todo.isDeleted = NO;
@@ -206,7 +205,7 @@
 - (void)enableView:(BOOL)isEnable
 {
     [commitButton setAnimating:!isEnable];
-    headerView.userInteractionEnabled = isEnable;
+    super.headerView.userInteractionEnabled = isEnable;
 }
 #pragma mark - pick picture
 - (void)headerViewDidPressRightOperationButton
@@ -220,21 +219,21 @@
 {
     BOOL error = false;
     [TodoHelper pickPictureFromSource:type target:self error:&error];
-    releaseWhileDisappear = error;
+    super.releaseWhileDisappear = error;
 }
 #pragma mark - imagePicker delegate
 - (void)imagePickerController:(UIImagePickerController*)picker
 didFinishPickingMediaWithInfo:(NSDictionary<NSString*, id>*)info
 {
     selectedImage = info[UIImagePickerControllerEditedImage];
-    [headerView.rightOperationButton setImage:selectedImage forState:UIControlStateNormal];
+    [super.headerView.rightOperationButton setImage:selectedImage forState:UIControlStateNormal];
     [picker dismissViewControllerAnimated:true completion:nil];
-    releaseWhileDisappear = true;
+    super.releaseWhileDisappear = true;
 }
 - (void)imagePickerControllerDidCancel:(UIImagePickerController*)picker
 {
     [picker dismissViewControllerAnimated:true completion:nil];
-    releaseWhileDisappear = true;
+    super.releaseWhileDisappear = true;
 }
 #pragma mark - keyboard events & animation
 - (void)keyboardWillShow:(NSNotification*)notification
@@ -301,7 +300,7 @@ didFinishPickingMediaWithInfo:(NSDictionary<NSString*, id>*)info
 {
     [super viewDidDisappear:animated];
 
-    if (!releaseWhileDisappear) return;
+    if (!super.releaseWhileDisappear) return;
 
     if (_createViewControllerDidDisappear) _createViewControllerDidDisappear();
 

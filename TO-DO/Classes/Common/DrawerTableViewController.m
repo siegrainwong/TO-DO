@@ -28,13 +28,16 @@ static NSString* const kDataKeyClass = @"class";
 static CGFloat const kTableViewTopInset = 80.0;
 static NSString* const kDrawerCellReuseIdentifier = @"Identifier";
 
-@implementation DrawerTableViewController {
-    NSArray<NSDictionary*>* dataArray;
-}
+@interface
+DrawerTableViewController ()
+@property (nonatomic, readwrite, strong) NSArray<NSDictionary*>* dataArray;
+@end
+
+@implementation DrawerTableViewController
 #pragma mark - localization
 - (void)localizeStrings
 {
-    dataArray = @[
+    _dataArray = @[
         @{ kDataKeyTitle : NSLocalizedString(@"Home", nil),
             kDataKeyIcon : @"",
             kDataKeyClass : [HomeViewController class] },
@@ -69,7 +72,7 @@ static NSString* const kDrawerCellReuseIdentifier = @"Identifier";
 #pragma mark - tableview
 - (NSInteger)tableView:(UITableView*)tableView numberOfRowsInSection:(NSInteger)section
 {
-    return dataArray.count;
+    return _dataArray.count;
 }
 - (UITableViewCell*)tableView:(UITableView*)tableView cellForRowAtIndexPath:(NSIndexPath*)indexPath
 {
@@ -81,14 +84,14 @@ static NSString* const kDrawerCellReuseIdentifier = @"Identifier";
 }
 - (void)configureCell:(DrawerTableViewCell*)cell atIndexPath:(NSIndexPath*)indexPath
 {
-    NSDictionary* data = dataArray[indexPath.row];
+    NSDictionary* data = _dataArray[indexPath.row];
     [cell setTitle:data[kDataKeyTitle]];
     if ([data[kDataKeyIcon] isKindOfClass:[UIImage class]])
         [cell setIcon:data[kDataKeyIcon]];
 }
 - (void)tableView:(UITableView*)tableView didSelectRowAtIndexPath:(NSIndexPath*)indexPath
 {
-    UIViewController* destinationViewController = [dataArray[indexPath.row][kDataKeyClass] new];
+    UIViewController* destinationViewController = [_dataArray[indexPath.row][kDataKeyClass] new];
 
     [[AppDelegate globalDelegate] switchRootViewController:destinationViewController isNavigation:YES];
     [[AppDelegate globalDelegate] toggleDrawer:self animated:YES];

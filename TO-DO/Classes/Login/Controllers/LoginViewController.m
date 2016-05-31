@@ -16,13 +16,14 @@
 #import "TodoHelper.h"
 #import "UIView+SDAutoLayout.h"
 
-@implementation LoginViewController {
-    LoginView* loginView;
-    LoginDataManager* _dataManager;
+@interface
+LoginViewController ()
+@property (nonatomic, readwrite, strong) LoginView* loginView;
+@property (nonatomic, readwrite, strong) LoginDataManager* dataManager;
+@property (nonatomic, readwrite, assign) BOOL releaseWhileDisappear;
+@end
 
-    BOOL releaseWhileDisappear;
-}
-
+@implementation LoginViewController
 #pragma mark - initial
 - (void)viewDidLoad
 {
@@ -36,17 +37,17 @@
 }
 - (void)setup
 {
-    loginView = [LoginView loginView];
-    loginView.delegate = self;
-    [self.view addSubview:loginView];
+    _loginView = [LoginView loginView];
+    _loginView.delegate = self;
+    [self.view addSubview:_loginView];
 
-    [loginView mas_makeConstraints:^(MASConstraintMaker* make) {
+    [_loginView mas_makeConstraints:^(MASConstraintMaker* make) {
         make.left.right.top.bottom.offset(0);
     }];
 
     _dataManager = [[LoginDataManager alloc] init];
 
-    releaseWhileDisappear = true;
+    _releaseWhileDisappear = true;
 }
 
 #pragma mark - loginView delegate
@@ -54,15 +55,15 @@
 - (void)loginViewDidPressCommitButton:(LCUser*)user isSignUp:(BOOL)isSignUp
 {
     [_dataManager handleCommit:user
-                     isSignUp:isSignUp
-                     complete:^(bool succeed) {
-                         [loginView stopCommitAnimation];
-                         [[UIApplication sharedApplication] setNetworkActivityIndicatorVisible:NO];
-                         if (!succeed) return;
+                      isSignUp:isSignUp
+                      complete:^(bool succeed) {
+                          [_loginView stopCommitAnimation];
+                          [[UIApplication sharedApplication] setNetworkActivityIndicatorVisible:NO];
+                          if (!succeed) return;
 
-                         AppDelegate* delegate = (AppDelegate*)[UIApplication sharedApplication].delegate;
-                         [delegate switchRootViewController:[[HomeViewController alloc] init] isNavigation:YES];
-                     }];
+                          AppDelegate* delegate = (AppDelegate*)[UIApplication sharedApplication].delegate;
+                          [delegate switchRootViewController:[[HomeViewController alloc] init] isNavigation:YES];
+                      }];
 }
 #pragma mark - avatar
 - (void)loginViewDidPressAvatarButton
@@ -76,20 +77,20 @@
 {
     BOOL error = false;
     [TodoHelper pickPictureFromSource:type target:self error:&error];
-    releaseWhileDisappear = error;
+    _releaseWhileDisappear = error;
 }
 #pragma mark - imagePicker delegate
 - (void)imagePickerController:(UIImagePickerController*)picker
-  didFinishPickingMediaWithInfo:(NSDictionary<NSString*, id>*)info
+didFinishPickingMediaWithInfo:(NSDictionary<NSString*, id>*)info
 {
-    [loginView setAvatar:info[UIImagePickerControllerEditedImage]];
+    [_loginView setAvatar:info[UIImagePickerControllerEditedImage]];
     [picker dismissViewControllerAnimated:true completion:nil];
-    releaseWhileDisappear = true;
+    _releaseWhileDisappear = true;
 }
 - (void)imagePickerControllerDidCancel:(UIImagePickerController*)picker
 {
     [picker dismissViewControllerAnimated:true completion:nil];
-    releaseWhileDisappear = true;
+    _releaseWhileDisappear = true;
 }
 #pragma mark - release
 - (void)didReceiveMemoryWarning
@@ -100,21 +101,14 @@
 {
     [super viewDidDisappear:animated];
 
-    // 不能在UIImagePickerController作为TopController的时候释放
-    // 在切换RootViewController时，这个viewDidDisappear不一定会被调用...
-    if (!releaseWhileDisappear)
+    if (!_releaseWhileDisappear)
         return;
 
-    [loginView removeFromSuperview];
-    loginView = nil;
-
-    NSLog(@"%s", __func__);
+    [_loginView removeFromSuperview];
+    _loginView = nil;
 }
 - (void)dealloc
 {
-    [loginView removeFromSuperview];
-    loginView = nil;
-
     NSLog(@"%s", __func__);
 }
 @end

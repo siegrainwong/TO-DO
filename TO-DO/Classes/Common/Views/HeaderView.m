@@ -16,16 +16,19 @@ static CGFloat const kAvatarButtonSizeMultipliedByHeight = 0.16;
 static CGFloat const kRightOperationButtonSizeMultipliedByHeight = 0.1;
 static CGFloat const kTitleLabelHeight = 40;
 
-@implementation HeaderView {
-    HeaderAvatarPosition avatarPosition;
-    HeaderTitleAlignement titleAlignement;
-}
+@interface
+HeaderView ()
+@property (nonatomic, readwrite, assign) HeaderAvatarPosition avatarPosition;
+@property (nonatomic, readwrite, assign) HeaderTitleAlignement titleAlignement;
+@end
+
+@implementation HeaderView
 #pragma mark - initial
 + (instancetype)headerViewWithAvatarPosition:(HeaderAvatarPosition)avatarPosition titleAlignement:(HeaderTitleAlignement)titleAlignement
 {
     HeaderView* headerView = [[HeaderView alloc] init];
-    headerView->avatarPosition = avatarPosition;
-    headerView->titleAlignement = titleAlignement;
+    headerView.avatarPosition = avatarPosition;
+    headerView.titleAlignement = titleAlignement;
     [headerView setup];
     [headerView bindConstraints];
 
@@ -63,7 +66,7 @@ static CGFloat const kTitleLabelHeight = 40;
 {
     [_backgroundImageView mas_makeConstraints:^(MASConstraintMaker* make) {
         make.left.right.top.offset(0);
-        if (avatarPosition == HeaderAvatarPositionBottom)
+        if (_avatarPosition == HeaderAvatarPositionBottom)
             make.height.equalTo(self).multipliedBy(0.9);
         else
             make.height.equalTo(self);
@@ -78,7 +81,7 @@ static CGFloat const kTitleLabelHeight = 40;
 
     [_avatarButton mas_makeConstraints:^(MASConstraintMaker* make) {
         make.centerX.equalTo(_backgroundImageView);
-        if (avatarPosition == HeaderAvatarPositionCenter)
+        if (_avatarPosition == HeaderAvatarPositionCenter)
             make.top.offset(kScreenHeight * 0.18);
         else
             make.bottom.offset(0);
@@ -88,7 +91,7 @@ static CGFloat const kTitleLabelHeight = 40;
 
     [_titleLabel mas_makeConstraints:^(MASConstraintMaker* make) {
         make.centerX.equalTo(_backgroundImageView);
-        if (avatarPosition == HeaderAvatarPositionCenter && titleAlignement == HeaderTitleAlignementCenter)
+        if (_avatarPosition == HeaderAvatarPositionCenter && _titleAlignement == HeaderTitleAlignementCenter)
             make.top.equalTo(_avatarButton.mas_bottom).offset(5);
         else
             make.centerY.offset(-30);

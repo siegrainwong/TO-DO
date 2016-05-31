@@ -11,10 +11,13 @@
 #import "TodoHelper.h"
 #import "UIView+SDAutoLayout.h"
 
-@implementation DrawerTableViewCell {
-    UIImageView* iconImageView;
-    UILabel* titleLabel;
-}
+@interface
+DrawerTableViewCell ()
+@property (nonatomic, readwrite, strong) UIImageView* iconImageView;
+@property (nonatomic, readwrite, strong) UILabel* titleLabel;
+@end
+
+@implementation DrawerTableViewCell
 #pragma mark - initial
 - (instancetype)initWithStyle:(UITableViewCellStyle)style reuseIdentifier:(NSString*)reuseIdentifier
 {
@@ -28,23 +31,23 @@
 }
 - (void)setup
 {
-    titleLabel = [UILabel new];
-    titleLabel.font = [TodoHelper themeFontWithSize:17];
-    titleLabel.textColor = ColorWithRGB(0xDDDDDD);
-    [self.contentView addSubview:titleLabel];
+    _titleLabel = [UILabel new];
+    _titleLabel.font = [TodoHelper themeFontWithSize:17];
+    _titleLabel.textColor = ColorWithRGB(0xDDDDDD);
+    [self.contentView addSubview:_titleLabel];
 
-    iconImageView = [UIImageView new];
-    [self.contentView addSubview:iconImageView];
+    _iconImageView = [UIImageView new];
+    [self.contentView addSubview:_iconImageView];
 
-    titleLabel.sd_layout
+    _titleLabel.sd_layout
       .centerYEqualToView(self.contentView)
       .leftSpaceToView(self.contentView, 30)
       .rightSpaceToView(self.contentView, 10)
       .heightIs(20);
 
-    iconImageView.sd_layout
-      .centerYEqualToView(titleLabel)
-      .rightSpaceToView(titleLabel, 5)
+    _iconImageView.sd_layout
+      .centerYEqualToView(_titleLabel)
+      .rightSpaceToView(_titleLabel, 5)
       .widthIs(20)
       .heightEqualToWidth();
 }
@@ -69,18 +72,18 @@
         tintColor = [UIColor colorWithWhite:1.0 alpha:0.6];
     }
 
-    titleLabel.textColor = tintColor;
-    iconImageView.tintColor = tintColor;
+    _titleLabel.textColor = tintColor;
+    _iconImageView.tintColor = tintColor;
 }
 
 #pragma mark - accessors
 - (void)setTitle:(NSString*)title
 {
-    titleLabel.text = title;
+    _titleLabel.text = title;
 }
 - (void)setIcon:(UIImage*)icon
 {
-    iconImageView.image = [icon imageWithRenderingMode:UIImageRenderingModeAlwaysTemplate];
+    _iconImageView.image = [icon imageWithRenderingMode:UIImageRenderingModeAlwaysTemplate];
 }
 
 @end

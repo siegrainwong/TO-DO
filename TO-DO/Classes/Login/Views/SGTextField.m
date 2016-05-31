@@ -9,9 +9,12 @@
 #import "Macros.h"
 #import "SGTextField.h"
 
-@implementation SGTextField {
-    CALayer* underline;
-}
+@interface
+SGTextField ()
+@property (nonatomic, readwrite, strong) CALayer* underline;
+@end
+
+@implementation SGTextField
 #pragma mark - initial
 + (instancetype)textField
 {
@@ -51,15 +54,15 @@
     if (_isUnderlineHidden) return;
 
     // Mark: 在控件完成布局后添加下划线，由于控件可能会布局多次，所以要确保只添加了一次下划线
-    if (!underline) {
-        underline = [CALayer layer];
-        [self.layer addSublayer:underline];
+    if (!_underline) {
+        _underline = [CALayer layer];
+        [self.layer addSublayer:_underline];
     }
 
     CGFloat lineWidth = 1;
-    underline.frame = CGRectMake(0, self.frame.size.height - lineWidth, self.frame.size.width, lineWidth);
-    underline.borderColor = ColorWithRGB(0xDDDDDD).CGColor;
-    underline.borderWidth = lineWidth;
+    _underline.frame = CGRectMake(0, self.frame.size.height - lineWidth, self.frame.size.width, lineWidth);
+    _underline.borderColor = ColorWithRGB(0xDDDDDD).CGColor;
+    _underline.borderWidth = lineWidth;
     self.layer.masksToBounds = YES;
 }
 

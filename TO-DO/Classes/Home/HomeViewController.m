@@ -44,7 +44,7 @@ HomeViewController ()
 #pragma mark - localization
 - (void)localizeStrings
 {
-    headerView.titleLabel.text = [NSString stringWithFormat:@"%ld %@", (long)_dataCount, NSLocalizedString(@"Tasks", nil)];
+    super.headerView.titleLabel.text = [NSString stringWithFormat:@"%ld %@", (long)_dataCount, NSLocalizedString(@"Tasks", nil)];
 }
 #pragma mark - initial
 - (void)viewDidLoad
@@ -80,26 +80,26 @@ HomeViewController ()
     _tableView.separatorInset = UIEdgeInsetsMake(0, kScreenHeight * kCellHorizontalInsetsMuiltipledByHeight, 0, kScreenHeight * kCellHorizontalInsetsMuiltipledByHeight);
     [self.view addSubview:_tableView];
 
-    headerView = [HeaderView headerViewWithAvatarPosition:HeaderAvatarPositionCenter titleAlignement:HeaderTitleAlignementCenter];
-    headerView.subtitleLabel.text = [TodoHelper localizedFormatDate:[NSDate date]];
-    [headerView.rightOperationButton setImage:[UIImage imageNamed:@"add"] forState:UIControlStateNormal];
-    [headerView.avatarButton sd_setImageWithURL:GetPictureUrl(user.avatar, kQiniuImageStyleSmall) forState:UIControlStateNormal];
-    headerView.backgroundImageView.image = [UIImage imageAtResourcePath:@"header bg"];
-    [headerView setHeaderViewDidPressAvatarButton:^{ [LCUser logOut]; }];
+    super.headerView = [HeaderView headerViewWithAvatarPosition:HeaderAvatarPositionCenter titleAlignement:HeaderTitleAlignementCenter];
+    super.headerView.subtitleLabel.text = [TodoHelper localizedFormatDate:[NSDate date]];
+    [super.headerView.rightOperationButton setImage:[UIImage imageNamed:@"add"] forState:UIControlStateNormal];
+    [super.headerView.avatarButton sd_setImageWithURL:GetPictureUrl(super.user.avatar, kQiniuImageStyleSmall) forState:UIControlStateNormal];
+    super.headerView.backgroundImageView.image = [UIImage imageAtResourcePath:@"header bg"];
+    [super.headerView setHeaderViewDidPressAvatarButton:^{ [LCUser logOut]; }];
     __weak typeof(self) weakSelf = self;
-    [headerView setHeaderViewDidPressRightOperationButton:^{
-        releaseWhileDisappear = NO;
+    [super.headerView setHeaderViewDidPressRightOperationButton:^{
+        super.releaseWhileDisappear = NO;
         CreateViewController* createViewController = [[CreateViewController alloc] init];
         [createViewController setCreateViewControllerDidFinishCreate:^(LCTodo* model) {
             model.photoImage = [model.photoImage imageAddCornerWithRadius:model.photoImage.size.width / 2 andSize:model.photoImage.size];
             [weakSelf insertTodo:model];
         }];
         [createViewController setCreateViewControllerDidDisappear:^{
-            releaseWhileDisappear = YES;
+            super.releaseWhileDisappear = YES;
         }];
         [weakSelf.navigationController pushViewController:createViewController animated:YES];
     }];
-    _tableView.tableHeaderView = headerView;
+    _tableView.tableHeaderView = super.headerView;
 
     _datePickerViewController = [HSDatePickerViewController new];
     [_datePickerViewController configure];
@@ -113,7 +113,7 @@ HomeViewController ()
         make.top.bottom.right.left.offset(0);
     }];
 
-    [headerView mas_makeConstraints:^(MASConstraintMaker* make) {
+    [super.headerView mas_makeConstraints:^(MASConstraintMaker* make) {
         make.top.left.offset(0);
         make.width.offset(kScreenWidth);
         make.height.offset(kScreenHeight * 0.6);
@@ -123,7 +123,7 @@ HomeViewController ()
 - (void)retrieveDataFromServer
 {
     __weak typeof(self) weakSelf = self;
-    [_dataManager retrieveDataWithUser:user complete:^(bool succeed, NSDictionary* data, NSInteger count) {
+    [_dataManager retrieveDataWithUser:super.user complete:^(bool succeed, NSDictionary* data, NSInteger count) {
         weakSelf.dataDictionary = [NSMutableDictionary dictionaryWithDictionary:data];
         _dataCount = count;
         [weakSelf reloadData];
@@ -291,7 +291,7 @@ HomeViewController ()
 #pragma mark - date time picker delegate
 - (void)showDatetimePicker:(NSDate*)deadline
 {
-    releaseWhileDisappear = NO;
+    super.releaseWhileDisappear = NO;
 
     _datePickerViewController.minDate = [[NSDate date] dateByAddingTimeInterval:-60];
     if ([deadline timeIntervalSince1970] > [_datePickerViewController.minDate timeIntervalSince1970])
@@ -301,7 +301,7 @@ HomeViewController ()
 }
 - (BOOL)hsDatePickerPickedDate:(NSDate*)date
 {
-    releaseWhileDisappear = YES;
+    super.releaseWhileDisappear = YES;
 
     if ([date timeIntervalSince1970] < [_datePickerViewController.minDate timeIntervalSince1970])
         date = [NSDate date];
@@ -326,7 +326,7 @@ HomeViewController ()
 {
     [super viewDidDisappear:animated];
 
-    if (!releaseWhileDisappear) return;
+    if (!super.releaseWhileDisappear) return;
 
     [_tableView removeFromSuperview];
     _tableView = nil;

@@ -10,16 +10,19 @@
 #import "BaseViewController.h"
 #import "UINavigationController+Transparent.h"
 
-@implementation BaseViewController {
-    UIButton* menuButton;
-    UILabel* titleLabel;
-    UIButton* searchButton;
-}
+@interface
+BaseViewController ()
+@property (nonatomic, readwrite, strong) UIButton* menuButton;
+@property (nonatomic, readwrite, strong) UILabel* titleLabel;
+@property (nonatomic, readwrite, strong) UIButton* searchButton;
+@end
+
+@implementation BaseViewController
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-    user = [LCUser currentUser];
-    releaseWhileDisappear = YES;
+    _user = [LCUser currentUser];
+    _releaseWhileDisappear = YES;
 
     [self setupView];
     [self bindConstraints];
@@ -36,30 +39,30 @@
 {
     [self.navigationController transparentNavigationBar];
 
-    menuButton = [[UIButton alloc] init];
-    menuButton.tintColor = [UIColor whiteColor];
-    menuButton.frame = CGRectMake(0, 0, 20, 17);
-    [menuButton addTarget:self action:@selector(toggleDrawer) forControlEvents:UIControlEventTouchUpInside];
-    [menuButton setBackgroundImage:[UIImage imageNamed:@"menu"] forState:UIControlStateNormal];
+    _menuButton = [[UIButton alloc] init];
+    _menuButton.tintColor = [UIColor whiteColor];
+    _menuButton.frame = CGRectMake(0, 0, 20, 17);
+    [_menuButton addTarget:self action:@selector(toggleDrawer) forControlEvents:UIControlEventTouchUpInside];
+    [_menuButton setBackgroundImage:[UIImage imageNamed:@"menu"] forState:UIControlStateNormal];
 
     UIView* placeholderView = [[UIView alloc] init];
     placeholderView.frame = CGRectMake(0, 0, 5, 1);
 
-    titleLabel = [[UILabel alloc] init];
-    titleLabel.textColor = [UIColor whiteColor];
-    titleLabel.frame = CGRectMake(0, 0, 100, 20);
-    titleLabel.font = [TodoHelper themeFontWithSize:17];
+    _titleLabel = [[UILabel alloc] init];
+    _titleLabel.textColor = [UIColor whiteColor];
+    _titleLabel.frame = CGRectMake(0, 0, 100, 20);
+    _titleLabel.font = [TodoHelper themeFontWithSize:17];
 
-    UIBarButtonItem* menuBarButtonItem = [[UIBarButtonItem alloc] initWithCustomView:menuButton];
-    UIBarButtonItem* titleBarButtonItem = [[UIBarButtonItem alloc] initWithCustomView:titleLabel];
+    UIBarButtonItem* menuBarButtonItem = [[UIBarButtonItem alloc] initWithCustomView:_menuButton];
+    UIBarButtonItem* titleBarButtonItem = [[UIBarButtonItem alloc] initWithCustomView:_titleLabel];
     UIBarButtonItem* placeHolderBarButtonItem = [[UIBarButtonItem alloc] initWithCustomView:placeholderView];
     [self.navigationItem setLeftBarButtonItems:@[ menuBarButtonItem, placeHolderBarButtonItem, titleBarButtonItem ] animated:YES];
 
-    searchButton = [[UIButton alloc] init];
-    searchButton.tintColor = [UIColor whiteColor];
-    searchButton.frame = CGRectMake(0, 0, 20, 20);
-    [searchButton setBackgroundImage:[UIImage imageNamed:@"search"] forState:UIControlStateNormal];
-    self.navigationItem.rightBarButtonItem = [[UIBarButtonItem alloc] initWithCustomView:searchButton];
+    _searchButton = [[UIButton alloc] init];
+    _searchButton.tintColor = [UIColor whiteColor];
+    _searchButton.frame = CGRectMake(0, 0, 20, 20);
+    [_searchButton setBackgroundImage:[UIImage imageNamed:@"search"] forState:UIControlStateNormal];
+    self.navigationItem.rightBarButtonItem = [[UIBarButtonItem alloc] initWithCustomView:_searchButton];
 }
 - (void)attachGestureRecognizer
 {
@@ -80,7 +83,7 @@
 #pragma mark - navigationbar text
 - (void)setMenuTitle:(NSString*)title
 {
-    titleLabel.text = title;
+    _titleLabel.text = title;
 }
 #pragma mark - tap gesture method
 - (void)hideKeyboard:(UITapGestureRecognizer*)recognizer
@@ -92,9 +95,9 @@
 {
     [super viewDidDisappear:animated];
 
-    if (!releaseWhileDisappear) return;
+    if (!_releaseWhileDisappear) return;
 
-    [headerView removeFromSuperview];
-    headerView = nil;
+    [_headerView removeFromSuperview];
+    _headerView = nil;
 }
 @end

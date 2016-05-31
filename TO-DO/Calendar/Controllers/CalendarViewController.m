@@ -63,13 +63,13 @@
     _tableView.separatorInset = UIEdgeInsetsMake(0, kScreenHeight * kCellHorizontalInsetsMuiltipledByHeight, 0, kScreenHeight * kCellHorizontalInsetsMuiltipledByHeight);
     [self.view addSubview:_tableView];
 
-    headerView = [HeaderView headerViewWithAvatarPosition:HeaderAvatarPositionCenter titleAlignement:HeaderTitleAlignementCenter];
-    [headerView.avatarButton setHidden:YES];
-    headerView.subtitleLabel.text = [TodoHelper localizedFormatDate:[NSDate date]];
-    [headerView.rightOperationButton setImage:[UIImage imageNamed:@"add"] forState:UIControlStateNormal];
-    headerView.backgroundImageView.image = [UIImage imageAtResourcePath:@"calendar header bg"];
+    super.headerView = [HeaderView headerViewWithAvatarPosition:HeaderAvatarPositionCenter titleAlignement:HeaderTitleAlignementCenter];
+    [super.headerView.avatarButton setHidden:YES];
+    super.headerView.subtitleLabel.text = [TodoHelper localizedFormatDate:[NSDate date]];
+    [super.headerView.rightOperationButton setImage:[UIImage imageNamed:@"add"] forState:UIControlStateNormal];
+    super.headerView.backgroundImageView.image = [UIImage imageAtResourcePath:@"calendar header bg"];
     __weak typeof(self) weakSelf = self;
-    [headerView setHeaderViewDidPressRightOperationButton:^{
+    [super.headerView setHeaderViewDidPressRightOperationButton:^{
         CreateViewController* createViewController = [[CreateViewController alloc] init];
         //        [createViewController setCreateViewControllerDidFinishCreate:^(LCTodo* model) {
         //            model.photoImage = [model.photoImage imageAddCornerWithRadius:model.photoImage.size.width / 2 andSize:model.photoImage.size];
@@ -77,7 +77,7 @@
         //        }];
         [weakSelf.navigationController pushViewController:createViewController animated:YES];
     }];
-    _tableView.tableHeaderView = headerView;
+    _tableView.tableHeaderView = super.headerView;
 }
 - (void)bindConstraints
 {
@@ -87,7 +87,7 @@
         make.top.bottom.right.left.offset(0);
     }];
 
-    [headerView mas_makeConstraints:^(MASConstraintMaker* make) {
+    [super.headerView mas_makeConstraints:^(MASConstraintMaker* make) {
         make.top.left.offset(0);
         make.width.offset(kScreenWidth);
         make.height.offset(kScreenHeight * 0.7);

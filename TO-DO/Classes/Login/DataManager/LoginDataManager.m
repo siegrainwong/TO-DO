@@ -30,9 +30,12 @@ static NSInteger const kUserDoesNotExistErrorCodeKey = 211;
 static NSInteger const kEmailAlreadyTakenErrorCodeKey = 201;
 static NSInteger const kLoginFailCountOverLimitErrorCodeKey = 1;
 
-@implementation LoginDataManager {
-    BOOL isSignUp;
-}
+@interface
+LoginDataManager ()
+@property (nonatomic, readwrite, assign) BOOL isSignUp;
+@end
+
+@implementation LoginDataManager
 @synthesize localDictionary = _localDictionary;
 #pragma mark - localization
 - (void)localizeStrings
@@ -41,7 +44,7 @@ static NSInteger const kLoginFailCountOverLimitErrorCodeKey = 1;
     _localDictionary[kNameInvalidKey] = ConcatLocalizedString1(@"Name", @" is invalid");
     _localDictionary[kAvatarHaventSelectedKey] = NSLocalizedString(@"Please select your avatar", nil);
     _localDictionary[kPictureUploadFailedKey] = NSLocalizedString(@"Failed to upload picture, please try again", nil);
-    _localDictionary[kEmailInvalidKey] = ConcatLocalizedString1(isSignUp ? @"Name" : @"Username(Email)", @" is invalid");
+    _localDictionary[kEmailInvalidKey] = ConcatLocalizedString1(_isSignUp ? @"Name" : @"Username(Email)", @" is invalid");
     _localDictionary[@(kPasswordIncorrectErrorCodeKey)] = ConcatLocalizedString1(@"Password", @" is invalid");
     _localDictionary[@(kUserDoesNotExistErrorCodeKey)] = NSLocalizedString(@"User doesn't exist", nil);
     _localDictionary[@(kEmailAlreadyTakenErrorCodeKey)] = NSLocalizedString(@"Email has already been taken", nil);
@@ -59,12 +62,12 @@ static NSInteger const kLoginFailCountOverLimitErrorCodeKey = 1;
 #pragma mark - handle sign up & sign in
 - (void)handleCommit:(LCUser*)user isSignUp:(BOOL)signUp complete:(void (^)(bool succeed))complete
 {
-    isSignUp = signUp;
+    _isSignUp = signUp;
     if (![self validate:user]) return complete(NO);
 
     [[UIApplication sharedApplication] setNetworkActivityIndicatorVisible:YES];
     // sign in
-    if (!isSignUp) {
+    if (!_isSignUp) {
         [LCUser logInWithUsernameInBackground:user.email password:user.password block:^(AVUser* user, NSError* error) {
             if (error)
                 [SCLAlertHelper errorAlertWithContent:_localDictionary[@(error.code)] ? _localDictionary[@(error.code)] : error.localizedDescription];
@@ -97,7 +100,7 @@ static NSInteger const kLoginFailCountOverLimitErrorCodeKey = 1;
     user.email = [user.email stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceAndNewlineCharacterSet]];
     user.password = [user.password stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceAndNewlineCharacterSet]];
 
-    if (isSignUp) {
+    if (_isSignUp) {
         // avatar validation
         if (!user.avatarImage) {
             [SCLAlertHelper errorAlertWithContent:_localDictionary[kAvatarHaventSelectedKey]];

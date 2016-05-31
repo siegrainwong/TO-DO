@@ -15,20 +15,20 @@
 /**
  *  基页（除登录）
  */
-@interface BaseViewController : UIViewController {
-    /**
-	 *  头视图
-	 */
-    HeaderView* headerView;
-    /**
-	 *  当前用户
-	 */
-    LCUser* user;
-    /**
-	 *  在viewDidDisappear时释放该视图
-	 */
-    __block BOOL releaseWhileDisappear;
-}
+@interface BaseViewController : UIViewController
+/**
+ *  头视图
+ */
+@property (nonatomic, readwrite, strong) HeaderView* headerView;
+/**
+ *  当前用户
+ */
+@property (nonatomic, readonly, strong) LCUser* user;
+/**
+ *  在viewDidDisappear时释放该视图
+ */
+@property (nonatomic, readwrite, assign) BOOL releaseWhileDisappear;
+
 - (void)setupView;
 - (void)bindConstraints;
 

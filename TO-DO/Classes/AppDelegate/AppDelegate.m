@@ -22,9 +22,12 @@
 
 // FIXME: 每次进入一个新的ViewController，都会在AF库中的SecPolicy对象上发生几百b的内存泄漏，暂时无法解决
 
-@implementation AppDelegate {
-    JVFloatingDrawerViewController* drawerViewController;
-}
+@interface
+AppDelegate ()
+@property (nonatomic, readwrite, strong) JVFloatingDrawerViewController* drawerViewController;
+@end
+
+@implementation AppDelegate
 #pragma mark - application delegate
 - (BOOL)application:(UIApplication*)application
   didFinishLaunchingWithOptions:(NSDictionary*)launchOptions
@@ -61,7 +64,7 @@
     self.window.backgroundColor = [UIColor whiteColor];
 
     [self setupLeanCloud];
-    [self setupDrawerViewController];
+    [self setup_drawerViewController];
 
     // validate user's login state
     //    [LCUser logOut];
@@ -85,36 +88,36 @@
     [LCUser registerSubclass];
     [LCTodo registerSubclass];
 }
-- (void)setupDrawerViewController
+- (void)setup_drawerViewController
 {
-    drawerViewController = [JVFloatingDrawerViewController new];
+    _drawerViewController = [JVFloatingDrawerViewController new];
     JVFloatingDrawerSpringAnimator* animator = [JVFloatingDrawerSpringAnimator new];
     animator.animationDuration = 0.5;
     animator.initialSpringVelocity = 2;
     animator.springDamping = 0.8;
-    drawerViewController.animator = animator;
+    _drawerViewController.animator = animator;
 
-    drawerViewController.leftViewController = [DrawerTableViewController new];
+    _drawerViewController.leftViewController = [DrawerTableViewController new];
 
-    drawerViewController.backgroundImage = [UIImage imageAtResourcePath:@"drawerbg"];
+    _drawerViewController.backgroundImage = [UIImage imageAtResourcePath:@"drawerbg"];
 }
 #pragma mark -
 - (void)switchRootViewController:(UIViewController*)viewController isNavigation:(BOOL)isNavigation
 {
     if (isNavigation) {
         JTNavigationController* navigationController = [[JTNavigationController alloc] initWithRootViewController:viewController];
-        drawerViewController.centerViewController = navigationController;
+        _drawerViewController.centerViewController = navigationController;
     }
-    self.window.rootViewController = isNavigation ? drawerViewController : viewController;
+    self.window.rootViewController = isNavigation ? _drawerViewController : viewController;
 }
 #pragma mark - JVDrawer
 - (void)toggleDrawer:(id)sender animated:(BOOL)animated
 {
-    [drawerViewController toggleDrawerWithSide:JVFloatingDrawerSideLeft animated:animated completion:nil];
+    [_drawerViewController toggleDrawerWithSide:JVFloatingDrawerSideLeft animated:animated completion:nil];
 }
 - (void)setCenterViewController:(UIViewController*)viewController
 {
-    drawerViewController.centerViewController = viewController;
+    _drawerViewController.centerViewController = viewController;
 }
 #pragma mark -
 + (AppDelegate*)globalDelegate

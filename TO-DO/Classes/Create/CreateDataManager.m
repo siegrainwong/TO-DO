@@ -21,9 +21,12 @@ static NSString* const kTimeInvalidKey = @"TimeInvalid";
 static NSString* const kLocationInvalidKey = @"LocationInvalid";
 static NSString* const kPictureUploadFailedKey = @"PictureUploadFailed";
 
-@implementation CreateDataManager {
-    LCTodo* model;
-}
+@interface
+CreateDataManager ()
+@property (nonatomic, readwrite, strong) LCTodo* model;
+@end
+
+@implementation CreateDataManager
 @synthesize localDictionary = _localDictionary;
 #pragma mark - localization
 - (void)localizeStrings
@@ -46,13 +49,13 @@ static NSString* const kPictureUploadFailedKey = @"PictureUploadFailed";
 #pragma mark - commit
 - (void)handleCommit:(LCTodo*)todo complete:(void (^)(bool succeed))complete
 {
-    model = todo;
+    _model = todo;
     if (![self validate]) return complete(NO);
 
     [self uploadPicture:^(bool succeed) {
         if (!succeed) return complete(NO);
 
-        [model saveInBackgroundWithBlock:^(BOOL succeeded, NSError* error) {
+        [_model saveInBackgroundWithBlock:^(BOOL succeeded, NSError* error) {
             if (!succeeded)
                 [SCLAlertHelper errorAlertWithContent:error.localizedDescription];
 
@@ -63,16 +66,16 @@ static NSString* const kPictureUploadFailedKey = @"PictureUploadFailed";
 #pragma mark - uploadImage
 - (void)uploadPicture:(void (^)(bool succeed))complete
 {
-    if (!model.photoImage) return complete(YES);
+    if (!_model.photoImage) return complete(YES);
 
-    [ImageUploader uploadImage:model.photoImage type:UploadImageTypeOriginal prefix:GetPicturePrefix(kUploadPrefixUser, model.user.objectId) completion:^(bool error, NSString* path) {
+    [ImageUploader uploadImage:_model.photoImage type:UploadImageTypeOriginal prefix:GetPicturePrefix(kUploadPrefixUser, _model.user.objectId) completion:^(bool error, NSString* path) {
         if (error) {
             [SCLAlertHelper errorAlertWithContent:_localDictionary[kPictureUploadFailedKey]];
 
             return complete(NO);
         }
 
-        model.photo = path;
+        _model.photo = path;
         return complete(YES);
     }];
 }
@@ -81,30 +84,30 @@ static NSString* const kPictureUploadFailedKey = @"PictureUploadFailed";
 {
     // 暂时不做正则验证
     // remove whitespaces
-    model.title = [model.title stringByRemovingUnneccessaryWhitespaces];
-    model.sgDescription = [model.sgDescription stringByRemovingUnneccessaryWhitespaces];
-    model.location = [model.location stringByRemovingUnneccessaryWhitespaces];
+    _model.title = [_model.title stringByRemovingUnneccessaryWhitespaces];
+    _model.sgDescription = [_model.sgDescription stringByRemovingUnneccessaryWhitespaces];
+    _model.location = [_model.location stringByRemovingUnneccessaryWhitespaces];
 
     // title validation
-    if (!model.title.length) {
+    if (!_model.title.length) {
         [SCLAlertHelper errorAlertWithContent:_localDictionary[kTitleInvalidKey]];
         return NO;
     }
-    if ([SCLAlertHelper errorAlertValidateLengthWithString:model.title minLength:1 maxLength:20 alertName:NSLocalizedString(@"Title", nil)]) {
+    if ([SCLAlertHelper errorAlertValidateLengthWithString:_model.title minLength:1 maxLength:30 alertName:NSLocalizedString(@"Title", nil)]) {
         return NO;
     }
 
     // deadline validation
-    if (!model.deadline) {
+    if (!_model.deadline) {
         [SCLAlertHelper errorAlertWithContent:_localDictionary[kTimeInvalidKey]];
         return NO;
     }
     // description validation
-    if ([SCLAlertHelper errorAlertValidateLengthWithString:model.sgDescription minLength:0 maxLength:200 alertName:NSLocalizedString(@"Description", nil)]) {
+    if ([SCLAlertHelper errorAlertValidateLengthWithString:_model.sgDescription minLength:0 maxLength:200 alertName:NSLocalizedString(@"Description", nil)]) {
         return NO;
     }
     //location validation
-    if ([SCLAlertHelper errorAlertValidateLengthWithString:model.location minLength:0 maxLength:50 alertName:NSLocalizedString(@"Location", nil)]) {
+    if ([SCLAlertHelper errorAlertValidateLengthWithString:_model.location minLength:0 maxLength:50 alertName:NSLocalizedString(@"Location", nil)]) {
         return NO;
     }
 

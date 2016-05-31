@@ -18,24 +18,26 @@
 #import "UIView+SDAutoLayout.h"
 
 static NSInteger const kButtonSize = 45;
-static NSInteger const kStatusButtonSize = 15;
 
-@implementation TodoTableViewCell {
-    UIEdgeInsets cellInsets;
-    TodoIdentifier identifier;
-    UILabel* timeLabel;
-    UILabel* meridiemLabel;
-    UIButton* photoButton;
-    UILabel* todoTitleLabel;
-    UILabel* todoContentLabel;
-    UIButton* statusButton;
-}
+@interface
+TodoTableViewCell ()
+@property (nonatomic, readwrite, assign) UIEdgeInsets cellInsets;
+@property (nonatomic, readwrite, assign) TodoIdentifier identifier;
+@property (nonatomic, readwrite, strong) UILabel* timeLabel;
+@property (nonatomic, readwrite, strong) UILabel* meridiemLabel;
+@property (nonatomic, readwrite, strong) UIButton* photoButton;
+@property (nonatomic, readwrite, strong) UILabel* todoTitleLabel;
+@property (nonatomic, readwrite, strong) UILabel* todoContentLabel;
+@property (nonatomic, readwrite, strong) UIButton* statusButton;
+@end
+
+@implementation TodoTableViewCell
 #pragma mark - initial
 - (instancetype)initWithStyle:(UITableViewCellStyle)style reuseIdentifier:(NSString*)reuseIdentifier
 {
     if (self = [super initWithStyle:style reuseIdentifier:reuseIdentifier]) {
-        cellInsets = UIEdgeInsetsMake(kScreenHeight * kCellVerticalInsetsMuiltipledByHeight, kScreenHeight * kCellHorizontalInsetsMuiltipledByHeight, kScreenHeight * kCellVerticalInsetsMuiltipledByHeight, kScreenHeight * kCellHorizontalInsetsMuiltipledByHeight);
-        identifier = [kTodoIdentifierArray indexOfObject:reuseIdentifier];
+        _cellInsets = UIEdgeInsetsMake(kScreenHeight * kCellVerticalInsetsMuiltipledByHeight, kScreenHeight * kCellHorizontalInsetsMuiltipledByHeight, kScreenHeight * kCellVerticalInsetsMuiltipledByHeight, kScreenHeight * kCellHorizontalInsetsMuiltipledByHeight);
+        _identifier = [kTodoIdentifierArray indexOfObject:reuseIdentifier];
         self.selectionStyle = UITableViewCellSelectionStyleNone;
 
         [self setup];
@@ -46,71 +48,71 @@ static NSInteger const kStatusButtonSize = 15;
 }
 - (void)setup
 {
-    timeLabel = [UILabel new];
-    timeLabel.font = [TodoHelper themeFontWithSize:22];
-    timeLabel.textAlignment = NSTextAlignmentCenter;
-    [self.contentView addSubview:timeLabel];
+    _timeLabel = [UILabel new];
+    _timeLabel.font = [TodoHelper themeFontWithSize:22];
+    _timeLabel.textAlignment = NSTextAlignmentCenter;
+    [self.contentView addSubview:_timeLabel];
 
-    meridiemLabel = [UILabel new];
-    meridiemLabel.font = [TodoHelper themeFontWithSize:13];
-    meridiemLabel.textColor = [TodoHelper subTextColor];
-    meridiemLabel.textAlignment = NSTextAlignmentCenter;
-    [self.contentView addSubview:meridiemLabel];
+    _meridiemLabel = [UILabel new];
+    _meridiemLabel.font = [TodoHelper themeFontWithSize:13];
+    _meridiemLabel.textColor = [TodoHelper subTextColor];
+    _meridiemLabel.textAlignment = NSTextAlignmentCenter;
+    [self.contentView addSubview:_meridiemLabel];
 
     // TODO: 这个地方圆角需要用其他方法来绘制
-    photoButton = [UIButton new];
-    [self.contentView addSubview:photoButton];
+    _photoButton = [UIButton new];
+    [self.contentView addSubview:_photoButton];
 
-    todoTitleLabel = [UILabel new];
-    todoTitleLabel.font = [TodoHelper themeFontWithSize:18];
-    [self.contentView addSubview:todoTitleLabel];
+    _todoTitleLabel = [UILabel new];
+    _todoTitleLabel.font = [TodoHelper themeFontWithSize:18];
+    [self.contentView addSubview:_todoTitleLabel];
 
-    todoContentLabel = [UILabel new];
-    todoContentLabel.font = [TodoHelper themeFontWithSize:13];
-    todoContentLabel.textColor = [TodoHelper subTextColor];
-    todoContentLabel.numberOfLines = 0;
-    [self.contentView addSubview:todoContentLabel];
+    _todoContentLabel = [UILabel new];
+    _todoContentLabel.font = [TodoHelper themeFontWithSize:13];
+    _todoContentLabel.textColor = [TodoHelper subTextColor];
+    _todoContentLabel.numberOfLines = 0;
+    [self.contentView addSubview:_todoContentLabel];
 
-    statusButton = [UIButton new];
-    [self.contentView addSubview:statusButton];
+    _statusButton = [UIButton new];
+    [self.contentView addSubview:_statusButton];
 }
 - (void)bindConstraints
 {
-    timeLabel.sd_layout
-      .topSpaceToView(self.contentView, cellInsets.top + 2.5)
-      .leftSpaceToView(self.contentView, cellInsets.left)
+    _timeLabel.sd_layout
+      .topSpaceToView(self.contentView, _cellInsets.top + 2.5)
+      .leftSpaceToView(self.contentView, _cellInsets.left)
       .heightIs(22)
       .widthIs(30);
 
-    meridiemLabel.sd_layout
-      .topSpaceToView(timeLabel, 2)
-      .leftEqualToView(timeLabel)
+    _meridiemLabel.sd_layout
+      .topSpaceToView(_timeLabel, 2)
+      .leftEqualToView(_timeLabel)
       .heightIs(10)
-      .widthRatioToView(timeLabel, 1);
+      .widthRatioToView(_timeLabel, 1);
 
-    photoButton.sd_layout
-      .topSpaceToView(self.contentView, cellInsets.top - 3)
-      .leftSpaceToView(timeLabel, cellInsets.left)
+    _photoButton.sd_layout
+      .topSpaceToView(self.contentView, _cellInsets.top - 3)
+      .leftSpaceToView(_timeLabel, _cellInsets.left)
       .widthIs(kButtonSize)
       .heightIs(kButtonSize);
 
-    statusButton.sd_layout
-      .centerYEqualToView(photoButton)
-      .rightSpaceToView(self.contentView, cellInsets.right)
-      .widthIs(kStatusButtonSize)
+    _statusButton.sd_layout
+      .centerYEqualToView(_photoButton)
+      .rightSpaceToView(self.contentView, _cellInsets.right)
+      .widthIs(15)
       .heightEqualToWidth();
 
     // Mark: SDAutoLayout 在设置约束时要注意设置的顺序，不能在约束中使用未被约束的控件。
-    todoTitleLabel.sd_layout
-      .leftSpaceToView(photoButton, 20)
-      .topSpaceToView(self.contentView, cellInsets.top)
-      .rightSpaceToView(statusButton, 10)
+    _todoTitleLabel.sd_layout
+      .leftSpaceToView(_photoButton, 20)
+      .topSpaceToView(self.contentView, _cellInsets.top)
+      .rightSpaceToView(_statusButton, 10)
       .heightIs(20);
 
-    todoContentLabel.sd_layout
-      .topSpaceToView(todoTitleLabel, 2)
-      .leftEqualToView(todoTitleLabel)
-      .rightEqualToView(todoTitleLabel)
+    _todoContentLabel.sd_layout
+      .topSpaceToView(_todoTitleLabel, 2)
+      .leftEqualToView(_todoTitleLabel)
+      .rightEqualToView(_todoTitleLabel)
       .autoHeightRatio(0)
       .maxHeightIs(MAXFLOAT);
 }
@@ -151,10 +153,10 @@ static NSInteger const kStatusButtonSize = 15;
         if (!_model.photoImage) {
             [[SDWebImageManager sharedManager] downloadImageWithURL:GetPictureUrl(todo.photo, kQiniuImageStyleThumbnail) options:SDWebImageRefreshCached progress:nil completed:^(UIImage* image, NSError* error, SDImageCacheType cacheType, BOOL finished, NSURL* imageURL) {
                 todo.photoImage = [image imageAddCornerWithRadius:image.size.width / 2 andSize:image.size];
-                [photoButton setImage:todo.photoImage forState:UIControlStateNormal];
+                [_photoButton setImage:todo.photoImage forState:UIControlStateNormal];
             }];
         } else {
-            [photoButton setImage:todo.photoImage forState:UIControlStateNormal];
+            [_photoButton setImage:todo.photoImage forState:UIControlStateNormal];
         }
     }
 
@@ -162,16 +164,16 @@ static NSInteger const kStatusButtonSize = 15;
     // Mark: 苹果的智障框架，系统是24小时制就打印不出12小时，非要设置地区，且该地区只能转换为12小时制
     NSDateFormatter* formatter = [NSDateFormatter dateFormatterWithFormatString:@"h"];
     formatter.locale = [[NSLocale alloc] initWithLocaleIdentifier:@"en_US_POSIX"];
-    timeLabel.text = [formatter stringFromDate:_model.deadline];
+    _timeLabel.text = [formatter stringFromDate:_model.deadline];
     formatter.dateFormat = @"a";
-    meridiemLabel.text = [[formatter stringFromDate:_model.deadline] lowercaseString];
+    _meridiemLabel.text = [[formatter stringFromDate:_model.deadline] lowercaseString];
 
-    [statusButton setImage:[UIImage imageNamed:[NSString stringWithFormat:@"status-%ld", _model.status]] forState:UIControlStateNormal];
+    [_statusButton setImage:[UIImage imageNamed:[NSString stringWithFormat:@"status-%ld", _model.status]] forState:UIControlStateNormal];
 
-    todoTitleLabel.text = _model.title;
-    todoContentLabel.text = _model.sgDescription;
+    _todoTitleLabel.text = _model.title;
+    _todoContentLabel.text = _model.sgDescription;
 
-    [self setupAutoHeightWithBottomView:photoButton bottomMargin:cellInsets.bottom];
+    [self setupAutoHeightWithBottomView:_photoButton bottomMargin:_cellInsets.bottom];
 
     [self updateConstraints];
 }
@@ -179,19 +181,19 @@ static NSInteger const kStatusButtonSize = 15;
 - (void)updateConstraints
 {
     if (!_model.photo.length) {
-        photoButton.sd_layout.widthIs(0);
-        todoTitleLabel.sd_layout.leftSpaceToView(photoButton, 0);
+        _photoButton.sd_layout.widthIs(0);
+        _todoTitleLabel.sd_layout.leftSpaceToView(_photoButton, 0);
     } else {
-        photoButton.sd_layout.widthIs(kButtonSize);
-        todoTitleLabel.sd_layout.leftSpaceToView(photoButton, 20);
+        _photoButton.sd_layout.widthIs(kButtonSize);
+        _todoTitleLabel.sd_layout.leftSpaceToView(_photoButton, 20);
     }
 
     if (!_model.sgDescription.length) {
-        todoTitleLabel.sd_layout.topSpaceToView(self.contentView, cellInsets.top + 10);
-        [self setupAutoHeightWithBottomView:photoButton bottomMargin:cellInsets.bottom];
+        _todoTitleLabel.sd_layout.topSpaceToView(self.contentView, _cellInsets.top + 10);
+        [self setupAutoHeightWithBottomView:_photoButton bottomMargin:_cellInsets.bottom];
     } else {
-        todoTitleLabel.sd_layout.topSpaceToView(self.contentView, cellInsets.top);
-        [self setupAutoHeightWithBottomView:todoContentLabel bottomMargin:cellInsets.bottom + 2];
+        _todoTitleLabel.sd_layout.topSpaceToView(self.contentView, _cellInsets.top);
+        [self setupAutoHeightWithBottomView:_todoContentLabel bottomMargin:_cellInsets.bottom + 2];
     }
 
     [super updateConstraints];

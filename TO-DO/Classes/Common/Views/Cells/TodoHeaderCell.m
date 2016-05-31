@@ -11,9 +11,12 @@
 #import "TodoHelper.h"
 #import "UIView+SDAutoLayout.h"
 
-@implementation TodoHeaderCell {
-    UILabel* label;
-}
+@interface
+TodoHeaderCell ()
+@property (nonatomic, readwrite, strong) UILabel* label;
+@end
+
+@implementation TodoHeaderCell
 + (instancetype)headerCell
 {
     TodoHeaderCell* cell = [TodoHeaderCell new];
@@ -22,13 +25,13 @@
 }
 - (void)setup
 {
-    label = [UILabel new];
-    label.font = [TodoHelper themeFontWithSize:13];
-    label.textColor = [TodoHelper subTextColor];
-    label.textAlignment = NSTextAlignmentCenter;
-    [self addSubview:label];
+    _label = [UILabel new];
+    _label.font = [TodoHelper themeFontWithSize:13];
+    _label.textColor = [TodoHelper subTextColor];
+    _label.textAlignment = NSTextAlignmentCenter;
+    [self addSubview:_label];
 
-    label.sd_layout
+    _label.sd_layout
       .centerXEqualToView(self)
       .centerYEqualToView(self)
       .leftEqualToView(self)
@@ -40,6 +43,6 @@
 {
     _text = text;
     _text = [DateUtil dateString:_text fromFormat:@"yyyy-MM-dd" toFormat:@"MMM d"];
-    label.text = _text;
+    _label.text = _text;
 }
 @end
