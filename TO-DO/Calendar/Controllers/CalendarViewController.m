@@ -97,8 +97,8 @@ CalendarViewController ()
     _calendar.appearance.titleDefaultColor = [UIColor whiteColor];
     _calendar.appearance.weekdayTextColor = [UIColor whiteColor];
     _calendar.appearance.headerTitleFont = [TodoHelper themeFontWithSize:17];
-    _calendar.appearance.titleFont = [TodoHelper themeFontWithSize:14];
-    _calendar.appearance.weekdayFont = [TodoHelper themeFontWithSize:14];
+    _calendar.appearance.titleFont = [TodoHelper themeFontWithSize:15];
+    _calendar.appearance.weekdayFont = [TodoHelper themeFontWithSize:15];
     _calendar.appearance.selectionColor = [UIColor whiteColor];
     _calendar.appearance.titleSelectionColor = [TodoHelper themeColorNormal];
     _calendar.appearance.todayColor = [TodoHelper themeColorNormal];
@@ -116,14 +116,14 @@ CalendarViewController ()
     [self.headerView mas_makeConstraints:^(MASConstraintMaker* make) {
         make.top.left.offset(0);
         make.width.offset(kScreenWidth);
-        make.height.offset(kScreenHeight * 0.7);
+        make.height.offset(kScreenHeight * 0.6);
     }];
 
     [_calendar mas_makeConstraints:^(MASConstraintMaker* make) {
         make.left.offset(10);
         make.right.offset(-10);
         make.top.offset(20);
-        make.height.offset(kScreenHeight * 0.57);
+        make.height.offset(kScreenHeight * 0.47);
     }];
 
     [_tableView mas_makeConstraints:^(MASConstraintMaker* make) {
@@ -134,8 +134,10 @@ CalendarViewController ()
 #pragma mark - retrieve data
 - (void)retrieveDataFromServer:(NSDate*)date
 {
+    [_calendar setUserInteractionEnabled:NO];
     __weak typeof(self) weakSelf = self;
     [_dataManager retrieveDataWithUser:self.user date:date complete:^(bool succeed, NSDictionary* dataDictionary, NSInteger dataCount) {
+        [_calendar setUserInteractionEnabled:YES];
         if (!succeed || !dataDictionary.count) return;
 
         weakSelf.dataArray = [NSMutableArray arrayWithArray:dataDictionary.allValues[0]];

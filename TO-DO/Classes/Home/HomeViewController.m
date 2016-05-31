@@ -161,7 +161,7 @@ HomeViewController ()
 #pragma mark - tableview delegate
 - (CGFloat)tableView:(UITableView*)tableView estimatedHeightForRowAtIndexPath:(NSIndexPath*)indexPath
 {
-    return [self tableView:self->_tableView heightForRowAtIndexPath:indexPath];
+    return [self tableView:tableView heightForRowAtIndexPath:indexPath];
 }
 - (CGFloat)tableView:(UITableView*)tableView heightForRowAtIndexPath:(NSIndexPath*)indexPath
 {
