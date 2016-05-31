@@ -11,14 +11,14 @@
 @class LCUser;
 @class LCTodo;
 
-@interface HomeDataManager : UITableViewCell
+@interface TodoDataManager : UITableViewCell
 /**
  *  获取首页数据（默认为昨天~明天的数据）
  *
  *  @param user     当前用户
  *  @param complete 完成
  */
-- (void)retrieveDataWithUser:(LCUser*)user complete:(void (^)(bool succeed, NSDictionary* dataDictionary, NSInteger dataCount))complete;
+- (void)retrieveDataWithUser:(LCUser*)user date:(NSDate*)date complete:(void (^)(bool succeed, NSDictionary* dataDictionary, NSInteger dataCount))complete;
 /**
  *  修改待办事项
  *

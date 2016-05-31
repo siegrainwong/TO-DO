@@ -9,11 +9,11 @@
 #import "CreateViewController.h"
 #import "DateUtil.h"
 #import "HSDatePickerViewController+Configure.h"
-#import "HomeDataManager.h"
 #import "HomeViewController.h"
 #import "LCTodo.h"
 #import "Macros.h"
 #import "NSDate+Extension.h"
+#import "TodoDataManager.h"
 #import "TodoHeaderCell.h"
 #import "TodoTableViewCell.h"
 #import "UIButton+WebCache.h"
@@ -32,7 +32,7 @@
 @interface
 HomeViewController ()
 @property (nonatomic, readwrite, strong) HSDatePickerViewController* datePickerViewController;
-@property (nonatomic, readwrite, strong) HomeDataManager* dataManager;
+@property (nonatomic, readwrite, strong) TodoDataManager* dataManager;
 @property (nonatomic, readwrite, strong) UITableView* tableView;
 @property (nonatomic, readwrite, strong) NSMutableDictionary* dataDictionary;
 @property (nonatomic, readwrite, strong) NSMutableArray<NSString*>* dateArray;
@@ -55,7 +55,7 @@ HomeViewController ()
 
     _dataDictionary = [NSMutableDictionary new];
     _dateArray = [NSMutableArray new];
-    _dataManager = [HomeDataManager new];
+    _dataManager = [TodoDataManager new];
 
     [self localizeStrings];
     [self retrieveDataFromServer];
@@ -125,7 +125,7 @@ HomeViewController ()
 - (void)retrieveDataFromServer
 {
     __weak typeof(self) weakSelf = self;
-    [_dataManager retrieveDataWithUser:super.user complete:^(bool succeed, NSDictionary* data, NSInteger count) {
+    [_dataManager retrieveDataWithUser:self.user date:nil complete:^(bool succeed, NSDictionary* data, NSInteger count) {
         weakSelf.dataDictionary = [NSMutableDictionary dictionaryWithDictionary:data];
         weakSelf.dataCount = count;
         [weakSelf reloadData];

@@ -14,7 +14,6 @@
 BaseViewController ()
 @property (nonatomic, readwrite, strong) UIButton* menuButton;
 @property (nonatomic, readwrite, strong) UILabel* titleLabel;
-@property (nonatomic, readwrite, strong) UIButton* searchButton;
 @end
 
 @implementation BaseViewController
@@ -58,11 +57,11 @@ BaseViewController ()
     UIBarButtonItem* placeHolderBarButtonItem = [[UIBarButtonItem alloc] initWithCustomView:placeholderView];
     [self.navigationItem setLeftBarButtonItems:@[ menuBarButtonItem, placeHolderBarButtonItem, titleBarButtonItem ] animated:YES];
 
-    _searchButton = [[UIButton alloc] init];
-    _searchButton.tintColor = [UIColor whiteColor];
-    _searchButton.frame = CGRectMake(0, 0, 20, 20);
-    [_searchButton setBackgroundImage:[UIImage imageNamed:@"search"] forState:UIControlStateNormal];
-    self.navigationItem.rightBarButtonItem = [[UIBarButtonItem alloc] initWithCustomView:_searchButton];
+    _rightNavigationButton = [[UIButton alloc] init];
+    _rightNavigationButton.tintColor = [UIColor whiteColor];
+    _rightNavigationButton.frame = CGRectMake(0, 0, 20, 20);
+    [_rightNavigationButton setBackgroundImage:[UIImage imageNamed:@"search"] forState:UIControlStateNormal];
+    self.navigationItem.rightBarButtonItem = [[UIBarButtonItem alloc] initWithCustomView:_rightNavigationButton];
 }
 - (void)attachGestureRecognizer
 {

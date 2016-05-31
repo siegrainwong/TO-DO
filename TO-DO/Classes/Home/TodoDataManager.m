@@ -7,24 +7,25 @@
 //
 
 #import "DateUtil.h"
-#import "HomeDataManager.h"
 #import "LCTodo.h"
 #import "LCUser.h"
 #import "NSDate+Extension.h"
 #import "SCLAlertHelper.h"
+#import "TodoDataManager.h"
 
-@implementation HomeDataManager
+@implementation TodoDataManager
 #pragma mark - retrieve
-- (void)retrieveDataWithUser:(LCUser*)user complete:(void (^)(bool succeed, NSDictionary* dataDictionary, NSInteger dataCount))complete
+- (void)retrieveDataWithUser:(LCUser*)user date:(NSDate*)date complete:(void (^)(bool succeed, NSDictionary* dataDictionary, NSInteger dataCount))complete
 {
     AVQuery* query = [AVQuery queryWithClassName:[LCTodo parseClassName]];
     [query whereKey:@"user" equalTo:user];
     [query whereKey:@"isDeleted" equalTo:@(NO)];
     [query whereKey:@"isCompleted" equalTo:@(NO)];
-    // 首页不筛时间了，显示所有未完成的待办事项
-    // NSDate* today = [DateUtil dateInYearMonthDay:[NSDate date]];
-    // [query whereKey:@"deadline" greaterThanOrEqualTo:[today dateByAddingTimeInterval:-kTimeIntervalDay]];
-    // [query whereKey:@"deadline" lessThanOrEqualTo:[today dateByAddingTimeInterval:kTimeIntervalDay * 2]];
+    if (date) {
+        date = [DateUtil dateInYearMonthDay:[NSDate date]];
+        [query whereKey:@"deadline" greaterThanOrEqualTo:date];
+        [query whereKey:@"deadline" lessThanOrEqualTo:[date dateByAddingTimeInterval:kTimeIntervalDay]];
+    }
     [query orderByAscending:@"deadline"];
     [query findObjectsInBackgroundWithBlock:^(NSArray<LCTodo*>* objects, NSError* error) {
         if (error) {

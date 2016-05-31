@@ -11,7 +11,7 @@
 
 @class LCUser;
 
-@interface LoginDataManager : NSObject<Localized>
+@interface UserDataManager : NSObject<Localized>
 /**
  *  处理登录、注册请求
  *

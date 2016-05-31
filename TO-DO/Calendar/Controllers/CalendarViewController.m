@@ -10,7 +10,7 @@
 #import "CreateViewController.h"
 #import "DateUtil.h"
 #import "HSDatePickerViewController+Configure.h"
-#import "HomeDataManager.h"
+#import "TodoDataManager.h"
 #import "HomeViewController.h"
 #import "LCTodo.h"
 #import "Macros.h"
@@ -29,7 +29,12 @@
 CalendarViewController ()
 @property (nonatomic, readwrite, strong) UITableView* tableView;
 @property (nonatomic, readwrite, strong) FSCalendar* calendar;
+
+@property (nonatomic, readwrite, strong) NSArray<LCTodo*>* dataArray;
 @end
+
+// TODO:日历收缩
+// TODO:获取数据
 
 @implementation CalendarViewController
 #pragma mark - initial
@@ -91,19 +96,15 @@ CalendarViewController ()
     _calendar.scrollDirection = FSCalendarScrollDirectionVertical;
     _calendar.headerHeight = 40;
     [_calendar.bottomBorder setHidden:YES];
-
     _calendar.appearance.adjustsFontSizeToFitContentSize = NO;
-
     _calendar.appearance.headerTitleColor = [UIColor whiteColor];
     _calendar.appearance.titleDefaultColor = [UIColor whiteColor];
     _calendar.appearance.weekdayTextColor = [UIColor whiteColor];
     _calendar.appearance.headerTitleFont = [TodoHelper themeFontWithSize:17];
     _calendar.appearance.titleFont = [TodoHelper themeFontWithSize:14];
     _calendar.appearance.weekdayFont = [TodoHelper themeFontWithSize:14];
-
     _calendar.appearance.selectionColor = [UIColor whiteColor];
     _calendar.appearance.titleSelectionColor = [TodoHelper themeColorNormal];
-
     _calendar.appearance.todayColor = [TodoHelper themeColorNormal];
     [self.headerView addSubview:_calendar];
 

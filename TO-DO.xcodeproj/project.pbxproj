@@ -44,7 +44,7 @@
 		F94CA24B1CE2FA9E0006904F /* MD5Util.m in Sources */ = {isa = PBXBuildFile; fileRef = F94CA2411CE2FA9E0006904F /* MD5Util.m */; };
 		F94CA24F1CE2FB110006904F /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = F94CA24E1CE2FB110006904F /* AppDelegate.m */; };
 		F94CA2601CE2FB940006904F /* LoginViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = F94CA2531CE2FB940006904F /* LoginViewController.m */; };
-		F94CA2611CE2FB940006904F /* LoginDataManager.m in Sources */ = {isa = PBXBuildFile; fileRef = F94CA2561CE2FB940006904F /* LoginDataManager.m */; };
+		F94CA2611CE2FB940006904F /* UserDataManager.m in Sources */ = {isa = PBXBuildFile; fileRef = F94CA2561CE2FB940006904F /* UserDataManager.m */; };
 		F94CA2631CE2FB940006904F /* LoginView.m in Sources */ = {isa = PBXBuildFile; fileRef = F94CA25C1CE2FB940006904F /* LoginView.m */; };
 		F94CA2641CE2FB940006904F /* SGTextField.m in Sources */ = {isa = PBXBuildFile; fileRef = F94CA25E1CE2FB940006904F /* SGTextField.m */; };
 		F94CA2651CE2FB940006904F /* SGTextField.xib in Resources */ = {isa = PBXBuildFile; fileRef = F94CA25F1CE2FB940006904F /* SGTextField.xib */; };
@@ -55,7 +55,7 @@
 		F959945B1CE47BC200B042BD /* ImageUploader.m in Sources */ = {isa = PBXBuildFile; fileRef = F959945A1CE47BC200B042BD /* ImageUploader.m */; };
 		F959945E1CE481CD00B042BD /* DateUtil.m in Sources */ = {isa = PBXBuildFile; fileRef = F959945D1CE481CD00B042BD /* DateUtil.m */; };
 		F95994611CE4898100B042BD /* UIImage+Compression.m in Sources */ = {isa = PBXBuildFile; fileRef = F95994601CE4898100B042BD /* UIImage+Compression.m */; };
-		F961B55B1CF42DED0096DAF4 /* HomeDataManager.m in Sources */ = {isa = PBXBuildFile; fileRef = F961B55A1CF42DED0096DAF4 /* HomeDataManager.m */; };
+		F961B55B1CF42DED0096DAF4 /* TodoDataManager.m in Sources */ = {isa = PBXBuildFile; fileRef = F961B55A1CF42DED0096DAF4 /* TodoDataManager.m */; };
 		F980EDCF1CE70F4E00A861FE /* HeaderView.m in Sources */ = {isa = PBXBuildFile; fileRef = F980EDCE1CE70F4E00A861FE /* HeaderView.m */; };
 		F997BF9F1CF8376A00DD155B /* UIViewController+KNSemiModal.m in Sources */ = {isa = PBXBuildFile; fileRef = F997BF9E1CF8376A00DD155B /* UIViewController+KNSemiModal.m */; };
 		F997BFA11CF8391C00DD155B /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F997BFA01CF8391C00DD155B /* QuartzCore.framework */; };
@@ -180,8 +180,8 @@
 		F94CA24E1CE2FB110006904F /* AppDelegate.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
 		F94CA2521CE2FB940006904F /* LoginViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LoginViewController.h; sourceTree = "<group>"; };
 		F94CA2531CE2FB940006904F /* LoginViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LoginViewController.m; sourceTree = "<group>"; };
-		F94CA2551CE2FB940006904F /* LoginDataManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LoginDataManager.h; sourceTree = "<group>"; };
-		F94CA2561CE2FB940006904F /* LoginDataManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LoginDataManager.m; sourceTree = "<group>"; };
+		F94CA2551CE2FB940006904F /* UserDataManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = UserDataManager.h; path = ../../Login/DataManager/UserDataManager.h; sourceTree = "<group>"; };
+		F94CA2561CE2FB940006904F /* UserDataManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = UserDataManager.m; path = ../../Login/DataManager/UserDataManager.m; sourceTree = "<group>"; };
 		F94CA25B1CE2FB940006904F /* LoginView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LoginView.h; sourceTree = "<group>"; };
 		F94CA25C1CE2FB940006904F /* LoginView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LoginView.m; sourceTree = "<group>"; };
 		F94CA25D1CE2FB940006904F /* SGTextField.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = SGTextField.h; path = ../../Login/Views/SGTextField.h; sourceTree = "<group>"; };
@@ -200,8 +200,8 @@
 		F959945D1CE481CD00B042BD /* DateUtil.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DateUtil.m; sourceTree = "<group>"; };
 		F959945F1CE4898100B042BD /* UIImage+Compression.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIImage+Compression.h"; sourceTree = "<group>"; };
 		F95994601CE4898100B042BD /* UIImage+Compression.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIImage+Compression.m"; sourceTree = "<group>"; };
-		F961B5591CF42DED0096DAF4 /* HomeDataManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HomeDataManager.h; sourceTree = "<group>"; };
-		F961B55A1CF42DED0096DAF4 /* HomeDataManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HomeDataManager.m; sourceTree = "<group>"; };
+		F961B5591CF42DED0096DAF4 /* TodoDataManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = TodoDataManager.h; path = ../../Home/TodoDataManager.h; sourceTree = "<group>"; };
+		F961B55A1CF42DED0096DAF4 /* TodoDataManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = TodoDataManager.m; path = ../../Home/TodoDataManager.m; sourceTree = "<group>"; };
 		F980EDCD1CE70F4E00A861FE /* HeaderView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HeaderView.h; sourceTree = "<group>"; };
 		F980EDCE1CE70F4E00A861FE /* HeaderView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HeaderView.m; sourceTree = "<group>"; };
 		F997BF9D1CF8376A00DD155B /* UIViewController+KNSemiModal.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIViewController+KNSemiModal.h"; sourceTree = "<group>"; };
@@ -368,8 +368,6 @@
 		F93BC1521CE5E9A1000A34C5 /* DataManager */ = {
 			isa = PBXGroup;
 			children = (
-				F961B5591CF42DED0096DAF4 /* HomeDataManager.h */,
-				F961B55A1CF42DED0096DAF4 /* HomeDataManager.m */,
 			);
 			name = DataManager;
 			sourceTree = "<group>";
@@ -582,7 +580,6 @@
 			isa = PBXGroup;
 			children = (
 				F94CA2511CE2FB940006904F /* Controllers */,
-				F94CA2541CE2FB940006904F /* DataManager */,
 				F94CA25A1CE2FB940006904F /* Views */,
 			);
 			name = Login;
@@ -596,15 +593,6 @@
 				F94CA2531CE2FB940006904F /* LoginViewController.m */,
 			);
 			path = Controllers;
-			sourceTree = "<group>";
-		};
-		F94CA2541CE2FB940006904F /* DataManager */ = {
-			isa = PBXGroup;
-			children = (
-				F94CA2551CE2FB940006904F /* LoginDataManager.h */,
-				F94CA2561CE2FB940006904F /* LoginDataManager.m */,
-			);
-			path = DataManager;
 			sourceTree = "<group>";
 		};
 		F94CA25A1CE2FB940006904F /* Views */ = {
@@ -644,6 +632,18 @@
 				F94CA2381CE2FA9E0006904F /* SCLAlertHelper.m */,
 			);
 			name = SCLAlertView;
+			sourceTree = "<group>";
+		};
+		F98DE6861CFDA02200859A81 /* DataManager */ = {
+			isa = PBXGroup;
+			children = (
+				F961B5591CF42DED0096DAF4 /* TodoDataManager.h */,
+				F961B55A1CF42DED0096DAF4 /* TodoDataManager.m */,
+				F94CA2551CE2FB940006904F /* UserDataManager.h */,
+				F94CA2561CE2FB940006904F /* UserDataManager.m */,
+			);
+			name = DataManager;
+			path = Classes/Common/DataManager;
 			sourceTree = "<group>";
 		};
 		F997BF9C1CF8375700DD155B /* KNSemiModalViewController */ = {
@@ -737,6 +737,7 @@
 		F9A723AE1CDDF98100E3BC8E /* Classes */ = {
 			isa = PBXGroup;
 			children = (
+				F98DE6861CFDA02200859A81 /* DataManager */,
 				F94CA1F01CE2F9780006904F /* Libraries */,
 				F94CA2281CE2FA9E0006904F /* Common */,
 				F94CA24C1CE2FB110006904F /* AppDelegate */,
@@ -1051,7 +1052,7 @@
 				F92B876D1CE368B300D15EAE /* UIView+Extentsion.m in Sources */,
 				F9FB96C41CFC74C6002581A0 /* CalendarViewController.m in Sources */,
 				F9331D851CF0A97200B36474 /* LCTodo.m in Sources */,
-				F961B55B1CF42DED0096DAF4 /* HomeDataManager.m in Sources */,
+				F961B55B1CF42DED0096DAF4 /* TodoDataManager.m in Sources */,
 				F94CA2451CE2FA9E0006904F /* UITextField+BottomBorder.m in Sources */,
 				F94388631CF5C38500E44379 /* DrawerTableViewController.m in Sources */,
 				F9BCE5321CEDB54B003376C7 /* CreateViewController.m in Sources */,
@@ -1064,7 +1065,7 @@
 				F95994611CE4898100B042BD /* UIImage+Compression.m in Sources */,
 				F95994561CE4692D00B042BD /* NSString+Encrytion.m in Sources */,
 				F94CA2491CE2FA9E0006904F /* FieldValidator.m in Sources */,
-				F94CA2611CE2FB940006904F /* LoginDataManager.m in Sources */,
+				F94CA2611CE2FB940006904F /* UserDataManager.m in Sources */,
 				F94CA2031CE2F9780006904F /* SCLAlertView.m in Sources */,
 				F945ABD71CED913E00C282F7 /* BaseViewController.m in Sources */,
 				F94CA2081CE2F9780006904F /* SCLTextView.m in Sources */,

@@ -11,7 +11,7 @@
 #import "FieldValidator.h"
 #import "ImageUploader.h"
 #import "LCUser.h"
-#import "LoginDataManager.h"
+#import "UserDataManager.h"
 #import "Macros.h"
 #import "NSObject+PropertyName.h"
 #import "NSString+Extension.h"
@@ -31,11 +31,11 @@ static NSInteger const kEmailAlreadyTakenErrorCodeKey = 201;
 static NSInteger const kLoginFailCountOverLimitErrorCodeKey = 1;
 
 @interface
-LoginDataManager ()
+UserDataManager ()
 @property (nonatomic, readwrite, assign) BOOL isSignUp;
 @end
 
-@implementation LoginDataManager
+@implementation UserDataManager
 @synthesize localDictionary = _localDictionary;
 #pragma mark - localization
 - (void)localizeStrings
