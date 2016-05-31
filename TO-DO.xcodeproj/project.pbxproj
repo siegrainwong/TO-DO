@@ -57,6 +57,8 @@
 		F95994611CE4898100B042BD /* UIImage+Compression.m in Sources */ = {isa = PBXBuildFile; fileRef = F95994601CE4898100B042BD /* UIImage+Compression.m */; };
 		F961B55B1CF42DED0096DAF4 /* TodoDataManager.m in Sources */ = {isa = PBXBuildFile; fileRef = F961B55A1CF42DED0096DAF4 /* TodoDataManager.m */; };
 		F980EDCF1CE70F4E00A861FE /* HeaderView.m in Sources */ = {isa = PBXBuildFile; fileRef = F980EDCE1CE70F4E00A861FE /* HeaderView.m */; };
+		F98DE6891CFDCB2E00859A81 /* TodoTableView.m in Sources */ = {isa = PBXBuildFile; fileRef = F98DE6881CFDCB2E00859A81 /* TodoTableView.m */; };
+		F98DE68C1CFDCE6B00859A81 /* TodoTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = F98DE68B1CFDCE6B00859A81 /* TodoTableViewController.m */; };
 		F997BF9F1CF8376A00DD155B /* UIViewController+KNSemiModal.m in Sources */ = {isa = PBXBuildFile; fileRef = F997BF9E1CF8376A00DD155B /* UIViewController+KNSemiModal.m */; };
 		F997BFA11CF8391C00DD155B /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F997BFA01CF8391C00DD155B /* QuartzCore.framework */; };
 		F997BFA31CF83A6600DD155B /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F997BFA21CF83A6600DD155B /* UIKit.framework */; };
@@ -204,6 +206,10 @@
 		F961B55A1CF42DED0096DAF4 /* TodoDataManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = TodoDataManager.m; path = ../../Home/TodoDataManager.m; sourceTree = "<group>"; };
 		F980EDCD1CE70F4E00A861FE /* HeaderView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HeaderView.h; sourceTree = "<group>"; };
 		F980EDCE1CE70F4E00A861FE /* HeaderView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HeaderView.m; sourceTree = "<group>"; };
+		F98DE6871CFDCB2E00859A81 /* TodoTableView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TodoTableView.h; sourceTree = "<group>"; };
+		F98DE6881CFDCB2E00859A81 /* TodoTableView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TodoTableView.m; sourceTree = "<group>"; };
+		F98DE68A1CFDCE6B00859A81 /* TodoTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TodoTableViewController.h; sourceTree = "<group>"; };
+		F98DE68B1CFDCE6B00859A81 /* TodoTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TodoTableViewController.m; sourceTree = "<group>"; };
 		F997BF9D1CF8376A00DD155B /* UIViewController+KNSemiModal.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIViewController+KNSemiModal.h"; sourceTree = "<group>"; };
 		F997BF9E1CF8376A00DD155B /* UIViewController+KNSemiModal.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIViewController+KNSemiModal.m"; sourceTree = "<group>"; };
 		F997BFA01CF8391C00DD155B /* QuartzCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = QuartzCore.framework; path = System/Library/Frameworks/QuartzCore.framework; sourceTree = SDKROOT; };
@@ -390,6 +396,8 @@
 				F980EDCE1CE70F4E00A861FE /* HeaderView.m */,
 				F9A1E07E1CEDFA4C00FFC453 /* SGCommitButton.h */,
 				F9A1E07F1CEDFA4C00FFC453 /* SGCommitButton.m */,
+				F98DE6871CFDCB2E00859A81 /* TodoTableView.h */,
+				F98DE6881CFDCB2E00859A81 /* TodoTableView.m */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -421,6 +429,8 @@
 			children = (
 				F945ABD51CED913E00C282F7 /* BaseViewController.h */,
 				F945ABD61CED913E00C282F7 /* BaseViewController.m */,
+				F98DE68A1CFDCE6B00859A81 /* TodoTableViewController.h */,
+				F98DE68B1CFDCE6B00859A81 /* TodoTableViewController.m */,
 			);
 			name = Controllers;
 			sourceTree = "<group>";
@@ -1043,9 +1053,11 @@
 				F94CA24F1CE2FB110006904F /* AppDelegate.m in Sources */,
 				F94388621CF5C38500E44379 /* DrawerTableViewCell.m in Sources */,
 				F945ABDA1CED96B600C282F7 /* UITableView+Extension.m in Sources */,
+				F98DE6891CFDCB2E00859A81 /* TodoTableView.m in Sources */,
 				F9E953491CF853A00046E1C9 /* UUDatePicker.m in Sources */,
 				F94CA2061CE2F9780006904F /* SCLButton.m in Sources */,
 				F9F723461CEEF40200128254 /* NSNotificationCenter+Extension.m in Sources */,
+				F98DE68C1CFDCE6B00859A81 /* TodoTableViewController.m in Sources */,
 				F94CA2441CE2FA9E0006904F /* UIImage+Extension.m in Sources */,
 				F94F2F371CF2D71200128A3A /* TodoTableViewCell.m in Sources */,
 				F9331D861CF0A97200B36474 /* LCUser.m in Sources */,

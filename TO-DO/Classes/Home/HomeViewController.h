@@ -7,12 +7,11 @@
 //
 
 #import "BaseViewController.h"
-#import "HSDatePickerViewController.h"
 #import "Localized.h"
-#import "MGSwipeTableCell.h"
+#import "TodoTableViewController.h"
 
 /**
  *  首页
  */
-@interface HomeViewController : BaseViewController<Localized, HSDatePickerViewControllerDelegate, UITableViewDelegate, UITableViewDataSource, MGSwipeTableCellDelegate>
+@interface HomeViewController : BaseViewController<Localized, TodoTableViewControllerDelegate>
 @end
