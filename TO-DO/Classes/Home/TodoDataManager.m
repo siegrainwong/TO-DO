@@ -9,6 +9,7 @@
 #import "DateUtil.h"
 #import "LCTodo.h"
 #import "LCUser.h"
+#import "Macros.h"
 #import "NSDate+Extension.h"
 #import "SCLAlertHelper.h"
 #import "TodoDataManager.h"
@@ -27,9 +28,12 @@
         [query whereKey:@"deadline" lessThanOrEqualTo:[date dateByAddingTimeInterval:kTimeIntervalDay]];
     }
     [query orderByAscending:@"deadline"];
+
+    ApplicationNetworkIndicatorVisible(YES);
     [query findObjectsInBackgroundWithBlock:^(NSArray<LCTodo*>* objects, NSError* error) {
         if (error) {
             [SCLAlertHelper errorAlertWithContent:error.localizedDescription];
+            ApplicationNetworkIndicatorVisible(NO);
             return complete(NO, nil, 0);
         }
 
@@ -47,7 +51,7 @@
             }
             [dataInSameDay addObject:todo];
         }
-
+        ApplicationNetworkIndicatorVisible(NO);
         return complete(YES, [dataDictionary copy], dataCount);
     }];
 }
