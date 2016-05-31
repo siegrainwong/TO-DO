@@ -303,6 +303,7 @@ TodoTableViewController ()
 - (void)expireTasksWhenTimerTick
 {
     NSDate* today = [NSDate date].dateInYearMonthDay;
+    BOOL needsToReload = NO;
     for (NSString* dateString in _dateArray) {
         NSDate* date = [DateUtil stringToDate:dateString format:@"yyyy-MM-dd"];
         // 只需要遍历今天及今天以前的任务
@@ -310,9 +311,31 @@ TodoTableViewController ()
 
         NSArray<LCTodo*>* array = _dataDictionary[dateString];
         for (LCTodo* todo in array) {
-            if ([todo.deadline compare:[NSDate date]] == NSOrderedAscending) todo.status = LCTodoStatusOverdue;
+            if (todo.status != LCTodoStatusOverdue && [todo.deadline compare:[NSDate date]] == NSOrderedAscending) {
+                todo.status = LCTodoStatusOverdue;
+                needsToReload = YES;
+            }
         }
     }
-}
 
+    if (needsToReload) [self.tableView reloadData];
+}
+#pragma mark - release
+- (void)viewDidDisappear:(BOOL)animated
+{
+    [super viewDidDisappear:animated];
+
+    if (!_releaseWhileDisappear) return;
+
+    [_timer invalidate];
+    _timer = nil;
+
+    [self.view removeFromSuperview];
+    self.view = nil;
+    [self removeFromParentViewController];
+}
+- (void)dealloc
+{
+    NSLog(@"%s", __func__);
+}
 @end

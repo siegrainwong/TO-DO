@@ -102,9 +102,6 @@ HomeViewController ()
 
     if (!super.releaseWhileDisappear) return;
 
-    //    [_tableView removeFromSuperview];
-    //    _tableView = nil;
-
     [self.view removeFromSuperview];
     self.view = nil;
     [self removeFromParentViewController];
