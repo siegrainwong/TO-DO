@@ -228,8 +228,6 @@ TodoTableViewController ()
     // [self reorderTodo:model];
     NSString* deadline = model.deadline.stringInYearMonthDay;
     NSMutableArray<LCTodo*>* array = _dataDictionary[deadline];
-    // 日历视图只需添加当天的数据即可
-    if (!array && _style == TodoTableViewControllerStyleWithoutSection) return;
     if (!array) array = _dataDictionary[deadline] = [NSMutableArray new];
     if (![_dateArray containsObject:deadline]) [_dateArray addObject:deadline];
 
