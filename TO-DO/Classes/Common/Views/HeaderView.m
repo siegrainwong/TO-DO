@@ -117,6 +117,6 @@ HeaderView ()
 #pragma mark - release
 - (void)dealloc
 {
-    NSLog(@"%s", __func__);
+    DDLogWarn(@"%s", __func__);
 }
 @end

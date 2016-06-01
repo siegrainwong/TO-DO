@@ -10,7 +10,6 @@
 #import "HSDatePickerViewController+Configure.h"
 #import "HomeViewController.h"
 #import "LCTodo.h"
-#import "Macros.h"
 #import "NSDate+Extension.h"
 #import "TodoDataManager.h"
 #import "TodoHeaderCell.h"
@@ -318,6 +317,6 @@ TodoTableViewController ()
 #pragma mark - release
 - (void)dealloc
 {
-    NSLog(@"%s", __func__);
+    DDLogWarn(@"%s", __func__);
 }
 @end

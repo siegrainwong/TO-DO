@@ -9,7 +9,6 @@
 #import "CreateViewController.h"
 #import "HomeViewController.h"
 #import "LCTodo.h"
-#import "Macros.h"
 #import "TodoTableViewController.h"
 #import "UIButton+WebCache.h"
 #import "UIImage+Extension.h"
@@ -110,6 +109,6 @@ HomeViewController ()
 }
 - (void)dealloc
 {
-    NSLog(@"%s", __func__);
+    DDLogWarn(@"%s", __func__);
 }
 @end

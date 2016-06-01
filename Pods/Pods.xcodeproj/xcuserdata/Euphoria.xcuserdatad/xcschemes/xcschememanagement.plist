@@ -19,6 +19,11 @@
 			<key>isShown</key>
 			<false/>
 		</dict>
+		<key>CocoaLumberjack.xcscheme</key>
+		<dict>
+			<key>isShown</key>
+			<false/>
+		</dict>
 		<key>FSCalendar.xcscheme</key>
 		<dict>
 			<key>isShown</key>
@@ -59,17 +64,12 @@
 			<key>isShown</key>
 			<false/>
 		</dict>
+		<key>MagicalRecord.xcscheme</key>
+		<dict>
+			<key>isShown</key>
+			<false/>
+		</dict>
 		<key>Masonry.xcscheme</key>
-		<dict>
-			<key>isShown</key>
-			<false/>
-		</dict>
-		<key>ObjectiveRecord.xcscheme</key>
-		<dict>
-			<key>isShown</key>
-			<false/>
-		</dict>
-		<key>ObjectiveSugar.xcscheme</key>
 		<dict>
 			<key>isShown</key>
 			<false/>
@@ -107,22 +107,27 @@
 	</dict>
 	<key>SuppressBuildableAutocreation</key>
 	<dict>
-		<key>03AB944BA0B7BC5BEBDDBD6EA3BC8D98</key>
-		<dict>
-			<key>primary</key>
-			<true/>
-		</dict>
 		<key>09FA060F1A0492FB25232F489AC4E573</key>
 		<dict>
 			<key>primary</key>
 			<true/>
 		</dict>
-		<key>18E4787DD0E2EE7856F5F24821D6E6A6</key>
+		<key>12E2BC28C62976C425F4B71C2723F0B1</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
+		<key>18F909843BCD6B0F348ED25E8AE79C38</key>
 		<dict>
 			<key>primary</key>
 			<true/>
 		</dict>
 		<key>304EA90FC13024DFA4D6193A29D69F53</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
+		<key>398929DF10FB54B790C6C538D184D736</key>
 		<dict>
 			<key>primary</key>
 			<true/>
@@ -152,17 +157,7 @@
 			<key>primary</key>
 			<true/>
 		</dict>
-		<key>69F86543AD4BCBC491691C18D251B0D9</key>
-		<dict>
-			<key>primary</key>
-			<true/>
-		</dict>
 		<key>8C463CD491D989B457394A7AA95384BC</key>
-		<dict>
-			<key>primary</key>
-			<true/>
-		</dict>
-		<key>9734D22B44AA6442686F6CE3709B5A95</key>
 		<dict>
 			<key>primary</key>
 			<true/>
@@ -172,17 +167,12 @@
 			<key>primary</key>
 			<true/>
 		</dict>
-		<key>9EBEFE3D834362E9ADD67D9CE7113E8A</key>
+		<key>B18A968663563A00773F5CA64E203DB1</key>
 		<dict>
 			<key>primary</key>
 			<true/>
 		</dict>
-		<key>B756D23BF9CDFE789AE89E2CB9F63035</key>
-		<dict>
-			<key>primary</key>
-			<true/>
-		</dict>
-		<key>C44DF30F61E0D691D121962AC68466DC</key>
+		<key>B996D2FDA946C5DFA981D28EA53C34F8</key>
 		<dict>
 			<key>primary</key>
 			<true/>
@@ -192,12 +182,22 @@
 			<key>primary</key>
 			<true/>
 		</dict>
+		<key>D54AB3ECEB9A8FBA15D4F73CBE326692</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
 		<key>E694B7A9158D69735D08E399D0B8ED5C</key>
 		<dict>
 			<key>primary</key>
 			<true/>
 		</dict>
-		<key>EFA93A96EFB534A1D190A854138750E6</key>
+		<key>EC69888001331C699A637DB2E791608D</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
+		<key>F2F0049055F924502868C752A084EBDF</key>
 		<dict>
 			<key>primary</key>
 			<true/>

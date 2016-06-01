@@ -13,10 +13,11 @@ pod 'AVOSCloud'
 pod 'SDWebImage'
 pod 'JTNavigationController'
 pod 'AutoLinearLayoutView'
-pod 'ObjectiveRecord'
 pod 'JVFloatingDrawer'
 pod 'MGSwipeTableCell'
 pod 'ZFDragableModalTransition'
 pod 'FSCalendar'
+pod 'MagicalRecord'
+pod 'CocoaLumberjack'
 
 end

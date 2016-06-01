@@ -19,6 +19,7 @@
 - (void)retrieveDataWithUser:(LCUser*)user date:(NSDate*)date complete:(void (^)(bool succeed, NSDictionary* dataDictionary, NSInteger dataCount))complete
 {
     AVQuery* query = [AVQuery queryWithClassName:[LCTodo parseClassName]];
+    query.cachePolicy = kAVCachePolicyCacheElseNetwork;
     [query whereKey:@"user" equalTo:user];
     [query whereKey:@"isDeleted" equalTo:@(NO)];
     [query whereKey:@"isCompleted" equalTo:@(NO)];

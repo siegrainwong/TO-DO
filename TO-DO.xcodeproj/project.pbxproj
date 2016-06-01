@@ -48,7 +48,6 @@
 		F94CA2631CE2FB940006904F /* LoginView.m in Sources */ = {isa = PBXBuildFile; fileRef = F94CA25C1CE2FB940006904F /* LoginView.m */; };
 		F94CA2641CE2FB940006904F /* SGTextField.m in Sources */ = {isa = PBXBuildFile; fileRef = F94CA25E1CE2FB940006904F /* SGTextField.m */; };
 		F94CA2651CE2FB940006904F /* SGTextField.xib in Resources */ = {isa = PBXBuildFile; fileRef = F94CA25F1CE2FB940006904F /* SGTextField.xib */; };
-		F94CA2691CE2FBC90006904F /* TO_DO.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = F94CA2671CE2FBC90006904F /* TO_DO.xcdatamodeld */; };
 		F94F2F371CF2D71200128A3A /* TodoTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = F94F2F361CF2D71200128A3A /* TodoTableViewCell.m */; };
 		F95994531CE462E100B042BD /* QiniuTokenGenerator.m in Sources */ = {isa = PBXBuildFile; fileRef = F95994521CE462E100B042BD /* QiniuTokenGenerator.m */; };
 		F95994561CE4692D00B042BD /* NSString+Encrytion.m in Sources */ = {isa = PBXBuildFile; fileRef = F95994551CE4692D00B042BD /* NSString+Encrytion.m */; };
@@ -56,6 +55,7 @@
 		F959945E1CE481CD00B042BD /* DateUtil.m in Sources */ = {isa = PBXBuildFile; fileRef = F959945D1CE481CD00B042BD /* DateUtil.m */; };
 		F95994611CE4898100B042BD /* UIImage+Compression.m in Sources */ = {isa = PBXBuildFile; fileRef = F95994601CE4898100B042BD /* UIImage+Compression.m */; };
 		F961B55B1CF42DED0096DAF4 /* TodoDataManager.m in Sources */ = {isa = PBXBuildFile; fileRef = F961B55A1CF42DED0096DAF4 /* TodoDataManager.m */; };
+		F9773EAD1CFECD7400469A0E /* TO_DO.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = F9773EAB1CFECD7400469A0E /* TO_DO.xcdatamodeld */; };
 		F980EDCF1CE70F4E00A861FE /* HeaderView.m in Sources */ = {isa = PBXBuildFile; fileRef = F980EDCE1CE70F4E00A861FE /* HeaderView.m */; };
 		F98DE68C1CFDCE6B00859A81 /* TodoTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = F98DE68B1CFDCE6B00859A81 /* TodoTableViewController.m */; };
 		F997BF9F1CF8376A00DD155B /* UIViewController+KNSemiModal.m in Sources */ = {isa = PBXBuildFile; fileRef = F997BF9E1CF8376A00DD155B /* UIViewController+KNSemiModal.m */; };
@@ -188,7 +188,6 @@
 		F94CA25D1CE2FB940006904F /* SGTextField.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = SGTextField.h; path = ../../Login/Views/SGTextField.h; sourceTree = "<group>"; };
 		F94CA25E1CE2FB940006904F /* SGTextField.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = SGTextField.m; path = ../../Login/Views/SGTextField.m; sourceTree = "<group>"; };
 		F94CA25F1CE2FB940006904F /* SGTextField.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = SGTextField.xib; path = ../../Login/Views/SGTextField.xib; sourceTree = "<group>"; };
-		F94CA2681CE2FBC90006904F /* TO_DO.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = TO_DO.xcdatamodel; sourceTree = "<group>"; };
 		F94F2F351CF2D71200128A3A /* TodoTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = TodoTableViewCell.h; path = ../TodoTableViewCell.h; sourceTree = "<group>"; };
 		F94F2F361CF2D71200128A3A /* TodoTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = TodoTableViewCell.m; path = ../TodoTableViewCell.m; sourceTree = "<group>"; };
 		F95994511CE462E100B042BD /* QiniuTokenGenerator.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = QiniuTokenGenerator.h; sourceTree = "<group>"; };
@@ -203,6 +202,7 @@
 		F95994601CE4898100B042BD /* UIImage+Compression.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIImage+Compression.m"; sourceTree = "<group>"; };
 		F961B5591CF42DED0096DAF4 /* TodoDataManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = TodoDataManager.h; path = ../../Home/TodoDataManager.h; sourceTree = "<group>"; };
 		F961B55A1CF42DED0096DAF4 /* TodoDataManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = TodoDataManager.m; path = ../../Home/TodoDataManager.m; sourceTree = "<group>"; };
+		F9773EAC1CFECD7400469A0E /* TO_DO.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = TO_DO.xcdatamodel; sourceTree = "<group>"; };
 		F980EDCD1CE70F4E00A861FE /* HeaderView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HeaderView.h; sourceTree = "<group>"; };
 		F980EDCE1CE70F4E00A861FE /* HeaderView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HeaderView.m; sourceTree = "<group>"; };
 		F98DE68A1CFDCE6B00859A81 /* TodoTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TodoTableViewController.h; sourceTree = "<group>"; };
@@ -218,6 +218,8 @@
 		F99A90331CE317EE00EC0762 /* zh-Hans */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "zh-Hans"; path = "zh-Hans.lproj/Main.strings"; sourceTree = "<group>"; };
 		F99A90341CE317EE00EC0762 /* zh-Hans */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "zh-Hans"; path = "zh-Hans.lproj/LaunchScreen.strings"; sourceTree = "<group>"; };
 		F99A90351CE317EE00EC0762 /* zh-Hans */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "zh-Hans"; path = "zh-Hans.lproj/Localizable.strings"; sourceTree = "<group>"; };
+		F99B23611CFEE3CA009A45A2 /* DDLogConfigure.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DDLogConfigure.h; sourceTree = "<group>"; };
+		F99B23621CFEFDD1009A45A2 /* introdution.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = introdution.h; sourceTree = "<group>"; };
 		F9A01FAC1CF2F60300699939 /* avatar1.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = avatar1.png; sourceTree = "<group>"; };
 		F9A01FAD1CF2F60300699939 /* avatar2.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = avatar2.png; sourceTree = "<group>"; };
 		F9A01FAE1CF2F60300699939 /* avatar3.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = avatar3.png; sourceTree = "<group>"; };
@@ -225,6 +227,7 @@
 		F9A1E07F1CEDFA4C00FFC453 /* SGCommitButton.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SGCommitButton.m; sourceTree = "<group>"; };
 		F9A1E0811CEE180E00FFC453 /* NSDateFormatter+Extension.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSDateFormatter+Extension.h"; sourceTree = "<group>"; };
 		F9A1E0821CEE180E00FFC453 /* NSDateFormatter+Extension.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSDateFormatter+Extension.m"; sourceTree = "<group>"; };
+		F9A61EEF1CFEDE8E00A86714 /* PrefixHeader.pch */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PrefixHeader.pch; sourceTree = "<group>"; };
 		F9A7236E1CDDF8A800E3BC8E /* TO-DO.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "TO-DO.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		F9A723721CDDF8A800E3BC8E /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
 		F9A723771CDDF8A800E3BC8E /* ViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ViewController.h; sourceTree = "<group>"; };
@@ -333,10 +336,12 @@
 			path = LeanCloudModels;
 			sourceTree = "<group>";
 		};
-		F9331D871CF0A98C00B36474 /* CoreDataModels */ = {
+		F9331D871CF0A98C00B36474 /* CoredataModels */ = {
 			isa = PBXGroup;
 			children = (
+				F99B23621CFEFDD1009A45A2 /* introdution.h */,
 			);
+			name = CoredataModels;
 			path = CoreDataModels;
 			sourceTree = "<group>";
 		};
@@ -548,6 +553,7 @@
 			children = (
 				F94CA2351CE2FA9E0006904F /* DataKeys.h */,
 				F94CA2361CE2FA9E0006904F /* Macros.h */,
+				F99B23611CFEE3CA009A45A2 /* DDLogConfigure.h */,
 			);
 			path = Constants;
 			sourceTree = "<group>";
@@ -612,9 +618,9 @@
 		F94CA2661CE2FBC90006904F /* Models */ = {
 			isa = PBXGroup;
 			children = (
-				F9331D871CF0A98C00B36474 /* CoreDataModels */,
+				F9773EAB1CFECD7400469A0E /* TO_DO.xcdatamodeld */,
+				F9331D871CF0A98C00B36474 /* CoredataModels */,
 				F9331D801CF0A97200B36474 /* LeanCloudModels */,
-				F94CA2671CE2FBC90006904F /* TO_DO.xcdatamodeld */,
 			);
 			name = Models;
 			path = Model;
@@ -717,6 +723,7 @@
 				F94CA1E81CE2F91F0006904F /* Images */,
 				F9A723721CDDF8A800E3BC8E /* main.m */,
 				F9A723851CDDF8A800E3BC8E /* Info.plist */,
+				F9A61EEF1CFEDE8E00A86714 /* PrefixHeader.pch */,
 			);
 			name = "Supporting Files";
 			sourceTree = "<group>";
@@ -1052,6 +1059,7 @@
 				F94CA2061CE2F9780006904F /* SCLButton.m in Sources */,
 				F9F723461CEEF40200128254 /* NSNotificationCenter+Extension.m in Sources */,
 				F98DE68C1CFDCE6B00859A81 /* TodoTableViewController.m in Sources */,
+				F9773EAD1CFECD7400469A0E /* TO_DO.xcdatamodeld in Sources */,
 				F94CA2441CE2FA9E0006904F /* UIImage+Extension.m in Sources */,
 				F94F2F371CF2D71200128A3A /* TodoTableViewCell.m in Sources */,
 				F9331D861CF0A97200B36474 /* LCUser.m in Sources */,
@@ -1082,7 +1090,6 @@
 				F94CA24B1CE2FA9E0006904F /* MD5Util.m in Sources */,
 				F94CA2481CE2FA9E0006904F /* TodoHelper.m in Sources */,
 				F94CA2091CE2F9780006904F /* SCLTimerDisplay.m in Sources */,
-				F94CA2691CE2FBC90006904F /* TO_DO.xcdatamodeld in Sources */,
 				F943885B1CF5579100E44379 /* TodoHeaderCell.m in Sources */,
 				F997BF9F1CF8376A00DD155B /* UIViewController+KNSemiModal.m in Sources */,
 				F93BC1571CE5E9EE000A34C5 /* HomeViewController.m in Sources */,
@@ -1251,6 +1258,7 @@
 					"$(inherited)",
 					"$(PROJECT_DIR)",
 				);
+				GCC_PREFIX_HEADER = "$(SRCROOT)/TO-DO/PrefixHeader.pch";
 				INFOPLIST_FILE = "TO-DO/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = "Siegrain.TO-DO";
@@ -1269,6 +1277,7 @@
 					"$(inherited)",
 					"$(PROJECT_DIR)",
 				);
+				GCC_PREFIX_HEADER = "$(SRCROOT)/TO-DO/PrefixHeader.pch";
 				INFOPLIST_FILE = "TO-DO/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = "Siegrain.TO-DO";
@@ -1368,12 +1377,12 @@
 /* End XCConfigurationList section */
 
 /* Begin XCVersionGroup section */
-		F94CA2671CE2FBC90006904F /* TO_DO.xcdatamodeld */ = {
+		F9773EAB1CFECD7400469A0E /* TO_DO.xcdatamodeld */ = {
 			isa = XCVersionGroup;
 			children = (
-				F94CA2681CE2FBC90006904F /* TO_DO.xcdatamodel */,
+				F9773EAC1CFECD7400469A0E /* TO_DO.xcdatamodel */,
 			);
-			currentVersion = F94CA2681CE2FBC90006904F /* TO_DO.xcdatamodel */;
+			currentVersion = F9773EAC1CFECD7400469A0E /* TO_DO.xcdatamodel */;
 			path = TO_DO.xcdatamodeld;
 			sourceTree = "<group>";
 			versionGroupType = wrapper.xcdatamodel;
