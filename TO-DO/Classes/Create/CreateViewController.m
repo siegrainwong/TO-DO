@@ -7,7 +7,6 @@
 //
 
 #import "AutoLinearLayoutView.h"
-#import "CreateDataManager.h"
 #import "CreateViewController.h"
 #import "DateUtil.h"
 #import "HSDatePickerViewController+Configure.h"
@@ -19,41 +18,42 @@
 #import "SCLAlertHelper.h"
 #import "SGCommitButton.h"
 #import "SGTextField.h"
+#import "TodoDataManager.h"
 #import "UIImage+Extension.h"
 #import "UIViewController+KNSemiModal.h"
-#import "ZFModalTransitionAnimator.h"
 
 // FIXME: iPhone4s 上 NavigationBar 会遮挡一部分标题文本框
-// TODO: 需要更换DatePicker
+// TODO: 人物选择功能
 
-@implementation CreateViewController {
-    CreateDataManager* _dataManager;
-    UIView* containerView;
-    SGTextField* titleTextField;
-    AutoLinearLayoutView* linearView;
-    SGTextField* descriptionTextField;
-    SGTextField* datetimePickerField;
-    SGTextField* locationTextField;
-    SGCommitButton* commitButton;
-    ZFModalTransitionAnimator* animator;
-    HSDatePickerViewController* datePickerViewController;
+@interface
+CreateViewController ()
+@property (nonatomic, readwrite, strong) TodoDataManager* dataManager;
+@property (nonatomic, readwrite, strong) UIView* containerView;
+@property (nonatomic, readwrite, strong) SGTextField* titleTextField;
+@property (nonatomic, readwrite, strong) AutoLinearLayoutView* linearView;
+@property (nonatomic, readwrite, strong) SGTextField* descriptionTextField;
+@property (nonatomic, readwrite, strong) SGTextField* datetimePickerField;
+@property (nonatomic, readwrite, strong) SGTextField* locationTextField;
+@property (nonatomic, readwrite, strong) SGCommitButton* commitButton;
+@property (nonatomic, readwrite, strong) HSDatePickerViewController* datePickerViewController;
 
-    NSDate* selectedDate;
-    CGFloat fieldHeight;
-    CGFloat fieldSpacing;
-    UIImage* selectedImage;
-    BOOL viewIsDisappearing;
-    // TODO: 人物选择功能
-}
+@property (nonatomic, readwrite, strong) NSDate* selectedDate;
+@property (nonatomic, readwrite, assign) CGFloat fieldHeight;
+@property (nonatomic, readwrite, assign) CGFloat fieldSpacing;
+@property (nonatomic, readwrite, strong) UIImage* selectedImage;
+@property (nonatomic, readwrite, assign) BOOL viewIsDisappearing;
+@end
+
+@implementation CreateViewController
 #pragma mark - localization
 - (void)localizeStrings
 {
     [self setMenuTitle:NSLocalizedString(@"Create New", nil)];
-    descriptionTextField.label.text = NSLocalizedString(@"Description", nil);
-    datetimePickerField.label.text = NSLocalizedString(@"Time", nil);
-    locationTextField.label.text = NSLocalizedString(@"Location", nil);
-    [commitButton.button setTitle:NSLocalizedString(@"DONE", nil) forState:UIControlStateNormal];
-    titleTextField.field.attributedPlaceholder = [[NSAttributedString alloc] initWithString:NSLocalizedString(@"Title", nil) attributes:@{ NSForegroundColorAttributeName : ColorWithRGB(0xCCCCCC), NSFontAttributeName : titleTextField.field.font }];
+    _descriptionTextField.label.text = NSLocalizedString(@"Description", nil);
+    _datetimePickerField.label.text = NSLocalizedString(@"Time", nil);
+    _locationTextField.label.text = NSLocalizedString(@"Location", nil);
+    [_commitButton.button setTitle:NSLocalizedString(@"DONE", nil) forState:UIControlStateNormal];
+    _titleTextField.field.attributedPlaceholder = [[NSAttributedString alloc] initWithString:NSLocalizedString(@"Title", nil) attributes:@{ NSForegroundColorAttributeName : ColorWithRGB(0xCCCCCC), NSFontAttributeName : _titleTextField.field.font }];
 }
 #pragma mark - initial
 - (void)viewDidLoad
@@ -61,84 +61,83 @@
     [super viewDidLoad];
 
     [self localizeStrings];
-    [titleTextField becomeFirstResponder];
+    [_titleTextField becomeFirstResponder];
 }
 - (void)setupView
 {
     [super setupView];
 
-    fieldHeight = kScreenHeight * 0.08;
-    fieldSpacing = kScreenHeight * 0.03;
+    _fieldHeight = kScreenHeight * 0.08;
+    _fieldSpacing = kScreenHeight * 0.03;
     [NSNotificationCenter attachKeyboardObservers:self keyboardWillShowSelector:@selector(keyboardWillShow:) keyboardWillHideSelector:@selector(keyboardWillHide:)];
 
-    _dataManager = [CreateDataManager new];
+    _dataManager = [TodoDataManager new];
 
-    datePickerViewController = [[HSDatePickerViewController alloc] init];
-    [datePickerViewController configure];
-    datePickerViewController.delegate = self;
+    _datePickerViewController = [[HSDatePickerViewController alloc] init];
+    [_datePickerViewController configure];
+    _datePickerViewController.delegate = self;
 
     __weak typeof(self) weakSelf = self;
     // Mark: 需要这个的原因是 self.view 在视图加载时还不在窗口层级中，无法为其绑定约束
-    containerView = [UIView new];
-    containerView.backgroundColor = [UIColor whiteColor];
-    [self.view addSubview:containerView];
+    _containerView = [UIView new];
+    _containerView.backgroundColor = [UIColor whiteColor];
+    [self.view addSubview:_containerView];
 
     self.headerView = [HeaderView headerViewWithAvatarPosition:HeaderAvatarPositionCenter titleAlignement:HeaderTitleAlignementCenter];
     self.headerView.backgroundImageView.image = [UIImage imageAtResourcePath:@"create header bg"];
     [self.headerView.rightOperationButton setImage:[UIImage imageNamed:@"photo"] forState:UIControlStateNormal];
     [self.headerView setHeaderViewDidPressRightOperationButton:^{ [weakSelf headerViewDidPressRightOperationButton]; }];
     self.headerView.avatarButton.hidden = YES;
-    [containerView addSubview:self.headerView];
+    [_containerView addSubview:self.headerView];
 
-    titleTextField = [SGTextField textField];
-    titleTextField.field.font = [TodoHelper themeFontWithSize:32];
-    titleTextField.field.textColor = [UIColor whiteColor];
-    titleTextField.field.returnKeyType = UIReturnKeyNext;
-    titleTextField.isUnderlineHidden = YES;
-    [titleTextField setTextFieldShouldReturn:^(SGTextField* textField) {
+    _titleTextField = [SGTextField textField];
+    _titleTextField.field.font = [TodoHelper themeFontWithSize:32];
+    _titleTextField.field.textColor = [UIColor whiteColor];
+    _titleTextField.field.returnKeyType = UIReturnKeyNext;
+    _titleTextField.isUnderlineHidden = YES;
+    [_titleTextField setTextFieldShouldReturn:^(SGTextField* textField) {
         [textField resignFirstResponder];
-
-        // TODO: [weakSelf datetimePickerFieldDidPress];
+        [weakSelf showDatetimePicker];
     }];
-    [self.headerView addSubview:titleTextField];
+    [self.headerView addSubview:_titleTextField];
 
-    linearView = [[AutoLinearLayoutView alloc] init];
-    linearView.axisVertical = YES;
-    linearView.spacing = fieldSpacing;
-    [containerView addSubview:linearView];
+    _linearView = [[AutoLinearLayoutView alloc] init];
+    _linearView.axisVertical = YES;
+    _linearView.spacing = _fieldSpacing;
+    [_containerView addSubview:_linearView];
 
-    datetimePickerField = [SGTextField textField];
-    datetimePickerField.field.returnKeyType = UIReturnKeyNext;
-    datetimePickerField.enabled = NO;
-    [datetimePickerField addTarget:self action:@selector(showDatetimePicker) forControlEvents:UIControlEventTouchUpInside];
-    [linearView addSubview:datetimePickerField];
+    _datetimePickerField = [SGTextField textField];
+    _datetimePickerField.field.returnKeyType = UIReturnKeyNext;
+    _datetimePickerField.enabled = NO;
+    [_datetimePickerField addTarget:self action:@selector(showDatetimePicker) forControlEvents:UIControlEventTouchUpInside];
+    [_linearView addSubview:_datetimePickerField];
 
-    descriptionTextField = [SGTextField textField];
-    descriptionTextField.field.returnKeyType = UIReturnKeyNext;
-    [descriptionTextField setTextFieldShouldReturn:^(SGTextField* textField) {
+    _descriptionTextField = [SGTextField textField];
+    _descriptionTextField.field.returnKeyType = UIReturnKeyNext;
+    [_descriptionTextField setTextFieldShouldReturn:^(SGTextField* textField) {
         __strong typeof(self) strongSelf = weakSelf;
-        [strongSelf->locationTextField becomeFirstResponder];
+        [strongSelf->_locationTextField becomeFirstResponder];
     }];
-    [linearView addSubview:descriptionTextField];
+    [_linearView addSubview:_descriptionTextField];
 
-    locationTextField = [SGTextField textField];
-    locationTextField.field.returnKeyType = UIReturnKeyDone;
-    [locationTextField setTextFieldShouldReturn:^(SGTextField* textField) {
+    _locationTextField = [SGTextField textField];
+    _locationTextField.field.returnKeyType = UIReturnKeyDone;
+    [_locationTextField setTextFieldShouldReturn:^(SGTextField* textField) {
         [weakSelf commitButtonDidPress];
     }];
-    [linearView addSubview:locationTextField];
+    [_linearView addSubview:_locationTextField];
 
-    commitButton = [SGCommitButton commitButton];
-    [commitButton setCommitButtonDidPress:^{
+    _commitButton = [SGCommitButton commitButton];
+    [_commitButton setCommitButtonDidPress:^{
         [weakSelf commitButtonDidPress];
     }];
-    [containerView addSubview:commitButton];
+    [_containerView addSubview:_commitButton];
 }
 - (void)bindConstraints
 {
     [super bindConstraints];
 
-    [containerView mas_makeConstraints:^(MASConstraintMaker* make) {
+    [_containerView mas_makeConstraints:^(MASConstraintMaker* make) {
         make.left.top.right.bottom.offset(0);
     }];
 
@@ -148,27 +147,27 @@
         make.height.offset(kScreenHeight * 0.3);
     }];
 
-    [titleTextField mas_makeConstraints:^(MASConstraintMaker* make) {
+    [_titleTextField mas_makeConstraints:^(MASConstraintMaker* make) {
         make.left.right.offset(0);
         make.centerY.offset(-10);
         make.height.offset(40);
     }];
 
-    [linearView mas_makeConstraints:^(MASConstraintMaker* make) {
+    [_linearView mas_makeConstraints:^(MASConstraintMaker* make) {
         make.left.offset(20);
         make.right.offset(-20);
         make.top.equalTo(self.headerView.mas_bottom).offset(20);
-        make.height.offset((fieldHeight + fieldSpacing) * 3);
+        make.height.offset((_fieldHeight + _fieldSpacing) * 3);
     }];
 
-    [@[ descriptionTextField, datetimePickerField, locationTextField ] mas_makeConstraints:^(MASConstraintMaker* make) {
+    [@[ _descriptionTextField, _datetimePickerField, _locationTextField ] mas_makeConstraints:^(MASConstraintMaker* make) {
         make.left.right.offset(0);
-        make.height.offset(fieldHeight);
+        make.height.offset(_fieldHeight);
     }];
 
-    [commitButton mas_makeConstraints:^(MASConstraintMaker* make) {
-        make.left.right.equalTo(linearView);
-        make.height.offset(fieldHeight);
+    [_commitButton mas_makeConstraints:^(MASConstraintMaker* make) {
+        make.left.right.equalTo(_linearView);
+        make.height.offset(_fieldHeight);
         make.bottom.offset(-20);
     }];
 }
@@ -178,23 +177,23 @@
     __weak typeof(self) weakSelf = self;
     dispatch_queue_t serialQueue = dispatch_queue_create("TO-DOCreateSerialQueue", DISPATCH_QUEUE_SERIAL);
     dispatch_sync(serialQueue, ^{
-        if (commitButton.indicator.isAnimating) return;
+        if (_commitButton.indicator.isAnimating) return;
 
         [weakSelf.view endEditing:YES];
         [weakSelf enableView:NO];
 
         LCTodo* todo = [LCTodo object];
-        todo.title = titleTextField.field.text;
-        todo.sgDescription = descriptionTextField.field.text;
-        todo.deadline = selectedDate;
-        todo.location = locationTextField.field.text;
-        todo.photoImage = selectedImage;
+        todo.title = _titleTextField.field.text;
+        todo.sgDescription = _descriptionTextField.field.text;
+        todo.deadline = _selectedDate;
+        todo.location = _locationTextField.field.text;
+        todo.photoImage = _selectedImage;
         todo.user = super.user;
         todo.status = LCTodoStatusNormal;
         todo.isCompleted = NO;
         todo.isDeleted = NO;
 
-        [_dataManager handleCommit:todo complete:^(bool succeed) {
+        [_dataManager insertTodo:todo complete:^(bool succeed) {
             [weakSelf enableView:YES];
             if (!succeed) return;
             if (_createViewControllerDidFinishCreate) _createViewControllerDidFinishCreate(todo);
@@ -204,7 +203,7 @@
 }
 - (void)enableView:(BOOL)isEnable
 {
-    [commitButton setAnimating:!isEnable];
+    [_commitButton setAnimating:!isEnable];
     self.headerView.userInteractionEnabled = isEnable;
 }
 #pragma mark - pick picture
@@ -225,8 +224,8 @@
 - (void)imagePickerController:(UIImagePickerController*)picker
 didFinishPickingMediaWithInfo:(NSDictionary<NSString*, id>*)info
 {
-    selectedImage = info[UIImagePickerControllerEditedImage];
-    [self.headerView.rightOperationButton setImage:selectedImage forState:UIControlStateNormal];
+    _selectedImage = info[UIImagePickerControllerEditedImage];
+    [self.headerView.rightOperationButton setImage:_selectedImage forState:UIControlStateNormal];
     [picker dismissViewControllerAnimated:true completion:nil];
     super.releaseWhileDisappear = true;
 }
@@ -247,22 +246,22 @@ didFinishPickingMediaWithInfo:(NSDictionary<NSString*, id>*)info
 - (void)animateByKeyboard:(BOOL)isShowAnimation
 {
     // Mark: 视图在 Disappear 之后再 Appear 时，会恢复键盘状态，但是这时不会知道是哪个控件的焦点，所以必须再判断一下
-    if (titleTextField.field.isFirstResponder || viewIsDisappearing) return;
+    if (_titleTextField.field.isFirstResponder || _viewIsDisappearing) return;
 
-    [containerView mas_updateConstraints:^(MASConstraintMaker* make) {
+    [_containerView mas_updateConstraints:^(MASConstraintMaker* make) {
         make.top.bottom.offset(isShowAnimation ? -115 : 0);
     }];
-    [commitButton mas_remakeConstraints:^(MASConstraintMaker* make) {
-        make.left.right.equalTo(linearView);
-        make.height.offset(fieldHeight);
+    [_commitButton mas_remakeConstraints:^(MASConstraintMaker* make) {
+        make.left.right.equalTo(_linearView);
+        make.height.offset(_fieldHeight);
         if (isShowAnimation)
-            make.top.equalTo(locationTextField.mas_bottom).offset(20);
+            make.top.equalTo(_locationTextField.mas_bottom).offset(20);
         else
             make.bottom.offset(-20);
     }];
 
     [UIView animateWithDuration:1 animations:^{
-        [containerView.superview layoutIfNeeded];
+        [_containerView.superview layoutIfNeeded];
         [self.navigationController.navigationBar setHidden:isShowAnimation];
     }];
 }
@@ -270,28 +269,28 @@ didFinishPickingMediaWithInfo:(NSDictionary<NSString*, id>*)info
 {
     [super viewWillAppear:animated];
 
-    viewIsDisappearing = YES;
+    _viewIsDisappearing = YES;
 }
 - (void)viewWillDisappear:(BOOL)animated
 {
     [super viewWillDisappear:animated];
 
-    viewIsDisappearing = YES;
+    _viewIsDisappearing = YES;
     [self.view endEditing:YES];
 }
 #pragma mark - datetime picker
 - (void)showDatetimePicker
 {
-    if (selectedDate) datePickerViewController.date = selectedDate;
-    [self presentViewController:datePickerViewController animated:YES completion:nil];
+    if (_selectedDate) _datePickerViewController.date = _selectedDate;
+    [self presentViewController:_datePickerViewController animated:YES completion:nil];
 }
 - (BOOL)hsDatePickerPickedDate:(NSDate*)date
 {
-    if ([date timeIntervalSince1970] < [datePickerViewController.minDate timeIntervalSince1970])
+    if ([date timeIntervalSince1970] < [_datePickerViewController.minDate timeIntervalSince1970])
         date = [NSDate date];
 
-    selectedDate = date;
-    datetimePickerField.field.text = [DateUtil dateString:date withFormat:@"yyyy.MM.dd HH:mm"];
+    _selectedDate = date;
+    _datetimePickerField.field.text = [DateUtil dateString:date withFormat:@"yyyy.MM.dd HH:mm"];
 
     return true;
 }

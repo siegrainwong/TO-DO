@@ -1,25 +1,39 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <model userDefinedModelVersionIdentifier="" type="com.apple.IDECoreDataModeler.DataModel" documentVersion="1.0" lastSavedToolsVersion="9525" systemVersion="15D21" minimumToolsVersion="Automatic">
-    <entity name="Todo" syncable="YES">
-        <attribute name="createAt" optional="YES" attributeType="Date" syncable="YES"/>
-        <attribute name="deadline" optional="YES" attributeType="Date" syncable="YES"/>
-        <attribute name="isCompleted" optional="YES" attributeType="Boolean" syncable="YES"/>
-        <attribute name="isHidden" optional="YES" attributeType="Boolean" syncable="YES"/>
-        <attribute name="location" optional="YES" attributeType="String" syncable="YES"/>
-        <attribute name="photo" optional="YES" attributeType="String" syncable="YES"/>
-        <attribute name="sgDescription" optional="YES" attributeType="String" syncable="YES"/>
-        <attribute name="status" optional="YES" attributeType="Integer 16" defaultValueString="0" syncable="YES"/>
-        <attribute name="title" optional="YES" attributeType="String" syncable="YES"/>
-    </entity>
-    <entity name="User" syncable="YES">
-        <attribute name="avatar" optional="YES" attributeType="String" syncable="YES"/>
-        <attribute name="email" optional="YES" attributeType="String" syncable="YES"/>
-        <attribute name="name" optional="YES" attributeType="String" syncable="YES"/>
+    <entity name="Todo" representedClassName="Todo" syncable="YES">
+        <attribute name="cellHeight" optional="YES" transient="YES" attributeType="Float" defaultValueString="0.0" syncable="YES"/>
+        <attribute name="createAt" attributeType="Date" indexed="YES" syncable="YES"/>
+        <attribute name="deadline" attributeType="Date" indexed="YES" syncable="YES"/>
+        <attribute name="isCompleted" attributeType="Boolean" defaultValueString="NO" syncable="YES"/>
+        <attribute name="isHidden" attributeType="Boolean" defaultValueString="NO" syncable="YES"/>
+        <attribute name="isReordering" optional="YES" transient="YES" attributeType="Boolean" defaultValueString="NO" syncable="YES"/>
+        <attribute name="lastDeadline" optional="YES" transient="YES" attributeType="Date" syncable="YES"/>
+        <attribute name="location" optional="YES" attributeType="String" minValueString="0" maxValueString="50" syncable="YES"/>
         <attribute name="objectId" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="photo" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="photoImage" optional="YES" transient="YES" attributeType="Binary" allowsExternalBinaryDataStorage="YES" syncable="YES"/>
+        <attribute name="sgDescription" optional="YES" attributeType="String" minValueString="0" maxValueString="200" syncable="YES"/>
+        <attribute name="status" attributeType="Integer 16" minValueString="0" maxValueString="2" defaultValueString="0" indexed="YES" syncable="YES"/>
+        <attribute name="syncStatus" attributeType="Integer 16" minValueString="0" defaultValueString="0" indexed="YES" syncable="YES"/>
+        <attribute name="syncVersion" attributeType="Integer 64" minValueString="0" defaultValueString="0" indexed="YES" syncable="YES"/>
+        <attribute name="title" attributeType="String" syncable="YES"/>
+        <relationship name="user" maxCount="1" deletionRule="Nullify" destinationEntity="User" inverseName="todos" inverseEntity="User" syncable="YES"/>
+    </entity>
+    <entity name="User" representedClassName="User" syncable="YES">
+        <attribute name="avatar" attributeType="String" syncable="YES"/>
+        <attribute name="avatarImage" optional="YES" transient="YES" attributeType="Binary" allowsExternalBinaryDataStorage="YES" syncable="YES"/>
+        <attribute name="createAt" attributeType="Date" indexed="YES" syncable="YES"/>
+        <attribute name="email" attributeType="String" regularExpressionString="[A-Z0-9a-z._%+-]+@[A-Za-z0-9.-]+\\.[A-Za-z]{2,4}" syncable="YES"/>
+        <attribute name="name" attributeType="String" regularExpressionString="^[\u4e00-\u9fa5A-Za-z0-9\\s*]+$" syncable="YES"/>
+        <attribute name="objectId" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="password" transient="YES" attributeType="String" minValueString="6" maxValueString="20" regularExpressionString="^[a-zA-Z0-9]+$" syncable="YES"/>
+        <attribute name="syncStatus" attributeType="Integer 16" minValueString="0" defaultValueString="0" indexed="YES" syncable="YES"/>
+        <attribute name="syncVersion" attributeType="Integer 64" minValueString="0" defaultValueString="0" indexed="YES" syncable="YES"/>
         <attribute name="username" optional="YES" attributeType="String" syncable="YES"/>
+        <relationship name="todos" optional="YES" toMany="YES" deletionRule="Cascade" destinationEntity="Todo" inverseName="user" inverseEntity="Todo" syncable="YES"/>
     </entity>
     <elements>
-        <element name="User" positionX="-63" positionY="-18" width="128" height="120"/>
-        <element name="Todo" positionX="-54" positionY="27" width="128" height="180"/>
+        <element name="User" positionX="-63" positionY="-18" width="128" height="30"/>
+        <element name="Todo" positionX="-54" positionY="27" width="128" height="30"/>
     </elements>
 </model>

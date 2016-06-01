@@ -9,7 +9,6 @@
 /* Begin PBXBuildFile section */
 		8A80814723BDF84A9866A1C1 /* libPods-TO-DO.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 874BB13DFF8BBE53341474BC /* libPods-TO-DO.a */; };
 		F921F4D41CECA023004AC07E /* UINavigationController+Transparent.m in Sources */ = {isa = PBXBuildFile; fileRef = F921F4D31CECA023004AC07E /* UINavigationController+Transparent.m */; };
-		F928FF671CF04D1600295BA6 /* CreateDataManager.m in Sources */ = {isa = PBXBuildFile; fileRef = F928FF661CF04D1600295BA6 /* CreateDataManager.m */; };
 		F92B876D1CE368B300D15EAE /* UIView+Extentsion.m in Sources */ = {isa = PBXBuildFile; fileRef = F92B876C1CE368B300D15EAE /* UIView+Extentsion.m */; };
 		F9331D851CF0A97200B36474 /* LCTodo.m in Sources */ = {isa = PBXBuildFile; fileRef = F9331D821CF0A97200B36474 /* LCTodo.m */; };
 		F9331D861CF0A97200B36474 /* LCUser.m in Sources */ = {isa = PBXBuildFile; fileRef = F9331D841CF0A97200B36474 /* LCUser.m */; };
@@ -64,6 +63,10 @@
 		F997BFA51CF83A6C00DD155B /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F997BFA41CF83A6C00DD155B /* Foundation.framework */; };
 		F997BFA71CF83A7C00DD155B /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F997BFA61CF83A7C00DD155B /* CoreGraphics.framework */; };
 		F99A902E1CE30CB600EC0762 /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = F99A90301CE30CB600EC0762 /* Localizable.strings */; };
+		F99B236B1CFF3057009A45A2 /* Todo+CoreDataProperties.m in Sources */ = {isa = PBXBuildFile; fileRef = F99B23641CFF3057009A45A2 /* Todo+CoreDataProperties.m */; };
+		F99B236C1CFF3057009A45A2 /* Todo.m in Sources */ = {isa = PBXBuildFile; fileRef = F99B23661CFF3057009A45A2 /* Todo.m */; };
+		F99B236D1CFF3057009A45A2 /* User+CoreDataProperties.m in Sources */ = {isa = PBXBuildFile; fileRef = F99B23681CFF3057009A45A2 /* User+CoreDataProperties.m */; };
+		F99B236E1CFF3057009A45A2 /* User.m in Sources */ = {isa = PBXBuildFile; fileRef = F99B236A1CFF3057009A45A2 /* User.m */; };
 		F9A01FAF1CF2F60300699939 /* avatar1.png in Resources */ = {isa = PBXBuildFile; fileRef = F9A01FAC1CF2F60300699939 /* avatar1.png */; };
 		F9A01FB01CF2F60300699939 /* avatar2.png in Resources */ = {isa = PBXBuildFile; fileRef = F9A01FAD1CF2F60300699939 /* avatar2.png */; };
 		F9A01FB11CF2F60300699939 /* avatar3.png in Resources */ = {isa = PBXBuildFile; fileRef = F9A01FAE1CF2F60300699939 /* avatar3.png */; };
@@ -113,8 +116,6 @@
 		874BB13DFF8BBE53341474BC /* libPods-TO-DO.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-TO-DO.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		F921F4D21CECA023004AC07E /* UINavigationController+Transparent.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UINavigationController+Transparent.h"; sourceTree = "<group>"; };
 		F921F4D31CECA023004AC07E /* UINavigationController+Transparent.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UINavigationController+Transparent.m"; sourceTree = "<group>"; };
-		F928FF651CF04D1600295BA6 /* CreateDataManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CreateDataManager.h; sourceTree = "<group>"; };
-		F928FF661CF04D1600295BA6 /* CreateDataManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CreateDataManager.m; sourceTree = "<group>"; };
 		F92B876B1CE368B300D15EAE /* UIView+Extentsion.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIView+Extentsion.h"; sourceTree = "<group>"; };
 		F92B876C1CE368B300D15EAE /* UIView+Extentsion.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIView+Extentsion.m"; sourceTree = "<group>"; };
 		F9331D811CF0A97200B36474 /* LCTodo.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LCTodo.h; sourceTree = "<group>"; };
@@ -219,7 +220,14 @@
 		F99A90341CE317EE00EC0762 /* zh-Hans */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "zh-Hans"; path = "zh-Hans.lproj/LaunchScreen.strings"; sourceTree = "<group>"; };
 		F99A90351CE317EE00EC0762 /* zh-Hans */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "zh-Hans"; path = "zh-Hans.lproj/Localizable.strings"; sourceTree = "<group>"; };
 		F99B23611CFEE3CA009A45A2 /* DDLogConfigure.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DDLogConfigure.h; sourceTree = "<group>"; };
-		F99B23621CFEFDD1009A45A2 /* introdution.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = introdution.h; sourceTree = "<group>"; };
+		F99B23631CFF3057009A45A2 /* Todo+CoreDataProperties.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "Todo+CoreDataProperties.h"; sourceTree = "<group>"; };
+		F99B23641CFF3057009A45A2 /* Todo+CoreDataProperties.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "Todo+CoreDataProperties.m"; sourceTree = "<group>"; };
+		F99B23651CFF3057009A45A2 /* Todo.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Todo.h; sourceTree = "<group>"; };
+		F99B23661CFF3057009A45A2 /* Todo.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Todo.m; sourceTree = "<group>"; };
+		F99B23671CFF3057009A45A2 /* User+CoreDataProperties.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "User+CoreDataProperties.h"; sourceTree = "<group>"; };
+		F99B23681CFF3057009A45A2 /* User+CoreDataProperties.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "User+CoreDataProperties.m"; sourceTree = "<group>"; };
+		F99B23691CFF3057009A45A2 /* User.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = User.h; sourceTree = "<group>"; };
+		F99B236A1CFF3057009A45A2 /* User.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = User.m; sourceTree = "<group>"; };
 		F9A01FAC1CF2F60300699939 /* avatar1.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = avatar1.png; sourceTree = "<group>"; };
 		F9A01FAD1CF2F60300699939 /* avatar2.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = avatar2.png; sourceTree = "<group>"; };
 		F9A01FAE1CF2F60300699939 /* avatar3.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = avatar3.png; sourceTree = "<group>"; };
@@ -316,15 +324,6 @@
 			name = Pods;
 			sourceTree = "<group>";
 		};
-		F928FF641CF04BFF00295BA6 /* DataManager */ = {
-			isa = PBXGroup;
-			children = (
-				F928FF651CF04D1600295BA6 /* CreateDataManager.h */,
-				F928FF661CF04D1600295BA6 /* CreateDataManager.m */,
-			);
-			name = DataManager;
-			sourceTree = "<group>";
-		};
 		F9331D801CF0A97200B36474 /* LeanCloudModels */ = {
 			isa = PBXGroup;
 			children = (
@@ -339,7 +338,14 @@
 		F9331D871CF0A98C00B36474 /* CoredataModels */ = {
 			isa = PBXGroup;
 			children = (
-				F99B23621CFEFDD1009A45A2 /* introdution.h */,
+				F99B23631CFF3057009A45A2 /* Todo+CoreDataProperties.h */,
+				F99B23641CFF3057009A45A2 /* Todo+CoreDataProperties.m */,
+				F99B23651CFF3057009A45A2 /* Todo.h */,
+				F99B23661CFF3057009A45A2 /* Todo.m */,
+				F99B23671CFF3057009A45A2 /* User+CoreDataProperties.h */,
+				F99B23681CFF3057009A45A2 /* User+CoreDataProperties.m */,
+				F99B23691CFF3057009A45A2 /* User.h */,
+				F99B236A1CFF3057009A45A2 /* User.m */,
 			);
 			name = CoredataModels;
 			path = CoreDataModels;
@@ -349,8 +355,6 @@
 			isa = PBXGroup;
 			children = (
 				F93BC1511CE5E99A000A34C5 /* Controllers */,
-				F93BC1521CE5E9A1000A34C5 /* DataManager */,
-				F93BC1541CE5E9AA000A34C5 /* Views */,
 			);
 			name = Home;
 			path = Classes/Home;
@@ -371,20 +375,6 @@
 				F93BC1561CE5E9EE000A34C5 /* HomeViewController.m */,
 			);
 			name = Controllers;
-			sourceTree = "<group>";
-		};
-		F93BC1521CE5E9A1000A34C5 /* DataManager */ = {
-			isa = PBXGroup;
-			children = (
-			);
-			name = DataManager;
-			sourceTree = "<group>";
-		};
-		F93BC1541CE5E9AA000A34C5 /* Views */ = {
-			isa = PBXGroup;
-			children = (
-			);
-			name = Views;
 			sourceTree = "<group>";
 		};
 		F93BC1591CE6087B000A34C5 /* Views */ = {
@@ -777,7 +767,6 @@
 		F9BCE52E1CEDB438003376C7 /* Create */ = {
 			isa = PBXGroup;
 			children = (
-				F928FF641CF04BFF00295BA6 /* DataManager */,
 				F9BCE52F1CEDB535003376C7 /* Controllers */,
 			);
 			name = Create;
@@ -1072,11 +1061,11 @@
 				F9BCE5321CEDB54B003376C7 /* CreateViewController.m in Sources */,
 				F94CA2041CE2F9780006904F /* SCLAlertViewResponder.m in Sources */,
 				F9E9534E1CF8708C0046E1C9 /* HSDatePickerViewController.m in Sources */,
-				F928FF671CF04D1600295BA6 /* CreateDataManager.m in Sources */,
 				F9DE3ED41CF4849F00653A56 /* NSDate+Extension.m in Sources */,
 				F94CA2431CE2FA9E0006904F /* NSString+Extension.m in Sources */,
 				F945ABDD1CED983800C282F7 /* UIScrollView+Extension.m in Sources */,
 				F95994611CE4898100B042BD /* UIImage+Compression.m in Sources */,
+				F99B236D1CFF3057009A45A2 /* User+CoreDataProperties.m in Sources */,
 				F95994561CE4692D00B042BD /* NSString+Encrytion.m in Sources */,
 				F94CA2491CE2FA9E0006904F /* FieldValidator.m in Sources */,
 				F94CA2611CE2FB940006904F /* UserDataManager.m in Sources */,
@@ -1088,6 +1077,8 @@
 				F9E953521CF875B70046E1C9 /* HSDatePickerViewController+Configure.m in Sources */,
 				F980EDCF1CE70F4E00A861FE /* HeaderView.m in Sources */,
 				F94CA24B1CE2FA9E0006904F /* MD5Util.m in Sources */,
+				F99B236E1CFF3057009A45A2 /* User.m in Sources */,
+				F99B236C1CFF3057009A45A2 /* Todo.m in Sources */,
 				F94CA2481CE2FA9E0006904F /* TodoHelper.m in Sources */,
 				F94CA2091CE2F9780006904F /* SCLTimerDisplay.m in Sources */,
 				F943885B1CF5579100E44379 /* TodoHeaderCell.m in Sources */,
@@ -1102,6 +1093,7 @@
 				F9A1E0801CEDFA4C00FFC453 /* SGCommitButton.m in Sources */,
 				F9A1E0831CEE180E00FFC453 /* NSDateFormatter+Extension.m in Sources */,
 				F94CA2421CE2FA9E0006904F /* NSObject+PropertyName.m in Sources */,
+				F99B236B1CFF3057009A45A2 /* Todo+CoreDataProperties.m in Sources */,
 				F94CA2631CE2FB940006904F /* LoginView.m in Sources */,
 				F9E953481CF853A00046E1C9 /* UUDatePicker_DateModel.m in Sources */,
 			);

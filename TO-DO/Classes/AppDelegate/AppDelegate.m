@@ -63,14 +63,14 @@ AppDelegate ()
     [self setupLeanCloud];
     [self setupDrawerViewController];
     [self setupDDLog];
-    [self setupMagicRecord];
+    // Mark: 离线缓存暂用LeanCloud自带的
+    // [self setupMagicRecord];
 
     [UIApplication sharedApplication].statusBarStyle = UIStatusBarStyleLightContent;
     self.window = [[UIWindow alloc] initWithFrame:[[UIScreen mainScreen] bounds]];
     self.window.backgroundColor = [UIColor whiteColor];
 
     // validate user's login state
-    //    [LCUser logOut];
     LCUser* user = [LCUser currentUser];
     if (user) {
         DDLogInfo(@"当前用户：%@", user.username);
