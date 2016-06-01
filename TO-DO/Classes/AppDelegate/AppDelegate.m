@@ -63,8 +63,7 @@ AppDelegate ()
     [self setupLeanCloud];
     [self setupDrawerViewController];
     [self setupDDLog];
-    // Mark: 离线缓存暂用LeanCloud自带的
-    // [self setupMagicRecord];
+    [self setupMagicRecord];
 
     [UIApplication sharedApplication].statusBarStyle = UIStatusBarStyleLightContent;
     self.window = [[UIWindow alloc] initWithFrame:[[UIScreen mainScreen] bounds]];

@@ -7,12 +7,19 @@
 //
 
 /**
- *  数据库关键字等
+ *  各类常量关键字等
  */
 #ifndef DataKeys_h
 #define DataKeys_h
 
-#import <UIKit/UIKit.h>
+typedef NS_ENUM(NSInteger, SyncStatus) {
+    /* 等待同步 */
+    SyncStatusWaiting,
+    /* 同步中 */
+    SyncStatusSynchronizing,
+    /* 同步完成 */
+    SyncStatusSynchronized
+};
 
 /* 野狗空间地址 */
 static NSString* const kWilddogConnectionString = @"https://sgtodo.wilddogio.com/";

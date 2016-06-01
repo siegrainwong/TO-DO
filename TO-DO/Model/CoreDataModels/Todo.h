@@ -6,10 +6,19 @@
 //  Copyright © 2016年 com.siegrain. All rights reserved.
 //
 
-#import <Foundation/Foundation.h>
 #import <CoreData/CoreData.h>
+#import <Foundation/Foundation.h>
 
 NS_ASSUME_NONNULL_BEGIN
+
+typedef NS_ENUM(NSInteger, CDTodoStatus) {
+    /* 普通 */
+    CDTodoStatusNormal,
+    /* 延迟 */
+    CDTodoStatusSnoozed,
+    /* 过期 */
+    CDTodoStatusOverdue
+};
 
 @interface Todo : NSManagedObject
 
