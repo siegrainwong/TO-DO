@@ -102,8 +102,10 @@ HomeViewController ()
 
     if (!super.releaseWhileDisappear) return;
 
-    [self.view removeFromSuperview];
-    self.view = nil;
+    [_todoTableViewController.timer invalidate];
+    _todoTableViewController.timer = nil;
+
+    [_todoTableViewController removeFromParentViewController];
     [self removeFromParentViewController];
 }
 - (void)dealloc

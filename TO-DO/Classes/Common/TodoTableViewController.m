@@ -33,7 +33,6 @@ TodoTableViewController ()
 @property (nonatomic, readwrite, strong) NSMutableDictionary* dataDictionary;
 @property (nonatomic, readwrite, strong) NSMutableArray<NSString*>* dateArray;
 
-@property (nonatomic, readwrite, strong) NSTimer* timer;
 @property (nonatomic, readwrite, strong) TodoTableViewCell* snoozingCell;
 
 @property (nonatomic, readwrite, assign) BOOL releaseWhileDisappear;
@@ -325,14 +324,14 @@ TodoTableViewController ()
 {
     [super viewDidDisappear:animated];
 
-    if (!_releaseWhileDisappear) return;
-
-    [_timer invalidate];
-    _timer = nil;
-
-    [self.view removeFromSuperview];
-    self.view = nil;
-    [self removeFromParentViewController];
+    //    if (!_releaseWhileDisappear) return;
+    //
+    //    [_timer invalidate];
+    //    _timer = nil;
+    //
+    //    [self.view removeFromSuperview];
+    //    self.view = nil;
+    //    [self removeFromParentViewController];
 }
 - (void)dealloc
 {
