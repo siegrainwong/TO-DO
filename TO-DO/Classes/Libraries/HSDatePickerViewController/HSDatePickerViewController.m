@@ -44,6 +44,7 @@ HSDatePickerViewController ()<UIPickerViewDataSource,
 @implementation HSDatePickerViewController
 @synthesize minDate = _minDate;
 @synthesize maxDate = _maxDate;
+@synthesize date = _date;
 
 #pragma mark - Controller lifecycle
 

@@ -22,7 +22,6 @@ CalendarViewController ()
 @end
 
 // TODO:日历收缩
-// TODO:获取数据
 
 @implementation CalendarViewController
 #pragma mark - initial
@@ -57,6 +56,10 @@ CalendarViewController ()
     [self.headerView setHeaderViewDidPressRightOperationButton:^{
         weakSelf.releaseWhileDisappear = NO;
         CreateViewController* createViewController = [[CreateViewController alloc] init];
+        [createViewController setCreateViewControllerDidFinishCreate:^(LCTodo* model) {
+            model.photoImage = [model.photoImage imageAddCornerWithRadius:model.photoImage.size.width / 2 andSize:model.photoImage.size];
+            [weakSelf.todoTableViewController insertTodo:model];
+        }];
         [createViewController setCreateViewControllerDidDisappear:^{
             weakSelf.releaseWhileDisappear = YES;
         }];

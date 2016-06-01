@@ -74,10 +74,6 @@ TodoTableViewController ()
     self.tableView.sectionHeaderHeight = _style == TodoTableViewControllerStyleWithoutSection ? 0 : 15;
     [self.tableView registerClass:[TodoTableViewCell class] forCellReuseIdentifier:kTodoIdentifierArray[TodoIdentifierNormal]];
     self.tableView.separatorInset = UIEdgeInsetsMake(0, kScreenHeight * kCellHorizontalInsetsMuiltipledByHeight, 0, kScreenHeight * kCellHorizontalInsetsMuiltipledByHeight);
-
-    _datePickerViewController = [HSDatePickerViewController new];
-    [_datePickerViewController configure];
-    _datePickerViewController.delegate = self;
 }
 #pragma mark - retreive data
 - (void)retrieveDataWithUser:(LCUser*)user date:(NSDate*)date
@@ -86,13 +82,16 @@ TodoTableViewController ()
     [_dataManager retrieveDataWithUser:user date:date complete:^(bool succeed, NSDictionary* data, NSInteger count) {
         weakSelf.dataDictionary = [NSMutableDictionary dictionaryWithDictionary:data];
         weakSelf.dataCount = count;
-        [weakSelf reloadData];
+        [weakSelf reloadDataWithArrayNeedsToReorder:nil];
         [weakSelf setupTimer];
     }];
 }
 #pragma mark - reloadData
-- (void)reloadData
+- (void)reloadDataWithArrayNeedsToReorder:(NSMutableArray*)array
 {
+    NSSortDescriptor* sort = [NSSortDescriptor sortDescriptorWithKey:@"self.deadline.timeIntervalSince1970" ascending:YES];
+    [array sortUsingDescriptors:@[ sort ]];
+
     NSArray* dateArrayOrder = [_dataDictionary.allKeys sortedArrayUsingComparator:^NSComparisonResult(NSString* dateString1, NSString* dateString2) {
         NSString* format = @"yyyy-MM-dd";
         NSNumber* interval1 = @([DateUtil stringToDate:dateString1 format:format].timeIntervalSince1970);
@@ -165,7 +164,7 @@ TodoTableViewController ()
             sender.model.isCompleted = YES;
             [weakSelf.dataManager modifyTodo:sender.model complete:^(bool succeed) {
                 [sender setUserInteractionEnabled:YES];
-                if (succeed) [weakSelf removeTodo:sender.model atIndexPath:[weakSelf.tableView indexPathForCell:sender]];
+                if (succeed) [weakSelf removeTodo:sender.model atIndexPath:[weakSelf.tableView indexPathForCell:sender] reordering:NO animate:YES];
             }];
             return NO;
         }];
@@ -183,7 +182,7 @@ TodoTableViewController ()
             sender.model.isDeleted = YES;
             [weakSelf.dataManager modifyTodo:sender.model complete:^(bool succeed) {
                 [sender setUserInteractionEnabled:YES];
-                if (succeed) [weakSelf removeTodo:sender.model atIndexPath:[weakSelf.tableView indexPathForCell:sender]];
+                if (succeed) [weakSelf removeTodo:sender.model atIndexPath:[weakSelf.tableView indexPathForCell:sender] reordering:NO animate:YES];
             }];
             return YES;
         }];
@@ -205,63 +204,61 @@ TodoTableViewController ()
     [self setupCellEvents:cell];
     cell.model = model;
 }
-- (void)removeTodo:(LCTodo*)model atIndexPath:(NSIndexPath*)indexPath
+- (void)removeTodo:(LCTodo*)model atIndexPath:(NSIndexPath*)indexPath reordering:(BOOL)reordering animate:(BOOL)animate
 {
-    // FIXME: 多次请求会异常
-    NSString* deadline = model.deadline.stringInYearMonthDay;
+    // FIXME: 多次请求可能会异常
+    NSString* deadline = reordering ? model.lastDeadline.stringInYearMonthDay : model.deadline.stringInYearMonthDay;
     NSMutableArray<LCTodo*>* array = _dataDictionary[deadline];
     [array removeObject:model];
 
+    [UIView setAnimationsEnabled:animate];
     if (!array.count) {
         [self removeEmptySection:deadline];
     } else {
         [self.tableView deleteRowsAtIndexPaths:@[ indexPath ] withRowAnimation:UITableViewRowAnimationLeft];
     }
+    [UIView setAnimationsEnabled:YES];
 
     _dataCount--;
     // Mark:光用 deleteRows 方法删除该 Section 最后一行时，上一行会冒出一条迷の分割线，所以必须 reloadData
-    [self reloadData];
+    [self reloadDataWithArrayNeedsToReorder:nil];
 }
 - (void)insertTodo:(LCTodo*)model
 {
-    [self reorderTodo:model];
-}
-- (void)reorderTodo:(LCTodo*)model
-{
+    // [self reorderTodo:model];
     NSString* deadline = model.deadline.stringInYearMonthDay;
-
     NSMutableArray<LCTodo*>* array = _dataDictionary[deadline];
+    // 日历视图只需添加当天的数据即可
+    if (!array && _style == TodoTableViewControllerStyleWithoutSection) return;
     if (!array) array = _dataDictionary[deadline] = [NSMutableArray new];
     if (![_dateArray containsObject:deadline]) [_dateArray addObject:deadline];
 
-    // 如果不显示组样式 && 是小睡操作 && 不是同一天，需要移除当前位置的 cell，加到另一个 section 中
-    // 是同一天的话就直接加进去
-    if (_style != TodoTableViewControllerStyleWithoutSection && model.lastDeadline && ![model.lastDeadline.stringInYearMonthDay isEqualToString:deadline]) {
-        NSString* lastDeadline = model.lastDeadline.stringInYearMonthDay;
-        NSMutableArray<LCTodo*>* lastDateArray = _dataDictionary[lastDeadline];
-        [lastDateArray removeObject:model];
+    _dataCount++;
+    [array addObject:model];
 
-        [self removeEmptySection:lastDeadline];
-        // Mark: 必须在 remove sections 后再添加到数据源中，不然 remove 时会报错，即使该数据源不在原来的位置上..
-        [array addObject:model];
-    } else if (!model.lastDeadline) {
-        _dataCount++;
-        [array addObject:model];
-    }
+    [self reloadDataWithArrayNeedsToReorder:array];
+}
+- (void)reorderTodo:(LCTodo*)model atIndexPath:(NSIndexPath*)indexPath
+{
+    [self removeTodo:model atIndexPath:indexPath reordering:YES animate:NO];
 
-    NSSortDescriptor* sort = [NSSortDescriptor sortDescriptorWithKey:@"self.deadline.timeIntervalSince1970" ascending:YES];
-    [array sortUsingDescriptors:@[ sort ]];
+    NSString* deadline = model.deadline.stringInYearMonthDay;
+    // 日历视图中，如果不是同一天的话，删掉就可以返回了
+    if (_style == TodoTableViewControllerStyleWithoutSection && ![model.lastDeadline.stringInYearMonthDay isEqualToString:deadline]) return;
 
-    [self reloadData];
+    [self insertTodo:model];
 }
 #pragma mark - date time picker delegate
 - (void)showDatetimePicker:(NSDate*)deadline
 {
     _releaseWhileDisappear = NO;
 
+    // Mark: 这个库有Bug，每次必须重新初始化才能正确选择时间
+    _datePickerViewController = [HSDatePickerViewController new];
+    [_datePickerViewController configure];
+    _datePickerViewController.delegate = self;
     _datePickerViewController.minDate = [[NSDate date] dateByAddingTimeInterval:-60];
-    if ([deadline timeIntervalSince1970] > [_datePickerViewController.minDate timeIntervalSince1970])
-        _datePickerViewController.minDate = deadline;
+    [_datePickerViewController setDate:deadline];
 
     [self presentViewController:_datePickerViewController animated:YES completion:nil];
 }
@@ -269,20 +266,21 @@ TodoTableViewController ()
 {
     _releaseWhileDisappear = YES;
 
-    if ([date timeIntervalSince1970] < [_datePickerViewController.minDate timeIntervalSince1970])
-        date = [NSDate date];
+    if ([date compare:_datePickerViewController.minDate] == NSOrderedAscending) date = [NSDate date];
 
     __weak typeof(self) weakSelf = self;
     LCTodo* todo = _snoozingCell.model;
     todo.lastDeadline = todo.deadline;
     todo.deadline = date;
-    todo.status = LCTodoStatusSnoozed;
+    // 时间推迟了才算你Snoozed
+    if ([todo.lastDeadline compare:todo.deadline] == NSOrderedAscending)
+        todo.status = LCTodoStatusSnoozed;
     [_snoozingCell setUserInteractionEnabled:NO];
     [_dataManager modifyTodo:todo complete:^(bool succeed) {
         [weakSelf.snoozingCell setUserInteractionEnabled:YES];
-        weakSelf.snoozingCell = nil;
         if (succeed)
-            [weakSelf reorderTodo:todo];
+            [weakSelf reorderTodo:todo atIndexPath:[self.tableView indexPathForCell:weakSelf.snoozingCell]];
+        weakSelf.snoozingCell = nil;
     }];
 
     return YES;
@@ -320,19 +318,6 @@ TodoTableViewController ()
     if (needsToReload) [self.tableView reloadData];
 }
 #pragma mark - release
-- (void)viewDidDisappear:(BOOL)animated
-{
-    [super viewDidDisappear:animated];
-
-    //    if (!_releaseWhileDisappear) return;
-    //
-    //    [_timer invalidate];
-    //    _timer = nil;
-    //
-    //    [self.view removeFromSuperview];
-    //    self.view = nil;
-    //    [self removeFromParentViewController];
-}
 - (void)dealloc
 {
     NSLog(@"%s", __func__);
