@@ -53,4 +53,7 @@
 
 //控制状态栏网络菊花
 #define ApplicationNetworkIndicatorVisible(isVisible) ([[UIApplication sharedApplication] setNetworkActivityIndicatorVisible:isVisible])
+
+//MagicRecord Save
+#define mrContextSave() [[NSManagedObjectContext MR_defaultContext] MR_saveToPersistentStoreAndWait];
 #endif

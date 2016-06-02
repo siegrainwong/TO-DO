@@ -13,13 +13,10 @@
 
 @implementation CDTodo (CoreDataProperties)
 
-@dynamic cellHeight;
 @dynamic createAt;
 @dynamic deadline;
 @dynamic isCompleted;
 @dynamic isHidden;
-@dynamic isReordering;
-@dynamic lastDeadline;
 @dynamic location;
 @dynamic objectId;
 @dynamic photo;

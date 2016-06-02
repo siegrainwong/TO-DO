@@ -6,8 +6,11 @@
 //  Copyright © 2016年 com.siegrain. All rights reserved.
 //
 
+#import "CDUser.h"
+#import "DateUtil.h"
 #import "ImageUploader.h"
 #import "MRTodoDataManager.h"
+#import "NSDate+Extension.h"
 #import "NSString+Extension.h"
 #import "SCLAlertHelper.h"
 
@@ -25,17 +28,44 @@ MRTodoDataManager ()
 
 @implementation MRTodoDataManager
 @synthesize localDictionary = _localDictionary;
+#pragma mark - retrieve
+- (void)retrieveDataWithUser:(CDUser*)user date:(NSDate*)date complete:(void (^)(bool succeed, NSDictionary* dataDictionary, NSInteger dataCount))complete
+{
+    NSMutableArray* arguments = [NSMutableArray new];
+    NSString* predicateFormat = @"user = %@ and isHidden = %@ and isCompleted = %@";
+    [arguments addObjectsFromArray:@[ user, @(NO), @(NO) ]];
+    if (date) {
+        [predicateFormat stringByAppendingString:@" and deadline >= %@ and deadline <= %@"];
+        [arguments addObjectsFromArray:@[ date, [date dateByAddingTimeInterval:kTimeIntervalDay] ]];
+    }
+    NSPredicate* filter = [NSPredicate predicateWithFormat:predicateFormat argumentArray:[arguments copy]];
+    NSArray<CDTodo*>* data = [CDTodo MR_findAllSortedBy:@"deadline" ascending:YES withPredicate:filter];
 
+    NSInteger dataCount = data.count;
+    NSMutableDictionary* dataDictionary = [NSMutableDictionary new];
+
+    NSMutableArray* dataInSameDay;
+    NSString* dateString;
+    for (CDTodo* todo in data) {
+        NSString* newDateString = todo.deadline.stringInYearMonthDay;
+        if (![dateString isEqualToString:newDateString]) {
+            dateString = newDateString;
+            dataInSameDay = [NSMutableArray new];
+            dataDictionary[dateString] = dataInSameDay;
+        }
+        [dataInSameDay addObject:todo];
+    }
+
+    return complete(YES, [dataDictionary copy], dataCount);
+}
 #pragma mark - insertion
 #pragma mark - commit
-- (BOOL)insertTodo:(CDTodo*)todo
+- (void)insertTodo:(CDTodo*)todo complete:(void (^)(bool succeed))complete
 {
     _model = todo;
-    if (![self validate]) return NO;
+    if (![self validate]) return complete(NO);
 
-    [[NSManagedObjectContext MR_defaultContext] MR_saveToPersistentStoreAndWait];
-
-    return YES;
+    [self saveWithBlock:complete];
 }
 #pragma mark - validate
 - (BOOL)validate

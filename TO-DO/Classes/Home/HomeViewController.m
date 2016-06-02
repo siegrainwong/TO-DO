@@ -87,7 +87,7 @@ HomeViewController ()
 #pragma mark - retrieve data
 - (void)retrieveDataFromServer
 {
-    [_todoTableViewController retrieveDataWithUser:self.lcUser date:nil];
+    [_todoTableViewController retrieveDataWithUser:self.cdUser date:nil];
 }
 #pragma mark - todotableviewcontroller delegate
 - (void)todoTableViewControllerDidReloadData

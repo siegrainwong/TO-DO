@@ -6,8 +6,8 @@
 //  Copyright © 2016年 com.siegrain. All rights reserved.
 //
 
+#import "CDTodo.h"
 #import "DateUtil.h"
-#import "LCTodo.h"
 #import "Macros.h"
 #import "NSDateFormatter+Extension.h"
 #import "SDWebImageManager.h"
@@ -147,7 +147,7 @@ TodoTableViewCell ()
     self.rightButtons = @[ completeButton, snoozeButton, deleteButton ];
 }
 #pragma mark - set model
-- (void)setModel:(LCTodo*)todo
+- (void)setModel:(CDTodo*)todo
 {
     if (todo.photo.length) {
         if (!_model.photoImage) {
@@ -168,7 +168,7 @@ TodoTableViewCell ()
     formatter.dateFormat = @"a";
     _meridiemLabel.text = [[formatter stringFromDate:_model.deadline] lowercaseString];
 
-    [_statusButton setImage:[UIImage imageNamed:[NSString stringWithFormat:@"status-%ld", _model.status]] forState:UIControlStateNormal];
+    [_statusButton setImage:[UIImage imageNamed:[NSString stringWithFormat:@"status-%ld", [_model.status integerValue]]] forState:UIControlStateNormal];
 
     _todoTitleLabel.text = _model.title;
     _todoContentLabel.text = _model.sgDescription;

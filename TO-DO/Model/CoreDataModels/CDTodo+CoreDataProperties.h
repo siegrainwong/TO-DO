@@ -15,13 +15,10 @@ NS_ASSUME_NONNULL_BEGIN
 
 @interface CDTodo (CoreDataProperties)
 
-@property (nullable, nonatomic, retain) NSNumber *cellHeight;
 @property (nullable, nonatomic, retain) NSDate *createAt;
 @property (nullable, nonatomic, retain) NSDate *deadline;
 @property (nullable, nonatomic, retain) NSNumber *isCompleted;
 @property (nullable, nonatomic, retain) NSNumber *isHidden;
-@property (nullable, nonatomic, retain) NSNumber *isReordering;
-@property (nullable, nonatomic, retain) NSDate *lastDeadline;
 @property (nullable, nonatomic, retain) NSString *location;
 @property (nullable, nonatomic, retain) NSString *objectId;
 @property (nullable, nonatomic, retain) NSString *photo;

@@ -18,13 +18,13 @@ typedef NS_ENUM(NSInteger, TodoIdentifier) {
 };
 #define kTodoIdentifierArray (@[ @"Normal", @"Timeline" ])
 
-@class LCTodo;
+@class CDTodo;
 
 /**
  *  待办事项Cell
  */
 @interface TodoTableViewCell : MGSwipeTableCell
-@property (nonatomic, readwrite, strong) LCTodo* model;
+@property (nonatomic, readwrite, strong) CDTodo* model;
 
 @property (nonatomic, readwrite, copy) BOOL (^todoDidComplete)(TodoTableViewCell* cell);
 @property (nonatomic, readwrite, copy) BOOL (^todoDidSnooze)(TodoTableViewCell* cell);

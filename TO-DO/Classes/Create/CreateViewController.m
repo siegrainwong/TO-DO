@@ -195,10 +195,12 @@ CreateViewController ()
         todo.isHidden = @(NO);
         todo.createAt = [NSDate date];
 
-        if (![_dataManager insertTodo:todo]) return;
-
-        if (_createViewControllerDidFinishCreate) _createViewControllerDidFinishCreate(todo);
-        [weakSelf.navigationController popToRootViewControllerAnimated:YES];
+        [_dataManager insertTodo:todo complete:^(bool succeed) {
+            [weakSelf enableView:YES];
+            if (!succeed) return;
+            if (_createViewControllerDidFinishCreate) _createViewControllerDidFinishCreate(todo);
+            [weakSelf.navigationController popToRootViewControllerAnimated:YES];
+        }];
 
         // LeanCloud's
         //        [_dataManager insertTodo:todo complete:^(bool succeed) {

@@ -12,6 +12,7 @@
 		F92B876D1CE368B300D15EAE /* UIView+Extentsion.m in Sources */ = {isa = PBXBuildFile; fileRef = F92B876C1CE368B300D15EAE /* UIView+Extentsion.m */; };
 		F9331D851CF0A97200B36474 /* LCTodo.m in Sources */ = {isa = PBXBuildFile; fileRef = F9331D821CF0A97200B36474 /* LCTodo.m */; };
 		F9331D861CF0A97200B36474 /* LCUser.m in Sources */ = {isa = PBXBuildFile; fileRef = F9331D841CF0A97200B36474 /* LCUser.m */; };
+		F9383FD01D00103A006D9497 /* MRDataManager.m in Sources */ = {isa = PBXBuildFile; fileRef = F9383FCF1D00103A006D9497 /* MRDataManager.m */; };
 		F93BC14E1CE5E961000A34C5 /* header bg.png in Resources */ = {isa = PBXBuildFile; fileRef = F93BC14B1CE5E961000A34C5 /* header bg.png */; };
 		F93BC1571CE5E9EE000A34C5 /* HomeViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = F93BC1561CE5E9EE000A34C5 /* HomeViewController.m */; };
 		F943885B1CF5579100E44379 /* TodoHeaderCell.m in Sources */ = {isa = PBXBuildFile; fileRef = F943885A1CF5579100E44379 /* TodoHeaderCell.m */; };
@@ -127,6 +128,8 @@
 		F9331D821CF0A97200B36474 /* LCTodo.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LCTodo.m; sourceTree = "<group>"; };
 		F9331D831CF0A97200B36474 /* LCUser.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LCUser.h; sourceTree = "<group>"; };
 		F9331D841CF0A97200B36474 /* LCUser.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LCUser.m; sourceTree = "<group>"; };
+		F9383FCE1D00103A006D9497 /* MRDataManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MRDataManager.h; sourceTree = "<group>"; };
+		F9383FCF1D00103A006D9497 /* MRDataManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MRDataManager.m; sourceTree = "<group>"; };
 		F93BC14B1CE5E961000A34C5 /* header bg.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "header bg.png"; sourceTree = "<group>"; };
 		F93BC1551CE5E9EE000A34C5 /* HomeViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HomeViewController.h; sourceTree = "<group>"; };
 		F93BC1561CE5E9EE000A34C5 /* HomeViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HomeViewController.m; sourceTree = "<group>"; };
@@ -690,6 +693,8 @@
 				F99B23721CFF3592009A45A2 /* MRTodoDataManager.m */,
 				F9B3DD001CFFDEE8000A8B28 /* MRUserDataManager.h */,
 				F9B3DD011CFFDEE8000A8B28 /* MRUserDataManager.m */,
+				F9383FCE1D00103A006D9497 /* MRDataManager.h */,
+				F9383FCF1D00103A006D9497 /* MRDataManager.m */,
 			);
 			name = MagicRecordDataManagers;
 			path = CoredataManager;
@@ -1098,6 +1103,7 @@
 				F94CA2441CE2FA9E0006904F /* UIImage+Extension.m in Sources */,
 				F94F2F371CF2D71200128A3A /* TodoTableViewCell.m in Sources */,
 				F9B3DD1A1CFFE5BE000A8B28 /* LCSync.m in Sources */,
+				F9383FD01D00103A006D9497 /* MRDataManager.m in Sources */,
 				F9331D861CF0A97200B36474 /* LCUser.m in Sources */,
 				F99B23901CFF4248009A45A2 /* CDUser+CoreDataProperties.m in Sources */,
 				F92B876D1CE368B300D15EAE /* UIView+Extentsion.m in Sources */,

@@ -8,7 +8,9 @@
 
 #import "CDTodo.h"
 #import "Localized.h"
+#import "MRDataManager.h"
 
-@interface MRTodoDataManager : NSObject<Localized>
-- (BOOL)insertTodo:(CDTodo*)todo;
+@interface MRTodoDataManager : MRDataManager<Localized>
+- (void)insertTodo:(CDTodo*)todo complete:(void (^)(bool succeed))complete;
+- (void)retrieveDataWithUser:(CDUser*)user date:(NSDate*)date complete:(void (^)(bool succeed, NSDictionary* dataDictionary, NSInteger dataCount))complete;
 @end

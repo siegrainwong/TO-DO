@@ -6,10 +6,10 @@
 //  Copyright © 2016年 com.siegrain. All rights reserved.
 //
 
+#import "CDTodo.h"
 #import "CalendarViewController.h"
 #import "CreateViewController.h"
 #import "DateUtil.h"
-#import "CDTodo.h"
 #import "NSDate+Extension.h"
 #import "UIImage+Extension.h"
 
@@ -55,7 +55,7 @@ CalendarViewController ()
     [self.headerView setHeaderViewDidPressRightOperationButton:^{
         weakSelf.releaseWhileDisappear = NO;
         CreateViewController* createViewController = [[CreateViewController alloc] init];
-        [createViewController setCreateViewControllerDidFinishCreate:^(CDTodo * model) {
+        [createViewController setCreateViewControllerDidFinishCreate:^(CDTodo* model) {
             model.photoImage = [model.photoImage imageAddCornerWithRadius:model.photoImage.size.width / 2 andSize:model.photoImage.size];
             [weakSelf.todoTableViewController insertTodo:model];
         }];
@@ -112,7 +112,7 @@ CalendarViewController ()
 #pragma mark - retrieve data
 - (void)retrieveDataFromServer:(NSDate*)date
 {
-    [_todoTableViewController retrieveDataWithUser:self.lcUser date:date];
+    [_todoTableViewController retrieveDataWithUser:self.cdUser date:date];
 }
 
 #pragma mark - calendar delegate

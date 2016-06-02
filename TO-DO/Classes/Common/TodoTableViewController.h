@@ -26,7 +26,6 @@ typedef NS_ENUM(NSInteger, TodoTableViewControllerStyle) {
 - (void)todoTableViewControllerDidReloadData;
 @end
 
-@class LCTodo;
 @class CDTodo;
 
 /**
@@ -54,6 +53,6 @@ typedef NS_ENUM(NSInteger, TodoTableViewControllerStyle) {
  *  @param user <#user description#>
  *  @param date <#date description#>
  */
-- (void)retrieveDataWithUser:(LCUser*)user date:(NSDate*)date;
+- (void)retrieveDataWithUser:(CDUser*)user date:(NSDate*)date;
 - (void)insertTodo:(CDTodo*)model;
 @end

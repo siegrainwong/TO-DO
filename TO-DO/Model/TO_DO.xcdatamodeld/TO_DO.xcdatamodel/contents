@@ -5,13 +5,10 @@
         <attribute name="syncVersion" optional="YES" attributeType="Integer 64" minValueString="0" defaultValueString="0" indexed="YES" syncable="YES"/>
     </entity>
     <entity name="Todo" representedClassName="CDTodo" parentEntity="Sync" syncable="YES">
-        <attribute name="cellHeight" optional="YES" transient="YES" attributeType="Float" defaultValueString="0.0" syncable="YES"/>
         <attribute name="createAt" attributeType="Date" indexed="YES" syncable="YES"/>
         <attribute name="deadline" attributeType="Date" indexed="YES" syncable="YES"/>
         <attribute name="isCompleted" attributeType="Boolean" defaultValueString="NO" syncable="YES"/>
         <attribute name="isHidden" attributeType="Boolean" defaultValueString="NO" syncable="YES"/>
-        <attribute name="isReordering" optional="YES" transient="YES" attributeType="Boolean" defaultValueString="NO" syncable="YES"/>
-        <attribute name="lastDeadline" optional="YES" transient="YES" attributeType="Date" syncable="YES"/>
         <attribute name="location" optional="YES" attributeType="String" minValueString="0" maxValueString="50" syncable="YES"/>
         <attribute name="objectId" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="photo" optional="YES" attributeType="String" syncable="YES"/>
@@ -33,7 +30,7 @@
     </entity>
     <elements>
         <element name="Sync" positionX="0" positionY="0" width="128" height="73"/>
-        <element name="Todo" positionX="-2" positionY="180" width="128" height="270"/>
+        <element name="Todo" positionX="-2" positionY="180" width="128" height="223"/>
         <element name="User" positionX="-317" positionY="9" width="128" height="163"/>
     </elements>
 </model>
