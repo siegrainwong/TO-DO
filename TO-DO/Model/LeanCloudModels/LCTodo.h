@@ -7,6 +7,7 @@
 //
 
 #import "AVOSCloud.h"
+#import "LCSync.h"
 #import "LCUser.h"
 #import <Foundation/Foundation.h>
 
@@ -19,7 +20,7 @@ typedef NS_ENUM(NSInteger, LCTodoStatus) {
     LCTodoStatusOverdue
 };
 
-@interface LCTodo : AVObject<AVSubclassing>
+@interface LCTodo : LCSync<AVSubclassing>
 /* 标题 */
 @property (nonatomic, readwrite, strong) NSString* title;
 /* 描述（被内置字段占用） */
@@ -33,7 +34,7 @@ typedef NS_ENUM(NSInteger, LCTodoStatus) {
 /* 状态 */
 @property (nonatomic, readwrite, assign) LCTodoStatus status;
 /* 是否删除 */
-@property (nonatomic, readwrite, assign) BOOL isDeleted;
+@property (nonatomic, readwrite, assign) BOOL isHidden;
 /* 是否完成 */
 @property (nonatomic, readwrite, assign) BOOL isCompleted;
 /* 照片 */

@@ -12,6 +12,15 @@
 #ifndef DataKeys_h
 #define DataKeys_h
 
+typedef NS_ENUM(NSInteger, TodoStatus) {
+    /* 普通 */
+    TodoStatusNormal,
+    /* 延迟 */
+    TodoStatusSnoozed,
+    /* 过期 */
+    TodoStatusOverdue
+};
+
 typedef NS_ENUM(NSInteger, SyncStatus) {
     /* 等待同步 */
     SyncStatusWaiting,

@@ -10,14 +10,14 @@
 #import "HSDatePickerViewController.h"
 #import "Localized.h"
 
-@class LCTodo;
+@class CDTodo;
 
 @interface CreateViewController : BaseViewController<Localized, HSDatePickerViewControllerDelegate, UINavigationControllerDelegate, UIImagePickerControllerDelegate>
 
 /**
  *  用于回传刚提交成功的数据
  */
-@property (nonatomic, readwrite, copy) void (^createViewControllerDidFinishCreate)(LCTodo* model);
+@property (nonatomic, readwrite, copy) void (^createViewControllerDidFinishCreate)(CDTodo* model);
 /**
  *  在该控制器引发viewDidDisappear时引发
  */

@@ -15,7 +15,7 @@
 @dynamic location;
 @dynamic user;
 @dynamic status;
-@dynamic isDeleted;
+@dynamic isHidden;
 @dynamic isCompleted;
 @dynamic photo;
 

@@ -7,11 +7,10 @@
 //
 
 #import "Localized.h"
-#import <Foundation/Foundation.h>
 
 @class LCUser;
 
-@interface UserDataManager : NSObject<Localized>
+@interface LCUserDataManager : NSObject<Localized>
 /**
  *  处理登录、注册请求
  *

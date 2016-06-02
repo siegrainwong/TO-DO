@@ -27,6 +27,7 @@ typedef NS_ENUM(NSInteger, TodoTableViewControllerStyle) {
 @end
 
 @class LCTodo;
+@class CDTodo;
 
 /**
  *  代办事项列表
@@ -54,5 +55,5 @@ typedef NS_ENUM(NSInteger, TodoTableViewControllerStyle) {
  *  @param date <#date description#>
  */
 - (void)retrieveDataWithUser:(LCUser*)user date:(NSDate*)date;
-- (void)insertTodo:(LCTodo*)model;
+- (void)insertTodo:(CDTodo*)model;
 @end

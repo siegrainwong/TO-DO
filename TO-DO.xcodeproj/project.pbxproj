@@ -43,7 +43,7 @@
 		F94CA24B1CE2FA9E0006904F /* MD5Util.m in Sources */ = {isa = PBXBuildFile; fileRef = F94CA2411CE2FA9E0006904F /* MD5Util.m */; };
 		F94CA24F1CE2FB110006904F /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = F94CA24E1CE2FB110006904F /* AppDelegate.m */; };
 		F94CA2601CE2FB940006904F /* LoginViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = F94CA2531CE2FB940006904F /* LoginViewController.m */; };
-		F94CA2611CE2FB940006904F /* UserDataManager.m in Sources */ = {isa = PBXBuildFile; fileRef = F94CA2561CE2FB940006904F /* UserDataManager.m */; };
+		F94CA2611CE2FB940006904F /* LCUserDataManager.m in Sources */ = {isa = PBXBuildFile; fileRef = F94CA2561CE2FB940006904F /* LCUserDataManager.m */; };
 		F94CA2631CE2FB940006904F /* LoginView.m in Sources */ = {isa = PBXBuildFile; fileRef = F94CA25C1CE2FB940006904F /* LoginView.m */; };
 		F94CA2641CE2FB940006904F /* SGTextField.m in Sources */ = {isa = PBXBuildFile; fileRef = F94CA25E1CE2FB940006904F /* SGTextField.m */; };
 		F94CA2651CE2FB940006904F /* SGTextField.xib in Resources */ = {isa = PBXBuildFile; fileRef = F94CA25F1CE2FB940006904F /* SGTextField.xib */; };
@@ -53,7 +53,7 @@
 		F959945B1CE47BC200B042BD /* ImageUploader.m in Sources */ = {isa = PBXBuildFile; fileRef = F959945A1CE47BC200B042BD /* ImageUploader.m */; };
 		F959945E1CE481CD00B042BD /* DateUtil.m in Sources */ = {isa = PBXBuildFile; fileRef = F959945D1CE481CD00B042BD /* DateUtil.m */; };
 		F95994611CE4898100B042BD /* UIImage+Compression.m in Sources */ = {isa = PBXBuildFile; fileRef = F95994601CE4898100B042BD /* UIImage+Compression.m */; };
-		F961B55B1CF42DED0096DAF4 /* TodoDataManager.m in Sources */ = {isa = PBXBuildFile; fileRef = F961B55A1CF42DED0096DAF4 /* TodoDataManager.m */; };
+		F961B55B1CF42DED0096DAF4 /* LCTodoDataManager.m in Sources */ = {isa = PBXBuildFile; fileRef = F961B55A1CF42DED0096DAF4 /* LCTodoDataManager.m */; };
 		F9773EAD1CFECD7400469A0E /* TO_DO.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = F9773EAB1CFECD7400469A0E /* TO_DO.xcdatamodeld */; };
 		F980EDCF1CE70F4E00A861FE /* HeaderView.m in Sources */ = {isa = PBXBuildFile; fileRef = F980EDCE1CE70F4E00A861FE /* HeaderView.m */; };
 		F98DE68C1CFDCE6B00859A81 /* TodoTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = F98DE68B1CFDCE6B00859A81 /* TodoTableViewController.m */; };
@@ -63,10 +63,9 @@
 		F997BFA51CF83A6C00DD155B /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F997BFA41CF83A6C00DD155B /* Foundation.framework */; };
 		F997BFA71CF83A7C00DD155B /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F997BFA61CF83A7C00DD155B /* CoreGraphics.framework */; };
 		F99A902E1CE30CB600EC0762 /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = F99A90301CE30CB600EC0762 /* Localizable.strings */; };
-		F99B236B1CFF3057009A45A2 /* Todo+CoreDataProperties.m in Sources */ = {isa = PBXBuildFile; fileRef = F99B23641CFF3057009A45A2 /* Todo+CoreDataProperties.m */; };
-		F99B236C1CFF3057009A45A2 /* Todo.m in Sources */ = {isa = PBXBuildFile; fileRef = F99B23661CFF3057009A45A2 /* Todo.m */; };
-		F99B236D1CFF3057009A45A2 /* User+CoreDataProperties.m in Sources */ = {isa = PBXBuildFile; fileRef = F99B23681CFF3057009A45A2 /* User+CoreDataProperties.m */; };
-		F99B236E1CFF3057009A45A2 /* User.m in Sources */ = {isa = PBXBuildFile; fileRef = F99B236A1CFF3057009A45A2 /* User.m */; };
+		F99B23731CFF3592009A45A2 /* MRTodoDataManager.m in Sources */ = {isa = PBXBuildFile; fileRef = F99B23721CFF3592009A45A2 /* MRTodoDataManager.m */; };
+		F99B238E1CFF4248009A45A2 /* CDTodo+CoreDataProperties.m in Sources */ = {isa = PBXBuildFile; fileRef = F99B23871CFF4248009A45A2 /* CDTodo+CoreDataProperties.m */; };
+		F99B23901CFF4248009A45A2 /* CDUser+CoreDataProperties.m in Sources */ = {isa = PBXBuildFile; fileRef = F99B238B1CFF4248009A45A2 /* CDUser+CoreDataProperties.m */; };
 		F9A01FAF1CF2F60300699939 /* avatar1.png in Resources */ = {isa = PBXBuildFile; fileRef = F9A01FAC1CF2F60300699939 /* avatar1.png */; };
 		F9A01FB01CF2F60300699939 /* avatar2.png in Resources */ = {isa = PBXBuildFile; fileRef = F9A01FAD1CF2F60300699939 /* avatar2.png */; };
 		F9A01FB11CF2F60300699939 /* avatar3.png in Resources */ = {isa = PBXBuildFile; fileRef = F9A01FAE1CF2F60300699939 /* avatar3.png */; };
@@ -79,6 +78,12 @@
 		F9A723841CDDF8A800E3BC8E /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = F9A723821CDDF8A800E3BC8E /* LaunchScreen.storyboard */; };
 		F9A7238F1CDDF8A900E3BC8E /* TO_DOTests.m in Sources */ = {isa = PBXBuildFile; fileRef = F9A7238E1CDDF8A900E3BC8E /* TO_DOTests.m */; };
 		F9A7239A1CDDF8A900E3BC8E /* TO_DOUITests.m in Sources */ = {isa = PBXBuildFile; fileRef = F9A723991CDDF8A900E3BC8E /* TO_DOUITests.m */; };
+		F9B3DD021CFFDEE8000A8B28 /* MRUserDataManager.m in Sources */ = {isa = PBXBuildFile; fileRef = F9B3DD011CFFDEE8000A8B28 /* MRUserDataManager.m */; };
+		F9B3DD0C1CFFE4EC000A8B28 /* CDSync+CoreDataProperties.m in Sources */ = {isa = PBXBuildFile; fileRef = F9B3DD061CFFE4EC000A8B28 /* CDSync+CoreDataProperties.m */; };
+		F9B3DD151CFFE55C000A8B28 /* CDUser.m in Sources */ = {isa = PBXBuildFile; fileRef = F9B3DD101CFFE55C000A8B28 /* CDUser.m */; };
+		F9B3DD161CFFE55C000A8B28 /* CDSync.m in Sources */ = {isa = PBXBuildFile; fileRef = F9B3DD121CFFE55C000A8B28 /* CDSync.m */; };
+		F9B3DD171CFFE55C000A8B28 /* CDTodo.m in Sources */ = {isa = PBXBuildFile; fileRef = F9B3DD141CFFE55C000A8B28 /* CDTodo.m */; };
+		F9B3DD1A1CFFE5BE000A8B28 /* LCSync.m in Sources */ = {isa = PBXBuildFile; fileRef = F9B3DD191CFFE5BE000A8B28 /* LCSync.m */; };
 		F9BCE5321CEDB54B003376C7 /* CreateViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = F9BCE5311CEDB54B003376C7 /* CreateViewController.m */; };
 		F9BCE5391CEDBF02003376C7 /* create header bg.png in Resources */ = {isa = PBXBuildFile; fileRef = F9BCE5381CEDBF02003376C7 /* create header bg.png */; };
 		F9D0E9781CEC46D10005027B /* UIImage+Qiniu.m in Sources */ = {isa = PBXBuildFile; fileRef = F9D0E9771CEC46D10005027B /* UIImage+Qiniu.m */; };
@@ -182,8 +187,8 @@
 		F94CA24E1CE2FB110006904F /* AppDelegate.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
 		F94CA2521CE2FB940006904F /* LoginViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LoginViewController.h; sourceTree = "<group>"; };
 		F94CA2531CE2FB940006904F /* LoginViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LoginViewController.m; sourceTree = "<group>"; };
-		F94CA2551CE2FB940006904F /* UserDataManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = UserDataManager.h; path = ../../Login/DataManager/UserDataManager.h; sourceTree = "<group>"; };
-		F94CA2561CE2FB940006904F /* UserDataManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = UserDataManager.m; path = ../../Login/DataManager/UserDataManager.m; sourceTree = "<group>"; };
+		F94CA2551CE2FB940006904F /* LCUserDataManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = LCUserDataManager.h; path = ../../../Login/DataManager/LCUserDataManager.h; sourceTree = "<group>"; };
+		F94CA2561CE2FB940006904F /* LCUserDataManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = LCUserDataManager.m; path = ../../../Login/DataManager/LCUserDataManager.m; sourceTree = "<group>"; };
 		F94CA25B1CE2FB940006904F /* LoginView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LoginView.h; sourceTree = "<group>"; };
 		F94CA25C1CE2FB940006904F /* LoginView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LoginView.m; sourceTree = "<group>"; };
 		F94CA25D1CE2FB940006904F /* SGTextField.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = SGTextField.h; path = ../../Login/Views/SGTextField.h; sourceTree = "<group>"; };
@@ -201,8 +206,8 @@
 		F959945D1CE481CD00B042BD /* DateUtil.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DateUtil.m; sourceTree = "<group>"; };
 		F959945F1CE4898100B042BD /* UIImage+Compression.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIImage+Compression.h"; sourceTree = "<group>"; };
 		F95994601CE4898100B042BD /* UIImage+Compression.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIImage+Compression.m"; sourceTree = "<group>"; };
-		F961B5591CF42DED0096DAF4 /* TodoDataManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = TodoDataManager.h; path = ../../Home/TodoDataManager.h; sourceTree = "<group>"; };
-		F961B55A1CF42DED0096DAF4 /* TodoDataManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = TodoDataManager.m; path = ../../Home/TodoDataManager.m; sourceTree = "<group>"; };
+		F961B5591CF42DED0096DAF4 /* LCTodoDataManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = LCTodoDataManager.h; path = ../../../Home/LCTodoDataManager.h; sourceTree = "<group>"; };
+		F961B55A1CF42DED0096DAF4 /* LCTodoDataManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = LCTodoDataManager.m; path = ../../../Home/LCTodoDataManager.m; sourceTree = "<group>"; };
 		F9773EAC1CFECD7400469A0E /* TO_DO.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = TO_DO.xcdatamodel; sourceTree = "<group>"; };
 		F980EDCD1CE70F4E00A861FE /* HeaderView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HeaderView.h; sourceTree = "<group>"; };
 		F980EDCE1CE70F4E00A861FE /* HeaderView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HeaderView.m; sourceTree = "<group>"; };
@@ -220,14 +225,12 @@
 		F99A90341CE317EE00EC0762 /* zh-Hans */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "zh-Hans"; path = "zh-Hans.lproj/LaunchScreen.strings"; sourceTree = "<group>"; };
 		F99A90351CE317EE00EC0762 /* zh-Hans */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "zh-Hans"; path = "zh-Hans.lproj/Localizable.strings"; sourceTree = "<group>"; };
 		F99B23611CFEE3CA009A45A2 /* DDLogConfigure.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DDLogConfigure.h; sourceTree = "<group>"; };
-		F99B23631CFF3057009A45A2 /* Todo+CoreDataProperties.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "Todo+CoreDataProperties.h"; sourceTree = "<group>"; };
-		F99B23641CFF3057009A45A2 /* Todo+CoreDataProperties.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "Todo+CoreDataProperties.m"; sourceTree = "<group>"; };
-		F99B23651CFF3057009A45A2 /* Todo.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Todo.h; sourceTree = "<group>"; };
-		F99B23661CFF3057009A45A2 /* Todo.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Todo.m; sourceTree = "<group>"; };
-		F99B23671CFF3057009A45A2 /* User+CoreDataProperties.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "User+CoreDataProperties.h"; sourceTree = "<group>"; };
-		F99B23681CFF3057009A45A2 /* User+CoreDataProperties.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "User+CoreDataProperties.m"; sourceTree = "<group>"; };
-		F99B23691CFF3057009A45A2 /* User.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = User.h; sourceTree = "<group>"; };
-		F99B236A1CFF3057009A45A2 /* User.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = User.m; sourceTree = "<group>"; };
+		F99B23711CFF3592009A45A2 /* MRTodoDataManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MRTodoDataManager.h; sourceTree = "<group>"; };
+		F99B23721CFF3592009A45A2 /* MRTodoDataManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MRTodoDataManager.m; sourceTree = "<group>"; };
+		F99B23861CFF4248009A45A2 /* CDTodo+CoreDataProperties.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "CDTodo+CoreDataProperties.h"; sourceTree = "<group>"; };
+		F99B23871CFF4248009A45A2 /* CDTodo+CoreDataProperties.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "CDTodo+CoreDataProperties.m"; sourceTree = "<group>"; };
+		F99B238A1CFF4248009A45A2 /* CDUser+CoreDataProperties.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "CDUser+CoreDataProperties.h"; sourceTree = "<group>"; };
+		F99B238B1CFF4248009A45A2 /* CDUser+CoreDataProperties.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "CDUser+CoreDataProperties.m"; sourceTree = "<group>"; };
 		F9A01FAC1CF2F60300699939 /* avatar1.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = avatar1.png; sourceTree = "<group>"; };
 		F9A01FAD1CF2F60300699939 /* avatar2.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = avatar2.png; sourceTree = "<group>"; };
 		F9A01FAE1CF2F60300699939 /* avatar3.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = avatar3.png; sourceTree = "<group>"; };
@@ -250,6 +253,18 @@
 		F9A723951CDDF8A900E3BC8E /* TO-DOUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "TO-DOUITests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
 		F9A723991CDDF8A900E3BC8E /* TO_DOUITests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = TO_DOUITests.m; sourceTree = "<group>"; };
 		F9A7239B1CDDF8A900E3BC8E /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		F9B3DD001CFFDEE8000A8B28 /* MRUserDataManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MRUserDataManager.h; sourceTree = "<group>"; };
+		F9B3DD011CFFDEE8000A8B28 /* MRUserDataManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MRUserDataManager.m; sourceTree = "<group>"; };
+		F9B3DD051CFFE4EC000A8B28 /* CDSync+CoreDataProperties.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "CDSync+CoreDataProperties.h"; sourceTree = "<group>"; };
+		F9B3DD061CFFE4EC000A8B28 /* CDSync+CoreDataProperties.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "CDSync+CoreDataProperties.m"; sourceTree = "<group>"; };
+		F9B3DD0F1CFFE55C000A8B28 /* CDUser.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CDUser.h; sourceTree = "<group>"; };
+		F9B3DD101CFFE55C000A8B28 /* CDUser.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CDUser.m; sourceTree = "<group>"; };
+		F9B3DD111CFFE55C000A8B28 /* CDSync.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CDSync.h; sourceTree = "<group>"; };
+		F9B3DD121CFFE55C000A8B28 /* CDSync.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CDSync.m; sourceTree = "<group>"; };
+		F9B3DD131CFFE55C000A8B28 /* CDTodo.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CDTodo.h; sourceTree = "<group>"; };
+		F9B3DD141CFFE55C000A8B28 /* CDTodo.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CDTodo.m; sourceTree = "<group>"; };
+		F9B3DD181CFFE5BE000A8B28 /* LCSync.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LCSync.h; sourceTree = "<group>"; };
+		F9B3DD191CFFE5BE000A8B28 /* LCSync.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LCSync.m; sourceTree = "<group>"; };
 		F9BCE5301CEDB54B003376C7 /* CreateViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CreateViewController.h; sourceTree = "<group>"; };
 		F9BCE5311CEDB54B003376C7 /* CreateViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CreateViewController.m; sourceTree = "<group>"; };
 		F9BCE5381CEDBF02003376C7 /* create header bg.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "create header bg.png"; sourceTree = "<group>"; };
@@ -331,6 +346,8 @@
 				F9331D821CF0A97200B36474 /* LCTodo.m */,
 				F9331D831CF0A97200B36474 /* LCUser.h */,
 				F9331D841CF0A97200B36474 /* LCUser.m */,
+				F9B3DD181CFFE5BE000A8B28 /* LCSync.h */,
+				F9B3DD191CFFE5BE000A8B28 /* LCSync.m */,
 			);
 			path = LeanCloudModels;
 			sourceTree = "<group>";
@@ -338,14 +355,18 @@
 		F9331D871CF0A98C00B36474 /* CoredataModels */ = {
 			isa = PBXGroup;
 			children = (
-				F99B23631CFF3057009A45A2 /* Todo+CoreDataProperties.h */,
-				F99B23641CFF3057009A45A2 /* Todo+CoreDataProperties.m */,
-				F99B23651CFF3057009A45A2 /* Todo.h */,
-				F99B23661CFF3057009A45A2 /* Todo.m */,
-				F99B23671CFF3057009A45A2 /* User+CoreDataProperties.h */,
-				F99B23681CFF3057009A45A2 /* User+CoreDataProperties.m */,
-				F99B23691CFF3057009A45A2 /* User.h */,
-				F99B236A1CFF3057009A45A2 /* User.m */,
+				F99B23861CFF4248009A45A2 /* CDTodo+CoreDataProperties.h */,
+				F99B23871CFF4248009A45A2 /* CDTodo+CoreDataProperties.m */,
+				F99B238A1CFF4248009A45A2 /* CDUser+CoreDataProperties.h */,
+				F99B238B1CFF4248009A45A2 /* CDUser+CoreDataProperties.m */,
+				F9B3DD051CFFE4EC000A8B28 /* CDSync+CoreDataProperties.h */,
+				F9B3DD061CFFE4EC000A8B28 /* CDSync+CoreDataProperties.m */,
+				F9B3DD0F1CFFE55C000A8B28 /* CDUser.h */,
+				F9B3DD101CFFE55C000A8B28 /* CDUser.m */,
+				F9B3DD111CFFE55C000A8B28 /* CDSync.h */,
+				F9B3DD121CFFE55C000A8B28 /* CDSync.m */,
+				F9B3DD131CFFE55C000A8B28 /* CDTodo.h */,
+				F9B3DD141CFFE55C000A8B28 /* CDTodo.m */,
 			);
 			name = CoredataModels;
 			path = CoreDataModels;
@@ -635,15 +656,13 @@
 			name = SCLAlertView;
 			sourceTree = "<group>";
 		};
-		F98DE6861CFDA02200859A81 /* DataManager */ = {
+		F98DE6861CFDA02200859A81 /* DataManagers */ = {
 			isa = PBXGroup;
 			children = (
-				F961B5591CF42DED0096DAF4 /* TodoDataManager.h */,
-				F961B55A1CF42DED0096DAF4 /* TodoDataManager.m */,
-				F94CA2551CE2FB940006904F /* UserDataManager.h */,
-				F94CA2561CE2FB940006904F /* UserDataManager.m */,
+				F99B23701CFF348B009A45A2 /* LeanCloudDataManagers */,
+				F99B236F1CFF3475009A45A2 /* MagicRecordDataManagers */,
 			);
-			name = DataManager;
+			name = DataManagers;
 			path = Classes/Common/DataManager;
 			sourceTree = "<group>";
 		};
@@ -662,6 +681,30 @@
 				F99A90301CE30CB600EC0762 /* Localizable.strings */,
 			);
 			path = Localization;
+			sourceTree = "<group>";
+		};
+		F99B236F1CFF3475009A45A2 /* MagicRecordDataManagers */ = {
+			isa = PBXGroup;
+			children = (
+				F99B23711CFF3592009A45A2 /* MRTodoDataManager.h */,
+				F99B23721CFF3592009A45A2 /* MRTodoDataManager.m */,
+				F9B3DD001CFFDEE8000A8B28 /* MRUserDataManager.h */,
+				F9B3DD011CFFDEE8000A8B28 /* MRUserDataManager.m */,
+			);
+			name = MagicRecordDataManagers;
+			path = CoredataManager;
+			sourceTree = "<group>";
+		};
+		F99B23701CFF348B009A45A2 /* LeanCloudDataManagers */ = {
+			isa = PBXGroup;
+			children = (
+				F961B5591CF42DED0096DAF4 /* LCTodoDataManager.h */,
+				F961B55A1CF42DED0096DAF4 /* LCTodoDataManager.m */,
+				F94CA2551CE2FB940006904F /* LCUserDataManager.h */,
+				F94CA2561CE2FB940006904F /* LCUserDataManager.m */,
+			);
+			name = LeanCloudDataManagers;
+			path = LeanCloudDataManager;
 			sourceTree = "<group>";
 		};
 		F9A01FAB1CF2F60300699939 /* examples */ = {
@@ -700,7 +743,6 @@
 			isa = PBXGroup;
 			children = (
 				F99A90251CE30B5100EC0762 /* Localization */,
-				F94CA2661CE2FBC90006904F /* Models */,
 				F9A723AE1CDDF98100E3BC8E /* Classes */,
 				F9A723711CDDF8A800E3BC8E /* Supporting Files */,
 			);
@@ -739,7 +781,8 @@
 		F9A723AE1CDDF98100E3BC8E /* Classes */ = {
 			isa = PBXGroup;
 			children = (
-				F98DE6861CFDA02200859A81 /* DataManager */,
+				F94CA2661CE2FBC90006904F /* Models */,
+				F98DE6861CFDA02200859A81 /* DataManagers */,
 				F94CA1F01CE2F9780006904F /* Libraries */,
 				F94CA2281CE2FA9E0006904F /* Common */,
 				F94CA24C1CE2FB110006904F /* AppDelegate */,
@@ -1035,12 +1078,15 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				F9B3DD0C1CFFE4EC000A8B28 /* CDSync+CoreDataProperties.m in Sources */,
 				F9A723791CDDF8A800E3BC8E /* ViewController.m in Sources */,
 				F959945E1CE481CD00B042BD /* DateUtil.m in Sources */,
 				F921F4D41CECA023004AC07E /* UINavigationController+Transparent.m in Sources */,
 				F94CA2601CE2FB940006904F /* LoginViewController.m in Sources */,
 				F94CA20A1CE2F9780006904F /* UIImage+ImageEffects.m in Sources */,
 				F95994531CE462E100B042BD /* QiniuTokenGenerator.m in Sources */,
+				F9B3DD161CFFE55C000A8B28 /* CDSync.m in Sources */,
+				F9B3DD151CFFE55C000A8B28 /* CDUser.m in Sources */,
 				F94CA24F1CE2FB110006904F /* AppDelegate.m in Sources */,
 				F94388621CF5C38500E44379 /* DrawerTableViewCell.m in Sources */,
 				F945ABDA1CED96B600C282F7 /* UITableView+Extension.m in Sources */,
@@ -1051,11 +1097,13 @@
 				F9773EAD1CFECD7400469A0E /* TO_DO.xcdatamodeld in Sources */,
 				F94CA2441CE2FA9E0006904F /* UIImage+Extension.m in Sources */,
 				F94F2F371CF2D71200128A3A /* TodoTableViewCell.m in Sources */,
+				F9B3DD1A1CFFE5BE000A8B28 /* LCSync.m in Sources */,
 				F9331D861CF0A97200B36474 /* LCUser.m in Sources */,
+				F99B23901CFF4248009A45A2 /* CDUser+CoreDataProperties.m in Sources */,
 				F92B876D1CE368B300D15EAE /* UIView+Extentsion.m in Sources */,
 				F9FB96C41CFC74C6002581A0 /* CalendarViewController.m in Sources */,
 				F9331D851CF0A97200B36474 /* LCTodo.m in Sources */,
-				F961B55B1CF42DED0096DAF4 /* TodoDataManager.m in Sources */,
+				F961B55B1CF42DED0096DAF4 /* LCTodoDataManager.m in Sources */,
 				F94CA2451CE2FA9E0006904F /* UITextField+BottomBorder.m in Sources */,
 				F94388631CF5C38500E44379 /* DrawerTableViewController.m in Sources */,
 				F9BCE5321CEDB54B003376C7 /* CreateViewController.m in Sources */,
@@ -1065,10 +1113,9 @@
 				F94CA2431CE2FA9E0006904F /* NSString+Extension.m in Sources */,
 				F945ABDD1CED983800C282F7 /* UIScrollView+Extension.m in Sources */,
 				F95994611CE4898100B042BD /* UIImage+Compression.m in Sources */,
-				F99B236D1CFF3057009A45A2 /* User+CoreDataProperties.m in Sources */,
 				F95994561CE4692D00B042BD /* NSString+Encrytion.m in Sources */,
 				F94CA2491CE2FA9E0006904F /* FieldValidator.m in Sources */,
-				F94CA2611CE2FB940006904F /* UserDataManager.m in Sources */,
+				F94CA2611CE2FB940006904F /* LCUserDataManager.m in Sources */,
 				F94CA2031CE2F9780006904F /* SCLAlertView.m in Sources */,
 				F945ABD71CED913E00C282F7 /* BaseViewController.m in Sources */,
 				F94CA2081CE2F9780006904F /* SCLTextView.m in Sources */,
@@ -1077,8 +1124,6 @@
 				F9E953521CF875B70046E1C9 /* HSDatePickerViewController+Configure.m in Sources */,
 				F980EDCF1CE70F4E00A861FE /* HeaderView.m in Sources */,
 				F94CA24B1CE2FA9E0006904F /* MD5Util.m in Sources */,
-				F99B236E1CFF3057009A45A2 /* User.m in Sources */,
-				F99B236C1CFF3057009A45A2 /* Todo.m in Sources */,
 				F94CA2481CE2FA9E0006904F /* TodoHelper.m in Sources */,
 				F94CA2091CE2F9780006904F /* SCLTimerDisplay.m in Sources */,
 				F943885B1CF5579100E44379 /* TodoHeaderCell.m in Sources */,
@@ -1087,15 +1132,18 @@
 				F94CA2051CE2F9780006904F /* SCLAlertViewStyleKit.m in Sources */,
 				F94CA2471CE2FA9E0006904F /* SCLAlertHelper.m in Sources */,
 				F94CA2071CE2F9780006904F /* SCLSwitchView.m in Sources */,
+				F99B23731CFF3592009A45A2 /* MRTodoDataManager.m in Sources */,
 				F959945B1CE47BC200B042BD /* ImageUploader.m in Sources */,
 				F9A723731CDDF8A800E3BC8E /* main.m in Sources */,
 				F94CA24A1CE2FA9E0006904F /* GCDUtil.m in Sources */,
 				F9A1E0801CEDFA4C00FFC453 /* SGCommitButton.m in Sources */,
+				F9B3DD021CFFDEE8000A8B28 /* MRUserDataManager.m in Sources */,
+				F99B238E1CFF4248009A45A2 /* CDTodo+CoreDataProperties.m in Sources */,
 				F9A1E0831CEE180E00FFC453 /* NSDateFormatter+Extension.m in Sources */,
 				F94CA2421CE2FA9E0006904F /* NSObject+PropertyName.m in Sources */,
-				F99B236B1CFF3057009A45A2 /* Todo+CoreDataProperties.m in Sources */,
 				F94CA2631CE2FB940006904F /* LoginView.m in Sources */,
 				F9E953481CF853A00046E1C9 /* UUDatePicker_DateModel.m in Sources */,
+				F9B3DD171CFFE55C000A8B28 /* CDTodo.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

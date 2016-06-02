@@ -6,9 +6,9 @@
 //  Copyright © 2016年 com.siegrain. All rights reserved.
 //
 
+#import "CDTodo.h"
 #import "CreateViewController.h"
 #import "HomeViewController.h"
-#import "LCTodo.h"
 #import "TodoTableViewController.h"
 #import "UIButton+WebCache.h"
 #import "UIImage+Extension.h"
@@ -52,14 +52,14 @@ HomeViewController ()
     self.headerView = [HeaderView headerViewWithAvatarPosition:HeaderAvatarPositionCenter titleAlignement:HeaderTitleAlignementCenter];
     self.headerView.subtitleLabel.text = [TodoHelper localizedFormatDate:[NSDate date]];
     [self.headerView.rightOperationButton setImage:[UIImage imageNamed:@"add"] forState:UIControlStateNormal];
-    [self.headerView.avatarButton sd_setImageWithURL:GetPictureUrl(super.user.avatar, kQiniuImageStyleSmall) forState:UIControlStateNormal];
+    [self.headerView.avatarButton sd_setImageWithURL:GetPictureUrl(super.lcUser.avatar, kQiniuImageStyleSmall) forState:UIControlStateNormal];
     self.headerView.backgroundImageView.image = [UIImage imageAtResourcePath:@"header bg"];
     [self.headerView setHeaderViewDidPressAvatarButton:^{ [LCUser logOut]; }];
     __weak typeof(self) weakSelf = self;
     [self.headerView setHeaderViewDidPressRightOperationButton:^{
         weakSelf.releaseWhileDisappear = NO;
         CreateViewController* createViewController = [[CreateViewController alloc] init];
-        [createViewController setCreateViewControllerDidFinishCreate:^(LCTodo* model) {
+        [createViewController setCreateViewControllerDidFinishCreate:^(CDTodo* model) {
             model.photoImage = [model.photoImage imageAddCornerWithRadius:model.photoImage.size.width / 2 andSize:model.photoImage.size];
             [weakSelf.todoTableViewController insertTodo:model];
         }];
@@ -87,7 +87,7 @@ HomeViewController ()
 #pragma mark - retrieve data
 - (void)retrieveDataFromServer
 {
-    [_todoTableViewController retrieveDataWithUser:self.user date:nil];
+    [_todoTableViewController retrieveDataWithUser:self.lcUser date:nil];
 }
 #pragma mark - todotableviewcontroller delegate
 - (void)todoTableViewControllerDidReloadData

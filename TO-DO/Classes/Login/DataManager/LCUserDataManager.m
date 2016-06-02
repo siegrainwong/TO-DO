@@ -7,12 +7,13 @@
 //
 
 #import "AppDelegate.h"
+#import "CDUser.h"
 #import "DataKeys.h"
 #import "FieldValidator.h"
 #import "ImageUploader.h"
 #import "LCUser.h"
-#import "UserDataManager.h"
-#import "Macros.h"
+#import "LCUserDataManager.h"
+#import "MRUserDataManager.h"
 #import "NSObject+PropertyName.h"
 #import "NSString+Extension.h"
 #import "SCLAlertHelper.h"
@@ -31,11 +32,11 @@ static NSInteger const kEmailAlreadyTakenErrorCodeKey = 201;
 static NSInteger const kLoginFailCountOverLimitErrorCodeKey = 1;
 
 @interface
-UserDataManager ()
+LCUserDataManager ()
 @property (nonatomic, readwrite, assign) BOOL isSignUp;
 @end
 
-@implementation UserDataManager
+@implementation LCUserDataManager
 @synthesize localDictionary = _localDictionary;
 #pragma mark - localization
 - (void)localizeStrings
@@ -65,6 +66,8 @@ UserDataManager ()
     _isSignUp = signUp;
     if (![self validate:user]) return complete(NO);
 
+    MRUserDataManager* mrUserDataManager = [MRUserDataManager new];
+
     [[UIApplication sharedApplication] setNetworkActivityIndicatorVisible:YES];
     // sign in
     if (!_isSignUp) {
@@ -72,6 +75,8 @@ UserDataManager ()
             if (error)
                 [SCLAlertHelper errorAlertWithContent:_localDictionary[@(error.code)] ? _localDictionary[@(error.code)] : error.localizedDescription];
 
+            if (![CDUser userWithLCUser:(LCUser*)user])
+                [mrUserDataManager createUserByLCUser:(LCUser*)user];
             return complete(!error);
         }];
     } else {
@@ -84,10 +89,12 @@ UserDataManager ()
 
             user.avatar = path;
             [user signUpInBackgroundWithBlock:^(BOOL succeeded, NSError* error) {
-                if (error)
+                if (error) {
                     [SCLAlertHelper errorAlertWithContent:_localDictionary[@(error.code)] ? _localDictionary[@(error.code)] : error.localizedDescription];
-
-                return complete(!error);
+                    return complete(NO);
+                }
+                [mrUserDataManager createUserByLCUser:user];
+                return complete(YES);
             }];
         }];
     }

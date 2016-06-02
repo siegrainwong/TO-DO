@@ -11,6 +11,7 @@
 #import "DateUtil.h"
 #import "HSDatePickerViewController+Configure.h"
 #import "LCTodo.h"
+#import "MRTodoDataManager.h"
 #import "Macros.h"
 #import "NSDate+Extension.h"
 #import "NSDateFormatter+Extension.h"
@@ -18,7 +19,6 @@
 #import "SCLAlertHelper.h"
 #import "SGCommitButton.h"
 #import "SGTextField.h"
-#import "TodoDataManager.h"
 #import "UIImage+Extension.h"
 #import "UIViewController+KNSemiModal.h"
 
@@ -27,7 +27,7 @@
 
 @interface
 CreateViewController ()
-@property (nonatomic, readwrite, strong) TodoDataManager* dataManager;
+@property (nonatomic, readwrite, strong) MRTodoDataManager* dataManager;
 @property (nonatomic, readwrite, strong) UIView* containerView;
 @property (nonatomic, readwrite, strong) SGTextField* titleTextField;
 @property (nonatomic, readwrite, strong) AutoLinearLayoutView* linearView;
@@ -71,7 +71,7 @@ CreateViewController ()
     _fieldSpacing = kScreenHeight * 0.03;
     [NSNotificationCenter attachKeyboardObservers:self keyboardWillShowSelector:@selector(keyboardWillShow:) keyboardWillHideSelector:@selector(keyboardWillHide:)];
 
-    _dataManager = [TodoDataManager new];
+    _dataManager = [MRTodoDataManager new];
 
     _datePickerViewController = [[HSDatePickerViewController alloc] init];
     [_datePickerViewController configure];
@@ -182,23 +182,31 @@ CreateViewController ()
         [weakSelf.view endEditing:YES];
         [weakSelf enableView:NO];
 
-        LCTodo* todo = [LCTodo object];
+        CDTodo* todo = [CDTodo MR_createEntity];
         todo.title = _titleTextField.field.text;
         todo.sgDescription = _descriptionTextField.field.text;
         todo.deadline = _selectedDate;
         todo.location = _locationTextField.field.text;
-        todo.photoImage = _selectedImage;
-        todo.user = super.user;
-        todo.status = LCTodoStatusNormal;
-        todo.isCompleted = NO;
-        todo.isDeleted = NO;
+        todo.photoData = UIImageJPEGRepresentation(_selectedImage, 0.5);
+        todo.photoImage = [UIImage imageWithData:todo.photoData];
+        todo.user = self.cdUser;
+        todo.status = @(TodoStatusNormal);
+        todo.isCompleted = @(NO);
+        todo.isHidden = @(NO);
+        todo.createAt = [NSDate date];
 
-        [_dataManager insertTodo:todo complete:^(bool succeed) {
-            [weakSelf enableView:YES];
-            if (!succeed) return;
-            if (_createViewControllerDidFinishCreate) _createViewControllerDidFinishCreate(todo);
-            [weakSelf.navigationController popToRootViewControllerAnimated:YES];
-        }];
+        if (![_dataManager insertTodo:todo]) return;
+
+        if (_createViewControllerDidFinishCreate) _createViewControllerDidFinishCreate(todo);
+        [weakSelf.navigationController popToRootViewControllerAnimated:YES];
+
+        // LeanCloud's
+        //        [_dataManager insertTodo:todo complete:^(bool succeed) {
+        //            [weakSelf enableView:YES];
+        //            if (!succeed) return;
+        //            if (_createViewControllerDidFinishCreate) _createViewControllerDidFinishCreate(todo);
+        //            [weakSelf.navigationController popToRootViewControllerAnimated:YES];
+        //        }];
     });
 }
 - (void)enableView:(BOOL)isEnable

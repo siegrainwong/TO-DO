@@ -10,8 +10,8 @@
 #import "HSDatePickerViewController+Configure.h"
 #import "HomeViewController.h"
 #import "LCTodo.h"
+#import "LCTodoDataManager.h"
 #import "NSDate+Extension.h"
-#import "TodoDataManager.h"
 #import "TodoHeaderCell.h"
 #import "TodoTableViewCell.h"
 #import "TodoTableViewController.h"
@@ -28,7 +28,7 @@ TodoTableViewController ()
 @property (nonatomic, readwrite, assign) TodoTableViewControllerStyle style;
 
 @property (nonatomic, readwrite, strong) HSDatePickerViewController* datePickerViewController;
-@property (nonatomic, readwrite, strong) TodoDataManager* dataManager;
+@property (nonatomic, readwrite, strong) LCTodoDataManager* dataManager;
 @property (nonatomic, readwrite, strong) NSMutableDictionary* dataDictionary;
 @property (nonatomic, readwrite, strong) NSMutableArray<NSString*>* dateArray;
 
@@ -52,7 +52,7 @@ TodoTableViewController ()
     _releaseWhileDisappear = YES;
     _dataDictionary = [NSMutableDictionary new];
     _dateArray = [NSMutableArray new];
-    _dataManager = [TodoDataManager new];
+    _dataManager = [LCTodoDataManager new];
 
     [self setupView];
 }
@@ -112,8 +112,7 @@ TodoTableViewController ()
         NSInteger index = [_dateArray indexOfObject:dateString];
         [_dateArray removeObject:dateString];
 
-        if (_style != TodoTableViewControllerStyleWithoutSection)
-            [self.tableView deleteSections:[NSIndexSet indexSetWithIndex:index] withRowAnimation:UITableViewRowAnimationLeft];
+        if (_style != TodoTableViewControllerStyleWithoutSection) [self.tableView deleteSections:[NSIndexSet indexSetWithIndex:index] withRowAnimation:UITableViewRowAnimationLeft];
     }
 }
 #pragma mark - tableview
@@ -125,16 +124,13 @@ TodoTableViewController ()
 - (CGFloat)tableView:(UITableView*)tableView heightForRowAtIndexPath:(NSIndexPath*)indexPath
 {
     LCTodo* model = [self modelAtIndexPath:indexPath];
-    if (!model.cellHeight) {
-        model.cellHeight = [tableView cellHeightForIndexPath:indexPath model:model keyPath:@"model" cellClass:[TodoTableViewCell class] contentViewWidth:kScreenWidth];
-    }
+    if (!model.cellHeight) model.cellHeight = [tableView cellHeightForIndexPath:indexPath model:model keyPath:@"model" cellClass:[TodoTableViewCell class] contentViewWidth:kScreenWidth];
 
     return model.cellHeight;
 }
 #pragma mark - tableview datasource
 - (NSInteger)numberOfSectionsInTableView:(UITableView*)tableView
 {
-    //    if (_style == TodoTableViewControllerStyleWithoutSection) return 0;
     return _dateArray.count;
 }
 - (UIView*)tableView:(UITableView*)tableView viewForHeaderInSection:(NSInteger)section
@@ -178,7 +174,7 @@ TodoTableViewController ()
     if (!cell.todoDidRemove) {
         [cell setTodoDidRemove:^BOOL(TodoTableViewCell* sender) {
             [sender setUserInteractionEnabled:NO];
-            sender.model.isDeleted = YES;
+            sender.model.isHidden = YES;
             [weakSelf.dataManager modifyTodo:sender.model complete:^(bool succeed) {
                 [sender setUserInteractionEnabled:YES];
                 if (succeed) [weakSelf removeTodo:sender.model atIndexPath:[weakSelf.tableView indexPathForCell:sender] reordering:NO animate:YES];

@@ -20,8 +20,9 @@ BaseViewController ()
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-    _user = [LCUser currentUser];
     _releaseWhileDisappear = YES;
+    _lcUser = [LCUser currentUser];
+    _cdUser = [CDUser userWithLCUser:_lcUser];
 
     [self setupView];
     [self bindConstraints];

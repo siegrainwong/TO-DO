@@ -12,7 +12,7 @@
 @class LCUser;
 @class LCTodo;
 
-@interface TodoDataManager : NSObject<Localized>
+@interface LCTodoDataManager : NSObject<Localized>
 /**
  *  获取待办事项
  *

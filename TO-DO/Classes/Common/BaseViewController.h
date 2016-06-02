@@ -6,6 +6,7 @@
 //  Copyright © 2016年 com.siegrain. All rights reserved.
 //
 
+#import "CDUser.h"
 #import "HeaderView.h"
 #import "LCUser.h"
 #import "Masonry.h"
@@ -23,9 +24,13 @@
  */
 @property (nonatomic, readwrite, strong) HeaderView* headerView;
 /**
- *  当前用户
+ *  当前用户(LeanCloud)
  */
-@property (nonatomic, readonly, strong) LCUser* user;
+@property (nonatomic, readonly, strong) LCUser* lcUser;
+/**
+ *  当前用户(Coredata)
+ */
+@property (nonatomic, readonly, strong) CDUser* cdUser;
 /**
  *  在viewDidDisappear时释放该视图
  */

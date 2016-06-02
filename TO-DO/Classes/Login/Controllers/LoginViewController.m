@@ -9,7 +9,7 @@
 #import "AppDelegate.h"
 #import "HomeViewController.h"
 #import "LCUser.h"
-#import "UserDataManager.h"
+#import "LCUserDataManager.h"
 #import "LoginViewController.h"
 #import "Masonry.h"
 #import "SCLAlertView.h"
@@ -19,7 +19,7 @@
 @interface
 LoginViewController ()
 @property (nonatomic, readwrite, strong) LoginView* loginView;
-@property (nonatomic, readwrite, strong) UserDataManager* dataManager;
+@property (nonatomic, readwrite, strong) LCUserDataManager* dataManager;
 @property (nonatomic, readwrite, assign) BOOL releaseWhileDisappear;
 @end
 
@@ -45,7 +45,7 @@ LoginViewController ()
         make.left.right.top.bottom.offset(0);
     }];
 
-    _dataManager = [[UserDataManager alloc] init];
+    _dataManager = [[LCUserDataManager alloc] init];
 
     _releaseWhileDisappear = true;
 }

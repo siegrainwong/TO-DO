@@ -7,6 +7,7 @@
 //
 
 #import "AppDelegate.h"
+#import "CDTodo.h"
 #import "CocoaLumberjack.h"
 #import "DataKeys.h"
 #import "DrawerTableViewController.h"
@@ -64,12 +65,14 @@ AppDelegate ()
     [self setupDrawerViewController];
     [self setupDDLog];
     [self setupMagicRecord];
+    //    [self truncateLocalData];
 
     [UIApplication sharedApplication].statusBarStyle = UIStatusBarStyleLightContent;
     self.window = [[UIWindow alloc] initWithFrame:[[UIScreen mainScreen] bounds]];
     self.window.backgroundColor = [UIColor whiteColor];
 
     // validate user's login state
+    //    [LCUser logOut];
     LCUser* user = [LCUser currentUser];
     if (user) {
         DDLogInfo(@"当前用户：%@", user.username);
@@ -87,6 +90,7 @@ AppDelegate ()
     [AVOSCloud setApplicationId:kLeanCloudAppID clientKey:kLeanCloudAppKey];
 
     // register subclasses
+    [LCSync registerSubclass];
     [LCUser registerSubclass];
     [LCTodo registerSubclass];
 }
@@ -117,6 +121,11 @@ AppDelegate ()
 - (void)setupMagicRecord
 {
     [MagicalRecord setupAutoMigratingCoreDataStack];
+}
+- (void)truncateLocalData
+{
+    [CDUser MR_truncateAll];
+    [CDTodo MR_truncateAll];
 }
 #pragma mark -
 - (void)switchRootViewController:(UIViewController*)viewController isNavigation:(BOOL)isNavigation
