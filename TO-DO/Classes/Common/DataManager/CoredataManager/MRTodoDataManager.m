@@ -35,7 +35,7 @@ MRTodoDataManager ()
     NSString* predicateFormat = @"user = %@ and isHidden = %@ and isCompleted = %@";
     [arguments addObjectsFromArray:@[ user, @(NO), @(NO) ]];
     if (date) {
-        [predicateFormat stringByAppendingString:@" and deadline >= %@ and deadline <= %@"];
+        predicateFormat = [predicateFormat stringByAppendingString:@" and deadline >= %@ and deadline <= %@"];
         [arguments addObjectsFromArray:@[ date, [date dateByAddingTimeInterval:kTimeIntervalDay] ]];
     }
     NSPredicate* filter = [NSPredicate predicateWithFormat:predicateFormat argumentArray:[arguments copy]];
