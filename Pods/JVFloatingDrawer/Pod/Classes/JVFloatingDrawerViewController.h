@@ -16,13 +16,15 @@ typedef NS_ENUM(NSInteger, JVFloatingDrawerSide) {
     JVFloatingDrawerSideRight
 };
 
+@class JVFloatingDrawerView;
+
 @interface JVFloatingDrawerViewController : UIViewController
 
 #pragma mark - Managed View Controllers
 
-@property (nonatomic, strong) UIViewController *centerViewController;
-@property (nonatomic, strong) UIViewController *leftViewController;
-@property (nonatomic, strong) UIViewController *rightViewController;
+@property (nonatomic, strong) UIViewController* centerViewController;
+@property (nonatomic, strong) UIViewController* leftViewController;
+@property (nonatomic, strong) UIViewController* rightViewController;
 
 #pragma mark - Reveal Widths
 
@@ -34,13 +36,13 @@ typedef NS_ENUM(NSInteger, JVFloatingDrawerSide) {
 @property (nonatomic, assign, getter=isDragToRevealEnabled) BOOL dragToRevealEnabled;
 
 - (void)openDrawerWithSide:(JVFloatingDrawerSide)drawerSide animated:(BOOL)animated
-                completion:(void(^)(BOOL finished))completion;
+                completion:(void (^)(BOOL finished))completion;
 
 - (void)closeDrawerWithSide:(JVFloatingDrawerSide)drawerSide animated:(BOOL)animated
-                 completion:(void(^)(BOOL finished))completion;
+                 completion:(void (^)(BOOL finished))completion;
 
 - (void)toggleDrawerWithSide:(JVFloatingDrawerSide)drawerSide animated:(BOOL)animated
-                  completion:(void(^)(BOOL finished))completion;
+                  completion:(void (^)(BOOL finished))completion;
 
 #pragma mark - Animation
 
@@ -48,6 +50,12 @@ typedef NS_ENUM(NSInteger, JVFloatingDrawerSide) {
 
 #pragma mark - Background
 
-@property (nonatomic, strong) UIImage *backgroundImage;
+@property (nonatomic, strong) UIImage* backgroundImage;
+
+#pragma mark - Drawer root view
+/**
+ *  2016-06-02 20:27:00，我要在上面多加两个按钮，暴露出来满足需求
+ */
+@property (nonatomic, strong, readonly) JVFloatingDrawerView* drawerView;
 
 @end

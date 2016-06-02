@@ -10,6 +10,8 @@
 
 @interface DrawerTableViewCell : UITableViewCell
 
++ (CGFloat)leftSpaceFromView;
+
 - (void)setTitle:(NSString*)title;
 - (void)setIcon:(UIImage*)icon;
 

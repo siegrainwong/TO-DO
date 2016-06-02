@@ -17,17 +17,28 @@
                         <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="header bg.png" translatesAutoresizingMaskIntoConstraints="NO" id="JyF-ZK-Vis">
-                                <rect key="frame" x="141" y="0.0" width="353" height="224"/>
-                            </imageView>
-                            <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" fixedFrame="YES" text="我勒个去" textAlignment="center" translatesAutoresizingMaskIntoConstraints="NO" id="rlP-ik-43h">
-                                <rect key="frame" x="151" y="283" width="367" height="216"/>
-                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
-                            </textView>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="mAA-JB-5h1">
+                                <rect key="frame" x="0.0" y="400" width="600" height="200"/>
+                                <color key="backgroundColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="200" id="t8I-Jk-5g1"/>
+                                </constraints>
+                            </view>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="cuC-Mn-lrX">
+                                <rect key="frame" x="0.0" y="0.0" width="600" height="380"/>
+                                <color key="backgroundColor" red="1" green="0.20000000000000001" blue="0.40000000000000002" alpha="1" colorSpace="calibratedRGB"/>
+                            </view>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstItem="mAA-JB-5h1" firstAttribute="top" secondItem="cuC-Mn-lrX" secondAttribute="bottom" constant="20" id="03q-bE-tjJ"/>
+                            <constraint firstItem="cuC-Mn-lrX" firstAttribute="top" secondItem="8bC-Xf-vdC" secondAttribute="top" id="C8K-Aq-ab4"/>
+                            <constraint firstItem="cuC-Mn-lrX" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leading" id="DdW-Zf-dse"/>
+                            <constraint firstItem="mAA-JB-5h1" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leading" id="MyF-7O-7on"/>
+                            <constraint firstAttribute="trailing" secondItem="mAA-JB-5h1" secondAttribute="trailing" id="RLA-Wz-55K"/>
+                            <constraint firstItem="wfy-db-euE" firstAttribute="top" secondItem="mAA-JB-5h1" secondAttribute="bottom" id="o0F-fY-bw5"/>
+                            <constraint firstAttribute="trailing" secondItem="cuC-Mn-lrX" secondAttribute="trailing" id="rgV-h9-lZA"/>
+                        </constraints>
                     </view>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
@@ -35,7 +46,4 @@
             <point key="canvasLocation" x="499" y="374"/>
         </scene>
     </scenes>
-    <resources>
-        <image name="header bg.png" width="750" height="799"/>
-    </resources>
 </document>

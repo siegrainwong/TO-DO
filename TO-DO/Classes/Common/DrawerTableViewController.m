@@ -11,7 +11,9 @@
 #import "DrawerTableViewCell.h"
 #import "DrawerTableViewController.h"
 #import "HomeViewController.h"
-#import "JVFloatingDrawerViewController.h"
+#import "JVFloatingDrawerView.h"
+#import "LoginViewController.h"
+#import "Masonry.h"
 
 typedef NS_ENUM(NSInteger, DrawerItem) {
     DrawerItemHome,
@@ -25,12 +27,18 @@ static NSString* const kDataKeyTitle = @"title";
 static NSString* const kDataKeyIcon = @"icon";
 static NSString* const kDataKeyClass = @"class";
 
-static CGFloat const kTableViewTopInset = 80.0;
 static NSString* const kDrawerCellReuseIdentifier = @"Identifier";
+static NSInteger const kRowHeight = 40;
+static NSInteger const kbottomViewHeight = 70;
 
 @interface
 DrawerTableViewController ()
 @property (nonatomic, readwrite, strong) NSArray<NSDictionary*>* dataArray;
+
+@property (nonatomic, readwrite, strong) UIView* bottomView;
+@property (nonatomic, readwrite, strong) UIButton* leftBottomButton;
+@property (nonatomic, readwrite, strong) UIButton* centerBottomButton;
+@property (nonatomic, readwrite, strong) UIButton* rightBottomButton;
 @end
 
 @implementation DrawerTableViewController
@@ -45,6 +53,16 @@ DrawerTableViewController ()
             kDataKeyIcon : @"",
             kDataKeyClass : [CalendarViewController class] }
     ];
+
+    [_leftBottomButton setTitle:NSLocalizedString(@"SYNC", nil) forState:UIControlStateNormal];
+    [_leftBottomButton setTitle:NSLocalizedString(@"SYNCING", nil) forState:UIControlStateDisabled];
+    [_centerBottomButton setTitle:NSLocalizedString(@"SETTINGS", nil) forState:UIControlStateNormal];
+    [_rightBottomButton setTitle:NSLocalizedString(@"LOGOUT", nil) forState:UIControlStateNormal];
+}
+#pragma mark - accessors
+- (CGFloat)tableviewInsetTop
+{
+    return kScreenHeight * 0.18;
 }
 #pragma mark - initial
 - (void)viewDidLoad
@@ -52,6 +70,7 @@ DrawerTableViewController ()
     [super viewDidLoad];
 
     [self setup];
+    [self bindConstraints];
     [self localizeStrings];
 }
 - (void)viewDidAppear:(BOOL)animated
@@ -62,15 +81,94 @@ DrawerTableViewController ()
 - (void)setup
 {
     self.tableView.backgroundColor = [UIColor clearColor];
-    self.tableView.contentInset = UIEdgeInsetsMake(kTableViewTopInset, 0.0, 0.0, 0.0);
+    self.tableView.contentInset = UIEdgeInsetsMake([self tableviewInsetTop], 0.0, 0.0, 0.0);
     self.tableView.separatorStyle = UITableViewCellSeparatorStyleNone;
-    self.tableView.rowHeight = 30;
+    self.tableView.bounces = NO;
+    self.tableView.clipsToBounds = NO;
+    self.tableView.rowHeight = kRowHeight;
     [self.tableView registerClass:[DrawerTableViewCell class] forCellReuseIdentifier:kDrawerCellReuseIdentifier];
     self.clearsSelectionOnViewWillAppear = NO;
-}
 
+    __weak UIImageView* bottomContainerView = [AppDelegate globalDelegate].drawerViewController.drawerView.backgroundImageView;
+    [bottomContainerView setUserInteractionEnabled:YES];
+
+    _bottomView = [UIView new];
+    [bottomContainerView addSubview:_bottomView];
+
+    UIColor* bottomItemColor = ColorWithRGB(0x999999);
+    UIFont* bottomItemFont = [TodoHelper themeFontWithSize:13];
+    _leftBottomButton = [UIButton new];
+    _leftBottomButton.contentHorizontalAlignment = UIControlContentHorizontalAlignmentLeft;
+    _leftBottomButton.titleLabel.font = bottomItemFont;
+    [_leftBottomButton setTitleColor:bottomItemColor forState:UIControlStateNormal];
+    [_leftBottomButton addTarget:self action:@selector(synchronize) forControlEvents:UIControlEventTouchUpInside];
+    [_bottomView addSubview:_leftBottomButton];
+
+    _centerBottomButton = [UIButton new];
+    _centerBottomButton.titleLabel.font = bottomItemFont;
+    [_centerBottomButton setTitleColor:bottomItemColor forState:UIControlStateNormal];
+    [_centerBottomButton addTarget:self action:@selector(showSettings) forControlEvents:UIControlEventTouchUpInside];
+    [_bottomView addSubview:_centerBottomButton];
+
+    _rightBottomButton = [UIButton new];
+    _rightBottomButton.contentHorizontalAlignment = UIControlContentHorizontalAlignmentRight;
+    _rightBottomButton.titleLabel.font = bottomItemFont;
+    [_rightBottomButton setTitleColor:bottomItemColor forState:UIControlStateNormal];
+    [_rightBottomButton addTarget:self action:@selector(logOut) forControlEvents:UIControlEventTouchUpInside];
+    [_bottomView addSubview:_rightBottomButton];
+
+    [bottomContainerView bringSubviewToFront:_bottomView];
+}
+- (void)bindConstraints
+{
+    __weak typeof(self) weakSelf = self;
+    [_bottomView mas_makeConstraints:^(MASConstraintMaker* make) {
+        make.left.offset(0);
+        make.top.offset(kScreenHeight - kbottomViewHeight);
+        make.height.offset(kbottomViewHeight);
+        make.width.offset(kScreenWidth);
+    }];
+
+    CGFloat spaceFromView = [DrawerTableViewCell leftSpaceFromView];
+    [_leftBottomButton mas_makeConstraints:^(MASConstraintMaker* make) {
+        make.left.offset(spaceFromView);
+        make.centerY.offset(0);
+        make.width.offset(70);
+        make.height.offset(30);
+    }];
+
+    [_centerBottomButton mas_makeConstraints:^(MASConstraintMaker* make) {
+        make.centerX.offset(0);
+        make.baseline.equalTo(weakSelf.leftBottomButton);
+        make.baseline.equalTo(weakSelf.leftBottomButton);
+        make.width.height.equalTo(weakSelf.leftBottomButton);
+    }];
+
+    [_rightBottomButton mas_makeConstraints:^(MASConstraintMaker* make) {
+        make.right.offset(-spaceFromView);
+        make.baseline.equalTo(weakSelf.leftBottomButton);
+        make.width.height.equalTo(weakSelf.leftBottomButton);
+    }];
+}
+#pragma mark - bottom botton events
+- (void)synchronize
+{
+    DDLogDebug(@"%s", __func__);
+}
+- (void)showSettings
+{
+    DDLogDebug(@"%s", __func__);
+}
+- (void)logOut
+{
+    [LCUser logOut];
+    [[AppDelegate globalDelegate] toggleDrawer:self animated:YES];
+    LoginViewController* loginViewController = [LoginViewController new];
+    [[AppDelegate globalDelegate] switchRootViewController:loginViewController isNavigation:NO];
+}
 #pragma mark - tableview
-- (NSInteger)tableView:(UITableView*)tableView numberOfRowsInSection:(NSInteger)section
+- (NSInteger)tableView:(UITableView*)tableView
+ numberOfRowsInSection:(NSInteger)section
 {
     return _dataArray.count;
 }
@@ -96,11 +194,4 @@ DrawerTableViewController ()
     [[AppDelegate globalDelegate] switchRootViewController:destinationViewController isNavigation:YES];
     [[AppDelegate globalDelegate] toggleDrawer:self animated:YES];
 }
-
-- (void)didReceiveMemoryWarning
-{
-    [super didReceiveMemoryWarning];
-    // Dispose of any resources that can be recreated.
-}
-
 @end

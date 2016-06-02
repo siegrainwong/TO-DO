@@ -6,12 +6,14 @@
 //  Copyright © 2016年 com.siegrain. All rights reserved.
 //
 
+#import "JVFloatingDrawerViewController.h"
 #import <CoreData/CoreData.h>
 #import <UIKit/UIKit.h>
 
 @interface AppDelegate : UIResponder<UIApplicationDelegate>
 
 @property (strong, nonatomic) UIWindow* window;
+@property (nonatomic, readwrite, strong) JVFloatingDrawerViewController* drawerViewController;
 
 + (AppDelegate*)globalDelegate;
 

@@ -18,6 +18,11 @@ DrawerTableViewCell ()
 @end
 
 @implementation DrawerTableViewCell
+#pragma mark - accessors
++ (CGFloat)leftSpaceFromView
+{
+    return kScreenHeight * 0.05;
+}
 #pragma mark - initial
 - (instancetype)initWithStyle:(UITableViewCellStyle)style reuseIdentifier:(NSString*)reuseIdentifier
 {
@@ -32,7 +37,7 @@ DrawerTableViewCell ()
 - (void)setup
 {
     _titleLabel = [UILabel new];
-    _titleLabel.font = [TodoHelper themeFontWithSize:17];
+    _titleLabel.font = [TodoHelper themeFontWithSize:18];
     _titleLabel.textColor = ColorWithRGB(0xDDDDDD);
     [self.contentView addSubview:_titleLabel];
 
@@ -41,7 +46,7 @@ DrawerTableViewCell ()
 
     _titleLabel.sd_layout
       .centerYEqualToView(self.contentView)
-      .leftSpaceToView(self.contentView, 30)
+      .leftSpaceToView(self.contentView, [DrawerTableViewCell leftSpaceFromView])
       .rightSpaceToView(self.contentView, 10)
       .heightIs(20);
 
@@ -67,10 +72,8 @@ DrawerTableViewCell ()
 
 - (void)highlightCell:(BOOL)highlight
 {
-    UIColor* tintColor = [UIColor whiteColor];
-    if (highlight) {
-        tintColor = [UIColor colorWithWhite:1.0 alpha:0.6];
-    }
+    UIColor* tintColor = ColorWithRGB(0xCCCCCC);
+    if (highlight) tintColor = [UIColor whiteColor];
 
     _titleLabel.textColor = tintColor;
     _iconImageView.tintColor = tintColor;

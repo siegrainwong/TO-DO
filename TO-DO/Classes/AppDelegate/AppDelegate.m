@@ -26,7 +26,6 @@
 
 @interface
 AppDelegate ()
-@property (nonatomic, readwrite, strong) JVFloatingDrawerViewController* drawerViewController;
 @end
 
 @implementation AppDelegate
@@ -97,6 +96,7 @@ AppDelegate ()
 - (void)setupDrawerViewController
 {
     _drawerViewController = [JVFloatingDrawerViewController new];
+    _drawerViewController.leftDrawerWidth = kScreenHeight * 0.3;
     JVFloatingDrawerSpringAnimator* animator = [JVFloatingDrawerSpringAnimator new];
     animator.animationDuration = 0.5;
     animator.initialSpringVelocity = 2;
