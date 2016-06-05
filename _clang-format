@@ -4,10 +4,10 @@ Language:        Cpp
 AccessModifierOffset: -2
 AlignConsecutiveAssignments: false
 AlignConsecutiveDeclarations: false
-AlignOperands:   true
+AlignOperands:   false
 AlwaysBreakAfterDefinitionReturnType: TopLevel
 AlwaysBreakBeforeMultilineStrings: false
-AlwaysBreakTemplateDeclarations: true
+AlwaysBreakTemplateDeclarations: false
 BraceWrapping:   
   AfterClass:      true
   AfterControlStatement: false
@@ -75,7 +75,7 @@ SpacesBeforeTrailingComments: 2
 IndentWidth:     4
 ObjCBlockIndentWidth: 4
 AlignAfterOpenBracket:  DontAlign
-AlignEscapedNewlinesLeft: true
+AlignEscapedNewlinesLeft: false
 ContinuationIndentWidth:  2
 AllowAllParametersOfDeclarationOnNextLine: false
 

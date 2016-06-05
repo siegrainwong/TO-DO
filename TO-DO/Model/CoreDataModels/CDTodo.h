@@ -6,14 +6,14 @@
 //  Copyright © 2016年 com.siegrain. All rights reserved.
 //
 
-#import "CDSync.h"
+#import "CDUser.h"
 #import <Foundation/Foundation.h>
 
-@class CDUser;
+@class LCTodo;
 
 NS_ASSUME_NONNULL_BEGIN
 
-@interface CDTodo : CDSync
+@interface CDTodo : NSManagedObject
 /* 用来转换photoData */
 @property (nonatomic, readwrite, strong) UIImage* photoImage;
 /* 缓存表格单元高度 */
@@ -22,6 +22,8 @@ NS_ASSUME_NONNULL_BEGIN
 @property (nonatomic, readwrite, strong) NSDate* lastDeadline;
 /* 指示该待办事项是否在重新排序中 */
 @property (nonatomic, readwrite, assign) BOOL isReordering;
+
++ (instancetype)cdTodoWithLCTodo:(LCTodo*)lcTodo;
 
 @end
 

@@ -20,6 +20,8 @@ typedef NS_ENUM(NSInteger, LCTodoStatus) {
     LCTodoStatusOverdue
 };
 
+@class CDTodo;
+
 @interface LCTodo : LCSync<AVSubclassing>
 /* 标题 */
 @property (nonatomic, readwrite, strong) NSString* title;
@@ -39,6 +41,10 @@ typedef NS_ENUM(NSInteger, LCTodoStatus) {
 @property (nonatomic, readwrite, assign) BOOL isCompleted;
 /* 照片 */
 @property (nonatomic, readwrite, strong) NSString* photo;
+/* 本地创建时间 */
+@property (nonatomic, readwrite, strong) NSDate* localCreatedAt;
+/* 本地更新时间 */
+@property (nonatomic, readwrite, strong) NSDate* localUpdatedAt;
 
 /**
  *  未实现
@@ -59,4 +65,11 @@ typedef NS_ENUM(NSInteger, LCTodoStatus) {
 @property (nonatomic, readwrite, strong) NSDate* lastDeadline;
 /* 指示该待办事项是否在重新排序中 */
 @property (nonatomic, readwrite, assign) BOOL isReordering;
+
+/**
+ *  辅助方法
+ */
+/* CDTodo 转换为 LCTodo */
++ (LCTodo*)lcTodoWithCDTodo:(CDTodo*)cdTodo;
++ (NSArray<LCTodo*>*)lcTodoArrayWithCDTodoArray:(NSArray<CDTodo*>*)cdArray;
 @end

@@ -2,7 +2,7 @@
 //  CDTodo+CoreDataProperties.m
 //  TO-DO
 //
-//  Created by Siegrain on 16/6/2.
+//  Created by Siegrain on 16/6/4.
 //  Copyright © 2016年 com.siegrain. All rights reserved.
 //
 //  Choose "Create NSManagedObject Subclass…" from the Core Data editor menu
@@ -13,17 +13,20 @@
 
 @implementation CDTodo (CoreDataProperties)
 
-@dynamic createAt;
 @dynamic deadline;
 @dynamic isCompleted;
 @dynamic isHidden;
 @dynamic location;
-@dynamic objectId;
 @dynamic photo;
 @dynamic photoData;
 @dynamic sgDescription;
 @dynamic status;
 @dynamic title;
+@dynamic syncStatus;
+@dynamic syncVersion;
+@dynamic objectId;
+@dynamic createdAt;
+@dynamic updatedAt;
 @dynamic user;
 
 @end

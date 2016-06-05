@@ -15,7 +15,7 @@ static NSString* const kBucketName = @"sgtodo";
 + (NSString*)generateToken
 {
     NSInteger deadline = (NSInteger)[[[NSDate date] dateByAddingTimeInterval:60 * 60] timeIntervalSince1970];
-    NSString* uploadPolicy = [NSString stringWithFormat:@"{\"scope\":\"%@\",\"deadline\":%ld}", kBucketName, deadline];
+    NSString* uploadPolicy = [NSString stringWithFormat:@"{\"scope\":\"%@\",\"deadline\":%ld}", kBucketName, (long)deadline];
 
     NSString* encoded = [uploadPolicy base64];
     NSString* encodedSigned = [encoded hmacsha1_base64:@"fr9pgEGk8HpUrwZzcyI4ZGHB1QK-bP9-6ksYyTzN"];

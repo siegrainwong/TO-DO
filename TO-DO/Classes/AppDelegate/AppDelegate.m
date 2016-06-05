@@ -15,6 +15,7 @@
 #import "JTNavigationController.h"
 #import "JVFloatingDrawerSpringAnimator.h"
 #import "JVFloatingDrawerView.h"
+#import "LCSyncRecord.h"
 #import "LCTodo.h"
 #import "LCUser.h"
 #import "LoginViewController.h"
@@ -60,11 +61,12 @@ AppDelegate ()
 #pragma mark - initial
 - (void)setup
 {
-    [self setupLeanCloud];
-    [self setupDrawerViewController];
     [self setupDDLog];
     [self setupMagicRecord];
+    [self setupLeanCloud];
+    [self setupDrawerViewController];
     //    [self truncateLocalData];
+    [self applicationDocumentsDirectory];
 
     [UIApplication sharedApplication].statusBarStyle = UIStatusBarStyleLightContent;
     self.window = [[UIWindow alloc] initWithFrame:[[UIScreen mainScreen] bounds]];
@@ -89,6 +91,7 @@ AppDelegate ()
     [AVOSCloud setApplicationId:kLeanCloudAppID clientKey:kLeanCloudAppKey];
 
     // register subclasses
+    [LCSyncRecord registerSubclass];
     [LCSync registerSubclass];
     [LCUser registerSubclass];
     [LCTodo registerSubclass];
@@ -126,6 +129,12 @@ AppDelegate ()
 {
     [CDUser MR_truncateAll];
     [CDTodo MR_truncateAll];
+}
+- (NSURL*)applicationDocumentsDirectory
+{
+    NSLog(@"%@", [[[NSFileManager defaultManager] URLsForDirectory:NSDocumentDirectory inDomains:NSUserDomainMask] lastObject]);
+
+    return [[[NSFileManager defaultManager] URLsForDirectory:NSDocumentDirectory inDomains:NSUserDomainMask] lastObject];
 }
 #pragma mark -
 - (void)switchRootViewController:(UIViewController*)viewController isNavigation:(BOOL)isNavigation

@@ -2,7 +2,7 @@
 //  CDUser+CoreDataProperties.m
 //  TO-DO
 //
-//  Created by Siegrain on 16/6/2.
+//  Created by Siegrain on 16/6/4.
 //  Copyright © 2016年 com.siegrain. All rights reserved.
 //
 //  Choose "Create NSManagedObject Subclass…" from the Core Data editor menu
@@ -15,11 +15,14 @@
 
 @dynamic avatar;
 @dynamic avatarData;
-@dynamic createAt;
 @dynamic email;
 @dynamic name;
-@dynamic objectId;
 @dynamic username;
+@dynamic phoneIdentifier;
+@dynamic objectId;
+@dynamic createdAt;
+@dynamic updatedAt;
+@dynamic syncRecords;
 @dynamic todos;
 
 @end

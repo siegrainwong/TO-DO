@@ -6,6 +6,10 @@ PODS:
     - AFNetworking/Security (= 2.6.3)
     - AFNetworking/Serialization (= 2.6.3)
     - AFNetworking/UIKit (= 2.6.3)
+  - AFNetworking-Synchronous (0.3.1):
+    - AFNetworking-Synchronous/2.x (= 0.3.1)
+  - AFNetworking-Synchronous/2.x (0.3.1):
+    - AFNetworking (~> 2.0)
   - AFNetworking/NSURLConnection (2.6.3):
     - AFNetworking/Reachability
     - AFNetworking/Security
@@ -30,6 +34,7 @@ PODS:
     - CocoaLumberjack/Core
   - CocoaLumberjack/Extensions (2.3.0):
     - CocoaLumberjack/Default
+  - DGActivityIndicatorView (2.0)
   - FSCalendar (2.1.1)
   - GTMBase64 (1.0.0)
   - HappyDNS (0.2.3)
@@ -53,9 +58,11 @@ PODS:
   - ZFDragableModalTransition (0.6)
 
 DEPENDENCIES:
+  - AFNetworking-Synchronous
   - AutoLinearLayoutView
   - AVOSCloud
   - CocoaLumberjack
+  - DGActivityIndicatorView
   - FSCalendar
   - GTMBase64
   - JSONModel
@@ -73,9 +80,11 @@ DEPENDENCIES:
 
 SPEC CHECKSUMS:
   AFNetworking: cb8d14a848e831097108418f5d49217339d4eb60
+  AFNetworking-Synchronous: 29531ad341ec465a4ff9b66dea9cf7272080e12e
   AutoLinearLayoutView: 1370d70257b925f4eccb3356d3092132ce613df6
   AVOSCloud: b020009b1f2e35c271d4d019075458c879fc1d21
   CocoaLumberjack: 97fab7ee5f507fe54445cca7ea80f926729cfd15
+  DGActivityIndicatorView: 52875b025a6ccf6a431a905285c12e2bb95eb559
   FSCalendar: 04dc531f06fbde8a8e5b7394e9d4edebd45a591f
   GTMBase64: 0da7372e95f5171f3f652db38cde6716f8eb5e24
   HappyDNS: 6d85942e64c28b4fa61f8c76580398f52d6d1d11
@@ -92,6 +101,6 @@ SPEC CHECKSUMS:
   TPKeyboardAvoiding: a5138f318c06fb3e151f886e18ce4a72695d9cbe
   ZFDragableModalTransition: 0d294eaaba6edfcb9839595de765f9ca06a4b524
 
-PODFILE CHECKSUM: ca23ad7406e696f1e5f6a61562e474be4388134b
+PODFILE CHECKSUM: a476b060e7ec5818a224ebc8cca4c9cdd7a0c91d
 
 COCOAPODS: 1.0.0

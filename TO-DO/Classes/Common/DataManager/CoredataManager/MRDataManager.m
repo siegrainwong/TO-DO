@@ -17,8 +17,7 @@
             [SCLAlertHelper errorAlertWithContent:error.localizedDescription];
             return complete(NO);
         }
-
-        return complete(YES);
+        if (complete) return complete(YES);
     }];
 }
 @end

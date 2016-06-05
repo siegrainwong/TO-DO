@@ -30,7 +30,7 @@
     }
 
     if (validateString)
-        [self errorAlertWithContent:[NSString stringWithFormat:@"%@%@%ld", name, validateString, errorLength]];
+        [self errorAlertWithContent:[NSString stringWithFormat:@"%@%@%ld", name, validateString, (long)errorLength]];
 
     return validateString;
 }

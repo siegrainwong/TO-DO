@@ -110,4 +110,13 @@
 {
     return [self localizedShortDateString:[NSDate dateWithTimeIntervalSinceReferenceDate:interval]];
 }
++ (NSDate*)dateFromISO8601String:(NSString*)string
+{
+    NSDateFormatter* dateFormatter = [NSDateFormatter new];
+    NSLocale* enUSPOSIXLocale = [NSLocale localeWithLocaleIdentifier:@"en_US_POSIX"];
+    [dateFormatter setLocale:enUSPOSIXLocale];
+    [dateFormatter setDateFormat:@"yyyy-MM-dd'T'HH:mm:ss.SSSZ"];
+
+    return [dateFormatter dateFromString:string];
+}
 @end

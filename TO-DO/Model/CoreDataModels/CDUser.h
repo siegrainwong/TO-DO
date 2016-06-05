@@ -6,7 +6,7 @@
 //  Copyright © 2016年 com.siegrain. All rights reserved.
 //
 
-#import "CDSync.h"
+#import "CDSyncRecord.h"
 #import <Foundation/Foundation.h>
 
 @class CDTodo;
@@ -14,7 +14,7 @@
 
 NS_ASSUME_NONNULL_BEGIN
 
-@interface CDUser : CDSync
+@interface CDUser : NSManagedObject
 
 @property (nonatomic, readwrite, strong) UIImage* avatarPhoto;
 

@@ -19,5 +19,7 @@ pod 'ZFDragableModalTransition'
 pod 'FSCalendar'
 pod 'MagicalRecord'
 pod 'CocoaLumberjack'
+pod 'DGActivityIndicatorView'
+pod 'AFNetworking-Synchronous'
 
 end

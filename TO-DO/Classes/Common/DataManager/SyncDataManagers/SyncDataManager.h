@@ -9,5 +9,9 @@
 #import <Foundation/Foundation.h>
 
 @interface SyncDataManager : NSObject
+- (void)synchronize:(void (^)(bool succeed))complete;
 
++ (instancetype)dataManager;
+
++ (BOOL)isSyncing;
 @end

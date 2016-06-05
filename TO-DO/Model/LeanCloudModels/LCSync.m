@@ -11,4 +11,9 @@
 @implementation LCSync
 @dynamic syncVersion;
 @dynamic syncStatus;
+
++ (NSString*)parseClassName
+{
+    return @"Sync";
+}
 @end

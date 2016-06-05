@@ -20,7 +20,6 @@
 #import "SGCommitButton.h"
 #import "SGTextField.h"
 #import "UIImage+Extension.h"
-#import "UIViewController+KNSemiModal.h"
 
 // FIXME: iPhone4s 上 NavigationBar 会遮挡一部分标题文本框
 // TODO: 人物选择功能
@@ -193,7 +192,8 @@ CreateViewController ()
         todo.status = @(TodoStatusNormal);
         todo.isCompleted = @(NO);
         todo.isHidden = @(NO);
-        todo.createAt = [NSDate date];
+        todo.createdAt = [NSDate date];
+        todo.updatedAt = [todo.createdAt copy];
 
         [_dataManager insertTodo:todo complete:^(bool succeed) {
             [weakSelf enableView:YES];

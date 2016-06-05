@@ -41,7 +41,7 @@
 		F94CA2471CE2FA9E0006904F /* SCLAlertHelper.m in Sources */ = {isa = PBXBuildFile; fileRef = F94CA2381CE2FA9E0006904F /* SCLAlertHelper.m */; };
 		F94CA2481CE2FA9E0006904F /* TodoHelper.m in Sources */ = {isa = PBXBuildFile; fileRef = F94CA23A1CE2FA9E0006904F /* TodoHelper.m */; };
 		F94CA2491CE2FA9E0006904F /* FieldValidator.m in Sources */ = {isa = PBXBuildFile; fileRef = F94CA23D1CE2FA9E0006904F /* FieldValidator.m */; };
-		F94CA24A1CE2FA9E0006904F /* GCDUtil.m in Sources */ = {isa = PBXBuildFile; fileRef = F94CA23F1CE2FA9E0006904F /* GCDUtil.m */; };
+		F94CA24A1CE2FA9E0006904F /* GCDQueue.m in Sources */ = {isa = PBXBuildFile; fileRef = F94CA23F1CE2FA9E0006904F /* GCDQueue.m */; };
 		F94CA24B1CE2FA9E0006904F /* MD5Util.m in Sources */ = {isa = PBXBuildFile; fileRef = F94CA2411CE2FA9E0006904F /* MD5Util.m */; };
 		F94CA24F1CE2FB110006904F /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = F94CA24E1CE2FB110006904F /* AppDelegate.m */; };
 		F94CA2601CE2FB940006904F /* LoginViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = F94CA2531CE2FB940006904F /* LoginViewController.m */; };
@@ -59,6 +59,8 @@
 		F9773EAD1CFECD7400469A0E /* TO_DO.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = F9773EAB1CFECD7400469A0E /* TO_DO.xcdatamodeld */; };
 		F980EDCF1CE70F4E00A861FE /* HeaderView.m in Sources */ = {isa = PBXBuildFile; fileRef = F980EDCE1CE70F4E00A861FE /* HeaderView.m */; };
 		F98DE68C1CFDCE6B00859A81 /* TodoTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = F98DE68B1CFDCE6B00859A81 /* TodoTableViewController.m */; };
+		F9964A991D02CD2F008387E5 /* LCSyncRecord.m in Sources */ = {isa = PBXBuildFile; fileRef = F9964A981D02CD2F008387E5 /* LCSyncRecord.m */; };
+		F9964A9C1D030409008387E5 /* CDSyncRecord+CoreDataProperties.m in Sources */ = {isa = PBXBuildFile; fileRef = F9964A9B1D030409008387E5 /* CDSyncRecord+CoreDataProperties.m */; };
 		F997BF9F1CF8376A00DD155B /* UIViewController+KNSemiModal.m in Sources */ = {isa = PBXBuildFile; fileRef = F997BF9E1CF8376A00DD155B /* UIViewController+KNSemiModal.m */; };
 		F997BFA11CF8391C00DD155B /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F997BFA01CF8391C00DD155B /* QuartzCore.framework */; };
 		F997BFA31CF83A6600DD155B /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F997BFA21CF83A6600DD155B /* UIKit.framework */; };
@@ -81,9 +83,7 @@
 		F9A7238F1CDDF8A900E3BC8E /* TO_DOTests.m in Sources */ = {isa = PBXBuildFile; fileRef = F9A7238E1CDDF8A900E3BC8E /* TO_DOTests.m */; };
 		F9A7239A1CDDF8A900E3BC8E /* TO_DOUITests.m in Sources */ = {isa = PBXBuildFile; fileRef = F9A723991CDDF8A900E3BC8E /* TO_DOUITests.m */; };
 		F9B3DD021CFFDEE8000A8B28 /* MRUserDataManager.m in Sources */ = {isa = PBXBuildFile; fileRef = F9B3DD011CFFDEE8000A8B28 /* MRUserDataManager.m */; };
-		F9B3DD0C1CFFE4EC000A8B28 /* CDSync+CoreDataProperties.m in Sources */ = {isa = PBXBuildFile; fileRef = F9B3DD061CFFE4EC000A8B28 /* CDSync+CoreDataProperties.m */; };
 		F9B3DD151CFFE55C000A8B28 /* CDUser.m in Sources */ = {isa = PBXBuildFile; fileRef = F9B3DD101CFFE55C000A8B28 /* CDUser.m */; };
-		F9B3DD161CFFE55C000A8B28 /* CDSync.m in Sources */ = {isa = PBXBuildFile; fileRef = F9B3DD121CFFE55C000A8B28 /* CDSync.m */; };
 		F9B3DD171CFFE55C000A8B28 /* CDTodo.m in Sources */ = {isa = PBXBuildFile; fileRef = F9B3DD141CFFE55C000A8B28 /* CDTodo.m */; };
 		F9B3DD1A1CFFE5BE000A8B28 /* LCSync.m in Sources */ = {isa = PBXBuildFile; fileRef = F9B3DD191CFFE5BE000A8B28 /* LCSync.m */; };
 		F9BCE5321CEDB54B003376C7 /* CreateViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = F9BCE5311CEDB54B003376C7 /* CreateViewController.m */; };
@@ -96,6 +96,7 @@
 		F9E9534F1CF8708C0046E1C9 /* HSDatePickerViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = F9E9534D1CF8708C0046E1C9 /* HSDatePickerViewController.xib */; };
 		F9E953521CF875B70046E1C9 /* HSDatePickerViewController+Configure.m in Sources */ = {isa = PBXBuildFile; fileRef = F9E953511CF875B70046E1C9 /* HSDatePickerViewController+Configure.m */; };
 		F9F723461CEEF40200128254 /* NSNotificationCenter+Extension.m in Sources */ = {isa = PBXBuildFile; fileRef = F9F723451CEEF40200128254 /* NSNotificationCenter+Extension.m */; };
+		F9FAB5EB1D02B3EA00C519B9 /* CDSyncRecord.m in Sources */ = {isa = PBXBuildFile; fileRef = F9FAB5E91D02B3EA00C519B9 /* CDSyncRecord.m */; };
 		F9FB96C41CFC74C6002581A0 /* CalendarViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = F9FB96C31CFC74C6002581A0 /* CalendarViewController.m */; };
 		F9FB96C71CFC77D1002581A0 /* calendar header bg.png in Resources */ = {isa = PBXBuildFile; fileRef = F9FB96C61CFC77D1002581A0 /* calendar header bg.png */; };
 /* End PBXBuildFile section */
@@ -185,8 +186,8 @@
 		F94CA23A1CE2FA9E0006904F /* TodoHelper.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TodoHelper.m; sourceTree = "<group>"; };
 		F94CA23C1CE2FA9E0006904F /* FieldValidator.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FieldValidator.h; sourceTree = "<group>"; };
 		F94CA23D1CE2FA9E0006904F /* FieldValidator.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FieldValidator.m; sourceTree = "<group>"; };
-		F94CA23E1CE2FA9E0006904F /* GCDUtil.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GCDUtil.h; sourceTree = "<group>"; };
-		F94CA23F1CE2FA9E0006904F /* GCDUtil.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GCDUtil.m; sourceTree = "<group>"; };
+		F94CA23E1CE2FA9E0006904F /* GCDQueue.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GCDQueue.h; sourceTree = "<group>"; };
+		F94CA23F1CE2FA9E0006904F /* GCDQueue.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GCDQueue.m; sourceTree = "<group>"; };
 		F94CA2401CE2FA9E0006904F /* MD5Util.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MD5Util.h; sourceTree = "<group>"; };
 		F94CA2411CE2FA9E0006904F /* MD5Util.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MD5Util.m; sourceTree = "<group>"; };
 		F94CA24D1CE2FB110006904F /* AppDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
@@ -219,6 +220,10 @@
 		F980EDCE1CE70F4E00A861FE /* HeaderView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HeaderView.m; sourceTree = "<group>"; };
 		F98DE68A1CFDCE6B00859A81 /* TodoTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TodoTableViewController.h; sourceTree = "<group>"; };
 		F98DE68B1CFDCE6B00859A81 /* TodoTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TodoTableViewController.m; sourceTree = "<group>"; };
+		F9964A971D02CD2F008387E5 /* LCSyncRecord.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LCSyncRecord.h; sourceTree = "<group>"; };
+		F9964A981D02CD2F008387E5 /* LCSyncRecord.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LCSyncRecord.m; sourceTree = "<group>"; };
+		F9964A9A1D030409008387E5 /* CDSyncRecord+CoreDataProperties.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "CDSyncRecord+CoreDataProperties.h"; sourceTree = "<group>"; };
+		F9964A9B1D030409008387E5 /* CDSyncRecord+CoreDataProperties.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "CDSyncRecord+CoreDataProperties.m"; sourceTree = "<group>"; };
 		F997BF9D1CF8376A00DD155B /* UIViewController+KNSemiModal.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIViewController+KNSemiModal.h"; sourceTree = "<group>"; };
 		F997BF9E1CF8376A00DD155B /* UIViewController+KNSemiModal.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIViewController+KNSemiModal.m"; sourceTree = "<group>"; };
 		F997BFA01CF8391C00DD155B /* QuartzCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = QuartzCore.framework; path = System/Library/Frameworks/QuartzCore.framework; sourceTree = SDKROOT; };
@@ -261,12 +266,8 @@
 		F9A7239B1CDDF8A900E3BC8E /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		F9B3DD001CFFDEE8000A8B28 /* MRUserDataManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MRUserDataManager.h; sourceTree = "<group>"; };
 		F9B3DD011CFFDEE8000A8B28 /* MRUserDataManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MRUserDataManager.m; sourceTree = "<group>"; };
-		F9B3DD051CFFE4EC000A8B28 /* CDSync+CoreDataProperties.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "CDSync+CoreDataProperties.h"; sourceTree = "<group>"; };
-		F9B3DD061CFFE4EC000A8B28 /* CDSync+CoreDataProperties.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "CDSync+CoreDataProperties.m"; sourceTree = "<group>"; };
 		F9B3DD0F1CFFE55C000A8B28 /* CDUser.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CDUser.h; sourceTree = "<group>"; };
 		F9B3DD101CFFE55C000A8B28 /* CDUser.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CDUser.m; sourceTree = "<group>"; };
-		F9B3DD111CFFE55C000A8B28 /* CDSync.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CDSync.h; sourceTree = "<group>"; };
-		F9B3DD121CFFE55C000A8B28 /* CDSync.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CDSync.m; sourceTree = "<group>"; };
 		F9B3DD131CFFE55C000A8B28 /* CDTodo.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CDTodo.h; sourceTree = "<group>"; };
 		F9B3DD141CFFE55C000A8B28 /* CDTodo.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CDTodo.m; sourceTree = "<group>"; };
 		F9B3DD181CFFE5BE000A8B28 /* LCSync.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LCSync.h; sourceTree = "<group>"; };
@@ -289,6 +290,9 @@
 		F9E953511CF875B70046E1C9 /* HSDatePickerViewController+Configure.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "HSDatePickerViewController+Configure.m"; sourceTree = "<group>"; };
 		F9F723441CEEF40200128254 /* NSNotificationCenter+Extension.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSNotificationCenter+Extension.h"; sourceTree = "<group>"; };
 		F9F723451CEEF40200128254 /* NSNotificationCenter+Extension.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSNotificationCenter+Extension.m"; sourceTree = "<group>"; };
+		F9FAB5E51D01BB2700C519B9 /* TO_DO 2.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = "TO_DO 2.xcdatamodel"; sourceTree = "<group>"; };
+		F9FAB5E81D02B3EA00C519B9 /* CDSyncRecord.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CDSyncRecord.h; sourceTree = "<group>"; };
+		F9FAB5E91D02B3EA00C519B9 /* CDSyncRecord.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CDSyncRecord.m; sourceTree = "<group>"; };
 		F9FB96C21CFC74C6002581A0 /* CalendarViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CalendarViewController.h; sourceTree = "<group>"; };
 		F9FB96C31CFC74C6002581A0 /* CalendarViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CalendarViewController.m; sourceTree = "<group>"; };
 		F9FB96C61CFC77D1002581A0 /* calendar header bg.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "calendar header bg.png"; sourceTree = "<group>"; };
@@ -354,6 +358,8 @@
 				F9331D841CF0A97200B36474 /* LCUser.m */,
 				F9B3DD181CFFE5BE000A8B28 /* LCSync.h */,
 				F9B3DD191CFFE5BE000A8B28 /* LCSync.m */,
+				F9964A971D02CD2F008387E5 /* LCSyncRecord.h */,
+				F9964A981D02CD2F008387E5 /* LCSyncRecord.m */,
 			);
 			path = LeanCloudModels;
 			sourceTree = "<group>";
@@ -365,14 +371,14 @@
 				F99B23871CFF4248009A45A2 /* CDTodo+CoreDataProperties.m */,
 				F99B238A1CFF4248009A45A2 /* CDUser+CoreDataProperties.h */,
 				F99B238B1CFF4248009A45A2 /* CDUser+CoreDataProperties.m */,
-				F9B3DD051CFFE4EC000A8B28 /* CDSync+CoreDataProperties.h */,
-				F9B3DD061CFFE4EC000A8B28 /* CDSync+CoreDataProperties.m */,
 				F9B3DD0F1CFFE55C000A8B28 /* CDUser.h */,
 				F9B3DD101CFFE55C000A8B28 /* CDUser.m */,
-				F9B3DD111CFFE55C000A8B28 /* CDSync.h */,
-				F9B3DD121CFFE55C000A8B28 /* CDSync.m */,
 				F9B3DD131CFFE55C000A8B28 /* CDTodo.h */,
 				F9B3DD141CFFE55C000A8B28 /* CDTodo.m */,
+				F9FAB5E81D02B3EA00C519B9 /* CDSyncRecord.h */,
+				F9FAB5E91D02B3EA00C519B9 /* CDSyncRecord.m */,
+				F9964A9A1D030409008387E5 /* CDSyncRecord+CoreDataProperties.h */,
+				F9964A9B1D030409008387E5 /* CDSyncRecord+CoreDataProperties.m */,
 			);
 			name = CoredataModels;
 			path = CoreDataModels;
@@ -609,8 +615,8 @@
 				F94CA23D1CE2FA9E0006904F /* FieldValidator.m */,
 				F959945C1CE481CD00B042BD /* DateUtil.h */,
 				F959945D1CE481CD00B042BD /* DateUtil.m */,
-				F94CA23E1CE2FA9E0006904F /* GCDUtil.h */,
-				F94CA23F1CE2FA9E0006904F /* GCDUtil.m */,
+				F94CA23E1CE2FA9E0006904F /* GCDQueue.h */,
+				F94CA23F1CE2FA9E0006904F /* GCDQueue.m */,
 				F94CA2401CE2FA9E0006904F /* MD5Util.h */,
 				F94CA2411CE2FA9E0006904F /* MD5Util.m */,
 				F95994591CE47BC200B042BD /* ImageUploader.h */,
@@ -815,8 +821,8 @@
 		F9A723AE1CDDF98100E3BC8E /* Classes */ = {
 			isa = PBXGroup;
 			children = (
-				F94CA2661CE2FBC90006904F /* Models */,
 				F98DE6861CFDA02200859A81 /* DataManagers */,
+				F94CA2661CE2FBC90006904F /* Models */,
 				F94CA1F01CE2F9780006904F /* Libraries */,
 				F94CA2281CE2FA9E0006904F /* Common */,
 				F94CA24C1CE2FB110006904F /* AppDelegate */,
@@ -1112,14 +1118,12 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				F9B3DD0C1CFFE4EC000A8B28 /* CDSync+CoreDataProperties.m in Sources */,
 				F9A723791CDDF8A800E3BC8E /* ViewController.m in Sources */,
 				F959945E1CE481CD00B042BD /* DateUtil.m in Sources */,
 				F921F4D41CECA023004AC07E /* UINavigationController+Transparent.m in Sources */,
 				F94CA2601CE2FB940006904F /* LoginViewController.m in Sources */,
 				F94CA20A1CE2F9780006904F /* UIImage+ImageEffects.m in Sources */,
 				F95994531CE462E100B042BD /* QiniuTokenGenerator.m in Sources */,
-				F9B3DD161CFFE55C000A8B28 /* CDSync.m in Sources */,
 				F9B3DD151CFFE55C000A8B28 /* CDUser.m in Sources */,
 				F94CA24F1CE2FB110006904F /* AppDelegate.m in Sources */,
 				F94388621CF5C38500E44379 /* DrawerTableViewCell.m in Sources */,
@@ -1130,6 +1134,7 @@
 				F98DE68C1CFDCE6B00859A81 /* TodoTableViewController.m in Sources */,
 				F9773EAD1CFECD7400469A0E /* TO_DO.xcdatamodeld in Sources */,
 				F94CA2441CE2FA9E0006904F /* UIImage+Extension.m in Sources */,
+				F9964A991D02CD2F008387E5 /* LCSyncRecord.m in Sources */,
 				F94F2F371CF2D71200128A3A /* TodoTableViewCell.m in Sources */,
 				F9B3DD1A1CFFE5BE000A8B28 /* LCSync.m in Sources */,
 				F9383FD01D00103A006D9497 /* MRDataManager.m in Sources */,
@@ -1145,6 +1150,7 @@
 				F94CA2041CE2F9780006904F /* SCLAlertViewResponder.m in Sources */,
 				F9E9534E1CF8708C0046E1C9 /* HSDatePickerViewController.m in Sources */,
 				F9DE3ED41CF4849F00653A56 /* NSDate+Extension.m in Sources */,
+				F9964A9C1D030409008387E5 /* CDSyncRecord+CoreDataProperties.m in Sources */,
 				F94CA2431CE2FA9E0006904F /* NSString+Extension.m in Sources */,
 				F945ABDD1CED983800C282F7 /* UIScrollView+Extension.m in Sources */,
 				F95994611CE4898100B042BD /* UIImage+Compression.m in Sources */,
@@ -1171,12 +1177,13 @@
 				F99B23731CFF3592009A45A2 /* MRTodoDataManager.m in Sources */,
 				F959945B1CE47BC200B042BD /* ImageUploader.m in Sources */,
 				F9A723731CDDF8A800E3BC8E /* main.m in Sources */,
-				F94CA24A1CE2FA9E0006904F /* GCDUtil.m in Sources */,
+				F94CA24A1CE2FA9E0006904F /* GCDQueue.m in Sources */,
 				F9A1E0801CEDFA4C00FFC453 /* SGCommitButton.m in Sources */,
 				F9B3DD021CFFDEE8000A8B28 /* MRUserDataManager.m in Sources */,
 				F99B238E1CFF4248009A45A2 /* CDTodo+CoreDataProperties.m in Sources */,
 				F9A1E0831CEE180E00FFC453 /* NSDateFormatter+Extension.m in Sources */,
 				F94CA2421CE2FA9E0006904F /* NSObject+PropertyName.m in Sources */,
+				F9FAB5EB1D02B3EA00C519B9 /* CDSyncRecord.m in Sources */,
 				F94CA2631CE2FB940006904F /* LoginView.m in Sources */,
 				F9E953481CF853A00046E1C9 /* UUDatePicker_DateModel.m in Sources */,
 				F9B3DD171CFFE55C000A8B28 /* CDTodo.m in Sources */,
@@ -1456,9 +1463,10 @@
 		F9773EAB1CFECD7400469A0E /* TO_DO.xcdatamodeld */ = {
 			isa = XCVersionGroup;
 			children = (
+				F9FAB5E51D01BB2700C519B9 /* TO_DO 2.xcdatamodel */,
 				F9773EAC1CFECD7400469A0E /* TO_DO.xcdatamodel */,
 			);
-			currentVersion = F9773EAC1CFECD7400469A0E /* TO_DO.xcdatamodel */;
+			currentVersion = F9FAB5E51D01BB2700C519B9 /* TO_DO 2.xcdatamodel */;
 			path = TO_DO.xcdatamodeld;
 			sourceTree = "<group>";
 			versionGroupType = wrapper.xcdatamodel;

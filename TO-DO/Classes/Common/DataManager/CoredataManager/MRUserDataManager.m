@@ -22,11 +22,15 @@ MRUserDataManager ()
     user.name = lcUser.name;
     user.avatar = lcUser.avatar;
     user.avatarData = UIImageJPEGRepresentation(lcUser.avatarImage, 0.5);
-    user.createAt = lcUser.createdAt;
+    user.createdAt = lcUser.createdAt;
+    user.updatedAt = lcUser.updatedAt;
     user.email = lcUser.email;
     user.username = lcUser.username;
     user.objectId = lcUser.objectId;
+    // 该值在本地每次创建用户时生成
+    user.phoneIdentifier = [[NSUUID UUID] UUIDString];
 
+    [[NSUserDefaults standardUserDefaults] setObject:user.phoneIdentifier forKey:user.objectId];
     [[NSManagedObjectContext MR_defaultContext] MR_saveToPersistentStoreAndWait];
 
     return YES;

@@ -101,4 +101,16 @@ MRTodoDataManager ()
 
     return YES;
 }
+#pragma mark - modify
+- (void)modifyTodo:(CDTodo*)todo complete:(void (^)(bool succeed))complete
+{
+    __weak typeof(self) weakSelf = self;
+    dispatch_queue_t serialQueue = dispatch_queue_create("todoModifySerialQueue", DISPATCH_QUEUE_SERIAL);
+    dispatch_sync(serialQueue, ^{
+        todo.syncStatus = @(SyncStatusWaiting);
+        todo.syncVersion = @([todo.syncVersion integerValue] + 1);
+        todo.updatedAt = [NSDate date];
+        [weakSelf saveWithBlock:complete];
+    });
+}
 @end

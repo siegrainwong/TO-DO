@@ -8,12 +8,14 @@
 
 #import "AppDelegate.h"
 #import "CalendarViewController.h"
+#import "DGActivityIndicatorView.h"
 #import "DrawerTableViewCell.h"
 #import "DrawerTableViewController.h"
 #import "HomeViewController.h"
 #import "JVFloatingDrawerView.h"
 #import "LoginViewController.h"
 #import "Masonry.h"
+#import "SyncDataManager.h"
 
 typedef NS_ENUM(NSInteger, DrawerItem) {
     DrawerItemHome,
@@ -30,12 +32,15 @@ static NSString* const kDataKeyClass = @"class";
 static NSString* const kDrawerCellReuseIdentifier = @"Identifier";
 static NSInteger const kRowHeight = 40;
 static NSInteger const kbottomViewHeight = 70;
+static CGFloat const kSyncIndicatorSize = 15;
 
 @interface
 DrawerTableViewController ()
+@property (nonatomic, readwrite, strong) SyncDataManager* dataManager;
 @property (nonatomic, readwrite, strong) NSArray<NSDictionary*>* dataArray;
 
 @property (nonatomic, readwrite, strong) UIView* bottomView;
+@property (nonatomic, readwrite, strong) DGActivityIndicatorView* indicatorView;
 @property (nonatomic, readwrite, strong) UIButton* leftBottomButton;
 @property (nonatomic, readwrite, strong) UIButton* centerBottomButton;
 @property (nonatomic, readwrite, strong) UIButton* rightBottomButton;
@@ -89,6 +94,8 @@ DrawerTableViewController ()
     [self.tableView registerClass:[DrawerTableViewCell class] forCellReuseIdentifier:kDrawerCellReuseIdentifier];
     self.clearsSelectionOnViewWillAppear = NO;
 
+    _dataManager = [SyncDataManager dataManager];
+
     __weak UIImageView* bottomContainerView = [AppDelegate globalDelegate].drawerViewController.drawerView.backgroundImageView;
     [bottomContainerView setUserInteractionEnabled:YES];
 
@@ -97,6 +104,10 @@ DrawerTableViewController ()
 
     UIColor* bottomItemColor = ColorWithRGB(0x999999);
     UIFont* bottomItemFont = [TodoHelper themeFontWithSize:13];
+
+    _indicatorView = [[DGActivityIndicatorView alloc] initWithType:DGActivityIndicatorAnimationTypeRotatingTrigons tintColor:bottomItemColor size:kSyncIndicatorSize];
+    [_bottomView addSubview:_indicatorView];
+
     _leftBottomButton = [UIButton new];
     _leftBottomButton.contentHorizontalAlignment = UIControlContentHorizontalAlignmentLeft;
     _leftBottomButton.titleLabel.font = bottomItemFont;
@@ -137,6 +148,13 @@ DrawerTableViewController ()
         make.height.offset(30);
     }];
 
+    // Mark: 这个菊花有时候位置不正常
+    [_indicatorView mas_makeConstraints:^(MASConstraintMaker* make) {
+        make.right.equalTo(weakSelf.leftBottomButton.mas_left).offset(-2);
+        make.centerY.equalTo(weakSelf.leftBottomButton);
+        make.height.width.offset(kSyncIndicatorSize);
+    }];
+
     [_centerBottomButton mas_makeConstraints:^(MASConstraintMaker* make) {
         make.centerX.offset(0);
         make.baseline.equalTo(weakSelf.leftBottomButton);
@@ -153,7 +171,14 @@ DrawerTableViewController ()
 #pragma mark - bottom botton events
 - (void)synchronize
 {
-    DDLogDebug(@"%s", __func__);
+    dispatch_queue_t serialQueue = dispatch_queue_create("todoSynchronizeLock", DISPATCH_QUEUE_SERIAL);
+    dispatch_sync(serialQueue, ^{
+        [_indicatorView startAnimating];
+        __weak typeof(self) weakSelf = self;
+        [_dataManager synchronize:^(bool succeed) {
+            [weakSelf.indicatorView stopAnimating];
+        }];
+    });
 }
 - (void)showSettings
 {

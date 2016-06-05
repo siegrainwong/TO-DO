@@ -157,7 +157,7 @@ TodoTableViewController ()
         [cell setTodoDidComplete:^BOOL(TodoTableViewCell* sender) {
             [sender setUserInteractionEnabled:NO];
             sender.model.isCompleted = @(YES);
-            [weakSelf.dataManager saveWithBlock:^(bool succeed) {
+            [weakSelf.dataManager modifyTodo:sender.model complete:^(bool succeed) {
                 [sender setUserInteractionEnabled:YES];
                 if (succeed) [weakSelf removeTodo:sender.model atIndexPath:[weakSelf.tableView indexPathForCell:sender] reordering:NO animate:YES];
             }];
@@ -175,7 +175,7 @@ TodoTableViewController ()
         [cell setTodoDidRemove:^BOOL(TodoTableViewCell* sender) {
             [sender setUserInteractionEnabled:NO];
             sender.model.isHidden = @(YES);
-            [weakSelf.dataManager saveWithBlock:^(bool succeed) {
+            [weakSelf.dataManager modifyTodo:sender.model complete:^(bool succeed) {
                 [sender setUserInteractionEnabled:YES];
                 if (succeed) [weakSelf removeTodo:sender.model atIndexPath:[weakSelf.tableView indexPathForCell:sender] reordering:NO animate:YES];
             }];
@@ -269,7 +269,7 @@ TodoTableViewController ()
     if ([todo.lastDeadline compare:todo.deadline] == NSOrderedAscending)
         todo.status = @(TodoStatusSnoozed);
     [_snoozingCell setUserInteractionEnabled:NO];
-    [weakSelf.dataManager saveWithBlock:^(bool succeed) {
+    [weakSelf.dataManager modifyTodo:todo complete:^(bool succeed) {
         [weakSelf.snoozingCell setUserInteractionEnabled:YES];
         if (succeed)
             [weakSelf reorderTodo:todo atIndexPath:[self.tableView indexPathForCell:weakSelf.snoozingCell]];
@@ -292,23 +292,28 @@ TodoTableViewController ()
 }
 - (void)expireTasksWhenTimerTick
 {
-    NSDate* today = [NSDate date].dateInYearMonthDay;
-    BOOL needsToReload = NO;
-    for (NSString* dateString in _dateArray) {
-        NSDate* date = [DateUtil stringToDate:dateString format:@"yyyy-MM-dd"];
-        // 只需要遍历今天及今天以前的任务
-        if ([date compare:today] == NSOrderedDescending) continue;
+    __weak typeof(self) weakSelf = self;
+    dispatch_queue_t serialQueue = dispatch_queue_create("TodoExpireTasksLock", DISPATCH_QUEUE_SERIAL);
+    dispatch_sync(serialQueue, ^{
+        NSDate* today = [NSDate date].dateInYearMonthDay;
+        BOOL needsToReload = NO;
+        for (NSString* dateString in weakSelf.dateArray) {
+            NSDate* date = [DateUtil stringToDate:dateString format:@"yyyy-MM-dd"];
+            // 只需要遍历今天及今天以前的任务
+            if ([date compare:today] == NSOrderedDescending) continue;
 
-        NSArray<CDTodo*>* array = _dataDictionary[dateString];
-        for (CDTodo* todo in array) {
-            if ([todo.status integerValue] != TodoStatusOverdue && [todo.deadline compare:[NSDate date]] == NSOrderedAscending) {
-                todo.status = @(TodoStatusOverdue);
-                needsToReload = YES;
+            NSArray<CDTodo*>* array = weakSelf.dataDictionary[dateString];
+            for (CDTodo* todo in array) {
+                if ([todo.status integerValue] != TodoStatusOverdue && [todo.deadline compare:[NSDate date]] == NSOrderedAscending) {
+                    todo.status = @(TodoStatusOverdue);
+                    [weakSelf.dataManager modifyTodo:todo complete:nil];
+                    needsToReload = YES;
+                }
             }
         }
-    }
 
-    if (needsToReload) [self.tableView reloadData];
+        if (needsToReload) [self.tableView reloadData];
+    });
 }
 #pragma mark - release
 - (void)dealloc

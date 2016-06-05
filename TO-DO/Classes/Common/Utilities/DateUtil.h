@@ -31,4 +31,6 @@ static NSInteger const kTimeIntervalDay = kTimeIntervalHour * 24;
 + (NSString*)localizedShortDateStringFromInterval:(NSTimeInterval)interval;
 /*获取两个日期之间的DateComponent*/
 + (NSDateComponents*)componentsBetweenDate:(NSDate*)date andDate:(NSDate*)otherDate;
+/*根据ISO8601时间返回NSDate*/
++ (NSDate*)dateFromISO8601String:(NSString*)string;
 @end

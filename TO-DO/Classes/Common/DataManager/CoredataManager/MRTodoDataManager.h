@@ -11,6 +11,7 @@
 #import "MRDataManager.h"
 
 @interface MRTodoDataManager : MRDataManager<Localized>
-- (void)insertTodo:(CDTodo*)todo complete:(void (^)(bool succeed))complete;
 - (void)retrieveDataWithUser:(CDUser*)user date:(NSDate*)date complete:(void (^)(bool succeed, NSDictionary* dataDictionary, NSInteger dataCount))complete;
+- (void)insertTodo:(CDTodo*)todo complete:(void (^)(bool succeed))complete;
+- (void)modifyTodo:(CDTodo*)todo complete:(void (^)(bool succeed))complete;
 @end

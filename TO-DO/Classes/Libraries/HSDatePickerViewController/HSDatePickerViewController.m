@@ -352,14 +352,14 @@ numberOfRowsInComponent:(NSInteger)component
             break;
         case HourPicker:
             title = [NSString
-              stringWithFormat:@"%02ld",
+              stringWithFormat:@"%02d",
               row % [self realNumberOfRowsInComponent:component]];
             [paragraphStyle setAlignment:NSTextAlignmentCenter];
 
             break;
         case MinutePicker:
             title = [NSString
-              stringWithFormat:@"%02lu",
+              stringWithFormat:@"%02d",
               row % [self realNumberOfRowsInComponent:component] *
                 self.minuteStep];
             [paragraphStyle setAlignment:NSTextAlignmentLeft];

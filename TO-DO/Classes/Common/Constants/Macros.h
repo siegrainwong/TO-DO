@@ -55,5 +55,5 @@
 #define ApplicationNetworkIndicatorVisible(isVisible) ([[UIApplication sharedApplication] setNetworkActivityIndicatorVisible:isVisible])
 
 //MagicRecord Save
-#define mrContextSave() [[NSManagedObjectContext MR_defaultContext] MR_saveToPersistentStoreAndWait];
+#define MR_saveAndWait() [[NSManagedObjectContext MR_defaultContext] MR_saveToPersistentStoreAndWait];
 #endif
