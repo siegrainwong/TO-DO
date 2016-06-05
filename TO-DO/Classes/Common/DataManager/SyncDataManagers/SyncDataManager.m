@@ -29,6 +29,7 @@ SyncDataManager ()
 @property (nonatomic, readwrite, strong) LCUser* lcUser;
 
 @property (nonatomic, readwrite, assign) BOOL isSyncing;
+@property (nonatomic, readwrite, strong) NSManagedObjectContext* localContext;
 @end
 
 @implementation SyncDataManager
@@ -50,6 +51,15 @@ SyncDataManager ()
     });
     return dataManager;
 }
+- (void)setupContext
+{
+    /*
+	 Mark: MagicalRecord
+	 在另一个线程中，对于根上下文的操作是无效的，必须新建一个上下文，该上下文属于根上下文的分支
+	 若不想保存该上下文的内容，在执行save之前释放掉即可
+	 */
+    _localContext = [NSManagedObjectContext MR_newPrivateQueueContext];
+}
 #pragma mark - synchronization
 - (void)synchronize:(void (^)(bool succeed))complete;
 {
@@ -57,7 +67,7 @@ SyncDataManager ()
     //    _isSyncing = YES;
     /*
 	 同步方式：
-	 每次同步最新的五十条数据
+	 每一次队列同步最新的五十条数据，有错误的话，队列作废
 	 1. 若 Server 没有该 Client(需要手机的唯一识别码进行辨认) 的同步记录，则将本地所有数据进行上传，并将服务器上所有的数据进行下载
 	 2. 若 lastSyncTimeOnServer = lastSyncTimeOnClient，表明服务器数据没有变化，则仅需要上传本地修改过的数据和新增的数据	
 	 3. 若 lastSyncTimeOnServer > lastSyncTimeOnClient，则进行全数据对比，先对比同步所有已有数据，再将其他数据从服务器上下载
@@ -70,54 +80,63 @@ SyncDataManager ()
     __weak typeof(self) weakSelf = self;
     GCDQueue* queue = [GCDQueue globalQueueWithLevel:DISPATCH_QUEUE_PRIORITY_DEFAULT];
     [queue async:^{
+        [weakSelf setupContext];
+
         LCSyncRecord* lastSyncRecord = nil;
         CDSyncRecord* syncRecord = nil;
-        if (![self prepareToSynchornize:&lastSyncRecord cdSyncRecord:&syncRecord])
-            return [weakSelf returnBlock:complete];
+        if (![weakSelf prepareToSynchornize:&lastSyncRecord cdSyncRecord:&syncRecord])
+            return [weakSelf returnWithError:nil description:@"2. 准备同步失败，停止同步" returnWithBlock:complete];
 
         //2-1. 记录为空，下载所有服务器数据，上传所有本地数据
         if (!lastSyncRecord) {
-            NSArray<CDTodo*>* todosNeedsToUpload = [weakSelf fetchTodoHasSynchronized:NO lastRecordIsUpdateAt:[NSDate date]];
-            NSArray<LCTodo*>* todosNeedsToDownload = [weakSelf retrieveTodos];
+            __block NSMutableArray<LCTodo*>* todosReadyToUpload = nil;
 
             dispatch_group_t group = dispatch_group_create();
             //2-1-1. 上传数据
             [queue asyncWithGroup:group block:^{
+                NSArray<CDTodo*>* todosNeedsToUpload = [weakSelf fetchTodoHasSynchronized:NO lastRecordIsUpdateAt:[NSDate date]];
                 for (CDTodo* todo in todosNeedsToUpload) {
-                    //2-1-1-1. 转换为LeanCloud对象，并上传
+                    //2-1-1-1. 转换为LeanCloud对象，添加到待上传列表中
                     LCTodo* lcTodo = [LCTodo lcTodoWithCDTodo:todo];
-                    NSError* error = nil;
-                    [lcTodo save:&error];
-                    if (error) {
-                        DDLogError(@"2-1-1-2：%@", error.localizedDescription);
-                        continue;
-                    }
-                    //2-1-1-2. 上传完成，修改本地数据状态为同步完成，同时赋予唯一编号
-                    [MagicalRecord saveWithBlockAndWait:^(NSManagedObjectContext* localContext) {
-                        CDTodo* localContextTodo = [todo MR_inContext:localContext];
-                        localContextTodo.syncStatus = @(SyncStatusSynchronized);
-                        localContextTodo.objectId = lcTodo.objectId;
-                    }];
+                    lcTodo.syncStatus = SyncStatusSynchronizing;
+                    [todosReadyToUpload addObject:lcTodo];
+
+                    //2-1-1-2. 修改本地数据状态为同步完成，同时赋予唯一编号
+                    todo.syncStatus = @(SyncStatusSynchronized);
+                    todo.objectId = lcTodo.objectId;
                 }
             }];
             //2-1-2. 下载数据
             [queue asyncWithGroup:group block:^{
+                NSArray<LCTodo*>* todosNeedsToDownload = [weakSelf retrieveTodos];
+                if (!todosNeedsToDownload) [weakSelf returnWithError:nil description:@"2-1-2. 下载数据失败" returnWithBlock:complete];
+
                 for (LCTodo* todo in todosNeedsToDownload) {
-                    [MagicalRecord saveWithBlockAndWait:^(NSManagedObjectContext* localContext) {
-                        CDTodo* cdTodo = [[CDTodo cdTodoWithLCTodo:todo] MR_inContext:localContext];
-                        cdTodo.syncStatus = @(SyncStatusSynchronized);
-                    }];
+                    CDTodo* cdTodo = [[CDTodo cdTodoWithLCTodo:todo] MR_inContext:_localContext];
+                    cdTodo.syncStatus = @(SyncStatusSynchronized);
                 }
             }];
+            //2-1-3. 回调
             [queue asyncGroupNotify:group block:^{
-                DDLogInfo(@"all fucking done");
-                [MagicalRecord saveWithBlockAndWait:^(NSManagedObjectContext* localContext) {
-                    CDSyncRecord* localContextSyncRecord = [syncRecord MR_inContext:localContext];
-                    localContextSyncRecord.isFinished = @(YES);
-                    localContextSyncRecord.syncEndTime = [NSDate date];
-                }];
+                // 2-1-3-1. 上传数据并保存服务器的同步记录
+                // TODO: 这个东西要用LeanCloud的云函数来做，不然无法保证数据正确
+                NSError* error = nil;
+                [LCTodo saveAll:todosReadyToUpload error:&error];
+                if (error) return [weakSelf returnWithError:error description:@"2-1-3-1. 上传数据失败" returnWithBlock:complete];
+
+                // 2-1-3-2. 保存服务器的同步记录
+                NSDate* now = [NSDate date];
+                lastSyncRecord.isFinished = YES;
+                lastSyncRecord.syncEndTime = now;
+                [lastSyncRecord save:&error];
+                if (error) [weakSelf returnWithError:nil description:@"2-1-3-2. 同步记录失败" returnWithBlock:complete];
+
+                // 2-1-3-2. 上传成功后更新本地数据
+                syncRecord.isFinished = @(YES);
+                syncRecord.syncEndTime = now;
 
                 [[GCDQueue mainQueue] sync:^{
+                    DDLogInfo(@"all fucking done");
                     return complete(YES);
                 }];
             }];
@@ -151,8 +170,8 @@ SyncDataManager ()
     LCSyncRecord* record = (LCSyncRecord*)[query getFirstObject:&error];
     if (error && error.code != 101) {  //101意思是没有这个表
         [SCLAlertHelper errorAlertWithContent:error.localizedDescription];
-        DDLogError(@"1. %s", __func__);
-        return nil;
+        return [self returnWithError:error description:[NSString stringWithFormat:@"1. %s", __func__]];
+        ;
     }
 
     return record;
@@ -169,8 +188,7 @@ SyncDataManager ()
     NSArray<LCTodo*>* array = [query findObjects:&error];
     if (error && error.code != 101) {  //101意思是没有这个表
         [SCLAlertHelper errorAlertWithContent:error.localizedDescription];
-        DDLogError(@"2-1. %s", __func__);
-        return nil;
+        return [self returnWithError:error description:[NSString stringWithFormat:@"2-1. %s", __func__]];
     }
 
     return array;
@@ -188,10 +206,10 @@ SyncDataManager ()
         predicateFormat = [predicateFormat stringByAppendingString:@" and objectId = nil"];
 
     NSPredicate* filter = [NSPredicate predicateWithFormat:predicateFormat argumentArray:[arguments copy]];
-    NSFetchRequest* request = [CDTodo MR_requestAllWithPredicate:filter];
+    NSFetchRequest* request = [CDTodo MR_requestAllWithPredicate:filter inContext:_localContext];
     [request setFetchLimit:kFetchLimitPerQueue];
     request.sortDescriptors = @[ [[NSSortDescriptor alloc] initWithKey:@"updatedAt" ascending:NO] ];
-    NSArray<CDTodo*>* data = [CDTodo MR_executeFetchRequest:request];
+    NSArray<CDTodo*>* data = [CDTodo MR_executeFetchRequest:request inContext:_localContext];
 
     return data;
 }
@@ -211,45 +229,45 @@ SyncDataManager ()
     lcSyncRecord.syncEndTime = nil;
 
     [lcSyncRecord save:&error];
-    if (error) {
-        DDLogError(@"2. %s ::: %@", __func__, error.localizedDescription);
-        return nil;
-    }
+    if (error) return [self returnWithError:error description:[NSString stringWithFormat:@"2. %s", __func__]];
 
-    __block CDSyncRecord* cdSyncRecord = nil;
-    [MagicalRecord saveWithBlockAndWait:^(NSManagedObjectContext* localContext) {
-        // Mark: 在其他线程中创建的实体，在初始化时就要传入当前线程的上下文对象，不然存不进去。
-        cdSyncRecord = [CDSyncRecord syncRecordFromLCSyncRecord:lcSyncRecord inContext:localContext];
-    }];
+    CDSyncRecord* cdSyncRecord = [CDSyncRecord syncRecordFromLCSyncRecord:lcSyncRecord inContext:_localContext];
 
     return cdSyncRecord;
 }
 #pragma mark - helper
-- (void)returnBlock:(void (^)(bool succeed))complete
-{
-    [[GCDQueue mainQueue] sync:^{
-        return complete(NO);
-    }];
-}
 - (NSDate*)serverDate
 {
     NSDictionary* parameters = [NSDictionary dictionaryWithObjects:@[ kLeanCloudAppID, kLeanCloudAppKey ] forKeys:@[ @"X-LC-Id", @"X-LC-Key" ]];
     AFHTTPRequestOperationManager* manager = [AFHTTPRequestOperationManager manager];
     NSError* error = nil;
     NSDictionary* responseObject = [manager syncGET:kGetServerDateApiUrl parameters:parameters operation:nil error:&error];
-    if (error) {
-        DDLogError(@"2. 获取服务器时间出错：%@", error.localizedDescription);
-        return nil;
-    }
+    if (error) return [self returnWithError:error description:@"2. 无法获取服务器时间"];
 
     NSDate* serverDate = [DateUtil dateFromISO8601String:responseObject[@"iso"]];
     NSInteger intervalFromServer = fabs([serverDate timeIntervalSince1970] - [[NSDate date] timeIntervalSince1970]);
     if (intervalFromServer > kInvalidTimeInterval) {
-        DDLogError(@"2. 本地时间和服务器时间相差过大，禁止同步");
         [SCLAlertHelper errorAlertWithContent:@"手机时间和正常时间相差过大，请调整时间后再试。"];
-        return nil;
+        return [self returnWithError:nil description:@"2. 本地时间和服务器时间相差过大，已停止同步"];
     }
 
     return serverDate;
 }
+#pragma mark - failed handler
+- (id)returnWithError:(NSError* _Nullable)error description:(NSString* _Nonnull)description
+{
+    DDLogError(@"%@ ::: %@", description, error ? error.localizedDescription : @"");
+    _localContext = nil;
+    return nil;
+}
+- (void)returnWithError:(NSError* _Nullable)error description:(NSString* _Nonnull)description returnWithBlock:(void (^_Nullable)(bool succeed))block
+{
+    DDLogError(@"%@ ::: %@", description, error ? error.localizedDescription : @"");
+    _localContext = nil;
+
+    [[GCDQueue mainQueue] sync:^{
+        return block(NO);
+    }];
+}
+
 @end

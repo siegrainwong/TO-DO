@@ -45,6 +45,8 @@ typedef NS_ENUM(NSInteger, LCTodoStatus) {
 @property (nonatomic, readwrite, strong) NSDate* localCreatedAt;
 /* 本地更新时间 */
 @property (nonatomic, readwrite, strong) NSDate* localUpdatedAt;
+/* 同步状态 */
+@property (nonatomic, readwrite, strong) SyncStatus syncStatus;
 
 /**
  *  未实现
