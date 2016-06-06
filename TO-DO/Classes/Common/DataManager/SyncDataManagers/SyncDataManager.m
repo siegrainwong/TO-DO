@@ -38,6 +38,7 @@ SyncDataManager ()
 {
     return [[self dataManager] isSyncing];
 }
+
 #pragma mark - initial
 + (instancetype)dataManager
 {
@@ -45,20 +46,21 @@ SyncDataManager ()
     static dispatch_once_t onceToken;
     dispatch_once(&onceToken, ^{
         dataManager = [[SyncDataManager alloc] init];
-        dataManager.lcUser = [LCUser currentUser];
-        dataManager.cdUser = [CDUser userWithLCUser:dataManager.lcUser];
         dataManager.isSyncing = NO;
     });
     return dataManager;
 }
-- (void)setupContext
+- (void)setupSync
 {
+    _lcUser = [LCUser currentUser];
+    _cdUser = [CDUser userWithLCUser:_lcUser];
+
     /*
 	 Mark: MagicalRecord
-	 在另一个线程中，对于根上下文的操作是无效的，必须新建一个上下文，该上下文属于根上下文的分支
+	 在另一个线程中，对于根上下文的操作是无效的，必须新建一个上下文，该上下文从属于根上下文
 	 若不想保存该上下文的内容，在执行save之前释放掉即可
 	 */
-    _localContext = [NSManagedObjectContext MR_newPrivateQueueContext];
+    _localContext = [NSManagedObjectContext MR_contextWithParent:[NSManagedObjectContext MR_rootSavingContext]];
 }
 #pragma mark - synchronization
 - (void)synchronize:(void (^)(bool succeed))complete;
@@ -80,26 +82,25 @@ SyncDataManager ()
     __weak typeof(self) weakSelf = self;
     GCDQueue* queue = [GCDQueue globalQueueWithLevel:DISPATCH_QUEUE_PRIORITY_DEFAULT];
     [queue async:^{
-        [weakSelf setupContext];
+        [weakSelf setupSync];
 
         LCSyncRecord* lastSyncRecord = nil;
         CDSyncRecord* syncRecord = nil;
         if (![weakSelf prepareToSynchornize:&lastSyncRecord cdSyncRecord:&syncRecord])
             return [weakSelf returnWithError:nil description:@"2. 准备同步失败，停止同步" returnWithBlock:complete];
 
-        //2-1. 记录为空，下载所有服务器数据，上传所有本地数据
+        //2-1. 记录为空，下载所有服务器数据，上传所有本地数据（✅）
         if (!lastSyncRecord) {
-            __block NSMutableArray<LCTodo*>* todosReadyToUpload = nil;
+            __block NSMutableArray<NSDictionary*>* todosReadyToUpload = [NSMutableArray new];
 
             dispatch_group_t group = dispatch_group_create();
             //2-1-1. 上传数据
             [queue asyncWithGroup:group block:^{
                 NSArray<CDTodo*>* todosNeedsToUpload = [weakSelf fetchTodoHasSynchronized:NO lastRecordIsUpdateAt:[NSDate date]];
                 for (CDTodo* todo in todosNeedsToUpload) {
-                    //2-1-1-1. 转换为LeanCloud对象，添加到待上传列表中
+                    //2-1-1-1. 转换为LeanCloud对象，再转换为字典，添加到待上传列表中
                     LCTodo* lcTodo = [LCTodo lcTodoWithCDTodo:todo];
-                    lcTodo.syncStatus = SyncStatusSynchronizing;
-                    [todosReadyToUpload addObject:lcTodo];
+                    [todosReadyToUpload addObject:[[lcTodo dictionaryForObject] copy]];
 
                     //2-1-1-2. 修改本地数据状态为同步完成，同时赋予唯一编号
                     todo.syncStatus = @(SyncStatusSynchronized);
@@ -112,29 +113,28 @@ SyncDataManager ()
                 if (!todosNeedsToDownload) [weakSelf returnWithError:nil description:@"2-1-2. 下载数据失败" returnWithBlock:complete];
 
                 for (LCTodo* todo in todosNeedsToDownload) {
-                    CDTodo* cdTodo = [[CDTodo cdTodoWithLCTodo:todo] MR_inContext:_localContext];
+                    CDTodo* cdTodo = [CDTodo cdTodoWithLCTodo:todo inContext:_localContext];
                     cdTodo.syncStatus = @(SyncStatusSynchronized);
                 }
             }];
             //2-1-3. 回调
             [queue asyncGroupNotify:group block:^{
                 // 2-1-3-1. 上传数据并保存服务器的同步记录
-                // TODO: 这个东西要用LeanCloud的云函数来做，不然无法保证数据正确
+                // Mark: 这个东西要用LeanCloud的云函数来做，不然无法保证数据正确
+                // Mark: 我靠它云引擎有Bug，传上去的对象解析出错的同时还朝数据库插了几个空数据...
                 NSError* error = nil;
-                [LCTodo saveAll:todosReadyToUpload error:&error];
+                NSDictionary* commitTodoParameters = @{ @"todos" : todosReadyToUpload,
+                    @"syncRecordId" : syncRecord.objectId };
+                // Mark: 这里回调返回的是云函数上修改后的SyncRecord
+                NSDictionary* syncRecordDictionary = [AVCloud callFunction:@"commitTodos" withParameters:commitTodoParameters error:&error];
                 if (error) return [weakSelf returnWithError:error description:@"2-1-3-1. 上传数据失败" returnWithBlock:complete];
 
-                // 2-1-3-2. 保存服务器的同步记录
-                NSDate* now = [NSDate date];
-                lastSyncRecord.isFinished = YES;
-                lastSyncRecord.syncEndTime = now;
-                [lastSyncRecord save:&error];
-                if (error) [weakSelf returnWithError:nil description:@"2-1-3-2. 同步记录失败" returnWithBlock:complete];
+                // 2-1-3-2. 上传成功后更新本地的同步记录
+                syncRecord.isFinished = syncRecordDictionary[@"isFinished"];
+                syncRecord.syncEndTime = syncRecordDictionary[@"syncEndTime"];
 
-                // 2-1-3-2. 上传成功后更新本地数据
-                syncRecord.isFinished = @(YES);
-                syncRecord.syncEndTime = now;
-
+                // 2-1-3-3. 提交本地数据
+                [_localContext MR_saveToPersistentStoreAndWait];
                 [[GCDQueue mainQueue] sync:^{
                     DDLogInfo(@"all fucking done");
                     return complete(YES);

@@ -29,14 +29,18 @@
     return @"Todo";
 }
 #pragma mark - convert LCTodo to CDTodo
-+ (instancetype)cdTodoWithLCTodo:(LCTodo*)lcTodo
++ (instancetype)cdTodoWithLCTodo:(LCTodo*)lcTodo inContext:(NSManagedObjectContext*)context
 {
-    CDTodo* cdTodo = [CDTodo MR_createEntity];
+    /*
+	 Mark: MagicalRecord
+	 新实体必须在当前线程的上下文创建，否则会出现“Cocoa error: 133000”
+	 */
+    CDTodo* cdTodo = [CDTodo MR_createEntityInContext:context];
     cdTodo.title = lcTodo.title;
     cdTodo.sgDescription = lcTodo.sgDescription;
     cdTodo.deadline = lcTodo.deadline;
     cdTodo.location = lcTodo.location;
-    cdTodo.user = [CDUser userWithLCUser:lcTodo.user];
+    cdTodo.user = [[CDUser userWithLCUser:lcTodo.user] MR_inContext:context];
     cdTodo.status = @(lcTodo.status);
     cdTodo.isHidden = @(lcTodo.isHidden);
     cdTodo.isCompleted = @(lcTodo.isCompleted);

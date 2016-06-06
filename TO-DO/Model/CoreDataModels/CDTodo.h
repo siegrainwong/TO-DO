@@ -23,7 +23,7 @@ NS_ASSUME_NONNULL_BEGIN
 /* 指示该待办事项是否在重新排序中 */
 @property (nonatomic, readwrite, assign) BOOL isReordering;
 
-+ (instancetype)cdTodoWithLCTodo:(LCTodo*)lcTodo;
++ (instancetype)cdTodoWithLCTodo:(LCTodo*)lcTodo inContext:(NSManagedObjectContext*)context;
 
 @end
 

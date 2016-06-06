@@ -208,7 +208,7 @@ HSDatePickerViewController ()<UIPickerViewDataSource,
     if (!_maxDate) {
         _maxDate = [self dateForRow:[self pickerView:self.pickerView
                                       numberOfRowsInComponent:DayPicker] -
-                                    kBufforRows];
+                         kBufforRows];
     }
     return _maxDate;
 }
@@ -254,9 +254,9 @@ HSDatePickerViewController ()<UIPickerViewDataSource,
         if ([self.maxDate
               compare:[self dateForRow:[self pickerView:self.pickerView
                                          numberOfRowsInComponent:DayPicker] -
-                                       kBufforRows]] == NSOrderedAscending) {
+                            kBufforRows]] == NSOrderedAscending) {
             _maxRowIndex = [self defaultRowValueForComponent:DayPicker] +
-                           [self daysBetweenDate:self.date andDate:self.maxDate];
+              [self daysBetweenDate:self.date andDate:self.maxDate];
         } else {
             _maxRowIndex =
               [self pickerView:self.pickerView numberOfRowsInComponent:DayPicker] -
@@ -270,9 +270,9 @@ HSDatePickerViewController ()<UIPickerViewDataSource,
 {
     if (_minRowIndex == -1) {
         if ([self.minDate compare:[self dateForRow:kBufforRows]] ==
-            NSOrderedDescending) {
+          NSOrderedDescending) {
             _minRowIndex = [self defaultRowValueForComponent:DayPicker] +
-                           [self daysBetweenDate:self.date andDate:self.minDate];
+              [self daysBetweenDate:self.date andDate:self.minDate];
         } else {
             _minRowIndex = kBufforRows;
         }
@@ -352,7 +352,7 @@ numberOfRowsInComponent:(NSInteger)component
             break;
         case HourPicker:
             title = [NSString
-              stringWithFormat:@"%02d",
+              stringWithFormat:@"%02ld",
               row % [self realNumberOfRowsInComponent:component]];
             [paragraphStyle setAlignment:NSTextAlignmentCenter];
 
@@ -425,7 +425,7 @@ numberOfRowsInComponent:(NSInteger)component
                decrementing:NO
                    animated:YES];
         if ([pickerView selectedRowInComponent:HourPicker] <=
-            [self defaultRowValueForComponent:HourPicker] + [components hour]) {
+          [self defaultRowValueForComponent:HourPicker] + [components hour]) {
             [self setPickerView:self.pickerView
                  rowInComponent:MinutePicker
                  toIntagerValue:[components minute]
@@ -443,7 +443,7 @@ numberOfRowsInComponent:(NSInteger)component
                decrementing:YES
                    animated:YES];
         if ([pickerView selectedRowInComponent:HourPicker] >=
-            [self defaultRowValueForComponent:HourPicker] + [components hour]) {
+          [self defaultRowValueForComponent:HourPicker] + [components hour]) {
             [self setPickerView:self.pickerView
                  rowInComponent:MinutePicker
                  toIntagerValue:[components minute]
@@ -466,7 +466,7 @@ numberOfRowsInComponent:(NSInteger)component
             if ([[self pickerView:pickerView
                    attributedTitleForRow:[pickerView
                                            selectedRowInComponent:component] -
-                                         i
+                   i
                             forComponent:component]
                     .string integerValue] <= value) {
                 [pickerView selectRow:[pickerView selectedRowInComponent:component] - i
@@ -497,7 +497,7 @@ numberOfRowsInComponent:(NSInteger)component
             if ([[self pickerView:pickerView
                    attributedTitleForRow:[pickerView
                                            selectedRowInComponent:component] +
-                                         i
+                   i
                             forComponent:component]
                     .string integerValue] >= value) {
                 [pickerView selectRow:[pickerView selectedRowInComponent:component] + i
@@ -535,7 +535,7 @@ numberOfRowsInComponent:(NSInteger)component
     NSDateComponents* comp2 = [calendar components:unitFlags fromDate:date2];
 
     return [comp1 day] == [comp2 day] && [comp1 month] == [comp2 month] &&
-           [comp1 year] == [comp2 year];
+      [comp1 year] == [comp2 year];
 }
 
 - (NSInteger)daysInMonth:(NSDate*)date
@@ -621,7 +621,7 @@ numberOfRowsInComponent:(NSInteger)component
     NSDate* date =
       [self dateForRow:[self.pickerView selectedRowInComponent:DayPicker]];
     NSInteger row = [self.pickerView selectedRowInComponent:DayPicker] -
-                    [self daysInMonth:date];
+      [self daysInMonth:date];
     [self.pickerView selectRow:row inComponent:DayPicker animated:YES];
     [self pickerView:self.pickerView didSelectRow:row inComponent:DayPicker];
 }
@@ -631,7 +631,7 @@ numberOfRowsInComponent:(NSInteger)component
     NSDate* date =
       [self dateForRow:[self.pickerView selectedRowInComponent:DayPicker]];
     NSInteger row = [self.pickerView selectedRowInComponent:DayPicker] +
-                    [self daysInMonth:date];
+      [self daysInMonth:date];
     [self.pickerView selectRow:row inComponent:DayPicker animated:YES];
     [self pickerView:self.pickerView didSelectRow:row inComponent:DayPicker];
 }
