@@ -9,19 +9,19 @@
 #import "Localized.h"
 #import <Foundation/Foundation.h>
 
-typedef NS_ENUM(NSInteger, SyncType) {
+typedef NS_ENUM(NSInteger, SyncMode) {
     /**
 	 *  手动同步
 	 */
-    SyncTypeManually,
+    SyncModeManually,
     /**
 	 *  自动同步
 	 */
-    SyncTypeAutomatically
+    SyncModeAutomatically
 };
 
 @interface SyncDataManager : NSObject<Localized>
-- (void)synchronize:(SyncType)syncType complete:(void (^)(bool succeed))complete;
+- (void)synchronize:(SyncMode)syncType complete:(void (^)(bool succeed))complete;
 
 + (instancetype)dataManager;
 

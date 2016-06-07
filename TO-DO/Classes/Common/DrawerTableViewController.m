@@ -171,10 +171,10 @@ DrawerTableViewController ()
 #pragma mark - sync button
 - (void)syncButtonDidPress
 {
-    [self synchronize:SyncTypeManually];
+    [self synchronize:SyncModeManually];
 }
 #pragma mark - synchronize
-- (void)synchronize:(SyncType)syncType
+- (void)synchronize:(SyncMode)syncType
 {
     dispatch_queue_t serialQueue = dispatch_queue_create("todoSynchronizeLock", DISPATCH_QUEUE_SERIAL);
     dispatch_sync(serialQueue, ^{
@@ -185,10 +185,12 @@ DrawerTableViewController ()
         }];
     });
 }
+#pragma mark - show settings
 - (void)showSettings
 {
     DDLogDebug(@"%s", __func__);
 }
+#pragma mark - log out
 - (void)logOut
 {
     [LCUser logOut];

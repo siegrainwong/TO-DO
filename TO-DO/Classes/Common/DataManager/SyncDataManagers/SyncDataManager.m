@@ -29,7 +29,7 @@ SyncDataManager ()
 @property (nonatomic, readwrite, strong) CDUser* cdUser;
 @property (nonatomic, readwrite, strong) LCUser* lcUser;
 
-@property (nonatomic, readwrite, assign) SyncType syncType;
+@property (nonatomic, readwrite, assign) SyncMode syncType;
 @property (nonatomic, readwrite, assign) BOOL isSyncing;
 @property (nonatomic, readwrite, strong) NSManagedObjectContext* localContext;
 @property (nonatomic, readwrite, strong) SyncErrorHandler* errorHandler;
@@ -58,12 +58,12 @@ SyncDataManager ()
     });
     return dataManager;
 }
-- (void)setupSync:(SyncType)syncType
+- (void)setupSync:(SyncMode)syncType
 {
     _syncType = syncType;
     _lcUser = [LCUser currentUser];
     _cdUser = [CDUser userWithLCUser:_lcUser];
-    _errorHandler.isAlert = _syncType == SyncTypeManually;
+    _errorHandler.isAlert = _syncType == SyncModeManually;
 
     /*
 	 Mark: MagicalRecord
@@ -73,7 +73,7 @@ SyncDataManager ()
     _localContext = [NSManagedObjectContext MR_contextWithParent:[NSManagedObjectContext MR_rootSavingContext]];
 }
 #pragma mark - synchronization
-- (void)synchronize:(SyncType)syncType complete:(void (^)(bool succeed))complete;
+- (void)synchronize:(SyncMode)syncType complete:(void (^)(bool succeed))complete;
 {
     //    if (_isSyncing) return complete(YES);
     //    _isSyncing = YES;
@@ -99,53 +99,24 @@ SyncDataManager ()
         if (![weakSelf prepareToSynchornize:&lastSyncRecord cdSyncRecord:&syncRecord])
             return [weakSelf.errorHandler returnWithError:nil description:@"2. 准备同步失败，停止同步" returnWithBlock:complete];
 
-        //2-1. 记录为空，下载所有服务器数据，上传所有本地数据（✅）
+        //2-1. 记录为空，下载所有服务器数据，提交所有本地数据（✅）
         if (!lastSyncRecord) {
-            //__block NSMutableArray<NSDictionary*>* todosReadyToUpload = [NSMutableArray new];
-            __block NSMutableArray<LCTodo*>* todosReadyToUpload = [NSMutableArray new];
+            __block NSMutableArray<NSDictionary*>* todosReadyToCommit = [NSMutableArray new];
 
             dispatch_group_t group = dispatch_group_create();
-            //2-1-1. 上传数据
+            //2-1-1. 获取需要提交数据
             [queue asyncWithGroup:group block:^{
-                NSArray<CDTodo*>* todosNeedsToUpload = [weakSelf fetchTodoHasSynchronized:NO lastRecordIsUpdateAt:[NSDate date]];
-                for (CDTodo* todo in todosNeedsToUpload) {
-                    //2-1-1-1. 转换为LeanCloud对象，再转换为字典，添加到待上传列表中
-                    LCTodo* lcTodo = [LCTodo lcTodoWithCDTodo:todo];
-                    [todosReadyToUpload addObject:lcTodo];
-
-                    //2-1-1-2. 修改本地数据状态为同步完成，同时赋予唯一编号
-                    todo.syncStatus = @(SyncStatusSynchronized);
-                    todo.objectId = lcTodo.objectId;
-                }
+                todosReadyToCommit = [NSMutableArray arrayWithArray:[weakSelf lcTodosReadyToCommit:NO]];
             }];
             //2-1-2. 下载数据
             [queue asyncWithGroup:group block:^{
-                NSArray<LCTodo*>* todosNeedsToDownload = [weakSelf retrieveTodos];
-                if (!todosNeedsToDownload) [weakSelf.errorHandler returnWithError:nil description:@"2-1-2. 下载数据失败" returnWithBlock:complete];
-
-                for (LCTodo* todo in todosNeedsToDownload) {
-                    CDTodo* cdTodo = [CDTodo cdTodoWithLCTodo:todo inContext:_localContext];
-                    cdTodo.syncStatus = @(SyncStatusSynchronized);
-                }
+                if ([weakSelf retrieveTodosAndAddToContext])
+                    return [self.errorHandler returnWithError:nil description:@"2-1-2. 下载数据失败" returnWithBlock:complete];
             }];
-            //2-1-3. 回调
+            //2-1-3. 回调，调用云函数保存代办事项，更新同步记录并保存当前上下文
             [queue asyncGroupNotify:group block:^{
-                // 2-1-3-1. 上传数据并保存服务器的同步记录
-                // Mark: 这个东西要用LeanCloud的云函数来做，不然无法保证数据正确
-                // Mark: 我靠它云引擎有Bug，传上去的对象解析出错的同时还朝数据库插了几个空数据...
-                NSError* error = nil;
-                NSDictionary* commitTodoParameters = @{ @"todos" : todosReadyToUpload,
-                    @"syncRecordId" : syncRecord.objectId };
-                // Mark: 这里回调返回的是云函数上修改后的SyncRecord
-                NSDictionary* syncRecordDictionary = [AVCloud rpcFunction:@"commitTodos2" withParameters:commitTodoParameters error:&error];
-                if (error) return [weakSelf.errorHandler returnWithError:error description:@"2-1-3-1. 上传数据失败" returnWithBlock:complete];
-
-                // 2-1-3-2. 上传成功后更新本地的同步记录
-                syncRecord.isFinished = syncRecordDictionary[@"isFinished"];
-                syncRecord.syncEndTime = syncRecordDictionary[@"syncEndTime"];
-
-                // 2-1-3-3. 提交本地数据
-                [_localContext MR_saveToPersistentStoreAndWait];
+                if (![weakSelf commitTodosAndSave:todosReadyToCommit cdSyncRecord:syncRecord])
+                    return [self.errorHandler returnWithError:nil description:@"2-1-3. 上传数据失败" returnWithBlock:complete];
                 [[GCDQueue mainQueue] sync:^{
                     DDLogInfo(@"all fucking done");
                     return complete(YES);
@@ -154,6 +125,15 @@ SyncDataManager ()
         }
     }];
 }
+#pragma mark - sync methods
+/**
+ *  每次同步前的准备工作
+ *
+ *  @param lastSyncRecord 输出：当前服务器上的同步记录
+ *  @param cdSyncRecord   输出：当前本地同步记录
+ *
+ *  @return 是否准备完成
+ */
 - (BOOL)prepareToSynchornize:(LCSyncRecord**)lastSyncRecord cdSyncRecord:(CDSyncRecord**)cdSyncRecord
 {
     //1. 获取服务器上最新的同步记录
@@ -162,6 +142,73 @@ SyncDataManager ()
     //2. 在本地和线上插入同步记录，准备开始同步
     *cdSyncRecord = [self insertAndGetSyncRecord];
     if (!*cdSyncRecord) return NO;
+
+    return YES;
+}
+/**
+ *  获取服务器上可以同步的待办事项，并转换为本地对象添加到当前上下文中
+ *
+ *  @return 是否成功
+ */
+- (BOOL)retrieveTodosAndAddToContext
+{
+    NSArray<LCTodo*>* todosNeedsToDownload = [self retrieveTodos];
+    if (!todosNeedsToDownload) return NO;
+
+    for (LCTodo* todo in todosNeedsToDownload) {
+        CDTodo* cdTodo = [CDTodo cdTodoWithLCTodo:todo inContext:_localContext];
+        cdTodo.syncStatus = @(SyncStatusSynchronized);
+    }
+
+    return YES;
+}
+/**
+ *  获取准备提交给服务器的待办事项，并转换为字典
+ *
+ *  @param synchronized 是否同步过
+ */
+- (NSArray<NSDictionary*>*)lcTodosReadyToCommit:(BOOL)synchronized
+{
+    NSMutableArray<NSDictionary*>* result = [NSMutableArray new];
+    NSArray<CDTodo*>* todosNeedsToUpload = [self fetchTodoHasSynchronized:synchronized lastRecordIsUpdateAt:[NSDate date]];
+    for (CDTodo* todo in todosNeedsToUpload) {
+        //2-1-1-1. 转换为LeanCloud对象，再转换为字典，添加到待上传列表中
+        LCTodo* lcTodo = [LCTodo lcTodoWithCDTodo:todo];
+        [result addObject:[[lcTodo dictionaryForObject] copy]];
+
+        //2-1-1-2. 修改本地数据状态为同步完成，同时赋予唯一编号
+        todo.syncStatus = @(SyncStatusSynchronized);
+        todo.objectId = lcTodo.objectId;
+    }
+
+    return [result copy];
+}
+/**
+ *  调用云函数保存代办事项，更新同步记录并保存当前上下文
+ *
+ *  @param todosReadyToCommit 待提交的待办事项
+ *  @param syncRecord         需要更新的同步记录
+ *
+ *  @return 是否成功
+ */
+- (BOOL)commitTodosAndSave:(NSArray<NSDictionary*>*)todosReadyToCommit cdSyncRecord:(CDSyncRecord*)syncRecord
+{
+    // 2-1-3-1. 上传数据并保存服务器的同步记录
+    // Mark: 这个东西要用LeanCloud的云函数来做，不然无法保证数据正确
+    // Mark: 我靠它云引擎有Bug，传上去保存成功了，但都是空数据...
+    NSError* error = nil;
+    NSDictionary* commitTodoParameters = @{ @"todos" : todosReadyToCommit,
+        @"syncRecordId" : syncRecord.objectId };
+    // Mark: 这里回调返回的是云函数上修改后的SyncRecord字典
+    NSDictionary* syncRecordDictionary = [AVCloud rpcFunction:@"commitTodos" withParameters:commitTodoParameters error:&error];
+    if (error) return NO;
+
+    // 2-1-3-2. 上传成功后更新本地的同步记录
+    syncRecord.isFinished = syncRecordDictionary[@"isFinished"];
+    syncRecord.syncEndTime = syncRecordDictionary[@"syncEndTime"];
+
+    // 2-1-3-3. 提交本地数据
+    [_localContext MR_saveToPersistentStoreAndWait];
 
     return YES;
 }
@@ -188,6 +235,10 @@ SyncDataManager ()
     return record;
 }
 #pragma mark - retrieve todo
+
+/**
+ *  获取服务器上所有可以同步的待办事项
+ */
 - (NSArray<LCTodo*>*)retrieveTodos
 {
     AVQuery* query = [AVQuery queryWithClassName:[LCTodo parseClassName]];
@@ -206,6 +257,14 @@ SyncDataManager ()
 }
 #pragma mark - MagicRecord methods
 #pragma mark - retrieve data that needs to sync
+/**
+ *  筛选本地的待办事项
+ *
+ *  @param synchronized 是否同步过
+ *  @param updateAt     最近一条记录的更新时间
+ *
+ *  @return 本地待办事项
+ */
 - (NSArray<CDTodo*>*)fetchTodoHasSynchronized:(BOOL)synchronized lastRecordIsUpdateAt:(NSDate*)updateAt
 {
     NSMutableArray* arguments = [NSMutableArray new];
@@ -226,6 +285,11 @@ SyncDataManager ()
 }
 #pragma mark - both MagicRecord and LeanCloud methods
 #pragma mark - insert sync record
+/**
+ *  向服务器和本地插入一条同步记录
+ *
+ *  @return 本地的同步记录实体
+ */
 - (CDSyncRecord*)insertAndGetSyncRecord
 {
     NSDate* serverDate = [self serverDate];
@@ -247,6 +311,9 @@ SyncDataManager ()
     return cdSyncRecord;
 }
 #pragma mark - helper
+/**
+ *  获取服务器时间并转换为 NSDate
+ */
 - (NSDate*)serverDate
 {
     NSDictionary* parameters = [NSDictionary dictionaryWithObjects:@[ kLeanCloudAppID, kLeanCloudAppKey ] forKeys:@[ @"X-LC-Id", @"X-LC-Key" ]];
