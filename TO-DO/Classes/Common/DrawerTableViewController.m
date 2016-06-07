@@ -168,14 +168,14 @@ DrawerTableViewController ()
         make.width.height.equalTo(weakSelf.leftBottomButton);
     }];
 }
-#pragma mark - bottom botton events
-- (void)synchronize
+#pragma mark - synchronize
+- (void)synchronize:(SyncType)syncType
 {
     dispatch_queue_t serialQueue = dispatch_queue_create("todoSynchronizeLock", DISPATCH_QUEUE_SERIAL);
     dispatch_sync(serialQueue, ^{
         [_indicatorView startAnimating];
         __weak typeof(self) weakSelf = self;
-        [_dataManager synchronize:^(bool succeed) {
+        [_dataManager synchronize:syncType complete:^(bool succeed) {
             [weakSelf.indicatorView stopAnimating];
         }];
     });
