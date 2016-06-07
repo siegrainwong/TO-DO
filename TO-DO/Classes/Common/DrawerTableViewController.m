@@ -112,7 +112,7 @@ DrawerTableViewController ()
     _leftBottomButton.contentHorizontalAlignment = UIControlContentHorizontalAlignmentLeft;
     _leftBottomButton.titleLabel.font = bottomItemFont;
     [_leftBottomButton setTitleColor:bottomItemColor forState:UIControlStateNormal];
-    [_leftBottomButton addTarget:self action:@selector(synchronize) forControlEvents:UIControlEventTouchUpInside];
+    [_leftBottomButton addTarget:self action:@selector(syncButtonDidPress) forControlEvents:UIControlEventTouchUpInside];
     [_bottomView addSubview:_leftBottomButton];
 
     _centerBottomButton = [UIButton new];
@@ -167,6 +167,11 @@ DrawerTableViewController ()
         make.baseline.equalTo(weakSelf.leftBottomButton);
         make.width.height.equalTo(weakSelf.leftBottomButton);
     }];
+}
+#pragma mark - sync button
+- (void)syncButtonDidPress
+{
+    [self synchronize:SyncTypeManually];
 }
 #pragma mark - synchronize
 - (void)synchronize:(SyncType)syncType

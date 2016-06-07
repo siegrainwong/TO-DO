@@ -102,7 +102,7 @@ SyncDataManager ()
         //2-1. 记录为空，下载所有服务器数据，上传所有本地数据（✅）
         if (!lastSyncRecord) {
             //__block NSMutableArray<NSDictionary*>* todosReadyToUpload = [NSMutableArray new];
-            __block NSMutableArray<NSDictionary*>* todosReadyToUpload = [NSMutableArray new];
+            __block NSMutableArray<LCTodo*>* todosReadyToUpload = [NSMutableArray new];
 
             dispatch_group_t group = dispatch_group_create();
             //2-1-1. 上传数据
@@ -111,7 +111,7 @@ SyncDataManager ()
                 for (CDTodo* todo in todosNeedsToUpload) {
                     //2-1-1-1. 转换为LeanCloud对象，再转换为字典，添加到待上传列表中
                     LCTodo* lcTodo = [LCTodo lcTodoWithCDTodo:todo];
-                    [todosReadyToUpload addObject:[[lcTodo dictionaryForObject] copy]];
+                    [todosReadyToUpload addObject:lcTodo];
 
                     //2-1-1-2. 修改本地数据状态为同步完成，同时赋予唯一编号
                     todo.syncStatus = @(SyncStatusSynchronized);
@@ -137,7 +137,7 @@ SyncDataManager ()
                 NSDictionary* commitTodoParameters = @{ @"todos" : todosReadyToUpload,
                     @"syncRecordId" : syncRecord.objectId };
                 // Mark: 这里回调返回的是云函数上修改后的SyncRecord
-                NSDictionary* syncRecordDictionary = [AVCloud callFunction:@"commitTodos" withParameters:commitTodoParameters error:&error];
+                NSDictionary* syncRecordDictionary = [AVCloud rpcFunction:@"commitTodos2" withParameters:commitTodoParameters error:&error];
                 if (error) return [weakSelf.errorHandler returnWithError:error description:@"2-1-3-1. 上传数据失败" returnWithBlock:complete];
 
                 // 2-1-3-2. 上传成功后更新本地的同步记录

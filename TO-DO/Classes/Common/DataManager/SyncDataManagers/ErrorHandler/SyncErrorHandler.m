@@ -26,7 +26,9 @@
 
 - (void)errorHandler:(NSError* _Nullable)error description:(NSString* _Nonnull)description
 {
-    if (_isAlert) [SCLAlertHelper errorAlertWithContent:description];
+    [[GCDQueue mainQueue] sync:^{
+        if (_isAlert) [SCLAlertHelper errorAlertWithContent:description];
+    }];
     DDLogError(@"%@ ::: %@", description, error ? error.localizedDescription : @"");
     if (_errorHandlerWillReturn) _errorHandlerWillReturn();
 }
