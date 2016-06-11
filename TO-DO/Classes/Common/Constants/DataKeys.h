@@ -43,6 +43,8 @@ static NSString* const kQiniuImageStyleThumbnail = @"thumb";
 /* LeanCloud */
 static NSString* const kLeanCloudAppID = @"vDDTixlKPFwrGS60fnprdslF-gzGzoHsz";
 static NSString* const kLeanCloudAppKey = @"dM0JeJT5w3a74pE1yQ9UcMJk";
+/* LeanCloud获取服务器时间的API地址 */
+static NSString* const kLeanCloudServerDateApiUrl = @"https://api.leancloud.cn/1.1/date";
 
 //用户表
 static NSString* const kDATAKEY_USERS = @"users";

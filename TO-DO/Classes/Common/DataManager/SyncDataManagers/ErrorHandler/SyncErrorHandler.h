@@ -8,6 +8,8 @@
 
 #import <Foundation/Foundation.h>
 
+typedef void (^_Nullable CompleteBlock)(BOOL succeed);
+
 @interface SyncErrorHandler : NSObject
 /**
  *  是否在错误时弹出对应的提醒框
@@ -27,5 +29,5 @@
  *  错误处理后 return，block 中的 succeed 值为 NO 
  *  用于返回void的方法
  */
-- (void)returnWithError:(NSError* _Nullable)error description:(NSString* _Nonnull)description returnWithBlock:(void (^_Nullable)(bool succeed))block;
+- (void)returnWithError:(NSError* _Nullable)error description:(NSString* _Nonnull)description returnWithBlock:(CompleteBlock)block;
 @end

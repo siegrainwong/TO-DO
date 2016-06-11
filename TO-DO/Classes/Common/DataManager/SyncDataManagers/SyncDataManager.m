@@ -17,11 +17,8 @@
 #import "LCUser.h"
 #import "SCLAlertHelper.h"
 #import "SyncDataManager.h"
-#import "SyncErrorHandler.h"
 
-static NSString* const kGetServerDateApiUrl = @"https://api.leancloud.cn/1.1/date";
-
-static NSInteger const kFetchLimitPerQueue = 50;
+static NSInteger const kFetchLimitPerBatch = 50;
 static NSInteger const kInvalidTimeInterval = 10;
 
 @interface
@@ -73,7 +70,7 @@ SyncDataManager ()
     _localContext = [NSManagedObjectContext MR_contextWithParent:[NSManagedObjectContext MR_rootSavingContext]];
 }
 #pragma mark - synchronization
-- (void)synchronize:(SyncMode)syncType complete:(void (^)(bool succeed))complete;
+- (void)synchronize:(SyncMode)syncType complete:(CompleteBlock)complete;
 {
     //    if (_isSyncing) return complete(YES);
     //    _isSyncing = YES;
@@ -110,7 +107,7 @@ SyncDataManager ()
             }];
             //2-1-2. 下载数据
             [queue asyncWithGroup:group block:^{
-                if ([weakSelf retrieveTodosAndAddToContext])
+                if (![weakSelf retrieveTodosAndAddToContext])
                     return [self.errorHandler returnWithError:nil description:@"2-1-2. 下载数据失败" returnWithBlock:complete];
             }];
             //2-1-3. 回调，调用云函数保存代办事项，更新同步记录并保存当前上下文
@@ -244,7 +241,7 @@ SyncDataManager ()
     AVQuery* query = [AVQuery queryWithClassName:[LCTodo parseClassName]];
     [query whereKey:@"isHidden" equalTo:@(NO)];
     [query whereKey:@"user" equalTo:_lcUser];
-    [query setLimit:kFetchLimitPerQueue];
+    [query setLimit:kFetchLimitPerBatch];
 
     NSError* error = nil;
     NSArray<LCTodo*>* array = [query findObjects:&error];
@@ -277,7 +274,7 @@ SyncDataManager ()
 
     NSPredicate* filter = [NSPredicate predicateWithFormat:predicateFormat argumentArray:[arguments copy]];
     NSFetchRequest* request = [CDTodo MR_requestAllWithPredicate:filter inContext:_localContext];
-    [request setFetchLimit:kFetchLimitPerQueue];
+    [request setFetchLimit:kFetchLimitPerBatch];
     request.sortDescriptors = @[ [[NSSortDescriptor alloc] initWithKey:@"updatedAt" ascending:NO] ];
     NSArray<CDTodo*>* data = [CDTodo MR_executeFetchRequest:request inContext:_localContext];
 
@@ -319,7 +316,7 @@ SyncDataManager ()
     NSDictionary* parameters = [NSDictionary dictionaryWithObjects:@[ kLeanCloudAppID, kLeanCloudAppKey ] forKeys:@[ @"X-LC-Id", @"X-LC-Key" ]];
     AFHTTPRequestOperationManager* manager = [AFHTTPRequestOperationManager manager];
     NSError* error = nil;
-    NSDictionary* responseObject = [manager syncGET:kGetServerDateApiUrl parameters:parameters operation:nil error:&error];
+    NSDictionary* responseObject = [manager syncGET:kLeanCloudServerDateApiUrl parameters:parameters operation:nil error:&error];
     if (error) return [self.errorHandler returnWithError:error description:@"2. 无法获取服务器时间"];
 
     NSDate* serverDate = [DateUtil dateFromISO8601String:responseObject[@"iso"]];

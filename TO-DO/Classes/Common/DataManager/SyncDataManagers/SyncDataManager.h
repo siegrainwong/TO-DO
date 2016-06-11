@@ -7,6 +7,7 @@
 //
 
 #import "Localized.h"
+#import "SyncErrorHandler.h"
 #import <Foundation/Foundation.h>
 
 typedef NS_ENUM(NSInteger, SyncMode) {
@@ -21,7 +22,7 @@ typedef NS_ENUM(NSInteger, SyncMode) {
 };
 
 @interface SyncDataManager : NSObject<Localized>
-- (void)synchronize:(SyncMode)syncType complete:(void (^)(bool succeed))complete;
+- (void)synchronize:(SyncMode)syncType complete:(CompleteBlock)complete;
 
 + (instancetype)dataManager;
 
