@@ -15,7 +15,7 @@
     [[NSManagedObjectContext MR_defaultContext] MR_saveToPersistentStoreWithCompletion:^(BOOL contextDidSave, NSError* error) {
         if (!contextDidSave) {
             [SCLAlertHelper errorAlertWithContent:error.localizedDescription];
-            return complete(NO);
+            if (complete) return complete(NO);
         }
         if (complete) return complete(YES);
     }];

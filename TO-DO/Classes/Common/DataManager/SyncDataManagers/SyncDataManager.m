@@ -207,6 +207,7 @@ SyncDataManager ()
     NSDictionary* commitTodoParameters = @{ @"todos" : todosReadyToCommit,
         @"syncRecordId" : syncRecord.objectId };
     // Mark: 这里回调返回的是云函数上修改后的SyncRecord字典
+    // TODO: 这里回调还需要把objectId取回来..
     NSDictionary* syncRecordDictionary = [AVCloud rpcFunction:@"commitTodos" withParameters:commitTodoParameters error:&error];
     if (error) return NO;
 
