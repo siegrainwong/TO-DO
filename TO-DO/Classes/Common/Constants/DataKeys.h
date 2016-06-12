@@ -20,6 +20,24 @@ typedef NS_ENUM(NSInteger, TodoStatus) {
     /* 过期 */
     TodoStatusOverdue
 };
+/**
+ *  同步类型
+ */
+typedef NS_ENUM(NSInteger, SyncType) {
+    /**
+	 *  增量同步（只同步客户端和服务器不同的部分）
+	 */
+    SyncTypeIncrementalSync,
+    /**
+	 *  提交变更（上传客户端中被修改过的数据）
+	 */
+    SyncTypeSendChanges,
+    /**
+	 *  全量同步（同步所有数据并对差异数据进行对比）
+	 */
+    SyncTypeFullSync
+};
+static NSString const* kSyncTypeDescription[3] = { @"INCREMENTAL", @"SEND CHANGES", @"FULL" };
 
 typedef NS_ENUM(NSInteger, SyncStatus) {
     /* 等待同步 */

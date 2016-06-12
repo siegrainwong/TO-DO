@@ -23,6 +23,10 @@
 {
     return [CDUser MR_findFirstByAttribute:@"objectId" withValue:lcUser.objectId];
 }
++ (instancetype)userWithLCUser:(LCUser*)lcUser inContext:(NSManagedObjectContext*)context
+{
+    return [CDUser MR_findFirstByAttribute:@"objectId" withValue:lcUser.objectId inContext:context];
+}
 
 // Mark: 如果你ManagedObject的类名和数据库实体名不一样，那么你要自己配置一下。
 + (NSString*)MR_entityName

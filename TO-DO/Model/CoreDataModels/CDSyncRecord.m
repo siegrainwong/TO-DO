@@ -22,6 +22,7 @@
     syncRecord.syncEndTime = lcSyncRecord.syncEndTime;
     syncRecord.createdAt = lcSyncRecord.createdAt;
     syncRecord.updatedAt = lcSyncRecord.updatedAt ? lcSyncRecord.updatedAt : syncRecord.createdAt;
+    syncRecord.syncType = @(lcSyncRecord.syncType);
 
     return syncRecord;
 }

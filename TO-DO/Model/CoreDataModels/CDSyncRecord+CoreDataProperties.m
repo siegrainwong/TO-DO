@@ -2,7 +2,7 @@
 //  CDSyncRecord+CoreDataProperties.m
 //  TO-DO
 //
-//  Created by Siegrain on 16/6/4.
+//  Created by Siegrain on 16/6/12.
 //  Copyright © 2016年 com.siegrain. All rights reserved.
 //
 //  Choose "Create NSManagedObject Subclass…" from the Core Data editor menu
@@ -13,12 +13,13 @@
 
 @implementation CDSyncRecord (CoreDataProperties)
 
+@dynamic createdAt;
 @dynamic isFinished;
+@dynamic objectId;
 @dynamic syncBeginTime;
 @dynamic syncEndTime;
-@dynamic objectId;
-@dynamic createdAt;
 @dynamic updatedAt;
+@dynamic syncType;
 @dynamic user;
 
 @end

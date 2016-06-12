@@ -77,67 +77,77 @@ SyncDataManager ()
     /*
 	 同步方式：
 	 每一次队列同步最新的五十条数据，有错误的话，队列作废
-	 1. 若 Server 没有该 Client(需要手机的唯一识别码进行辨认) 的同步记录，则将本地所有数据进行上传，并将服务器上所有的数据进行下载
-	 2. 若 lastSyncTimeOnServer = lastSyncTimeOnClient，表明服务器数据没有变化，则仅需要上传本地修改过的数据和新增的数据	
-	 3. 若 lastSyncTimeOnServer > lastSyncTimeOnClient，则进行全数据对比，先对比同步所有已有数据，再将其他数据从服务器上下载
+	 1. 若 Server 没有该 Client(需要手机的唯一识别码进行辨认) 的同步记录，则将本地所有数据进行上传，并将服务器上所有的数据进行下载(incremental sync)
+	 2. 若 lastSyncTimeOnServer = lastSyncTimeOnClient，表明服务器数据没有变化，则仅需要上传本地修改过的数据和新增的数据(send changes)
+	 3. 若 lastSyncTimeOnServer > lastSyncTimeOnClient，则进行全数据对比，先对比同步所有已有数据，再将其他数据从服务器上下载(full sync)
 	 
 	 注意事项：
 	 1. 所有同步时间戳均以服务器时间为准，每次同步之前先获取服务器的时间戳
-	 2. 若本地时间与服务器时间相差1分钟以上，提醒并不予同步
+	 2. 若本地时间与服务器时间相差xx秒以上，提醒并不予同步
 	 3. 对比同步规则：1.大版本同步小版本 2.版本相同的话，以线上数据为准进行覆盖（另一种做法是建立冲突副本，根据本项目的实际情况不采用这种方式）
 	 */
     __weak typeof(self) weakSelf = self;
-    GCDQueue* queue = [GCDQueue globalQueueWithLevel:DISPATCH_QUEUE_PRIORITY_DEFAULT];
-    [queue async:^{
+    NSBlockOperation* asyncOperation = [NSBlockOperation new];
+    [asyncOperation addExecutionBlock:^{
         [weakSelf setupSync:syncType];
 
-        LCSyncRecord* lastSyncRecord = nil;
+        //1. 准备同步，获取同步类型和本次同步记录
+        SyncType syncType;
         CDSyncRecord* syncRecord = nil;
-        if (![weakSelf prepareToSynchornize:&lastSyncRecord cdSyncRecord:&syncRecord])
+        if (![weakSelf prepareToSynchronize:&syncType cdSyncRecord:&syncRecord])
             return [weakSelf.errorHandler returnWithError:nil description:@"2. 准备同步失败，停止同步" returnWithBlock:complete];
 
-        //2-1. 记录为空，下载所有服务器数据，提交所有本地数据（✅）
-        if (!lastSyncRecord) {
+        //2. 根据同步类型开始同步
+        //2-1. 增量同步、提交变更
+        if (syncType == SyncTypeIncrementalSync || syncType == SyncTypeSendChanges) {
             __block NSMutableArray<NSDictionary*>* todosReadyToCommit = [NSMutableArray new];
 
-            dispatch_group_t group = dispatch_group_create();
-            //2-1-1. 获取需要提交数据
-            [queue asyncWithGroup:group block:^{
-                todosReadyToCommit = [NSMutableArray arrayWithArray:[weakSelf lcTodosReadyToCommit:NO]];
+            NSBlockOperation* operation = [NSBlockOperation new];
+            __weak NSBlockOperation* weakOperation = operation;
+            [operation addExecutionBlock:^{
+                //如果是增量同步，就只获取没有同步过的数据，如果是提交变更，就获取所有修改过的数据
+                todosReadyToCommit = [NSMutableArray arrayWithArray:[weakSelf lcTodosIsNotSynchronized:syncType == SyncTypeSendChanges]];
             }];
-            //2-1-2. 下载数据
-            [queue asyncWithGroup:group block:^{
-                if (![weakSelf retrieveTodosAndAddToContext])
-                    return [self.errorHandler returnWithError:nil description:@"2-1-2. 下载数据失败" returnWithBlock:complete];
-            }];
-            //2-1-3. 回调，调用云函数保存代办事项，更新同步记录并保存当前上下文
-            [queue asyncGroupNotify:group block:^{
+            if (syncType == SyncTypeIncrementalSync) {
+                [operation addExecutionBlock:^{
+                    if (![weakSelf retrieveTodosAndAddToContext]) {
+                        [weakOperation setCompletionBlock:nil];
+                        return [self.errorHandler returnWithError:nil description:@"2-1. 下载数据失败" returnWithBlock:complete];
+                    }
+                }];
+            }
+            [operation setCompletionBlock:^{
                 if (![weakSelf commitTodosAndSave:todosReadyToCommit cdSyncRecord:syncRecord])
-                    return [self.errorHandler returnWithError:nil description:@"2-1-3. 上传数据失败" returnWithBlock:complete];
-                [[GCDQueue mainQueue] sync:^{
-                    DDLogInfo(@"all fucking done");
+                    return [self.errorHandler returnWithError:nil description:@"2-1. 上传数据失败" returnWithBlock:complete];
+
+                [[NSOperationQueue mainQueue] addOperationWithBlock:^{
+                    DDLogInfo(@"all fucking done : %@", [NSThread currentThread]);
                     return complete(YES);
                 }];
             }];
+            [operation start];
         }
     }];
+    [asyncOperation start];
 }
 #pragma mark - sync methods
 /**
- *  每次同步前的准备工作
+ *  准备同步
  *
- *  @param lastSyncRecord 输出：当前服务器上的同步记录
- *  @param cdSyncRecord   输出：当前本地同步记录
+ *  @param syncType     输出：同步类型
+ *  @param cdSyncRecord 输出：本次同步的同步记录
  *
- *  @return 是否准备完成
+ *  @return 是否成功
  */
-- (BOOL)prepareToSynchornize:(LCSyncRecord**)lastSyncRecord cdSyncRecord:(CDSyncRecord**)cdSyncRecord
+- (BOOL)prepareToSynchronize:(SyncType*)syncType cdSyncRecord:(CDSyncRecord**)cdSyncRecord
 {
-    //1. 获取服务器上最新的同步记录
-    *lastSyncRecord = [self retriveLatestSyncRecord];
+    //1. 根据服务器和本地的最新同步记录获取此次同步的同步类型
+    LCSyncRecord* latestSyncRecordOnServer = [self retriveLatestSyncRecordOnServer];
+    CDSyncRecord* latestSyncRecordOnLocal = [self retriveLatestSyncRecordOnLocal];
+    *syncType = [self syncTypeWithLCSyncRecord:latestSyncRecordOnServer cdSyncRecord:latestSyncRecordOnLocal];
 
     //2. 在本地和线上插入同步记录，准备开始同步
-    *cdSyncRecord = [self insertAndGetSyncRecord];
+    *cdSyncRecord = [self insertAndGetSyncRecordWithType:*syncType];
     if (!*cdSyncRecord) return NO;
 
     return YES;
@@ -162,12 +172,12 @@ SyncDataManager ()
 /**
  *  获取准备提交给服务器的待办事项，并转换为字典
  *
- *  @param synchronized 是否同步过
+ *  @param isNotSynchronized 是否只获取没有同步过的数据
  */
-- (NSArray<NSDictionary*>*)lcTodosReadyToCommit:(BOOL)synchronized
+- (NSArray<NSDictionary*>*)lcTodosIsNotSynchronized:(BOOL)isNotSynchronized
 {
     NSMutableArray<NSDictionary*>* result = [NSMutableArray new];
-    NSArray<CDTodo*>* todosNeedsToUpload = [self fetchTodoHasSynchronized:synchronized lastRecordIsUpdateAt:[NSDate date]];
+    NSArray<CDTodo*>* todosNeedsToUpload = [self fetchTodoIsNotSynchronized:isNotSynchronized lastRecordIsUpdateAt:[NSDate date]];
     for (CDTodo* todo in todosNeedsToUpload) {
         //2-1-1-1. 转换为LeanCloud对象，再转换为字典，添加到待上传列表中
         LCTodo* lcTodo = [LCTodo lcTodoWithCDTodo:todo];
@@ -214,7 +224,7 @@ SyncDataManager ()
 /**
  *  根据本机唯一标识获取服务器上的最新一条同步记录
  */
-- (LCSyncRecord*)retriveLatestSyncRecord
+- (LCSyncRecord*)retriveLatestSyncRecordOnServer
 {
     AVQuery* query = [AVQuery queryWithClassName:[LCSyncRecord parseClassName]];
     [query whereKey:@"isFinished" equalTo:@(YES)];
@@ -225,7 +235,7 @@ SyncDataManager ()
     LCSyncRecord* record = (LCSyncRecord*)[query getFirstObject:&error];
     if (error && error.code != 101) {  //101意思是没有这个表
         [SCLAlertHelper errorAlertWithContent:error.localizedDescription];
-        return [self.errorHandler returnWithError:error description:[NSString stringWithFormat:@"1. 获取同步记录失败 %s", __func__]];
+        return [self.errorHandler returnWithError:error description:[NSString stringWithFormat:@"1. 获取服务器同步记录失败 %s", __func__]];
         ;
     }
 
@@ -253,23 +263,32 @@ SyncDataManager ()
     return array;
 }
 #pragma mark - MagicRecord methods
+#pragma mark - retrive sync record
+/**
+ *  根据本机唯一标识获取本地的最新一条同步记录
+ */
+- (CDSyncRecord*)retriveLatestSyncRecordOnLocal
+{
+    NSPredicate* filter = [NSPredicate predicateWithFormat:@"isFinished = %d AND user = %@", YES, _cdUser];
+    CDSyncRecord* record = [CDSyncRecord MR_findFirstWithPredicate:filter sortedBy:@"syncBeginTime" ascending:NO];
+
+    return record;
+}
 #pragma mark - retrieve data that needs to sync
 /**
  *  筛选本地的待办事项
  *
- *  @param synchronized 是否同步过
+ *  @param isNotSynchronized 是否只获取没有同步过的数据
  *  @param updateAt     最近一条记录的更新时间
  *
  *  @return 本地待办事项
  */
-- (NSArray<CDTodo*>*)fetchTodoHasSynchronized:(BOOL)synchronized lastRecordIsUpdateAt:(NSDate*)updateAt
+- (NSArray<CDTodo*>*)fetchTodoIsNotSynchronized:(BOOL)isNotSynchronized lastRecordIsUpdateAt:(NSDate*)updateAt
 {
     NSMutableArray* arguments = [NSMutableArray new];
     NSString* predicateFormat = @"user = %@ and syncStatus != %@ and updatedAt <= %@";
     [arguments addObjectsFromArray:@[ _cdUser, @(SyncStatusSynchronized), updateAt ]];
-    if (synchronized)
-        predicateFormat = [predicateFormat stringByAppendingString:@" and objectId != nil"];
-    else
+    if (isNotSynchronized)
         predicateFormat = [predicateFormat stringByAppendingString:@" and objectId = nil"];
 
     NSPredicate* filter = [NSPredicate predicateWithFormat:predicateFormat argumentArray:[arguments copy]];
@@ -287,7 +306,7 @@ SyncDataManager ()
  *
  *  @return 本地的同步记录实体
  */
-- (CDSyncRecord*)insertAndGetSyncRecord
+- (CDSyncRecord*)insertAndGetSyncRecordWithType:(SyncType)syncType
 {
     NSDate* serverDate = [self serverDate];
     if (!serverDate) return nil;
@@ -299,6 +318,7 @@ SyncDataManager ()
     lcSyncRecord.syncBeginTime = serverDate;
     lcSyncRecord.phoneIdentifier = self.cdUser.phoneIdentifier;
     lcSyncRecord.syncEndTime = nil;
+    lcSyncRecord.syncType = syncType;
 
     [lcSyncRecord save:&error];
     if (error) return [self.errorHandler returnWithError:error description:[NSString stringWithFormat:@"2. %s", __func__]];
@@ -326,5 +346,30 @@ SyncDataManager ()
 
     return serverDate;
 }
+/**
+ *  获取此次同步的同步类型
+ *
+ *  @param lcSyncRecord 服务器的同步记录
+ *  @param cdSyncRecord 本地的同步记录
+ *
+ *  @return 同步类型
+ */
+- (SyncType)syncTypeWithLCSyncRecord:(LCSyncRecord*)lcSyncRecord cdSyncRecord:(CDSyncRecord*)cdSyncRecord
+{
+    /**
+	 *	1. 若 lastSyncTimeOnServer = lastSyncTimeOnClient，表明服务器数据没有变化，则仅需要上传本地修改过的数据和新增的数据(send changes)
+	 *	2. 若 lastSyncTimeOnServer > lastSyncTimeOnClient，则进行全数据对比，先对比同步所有已有数据，再将其他数据从服务器上下载(full sync)
+	 *  3. 若 Server 没有该 Client 的同步记录，则将本地所有数据进行上传，并将服务器上所有的数据进行下载(incremental sync)
+	 *  4. 正常情况来说，是不会出现 lastSyncTimeOnServer < lastSyncTimeOnClient 的，这种情况也进行 incremental sync
+	 */
+    if (!lcSyncRecord)
+        return SyncTypeIncrementalSync;
 
+    if ([lcSyncRecord.syncBeginTime compare:cdSyncRecord.syncBeginTime] == NSOrderedSame)
+        return SyncTypeSendChanges;
+    else if ([lcSyncRecord.syncBeginTime compare:cdSyncRecord.syncBeginTime] == NSOrderedDescending)
+        return SyncTypeFullSync;
+    else
+        return SyncTypeIncrementalSync;
+}
 @end

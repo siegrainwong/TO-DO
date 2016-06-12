@@ -273,6 +273,7 @@
 		F9B3DD141CFFE55C000A8B28 /* CDTodo.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CDTodo.m; sourceTree = "<group>"; };
 		F9B3DD181CFFE5BE000A8B28 /* LCSync.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LCSync.h; sourceTree = "<group>"; };
 		F9B3DD191CFFE5BE000A8B28 /* LCSync.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LCSync.m; sourceTree = "<group>"; };
+		F9BA65E41D0D7E25004D59DE /* TO_DO 3.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = "TO_DO 3.xcdatamodel"; sourceTree = "<group>"; };
 		F9BCE5301CEDB54B003376C7 /* CreateViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CreateViewController.h; sourceTree = "<group>"; };
 		F9BCE5311CEDB54B003376C7 /* CreateViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CreateViewController.m; sourceTree = "<group>"; };
 		F9BCE5381CEDBF02003376C7 /* create header bg.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "create header bg.png"; sourceTree = "<group>"; };
@@ -1477,10 +1478,11 @@
 		F9773EAB1CFECD7400469A0E /* TO_DO.xcdatamodeld */ = {
 			isa = XCVersionGroup;
 			children = (
+				F9BA65E41D0D7E25004D59DE /* TO_DO 3.xcdatamodel */,
 				F9FAB5E51D01BB2700C519B9 /* TO_DO 2.xcdatamodel */,
 				F9773EAC1CFECD7400469A0E /* TO_DO.xcdatamodel */,
 			);
-			currentVersion = F9FAB5E51D01BB2700C519B9 /* TO_DO 2.xcdatamodel */;
+			currentVersion = F9BA65E41D0D7E25004D59DE /* TO_DO 3.xcdatamodel */;
 			path = TO_DO.xcdatamodeld;
 			sourceTree = "<group>";
 			versionGroupType = wrapper.xcdatamodel;

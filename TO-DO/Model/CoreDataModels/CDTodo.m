@@ -40,7 +40,7 @@
     cdTodo.sgDescription = lcTodo.sgDescription;
     cdTodo.deadline = lcTodo.deadline;
     cdTodo.location = lcTodo.location;
-    cdTodo.user = [[CDUser userWithLCUser:lcTodo.user] MR_inContext:context];
+    cdTodo.user = [CDUser userWithLCUser:lcTodo.user inContext:context];
     cdTodo.status = @(lcTodo.status);
     cdTodo.isHidden = @(lcTodo.isHidden);
     cdTodo.isCompleted = @(lcTodo.isCompleted);

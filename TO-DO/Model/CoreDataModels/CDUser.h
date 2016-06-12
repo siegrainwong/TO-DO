@@ -22,6 +22,7 @@ NS_ASSUME_NONNULL_BEGIN
  *  根据LCUser获取CDUser实体
  */
 + (instancetype)userWithLCUser:(LCUser*)lcUser;
++ (instancetype)userWithLCUser:(LCUser*)lcUser inContext:(NSManagedObjectContext*)context;
 @end
 
 NS_ASSUME_NONNULL_END

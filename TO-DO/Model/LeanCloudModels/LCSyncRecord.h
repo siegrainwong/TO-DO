@@ -30,4 +30,8 @@
  *  手机唯一标识（该标识在手机上对该应用的本地用户唯一）
  */
 @property (nonatomic, readwrite, strong) NSString* phoneIdentifier;
+/**
+ *  同步类型
+ */
+@property (nonatomic, readwrite, assign) SyncType syncType;
 @end

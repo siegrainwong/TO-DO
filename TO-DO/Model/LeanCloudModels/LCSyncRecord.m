@@ -6,6 +6,7 @@
 //  Copyright © 2016年 com.siegrain. All rights reserved.
 //
 
+#import "CDSyncRecord.h"
 #import "LCSyncRecord.h"
 
 @implementation LCSyncRecord
@@ -14,6 +15,7 @@
 @dynamic syncBeginTime;
 @dynamic syncEndTime;
 @dynamic user;
+@dynamic syncType;
 
 + (NSString*)parseClassName
 {
