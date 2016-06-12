@@ -100,13 +100,13 @@ SyncDataManager ()
         //2. 根据同步类型开始同步
         //2-1. 增量同步、提交变更
         if (syncType == SyncTypeIncrementalSync || syncType == SyncTypeSendChanges) {
-            __block NSMutableArray<NSDictionary*>* todosReadyToCommit = [NSMutableArray new];
+            __block NSArray<CDTodo*>* todosReadyToCommit = [NSMutableArray new];
 
             NSBlockOperation* operation = [NSBlockOperation new];
             __weak NSBlockOperation* weakOperation = operation;
             [operation addExecutionBlock:^{
                 //如果是增量同步，就只获取没有同步过的数据，如果是提交变更，就获取所有修改过的数据
-                todosReadyToCommit = [NSMutableArray arrayWithArray:[weakSelf lcTodosIsNotSynchronized:syncType == SyncTypeSendChanges]];
+                todosReadyToCommit = [self fetchTodoIsNotSynchronized:syncType == SyncTypeIncrementalSync lastRecordIsUpdateAt:[NSDate date]];
             }];
             if (syncType == SyncTypeIncrementalSync) {
                 [operation addExecutionBlock:^{
@@ -117,6 +117,9 @@ SyncDataManager ()
                 }];
             }
             [operation setCompletionBlock:^{
+                if (!todosReadyToCommit.count)
+                    return complete(YES);
+
                 if (![weakSelf commitTodosAndSave:todosReadyToCommit cdSyncRecord:syncRecord])
                     return [self.errorHandler returnWithError:nil description:@"2-1. 上传数据失败" returnWithBlock:complete];
 
@@ -170,22 +173,18 @@ SyncDataManager ()
     return YES;
 }
 /**
- *  获取准备提交给服务器的待办事项，并转换为字典
- *
- *  @param isNotSynchronized 是否只获取没有同步过的数据
+ *  将准备提交给服务器的待办事项转换为字典，并将本地待办事项标记为“已同步”状态
  */
-- (NSArray<NSDictionary*>*)lcTodosIsNotSynchronized:(BOOL)isNotSynchronized
+- (NSArray<NSDictionary*>*)todosToDictionary:(NSArray<CDTodo*>*)cdTodosArray
 {
     NSMutableArray<NSDictionary*>* result = [NSMutableArray new];
-    NSArray<CDTodo*>* todosNeedsToUpload = [self fetchTodoIsNotSynchronized:isNotSynchronized lastRecordIsUpdateAt:[NSDate date]];
-    for (CDTodo* todo in todosNeedsToUpload) {
+    for (CDTodo* todo in cdTodosArray) {
         //2-1-1-1. 转换为LeanCloud对象，再转换为字典，添加到待上传列表中
         LCTodo* lcTodo = [LCTodo lcTodoWithCDTodo:todo];
         [result addObject:[[lcTodo dictionaryForObject] copy]];
 
-        //2-1-1-2. 修改本地数据状态为同步完成，同时赋予唯一编号
+        //2-1-1-2. 修改本地数据状态为同步完成
         todo.syncStatus = @(SyncStatusSynchronized);
-        todo.objectId = lcTodo.objectId;
     }
 
     return [result copy];
@@ -198,24 +197,34 @@ SyncDataManager ()
  *
  *  @return 是否成功
  */
-- (BOOL)commitTodosAndSave:(NSArray<NSDictionary*>*)todosReadyToCommit cdSyncRecord:(CDSyncRecord*)syncRecord
+- (BOOL)commitTodosAndSave:(NSArray<CDTodo*>*)todosReadyToCommit cdSyncRecord:(CDSyncRecord*)syncRecord
 {
     // 2-1-3-1. 上传数据并保存服务器的同步记录
     // Mark: 这个东西要用LeanCloud的云函数来做，不然无法保证数据正确
     // Mark: 我靠它云引擎有Bug，传上去保存成功了，但都是空数据...
+    NSArray<NSDictionary*>* todosDictionary = [self todosToDictionary:todosReadyToCommit];
     NSError* error = nil;
-    NSDictionary* commitTodoParameters = @{ @"todos" : todosReadyToCommit,
+    NSDictionary* commitTodoParameters = @{ @"todos" : todosDictionary,
         @"syncRecordId" : syncRecord.objectId };
-    // Mark: 这里回调返回的是云函数上修改后的SyncRecord字典
-    // TODO: 这里回调还需要把objectId取回来..
-    NSDictionary* syncRecordDictionary = [AVCloud rpcFunction:@"commitTodos" withParameters:commitTodoParameters error:&error];
+    // Mark: 这里回调返回了两个数据，第一个是待办事项objectId数组，第二个是服务器修改过的的SyncRecord字典。
+    NSArray* responseDatas = [AVCloud callFunction:@"commitTodos" withParameters:commitTodoParameters error:&error];
     if (error) return NO;
 
-    // 2-1-3-2. 上传成功后更新本地的同步记录
+    NSArray* objectIdArray = responseDatas[0];
+    NSDictionary* syncRecordDictionary = responseDatas[1];
+
+    // 2-1-3-2. 修改本地待办事项的objectId
+    if (objectIdArray.count)
+        [todosReadyToCommit enumerateObjectsUsingBlock:^(CDTodo* todo, NSUInteger idx, BOOL* stop) {
+            if (!todo.objectId)
+                todo.objectId = objectIdArray[idx];
+        }];
+
+    // 2-1-3-3. 上传成功后更新本地的同步记录
     syncRecord.isFinished = syncRecordDictionary[@"isFinished"];
     syncRecord.syncEndTime = syncRecordDictionary[@"syncEndTime"];
 
-    // 2-1-3-3. 提交本地数据
+    // 2-1-3-4. 持久化保存本地数据
     [_localContext MR_saveToPersistentStoreAndWait];
 
     return YES;
