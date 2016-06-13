@@ -142,7 +142,7 @@ SyncDataManager ()
 
                     // 对比规则：1.大版本同步小版本 2.版本相同的话，以线上数据为准进行覆盖
                     if (lcTodo.syncVersion >= cdTodo.syncVersion.integerValue) {
-                        CDTodo* cdTodo = [CDTodo cdTodoWithLCTodo:lcTodo inContext:weakSelf.localContext];
+                        [cdTodo cdTodoReplaceByLCTodo:lcTodo];
                         cdTodo.syncStatus = @(SyncStatusSynchronized);
                     } else if (lcTodo.syncVersion < cdTodo.syncVersion.integerValue) {
                         [todosReadyToCommit addObject:cdTodo];

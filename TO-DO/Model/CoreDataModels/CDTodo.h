@@ -23,8 +23,14 @@ NS_ASSUME_NONNULL_BEGIN
 /* 指示该待办事项是否在重新排序中 */
 @property (nonatomic, readwrite, assign) BOOL isReordering;
 
+/**
+ *  已新建实体的方式用lcTodo创建cdTodo
+ */
 + (instancetype)cdTodoWithLCTodo:(LCTodo*)lcTodo inContext:(NSManagedObjectContext*)context;
-
+/**
+ *  将cdTodo的部分数据覆盖为指定lcTodo的数据
+ */
+- (instancetype)cdTodoReplaceByLCTodo:(LCTodo*)lcTodo;
 @end
 
 NS_ASSUME_NONNULL_END

@@ -36,20 +36,26 @@
 	 新实体必须在当前线程的上下文创建，否则会出现“Cocoa error: 133000”
 	 */
     CDTodo* cdTodo = [CDTodo MR_createEntityInContext:context];
-    cdTodo.title = lcTodo.title;
-    cdTodo.sgDescription = lcTodo.sgDescription;
-    cdTodo.deadline = lcTodo.deadline;
-    cdTodo.location = lcTodo.location;
     cdTodo.user = [CDUser userWithLCUser:lcTodo.user inContext:context];
-    cdTodo.status = @(lcTodo.status);
-    cdTodo.isHidden = @(lcTodo.isHidden);
-    cdTodo.isCompleted = @(lcTodo.isCompleted);
-    cdTodo.photo = cdTodo.photo;
-    cdTodo.createdAt = lcTodo.localCreatedAt;
-    cdTodo.updatedAt = lcTodo.localUpdatedAt;
-    cdTodo.syncVersion = @(lcTodo.syncVersion);
     cdTodo.objectId = lcTodo.objectId;
+    [cdTodo cdTodoReplaceByLCTodo:lcTodo];
 
     return cdTodo;
+}
+- (instancetype)cdTodoReplaceByLCTodo:(LCTodo*)lcTodo
+{
+    self.status = @(lcTodo.status);
+    self.isHidden = @(lcTodo.isHidden);
+    self.isCompleted = @(lcTodo.isCompleted);
+    self.photo = lcTodo.photo;
+    self.createdAt = lcTodo.localCreatedAt;
+    self.updatedAt = lcTodo.localUpdatedAt;
+    self.syncVersion = @(lcTodo.syncVersion);
+    self.title = lcTodo.title;
+    self.sgDescription = lcTodo.sgDescription;
+    self.deadline = lcTodo.deadline;
+    self.location = lcTodo.location;
+
+    return self;
 }
 @end
