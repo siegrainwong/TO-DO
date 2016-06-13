@@ -117,16 +117,15 @@ SyncDataManager ()
                 }];
             }
             [operation setCompletionBlock:^{
-                if (!todosReadyToCommit.count)
-                    return complete(YES);
+                //如果是提交变更的话，没有要提交的数据直接返回
+                if (!todosReadyToCommit.count && syncType == SyncTypeSendChanges)
+                    return [weakSelf succeedReturn:complete];
 
                 if (![weakSelf commitTodosAndSave:todosReadyToCommit cdSyncRecord:syncRecord])
                     return [self.errorHandler returnWithError:nil description:@"2-1. 上传数据失败" returnWithBlock:complete];
 
-                [[NSOperationQueue mainQueue] addOperationWithBlock:^{
-                    DDLogInfo(@"all fucking done : %@", [NSThread currentThread]);
-                    return complete(YES);
-                }];
+                DDLogInfo(@"all fucking done");
+                return [weakSelf succeedReturn:complete];
             }];
             [operation start];
         }
@@ -381,5 +380,15 @@ SyncDataManager ()
         return SyncTypeFullSync;
     else
         return SyncTypeIncrementalSync;
+}
+/**
+ *  同步成功后的返回
+ */
+- (void)succeedReturn:(CompleteBlock)block
+{
+    _localContext = nil;
+    [[NSOperationQueue mainQueue] addOperationWithBlock:^{
+        return block(YES);
+    }];
 }
 @end
