@@ -11,7 +11,23 @@
  */
 #ifndef DataKeys_h
 #define DataKeys_h
-
+/**
+ *  AVObject的ObjectId字段的筛选规则
+ */
+typedef NS_ENUM(NSInteger, AVObjectFiltering) {
+    /**
+	 *  不筛选
+	 */
+    AVObjectFilteringNone,
+    /**
+	 *  筛选有objectId的
+	 */
+    AVObjectFilteringHasObjectId,
+    /**
+	 *  筛选没有objectId的
+	 */
+    AVObjectFilteringNoObjectId
+};
 typedef NS_ENUM(NSInteger, TodoStatus) {
     /* 普通 */
     TodoStatusNormal,
