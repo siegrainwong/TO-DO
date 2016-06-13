@@ -276,7 +276,6 @@ SyncDataManager ()
     AVQuery* query = [AVQuery queryWithClassName:[LCSyncRecord parseClassName]];
     [query whereKey:@"isFinished" equalTo:@(YES)];
     [query whereKey:@"user" equalTo:_lcUser];
-    [query whereKey:@"phoneIdentifier" equalTo:_cdUser.phoneIdentifier];
     [query orderByDescending:@"syncBeginTime"];
     NSError* error = nil;
     LCSyncRecord* record = (LCSyncRecord*)[query getFirstObject:&error];

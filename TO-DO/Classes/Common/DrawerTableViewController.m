@@ -176,14 +176,23 @@ DrawerTableViewController ()
 #pragma mark - synchronize
 - (void)synchronize:(SyncMode)syncType
 {
+    __weak typeof(self) weakSelf = self;
     dispatch_queue_t serialQueue = dispatch_queue_create("todoSynchronizeLock", DISPATCH_QUEUE_SERIAL);
     dispatch_sync(serialQueue, ^{
-        [_indicatorView startAnimating];
-        __weak typeof(self) weakSelf = self;
+        [weakSelf isSyncing:YES];
         [_dataManager synchronize:syncType complete:^(bool succeed) {
-            [weakSelf.indicatorView stopAnimating];
+            [weakSelf isSyncing:NO];
         }];
     });
+}
+- (void)isSyncing:(BOOL)isBegin
+{
+    if (isBegin)
+        [_indicatorView startAnimating];
+    else
+        [_indicatorView stopAnimating];
+
+    [_leftBottomButton setEnabled:!isBegin];
 }
 #pragma mark - show settings
 - (void)showSettings
