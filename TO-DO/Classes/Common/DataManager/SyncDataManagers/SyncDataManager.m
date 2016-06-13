@@ -50,7 +50,7 @@ SyncDataManager ()
         dataManager.isSyncing = NO;
         dataManager.errorHandler = [SyncErrorHandler new];
         [dataManager.errorHandler setErrorHandlerWillReturn:^{
-            dataManager.localContext = nil;
+            [dataManager cleanUp];
         }];
     });
     return dataManager;
@@ -72,8 +72,8 @@ SyncDataManager ()
 #pragma mark - synchronization
 - (void)synchronize:(SyncMode)syncType complete:(CompleteBlock)complete;
 {
-    //    if (_isSyncing) return complete(YES);
-    //    _isSyncing = YES;
+    if (_isSyncing) return complete(YES);
+    _isSyncing = YES;
     /*
 	 同步方式：
 	 每一次队列同步最新的五十条数据，有错误的话，队列作废
@@ -99,7 +99,6 @@ SyncDataManager ()
             return [weakSelf.errorHandler returnWithError:nil description:@"2. 准备同步失败，停止同步" returnWithBlock:complete];
 
         //2. 根据同步类型开始同步
-        //        if (syncType == SyncTypeIncrementalSync || syncType == SyncTypeSendChanges) {
         __block NSMutableArray<CDTodo*>* todosReadyToCommit = [NSMutableArray new];
 
         NSBlockOperation* operation = [NSBlockOperation new];
@@ -168,34 +167,6 @@ SyncDataManager ()
             return [weakSelf succeedReturn:complete];
         }];
         [operation start];
-        //        }
-        //		else {
-        //            //2-2. 全量同步，好像没有什么太好的办法，只有一条一条的对比...
-        //            __block NSMutableArray<CDTodo*>* todosReadyToCommit = [NSMutableArray new];
-        //
-        //            NSBlockOperation* operation = [NSBlockOperation new];
-        //            __weak NSBlockOperation* weakOperation = operation;
-        //            // 2-2-1. 把没同步过的筛出来，准备上传
-        //            [operation addExecutionBlock:^{
-        //
-        //            }];
-        //            // 2-2-1. 获取所有线上数据，与本地数据进行对比，根据对比结果决定同步方向
-        //            [operation addExecutionBlock:^{
-        //
-        //            }];
-        //            [operation setCompletionBlock:^{
-        //                //如果是提交变更的话，没有要提交的数据直接返回
-        //                if (!todosReadyToCommit.count && syncType == SyncTypeSendChanges)
-        //                    return [weakSelf succeedReturn:complete];
-        //
-        //                if (![weakSelf commitTodosAndSave:todosReadyToCommit cdSyncRecord:syncRecord])
-        //                    return [self.errorHandler returnWithError:nil description:@"2-1. 上传数据失败" returnWithBlock:complete];
-        //
-        //                DDLogInfo(@"all fucking done");
-        //                return [weakSelf succeedReturn:complete];
-        //            }];
-        //            [operation start];
-        //        }
     }];
     [asyncOperation start];
 }
@@ -379,6 +350,7 @@ SyncDataManager ()
         appendPredicate = @" and syncStatus != %@";
         [arguments addObject:@(SyncStatusSynchronized)];
     }
+    predicateFormat = [predicateFormat stringByAppendingString:appendPredicate];
 
     NSPredicate* filter = [NSPredicate predicateWithFormat:predicateFormat argumentArray:[arguments copy]];
     NSFetchRequest* request = [CDTodo MR_requestAllWithPredicate:filter inContext:_localContext];
@@ -470,11 +442,19 @@ SyncDataManager ()
         return SyncTypeIncrementalSync;
 }
 /**
+ *  结束同步之前的清除操作
+ */
+- (void)cleanUp
+{
+    _localContext = nil;
+    _isSyncing = NO;
+}
+/**
  *  同步成功后的返回
  */
 - (void)succeedReturn:(CompleteBlock)block
 {
-    _localContext = nil;
+    [self cleanUp];
     [[NSOperationQueue mainQueue] addOperationWithBlock:^{
         return block(YES);
     }];
