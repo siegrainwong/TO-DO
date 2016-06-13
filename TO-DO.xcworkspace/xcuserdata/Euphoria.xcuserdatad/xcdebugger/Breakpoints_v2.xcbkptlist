@@ -20,60 +20,12 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "TO-DO/Classes/Common/DataManager/SyncDataManagers/SyncDataManager.m"
-            timestampString = "487521691.702343"
+            timestampString = "487525803.283247"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "121"
-            endingLineNumber = "121"
+            startingLineNumber = "158"
+            endingLineNumber = "158"
             landmarkName = "-synchronize:complete:"
-            landmarkType = "5">
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
-            shouldBeEnabled = "Yes"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
-            filePath = "TO-DO/Classes/Common/DataManager/SyncDataManagers/SyncDataManager.m"
-            timestampString = "487524739.720062"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "433"
-            endingLineNumber = "433"
-            landmarkName = "-syncTypeWithLCSyncRecord:cdSyncRecord:"
-            landmarkType = "5">
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
-            shouldBeEnabled = "Yes"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
-            filePath = "TO-DO/Classes/Common/DataManager/SyncDataManagers/SyncDataManager.m"
-            timestampString = "487524739.720062"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "437"
-            endingLineNumber = "437"
-            landmarkName = "-syncTypeWithLCSyncRecord:cdSyncRecord:"
-            landmarkType = "5">
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
-            shouldBeEnabled = "Yes"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
-            filePath = "TO-DO/Classes/Common/DataManager/SyncDataManagers/SyncDataManager.m"
-            timestampString = "487524739.720062"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "439"
-            endingLineNumber = "439"
-            landmarkName = "-syncTypeWithLCSyncRecord:cdSyncRecord:"
             landmarkType = "5">
          </BreakpointContent>
       </BreakpointProxy>

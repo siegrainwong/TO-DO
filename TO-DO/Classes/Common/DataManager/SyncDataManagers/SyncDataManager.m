@@ -126,7 +126,7 @@ SyncDataManager ()
                 for (int i = 0; i < todosOnServer.count; i++) {
                     LCTodo* lcTodo = todosOnServer[i];
 
-                    if (![weakSelf todoIsExists:lcTodo.objectId]) continue;
+                    if ([weakSelf todoIsExists:lcTodo.objectId]) continue;
                     CDTodo* cdTodo = [CDTodo cdTodoWithLCTodo:lcTodo inContext:weakSelf.localContext];
                     cdTodo.syncStatus = @(SyncStatusSynchronized);
                     [todosOnServer removeObjectAtIndex:i];
@@ -365,7 +365,7 @@ SyncDataManager ()
  */
 - (BOOL)todoIsExists:(NSString*)objectId
 {
-    return [CDTodo MR_countOfEntitiesWithPredicate:[NSPredicate predicateWithFormat:@"objectId", objectId] inContext:_localContext];
+    return [CDTodo MR_countOfEntitiesWithPredicate:[NSPredicate predicateWithFormat:@"objectId = %@", objectId] inContext:_localContext];
 }
 #pragma mark - both MagicRecord and LeanCloud methods
 #pragma mark - insert sync record
@@ -430,7 +430,7 @@ SyncDataManager ()
 	 *  3. 若 Server 没有该 Client 的同步记录，则将本地所有数据进行上传，并将服务器上所有的数据进行下载(incremental sync)
 	 *  4. 正常情况来说，是不会出现 lastSyncTimeOnServer < lastSyncTimeOnClient 的，这种情况也进行 incremental sync
 	 */
-    if (!lcSyncRecord)
+    if (!cdSyncRecord)
         return SyncTypeIncrementalSync;
 
     if ([lcSyncRecord.syncBeginTime compare:cdSyncRecord.syncBeginTime] == NSOrderedSame)
