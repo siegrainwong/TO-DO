@@ -21,8 +21,8 @@ BaseViewController ()
 {
     [super viewDidLoad];
     _releaseWhileDisappear = YES;
-    _lcUser = [LCUser currentUser];
-    _cdUser = [CDUser userWithLCUser:_lcUser];
+    _lcUser = [AppDelegate globalDelegate].lcUser;
+    _cdUser = [AppDelegate globalDelegate].cdUser;
 
     [self setupView];
     [self bindConstraints];

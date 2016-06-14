@@ -27,7 +27,7 @@
 @dynamic syncVersion;
 @dynamic title;
 @dynamic updatedAt;
-@dynamic todoUUID;
+@dynamic identifier;
 @dynamic user;
 
 @end

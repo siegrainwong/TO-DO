@@ -9,6 +9,7 @@
 #import "AutoLinearLayoutView.h"
 #import "CreateViewController.h"
 #import "DateUtil.h"
+#import "GCDQueue.h"
 #import "HSDatePickerViewController+Configure.h"
 #import "LCTodo.h"
 #import "MRTodoDataManager.h"
@@ -174,19 +175,19 @@ CreateViewController ()
 - (void)commitButtonDidPress
 {
     __weak typeof(self) weakSelf = self;
-    dispatch_queue_t serialQueue = dispatch_queue_create("TO-DOCreateSerialQueue", DISPATCH_QUEUE_SERIAL);
-    dispatch_sync(serialQueue, ^{
-        if (_commitButton.indicator.isAnimating) return;
+
+    [[GCDQueue globalQueueWithLevel:DISPATCH_QUEUE_PRIORITY_DEFAULT] sync:^{
+        if (weakSelf.commitButton.indicator.isAnimating) return;
 
         [weakSelf.view endEditing:YES];
         [weakSelf enableView:NO];
 
         CDTodo* todo = [CDTodo MR_createEntity];
-        todo.title = _titleTextField.field.text;
-        todo.sgDescription = _descriptionTextField.field.text;
-        todo.deadline = _selectedDate;
-        todo.location = _locationTextField.field.text;
-        todo.photoData = UIImageJPEGRepresentation(_selectedImage, 0.5);
+        todo.title = weakSelf.titleTextField.field.text;
+        todo.sgDescription = weakSelf.descriptionTextField.field.text;
+        todo.deadline = weakSelf.selectedDate;
+        todo.location = weakSelf.locationTextField.field.text;
+        todo.photoData = UIImageJPEGRepresentation(weakSelf.selectedImage, 0.5);
         todo.photoImage = [UIImage imageWithData:todo.photoData];
         todo.user = self.cdUser;
         todo.status = @(TodoStatusNormal);
@@ -194,23 +195,14 @@ CreateViewController ()
         todo.isHidden = @(NO);
         todo.createdAt = [NSDate date];
         todo.updatedAt = [todo.createdAt copy];
-        todo.todoUUID = [[NSUUID UUID] UUIDString];
+        todo.identifier = [[NSUUID UUID] UUIDString];
 
-        [_dataManager insertTodo:todo complete:^(bool succeed) {
-            [weakSelf enableView:YES];
-            if (!succeed) return;
-            if (_createViewControllerDidFinishCreate) _createViewControllerDidFinishCreate(todo);
-            [weakSelf.navigationController popToRootViewControllerAnimated:YES];
-        }];
-
-        // LeanCloud's
-        //        [_dataManager insertTodo:todo complete:^(bool succeed) {
-        //            [weakSelf enableView:YES];
-        //            if (!succeed) return;
-        //            if (_createViewControllerDidFinishCreate) _createViewControllerDidFinishCreate(todo);
-        //            [weakSelf.navigationController popToRootViewControllerAnimated:YES];
-        //        }];
-    });
+        [weakSelf enableView:YES];
+        NSLog(@"%@", [NSThread currentThread]);
+        if (![weakSelf.dataManager isInsertedTodo:todo]) return;
+        if (weakSelf.createViewControllerDidFinishCreate) weakSelf.createViewControllerDidFinishCreate(todo);
+        [weakSelf.navigationController popToRootViewControllerAnimated:YES];
+    }];
 }
 - (void)enableView:(BOOL)isEnable
 {

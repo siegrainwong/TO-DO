@@ -17,7 +17,6 @@
 #import "JVFloatingDrawerView.h"
 #import "LCSyncRecord.h"
 #import "LCTodo.h"
-#import "LCUser.h"
 #import "LoginViewController.h"
 #import "Macros.h"
 #import "UIImage+Extension.h"
@@ -63,9 +62,9 @@ AppDelegate ()
 {
     [self setupDDLog];
     [self setupMagicRecord];
+    [self setupUser];
     [self setupLeanCloud];
     [self setupDrawerViewController];
-    //    [self truncateLocalData];
     [self applicationDocumentsDirectory];
 
     [UIApplication sharedApplication].statusBarStyle = UIStatusBarStyleLightContent;
@@ -73,10 +72,8 @@ AppDelegate ()
     self.window.backgroundColor = [UIColor whiteColor];
 
     // validate user's login state
-    //    [LCUser logOut];
-    LCUser* user = [LCUser currentUser];
-    if (user) {
-        DDLogInfo(@"当前用户：%@", user.username);
+    if (_lcUser) {
+        DDLogInfo(@"当前用户：%@", _lcUser.username);
         HomeViewController* homeViewController = [HomeViewController new];
         [self switchRootViewController:homeViewController isNavigation:YES];
     } else {
@@ -84,6 +81,11 @@ AppDelegate ()
     }
 
     [self.window makeKeyAndVisible];
+}
+- (void)setupUser
+{
+    _lcUser = [LCUser currentUser];
+    if (_lcUser) _cdUser = [CDUser userWithLCUser:_lcUser];
 }
 - (void)setupLeanCloud
 {

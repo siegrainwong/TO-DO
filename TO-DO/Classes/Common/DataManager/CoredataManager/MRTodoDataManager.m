@@ -8,6 +8,7 @@
 
 #import "CDUser.h"
 #import "DateUtil.h"
+#import "GCDQueue.h"
 #import "ImageUploader.h"
 #import "MRTodoDataManager.h"
 #import "NSDate+Extension.h"
@@ -28,6 +29,21 @@ MRTodoDataManager ()
 
 @implementation MRTodoDataManager
 @synthesize localDictionary = _localDictionary;
+#pragma mark - localization
+- (void)localizeStrings
+{
+    _localDictionary[kTitleInvalidKey] = ConcatLocalizedString1(@"Title", @" can not be empty");
+    _localDictionary[kTimeInvalidKey] = ConcatLocalizedString1(@"Time", @" can not be empty");
+    _localDictionary[kDescriptionInvalidKey] = ConcatLocalizedString1(@"Description", @" is invalid");
+    _localDictionary[kLocationInvalidKey] = ConcatLocalizedString1(@"Location", @" is invalid");
+    _localDictionary[kPictureUploadFailedKey] = NSLocalizedString(@"Failed to upload picture, please try again", nil);
+}
+- (instancetype)init
+{
+    if (self = [super init]) {
+    }
+    return self;
+}
 #pragma mark - retrieve
 - (void)retrieveDataWithUser:(CDUser*)user date:(NSDate*)date complete:(void (^)(bool succeed, NSDictionary* dataDictionary, NSInteger dataCount))complete
 {
@@ -60,16 +76,20 @@ MRTodoDataManager ()
 }
 #pragma mark - insertion
 #pragma mark - commit
-- (void)insertTodo:(CDTodo*)todo complete:(void (^)(bool succeed))complete
+- (BOOL)isInsertedTodo:(CDTodo*)todo
 {
     _model = todo;
-    if (![self validate]) return complete(NO);
+    if (![self validate]) return NO;
 
-    [self saveWithBlock:complete];
+    MR_saveAndWait();
+    return YES;
 }
 #pragma mark - validate
 - (BOOL)validate
 {
+    [self localizeStrings];
+    NSLog(@"%@", [NSThread currentThread]);
+
     // 暂时不做正则验证
     // remove whitespaces
     _model.title = [_model.title stringByRemovingUnneccessaryWhitespaces];
@@ -85,6 +105,7 @@ MRTodoDataManager ()
         return NO;
     }
 
+    // FIXME: 不是很懂这里为什么不能访问成员变量
     // deadline validation
     if (!_model.deadline) {
         [SCLAlertHelper errorAlertWithContent:_localDictionary[kTimeInvalidKey]];
@@ -104,13 +125,11 @@ MRTodoDataManager ()
 #pragma mark - modify
 - (void)modifyTodo:(CDTodo*)todo complete:(void (^)(bool succeed))complete
 {
-    __weak typeof(self) weakSelf = self;
-    dispatch_queue_t serialQueue = dispatch_queue_create("todoModifySerialQueue", DISPATCH_QUEUE_SERIAL);
-    dispatch_sync(serialQueue, ^{
+    [[GCDQueue globalQueueWithLevel:DISPATCH_QUEUE_PRIORITY_DEFAULT] sync:^{
         todo.syncStatus = @(SyncStatusWaiting);
         todo.syncVersion = @([todo.syncVersion integerValue] + 1);
         todo.updatedAt = [NSDate date];
-        [weakSelf saveWithBlock:complete];
-    });
+        MR_saveAndWait();
+    }];
 }
 @end

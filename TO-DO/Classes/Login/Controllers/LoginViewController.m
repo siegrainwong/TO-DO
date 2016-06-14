@@ -54,16 +54,15 @@ LoginViewController ()
 #pragma mark - commit
 - (void)loginViewDidPressCommitButton:(LCUser*)user isSignUp:(BOOL)isSignUp
 {
-    [_dataManager handleCommit:user
-                      isSignUp:isSignUp
-                      complete:^(bool succeed) {
-                          [_loginView stopCommitAnimation];
-                          [[UIApplication sharedApplication] setNetworkActivityIndicatorVisible:NO];
-                          if (!succeed) return;
+    [_dataManager handleCommit:user isSignUp:isSignUp complete:^(bool succeed) {
+        [_loginView stopCommitAnimation];
+        [[UIApplication sharedApplication] setNetworkActivityIndicatorVisible:NO];
+        if (!succeed) return;
 
-                          AppDelegate* delegate = (AppDelegate*)[UIApplication sharedApplication].delegate;
-                          [delegate switchRootViewController:[[HomeViewController alloc] init] isNavigation:YES];
-                      }];
+        AppDelegate* delegate = (AppDelegate*)[UIApplication sharedApplication].delegate;
+        [delegate setupUser];
+        [delegate switchRootViewController:[[HomeViewController alloc] init] isNavigation:YES];
+    }];
 }
 #pragma mark - avatar
 - (void)loginViewDidPressAvatarButton

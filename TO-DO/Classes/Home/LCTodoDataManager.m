@@ -17,10 +17,6 @@
 #import "SCLAlertHelper.h"
 
 /* localization dictionary keys */
-static NSString* const kTitleInvalidKey = @"TitleInvalid";
-static NSString* const kDescriptionInvalidKey = @"DescriptionInvalid";
-static NSString* const kTimeInvalidKey = @"TimeInvalid";
-static NSString* const kLocationInvalidKey = @"LocationInvalid";
 static NSString* const kPictureUploadFailedKey = @"PictureUploadFailed";
 
 @interface
@@ -33,10 +29,6 @@ LCTodoDataManager ()
 #pragma mark - localization
 - (void)localizeStrings
 {
-    _localDictionary[kTitleInvalidKey] = ConcatLocalizedString1(@"Title", @" can not be empty");
-    _localDictionary[kTimeInvalidKey] = ConcatLocalizedString1(@"Time", @" can not be empty");
-    _localDictionary[kDescriptionInvalidKey] = ConcatLocalizedString1(@"Description", @" is invalid");
-    _localDictionary[kLocationInvalidKey] = ConcatLocalizedString1(@"Location", @" is invalid");
     _localDictionary[kPictureUploadFailedKey] = NSLocalizedString(@"Failed to upload picture, please try again", nil);
 }
 #pragma mark - initial

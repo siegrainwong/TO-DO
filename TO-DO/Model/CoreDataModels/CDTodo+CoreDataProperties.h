@@ -29,7 +29,7 @@ NS_ASSUME_NONNULL_BEGIN
 @property (nullable, nonatomic, retain) NSNumber *syncVersion;
 @property (nullable, nonatomic, retain) NSString *title;
 @property (nullable, nonatomic, retain) NSDate *updatedAt;
-@property (nullable, nonatomic, retain) NSString *todoUUID;
+@property (nullable, nonatomic, retain) NSString *identifier;
 @property (nullable, nonatomic, retain) CDUser *user;
 
 @end

@@ -22,13 +22,13 @@
 @dynamic syncVersion;
 @dynamic localCreatedAt;
 @dynamic localUpdatedAt;
-@dynamic todoUUID;
+@dynamic identifier;
 
 + (LCTodo*)lcTodoWithCDTodo:(CDTodo*)cdTodo
 {
     LCTodo* lcTodo = [LCTodo object];
     lcTodo.objectId = cdTodo.objectId;
-    lcTodo.todoUUID = cdTodo.todoUUID;
+    lcTodo.identifier = cdTodo.identifier;
     lcTodo.title = cdTodo.title;
     lcTodo.sgDescription = cdTodo.sgDescription;
     lcTodo.deadline = cdTodo.deadline;

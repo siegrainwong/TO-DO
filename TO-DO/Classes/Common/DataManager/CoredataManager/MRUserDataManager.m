@@ -31,7 +31,7 @@ MRUserDataManager ()
     user.phoneIdentifier = [[NSUUID UUID] UUIDString];
 
     [[NSUserDefaults standardUserDefaults] setObject:user.phoneIdentifier forKey:user.objectId];
-    [[NSManagedObjectContext MR_defaultContext] MR_saveToPersistentStoreAndWait];
+    MR_saveAndWait();
 
     return YES;
 }

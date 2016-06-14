@@ -8,13 +8,12 @@
 
 #import "AFHTTPRequestOperationManager+Synchronous.h"
 #import "AFNetworking.h"
+#import "AppDelegate.h"
 #import "CDTodo.h"
-#import "CDUser.h"
 #import "DateUtil.h"
 #import "GCDQueue.h"
 #import "LCSyncRecord.h"
 #import "LCTodo.h"
-#import "LCUser.h"
 #import "SCLAlertHelper.h"
 #import "SyncDataManager.h"
 
@@ -53,8 +52,8 @@ SyncDataManager ()
         dataManager = [SyncDataManager new];
         dataManager.isSyncing = NO;
         dataManager.errorHandler = [SyncErrorHandler new];
-        dataManager.lcUser = [LCUser currentUser];
-        dataManager.cdUser = [CDUser userWithLCUser:dataManager.lcUser];
+        dataManager.lcUser = [AppDelegate globalDelegate].lcUser;
+        dataManager.cdUser = [AppDelegate globalDelegate].cdUser;
         [dataManager.errorHandler setErrorHandlerWillReturn:^{
             [dataManager cleanUp];
         }];
@@ -201,7 +200,7 @@ SyncDataManager ()
         //        CDTodo* cdTodo = localTodosDictionary[lcTodo.objectId];
 
         // 2-2-2-1. 将
-        CDTodo* cdTodo = [self todoWithUUID:lcTodo.todoUUID];
+        CDTodo* cdTodo = [self todoWithIdentifier:lcTodo.identifier];
         if (!cdTodo) {
             cdTodo = [CDTodo cdTodoWithLCTodo:lcTodo inContext:_localContext];
             cdTodo.syncStatus = @(SyncStatusSynchronized);
@@ -372,11 +371,11 @@ SyncDataManager ()
 }
 #pragma mark - fetch todo by uuid
 /**
- *  根据uuid获取待办事项
+ *  根据identifier获取待办事项
  */
-- (CDTodo*)todoWithUUID:(NSString*)uuid
+- (CDTodo*)todoWithIdentifier:(NSString*)identifier
 {
-    return [CDTodo MR_findFirstWithPredicate:[NSPredicate predicateWithFormat:@"todoUUID = %@", uuid] inContext:_localContext];
+    return [CDTodo MR_findFirstWithPredicate:[NSPredicate predicateWithFormat:@"identifier = %@", identifier] inContext:_localContext];
 }
 #pragma mark - both MagicRecord and LeanCloud methods
 #pragma mark - insert sync record

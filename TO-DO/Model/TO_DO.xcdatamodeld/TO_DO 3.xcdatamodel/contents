@@ -14,6 +14,7 @@
     <entity name="Todo" representedClassName="CDTodo" syncable="YES">
         <attribute name="createdAt" attributeType="Date" indexed="YES" syncable="YES"/>
         <attribute name="deadline" attributeType="Date" indexed="YES" syncable="YES"/>
+        <attribute name="identifier" attributeType="String" syncable="YES"/>
         <attribute name="isCompleted" attributeType="Boolean" defaultValueString="NO" syncable="YES"/>
         <attribute name="isHidden" attributeType="Boolean" defaultValueString="NO" syncable="YES"/>
         <attribute name="location" optional="YES" attributeType="String" minValueString="0" maxValueString="50" syncable="YES"/>
@@ -25,7 +26,6 @@
         <attribute name="syncStatus" optional="YES" attributeType="Integer 16" minValueString="0" maxValueString="2" defaultValueString="0" indexed="YES" syncable="YES"/>
         <attribute name="syncVersion" optional="YES" attributeType="Integer 64" minValueString="0" defaultValueString="0" indexed="YES" syncable="YES"/>
         <attribute name="title" attributeType="String" syncable="YES"/>
-        <attribute name="todoUUID" attributeType="String" syncable="YES"/>
         <attribute name="updatedAt" attributeType="Date" indexed="YES" syncable="YES"/>
         <relationship name="user" maxCount="1" deletionRule="Nullify" destinationEntity="User" inverseName="todos" inverseEntity="User" syncable="YES"/>
     </entity>
