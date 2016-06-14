@@ -194,6 +194,7 @@ CreateViewController ()
         todo.isHidden = @(NO);
         todo.createdAt = [NSDate date];
         todo.updatedAt = [todo.createdAt copy];
+        todo.todoUUID = [[NSUUID UUID] UUIDString];
 
         [_dataManager insertTodo:todo complete:^(bool succeed) {
             [weakSelf enableView:YES];

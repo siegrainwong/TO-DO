@@ -29,5 +29,5 @@ typedef void (^_Nullable CompleteBlock)(BOOL succeed);
  *  错误处理后 return，block 中的 succeed 值为 NO 
  *  用于返回void的方法
  */
-- (void)returnWithError:(NSError* _Nullable)error description:(NSString* _Nonnull)description returnWithBlock:(CompleteBlock)block;
+- (void)returnWithError:(NSError* _Nullable)error description:(NSString* _Nonnull)description failBlock:(CompleteBlock)block;
 @end

@@ -3,6 +3,7 @@
     <entity name="SyncRecord" representedClassName="CDSyncRecord" syncable="YES">
         <attribute name="createdAt" attributeType="Date" indexed="YES" syncable="YES"/>
         <attribute name="isFinished" attributeType="Boolean" syncable="YES"/>
+        <attribute name="nextSyncType" optional="YES" attributeType="Integer 16" syncable="YES"/>
         <attribute name="objectId" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="syncBeginTime" attributeType="Date" indexed="YES" syncable="YES"/>
         <attribute name="syncEndTime" optional="YES" attributeType="Date" indexed="YES" syncable="YES"/>
@@ -24,6 +25,7 @@
         <attribute name="syncStatus" optional="YES" attributeType="Integer 16" minValueString="0" maxValueString="2" defaultValueString="0" indexed="YES" syncable="YES"/>
         <attribute name="syncVersion" optional="YES" attributeType="Integer 64" minValueString="0" defaultValueString="0" indexed="YES" syncable="YES"/>
         <attribute name="title" attributeType="String" syncable="YES"/>
+        <attribute name="todoUUID" attributeType="String" syncable="YES"/>
         <attribute name="updatedAt" attributeType="Date" indexed="YES" syncable="YES"/>
         <relationship name="user" maxCount="1" deletionRule="Nullify" destinationEntity="User" inverseName="todos" inverseEntity="User" syncable="YES"/>
     </entity>
@@ -41,8 +43,8 @@
         <relationship name="todos" optional="YES" toMany="YES" deletionRule="Cascade" ordered="YES" destinationEntity="Todo" inverseName="user" inverseEntity="Todo" syncable="YES"/>
     </entity>
     <elements>
-        <element name="SyncRecord" positionX="-144" positionY="171" width="128" height="165"/>
-        <element name="Todo" positionX="-2" positionY="180" width="128" height="270"/>
+        <element name="SyncRecord" positionX="-119" positionY="-81" width="128" height="178"/>
+        <element name="Todo" positionX="61" positionY="36" width="128" height="283"/>
         <element name="User" positionX="-317" positionY="9" width="128" height="210"/>
     </elements>
 </model>

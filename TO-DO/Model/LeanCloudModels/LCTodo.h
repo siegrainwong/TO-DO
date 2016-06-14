@@ -23,6 +23,8 @@ typedef NS_ENUM(NSInteger, LCTodoStatus) {
 @class CDTodo;
 
 @interface LCTodo : LCSync<AVSubclassing>
+/* 本地唯一标识 */
+@property (nonatomic, readwrite, strong) NSString* todoUUID;
 /* 标题 */
 @property (nonatomic, readwrite, strong) NSString* title;
 /* 描述（被内置字段占用） */

@@ -16,7 +16,7 @@
     [self errorHandler:error description:description];
     return nil;
 }
-- (void)returnWithError:(NSError* _Nullable)error description:(NSString* _Nonnull)description returnWithBlock:(CompleteBlock)block
+- (void)returnWithError:(NSError* _Nullable)error description:(NSString* _Nonnull)description failBlock:(CompleteBlock)block
 {
     [self errorHandler:error description:description];
     [[GCDQueue mainQueue] sync:^{

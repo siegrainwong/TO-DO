@@ -55,6 +55,7 @@
     self.sgDescription = lcTodo.sgDescription;
     self.deadline = lcTodo.deadline;
     self.location = lcTodo.location;
+    self.todoUUID = lcTodo.todoUUID;
 
     return self;
 }
