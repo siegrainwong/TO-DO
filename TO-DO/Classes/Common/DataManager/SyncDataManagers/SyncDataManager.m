@@ -142,6 +142,7 @@ SyncDataManager ()
     [asyncOperation start];
 }
 #pragma mark - sync methods
+#pragma mark - sync prepare
 /**
  *  准备同步
  *
@@ -163,6 +164,7 @@ SyncDataManager ()
 
     return YES;
 }
+#pragma mark - incremental sync methods
 /**
  *  获取服务器上可以同步的待办事项，并转换为本地对象添加到当前上下文中
  *
@@ -180,23 +182,7 @@ SyncDataManager ()
 
     return YES;
 }
-/**
- *  将准备提交给服务器的待办事项转换为字典，并将本地待办事项标记为“已同步”状态
- */
-- (NSArray<NSDictionary*>*)todosToDictionary:(NSArray<CDTodo*>*)cdTodosArray
-{
-    NSMutableArray<NSDictionary*>* result = [NSMutableArray new];
-    for (CDTodo* todo in cdTodosArray) {
-        //2-1-1-1. 转换为LeanCloud对象，再转换为字典，添加到待上传列表中
-        LCTodo* lcTodo = [LCTodo lcTodoWithCDTodo:todo];
-        [result addObject:[[lcTodo dictionaryForObject] copy]];
-
-        //2-1-1-2. 修改本地数据状态为同步完成
-        todo.syncStatus = @(SyncStatusSynchronized);
-    }
-
-    return [result copy];
-}
+#pragma mark - full sync methods
 /**
  *  将本地没有的数据添加进上下文，将其他数据对比之后加入相应的同步序列，并返回需要上传的数组
  *
@@ -206,8 +192,8 @@ SyncDataManager ()
 {
     NSMutableArray<CDTodo*>* todosReadyToCommit = [NSMutableArray new];
 
-    NSMutableArray<LCTodo*>* serverTodosArray = [self retriveTodosAndAddTodosOnlyExistsOnServerToContext];
     NSDictionary* localTodosDictionary = [self cdTodosToDictionaryWithObjectIdSetToKey:[self fetchTodoWithAVObjectFiltering:AVObjectFilteringHasObjectId isOnlyFetchTodosNeedsToCommit:NO]];
+    NSMutableArray<LCTodo*>* serverTodosArray = [self retriveTodosAndAddTodosOnlyExistsOnServerToContext];
 
     // 2-2-2-2. 将现在服务器和本地都有的数据进行对比
     if (serverTodosArray.count != localTodosDictionary.count)
@@ -246,6 +232,24 @@ SyncDataManager ()
     }
 
     return todosOnServer;
+}
+#pragma mark - sync saving mthods
+/**
+ *  将准备提交给服务器的待办事项转换为字典，并将本地待办事项标记为“已同步”状态
+ */
+- (NSArray<NSDictionary*>*)todosToDictionary:(NSArray<CDTodo*>*)cdTodosArray
+{
+    NSMutableArray<NSDictionary*>* result = [NSMutableArray new];
+    for (CDTodo* todo in cdTodosArray) {
+        //2-1-1-1. 转换为LeanCloud对象，再转换为字典，添加到待上传列表中
+        LCTodo* lcTodo = [LCTodo lcTodoWithCDTodo:todo];
+        [result addObject:[[lcTodo dictionaryForObject] copy]];
+
+        //2-1-1-2. 修改本地数据状态为同步完成
+        todo.syncStatus = @(SyncStatusSynchronized);
+    }
+
+    return [result copy];
 }
 /**
  *  调用云函数保存代办事项，更新同步记录并保存当前上下文
