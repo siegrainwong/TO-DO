@@ -106,7 +106,7 @@ SyncDataManager ()
         //2-1. 并行线程1
         [operation addExecutionBlock:^{
             //如果是提交变更，获取所有修改过的数据、如果是其他模式，就只获取本地新增的数据
-            [todosReadyToCommit addObjectsFromArray:[self fetchTodoWithAVObjectFiltering:syncType == SyncTypeSendChanges ? AVObjectFilteringNone : AVObjectFilteringNoObjectId isOnlyFetchTodosNeedsToCommit:YES]];
+            [todosReadyToCommit addObjectsFromArray:[weakSelf fetchTodoWithAVObjectFiltering:syncType == SyncTypeSendChanges ? AVObjectFilteringNone : AVObjectFilteringNoObjectId isOnlyFetchTodosNeedsToCommit:YES]];
         }];
         //2-2. 并行线程2
         [operation addExecutionBlock:^{
@@ -115,39 +115,10 @@ SyncDataManager ()
                 if ([weakSelf retrieveTodosAndAddToContext]) return;
 
                 [weakOperation setCompletionBlock:nil];
-                return [self.errorHandler returnWithError:nil description:@"2-1. 下载数据失败" returnWithBlock:complete];
+                return [weakSelf.errorHandler returnWithError:nil description:@"2-1. 下载数据失败" returnWithBlock:complete];
             } else if (syncType == SyncTypeFullSync) {
                 //2-2-2. 如果是全量同步，则直接下载服务器上本地不存在的数据，其余数据对比之后再决定同步方向
-                NSMutableArray<LCTodo*>* todosOnServer = [NSMutableArray arrayWithArray:[weakSelf retrieveTodos]];
-                NSArray<CDTodo*>* todosOnLocal = [weakSelf fetchTodoWithAVObjectFiltering:AVObjectFilteringHasObjectId isOnlyFetchTodosNeedsToCommit:NO];
-                NSDictionary* localTodosDictionary = [weakSelf cdTodosToDictionaryWithObjectIdSetToKey:todosOnLocal];
-
-                // 2-2-2-1. 筛出本地没有的数据，添加到待保存数组中，并从原数组中移除
-                for (int i = 0; i < todosOnServer.count; i++) {
-                    LCTodo* lcTodo = todosOnServer[i];
-
-                    if ([weakSelf todoIsExists:lcTodo.objectId]) continue;
-                    CDTodo* cdTodo = [CDTodo cdTodoWithLCTodo:lcTodo inContext:weakSelf.localContext];
-                    cdTodo.syncStatus = @(SyncStatusSynchronized);
-                    [todosOnServer removeObjectAtIndex:i];
-                    i--;
-                }
-
-                // 2-2-2-2. 将现在服务器和本地都有的数据进行对比
-                if (todosOnServer.count != localTodosDictionary.count)
-                    DDLogError(@"2-2-1-2. 数据数量不对等...该次同步恐怕有诈");
-                for (LCTodo* lcTodo in todosOnServer) {
-                    CDTodo* cdTodo = localTodosDictionary[lcTodo.objectId];
-                    if (!cdTodo) continue;
-
-                    // 对比规则：1.大版本同步小版本 2.版本相同的话，以线上数据为准进行覆盖
-                    if (lcTodo.syncVersion >= cdTodo.syncVersion.integerValue) {
-                        [cdTodo cdTodoReplaceByLCTodo:lcTodo];
-                        cdTodo.syncStatus = @(SyncStatusSynchronized);
-                    } else if (lcTodo.syncVersion < cdTodo.syncVersion.integerValue) {
-                        [todosReadyToCommit addObject:cdTodo];
-                    }
-                }
+                [todosReadyToCommit addObjectsFromArray:[weakSelf retreiveTodosNeedsToCommitAndCompareTheRestOfTodos]];
             }
         }];
         //2.3. 汇总线程
@@ -225,6 +196,56 @@ SyncDataManager ()
     }
 
     return [result copy];
+}
+/**
+ *  将本地没有的数据添加进上下文，将其他数据对比之后加入相应的同步序列，并返回需要上传的数组
+ *
+ *  @return 等待上传的数据
+ */
+- (NSArray<CDTodo*>*)retreiveTodosNeedsToCommitAndCompareTheRestOfTodos
+{
+    NSMutableArray<CDTodo*>* todosReadyToCommit = [NSMutableArray new];
+
+    NSMutableArray<LCTodo*>* serverTodosArray = [self retriveTodosAndAddTodosOnlyExistsOnServerToContext];
+    NSDictionary* localTodosDictionary = [self cdTodosToDictionaryWithObjectIdSetToKey:[self fetchTodoWithAVObjectFiltering:AVObjectFilteringHasObjectId isOnlyFetchTodosNeedsToCommit:NO]];
+
+    // 2-2-2-2. 将现在服务器和本地都有的数据进行对比
+    if (serverTodosArray.count != localTodosDictionary.count)
+        DDLogError(@"2-2-1-2. 数据数量不对等...该次同步恐怕有诈");
+    for (LCTodo* lcTodo in serverTodosArray) {
+        CDTodo* cdTodo = localTodosDictionary[lcTodo.objectId];
+        if (!cdTodo) continue;
+
+        // 对比规则：1.大版本同步小版本 2.版本相同的话，以线上数据为准进行覆盖
+        if (lcTodo.syncVersion >= cdTodo.syncVersion.integerValue) {
+            [cdTodo cdTodoReplaceByLCTodo:lcTodo];
+            cdTodo.syncStatus = @(SyncStatusSynchronized);
+        } else if (lcTodo.syncVersion < cdTodo.syncVersion.integerValue) {
+            [todosReadyToCommit addObject:cdTodo];
+        }
+    }
+
+    return [todosReadyToCommit copy];
+}
+/**
+ *  筛出本地没有的数据，添加到上下文中，并从原数组中移除
+ *
+ *  @return 移除了只存在于服务器的数据的待办事项数组
+ */
+- (NSMutableArray<LCTodo*>*)retriveTodosAndAddTodosOnlyExistsOnServerToContext
+{
+    NSMutableArray<LCTodo*>* todosOnServer = [NSMutableArray arrayWithArray:[self retrieveTodos]];
+    for (int i = 0; i < todosOnServer.count; i++) {
+        LCTodo* lcTodo = todosOnServer[i];
+
+        if ([self todoIsExists:lcTodo.objectId]) continue;
+        CDTodo* cdTodo = [CDTodo cdTodoWithLCTodo:lcTodo inContext:_localContext];
+        cdTodo.syncStatus = @(SyncStatusSynchronized);
+        [todosOnServer removeObjectAtIndex:i];
+        i--;
+    }
+
+    return todosOnServer;
 }
 /**
  *  调用云函数保存代办事项，更新同步记录并保存当前上下文
