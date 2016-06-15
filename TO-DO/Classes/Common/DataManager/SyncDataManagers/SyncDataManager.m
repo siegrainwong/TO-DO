@@ -208,7 +208,8 @@ SyncDataManager ()
             continue;
         }
 
-        if (!cdTodo.objectId) cdTodo.objectId = lcTodo.objectId;
+        if (!cdTodo.objectId)
+            cdTodo.objectId = lcTodo.objectId;
 
         // 对比规则：1.大版本同步小版本 2.版本相同的话，以线上数据为准进行覆盖
         if (lcTodo.syncVersion >= cdTodo.syncVersion.integerValue) {
@@ -404,6 +405,9 @@ SyncDataManager ()
 
     CDSyncRecord* cdSyncRecord = [CDSyncRecord syncRecordFromLCSyncRecord:lcSyncRecord inContext:_localContext];
 
+    DDLogInfo(@"正在保存本地的同步记录");
+    [_localContext MR_saveToPersistentStoreAndWait];
+
     return cdSyncRecord;
 }
 #pragma mark - helper
@@ -447,7 +451,7 @@ SyncDataManager ()
 	 这种情况出现于线上数据被保存，但在本地数据保存之前程序挂掉了，这时候也需要全量同步
 	 然后线上数据取下来之后，先用uuid去查找对应的本地待办事项，找不到就是本地没有的数据，找到了判断有没有objectId，没有就替换。
 	 */
-    if (lcSyncRecord.isFinished && !cdSyncRecord.isFinished)
+    if (lcSyncRecord.isFinished && cdSyncRecord && !cdSyncRecord.isFinished)
         return SyncTypeFullSync;
 
     if (!cdSyncRecord)
