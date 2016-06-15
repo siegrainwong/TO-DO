@@ -122,15 +122,11 @@ CreateViewController ()
 
     _locationTextField = [SGTextField textField];
     _locationTextField.field.returnKeyType = UIReturnKeyDone;
-    [_locationTextField setTextFieldShouldReturn:^(SGTextField* textField) {
-        [weakSelf commitButtonDidPress];
-    }];
+    [_locationTextField setTextFieldShouldReturn:^(SGTextField* textField) { [weakSelf commitButtonDidPress]; }];
     [_linearView addSubview:_locationTextField];
 
     _commitButton = [SGCommitButton commitButton];
-    [_commitButton setCommitButtonDidPress:^{
-        [weakSelf commitButtonDidPress];
-    }];
+    [_commitButton setCommitButtonDidPress:^{ [weakSelf commitButtonDidPress]; }];
     [_containerView addSubview:_commitButton];
 }
 - (void)bindConstraints
@@ -185,11 +181,11 @@ CreateViewController ()
         CDTodo* todo = [CDTodo MR_createEntity];
         todo.title = weakSelf.titleTextField.field.text;
         todo.sgDescription = weakSelf.descriptionTextField.field.text;
-        todo.deadline = weakSelf.selectedDate;
+        todo.deadline = self.selectedDate;
         todo.location = weakSelf.locationTextField.field.text;
         todo.photoData = UIImageJPEGRepresentation(weakSelf.selectedImage, 0.5);
         todo.photoImage = [UIImage imageWithData:todo.photoData];
-        todo.user = self.cdUser;
+        todo.user = weakSelf.cdUser;
         todo.status = @(TodoStatusNormal);
         todo.isCompleted = @(NO);
         todo.isHidden = @(NO);
@@ -199,7 +195,14 @@ CreateViewController ()
 
         [weakSelf enableView:YES];
         NSLog(@"%@", [NSThread currentThread]);
-        if (![weakSelf.dataManager isInsertedTodo:todo]) return;
+        if (![weakSelf.dataManager isInsertedTodo:todo]) {
+            /*
+			 Mark: MagicalRecord
+			 这个地方...新创建的实体如果验证失败的话，一定要记住移除它，不然它还在上下文中，等你下次保存的时候，会直接报错。
+			 */
+            [todo MR_deleteEntity];
+            return;
+        }
         if (weakSelf.createViewControllerDidFinishCreate) weakSelf.createViewControllerDidFinishCreate(todo);
         [weakSelf.navigationController popToRootViewControllerAnimated:YES];
     }];

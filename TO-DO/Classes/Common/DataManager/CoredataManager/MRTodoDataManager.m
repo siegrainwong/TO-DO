@@ -32,6 +32,7 @@ MRTodoDataManager ()
 #pragma mark - localization
 - (void)localizeStrings
 {
+    _localDictionary = [NSMutableDictionary new];
     _localDictionary[kTitleInvalidKey] = ConcatLocalizedString1(@"Title", @" can not be empty");
     _localDictionary[kTimeInvalidKey] = ConcatLocalizedString1(@"Time", @" can not be empty");
     _localDictionary[kDescriptionInvalidKey] = ConcatLocalizedString1(@"Description", @" is invalid");
@@ -41,6 +42,7 @@ MRTodoDataManager ()
 - (instancetype)init
 {
     if (self = [super init]) {
+        [self localizeStrings];
     }
     return self;
 }
@@ -81,13 +83,12 @@ MRTodoDataManager ()
     _model = todo;
     if (![self validate]) return NO;
 
-    MR_saveAndWait();
+    [[NSManagedObjectContext MR_defaultContext] MR_saveToPersistentStoreAndWait];
     return YES;
 }
 #pragma mark - validate
 - (BOOL)validate
 {
-    [self localizeStrings];
     NSLog(@"%@", [NSThread currentThread]);
 
     // 暂时不做正则验证
