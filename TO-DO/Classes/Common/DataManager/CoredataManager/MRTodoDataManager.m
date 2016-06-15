@@ -83,7 +83,7 @@ MRTodoDataManager ()
     _model = todo;
     if (![self validate]) return NO;
 
-    [[NSManagedObjectContext MR_defaultContext] MR_saveToPersistentStoreAndWait];
+    MR_saveAndWait();
     return YES;
 }
 #pragma mark - validate
@@ -124,7 +124,7 @@ MRTodoDataManager ()
     return YES;
 }
 #pragma mark - modify
-- (void)modifyTodo:(CDTodo*)todo complete:(void (^)(bool succeed))complete
+- (BOOL)isModifiedTodo:(CDTodo*)todo
 {
     [[GCDQueue globalQueueWithLevel:DISPATCH_QUEUE_PRIORITY_DEFAULT] sync:^{
         todo.syncStatus = @(SyncStatusWaiting);
@@ -132,5 +132,7 @@ MRTodoDataManager ()
         todo.updatedAt = [NSDate date];
         MR_saveAndWait();
     }];
+
+    return YES;
 }
 @end

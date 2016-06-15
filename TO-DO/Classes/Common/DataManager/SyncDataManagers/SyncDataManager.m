@@ -52,8 +52,6 @@ SyncDataManager ()
         dataManager = [SyncDataManager new];
         dataManager.isSyncing = NO;
         dataManager.errorHandler = [SyncErrorHandler new];
-        dataManager.lcUser = [AppDelegate globalDelegate].lcUser;
-        dataManager.cdUser = [AppDelegate globalDelegate].cdUser;
         [dataManager.errorHandler setErrorHandlerWillReturn:^{
             [dataManager cleanUp];
         }];
@@ -143,6 +141,9 @@ SyncDataManager ()
  */
 - (BOOL)isPreparedWithSyncMode:(SyncMode)syncMode
 {
+    if (!_lcUser) _lcUser = [AppDelegate globalDelegate].lcUser;
+    if (!_cdUser) _cdUser = [AppDelegate globalDelegate].cdUser;
+
     _errorHandler.isAlert = syncMode == SyncModeManually;
 
     /*

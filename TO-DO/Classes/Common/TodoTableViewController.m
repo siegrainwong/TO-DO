@@ -157,10 +157,10 @@ TodoTableViewController ()
         [cell setTodoDidComplete:^BOOL(TodoTableViewCell* sender) {
             [sender setUserInteractionEnabled:NO];
             sender.model.isCompleted = @(YES);
-            [weakSelf.dataManager modifyTodo:sender.model complete:^(bool succeed) {
-                [sender setUserInteractionEnabled:YES];
-                if (succeed) [weakSelf removeTodo:sender.model atIndexPath:[weakSelf.tableView indexPathForCell:sender] reordering:NO animate:YES];
-            }];
+            if ([weakSelf.dataManager isModifiedTodo:sender.model])
+                [weakSelf removeTodo:sender.model atIndexPath:[weakSelf.tableView indexPathForCell:sender] reordering:NO animate:YES];
+
+            [sender setUserInteractionEnabled:YES];
             return NO;
         }];
     }
@@ -175,10 +175,10 @@ TodoTableViewController ()
         [cell setTodoDidRemove:^BOOL(TodoTableViewCell* sender) {
             [sender setUserInteractionEnabled:NO];
             sender.model.isHidden = @(YES);
-            [weakSelf.dataManager modifyTodo:sender.model complete:^(bool succeed) {
-                [sender setUserInteractionEnabled:YES];
-                if (succeed) [weakSelf removeTodo:sender.model atIndexPath:[weakSelf.tableView indexPathForCell:sender] reordering:NO animate:YES];
-            }];
+            if ([weakSelf.dataManager isModifiedTodo:sender.model])
+                [weakSelf removeTodo:sender.model atIndexPath:[weakSelf.tableView indexPathForCell:sender] reordering:NO animate:YES];
+
+            [sender setUserInteractionEnabled:YES];
             return YES;
         }];
     }
@@ -269,12 +269,11 @@ TodoTableViewController ()
     if ([todo.lastDeadline compare:todo.deadline] == NSOrderedAscending)
         todo.status = @(TodoStatusSnoozed);
     [_snoozingCell setUserInteractionEnabled:NO];
-    [weakSelf.dataManager modifyTodo:todo complete:^(bool succeed) {
-        [weakSelf.snoozingCell setUserInteractionEnabled:YES];
-        if (succeed)
-            [weakSelf reorderTodo:todo atIndexPath:[self.tableView indexPathForCell:weakSelf.snoozingCell]];
-        weakSelf.snoozingCell = nil;
-    }];
+    if ([_dataManager isModifiedTodo:todo])
+        [weakSelf reorderTodo:todo atIndexPath:[self.tableView indexPathForCell:weakSelf.snoozingCell]];
+
+    [weakSelf.snoozingCell setUserInteractionEnabled:YES];
+    weakSelf.snoozingCell = nil;
 
     return YES;
 }
@@ -306,7 +305,7 @@ TodoTableViewController ()
             for (CDTodo* todo in array) {
                 if ([todo.status integerValue] != TodoStatusOverdue && [todo.deadline compare:[NSDate date]] == NSOrderedAscending) {
                     todo.status = @(TodoStatusOverdue);
-                    [weakSelf.dataManager modifyTodo:todo complete:nil];
+                    [weakSelf.dataManager isModifiedTodo:todo];
                     needsToReload = YES;
                 }
             }

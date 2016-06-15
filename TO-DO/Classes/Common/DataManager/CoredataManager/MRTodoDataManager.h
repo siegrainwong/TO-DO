@@ -11,6 +11,6 @@
 
 @interface MRTodoDataManager : NSObject<Localized>
 - (void)retrieveDataWithUser:(CDUser*)user date:(NSDate*)date complete:(void (^)(bool succeed, NSDictionary* dataDictionary, NSInteger dataCount))complete;
-- (void)modifyTodo:(CDTodo*)todo complete:(void (^)(bool succeed))complete;
+- (BOOL)isModifiedTodo:(CDTodo*)todo;
 - (BOOL)isInsertedTodo:(CDTodo*)todo;
 @end
