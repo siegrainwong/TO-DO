@@ -74,4 +74,6 @@ typedef NS_ENUM(NSInteger, LCTodoStatus) {
 /* CDTodo 转换为 LCTodo */
 + (LCTodo*)lcTodoWithCDTodo:(CDTodo*)cdTodo;
 + (NSArray<LCTodo*>*)lcTodoArrayWithCDTodoArray:(NSArray<CDTodo*>*)cdArray;
+/* 判断LCTodo和CDTodo的数据是否相同 */
+- (BOOL)isSameDataAsCDTodo:(CDTodo*)cdTodo;
 @end

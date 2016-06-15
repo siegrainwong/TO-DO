@@ -54,6 +54,25 @@
 
     return lcArray;
 }
+
+- (BOOL)isSameDataAsCDTodo:(CDTodo*)cdTodo
+{
+    if ([self.deadline compare:cdTodo.deadline] != NSOrderedSame) return NO;
+    if (self.status != cdTodo.status.integerValue) return NO;
+    if (self.isHidden != cdTodo.isHidden.boolValue) return NO;
+    if (self.isCompleted != cdTodo.isCompleted.boolValue) return NO;
+    if (![self.location isEqualToString:cdTodo.location]) return NO;
+    if (![self.title isEqualToString:cdTodo.title]) return NO;
+    if (![self.sgDescription isEqualToString:cdTodo.sgDescription]) return NO;
+    if (![self.photo isEqualToString:cdTodo.photo]) return NO;
+    if ([self.localCreatedAt compare:cdTodo.createdAt] != NSOrderedSame) return NO;
+    if ([self.localUpdatedAt compare:cdTodo.updatedAt] != NSOrderedSame) return NO;
+    if (self.syncVersion != cdTodo.syncVersion.integerValue) return NO;
+
+    return YES;
+}
+
+#pragma mark - leancloud subclass methods
 + (NSString*)parseClassName
 {
     return @"Todo";

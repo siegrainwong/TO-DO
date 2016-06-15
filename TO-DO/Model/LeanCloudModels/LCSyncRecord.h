@@ -11,7 +11,7 @@
 
 @interface LCSyncRecord : AVObject<AVSubclassing>
 /**
- *  本次同步是否完成
+ *  本次同步是否完成（同一批次内只有最后一条同步记录未完成时，说明该批次同步成功）
  */
 @property (nonatomic, readwrite, assign) BOOL isFinished;
 /**
@@ -34,4 +34,8 @@
  *  同步类型
  */
 @property (nonatomic, readwrite, assign) SyncType syncType;
+/**
+ *  标记（相同标记代表这几条同步记录为同一批次）
+ */
+@property (nonatomic, readwrite, strong) NSString* recordMark;
 @end

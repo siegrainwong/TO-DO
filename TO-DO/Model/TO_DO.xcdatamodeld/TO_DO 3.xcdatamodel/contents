@@ -5,6 +5,7 @@
         <attribute name="isFinished" attributeType="Boolean" syncable="YES"/>
         <attribute name="nextSyncType" optional="YES" attributeType="Integer 16" syncable="YES"/>
         <attribute name="objectId" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="recordMark" attributeType="String" syncable="YES"/>
         <attribute name="syncBeginTime" attributeType="Date" indexed="YES" syncable="YES"/>
         <attribute name="syncEndTime" optional="YES" attributeType="Date" indexed="YES" syncable="YES"/>
         <attribute name="syncType" optional="YES" attributeType="Integer 16" defaultValueString="0" indexed="YES" syncable="YES"/>
@@ -43,7 +44,7 @@
         <relationship name="todos" optional="YES" toMany="YES" deletionRule="Cascade" ordered="YES" destinationEntity="Todo" inverseName="user" inverseEntity="Todo" syncable="YES"/>
     </entity>
     <elements>
-        <element name="SyncRecord" positionX="-119" positionY="-81" width="128" height="178"/>
+        <element name="SyncRecord" positionX="-119" positionY="-81" width="128" height="195"/>
         <element name="Todo" positionX="61" positionY="36" width="128" height="283"/>
         <element name="User" positionX="-317" positionY="9" width="128" height="210"/>
     </elements>

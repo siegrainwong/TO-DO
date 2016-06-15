@@ -17,7 +17,9 @@
 #import "SCLAlertHelper.h"
 #import "SyncDataManager.h"
 
-static NSInteger const kFetchLimitPerBatch = 50;
+/* 每次同步最大获取数据量 */
+static NSInteger const kMaximumSyncCountPerFetch = 50;
+/* 本地时间与服务器时间相差多少秒禁止同步 */
 static NSInteger const kInvalidTimeInterval = 10;
 
 @interface
@@ -31,8 +33,8 @@ SyncDataManager ()
 
 @property (nonatomic, readwrite, assign) SyncType syncType;
 @property (nonatomic, readwrite, assign) BOOL isSyncing;
-@property (nonatomic, readwrite, assign) BOOL needsToContinueSync;
-@property (nonatomic, readwrite, assign) NSUInteger syncCount;
+@property (nonatomic, readwrite, assign) NSUInteger synchronizedCount;
+@property (nonatomic, readwrite, strong) NSMutableDictionary* lastDeadlineDictionary;
 @end
 
 @implementation SyncDataManager
@@ -52,6 +54,7 @@ SyncDataManager ()
         dataManager = [SyncDataManager new];
         dataManager.isSyncing = NO;
         dataManager.errorHandler = [SyncErrorHandler new];
+        dataManager.lastDeadlineDictionary = [NSMutableDictionary new];
         [dataManager.errorHandler setErrorHandlerWillReturn:^{
             [dataManager cleanUp];
         }];
@@ -78,6 +81,13 @@ SyncDataManager ()
 	 3. 对比同步规则：1.大版本同步小版本 2.版本相同的话，以线上数据为准进行覆盖（另一种做法是建立冲突副本，根据本项目的实际情况不采用这种方式）
 	 4. 若提交云函数直到函数返回结果的这段时间，客户端挂掉的话，下次同步必须为full sync（此时线上同步记录为完成状态，本地对应的记录为未完成状态），同时在对比时将objectId赋值给本地的待办事项。
 	 */
+
+    /*
+	 TODO: 如何实现按批同步，需要在同步中获取到两种类型的数量，分别为上传数量和下载数量，其中一种数量超过批次读取数上限时，递归同步
+	 同时数据以localCreatedAt字段进行分页，所以每次同步结束时需要按数量类型来保存lastLocalCreatedAt字段。
+	 
+	 不过现在有个问题，批次之间duang了怎么办？我还没有想好，我明天再琢磨下
+	 */
     __weak typeof(self) weakSelf = self;
     NSBlockOperation* asyncOperation = [NSBlockOperation new];
     [asyncOperation addExecutionBlock:^{
@@ -95,7 +105,6 @@ SyncDataManager ()
             //如果是提交变更，获取所有修改过的数据、如果是其他模式，就只获取本地新增的数据
             NSArray<CDTodo*>* todosArray = [weakSelf fetchTodoWithAVObjectFiltering:weakSelf.syncType == SyncTypeSendChanges ? AVObjectFilteringNone : AVObjectFilteringNoObjectId isOnlyFetchTodosNeedsToCommit:YES];
             [todosReadyToCommit addObjectsFromArray:todosArray];
-            //            if (todosArray.count >= kFetchLimitPerBatch) weakSelf.needsToContinueSync = YES;
         }];
         //2-2. 并行线程2
         [operation addExecutionBlock:^{
@@ -162,6 +171,38 @@ SyncDataManager ()
 
     return YES;
 }
+#pragma mark - sync type
+/**
+ *  获取此次同步的同步类型
+ *
+ *  @param lcSyncRecord 服务器的同步记录
+ *  @param cdSyncRecord 本地的同步记录
+ *
+ *  @return 同步类型
+ */
+- (SyncType)syncTypeWithLastSyncRecordOnServer:(LCSyncRecord*)lcSyncRecord andLastSyncRecordOnLocal:(CDSyncRecord*)cdSyncRecord
+{
+    /**
+	 *	1. 若 lastSyncTimeOnServer = lastSyncTimeOnClient，表明服务器数据没有变化，则仅需要上传本地修改过的数据和新增的数据(send changes)
+	 *	2. 若 lastSyncTimeOnServer > lastSyncTimeOnClient，则进行全数据对比，先对比同步所有已有数据，再将其他数据从服务器上下载(full sync)
+	 *  3. 若 Server 没有该 Client 的同步记录，则将本地所有数据进行上传，并将服务器上所有的数据进行下载(incremental sync)
+	 *  4. 正常情况来说，是不会出现 lastSyncTimeOnServer < lastSyncTimeOnClient 的，这种情况也进行 incremental sync
+	 */
+
+    // 如果不是第一批同步，那么用上次的同步类型继续同步
+    if (_synchronizedCount)
+        return _syncType;
+
+    if (!cdSyncRecord)
+        return SyncTypeIncrementalSync;
+
+    if ([lcSyncRecord.syncBeginTime compare:cdSyncRecord.syncBeginTime] == NSOrderedSame)
+        return SyncTypeSendChanges;
+    else if ([lcSyncRecord.syncBeginTime compare:cdSyncRecord.syncBeginTime] == NSOrderedDescending)
+        return SyncTypeFullSync;
+    else
+        return SyncTypeIncrementalSync;
+}
 #pragma mark - incremental sync methods
 /**
  *  获取服务器上可以同步的待办事项，并转换为本地对象添加到当前上下文中
@@ -171,7 +212,6 @@ SyncDataManager ()
 - (BOOL)isAddedTodosToContextFromTodosOnServer
 {
     NSArray<LCTodo*>* todosNeedsToDownload = [self retrieveTodos];
-    if (todosNeedsToDownload.count >= kFetchLimitPerBatch) _needsToContinueSync = YES;
     if (!todosNeedsToDownload) return NO;
 
     for (LCTodo* todo in todosNeedsToDownload) {
@@ -190,17 +230,10 @@ SyncDataManager ()
 - (NSArray<CDTodo*>*)retreiveTodosNeedsToCommitAndCompareTheRestOfTodos
 {
     NSMutableArray<CDTodo*>* todosReadyToCommit = [NSMutableArray new];
-
-    //    NSDictionary* localTodosDictionary = [self cdTodosToDictionaryWithObjectIdSetToKey:[self fetchTodoWithAVObjectFiltering:AVObjectFilteringHasObjectId isOnlyFetchTodosNeedsToCommit:NO]];
     NSMutableArray<LCTodo*>* serverTodosArray = [NSMutableArray arrayWithArray:[self retrieveTodos]];
 
-    // 2-2-2-2. 将现在服务器和本地都有的数据进行对比
-    //    if (serverTodosArray.count != localTodosDictionary.count)
-    //        DDLogError(@"2-2-1-2. 数据数量不对等...该次同步恐怕有诈");
     for (LCTodo* lcTodo in serverTodosArray) {
-        //        CDTodo* cdTodo = localTodosDictionary[lcTodo.objectId];
-
-        // 2-2-2-1. 将
+        // 筛选出本地没有的数据
         CDTodo* cdTodo = [self todoWithIdentifier:lcTodo.identifier];
         if (!cdTodo) {
             cdTodo = [CDTodo cdTodoWithLCTodo:lcTodo inContext:_localContext];
@@ -208,8 +241,11 @@ SyncDataManager ()
             continue;
         }
 
-        if (!cdTodo.objectId)
-            cdTodo.objectId = lcTodo.objectId;
+        // 参见注意事项4
+        if (!cdTodo.objectId) cdTodo.objectId = lcTodo.objectId;
+
+        // 数据相同不同步，避免相同数据下修改上下文状态...
+        if ([lcTodo isSameDataAsCDTodo:cdTodo]) continue;
 
         // 对比规则：1.大版本同步小版本 2.版本相同的话，以线上数据为准进行覆盖
         if (lcTodo.syncVersion >= cdTodo.syncVersion.integerValue) {
@@ -222,7 +258,7 @@ SyncDataManager ()
 
     return [todosReadyToCommit copy];
 }
-#pragma mark - sync saving mthods
+#pragma mark - sync saving methods
 /**
  *  将准备提交给服务器的待办事项转换为字典，并将本地待办事项标记为“已同步”状态
  */
@@ -309,7 +345,7 @@ SyncDataManager ()
     AVQuery* query = [AVQuery queryWithClassName:[LCTodo parseClassName]];
     [query whereKey:@"user" equalTo:_lcUser];
     [query orderByDescending:@"objectId"];
-    [query setLimit:kFetchLimitPerBatch];
+    [query setLimit:kMaximumSyncCountPerFetch];
 
     NSError* error = nil;
     NSArray<LCTodo*>* array = [query findObjects:&error];
@@ -334,7 +370,7 @@ SyncDataManager ()
 }
 #pragma mark - retrieve data that needs to sync
 /**
- *  筛选本地的待办事项
+ *  筛选本地前50条待办事项，以deadline倒序排序，若为FullSync则以objectId倒序排序
  *
  *  @param filtering objectId的筛选规则
  *  @param filtering 是否只筛选需要上传的待办事项
@@ -348,7 +384,7 @@ SyncDataManager ()
     [arguments addObjectsFromArray:@[ _cdUser ]];
 
     NSString* appendPredicate = @"";
-    NSString* sortBy = @"updatedAt";
+    NSString* sortBy = @"deadline";
     if (filtering == AVObjectFilteringHasObjectId) {
         appendPredicate = @" and objectId != nil";
         sortBy = @"objectId";
@@ -365,7 +401,7 @@ SyncDataManager ()
 
     NSPredicate* filter = [NSPredicate predicateWithFormat:predicateFormat argumentArray:[arguments copy]];
     NSFetchRequest* request = [CDTodo MR_requestAllWithPredicate:filter inContext:_localContext];
-    [request setFetchLimit:kFetchLimitPerBatch];
+    [request setFetchLimit:kMaximumSyncCountPerFetch];
     request.sortDescriptors = @[ [[NSSortDescriptor alloc] initWithKey:sortBy ascending:NO] ];
     NSArray<CDTodo*>* data = [CDTodo MR_executeFetchRequest:request inContext:_localContext];
 
@@ -430,41 +466,6 @@ SyncDataManager ()
     return serverDate;
 }
 /**
- *  获取此次同步的同步类型
- *
- *  @param lcSyncRecord 服务器的同步记录
- *  @param cdSyncRecord 本地的同步记录
- *
- *  @return 同步类型
- */
-- (SyncType)syncTypeWithLastSyncRecordOnServer:(LCSyncRecord*)lcSyncRecord andLastSyncRecordOnLocal:(CDSyncRecord*)cdSyncRecord
-{
-    /**
-	 *	1. 若 lastSyncTimeOnServer = lastSyncTimeOnClient，表明服务器数据没有变化，则仅需要上传本地修改过的数据和新增的数据(send changes)
-	 *	2. 若 lastSyncTimeOnServer > lastSyncTimeOnClient，则进行全数据对比，先对比同步所有已有数据，再将其他数据从服务器上下载(full sync)
-	 *  3. 若 Server 没有该 Client 的同步记录，则将本地所有数据进行上传，并将服务器上所有的数据进行下载(incremental sync)
-	 *  4. 正常情况来说，是不会出现 lastSyncTimeOnServer < lastSyncTimeOnClient 的，这种情况也进行 incremental sync
-	 */
-
-    /*
-	 TODO:
-	 这种情况出现于线上数据被保存，但在本地数据保存之前程序挂掉了，这时候也需要全量同步
-	 然后线上数据取下来之后，先用uuid去查找对应的本地待办事项，找不到就是本地没有的数据，找到了判断有没有objectId，没有就替换。
-	 */
-    if (lcSyncRecord.isFinished && cdSyncRecord && !cdSyncRecord.isFinished)
-        return SyncTypeFullSync;
-
-    if (!cdSyncRecord)
-        return SyncTypeIncrementalSync;
-
-    if ([lcSyncRecord.syncBeginTime compare:cdSyncRecord.syncBeginTime] == NSOrderedSame)
-        return SyncTypeSendChanges;
-    else if ([lcSyncRecord.syncBeginTime compare:cdSyncRecord.syncBeginTime] == NSOrderedDescending)
-        return SyncTypeFullSync;
-    else
-        return SyncTypeIncrementalSync;
-}
-/**
  *  结束同步之前的清除操作
  */
 - (void)cleanUp
@@ -472,16 +473,26 @@ SyncDataManager ()
     _syncRecord = nil;
     _localContext = nil;
     _isSyncing = NO;
+    _synchronizedCount = 0;
+    _lastDeadlineDictionary = [NSMutableDictionary new];
 }
 /**
  *  同步成功后的返回
  */
 - (void)succeedReturn:(CompleteBlock)block hasData:(BOOL)hasData
 {
-    [self cleanUp];
-    [[NSOperationQueue mainQueue] addOperationWithBlock:^{
-        return block(YES);
-    }];
+    if (!hasData) {
+        //如果没有数据了，返回
+        DDLogInfo(@"此次同步完毕，同步次数为：%ld", _synchronizedCount + 1);
+        [self cleanUp];
+        [[NSOperationQueue mainQueue] addOperationWithBlock:^{
+            return block(YES);
+        }];
+    } else {
+        //如果此次同步有数据变更，递归继续同步
+        _synchronizedCount++;
+        return [self synchronize:SyncModeManually complete:block];
+    }
 }
 /**
  *  将本地待办事项数组转换为字典，并将objectId设为key

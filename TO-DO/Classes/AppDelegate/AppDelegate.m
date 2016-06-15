@@ -17,6 +17,7 @@
 #import "JVFloatingDrawerView.h"
 #import "LCSyncRecord.h"
 #import "LCTodo.h"
+#import "LCTodoDataManager.h"
 #import "LoginViewController.h"
 #import "Macros.h"
 #import "UIImage+Extension.h"
@@ -66,6 +67,7 @@ AppDelegate ()
     [self setupLeanCloud];
     [self setupDrawerViewController];
     [self applicationDocumentsDirectory];
+    //    [self insertTestTodoToLC];
 
     [UIApplication sharedApplication].statusBarStyle = UIStatusBarStyleLightContent;
     self.window = [[UIWindow alloc] initWithFrame:[[UIScreen mainScreen] bounds]];
@@ -132,13 +134,35 @@ AppDelegate ()
     [CDUser MR_truncateAll];
     [CDTodo MR_truncateAll];
 }
+- (void)insertTestTodoToLC
+{
+    NSMutableArray* array = [NSMutableArray array];
+    for (int i = 0; i < 100; i++) {
+        LCTodo* todo = [LCTodo object];
+        todo.title = [NSString stringWithFormat:@"Test data：%d", i];
+        todo.sgDescription = [NSString stringWithFormat:@"this is a fucking description: %d", i];
+        todo.localCreatedAt = [NSDate date];
+        todo.localUpdatedAt = [todo.localCreatedAt copy];
+        todo.deadline = [[NSDate date] dateByAddingTimeInterval:arc4random() % 70000];
+        todo.user = _lcUser;
+        todo.isCompleted = false;
+        todo.isHidden = false;
+        todo.status = TodoStatusNormal;
+        todo.syncVersion = 0;
+        todo.identifier = [[NSUUID UUID] UUIDString];
+
+        [array addObject:todo];
+    }
+
+    [LCTodo saveAll:[array copy]];
+}
 - (NSURL*)applicationDocumentsDirectory
 {
     NSLog(@"%@", [[[NSFileManager defaultManager] URLsForDirectory:NSDocumentDirectory inDomains:NSUserDomainMask] lastObject]);
 
     return [[[NSFileManager defaultManager] URLsForDirectory:NSDocumentDirectory inDomains:NSUserDomainMask] lastObject];
 }
-#pragma mark -
+#pragma mark - switch root view controller
 - (void)switchRootViewController:(UIViewController*)viewController isNavigation:(BOOL)isNavigation
 {
     if (isNavigation) {
@@ -156,7 +180,7 @@ AppDelegate ()
 {
     _drawerViewController.centerViewController = viewController;
 }
-#pragma mark -
+#pragma mark - global access helper
 + (AppDelegate*)globalDelegate
 {
     return (AppDelegate*)[UIApplication sharedApplication].delegate;
