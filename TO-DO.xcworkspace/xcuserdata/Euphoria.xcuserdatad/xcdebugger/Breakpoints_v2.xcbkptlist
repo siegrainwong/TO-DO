@@ -20,28 +20,12 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "TO-DO/Classes/Common/DataManager/SyncDataManagers/SyncDataManager.m"
-            timestampString = "487789031.040148"
+            timestampString = "487792094.370795"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "510"
-            endingLineNumber = "510"
-            landmarkName = "-returnIfDonNotNeedToSync:"
-            landmarkType = "5">
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
-            shouldBeEnabled = "Yes"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
-            filePath = "TO-DO/Classes/Common/DataManager/SyncDataManagers/SyncDataManager.m"
-            timestampString = "487789313.527583"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "482"
-            endingLineNumber = "482"
-            landmarkName = "-recordDataCountAndLastCreateDateWithArray:fetchType:"
+            startingLineNumber = "299"
+            endingLineNumber = "299"
+            landmarkName = "-commitTodosAndSave:"
             landmarkType = "5">
          </BreakpointContent>
       </BreakpointProxy>

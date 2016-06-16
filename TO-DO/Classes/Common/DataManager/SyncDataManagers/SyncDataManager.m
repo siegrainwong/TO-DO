@@ -300,8 +300,8 @@ SyncDataManager ()
       @{ @"todos" : todosDictionary,
           @"syncRecordDictionary" : @{
               @"syncRecordId" : _syncRecord.objectId,
-              @"commitCount" : _lastCreatedAtDictionary[@(TodoFetchTypeCommit)],
-              @"downloadCount" : _lastCreatedAtDictionary[@(TodoFetchTypeDownload)]
+              @"commitCount" : _syncRecord.commitCount,
+              @"downloadCount" : _syncRecord.downloadCount
           } };
     // Mark: 这里回调返回了两个数据，第一个是待办事项objectId数组，第二个是服务器修改过的的SyncRecord字典。
     // Mark: LeanCloud rpcFunction美名其曰可以直传AVObject，然而云函数并不支持保存
@@ -479,13 +479,16 @@ SyncDataManager ()
 }
 - (void)recordDataCountAndLastCreateDateWithArray:(NSArray*)array fetchType:(TodoFetchType)fetchType
 {
+    NSDate* createdAt;
     if (fetchType == TodoFetchTypeCommit) {
         _syncRecord.commitCount = @(array.count);
-        _lastCreatedAtDictionary[@(fetchType)] = ((CDTodo*)[array lastObject]).createdAt;
+        createdAt = ((CDTodo*)[array lastObject]).createdAt;
+
     } else {
         _syncRecord.downloadCount = @(array.count);
-        _lastCreatedAtDictionary[@(fetchType)] = ((LCTodo*)[array lastObject]).localCreatedAt;
+        createdAt = ((LCTodo*)[array lastObject]).localCreatedAt;
     }
+    _lastCreatedAtDictionary[@(fetchType)] = createdAt ?: [NSDate date];
 }
 /**
  *  结束同步之前的清除操作

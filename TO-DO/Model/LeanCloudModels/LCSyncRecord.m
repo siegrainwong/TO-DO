@@ -18,6 +18,7 @@
 @dynamic syncType;
 @dynamic commitCount;
 @dynamic downloadCount;
+@dynamic recordMark;
 
 + (NSString*)parseClassName
 {
