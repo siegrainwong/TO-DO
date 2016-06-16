@@ -11,6 +11,7 @@
 #import "DGActivityIndicatorView.h"
 #import "DrawerTableViewCell.h"
 #import "DrawerTableViewController.h"
+#import "GCDQueue.h"
 #import "HomeViewController.h"
 #import "JVFloatingDrawerView.h"
 #import "LoginViewController.h"
@@ -177,13 +178,12 @@ DrawerTableViewController ()
 - (void)synchronize:(SyncMode)syncType
 {
     __weak typeof(self) weakSelf = self;
-    dispatch_queue_t serialQueue = dispatch_queue_create("todoSynchronizeLock", DISPATCH_QUEUE_SERIAL);
-    dispatch_sync(serialQueue, ^{
+    [[GCDQueue globalQueueWithLevel:DISPATCH_QUEUE_PRIORITY_DEFAULT] sync:^{
         [weakSelf isSyncing:YES];
         [_dataManager synchronize:syncType complete:^(bool succeed) {
             [weakSelf isSyncing:NO];
         }];
-    });
+    }];
 }
 - (void)isSyncing:(BOOL)isBegin
 {

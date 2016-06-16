@@ -16,6 +16,8 @@
 @dynamic syncEndTime;
 @dynamic user;
 @dynamic syncType;
+@dynamic commitCount;
+@dynamic downloadCount;
 
 + (NSString*)parseClassName
 {

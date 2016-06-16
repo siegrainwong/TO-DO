@@ -23,6 +23,7 @@
     syncRecord.createdAt = lcSyncRecord.createdAt;
     syncRecord.updatedAt = lcSyncRecord.updatedAt ? lcSyncRecord.updatedAt : syncRecord.createdAt;
     syncRecord.syncType = @(lcSyncRecord.syncType);
+    syncRecord.recordMark = lcSyncRecord.recordMark;
 
     return syncRecord;
 }

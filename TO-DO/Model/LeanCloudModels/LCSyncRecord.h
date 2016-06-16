@@ -38,4 +38,8 @@
  *  标记（相同标记代表这几条同步记录为同一批次）
  */
 @property (nonatomic, readwrite, strong) NSString* recordMark;
+/* 本次同步提交数 */
+@property (nonatomic, readwrite, assign) NSInteger commitCount;
+/* 本次同步下载数 */
+@property (nonatomic, readwrite, assign) NSInteger downloadCount;
 @end
