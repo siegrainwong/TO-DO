@@ -23,7 +23,7 @@ typedef NS_ENUM(NSInteger, TodoFetchType) {
 };
 
 /* 每次同步最大获取数据量 */
-static NSInteger const kMaximumSyncCountPerFetch = 50;
+static NSInteger const kMaximumSyncCountPerFetch = 100;
 /* 本地时间与服务器时间相差多少秒禁止同步 */
 static NSInteger const kInvalidTimeInterval = 10;
 
@@ -71,7 +71,6 @@ SyncDataManager ()
 #pragma mark - synchronization
 - (void)synchronize:(SyncMode)syncMode complete:(CompleteBlock)complete;
 {
-    if (_isSyncing) return complete(YES);
     _isSyncing = YES;
     /*
 	 同步方式：
@@ -161,6 +160,13 @@ SyncDataManager ()
  */
 - (BOOL)isPreparedWithSyncMode:(SyncMode)syncMode
 {
+    if (_synchronizedCount) {
+        _syncRecord = [self syncRecordByInsertOnServerAndLocal];
+        if (!_syncRecord) return NO;
+
+        return YES;
+    }
+
     if (!_lcUser) _lcUser = [AppDelegate globalDelegate].lcUser;
     if (!_cdUser) _cdUser = [AppDelegate globalDelegate].cdUser;
 
@@ -196,11 +202,6 @@ SyncDataManager ()
 	 *  3. 若 Server 没有该 Client 的同步记录，则将本地所有数据进行上传，并将服务器上所有的数据进行下载(incremental sync)
 	 *  4. 正常情况来说，是不会出现 lastSyncTimeOnServer < lastSyncTimeOnClient 的，这种情况也进行 incremental sync
 	 */
-
-    // 如果不是第一批同步，那么用上次的同步类型继续同步
-    if (_synchronizedCount)
-        return _syncType;
-
     if (!cdSyncRecord)
         return SyncTypeIncrementalSync;
 
@@ -518,7 +519,7 @@ SyncDataManager ()
         }];
     } else {
         _synchronizedCount++;
-        DDLogInfo(@"开始进行下一波同步，当前同步次数为：%ld", _synchronizedCount + 1);
+        DDLogInfo(@"开始进行第 %ld 次同步", _synchronizedCount + 1);
         return [self synchronize:SyncModeManually complete:block];
     }
 }

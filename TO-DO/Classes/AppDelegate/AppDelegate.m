@@ -141,8 +141,6 @@ AppDelegate ()
         LCTodo* todo = [LCTodo object];
         todo.title = [NSString stringWithFormat:@"Test data：%d", i];
         todo.sgDescription = [NSString stringWithFormat:@"this is a fucking description: %d", i];
-        todo.localCreatedAt = [NSDate date];
-        todo.localUpdatedAt = [todo.localCreatedAt copy];
         todo.deadline = [[NSDate date] dateByAddingTimeInterval:arc4random() % 70000];
         todo.user = _lcUser;
         todo.isCompleted = false;
@@ -150,6 +148,10 @@ AppDelegate ()
         todo.status = TodoStatusNormal;
         todo.syncVersion = 0;
         todo.identifier = [[NSUUID UUID] UUIDString];
+
+        int random = (int)(arc4random() % 2500000 - 5000000);
+        todo.localCreatedAt = [[NSDate date] dateByAddingTimeInterval:random];
+        todo.localUpdatedAt = [todo.localCreatedAt copy];
 
         [array addObject:todo];
     }
