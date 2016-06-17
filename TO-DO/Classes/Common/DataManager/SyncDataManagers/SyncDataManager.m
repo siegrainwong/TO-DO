@@ -74,18 +74,24 @@ SyncDataManager ()
     _isSyncing = YES;
     /*
 	 同步方式：
-	 每一批次两个并行队列，每次最多同步五十条数据，超过五十条下次进行同步
+	 每一批次两个并行队列，每次最多同步五十条数据，超过五十条下次进行同步。
+	 每批同步分上传和下载（与队列不对应），若上传或下载数超过上限，则下一批次同步。
+	 
+	 同步类型：
 	 1. 若本地没有同步记录，则将本地所有数据进行上传，并将服务器上所有的数据进行下载(incremental sync)
 	 2. 若 lastSyncTimeOnServer = lastSyncTimeOnClient，表明服务器数据没有变化，则仅需要上传本地修改过的数据和新增的数据(send changes)
 	 3. 若 lastSyncTimeOnServer > lastSyncTimeOnClient，则进行全数据对比，先对比同步所有已有数据，再将其他数据从服务器上下载(full sync)
-	 4. 异常情况见注意事项4
-	 5. 其他情况进行incremental sync
+	 4. 其他情况进行incremental sync
 	 
 	 注意事项：
 	 1. 所有同步时间戳均以服务器时间为准，每次同步之前先获取服务器的时间戳
 	 2. 若本地时间与服务器时间相差xx秒以上，提醒并不予同步
 	 3. 对比同步规则：1.大版本同步小版本 2.版本相同的话，以线上数据为准进行覆盖（另一种做法是建立冲突副本，根据本项目的实际情况不采用这种方式）
-	 4. 若提交云函数直到函数返回结果的这段时间，客户端挂掉的话，下次同步必须为full sync（此时线上同步记录为完成状态，本地对应的记录为未完成状态），同时在对比时将objectId赋值给本地的待办事项。
+	 
+	 异常情况：
+	 以下几种情况会影响同步时数据的原子性：
+	 1. 云函数返回之前挂掉：下次同步则为full sync，同时在对比时会将objectId赋值给本地对应的待办事项。
+	 2. 若在批次之间挂掉的话（上一批成功，下一批挂掉），这时需要在判断同步类型时，判断上一次同步成功的记录次数，若次数超限，此次同步为full sync。
 	 */
 
     /*
@@ -133,16 +139,9 @@ SyncDataManager ()
         [operation setCompletionBlock:^{
             DDLogInfo(@"进入汇总线程");
 
-            //如果是提交变更的话，没有要提交的数据直接返回
-            if (!weakSelf.syncRecord.commitCount.integerValue && weakSelf.syncType == SyncTypeSendChanges)
-                return [weakSelf returnIfDonNotNeedToSync:complete];
-            else if (!todosReadyToCommit.count && !weakSelf.localContext.hasChanges)
-                return [weakSelf returnIfDonNotNeedToSync:complete];
-
             if (![weakSelf commitTodosAndSave:todosReadyToCommit])
                 return [self.errorHandler returnWithError:nil description:@"2-3. 上传\\保存数据失败" failBlock:complete];
 
-            DDLogInfo(@"all fucking done");
             return [weakSelf returnIfDonNotNeedToSync:complete];
         }];
         [operation start];
@@ -205,6 +204,10 @@ SyncDataManager ()
     if (!cdSyncRecord)
         return SyncTypeIncrementalSync;
 
+    // 参见 异常情况2
+    if (cdSyncRecord.commitCount.integerValue >= kMaximumSyncCountPerFetch || cdSyncRecord.downloadCount.integerValue >= kMaximumSyncCountPerFetch)
+        return SyncTypeFullSync;
+
     if ([lcSyncRecord.syncBeginTime compare:cdSyncRecord.syncBeginTime] == NSOrderedSame)
         return SyncTypeSendChanges;
     else if ([lcSyncRecord.syncBeginTime compare:cdSyncRecord.syncBeginTime] == NSOrderedDescending)
@@ -252,7 +255,7 @@ SyncDataManager ()
             continue;
         }
 
-        // 参见注意事项4
+        // 参见 异常情况1
         if (!cdTodo.objectId) cdTodo.objectId = lcTodo.objectId;
 
         // 对比规则：1.大版本同步小版本 2.版本相同的话，以线上数据为准进行覆盖
@@ -512,7 +515,7 @@ SyncDataManager ()
     NSInteger downloadCount = _syncRecord.downloadCount.integerValue;
 
     if (commitCount < kMaximumSyncCountPerFetch && downloadCount < kMaximumSyncCountPerFetch) {
-        DDLogInfo(@"此次同步完毕，同步次数为：%ld", _synchronizedCount + 1);
+        DDLogInfo(@"此次同步完毕，一共进行了 %ld 次同步", _synchronizedCount + 1);
         [self cleanUp];
         [[NSOperationQueue mainQueue] addOperationWithBlock:^{
             return block(YES);
