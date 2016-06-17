@@ -93,13 +93,6 @@ SyncDataManager ()
 	 1. 云函数返回之前挂掉：下次同步则为full sync，同时在对比时会将objectId赋值给本地对应的待办事项。
 	 2. 若在批次之间挂掉的话（上一批成功，下一批挂掉），这时需要在判断同步类型时，判断上一次同步成功的记录次数，若次数超限，此次同步为full sync。
 	 */
-
-    /*
-	 TODO: 如何实现按批同步，需要在同步中获取到两种类型的数量，分别为上传数量和下载数量，其中一种数量超过批次读取数上限时，递归同步
-	 同时数据以localCreatedAt字段进行分页，所以每次同步结束时需要按数量类型来保存lastLocalCreatedAt字段。
-	 
-	 不过现在有个问题，批次之间duang了怎么办？我还没有想好，我明天再琢磨下
-	 */
     __weak typeof(self) weakSelf = self;
     NSBlockOperation* asyncOperation = [NSBlockOperation new];
     [asyncOperation addExecutionBlock:^{
