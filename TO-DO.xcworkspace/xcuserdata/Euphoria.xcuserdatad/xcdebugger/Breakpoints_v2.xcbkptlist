@@ -36,12 +36,12 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "TO-DO/Classes/Common/DataManager/SyncDataManagers/SyncDataManager.m"
-            timestampString = "487845608.183083"
+            timestampString = "487849797.914455"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "521"
-            endingLineNumber = "521"
-            landmarkName = "-returnIfDonNotNeedToSync:"
+            startingLineNumber = "186"
+            endingLineNumber = "186"
+            landmarkName = "-isPreparedWithSyncMode:"
             landmarkType = "5">
          </BreakpointContent>
       </BreakpointProxy>
