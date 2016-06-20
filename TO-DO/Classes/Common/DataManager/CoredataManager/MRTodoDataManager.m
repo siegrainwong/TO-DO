@@ -76,6 +76,10 @@ MRTodoDataManager ()
 
     return complete(YES, [dataDictionary copy], dataCount);
 }
+- (BOOL)hasDataWithDate:(NSDate*)date user:(CDUser*)user
+{
+    return [CDTodo MR_countOfEntitiesWithPredicate:[NSPredicate predicateWithFormat:@"user = %@ AND isHidden = %@ AND deadline >= %@ AND deadline <= %@", user, @(NO), date, [date dateByAddingTimeInterval:kTimeIntervalDay]]];
+}
 #pragma mark - insertion
 #pragma mark - commit
 - (BOOL)isInsertedTodo:(CDTodo*)todo

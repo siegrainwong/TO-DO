@@ -10,6 +10,7 @@
 #import "CalendarViewController.h"
 #import "CreateViewController.h"
 #import "DateUtil.h"
+#import "MRTodoDataManager.h"
 #import "NSDate+Extension.h"
 #import "UIImage+Extension.h"
 
@@ -17,6 +18,7 @@
 CalendarViewController ()
 @property (nonatomic, readwrite, strong) FSCalendar* calendar;
 @property (nonatomic, readwrite, strong) TodoTableViewController* todoTableViewController;
+@property (nonatomic, readwrite, strong) MRTodoDataManager* dataManager;
 
 @end
 
@@ -28,7 +30,7 @@ CalendarViewController ()
 {
     [super viewDidLoad];
 
-    [self retrieveDataFromServer:[NSDate date]];
+    [self retrieveDataFromServer:[_calendar today]];
 }
 - (void)viewDidLayoutSubviews
 {
@@ -37,6 +39,8 @@ CalendarViewController ()
 - (void)setupView
 {
     [super setupView];
+
+    _dataManager = [MRTodoDataManager new];
 
     self.view.backgroundColor = [UIColor whiteColor];
 
@@ -123,8 +127,7 @@ CalendarViewController ()
 #pragma mark - calendar appearance
 - (UIColor*)calendar:(FSCalendar*)calendar appearance:(FSCalendarAppearance*)appearance borderDefaultColorForDate:(NSDate*)date
 {
-    if ([date.stringInYearMonthDay isEqualToString:@"2016-05-30"])
-        return ColorWithRGB(0xBBBBBB);
+    if ([_dataManager hasDataWithDate:date user:self.cdUser] && [date compare:_calendar.today] != NSOrderedSame) return ColorWithRGB(0xBBBBBB);
 
     return nil;
 }
