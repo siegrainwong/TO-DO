@@ -523,7 +523,8 @@ SyncDataManager ()
     // 发送通知
     __weak typeof(self) weakSelf = self;
     [[NSOperationQueue mainQueue] addOperationWithBlock:^{
-        [[NSNotificationCenter defaultCenter] postNotificationName:kFinishedSyncInOneBatchNotification object:weakSelf];
+        // SendChanges时不需要发送更新界面的通知
+        if (weakSelf.syncType != SyncTypeSendChanges) [[NSNotificationCenter defaultCenter] postNotificationName:kFinishedSyncInOneBatchNotification object:weakSelf];
     }];
 
     if (commitCount < kMaximumSyncCountPerFetch && downloadCount < kMaximumSyncCountPerFetch) {

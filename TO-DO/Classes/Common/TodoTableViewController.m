@@ -36,6 +36,7 @@ TodoTableViewController ()
 @property (nonatomic, readwrite, strong) TodoTableViewCell* snoozingCell;
 
 @property (nonatomic, readwrite, assign) BOOL releaseWhileDisappear;
+@property (nonatomic, readwrite, strong) NSDate* date;
 @end
 
 @implementation TodoTableViewController
@@ -79,6 +80,7 @@ TodoTableViewController ()
 #pragma mark - retreive data
 - (void)retrieveDataWithUser:(CDUser*)user date:(NSDate*)date
 {
+    _date = date;
     __weak typeof(self) weakSelf = self;
     [_dataManager retrieveDataWithUser:user date:date complete:^(bool succeed, NSDictionary* data, NSInteger count) {
         weakSelf.dataDictionary = [NSMutableDictionary dictionaryWithDictionary:data];
@@ -319,7 +321,7 @@ TodoTableViewController ()
 #pragma mark - reload data when sync finished
 - (void)syncDataManagerDidFinishedSyncInOneBatch
 {
-    [self retrieveDataWithUser:[AppDelegate globalDelegate].cdUser date:nil];
+    [self retrieveDataWithUser:[AppDelegate globalDelegate].cdUser date:_date];
 }
 #pragma mark - release
 - (void)dealloc
