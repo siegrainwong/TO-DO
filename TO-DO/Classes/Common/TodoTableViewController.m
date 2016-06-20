@@ -28,7 +28,6 @@
 TodoTableViewController ()
 @property (nonatomic, readwrite, assign) TodoTableViewControllerStyle style;
 
-@property (nonatomic, readwrite, weak) SyncDataManager* syncDataManager;
 @property (nonatomic, readwrite, strong) HSDatePickerViewController* datePickerViewController;
 @property (nonatomic, readwrite, strong) MRTodoDataManager* dataManager;
 @property (nonatomic, readwrite, strong) NSMutableDictionary* dataDictionary;
@@ -55,8 +54,7 @@ TodoTableViewController ()
     _dataDictionary = [NSMutableDictionary new];
     _dateArray = [NSMutableArray new];
     _dataManager = [MRTodoDataManager new];
-    _syncDataManager = [SyncDataManager dataManager];
-    _syncDataManager.delegate = self;
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(syncDataManagerDidFinishedSyncInOneBatch) name:kFinishedSyncInOneBatchNotification object:nil];
 
     [self setupView];
 }

@@ -211,6 +211,7 @@
 		F959945D1CE481CD00B042BD /* DateUtil.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DateUtil.m; sourceTree = "<group>"; };
 		F959945F1CE4898100B042BD /* UIImage+Compression.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIImage+Compression.h"; sourceTree = "<group>"; };
 		F95994601CE4898100B042BD /* UIImage+Compression.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIImage+Compression.m"; sourceTree = "<group>"; };
+		F960B9301D17B88C000AAC2B /* Constants.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Constants.h; sourceTree = "<group>"; };
 		F961B5591CF42DED0096DAF4 /* LCTodoDataManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = LCTodoDataManager.h; path = ../../../Home/LCTodoDataManager.h; sourceTree = "<group>"; };
 		F961B55A1CF42DED0096DAF4 /* LCTodoDataManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = LCTodoDataManager.m; path = ../../../Home/LCTodoDataManager.m; sourceTree = "<group>"; };
 		F9773EAC1CFECD7400469A0E /* TO_DO.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = TO_DO.xcdatamodel; sourceTree = "<group>"; };
@@ -604,6 +605,7 @@
 				F94CA2351CE2FA9E0006904F /* DataKeys.h */,
 				F94CA2361CE2FA9E0006904F /* Macros.h */,
 				F99B23611CFEE3CA009A45A2 /* DDLogConfigure.h */,
+				F960B9301D17B88C000AAC2B /* Constants.h */,
 			);
 			path = Constants;
 			sourceTree = "<group>";

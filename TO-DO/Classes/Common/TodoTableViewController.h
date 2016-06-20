@@ -8,7 +8,6 @@
 
 #import "HSDatePickerViewController.h"
 #import "MGSwipeTableCell.h"
-#import "SyncDataManager.h"
 #import <UIKit/UIKit.h>
 
 typedef NS_ENUM(NSInteger, TodoTableViewControllerStyle) {
@@ -32,7 +31,7 @@ typedef NS_ENUM(NSInteger, TodoTableViewControllerStyle) {
 /**
  *  代办事项列表
  */
-@interface TodoTableViewController : UITableViewController<HSDatePickerViewControllerDelegate, MGSwipeTableCellDelegate, SyncDataManagerDelegate>
+@interface TodoTableViewController : UITableViewController<HSDatePickerViewControllerDelegate, MGSwipeTableCellDelegate>
 /**
  *  代理
  */

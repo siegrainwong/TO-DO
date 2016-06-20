@@ -17,6 +17,9 @@
 #import "SCLAlertHelper.h"
 #import "SyncDataManager.h"
 
+// TODO: 本地化
+// TODO: 自动同步
+
 typedef NS_ENUM(NSInteger, TodoFetchType) {
     TodoFetchTypeCommit,
     TodoFetchTypeDownload
@@ -62,10 +65,8 @@ SyncDataManager ()
         dataManager.isSyncing = NO;
         dataManager.errorHandler = [SyncErrorHandler new];
         dataManager.lastCreatedAtDictionary = [NSMutableDictionary new];
-        [dataManager.errorHandler setErrorHandlerWillReturn:^{
-            [dataManager cleanUp];
-        }];
         [[NSNotificationCenter defaultCenter] addObserver:dataManager selector:@selector(networkChanged:) name:kRealReachabilityChangedNotification object:nil];
+        [dataManager.errorHandler setErrorHandlerWillReturn:^{ [dataManager cleanUp]; }];
     });
     return dataManager;
 }
@@ -169,6 +170,8 @@ SyncDataManager ()
 
         return YES;
     }
+
+    ApplicationNetworkIndicatorVisible(YES);
 
     if (!_lcUser) _lcUser = [AppDelegate globalDelegate].lcUser;
     if (!_cdUser) _cdUser = [AppDelegate globalDelegate].cdUser;
@@ -507,6 +510,7 @@ SyncDataManager ()
     _synchronizedCount = 0;
     _recordMark = nil;
     _lastCreatedAtDictionary = [NSMutableDictionary new];
+    ApplicationNetworkIndicatorVisible(NO);
 }
 /**
  *  先检查是否需要继续同步，不需要则返回，需要则递归
@@ -516,10 +520,10 @@ SyncDataManager ()
     NSInteger commitCount = _syncRecord.commitCount.integerValue;
     NSInteger downloadCount = _syncRecord.downloadCount.integerValue;
 
-    // 调用代理方法
+    // 发送通知
     __weak typeof(self) weakSelf = self;
     [[NSOperationQueue mainQueue] addOperationWithBlock:^{
-        if ([weakSelf.delegate performSelector:@selector(syncDataManagerDidFinishedSyncInOneBatch)]) [weakSelf.delegate syncDataManagerDidFinishedSyncInOneBatch];
+        [[NSNotificationCenter defaultCenter] postNotificationName:kFinishedSyncInOneBatchNotification object:weakSelf];
     }];
 
     if (commitCount < kMaximumSyncCountPerFetch && downloadCount < kMaximumSyncCountPerFetch) {
@@ -549,6 +553,11 @@ SyncDataManager ()
 #pragma mark - network changed
 - (void)networkChanged:(NSNotification*)notification
 {
-    if ([AppDelegate globalDelegate].reachability.currentReachabilityStatus == RealStatusNotReachable) _isSyncing = NO;
+    if (isNetworkUnreachable) _isSyncing = NO;
+}
+#pragma mark - release
+- (void)dealloc
+{
+    [[NSNotificationCenter defaultCenter] removeObserver:self];
 }
 @end

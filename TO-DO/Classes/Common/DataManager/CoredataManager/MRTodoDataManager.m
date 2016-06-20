@@ -84,6 +84,8 @@ MRTodoDataManager ()
     if (![self validate]) return NO;
 
     MR_saveAndWait();
+
+    [self postNotificationWhenTodosHasBeenChanged];
     return YES;
 }
 #pragma mark - validate
@@ -126,6 +128,7 @@ MRTodoDataManager ()
 #pragma mark - modify
 - (BOOL)isModifiedTodo:(CDTodo*)todo
 {
+    __weak typeof(self) weakSelf = self;
     [[GCDQueue globalQueueWithLevel:DISPATCH_QUEUE_PRIORITY_DEFAULT] sync:^{
         todo.syncStatus = @(SyncStatusWaiting);
         todo.syncVersion = @([todo.syncVersion integerValue] + 1);
@@ -133,6 +136,14 @@ MRTodoDataManager ()
         MR_saveAndWait();
     }];
 
+    [weakSelf postNotificationWhenTodosHasBeenChanged];
+
     return YES;
+}
+#pragma mark - post notification when todos has been modified
+- (void)postNotificationWhenTodosHasBeenChanged
+{
+    // Mark: NSNotificationCenter 发送通知必须在主线程...但是它居然会等待同步完成才会返回，不是很懂...所以把它放进了异步队列
+    [[GCDQueue mainQueue] async:^{ [[NSNotificationCenter defaultCenter] postNotificationName:kTodosChangedNotification object:self]; }];
 }
 @end

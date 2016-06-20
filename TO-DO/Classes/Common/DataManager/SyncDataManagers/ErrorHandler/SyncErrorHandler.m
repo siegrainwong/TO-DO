@@ -6,7 +6,6 @@
 //  Copyright © 2016年 com.siegrain. All rights reserved.
 //
 
-#import "GCDQueue.h"
 #import "SCLAlertHelper.h"
 #import "SyncErrorHandler.h"
 
@@ -19,14 +18,14 @@
 - (void)returnWithError:(NSError* _Nullable)error description:(NSString* _Nonnull)description failBlock:(CompleteBlock)block
 {
     [self errorHandler:error description:description];
-    [[GCDQueue mainQueue] sync:^{
+    [[NSOperationQueue mainQueue] addOperationWithBlock:^{
         return block(NO);
     }];
 }
 
 - (void)errorHandler:(NSError* _Nullable)error description:(NSString* _Nonnull)description
 {
-    [[GCDQueue mainQueue] sync:^{
+    [[NSOperationQueue mainQueue] addOperationWithBlock:^{
         if (_isAlert) [SCLAlertHelper errorAlertWithContent:description];
     }];
     DDLogError(@"%@ ::: %@", description, error ? error.localizedDescription : @"");

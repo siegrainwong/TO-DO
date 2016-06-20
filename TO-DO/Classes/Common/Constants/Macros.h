@@ -15,6 +15,9 @@
 #import "DataKeys.h"
 #import "NSObject+PropertyName.h"
 
+//启用自动同步
+#define ENABLE_AUTOMATIC_SYNC
+
 //获取颜色，格式0xFFFFFF
 #define ColorWithRGB(rgbValue)                                           \
     [UIColor colorWithRed:((float)((rgbValue & 0xFF0000) >> 16)) / 255.0 \

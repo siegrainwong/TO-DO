@@ -78,6 +78,11 @@ DrawerTableViewController ()
     [self setup];
     [self bindConstraints];
     [self localizeStrings];
+
+#ifdef ENABLE_AUTOMATIC_SYNC
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(networkChanged) name:kRealReachabilityChangedNotification object:nil];
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(needsToSyncAutomatically) name:kTodosChangedNotification object:nil];
+#endif
 }
 - (void)viewDidAppear:(BOOL)animated
 {
@@ -179,8 +184,10 @@ DrawerTableViewController ()
 {
     __weak typeof(self) weakSelf = self;
     [[GCDQueue globalQueueWithLevel:DISPATCH_QUEUE_PRIORITY_DEFAULT] sync:^{
+        if ([[weakSelf.dataManager class] isSyncing]) return;
+
         [weakSelf isSyncing:YES];
-        [_dataManager synchronize:syncType complete:^(bool succeed) {
+        [weakSelf.dataManager synchronize:syncType complete:^(bool succeed) {
             [weakSelf isSyncing:NO];
         }];
     }];
@@ -193,6 +200,10 @@ DrawerTableViewController ()
         [_indicatorView stopAnimating];
 
     [_leftBottomButton setEnabled:!isBegin];
+}
+- (void)needsToSyncAutomatically
+{
+    [self synchronize:SyncModeAutomatically];
 }
 #pragma mark - show settings
 - (void)showSettings
@@ -234,5 +245,15 @@ DrawerTableViewController ()
 
     [[AppDelegate globalDelegate] switchRootViewController:destinationViewController isNavigation:YES];
     [[AppDelegate globalDelegate] toggleDrawer:self animated:YES];
+}
+#pragma mark - sync silently when network become reachable
+- (void)networkChanged
+{
+    if (!isNetworkUnreachable) [self synchronize:SyncModeAutomatically];
+}
+#pragma mark - release
+- (void)dealloc
+{
+    [[NSNotificationCenter defaultCenter] removeObserver:self];
 }
 @end
