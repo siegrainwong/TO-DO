@@ -6,6 +6,7 @@
 //  Copyright © 2016年 com.siegrain. All rights reserved.
 //
 
+#import "AppDelegate.h"
 #import "CDTodo.h"
 #import "DateUtil.h"
 #import "HSDatePickerViewController+Configure.h"
@@ -27,6 +28,7 @@
 TodoTableViewController ()
 @property (nonatomic, readwrite, assign) TodoTableViewControllerStyle style;
 
+@property (nonatomic, readwrite, weak) SyncDataManager* syncDataManager;
 @property (nonatomic, readwrite, strong) HSDatePickerViewController* datePickerViewController;
 @property (nonatomic, readwrite, strong) MRTodoDataManager* dataManager;
 @property (nonatomic, readwrite, strong) NSMutableDictionary* dataDictionary;
@@ -53,6 +55,8 @@ TodoTableViewController ()
     _dataDictionary = [NSMutableDictionary new];
     _dateArray = [NSMutableArray new];
     _dataManager = [MRTodoDataManager new];
+    _syncDataManager = [SyncDataManager dataManager];
+    _syncDataManager.delegate = self;
 
     [self setupView];
 }
@@ -313,6 +317,11 @@ TodoTableViewController ()
 
         if (needsToReload) [self.tableView reloadData];
     });
+}
+#pragma mark - reload data when sync finished
+- (void)syncDataManagerDidFinishedSyncInOneBatch
+{
+    [self retrieveDataWithUser:[AppDelegate globalDelegate].cdUser date:nil];
 }
 #pragma mark - release
 - (void)dealloc

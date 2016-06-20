@@ -65,6 +65,7 @@ AppDelegate ()
     [self setupMagicRecord];
     [self setupUser];
     [self setupLeanCloud];
+    [self setupReachability];
     [self setupDrawerViewController];
     [self applicationDocumentsDirectory];
     //    [self insertTestTodoToLC];
@@ -128,6 +129,11 @@ AppDelegate ()
 - (void)setupMagicRecord
 {
     [MagicalRecord setupAutoMigratingCoreDataStack];
+}
+- (void)setupReachability
+{
+    _reachability = [RealReachability sharedInstance];
+    [_reachability startNotifier];
 }
 - (void)truncateLocalData
 {

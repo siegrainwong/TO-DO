@@ -26,6 +26,9 @@
 #define kScreenWidth ([[UIScreen mainScreen] bounds].size.width)
 #define kScreenHeight ([[UIScreen mainScreen] bounds].size.height)
 
+//判断网络状态
+#define isNetworkUnreachable ([AppDelegate globalDelegate].reachability.currentReachabilityStatus == RealStatusNotReachable)
+
 //获取属性名
 #define PropertyName(object, property) ([object stringWithProperty:property])
 

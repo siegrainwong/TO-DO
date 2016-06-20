@@ -275,7 +275,7 @@ didFinishPickingMediaWithInfo:(NSDictionary<NSString*, id>*)info
 {
     [super viewWillAppear:animated];
 
-    _viewIsDisappearing = YES;
+    _viewIsDisappearing = NO;
 }
 - (void)viewWillDisappear:(BOOL)animated
 {

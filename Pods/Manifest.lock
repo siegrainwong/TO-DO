@@ -50,6 +50,7 @@ PODS:
   - Qiniu (7.0.17):
     - AFNetworking (~> 2.0)
     - HappyDNS (~> 0.2)
+  - RealReachability (1.1.3)
   - SDAutoLayout (1.53)
   - SDWebImage (3.7.6):
     - SDWebImage/Core (= 3.7.6)
@@ -73,6 +74,7 @@ DEPENDENCIES:
   - MBProgressHUD
   - MGSwipeTableCell
   - Qiniu
+  - RealReachability
   - SDAutoLayout
   - SDWebImage
   - TPKeyboardAvoiding
@@ -96,11 +98,12 @@ SPEC CHECKSUMS:
   MBProgressHUD: 1569cf7ace17a8bac47aabfbb8580a49690386d1
   MGSwipeTableCell: bafeb5f351124544c9364ecbdf24c7b06a37d340
   Qiniu: 2c05af1f9d580c036b18faf832cc98e98bfb21bc
+  RealReachability: 9eb2aeccff2f26491dbaa9cf36f906ad28e8e7d9
   SDAutoLayout: ea6e2ae9fbb438aa2feb0c4363dba9297e98638a
   SDWebImage: c325cf02c30337336b95beff20a13df489ec0ec9
   TPKeyboardAvoiding: a5138f318c06fb3e151f886e18ce4a72695d9cbe
   ZFDragableModalTransition: 0d294eaaba6edfcb9839595de765f9ca06a4b524
 
-PODFILE CHECKSUM: a476b060e7ec5818a224ebc8cca4c9cdd7a0c91d
+PODFILE CHECKSUM: b66b1a34ae2e8b62ea5021af3dabf1a2699e5ce0
 
 COCOAPODS: 1.0.0

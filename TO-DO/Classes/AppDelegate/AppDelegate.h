@@ -9,14 +9,18 @@
 #import "CDUser.h"
 #import "JVFloatingDrawerViewController.h"
 #import "LCUser.h"
+#import "RealReachability.h"
 #import <CoreData/CoreData.h>
 #import <UIKit/UIKit.h>
 
 @interface AppDelegate : UIResponder<UIApplicationDelegate>
 @property (strong, nonatomic) UIWindow* window;
-@property (nonatomic, readwrite, strong) JVFloatingDrawerViewController* drawerViewController;
-@property (nonatomic, readwrite, strong) LCUser* lcUser;
-@property (nonatomic, readwrite, strong) CDUser* cdUser;
+
+@property (nonatomic, readonly, strong) LCUser* lcUser;
+@property (nonatomic, readonly, strong) CDUser* cdUser;
+
+@property (nonatomic, readonly, strong) JVFloatingDrawerViewController* drawerViewController;
+@property (nonatomic, readonly, strong) RealReachability* reachability;
 
 + (AppDelegate*)globalDelegate;
 

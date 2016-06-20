@@ -65,16 +65,21 @@ SyncDataManager ()
         [dataManager.errorHandler setErrorHandlerWillReturn:^{
             [dataManager cleanUp];
         }];
+        [[NSNotificationCenter defaultCenter] addObserver:dataManager selector:@selector(networkChanged:) name:kRealReachabilityChangedNotification object:nil];
     });
     return dataManager;
 }
 #pragma mark - synchronization
 - (void)synchronize:(SyncMode)syncMode complete:(CompleteBlock)complete;
 {
+    [self setupSyncMode:syncMode];
+
+    if (isNetworkUnreachable) return [self.errorHandler returnWithError:nil description:NSLocalizedString(@"Unable to sync, please check your network connection!", nil) failBlock:complete];
+
     _isSyncing = YES;
     /*
 	 同步方式：
-	 每一批次两个并行队列，每次最多同步五十条数据，超过五十条下次进行同步。
+	 每一批次两个并行队列，每次最多同步X条数据，超过X条下次进行同步。
 	 每批同步分上传和下载（与队列不对应），若上传或下载数超过上限，则下一批次同步。
 	 
 	 同步类型：
@@ -97,8 +102,7 @@ SyncDataManager ()
     NSBlockOperation* asyncOperation = [NSBlockOperation new];
     [asyncOperation addExecutionBlock:^{
         //1. 准备同步
-        if (![weakSelf isPreparedWithSyncMode:syncMode])
-            return [weakSelf.errorHandler returnWithError:nil description:@"2. 准备同步失败，停止同步" failBlock:complete];
+        if (![weakSelf isPrepared]) return [weakSelf.errorHandler returnWithError:nil description:@"2. 准备同步失败，停止同步" failBlock:complete];
 
         __block NSMutableArray<CDTodo*>* todosReadyToCommit = [NSMutableArray new];
 
@@ -132,6 +136,8 @@ SyncDataManager ()
         [operation setCompletionBlock:^{
             DDLogInfo(@"进入汇总线程");
 
+            if (isNetworkUnreachable) return [self.errorHandler returnWithError:nil description:NSLocalizedString(@"Unable to sync, please check your network connection!", nil) failBlock:complete];
+
             if (![weakSelf commitTodosAndSave:todosReadyToCommit])
                 return [self.errorHandler returnWithError:nil description:@"2-3. 上传\\保存数据失败" failBlock:complete];
 
@@ -142,6 +148,11 @@ SyncDataManager ()
     [asyncOperation start];
 }
 #pragma mark - sync methods
+#pragma mark - setup sync mode before sync
+- (void)setupSyncMode:(SyncMode)syncMode
+{
+    _errorHandler.isAlert = syncMode == SyncModeManually;
+}
 #pragma mark - sync prepare
 /**
  *  准备同步
@@ -150,7 +161,7 @@ SyncDataManager ()
  *
  *  @return 是否成功
  */
-- (BOOL)isPreparedWithSyncMode:(SyncMode)syncMode
+- (BOOL)isPrepared
 {
     if (_synchronizedCount) {
         _syncRecord = [self syncRecordByInsertOnServerAndLocal];
@@ -161,8 +172,6 @@ SyncDataManager ()
 
     if (!_lcUser) _lcUser = [AppDelegate globalDelegate].lcUser;
     if (!_cdUser) _cdUser = [AppDelegate globalDelegate].cdUser;
-
-    _errorHandler.isAlert = syncMode == SyncModeManually;
 
     _recordMark = [[NSUUID UUID] UUIDString];
 
@@ -507,16 +516,22 @@ SyncDataManager ()
     NSInteger commitCount = _syncRecord.commitCount.integerValue;
     NSInteger downloadCount = _syncRecord.downloadCount.integerValue;
 
+    // 调用代理方法
+    __weak typeof(self) weakSelf = self;
+    [[NSOperationQueue mainQueue] addOperationWithBlock:^{
+        if ([weakSelf.delegate performSelector:@selector(syncDataManagerDidFinishedSyncInOneBatch)]) [weakSelf.delegate syncDataManagerDidFinishedSyncInOneBatch];
+    }];
+
     if (commitCount < kMaximumSyncCountPerFetch && downloadCount < kMaximumSyncCountPerFetch) {
         DDLogInfo(@"此次同步完毕，一共进行了 %ld 次同步", _synchronizedCount + 1);
-        [self cleanUp];
+        [weakSelf cleanUp];
         [[NSOperationQueue mainQueue] addOperationWithBlock:^{
             return block(YES);
         }];
     } else {
-        _synchronizedCount++;
-        DDLogInfo(@"开始进行第 %ld 次同步", _synchronizedCount + 1);
-        return [self synchronize:SyncModeManually complete:block];
+        weakSelf.synchronizedCount++;
+        DDLogInfo(@"开始进行第 %ld 次同步", weakSelf.synchronizedCount + 1);
+        return [weakSelf synchronize:SyncModeManually complete:block];
     }
 }
 /**
@@ -530,5 +545,10 @@ SyncDataManager ()
     }
 
     return [result copy];
+}
+#pragma mark - network changed
+- (void)networkChanged:(NSNotification*)notification
+{
+    if ([AppDelegate globalDelegate].reachability.currentReachabilityStatus == RealStatusNotReachable) _isSyncing = NO;
 }
 @end

@@ -21,5 +21,6 @@ pod 'MagicalRecord'
 pod 'CocoaLumberjack'
 pod 'DGActivityIndicatorView'
 pod 'AFNetworking-Synchronous'
+pod 'RealReachability'
 
 end

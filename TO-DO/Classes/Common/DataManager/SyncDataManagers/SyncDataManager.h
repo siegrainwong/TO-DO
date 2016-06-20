@@ -21,8 +21,23 @@ typedef NS_ENUM(NSInteger, SyncMode) {
     SyncModeAutomatically
 };
 
+@protocol SyncDataManagerDelegate<NSObject>
+/**
+ *  该方法在完成一批同步时调用
+ */
+- (void)syncDataManagerDidFinishedSyncInOneBatch;
+
+@end
+
 @interface SyncDataManager : NSObject<Localized>
-- (void)synchronize:(SyncMode)syncType complete:(CompleteBlock)complete;
+@property (nonatomic, readwrite, weak) id<SyncDataManagerDelegate> delegate;
+/**
+ *  开始同步
+ *
+ *  @param syncMode 同步模式
+ *  @param complete 回调
+ */
+- (void)synchronize:(SyncMode)syncMode complete:(CompleteBlock)complete;
 
 + (instancetype)dataManager;
 
