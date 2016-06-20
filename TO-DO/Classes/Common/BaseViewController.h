@@ -20,6 +20,10 @@
  */
 @property (nonatomic, readonly, strong) UIButton* rightNavigationButton;
 /**
+ *  左侧导航栏按钮
+ */
+@property (nonatomic, readonly, strong) UIButton* leftNavigationButton;
+/**
  *  头视图
  */
 @property (nonatomic, readwrite, strong) HeaderView* headerView;

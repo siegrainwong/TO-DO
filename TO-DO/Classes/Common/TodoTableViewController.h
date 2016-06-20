@@ -24,6 +24,7 @@ typedef NS_ENUM(NSInteger, TodoTableViewControllerStyle) {
 @protocol TodoTableViewControllerDelegate<NSObject>
 @optional
 - (void)todoTableViewControllerDidReloadData;
+- (void)todoTableViewDidScrollToY:(CGFloat)y;
 @end
 
 @class CDTodo;

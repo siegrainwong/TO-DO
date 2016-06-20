@@ -10,5 +10,5 @@
 #import "FSCalendar.h"
 #import "TodoTableViewController.h"
 
-@interface CalendarViewController : BaseViewController<Localized, FSCalendarDelegate, FSCalendarDelegateAppearance, FSCalendarDataSource,TodoTableViewControllerDelegate>
+@interface CalendarViewController : BaseViewController<Localized, FSCalendarDelegate, FSCalendarDelegateAppearance, FSCalendarDataSource, TodoTableViewControllerDelegate>
 @end

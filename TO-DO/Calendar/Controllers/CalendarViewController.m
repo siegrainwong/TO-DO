@@ -19,6 +19,7 @@ CalendarViewController ()
 @property (nonatomic, readwrite, strong) FSCalendar* calendar;
 @property (nonatomic, readwrite, strong) TodoTableViewController* todoTableViewController;
 @property (nonatomic, readwrite, strong) MRTodoDataManager* dataManager;
+@property (nonatomic, readwrite, assign) BOOL isCalendarCollapsed;
 
 @end
 
@@ -118,17 +119,37 @@ CalendarViewController ()
 {
     [_todoTableViewController retrieveDataWithUser:self.cdUser date:date];
 }
-
 #pragma mark - calendar delegate
 - (void)calendar:(FSCalendar*)calendar didSelectDate:(NSDate*)date
 {
     [self retrieveDataFromServer:date];
 }
 #pragma mark - calendar appearance
+/* 在包含待办事项的日期上加上灰色圈儿 */
 - (UIColor*)calendar:(FSCalendar*)calendar appearance:(FSCalendarAppearance*)appearance borderDefaultColorForDate:(NSDate*)date
 {
     if ([_dataManager hasDataWithDate:date user:self.cdUser] && [date compare:_calendar.today] != NSOrderedSame) return ColorWithRGB(0xBBBBBB);
 
     return nil;
+}
+#pragma mark - todo tableview controller delegate
+/* 滚动时切换日历状态 */
+- (void)todoTableViewDidScrollToY:(CGFloat)y
+{
+    if ((y > 64 && _calendar.scope == FSCalendarScopeWeek) || (y < 64 && _calendar.scope == FSCalendarScopeMonth)) return;
+    BOOL isCollapsed = y > 64;
+
+    [self.headerView mas_updateConstraints:^(MASConstraintMaker* make) { make.height.offset(kScreenHeight * (isCollapsed ? 0.25 : 0.6)); }];
+    [UIView animateWithDuration:0.3 animations:^{
+        self.leftNavigationButton.alpha = !isCollapsed;
+        self.rightNavigationButton.alpha = !isCollapsed;
+        self.headerView.rightOperationButton.alpha = !isCollapsed;
+        _calendar.alpha = 0;
+        [self.view layoutIfNeeded];
+    }
+    completion:^(BOOL finished) {
+        [UIView animateWithDuration:0.3 animations:^{ _calendar.alpha = 1; }];
+        [_calendar setScope:y > 64 ? FSCalendarScopeWeek : FSCalendarScopeMonth animated:NO];
+    }];
 }
 @end

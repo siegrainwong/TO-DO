@@ -12,7 +12,6 @@
 
 @interface
 BaseViewController ()
-@property (nonatomic, readwrite, strong) UIButton* menuButton;
 @property (nonatomic, readwrite, strong) UILabel* titleLabel;
 @end
 
@@ -39,11 +38,11 @@ BaseViewController ()
 {
     [self.navigationController transparentNavigationBar];
 
-    _menuButton = [[UIButton alloc] init];
-    _menuButton.tintColor = [UIColor whiteColor];
-    _menuButton.frame = CGRectMake(0, 0, 20, 17);
-    [_menuButton addTarget:self action:@selector(toggleDrawer) forControlEvents:UIControlEventTouchUpInside];
-    [_menuButton setBackgroundImage:[UIImage imageNamed:@"menu"] forState:UIControlStateNormal];
+    _leftNavigationButton = [[UIButton alloc] init];
+    _leftNavigationButton.tintColor = [UIColor whiteColor];
+    _leftNavigationButton.frame = CGRectMake(0, 0, 20, 17);
+    [_leftNavigationButton addTarget:self action:@selector(toggleDrawer) forControlEvents:UIControlEventTouchUpInside];
+    [_leftNavigationButton setBackgroundImage:[UIImage imageNamed:@"menu"] forState:UIControlStateNormal];
 
     UIView* placeholderView = [[UIView alloc] init];
     placeholderView.frame = CGRectMake(0, 0, 5, 1);
@@ -53,10 +52,10 @@ BaseViewController ()
     _titleLabel.frame = CGRectMake(0, 0, 100, 20);
     _titleLabel.font = [TodoHelper themeFontWithSize:17];
 
-    UIBarButtonItem* menuBarButtonItem = [[UIBarButtonItem alloc] initWithCustomView:_menuButton];
+    UIBarButtonItem* leftBarButtonItem = [[UIBarButtonItem alloc] initWithCustomView:_leftNavigationButton];
     UIBarButtonItem* titleBarButtonItem = [[UIBarButtonItem alloc] initWithCustomView:_titleLabel];
     UIBarButtonItem* placeHolderBarButtonItem = [[UIBarButtonItem alloc] initWithCustomView:placeholderView];
-    [self.navigationItem setLeftBarButtonItems:@[ menuBarButtonItem, placeHolderBarButtonItem, titleBarButtonItem ] animated:YES];
+    [self.navigationItem setLeftBarButtonItems:@[ leftBarButtonItem, placeHolderBarButtonItem, titleBarButtonItem ] animated:YES];
 
     _rightNavigationButton = [[UIButton alloc] init];
     _rightNavigationButton.tintColor = [UIColor whiteColor];

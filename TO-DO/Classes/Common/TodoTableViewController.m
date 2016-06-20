@@ -285,7 +285,6 @@ TodoTableViewController ()
 {
     _releaseWhileDisappear = YES;
 }
-#pragma mark - scrollview
 #pragma mark - timer to overdue
 - (void)setupTimer
 {
@@ -322,6 +321,11 @@ TodoTableViewController ()
 - (void)syncDataManagerDidFinishedSyncInOneBatch
 {
     [self retrieveDataWithUser:[AppDelegate globalDelegate].cdUser date:_date];
+}
+#pragma mark - scrollview delegate
+- (void)scrollViewDidScroll:(UIScrollView*)scrollView
+{
+    if ([_delegate respondsToSelector:@selector(todoTableViewDidScrollToY:)]) [_delegate todoTableViewDidScrollToY:scrollView.contentOffset.y];
 }
 #pragma mark - release
 - (void)dealloc

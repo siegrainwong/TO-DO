@@ -12,7 +12,7 @@ BraceWrapping:
   AfterClass:      true
   AfterControlStatement: false
   AfterEnum:       true
-  AfterFunction:   true
+  AfterFunction:   false
   AfterNamespace:  false
   AfterObjCDeclaration: false
   AfterStruct:     true
@@ -41,7 +41,7 @@ IncludeCategories:
     Priority:        1
 IndentCaseLabels: true
 IndentWrappedFunctionNames: false
-KeepEmptyLinesAtTheStartOfBlocks: true
+KeepEmptyLinesAtTheStartOfBlocks: false
 MacroBlockBegin: ''
 MacroBlockEnd:   ''
 MaxEmptyLinesToKeep: 1
@@ -76,7 +76,7 @@ IndentWidth:     4
 ObjCBlockIndentWidth: 4
 AlignAfterOpenBracket:  DontAlign
 AlignEscapedNewlinesLeft: false
-ContinuationIndentWidth:  2
+ContinuationIndentWidth:  0
 AllowAllParametersOfDeclarationOnNextLine: false
 
 AllowShortCaseLabelsOnASingleLine: false
