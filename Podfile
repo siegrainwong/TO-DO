@@ -22,5 +22,6 @@ pod 'CocoaLumberjack'
 pod 'DGActivityIndicatorView'
 pod 'AFNetworking-Synchronous'
 pod 'RealReachability'
+pod 'IGLDropDownMenu'
 
 end

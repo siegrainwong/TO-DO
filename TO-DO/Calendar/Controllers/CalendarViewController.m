@@ -18,6 +18,8 @@
 CalendarViewController ()
 @property (nonatomic, readwrite, strong) FSCalendar* calendar;
 @property (nonatomic, readwrite, strong) TodoTableViewController* todoTableViewController;
+@property (nonatomic, readwrite, strong) UIButton* menuButton;
+
 @property (nonatomic, readwrite, strong) MRTodoDataManager* dataManager;
 @property (nonatomic, readwrite, assign) BOOL isCalendarCollapsed;
 
@@ -91,6 +93,11 @@ CalendarViewController ()
     [self.headerView addSubview:_calendar];
 
     [self.headerView bringSubviewToFront:self.headerView.rightOperationButton];
+
+    _menuButton = [UIButton new];
+    [_menuButton setBackgroundImage:[UIImage imageNamed:@"menu-button2"] forState:UIControlStateNormal];
+    [_menuButton addTarget:self action:@selector(menuButtonDidPress) forControlEvents:UIControlEventTouchUpInside];
+    [self.view addSubview:_menuButton];
 }
 - (void)bindConstraints
 {
@@ -112,6 +119,12 @@ CalendarViewController ()
     [_todoTableViewController.tableView mas_makeConstraints:^(MASConstraintMaker* make) {
         make.top.equalTo(self.headerView.mas_bottom);
         make.bottom.right.left.offset(0);
+    }];
+
+    [_menuButton mas_makeConstraints:^(MASConstraintMaker* make) {
+        make.bottom.offset(-10);
+        make.right.offset(-10);
+        make.width.height.offset(kScreenHeight * 0.08);
     }];
 }
 #pragma mark - retrieve data
@@ -136,8 +149,9 @@ CalendarViewController ()
 /* 滚动时切换日历状态 */
 - (void)todoTableViewDidScrollToY:(CGFloat)y
 {
-    if ((y > 64 && _calendar.scope == FSCalendarScopeWeek) || (y < 64 && _calendar.scope == FSCalendarScopeMonth)) return;
-    BOOL isCollapsed = y > 64;
+    CGFloat collapseTriggerDistance = kScreenHeight * 0.8;
+    if ((y > collapseTriggerDistance && _calendar.scope == FSCalendarScopeWeek) || (y < collapseTriggerDistance && _calendar.scope == FSCalendarScopeMonth)) return;
+    BOOL isCollapsed = y > collapseTriggerDistance;
 
     [self.headerView mas_updateConstraints:^(MASConstraintMaker* make) { make.height.offset(kScreenHeight * (isCollapsed ? 0.25 : 0.6)); }];
     [UIView animateWithDuration:0.3 animations:^{
@@ -148,8 +162,13 @@ CalendarViewController ()
         [self.view layoutIfNeeded];
     }
     completion:^(BOOL finished) {
-        [UIView animateWithDuration:0.3 animations:^{ _calendar.alpha = 1; }];
-        [_calendar setScope:y > 64 ? FSCalendarScopeWeek : FSCalendarScopeMonth animated:NO];
+        [UIView animateWithDuration:0.3 animations:^{ _calendar.alpha = 1; } completion:^(BOOL finished) {
+            [_calendar setScope:isCollapsed ? FSCalendarScopeWeek : FSCalendarScopeMonth animated:NO];
+        }];
+        //		[UIView animateWithDuration:0.5 delay:0 usingSpringWithDamping:1 initialSpringVelocity:1 options:UIViewAnimationOptionCurveLinear animations:^{
+        //			//TODO: 添加弹跳动画...
+        //		}
+        //						 completion:nil];
     }];
 }
 @end

@@ -18,6 +18,7 @@
 #import "UIView+SDAutoLayout.h"
 
 static NSInteger const kButtonSize = 45;
+static CGFloat const kSlideItemWidth = 60;
 
 @interface
 TodoTableViewCell ()
@@ -79,52 +80,54 @@ TodoTableViewCell ()
 - (void)bindConstraints
 {
     _timeLabel.sd_layout
-      .topSpaceToView(self.contentView, _cellInsets.top + 2.5)
-      .leftSpaceToView(self.contentView, _cellInsets.left)
-      .heightIs(22)
-      .widthIs(30);
+    .topSpaceToView(self.contentView, _cellInsets.top + 2.5)
+    .leftSpaceToView(self.contentView, _cellInsets.left)
+    .heightIs(22)
+    .widthIs(30);
 
     _meridiemLabel.sd_layout
-      .topSpaceToView(_timeLabel, 2)
-      .leftEqualToView(_timeLabel)
-      .heightIs(10)
-      .widthRatioToView(_timeLabel, 1);
+    .topSpaceToView(_timeLabel, 2)
+    .leftEqualToView(_timeLabel)
+    .heightIs(10)
+    .widthRatioToView(_timeLabel, 1);
 
     _photoButton.sd_layout
-      .topSpaceToView(self.contentView, _cellInsets.top - 3)
-      .leftSpaceToView(_timeLabel, _cellInsets.left)
-      .widthIs(kButtonSize)
-      .heightIs(kButtonSize);
+    .topSpaceToView(self.contentView, _cellInsets.top - 3)
+    .leftSpaceToView(_timeLabel, _cellInsets.left)
+    .widthIs(kButtonSize)
+    .heightIs(kButtonSize);
 
     _statusButton.sd_layout
-      .centerYEqualToView(_photoButton)
-      .rightSpaceToView(self.contentView, _cellInsets.right)
-      .widthIs(15)
-      .heightEqualToWidth();
+    .centerYEqualToView(_photoButton)
+    .rightSpaceToView(self.contentView, _cellInsets.right)
+    .widthIs(15)
+    .heightEqualToWidth();
 
     // Mark: SDAutoLayout 在设置约束时要注意设置的顺序，不能在约束中使用未被约束的控件。
     _todoTitleLabel.sd_layout
-      .leftSpaceToView(_photoButton, 20)
-      .topSpaceToView(self.contentView, _cellInsets.top)
-      .rightSpaceToView(_statusButton, 10)
-      .heightIs(20);
+    .leftSpaceToView(_photoButton, 20)
+    .topSpaceToView(self.contentView, _cellInsets.top)
+    .rightSpaceToView(_statusButton, 10)
+    .heightIs(20);
 
     _todoContentLabel.sd_layout
-      .topSpaceToView(_todoTitleLabel, 2)
-      .leftEqualToView(_todoTitleLabel)
-      .rightEqualToView(_todoTitleLabel)
-      .autoHeightRatio(0)
-      .maxHeightIs(MAXFLOAT);
+    .topSpaceToView(_todoTitleLabel, 2)
+    .leftEqualToView(_todoTitleLabel)
+    .rightEqualToView(_todoTitleLabel)
+    .autoHeightRatio(0)
+    .maxHeightIs(MAXFLOAT);
 }
 - (void)configureSwipeBehavior
 {
-    self.rightSwipeSettings.transition = MGSwipeTransitionBorder;
-    self.rightSwipeSettings.keepButtonsSwiped = YES;
-    self.rightExpansion.fillOnTrigger = YES;
-    self.rightExpansion.buttonIndex = 0;
-    self.rightExpansion.threshold = 1;
-    self.rightExpansion.expansionLayout = MGSwipeExpansionLayoutBorder;
-    self.rightExpansion.triggerAnimation.easingFunction = MGSwipeEasingFunctionQuadIn;
+    self.rightExpansion.triggerAnimation.easingFunction = self.leftExpansion.triggerAnimation.easingFunction = MGSwipeEasingFunctionQuadIn;
+    self.rightExpansion.expansionLayout = self.leftExpansion.expansionLayout = MGSwipeExpansionLayoutBorder;
+    self.rightSwipeSettings.transition = self.leftSwipeSettings.transition = MGSwipeTransitionBorder;
+    self.rightExpansion.fillOnTrigger = self.leftExpansion.fillOnTrigger = YES;
+    self.rightExpansion.buttonIndex = self.leftExpansion.buttonIndex = 0;
+    self.rightSwipeSettings.keepButtonsSwiped = NO;
+    self.leftSwipeSettings.keepButtonsSwiped = YES;
+    self.rightExpansion.threshold = 2;
+    self.leftExpansion.threshold = 1;
 
     __weak typeof(self) weakSelf = self;
     MGSwipeButton* completeButton = [MGSwipeButton buttonWithTitle:@"" icon:[UIImage imageNamed:@"check"] backgroundColor:ColorWithRGB(0x33AF67) callback:^BOOL(MGSwipeTableCell* sender) {
@@ -140,11 +143,10 @@ TodoTableViewCell ()
         return NO;
     }];
 
-    completeButton.width = 60;
-    snoozeButton.width = completeButton.width;
-    deleteButton.width = completeButton.width;
+    completeButton.width = snoozeButton.width = deleteButton.width = kSlideItemWidth;
 
-    self.rightButtons = @[ completeButton, snoozeButton, deleteButton ];
+    self.rightButtons = @[ completeButton ];
+    self.leftButtons = @[ snoozeButton, deleteButton ];
 }
 #pragma mark - set model
 - (void)setModel:(CDTodo*)todo
