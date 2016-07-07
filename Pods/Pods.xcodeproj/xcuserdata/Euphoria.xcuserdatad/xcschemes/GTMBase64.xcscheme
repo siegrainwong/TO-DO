@@ -13,11 +13,11 @@
             buildForProfiling = "YES"
             buildForArchiving = "YES">
             <BuildableReference
-               BuildableIdentifier = 'primary'
-               BlueprintIdentifier = '304EA90FC13024DFA4D6193A29D69F53'
-               BlueprintName = 'GTMBase64'
-               ReferencedContainer = 'container:Pods.xcodeproj'
-               BuildableName = 'libGTMBase64.a'>
+               BuildableIdentifier = "primary"
+               BlueprintIdentifier = "304EA90FC13024DFA4D6193A29D69F53"
+               BlueprintName = "GTMBase64"
+               ReferencedContainer = "container:Pods.xcodeproj"
+               BuildableName = "libGTMBase64.a">
             </BuildableReference>
          </BuildActionEntry>
       </BuildActionEntries>

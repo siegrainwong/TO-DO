@@ -13,11 +13,11 @@
             buildForProfiling = "YES"
             buildForArchiving = "YES">
             <BuildableReference
-               BuildableIdentifier = 'primary'
-               BlueprintIdentifier = '12AC35F9C569FA2A4543EFEDD802D2C9'
-               BlueprintName = 'DGActivityIndicatorView'
-               ReferencedContainer = 'container:Pods.xcodeproj'
-               BuildableName = 'libDGActivityIndicatorView.a'>
+               BuildableIdentifier = "primary"
+               BlueprintIdentifier = "12AC35F9C569FA2A4543EFEDD802D2C9"
+               BlueprintName = "DGActivityIndicatorView"
+               ReferencedContainer = "container:Pods.xcodeproj"
+               BuildableName = "libDGActivityIndicatorView.a">
             </BuildableReference>
          </BuildActionEntry>
       </BuildActionEntries>

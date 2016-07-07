@@ -23,19 +23,19 @@ static NSString* const kTodosChangedNotification = @"kTodosChangedNotification";
 /**
  *  AVObject的ObjectId字段的筛选规则
  */
-typedef NS_ENUM(NSInteger, AVObjectFiltering) {
+typedef NS_ENUM(NSInteger, AVObjectFilterType) {
     /**
 	 *  不筛选
 	 */
-    AVObjectFilteringNone,
+    AVObjectFilterTypeNone,
     /**
 	 *  筛选有objectId的
 	 */
-    AVObjectFilteringHasObjectId,
+    AVObjectFilterTypeHasObjectId,
     /**
 	 *  筛选没有objectId的
 	 */
-    AVObjectFilteringNoObjectId
+    AVObjectFilterTypeNoObjectId
 };
 /* 待办事项状态 */
 typedef NS_ENUM(NSInteger, TodoStatus) {

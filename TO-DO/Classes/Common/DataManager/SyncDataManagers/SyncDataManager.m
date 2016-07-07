@@ -7,18 +7,15 @@
 //
 
 #import "AFHTTPRequestOperationManager+Synchronous.h"
-#import "AFNetworking.h"
 #import "AppDelegate.h"
 #import "CDTodo.h"
 #import "DateUtil.h"
-#import "GCDQueue.h"
 #import "LCSyncRecord.h"
 #import "LCTodo.h"
 #import "SCLAlertHelper.h"
 #import "SyncDataManager.h"
 
 // TODO: 本地化
-// TODO: 自动同步
 
 typedef NS_ENUM(NSInteger, TodoFetchType) {
     TodoFetchTypeCommit,
@@ -86,7 +83,7 @@ SyncDataManager ()
 	 同步类型：
 	 1. 若本地没有同步记录，则将本地所有数据进行上传，并将服务器上所有的数据进行下载(incremental sync)
 	 2. 若 lastSyncTimeOnServer = lastSyncTimeOnClient，表明服务器数据没有变化，则仅需要上传本地修改过的数据和新增的数据(send changes)
-	 3. 若 lastSyncTimeOnServer > lastSyncTimeOnClient，则进行全数据对比，先对比同步所有已有数据，再将其他数据从服务器上下载(full sync)
+	 3. 若 lastSyncTimeOnServer > lastSyncTimeOnClient，则进行全量同步，先对比同步所有已有数据，再将其他数据从服务器上下载(full sync)
 	 4. 其他情况进行incremental sync
 	 
 	 注意事项：
@@ -98,6 +95,11 @@ SyncDataManager ()
 	 以下几种情况会影响同步时数据的原子性：
 	 1. 云函数返回之前挂掉：下次同步则为full sync，同时在对比时会将objectId赋值给本地对应的待办事项。
 	 2. 若在批次之间挂掉的话（上一批成功，下一批挂掉），这时需要在判断同步类型时，判断上一次同步成功的记录次数，若次数超限，此次同步为full sync。
+	 
+	 该功能难点：
+	 1. 处理各种异常情况，保证数据的一致性和原子性
+	 2. 同步效率
+	 3. 分批同步
 	 */
     __weak typeof(self) weakSelf = self;
     NSBlockOperation* asyncOperation = [NSBlockOperation new];
@@ -114,9 +116,10 @@ SyncDataManager ()
         [operation addExecutionBlock:^{
             NSDate* lastCreatedAt = weakSelf.lastCreatedAtDictionary[@(TodoFetchTypeCommit)];
 
-            //如果是提交变更，获取所有修改过的数据、如果是其他模式，就只获取本地新增的数据
-            NSArray<CDTodo*>* todosArray = [weakSelf fetchTodoWithAVObjectFiltering:weakSelf.syncType == SyncTypeSendChanges ? AVObjectFilteringNone : AVObjectFilteringNoObjectId isOnlyFetchTodosNeedsToCommit:YES lastCreatedAt:lastCreatedAt ?: [NSDate date]];
+            //根据同步类型获取对应的需要进行提交的数据
+            NSArray<CDTodo*>* todosArray = [weakSelf retrieveTodoWithFilterType:weakSelf.syncType == SyncTypeSendChanges ? AVObjectFilterTypeNone : AVObjectFilterTypeNoObjectId isOnlyRetrieveTodosNeedsToCommit:YES lastCreatedAt:lastCreatedAt ?: [NSDate date]];
             [todosReadyToCommit addObjectsFromArray:todosArray];
+
             [weakSelf recordDataCountAndLastCreateDateWithArray:todosArray fetchType:TodoFetchTypeCommit];
         }];
         //2-2. 并行线程2
@@ -142,19 +145,20 @@ SyncDataManager ()
             if (![weakSelf commitTodosAndSave:todosReadyToCommit])
                 return [self.errorHandler returnWithError:nil description:@"2-3. 上传\\保存数据失败" failBlock:complete];
 
-            return [weakSelf returnIfDonNotNeedToSync:complete];
+            return [weakSelf syncIfNeeded:complete];
         }];
         [operation start];
     }];
     [asyncOperation start];
 }
 #pragma mark - sync methods
-#pragma mark - setup sync mode before sync
+/**
+ *  在准备同步之前配置同步模式
+ */
 - (void)setupSyncMode:(SyncMode)syncMode
 {
     _errorHandler.isAlert = syncMode == SyncModeManually;
 }
-#pragma mark - sync prepare
 /**
  *  准备同步
  *
@@ -189,7 +193,6 @@ SyncDataManager ()
 
     return YES;
 }
-#pragma mark - sync type
 /**
  *  获取此次同步的同步类型
  *
@@ -274,7 +277,7 @@ SyncDataManager ()
 
     return [todosReadyToCommit copy];
 }
-#pragma mark - sync saving methods
+#pragma mark - saving methods
 /**
  *  将准备提交给服务器的待办事项转换为字典，并将本地待办事项标记为“已同步”状态
  */
@@ -306,12 +309,12 @@ SyncDataManager ()
     NSArray<NSDictionary*>* todosDictionary = [self todosToDictionary:todosReadyToCommit];
     NSError* error = nil;
     NSDictionary* commitTodoParameters =
-      @{ @"todos" : todosDictionary,
-          @"syncRecordDictionary" : @{
-              @"syncRecordId" : _syncRecord.objectId,
-              @"commitCount" : _syncRecord.commitCount,
-              @"downloadCount" : _syncRecord.downloadCount
-          } };
+    @{ @"todos" : todosDictionary,
+        @"syncRecordDictionary" : @{
+            @"syncRecordId" : _syncRecord.objectId,
+            @"commitCount" : _syncRecord.commitCount,
+            @"downloadCount" : _syncRecord.downloadCount
+        } };
     // Mark: 这里回调返回了两个数据，第一个是待办事项objectId数组，第二个是服务器修改过的的SyncRecord字典。
     // Mark: LeanCloud rpcFunction美名其曰可以直传AVObject，然而云函数并不支持保存
     NSArray* responseDatas = [AVCloud callFunction:@"commitTodos" withParameters:commitTodoParameters error:&error];
@@ -336,7 +339,6 @@ SyncDataManager ()
     return YES;
 }
 #pragma mark - LeanCloud methods
-#pragma mark - retrieve sync record
 /**
  *  根据本机唯一标识获取服务器上的最新一条同步记录
  */
@@ -355,7 +357,6 @@ SyncDataManager ()
 
     return record;
 }
-#pragma mark - retrieve todo
 
 /**
  *  获取服务器上所有可以同步的待办事项
@@ -378,7 +379,6 @@ SyncDataManager ()
     return array;
 }
 #pragma mark - MagicRecord methods
-#pragma mark - retrive sync record
 /**
  *  根据本机唯一标识获取本地的最新一条同步记录
  */
@@ -389,7 +389,6 @@ SyncDataManager ()
 
     return record;
 }
-#pragma mark - retrieve data that needs to sync
 /**
  *  筛选本地前50条待办事项，以createdAt倒序排序
  *
@@ -398,7 +397,7 @@ SyncDataManager ()
  *
  *  @return 本地待办事项
  */
-- (NSArray<CDTodo*>*)fetchTodoWithAVObjectFiltering:(AVObjectFiltering)filtering isOnlyFetchTodosNeedsToCommit:(BOOL)todosIsNeedsToCommit lastCreatedAt:(NSDate*)lastCreatedAt
+- (NSArray<CDTodo*>*)retrieveTodoWithFilterType:(AVObjectFilterType)filterType isOnlyRetrieveTodosNeedsToCommit:(BOOL)todosIsNeedsToCommit lastCreatedAt:(NSDate*)lastCreatedAt
 {
     NSMutableArray* arguments = [NSMutableArray new];
     NSString* predicateFormat = @"user = %@ AND createdAt < %@";
@@ -406,9 +405,9 @@ SyncDataManager ()
 
     NSString* appendPredicate = @"";
     NSString* sortBy = @"createdAt";
-    if (filtering == AVObjectFilteringHasObjectId)
+    if (filterType == AVObjectFilterTypeHasObjectId)
         appendPredicate = @" and objectId != nil";
-    else if (filtering == AVObjectFilteringNoObjectId)
+    else if (filterType == AVObjectFilterTypeNoObjectId)
         appendPredicate = @" and objectId = nil";
 
     predicateFormat = [predicateFormat stringByAppendingString:appendPredicate];
@@ -427,7 +426,6 @@ SyncDataManager ()
 
     return data;
 }
-#pragma mark - fetch todo by uuid
 /**
  *  根据identifier获取待办事项
  */
@@ -435,8 +433,7 @@ SyncDataManager ()
 {
     return [CDTodo MR_findFirstWithPredicate:[NSPredicate predicateWithFormat:@"identifier = %@", identifier] inContext:_localContext];
 }
-#pragma mark - both MagicRecord and LeanCloud methods
-#pragma mark - insert sync record
+#pragma mark - common methods
 /**
  *  向服务器和本地插入一条同步记录
  *
@@ -486,6 +483,10 @@ SyncDataManager ()
 
     return serverDate;
 }
+/**
+ *  记录的本次同步数量和最后一条数据的创建时间
+ *  便于下一批次的同步
+ */
 - (void)recordDataCountAndLastCreateDateWithArray:(NSArray*)array fetchType:(TodoFetchType)fetchType
 {
     NSDate* createdAt;
@@ -515,7 +516,7 @@ SyncDataManager ()
 /**
  *  先检查是否需要继续同步，不需要则返回，需要则递归
  */
-- (void)returnIfDonNotNeedToSync:(CompleteBlock)block
+- (void)syncIfNeeded:(CompleteBlock)block
 {
     NSInteger commitCount = _syncRecord.commitCount.integerValue;
     NSInteger downloadCount = _syncRecord.downloadCount.integerValue;

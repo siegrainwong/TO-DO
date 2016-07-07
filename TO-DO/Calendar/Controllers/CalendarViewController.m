@@ -10,6 +10,7 @@
 #import "CalendarViewController.h"
 #import "CreateViewController.h"
 #import "DateUtil.h"
+#import "GCDQueue.h"
 #import "MRTodoDataManager.h"
 #import "NSDate+Extension.h"
 #import "UIImage+Extension.h"
@@ -170,5 +171,15 @@ CalendarViewController ()
         //		}
         //						 completion:nil];
     }];
+}
+#pragma mark - menu button
+- (void)menuButtonDidPress
+{
+    dispatch_queue_t queue = dispatch_queue_create("serial", DISPATCH_QUEUE_SERIAL);
+    dispatch_sync(queue, ^{
+        dispatch_sync(queue, ^{
+            NSLog(@"%@", [NSThread currentThread]);
+        });
+    });
 }
 @end

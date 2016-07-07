@@ -13,11 +13,11 @@
             buildForProfiling = "YES"
             buildForArchiving = "YES">
             <BuildableReference
-               BuildableIdentifier = 'primary'
-               BlueprintIdentifier = 'D54AB3ECEB9A8FBA15D4F73CBE326692'
-               BlueprintName = 'MagicalRecord'
-               ReferencedContainer = 'container:Pods.xcodeproj'
-               BuildableName = 'libMagicalRecord.a'>
+               BuildableIdentifier = "primary"
+               BlueprintIdentifier = "D54AB3ECEB9A8FBA15D4F73CBE326692"
+               BlueprintName = "MagicalRecord"
+               ReferencedContainer = "container:Pods.xcodeproj"
+               BuildableName = "libMagicalRecord.a">
             </BuildableReference>
          </BuildActionEntry>
       </BuildActionEntries>

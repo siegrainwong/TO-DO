@@ -13,11 +13,11 @@
             buildForProfiling = "YES"
             buildForArchiving = "YES">
             <BuildableReference
-               BuildableIdentifier = 'primary'
-               BlueprintIdentifier = '53480ED0BE09FF49E34B1702D485CAAB'
-               BlueprintName = 'Masonry'
-               ReferencedContainer = 'container:Pods.xcodeproj'
-               BuildableName = 'libMasonry.a'>
+               BuildableIdentifier = "primary"
+               BlueprintIdentifier = "53480ED0BE09FF49E34B1702D485CAAB"
+               BlueprintName = "Masonry"
+               ReferencedContainer = "container:Pods.xcodeproj"
+               BuildableName = "libMasonry.a">
             </BuildableReference>
          </BuildActionEntry>
       </BuildActionEntries>
