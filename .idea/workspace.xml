@@ -4,7 +4,6 @@
     <list default="true" id="ecff046f-b4de-4822-97bb-4ceaf6877135" name="Default" comment="">
       <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/TO-DO/Images/2. Home/3. Create/create header bg.png" />
       <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/TO-DO/Images/drawerbg.png" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/.idea/dictionaries/Euphoria.xml" />
       <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/TO-DO/Assets.xcassets/Contents.json" />
       <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/TO-DO/Assets.xcassets/SwipableCellIcon/Contents.json" />
       <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/TO-DO/Calendar/Controllers/CalendarViewController.h" />
@@ -95,7 +94,6 @@
       <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/TO-DO/Model/LeanCloudModels/LCSyncRecord.h" />
       <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/TO-DO/Model/LeanCloudModels/LCSyncRecord.m" />
       <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/TO-DO/PrefixHeader.pch" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/TO-DO.xcodeproj/xcuserdata/Euphoria.xcuserdatad/xcschemes/TO-DO.xcscheme" afterPath="" />
       <change type="DELETED" beforePath="$PROJECT_DIR$/TO-DO/Classes/Common/Categories/WAuthData+Extension.h" afterPath="" />
       <change type="DELETED" beforePath="$PROJECT_DIR$/TO-DO/Classes/Common/Categories/WAuthData+Extension.m" afterPath="" />
       <change type="DELETED" beforePath="$PROJECT_DIR$/TO-DO/Classes/Common/Utilities/GCDUtil.m" afterPath="" />
@@ -106,11 +104,7 @@
       <change type="MOVED" beforePath="$PROJECT_DIR$/TO-DO/Classes/Common/Utilities/GCDUtil.h" afterPath="$PROJECT_DIR$/TO-DO/Classes/Common/Utilities/GCDQueue.h" />
       <change type="MOVED" beforePath="$PROJECT_DIR$/TO-DO/Classes/Login/DataManager/LoginDataManager.h" afterPath="$PROJECT_DIR$/TO-DO/Classes/Login/DataManager/LCUserDataManager.h" />
       <change type="MOVED" beforePath="$PROJECT_DIR$/TO-DO/Images/1. Login/header bg.png" afterPath="$PROJECT_DIR$/TO-DO/Images/1. Login/login header bg.png" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/TO-DO.iml" afterPath="$PROJECT_DIR$/.idea/TO-DO.iml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/misc.xml" afterPath="$PROJECT_DIR$/.idea/misc.xml" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Pods/Pods.xcodeproj/xcuserdata/Euphoria.xcuserdatad/xcschemes/xcschememanagement.plist" afterPath="$PROJECT_DIR$/Pods/Pods.xcodeproj/xcuserdata/Euphoria.xcuserdatad/xcschemes/xcschememanagement.plist" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/TO-DO.xcodeproj/xcuserdata/Euphoria.xcuserdatad/xcschemes/xcschememanagement.plist" afterPath="$PROJECT_DIR$/TO-DO.xcodeproj/xcuserdata/Euphoria.xcuserdatad/xcschemes/xcschememanagement.plist" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/TO-DO/Base.lproj/Main.storyboard" afterPath="$PROJECT_DIR$/TO-DO/Base.lproj/Main.storyboard" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/TO-DO/Classes/AppDelegate/AppDelegate.h" afterPath="$PROJECT_DIR$/TO-DO/Classes/AppDelegate/AppDelegate.h" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/TO-DO/Classes/AppDelegate/AppDelegate.m" afterPath="$PROJECT_DIR$/TO-DO/Classes/AppDelegate/AppDelegate.m" />
@@ -120,14 +114,12 @@
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/TO-DO/Classes/Common/Categories/UIImage+Extension.m" afterPath="$PROJECT_DIR$/TO-DO/Classes/Common/Categories/UIImage+Extension.m" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/TO-DO/Classes/Common/Constants/DataKeys.h" afterPath="$PROJECT_DIR$/TO-DO/Classes/Common/Constants/DataKeys.h" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/TO-DO/Classes/Common/Constants/Macros.h" afterPath="$PROJECT_DIR$/TO-DO/Classes/Common/Constants/Macros.h" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/TO-DO/Classes/Common/DataManager/SyncDataManagers/SyncDataManager.h" afterPath="$PROJECT_DIR$/TO-DO/Classes/Common/DataManager/SyncDataManagers/SyncDataManager.h" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/TO-DO/Classes/Common/QiniuTokenGenerator.m" afterPath="$PROJECT_DIR$/TO-DO/Classes/Common/QiniuTokenGenerator.m" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/TO-DO/Classes/Common/DataManager/SyncDataManagers/SyncDataManager.m" afterPath="$PROJECT_DIR$/TO-DO/Classes/Common/DataManager/SyncDataManagers/SyncDataManager.m" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/TO-DO/Classes/Common/SCLAlertHelper.h" afterPath="$PROJECT_DIR$/TO-DO/Classes/Common/SCLAlertHelper.h" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/TO-DO/Classes/Common/SCLAlertHelper.m" afterPath="$PROJECT_DIR$/TO-DO/Classes/Common/SCLAlertHelper.m" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/TO-DO/Classes/Common/TodoHelper.h" afterPath="$PROJECT_DIR$/TO-DO/Classes/Common/TodoHelper.h" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/TO-DO/Classes/Common/TodoHelper.m" afterPath="$PROJECT_DIR$/TO-DO/Classes/Common/TodoHelper.m" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/TO-DO/Classes/Common/Utilities/FieldValidator.m" afterPath="$PROJECT_DIR$/TO-DO/Classes/Common/Utilities/FieldValidator.m" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/TO-DO/Classes/Common/Utilities/ImageUploader.m" afterPath="$PROJECT_DIR$/TO-DO/Classes/Common/Utilities/ImageUploader.m" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/TO-DO/Classes/Login/Controllers/LoginViewController.h" afterPath="$PROJECT_DIR$/TO-DO/Classes/Login/Controllers/LoginViewController.h" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/TO-DO/Classes/Login/Controllers/LoginViewController.m" afterPath="$PROJECT_DIR$/TO-DO/Classes/Login/Controllers/LoginViewController.m" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/TO-DO/Classes/Login/Views/LoginView.h" afterPath="$PROJECT_DIR$/TO-DO/Classes/Login/Views/LoginView.h" />
@@ -154,27 +146,17 @@
   <component name="CreatePatchCommitExecutor">
     <option name="PATCH_PATH" value="" />
   </component>
-  <component name="ExecutionTargetManager" SELECTED_TARGET="iphoneos" />
+  <component name="ExecutionTargetManager" SELECTED_TARGET="iphoneos_a48702d1b91504c0f7b16071bcbec38c4fe29705" />
   <component name="FavoritesManager">
     <favorites_list name="TO-DO" />
   </component>
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-      <file leaf-file-name="AppDelegate.m" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/TO-DO/Classes/AppDelegate/AppDelegate.m">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="1887">
-              <caret line="111" column="46" selection-start-line="111" selection-start-column="46" selection-end-line="111" selection-end-column="46" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
       <file leaf-file-name="SyncDataManager.m" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/TO-DO/Classes/Common/DataManager/SyncDataManagers/SyncDataManager.m">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="306">
-              <caret line="146" column="113" selection-start-line="146" selection-start-column="113" selection-end-line="146" selection-end-column="113" />
+            <state relative-caret-position="493">
+              <caret line="61" column="58" selection-start-line="61" selection-start-column="58" selection-end-line="61" selection-end-column="58" />
               <folding />
             </state>
           </provider>
@@ -214,6 +196,7 @@
         <option value="$PROJECT_DIR$/TO-DO/Localization/Base.lproj/Localizable.strings" />
         <option value="$PROJECT_DIR$/TO-DO/Localization/zh-Hans.lproj/Localizable.strings" />
         <option value="$PROJECT_DIR$/TO-DO/Classes/Common/DataManager/SyncDataManagers/SyncDataManager.m" />
+        <option value="$PROJECT_DIR$/TO-DO/Classes/AppDelegate/AppDelegate.m" />
       </list>
     </option>
   </component>
@@ -279,28 +262,6 @@
             </PATH_ELEMENT>
             <PATH_ELEMENT>
               <option name="myItemId" value="TO-DO" />
-              <option name="myItemType" value="com.jetbrains.cidr.projectView.XcodeViewNode" />
-            </PATH_ELEMENT>
-          </PATH>
-          <PATH>
-            <PATH_ELEMENT>
-              <option name="myItemId" />
-              <option name="myItemType" value="com.jetbrains.cidr.projectView.XcodeRootNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="TO-DO" />
-              <option name="myItemType" value="com.jetbrains.cidr.projectView.XcodeProjectNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="TO-DO" />
-              <option name="myItemType" value="com.jetbrains.cidr.projectView.XcodeViewNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="Localization" />
-              <option name="myItemType" value="com.jetbrains.cidr.projectView.XcodeViewNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="Localizable.strings" />
               <option name="myItemType" value="com.jetbrains.cidr.projectView.XcodeViewNode" />
             </PATH_ELEMENT>
           </PATH>
@@ -376,12 +337,12 @@
       <workItem from="1475028842106" duration="1449000" />
       <workItem from="1475133151378" duration="1669000" />
       <workItem from="1477907919407" duration="33000" />
-      <workItem from="1478070413052" duration="999000" />
+      <workItem from="1478070413052" duration="3211000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="4150000" />
+    <option name="totallyTimeSpent" value="6362000" />
   </component>
   <component name="TodoView">
     <todo-panel id="selected-file">
@@ -394,13 +355,14 @@
   </component>
   <component name="ToolWindowManager">
     <frame x="1440" y="-180" width="2560" height="1080" extended-state="0" />
-    <editor active="false" />
+    <editor active="true" />
     <layout>
       <window_info id="Designer" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
-      <window_info id="Project" active="true" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.100472815" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
+      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.100472815" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.23940678" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
       <window_info id="Palette&#9;" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32944915" sideWeight="0.50192624" order="7" side_tool="true" content_ui="tabs" />
+      <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32871288" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32944915" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.14254265" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32944915" sideWeight="0.49807376" order="7" side_tool="false" content_ui="tabs" />
@@ -412,7 +374,6 @@
       <window_info id="Inspection" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
       <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.2733051" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" x="-189" y="-659" width="1817" height="244" />
       <window_info id="Hierarchy" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="2" side_tool="false" content_ui="combo" />
-      <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32944915" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Ant Build" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.3167373" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
     </layout>
@@ -660,14 +621,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/TO-DO/Classes/Common/DataManager/SyncDataManagers/SyncDataManager.h">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="391">
-          <caret line="23" column="49" selection-start-line="23" selection-start-column="49" selection-end-line="23" selection-end-column="49" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/TO-DO/Classes/Common/Utilities/ImageUploader.h">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="442">
@@ -679,14 +632,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="782">
           <caret line="46" column="24" selection-start-line="46" selection-start-column="24" selection-end-line="46" selection-end-column="24" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/TO-DO/Classes/AppDelegate/AppDelegate.m">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="1887">
-          <caret line="111" column="46" selection-start-line="111" selection-start-column="46" selection-end-line="111" selection-end-column="46" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -714,10 +659,26 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/TO-DO/Classes/Common/DataManager/SyncDataManagers/SyncDataManager.h">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="85">
+          <caret line="5" column="28" selection-start-line="5" selection-start-column="28" selection-end-line="5" selection-end-column="28" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/TO-DO/Classes/AppDelegate/AppDelegate.m">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="170">
+          <caret line="25" column="62" selection-start-line="25" selection-start-column="62" selection-end-line="25" selection-end-column="62" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/TO-DO/Classes/Common/DataManager/SyncDataManagers/SyncDataManager.m">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="306">
-          <caret line="146" column="113" selection-start-line="146" selection-start-column="113" selection-end-line="146" selection-end-column="113" />
+        <state relative-caret-position="493">
+          <caret line="61" column="58" selection-start-line="61" selection-start-column="58" selection-end-line="61" selection-end-column="58" />
           <folding />
         </state>
       </provider>

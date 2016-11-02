@@ -23,7 +23,7 @@
 #import "UIImage+Extension.h"
 #import <AVOSCloud.h>
 
-// FIXME: 每次进入一个新的ViewController，都会在AF库中的SecPolicy对象上发生几百b的内存泄漏，暂时无法解决
+// FIXME: 每次进入一个新的ViewController，都会在AF库中的SecPolicy对象上发生几百b的内存泄漏，wtf?
 
 @interface
 AppDelegate ()

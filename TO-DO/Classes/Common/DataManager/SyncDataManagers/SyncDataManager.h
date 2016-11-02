@@ -21,7 +21,7 @@ typedef NS_ENUM(NSInteger, SyncMode) {
     SyncModeAutomatically
 };
 
-@interface SyncDataManager : NSObject<Localized>y
+@interface SyncDataManager : NSObject<Localized>
 /**
  *  开始同步
  *
