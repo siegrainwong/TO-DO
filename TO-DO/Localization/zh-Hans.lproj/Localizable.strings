@@ -39,6 +39,7 @@
 /* Errors */
 "Please allow app to access your device's camera in \"Settings\" -> \"Privacy\" -> \"Camera\"" = "请在iPhone的“设置-隐私-相机”选项中，允许本应用访问你的相机";
 "Failed to upload avatar, please try again" = "上传图片失败，请重试";
+"Unable to sync, please check your network connection!" = "无法同步，请检查你的网络是否通畅！";
 
 /* Exceptions */
 "Unable to open your camera or album because of an unexpected error" = "因为未知原因，无法使用您的相机或相册";
@@ -54,3 +55,4 @@
 "Today" = "今天";
 "Set date" = "设置时间";
 "Back" = "返回";
+"Unable to sync, please check your network connection!" = "Unable to sync, please check your network connection!";

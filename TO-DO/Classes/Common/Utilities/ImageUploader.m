@@ -28,9 +28,9 @@
 
     NSString* token = [QiniuTokenGenerator generateToken];
     QNUploadManager* upManager = [[QNUploadManager alloc] init];
-    [upManager putData:imageData //upload image data
-                   key:key //upload path
-                 token:token //upload token
+    [upManager putData:imageData  //upload image data
+                   key:key        //upload path
+                 token:token      //upload token
               complete:^(QNResponseInfo* info, NSString* key, NSDictionary* resp) {
                   completion(info.statusCode != 200, key);
               }

@@ -32,7 +32,7 @@ AppDelegate ()
 @implementation AppDelegate
 #pragma mark - application delegate
 - (BOOL)application:(UIApplication*)application
-  didFinishLaunchingWithOptions:(NSDictionary*)launchOptions
+didFinishLaunchingWithOptions:(NSDictionary*)launchOptions
 {
     [self setup];
 

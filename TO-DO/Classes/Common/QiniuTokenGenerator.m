@@ -9,7 +9,12 @@
 #import "NSString+Encrytion.h"
 #import "QiniuTokenGenerator.h"
 
-static NSString* const kBucketName = @"sgtodo";
+//static NSString* const kBucketName = @"sgtodo";
+//static NSString* const kSK = @"fr9pgEGk8HpUrwZzcyI4ZGHB1QK-bP9-6ksYyTzN";
+//static NSString* const kAK = @"8Xq81lMXRoiVvWToPuxTu3x0_vpk0d0qdZLQ2si-";
+static NSString* const kBucketName = @"lurenwang";
+static NSString* const kSK = @"z-ECfAQSy9njtH5dePxhdkcf05XjR5ElCClQf-LG";
+static NSString* const kAK = @"zU-m1N88SrMsvpvcfGBNwWINGsXjxV_BiWyUFpPj";
 
 @implementation QiniuTokenGenerator
 + (NSString*)generateToken
@@ -18,9 +23,9 @@ static NSString* const kBucketName = @"sgtodo";
     NSString* uploadPolicy = [NSString stringWithFormat:@"{\"scope\":\"%@\",\"deadline\":%ld}", kBucketName, (long)deadline];
 
     NSString* encoded = [uploadPolicy base64];
-    NSString* encodedSigned = [encoded hmacsha1_base64:@"fr9pgEGk8HpUrwZzcyI4ZGHB1QK-bP9-6ksYyTzN"];
+    NSString* encodedSigned = [encoded hmacsha1_base64:kSK];
 
-    NSString* token = [NSString stringWithFormat:@"%@:%@:%@", @"8Xq81lMXRoiVvWToPuxTu3x0_vpk0d0qdZLQ2si-", encodedSigned, encoded];
+    NSString* token = [NSString stringWithFormat:@"%@:%@:%@", kAK, encodedSigned, encoded];
 
     return token;
 }
