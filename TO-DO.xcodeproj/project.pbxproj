@@ -8,11 +8,13 @@
 
 /* Begin PBXBuildFile section */
 		8A80814723BDF84A9866A1C1 /* libPods-TO-DO.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 874BB13DFF8BBE53341474BC /* libPods-TO-DO.a */; };
+		F1F6A68DCCB16413F566B346 /* EmptyDataView.m in Sources */ = {isa = PBXBuildFile; fileRef = F1F6A1FA388CF728AE1FB045 /* EmptyDataView.m */; };
+		F1F6AC66CE20B5D9C269FA27 /* UIView+Extension.m in Sources */ = {isa = PBXBuildFile; fileRef = F1F6A8A0740505126718EA47 /* UIView+Extension.m */; };
 		F921F4D41CECA023004AC07E /* UINavigationController+Transparent.m in Sources */ = {isa = PBXBuildFile; fileRef = F921F4D31CECA023004AC07E /* UINavigationController+Transparent.m */; };
 		F92B876D1CE368B300D15EAE /* UIView+Extentsion.m in Sources */ = {isa = PBXBuildFile; fileRef = F92B876C1CE368B300D15EAE /* UIView+Extentsion.m */; };
 		F9331D851CF0A97200B36474 /* LCTodo.m in Sources */ = {isa = PBXBuildFile; fileRef = F9331D821CF0A97200B36474 /* LCTodo.m */; };
 		F9331D861CF0A97200B36474 /* LCUser.m in Sources */ = {isa = PBXBuildFile; fileRef = F9331D841CF0A97200B36474 /* LCUser.m */; };
-		F9383FD41D005423006D9497 /* SyncDataManager.m in Sources */ = {isa = PBXBuildFile; fileRef = F9383FD31D005423006D9497 /* SyncDataManager.m */; };
+		F9383FD41D005423006D9497 /* SGSyncManager.m in Sources */ = {isa = PBXBuildFile; fileRef = F9383FD31D005423006D9497 /* SGSyncManager.m */; };
 		F93BC14E1CE5E961000A34C5 /* header bg.png in Resources */ = {isa = PBXBuildFile; fileRef = F93BC14B1CE5E961000A34C5 /* header bg.png */; };
 		F93BC1571CE5E9EE000A34C5 /* HomeViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = F93BC1561CE5E9EE000A34C5 /* HomeViewController.m */; };
 		F943885B1CF5579100E44379 /* TodoHeaderCell.m in Sources */ = {isa = PBXBuildFile; fileRef = F943885A1CF5579100E44379 /* TodoHeaderCell.m */; };
@@ -38,7 +40,7 @@
 		F94CA2441CE2FA9E0006904F /* UIImage+Extension.m in Sources */ = {isa = PBXBuildFile; fileRef = F94CA22F1CE2FA9E0006904F /* UIImage+Extension.m */; };
 		F94CA2451CE2FA9E0006904F /* UITextField+BottomBorder.m in Sources */ = {isa = PBXBuildFile; fileRef = F94CA2311CE2FA9E0006904F /* UITextField+BottomBorder.m */; };
 		F94CA2471CE2FA9E0006904F /* SCLAlertHelper.m in Sources */ = {isa = PBXBuildFile; fileRef = F94CA2381CE2FA9E0006904F /* SCLAlertHelper.m */; };
-		F94CA2481CE2FA9E0006904F /* TodoHelper.m in Sources */ = {isa = PBXBuildFile; fileRef = F94CA23A1CE2FA9E0006904F /* TodoHelper.m */; };
+		F94CA2481CE2FA9E0006904F /* SGHelper.m in Sources */ = {isa = PBXBuildFile; fileRef = F94CA23A1CE2FA9E0006904F /* SGHelper.m */; };
 		F94CA2491CE2FA9E0006904F /* FieldValidator.m in Sources */ = {isa = PBXBuildFile; fileRef = F94CA23D1CE2FA9E0006904F /* FieldValidator.m */; };
 		F94CA24A1CE2FA9E0006904F /* GCDQueue.m in Sources */ = {isa = PBXBuildFile; fileRef = F94CA23F1CE2FA9E0006904F /* GCDQueue.m */; };
 		F94CA24B1CE2FA9E0006904F /* MD5Util.m in Sources */ = {isa = PBXBuildFile; fileRef = F94CA2411CE2FA9E0006904F /* MD5Util.m */; };
@@ -51,7 +53,7 @@
 		F94F2F371CF2D71200128A3A /* TodoTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = F94F2F361CF2D71200128A3A /* TodoTableViewCell.m */; };
 		F95994531CE462E100B042BD /* QiniuTokenGenerator.m in Sources */ = {isa = PBXBuildFile; fileRef = F95994521CE462E100B042BD /* QiniuTokenGenerator.m */; };
 		F95994561CE4692D00B042BD /* NSString+Encrytion.m in Sources */ = {isa = PBXBuildFile; fileRef = F95994551CE4692D00B042BD /* NSString+Encrytion.m */; };
-		F959945B1CE47BC200B042BD /* ImageUploader.m in Sources */ = {isa = PBXBuildFile; fileRef = F959945A1CE47BC200B042BD /* ImageUploader.m */; };
+		F959945B1CE47BC200B042BD /* SGImageUpload.m in Sources */ = {isa = PBXBuildFile; fileRef = F959945A1CE47BC200B042BD /* SGImageUpload.m */; };
 		F959945E1CE481CD00B042BD /* DateUtil.m in Sources */ = {isa = PBXBuildFile; fileRef = F959945D1CE481CD00B042BD /* DateUtil.m */; };
 		F95994611CE4898100B042BD /* UIImage+Compression.m in Sources */ = {isa = PBXBuildFile; fileRef = F95994601CE4898100B042BD /* UIImage+Compression.m */; };
 		F961B55B1CF42DED0096DAF4 /* LCTodoDataManager.m in Sources */ = {isa = PBXBuildFile; fileRef = F961B55A1CF42DED0096DAF4 /* LCTodoDataManager.m */; };
@@ -122,6 +124,11 @@
 		36E2DF670BBA7C56A7B0B215 /* Pods-TO-DO.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-TO-DO.release.xcconfig"; path = "Pods/Target Support Files/Pods-TO-DO/Pods-TO-DO.release.xcconfig"; sourceTree = "<group>"; };
 		82F62EB9CE69A5ADAEC271F2 /* Pods-TO-DO.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-TO-DO.debug.xcconfig"; path = "Pods/Target Support Files/Pods-TO-DO/Pods-TO-DO.debug.xcconfig"; sourceTree = "<group>"; };
 		874BB13DFF8BBE53341474BC /* libPods-TO-DO.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-TO-DO.a"; sourceTree = BUILT_PRODUCTS_DIR; };
+		F1F6A1FA388CF728AE1FB045 /* EmptyDataView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = EmptyDataView.m; path = "TO-DO/Classes/Common/EmptyDataView.m"; sourceTree = SOURCE_ROOT; };
+		F1F6A37F439E94DD8DD9F7C8 /* UIView+Extension.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIView+Extension.h"; sourceTree = "<group>"; };
+		F1F6A63CD4780AAF6A0A6888 /* EmptyDataView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = EmptyDataView.h; path = "TO-DO/Classes/Common/EmptyDataView.h"; sourceTree = SOURCE_ROOT; };
+		F1F6A8A0740505126718EA47 /* UIView+Extension.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIView+Extension.m"; sourceTree = "<group>"; };
+		F1F6AFD0F8F9B27BA3CC5CAA /* SGViews.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SGViews.h; sourceTree = "<group>"; };
 		F921F4D21CECA023004AC07E /* UINavigationController+Transparent.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UINavigationController+Transparent.h"; sourceTree = "<group>"; };
 		F921F4D31CECA023004AC07E /* UINavigationController+Transparent.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UINavigationController+Transparent.m"; sourceTree = "<group>"; };
 		F92B876B1CE368B300D15EAE /* UIView+Extentsion.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIView+Extentsion.h"; sourceTree = "<group>"; };
@@ -130,8 +137,8 @@
 		F9331D821CF0A97200B36474 /* LCTodo.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LCTodo.m; sourceTree = "<group>"; };
 		F9331D831CF0A97200B36474 /* LCUser.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LCUser.h; sourceTree = "<group>"; };
 		F9331D841CF0A97200B36474 /* LCUser.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LCUser.m; sourceTree = "<group>"; };
-		F9383FD21D005423006D9497 /* SyncDataManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SyncDataManager.h; sourceTree = "<group>"; };
-		F9383FD31D005423006D9497 /* SyncDataManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SyncDataManager.m; sourceTree = "<group>"; };
+		F9383FD21D005423006D9497 /* SGSyncManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SGSyncManager.h; sourceTree = "<group>"; };
+		F9383FD31D005423006D9497 /* SGSyncManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SGSyncManager.m; sourceTree = "<group>"; };
 		F93BC14B1CE5E961000A34C5 /* header bg.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "header bg.png"; sourceTree = "<group>"; };
 		F93BC1551CE5E9EE000A34C5 /* HomeViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HomeViewController.h; sourceTree = "<group>"; };
 		F93BC1561CE5E9EE000A34C5 /* HomeViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HomeViewController.m; sourceTree = "<group>"; };
@@ -180,8 +187,8 @@
 		F94CA2361CE2FA9E0006904F /* Macros.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Macros.h; sourceTree = "<group>"; };
 		F94CA2371CE2FA9E0006904F /* SCLAlertHelper.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = SCLAlertHelper.h; path = ../SCLAlertHelper.h; sourceTree = "<group>"; };
 		F94CA2381CE2FA9E0006904F /* SCLAlertHelper.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = SCLAlertHelper.m; path = ../SCLAlertHelper.m; sourceTree = "<group>"; };
-		F94CA2391CE2FA9E0006904F /* TodoHelper.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TodoHelper.h; sourceTree = "<group>"; };
-		F94CA23A1CE2FA9E0006904F /* TodoHelper.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TodoHelper.m; sourceTree = "<group>"; };
+		F94CA2391CE2FA9E0006904F /* SGHelper.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SGHelper.h; sourceTree = "<group>"; };
+		F94CA23A1CE2FA9E0006904F /* SGHelper.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SGHelper.m; sourceTree = "<group>"; };
 		F94CA23C1CE2FA9E0006904F /* FieldValidator.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FieldValidator.h; sourceTree = "<group>"; };
 		F94CA23D1CE2FA9E0006904F /* FieldValidator.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FieldValidator.m; sourceTree = "<group>"; };
 		F94CA23E1CE2FA9E0006904F /* GCDQueue.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GCDQueue.h; sourceTree = "<group>"; };
@@ -205,8 +212,8 @@
 		F95994521CE462E100B042BD /* QiniuTokenGenerator.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = QiniuTokenGenerator.m; sourceTree = "<group>"; };
 		F95994541CE4692D00B042BD /* NSString+Encrytion.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSString+Encrytion.h"; sourceTree = "<group>"; };
 		F95994551CE4692D00B042BD /* NSString+Encrytion.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSString+Encrytion.m"; sourceTree = "<group>"; };
-		F95994591CE47BC200B042BD /* ImageUploader.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ImageUploader.h; sourceTree = "<group>"; };
-		F959945A1CE47BC200B042BD /* ImageUploader.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ImageUploader.m; sourceTree = "<group>"; };
+		F95994591CE47BC200B042BD /* SGImageUpload.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SGImageUpload.h; sourceTree = "<group>"; };
+		F959945A1CE47BC200B042BD /* SGImageUpload.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SGImageUpload.m; sourceTree = "<group>"; };
 		F959945C1CE481CD00B042BD /* DateUtil.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DateUtil.h; sourceTree = "<group>"; };
 		F959945D1CE481CD00B042BD /* DateUtil.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DateUtil.m; sourceTree = "<group>"; };
 		F959945F1CE4898100B042BD /* UIImage+Compression.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIImage+Compression.h"; sourceTree = "<group>"; };
@@ -351,6 +358,14 @@
 			name = Pods;
 			sourceTree = "<group>";
 		};
+		F1F6AA0FF6BC3C3FFCC9FFC1 /* Protocols */ = {
+			isa = PBXGroup;
+			children = (
+				F1F6AFD0F8F9B27BA3CC5CAA /* SGViews.h */,
+			);
+			name = Protocols;
+			sourceTree = "<group>";
+		};
 		F9331D801CF0A97200B36474 /* LeanCloudModels */ = {
 			isa = PBXGroup;
 			children = (
@@ -390,8 +405,8 @@
 			isa = PBXGroup;
 			children = (
 				F9C1A2CC1D068579000F96AF /* ErrorHandler */,
-				F9383FD21D005423006D9497 /* SyncDataManager.h */,
-				F9383FD31D005423006D9497 /* SyncDataManager.m */,
+				F9383FD21D005423006D9497 /* SGSyncManager.h */,
+				F9383FD31D005423006D9497 /* SGSyncManager.m */,
 			);
 			path = SyncDataManagers;
 			sourceTree = "<group>";
@@ -451,6 +466,8 @@
 				F980EDCE1CE70F4E00A861FE /* HeaderView.m */,
 				F9A1E07E1CEDFA4C00FFC453 /* SGCommitButton.h */,
 				F9A1E07F1CEDFA4C00FFC453 /* SGCommitButton.m */,
+				F1F6A63CD4780AAF6A0A6888 /* EmptyDataView.h */,
+				F1F6A1FA388CF728AE1FB045 /* EmptyDataView.m */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -554,9 +571,10 @@
 				F94CA23B1CE2FA9E0006904F /* Utilities */,
 				F94CA2291CE2FA9E0006904F /* Categories */,
 				F94CA2341CE2FA9E0006904F /* Constants */,
-				F94CA2391CE2FA9E0006904F /* TodoHelper.h */,
-				F94CA23A1CE2FA9E0006904F /* TodoHelper.m */,
+				F94CA2391CE2FA9E0006904F /* SGHelper.h */,
+				F94CA23A1CE2FA9E0006904F /* SGHelper.m */,
 				F99A90321CE30D9B00EC0762 /* Localized.h */,
+				F1F6AA0FF6BC3C3FFCC9FFC1 /* Protocols */,
 			);
 			name = Common;
 			path = Classes/Common;
@@ -595,6 +613,8 @@
 				F9DE3ED31CF4849F00653A56 /* NSDate+Extension.m */,
 				F9E953501CF875B70046E1C9 /* HSDatePickerViewController+Configure.h */,
 				F9E953511CF875B70046E1C9 /* HSDatePickerViewController+Configure.m */,
+				F1F6A37F439E94DD8DD9F7C8 /* UIView+Extension.h */,
+				F1F6A8A0740505126718EA47 /* UIView+Extension.m */,
 			);
 			path = Categories;
 			sourceTree = "<group>";
@@ -623,8 +643,8 @@
 				F94CA23F1CE2FA9E0006904F /* GCDQueue.m */,
 				F94CA2401CE2FA9E0006904F /* MD5Util.h */,
 				F94CA2411CE2FA9E0006904F /* MD5Util.m */,
-				F95994591CE47BC200B042BD /* ImageUploader.h */,
-				F959945A1CE47BC200B042BD /* ImageUploader.m */,
+				F95994591CE47BC200B042BD /* SGImageUpload.h */,
+				F959945A1CE47BC200B042BD /* SGImageUpload.m */,
 			);
 			path = Utilities;
 			sourceTree = "<group>";
@@ -938,12 +958,12 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = F9A7239E1CDDF8A900E3BC8E /* Build configuration list for PBXNativeTarget "TO-DO" */;
 			buildPhases = (
-				A1E202CD870C580AA5D5E786 /* 📦 Check Pods Manifest.lock */,
+				A1E202CD870C580AA5D5E786 /* [CP] Check Pods Manifest.lock */,
 				F9A7236A1CDDF8A800E3BC8E /* Sources */,
 				F9A7236B1CDDF8A800E3BC8E /* Frameworks */,
 				F9A7236C1CDDF8A800E3BC8E /* Resources */,
-				C10E0D311FC85CA038AABD0C /* 📦 Embed Pods Frameworks */,
-				BF8D07832FF86FAECDE8495E /* 📦 Copy Pods Resources */,
+				C10E0D311FC85CA038AABD0C /* [CP] Embed Pods Frameworks */,
+				BF8D07832FF86FAECDE8495E /* [CP] Copy Pods Resources */,
 			);
 			buildRules = (
 			);
@@ -1077,14 +1097,14 @@
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXShellScriptBuildPhase section */
-		A1E202CD870C580AA5D5E786 /* 📦 Check Pods Manifest.lock */ = {
+		A1E202CD870C580AA5D5E786 /* [CP] Check Pods Manifest.lock */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
 			);
 			inputPaths = (
 			);
-			name = "📦 Check Pods Manifest.lock";
+			name = "[CP] Check Pods Manifest.lock";
 			outputPaths = (
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -1092,14 +1112,14 @@
 			shellScript = "diff \"${PODS_ROOT}/../Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [[ $? != 0 ]] ; then\n    cat << EOM\nerror: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\nEOM\n    exit 1\nfi\n";
 			showEnvVarsInLog = 0;
 		};
-		BF8D07832FF86FAECDE8495E /* 📦 Copy Pods Resources */ = {
+		BF8D07832FF86FAECDE8495E /* [CP] Copy Pods Resources */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
 			);
 			inputPaths = (
 			);
-			name = "📦 Copy Pods Resources";
+			name = "[CP] Copy Pods Resources";
 			outputPaths = (
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -1107,14 +1127,14 @@
 			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-TO-DO/Pods-TO-DO-resources.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
-		C10E0D311FC85CA038AABD0C /* 📦 Embed Pods Frameworks */ = {
+		C10E0D311FC85CA038AABD0C /* [CP] Embed Pods Frameworks */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
 			);
 			inputPaths = (
 			);
-			name = "📦 Embed Pods Frameworks";
+			name = "[CP] Embed Pods Frameworks";
 			outputPaths = (
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -1167,7 +1187,7 @@
 				F95994611CE4898100B042BD /* UIImage+Compression.m in Sources */,
 				F95994561CE4692D00B042BD /* NSString+Encrytion.m in Sources */,
 				F94CA2491CE2FA9E0006904F /* FieldValidator.m in Sources */,
-				F9383FD41D005423006D9497 /* SyncDataManager.m in Sources */,
+				F9383FD41D005423006D9497 /* SGSyncManager.m in Sources */,
 				F94CA2611CE2FB940006904F /* LCUserDataManager.m in Sources */,
 				F94CA2031CE2F9780006904F /* SCLAlertView.m in Sources */,
 				F945ABD71CED913E00C282F7 /* BaseViewController.m in Sources */,
@@ -1177,7 +1197,7 @@
 				F9E953521CF875B70046E1C9 /* HSDatePickerViewController+Configure.m in Sources */,
 				F980EDCF1CE70F4E00A861FE /* HeaderView.m in Sources */,
 				F94CA24B1CE2FA9E0006904F /* MD5Util.m in Sources */,
-				F94CA2481CE2FA9E0006904F /* TodoHelper.m in Sources */,
+				F94CA2481CE2FA9E0006904F /* SGHelper.m in Sources */,
 				F94CA2091CE2F9780006904F /* SCLTimerDisplay.m in Sources */,
 				F943885B1CF5579100E44379 /* TodoHeaderCell.m in Sources */,
 				F997BF9F1CF8376A00DD155B /* UIViewController+KNSemiModal.m in Sources */,
@@ -1186,7 +1206,7 @@
 				F94CA2471CE2FA9E0006904F /* SCLAlertHelper.m in Sources */,
 				F94CA2071CE2F9780006904F /* SCLSwitchView.m in Sources */,
 				F99B23731CFF3592009A45A2 /* MRTodoDataManager.m in Sources */,
-				F959945B1CE47BC200B042BD /* ImageUploader.m in Sources */,
+				F959945B1CE47BC200B042BD /* SGImageUpload.m in Sources */,
 				F9A723731CDDF8A800E3BC8E /* main.m in Sources */,
 				F94CA24A1CE2FA9E0006904F /* GCDQueue.m in Sources */,
 				F9A1E0801CEDFA4C00FFC453 /* SGCommitButton.m in Sources */,
@@ -1198,6 +1218,8 @@
 				F94CA2631CE2FB940006904F /* LoginView.m in Sources */,
 				F9E953481CF853A00046E1C9 /* UUDatePicker_DateModel.m in Sources */,
 				F9B3DD171CFFE55C000A8B28 /* CDTodo.m in Sources */,
+				F1F6A68DCCB16413F566B346 /* EmptyDataView.m in Sources */,
+				F1F6AC66CE20B5D9C269FA27 /* UIView+Extension.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

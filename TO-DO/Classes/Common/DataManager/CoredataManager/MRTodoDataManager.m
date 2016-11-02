@@ -9,7 +9,7 @@
 #import "CDUser.h"
 #import "DateUtil.h"
 #import "GCDQueue.h"
-#import "ImageUploader.h"
+#import "SGImageUpload.h"
 #import "MRTodoDataManager.h"
 #import "NSDate+Extension.h"
 #import "NSString+Extension.h"

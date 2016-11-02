@@ -13,7 +13,7 @@
 #import "LoginViewController.h"
 #import "Masonry.h"
 #import "SCLAlertView.h"
-#import "TodoHelper.h"
+#import "SGHelper.h"
 #import "UIView+SDAutoLayout.h"
 
 @interface
@@ -68,14 +68,14 @@ LoginViewController ()
 - (void)loginViewDidPressAvatarButton
 {
     __weak typeof(self) weakSelf = self;
-    [TodoHelper pictureActionSheetFrom:self
+    [SGHelper pictureActionSheetFrom:self
       selectCameraHandler:^{ [weakSelf actionSheetItemDidSelect:UIImagePickerControllerSourceTypeCamera]; }
       selectAlbumHandler:^{ [weakSelf actionSheetItemDidSelect:UIImagePickerControllerSourceTypePhotoLibrary]; }];
 }
 - (void)actionSheetItemDidSelect:(UIImagePickerControllerSourceType)type
 {
     BOOL error = false;
-    [TodoHelper pickPictureFromSource:type target:self error:&error];
+    [SGHelper pickPictureFromSource:type target:self error:&error];
     _releaseWhileDisappear = error;
 }
 #pragma mark - imagePicker delegate

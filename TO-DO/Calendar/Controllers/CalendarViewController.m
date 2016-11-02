@@ -56,7 +56,7 @@ CalendarViewController ()
     self.headerView = [HeaderView headerViewWithAvatarPosition:HeaderAvatarPositionCenter titleAlignement:HeaderTitleAlignementCenter];
     [self.headerView.avatarButton setHidden:YES];
     [self.headerView.subtitleLabel setHidden:YES];
-    self.headerView.subtitleLabel.text = [TodoHelper localizedFormatDate:[NSDate date]];
+    self.headerView.subtitleLabel.text = [SGHelper localizedFormatDate:[NSDate date]];
     [self.headerView.rightOperationButton setImage:[UIImage imageNamed:@"add"] forState:UIControlStateNormal];
     self.headerView.backgroundImageView.image = [UIImage imageAtResourcePath:@"calendar header bg"];
     __weak typeof(self) weakSelf = self;
@@ -84,12 +84,12 @@ CalendarViewController ()
     _calendar.appearance.headerTitleColor = [UIColor whiteColor];
     _calendar.appearance.titleDefaultColor = [UIColor whiteColor];
     _calendar.appearance.weekdayTextColor = [UIColor whiteColor];
-    _calendar.appearance.headerTitleFont = [TodoHelper themeFontWithSize:17];
-    _calendar.appearance.titleFont = [TodoHelper themeFontWithSize:15];
-    _calendar.appearance.weekdayFont = [TodoHelper themeFontWithSize:15];
+    _calendar.appearance.headerTitleFont = [SGHelper themeFontWithSize:17];
+    _calendar.appearance.titleFont = [SGHelper themeFontWithSize:15];
+    _calendar.appearance.weekdayFont = [SGHelper themeFontWithSize:15];
     _calendar.appearance.selectionColor = [UIColor whiteColor];
-    _calendar.appearance.titleSelectionColor = [TodoHelper themeColorNormal];
-    _calendar.appearance.todayColor = [TodoHelper themeColorNormal];
+    _calendar.appearance.titleSelectionColor = [SGHelper themeColorNormal];
+    _calendar.appearance.todayColor = [SGHelper themeColorNormal];
     [_calendar selectDate:[NSDate date]];
     [self.headerView addSubview:_calendar];
 

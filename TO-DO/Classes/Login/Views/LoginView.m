@@ -14,7 +14,7 @@
 #import "NSNotificationCenter+Extension.h"
 #import "SGCommitButton.h"
 #import "SGTextField.h"
-#import "TodoHelper.h"
+#import "SGHelper.h"
 #import "UIImage+Extension.h"
 #import "UIView+Extentsion.h"
 
@@ -128,13 +128,13 @@ LoginView ()
 
     _leftOperationButton = [[UIButton alloc] init];
     [_leftOperationButton setTitleColor:[UIColor lightGrayColor] forState:UIControlStateNormal];
-    _leftOperationButton.titleLabel.font = [TodoHelper themeFontWithSize:12];
+    _leftOperationButton.titleLabel.font = [SGHelper themeFontWithSize:12];
     _leftOperationButton.contentHorizontalAlignment = UIControlContentHorizontalAlignmentLeft;
     [self addSubview:_leftOperationButton];
 
     _rightOperationButton = [[UIButton alloc] init];
     [_rightOperationButton setTitleColor:ColorWithRGB(0xFF3366) forState:UIControlStateNormal];
-    _rightOperationButton.titleLabel.font = [TodoHelper themeFontWithSize:12];
+    _rightOperationButton.titleLabel.font = [SGHelper themeFontWithSize:12];
     _rightOperationButton.titleLabel.textAlignment = NSTextAlignmentRight;
     _rightOperationButton.contentHorizontalAlignment = UIControlContentHorizontalAlignmentRight;
     [_rightOperationButton addTarget:self action:@selector(switchModeAnimate) forControlEvents:UIControlEventTouchUpInside];

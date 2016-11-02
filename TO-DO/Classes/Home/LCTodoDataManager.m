@@ -8,7 +8,7 @@
 
 #import "DateUtil.h"
 #import "FieldValidator.h"
-#import "ImageUploader.h"
+#import "SGImageUpload.h"
 #import "LCTodo.h"
 #import "LCTodoDataManager.h"
 #import "LCUser.h"
@@ -102,7 +102,7 @@ LCTodoDataManager ()
 {
     if (!_model.photoImage) return complete(YES);
 
-    [ImageUploader uploadImage:_model.photoImage type:UploadImageTypeOriginal prefix:GetPicturePrefix(kUploadPrefixUser, _model.user.objectId) completion:^(bool error, NSString* path) {
+    [SGImageUpload uploadImage:_model.photoImage type:UploadImageTypeOriginal prefix:GetPicturePrefix(kUploadPrefixUser, _model.user.objectId) completion:^(bool error, NSString* path) {
         if (error) {
             [SCLAlertHelper errorAlertWithContent:_localDictionary[kPictureUploadFailedKey]];
 

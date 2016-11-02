@@ -13,11 +13,11 @@
             buildForProfiling = "YES"
             buildForArchiving = "YES">
             <BuildableReference
-               BuildableIdentifier = "primary"
-               BlueprintIdentifier = "97D26B5AF5AEC74375C947371A1EF471"
-               BlueprintName = "AutoLinearLayoutView"
-               ReferencedContainer = "container:Pods.xcodeproj"
-               BuildableName = "libAutoLinearLayoutView.a">
+               BuildableIdentifier = 'primary'
+               BlueprintIdentifier = '97D26B5AF5AEC74375C947371A1EF471'
+               BlueprintName = 'AutoLinearLayoutView'
+               ReferencedContainer = 'container:Pods.xcodeproj'
+               BuildableName = 'libAutoLinearLayoutView.a'>
             </BuildableReference>
          </BuildActionEntry>
       </BuildActionEntries>

@@ -10,11 +10,12 @@
 #import "HeaderView.h"
 #import "LCUser.h"
 #import "Masonry.h"
+#import "SGViews.h"
 
 /**
  *  基页（除登录）
  */
-@interface BaseViewController : UIViewController
+@interface BaseViewController : UIViewController<SGViews>
 /**
  *  右侧导航栏按钮
  */

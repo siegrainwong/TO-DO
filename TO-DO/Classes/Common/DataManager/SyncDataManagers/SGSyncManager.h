@@ -1,5 +1,5 @@
 //
-//  SyncDataManager.h
+//  SGSyncManager.h
 //  TO-DO
 //
 //  Created by Siegrain on 16/6/2.
@@ -21,7 +21,7 @@ typedef NS_ENUM(NSInteger, SyncMode) {
     SyncModeAutomatically
 };
 
-@interface SyncDataManager : NSObject<Localized>
+@interface SGSyncManager : NSObject<Localized>
 /**
  *  开始同步
  *
@@ -30,7 +30,7 @@ typedef NS_ENUM(NSInteger, SyncMode) {
  */
 - (void)synchronize:(SyncMode)syncMode complete:(CompleteBlock)complete;
 
-+ (instancetype)dataManager;
++ (instancetype)sharedInstance;
 
 + (BOOL)isSyncing;
 @end

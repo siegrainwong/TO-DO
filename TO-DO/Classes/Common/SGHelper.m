@@ -1,5 +1,5 @@
 //
-//  TodoHelper.m
+//  SGHelper.m
 //  TO-DO
 //
 //  Created by Siegrain on 16/5/7.
@@ -10,17 +10,33 @@
 #import "Macros.h"
 #import "Masonry.h"
 #import "SCLAlertHelper.h"
-#import "TodoHelper.h"
+#import "SGHelper.h"
 #import <AVFoundation/AVFoundation.h>
 #import <MobileCoreServices/UTCoreTypes.h>
 
-@implementation TodoHelper
+@implementation SGHelper
 #pragma mark - font
 + (UIFont*)themeFontWithSize:(CGFloat)size
 {
     return [UIFont fontWithName:@"Avenir" size:size];
 }
++ (UIFont*)themeFontDefault
+{
+    return [self themeFontWithSize:13];
+}
 #pragma mark - color
++ (UIColor*)themeColorSubTitle
+{
+    return ColorWithRGB(0xCCCCCC);
+}
++ (UIColor*)themeColorGray
+{
+    return ColorWithRGB(0x999999);
+}
++ (UIColor*)themeColorLightGray
+{
+    return ColorWithRGB(0xEEEEEE);
+}
 + (UIColor*)themeColorNormal
 {
     return ColorWithRGB(0xFF3366);

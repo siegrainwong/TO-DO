@@ -13,11 +13,11 @@
             buildForProfiling = "YES"
             buildForArchiving = "YES">
             <BuildableReference
-               BuildableIdentifier = "primary"
-               BlueprintIdentifier = "F2FC0AF0815B5D127E0AA79352D5EB6A"
-               BlueprintName = "IGLDropDownMenu"
-               ReferencedContainer = "container:Pods.xcodeproj"
-               BuildableName = "libIGLDropDownMenu.a">
+               BuildableIdentifier = 'primary'
+               BlueprintIdentifier = 'F2FC0AF0815B5D127E0AA79352D5EB6A'
+               BlueprintName = 'IGLDropDownMenu'
+               ReferencedContainer = 'container:Pods.xcodeproj'
+               BuildableName = 'libIGLDropDownMenu.a'>
             </BuildableReference>
          </BuildActionEntry>
       </BuildActionEntries>

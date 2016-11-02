@@ -45,6 +45,8 @@ typedef NS_ENUM(NSInteger, TodoTableViewControllerStyle) {
  *  定时器，暴露出来只是为了方便释放
  */
 @property (nonatomic, readwrite, strong) NSTimer* timer;
+/*Header高度*/
+@property(nonatomic, assign) CGFloat headerHeight;
 
 + (instancetype)todoTableViewControllerWithStyle:(TodoTableViewControllerStyle)style;
 

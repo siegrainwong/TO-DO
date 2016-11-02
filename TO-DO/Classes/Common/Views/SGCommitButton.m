@@ -8,7 +8,7 @@
 
 #import "Masonry.h"
 #import "SGCommitButton.h"
-#import "TodoHelper.h"
+#import "SGHelper.h"
 #import "UIImage+Extension.h"
 
 @implementation SGCommitButton
@@ -24,13 +24,13 @@
 - (void)setup
 {
     _button = [[UIButton alloc] init];
-    [_button setBackgroundImage:[UIImage imageWithColor:[TodoHelper themeColorNormal]]
+    [_button setBackgroundImage:[UIImage imageWithColor:[SGHelper themeColorNormal]]
                        forState:UIControlStateNormal];
-    [_button setBackgroundImage:[UIImage imageWithColor:[TodoHelper themeColorHighlighted]]
+    [_button setBackgroundImage:[UIImage imageWithColor:[SGHelper themeColorHighlighted]]
                        forState:UIControlStateHighlighted];
-    [_button setBackgroundImage:[UIImage imageWithColor:[TodoHelper themeColorDisabled]]
+    [_button setBackgroundImage:[UIImage imageWithColor:[SGHelper themeColorDisabled]]
                        forState:UIControlStateDisabled];
-    _button.titleLabel.font = [TodoHelper themeFontWithSize:14];
+    _button.titleLabel.font = [SGHelper themeFontWithSize:14];
     [_button addTarget:self action:@selector(buttonDidPress) forControlEvents:UIControlEventTouchUpInside];
     [self addSubview:_button];
 

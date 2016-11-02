@@ -8,7 +8,7 @@
 
 #import "DateUtil.h"
 #import "TodoHeaderCell.h"
-#import "TodoHelper.h"
+#import "SGHelper.h"
 #import "UIView+SDAutoLayout.h"
 
 @interface
@@ -26,8 +26,8 @@ TodoHeaderCell ()
 - (void)setup
 {
     _label = [UILabel new];
-    _label.font = [TodoHelper themeFontWithSize:13];
-    _label.textColor = [TodoHelper subTextColor];
+    _label.font = [SGHelper themeFontWithSize:13];
+    _label.textColor = [SGHelper subTextColor];
     _label.textAlignment = NSTextAlignmentCenter;
     [self addSubview:_label];
 

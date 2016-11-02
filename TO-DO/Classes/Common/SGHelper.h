@@ -1,5 +1,5 @@
 //
-//  TodoHelper.h
+//  SGHelper.h
 //  TO-DO
 //
 //  Created by Siegrain on 16/5/7.
@@ -11,7 +11,7 @@
 
 static NSInteger const kPopHeightWhenKeyboardShow = 170;
 
-@interface TodoHelper : NSObject
+@interface SGHelper : NSObject
 /**
  *  获取指定大小的系统字体
  *
@@ -20,6 +20,14 @@ static NSInteger const kPopHeightWhenKeyboardShow = 170;
  *  @return <#return value description#>
  */
 + (UIFont*)themeFontWithSize:(CGFloat)size;
+
++ (UIFont *)themeFontDefault;
+
++ (UIColor *)themeColorSubTitle;
+
++ (UIColor *)themeColorGray;
+
++ (UIColor *)themeColorLightGray;
 
 /**
  *  根据状态获取主题颜色

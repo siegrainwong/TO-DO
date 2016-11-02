@@ -21,6 +21,7 @@
 #import "LoginViewController.h"
 #import "Macros.h"
 #import "UIImage+Extension.h"
+#import "NEHTTPEye.h"
 #import <AVOSCloud.h>
 
 // FIXME: 每次进入一个新的ViewController，都会在AF库中的SecPolicy对象上发生几百b的内存泄漏，wtf?
@@ -61,6 +62,7 @@ didFinishLaunchingWithOptions:(NSDictionary*)launchOptions
 #pragma mark - initial
 - (void)setup
 {
+    [self setupNetworkEye];
     [self setupDDLog];
     [self setupMagicRecord];
     [self setupUser];
@@ -89,6 +91,13 @@ didFinishLaunchingWithOptions:(NSDictionary*)launchOptions
 {
     _lcUser = [LCUser currentUser];
     if (_lcUser) _cdUser = [CDUser userWithLCUser:_lcUser];
+}
+- (void)setupNetworkEye {
+#if defined(DEBUG)|| defined(_DEBUG)
+    [NEHTTPEye setEnabled:YES];
+#else
+    [NEHTTPEye setEnabled:NO];
+#endif
 }
 - (void)setupLeanCloud
 {

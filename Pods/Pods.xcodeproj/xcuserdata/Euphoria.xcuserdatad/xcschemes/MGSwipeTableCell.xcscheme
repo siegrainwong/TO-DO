@@ -13,11 +13,11 @@
             buildForProfiling = "YES"
             buildForArchiving = "YES">
             <BuildableReference
-               BuildableIdentifier = "primary"
-               BlueprintIdentifier = "8C463CD491D989B457394A7AA95384BC"
-               BlueprintName = "MGSwipeTableCell"
-               ReferencedContainer = "container:Pods.xcodeproj"
-               BuildableName = "libMGSwipeTableCell.a">
+               BuildableIdentifier = 'primary'
+               BlueprintIdentifier = '8C463CD491D989B457394A7AA95384BC'
+               BlueprintName = 'MGSwipeTableCell'
+               ReferencedContainer = 'container:Pods.xcodeproj'
+               BuildableName = 'libMGSwipeTableCell.a'>
             </BuildableReference>
          </BuildActionEntry>
       </BuildActionEntries>

@@ -11,7 +11,7 @@
 #import "Macros.h"
 #import "NSDateFormatter+Extension.h"
 #import "SDWebImageManager.h"
-#import "TodoHelper.h"
+#import "SGHelper.h"
 #import "TodoTableViewCell.h"
 #import "UIImage+Extension.h"
 #import "UIImage+Qiniu.h"
@@ -50,13 +50,13 @@ TodoTableViewCell ()
 - (void)setup
 {
     _timeLabel = [UILabel new];
-    _timeLabel.font = [TodoHelper themeFontWithSize:22];
+    _timeLabel.font = [SGHelper themeFontWithSize:22];
     _timeLabel.textAlignment = NSTextAlignmentCenter;
     [self.contentView addSubview:_timeLabel];
 
     _meridiemLabel = [UILabel new];
-    _meridiemLabel.font = [TodoHelper themeFontWithSize:13];
-    _meridiemLabel.textColor = [TodoHelper subTextColor];
+    _meridiemLabel.font = [SGHelper themeFontWithSize:13];
+    _meridiemLabel.textColor = [SGHelper subTextColor];
     _meridiemLabel.textAlignment = NSTextAlignmentCenter;
     [self.contentView addSubview:_meridiemLabel];
 
@@ -65,12 +65,12 @@ TodoTableViewCell ()
     [self.contentView addSubview:_photoButton];
 
     _todoTitleLabel = [UILabel new];
-    _todoTitleLabel.font = [TodoHelper themeFontWithSize:18];
+    _todoTitleLabel.font = [SGHelper themeFontWithSize:18];
     [self.contentView addSubview:_todoTitleLabel];
 
     _todoContentLabel = [UILabel new];
-    _todoContentLabel.font = [TodoHelper themeFontWithSize:13];
-    _todoContentLabel.textColor = [TodoHelper subTextColor];
+    _todoContentLabel.font = [SGHelper themeFontWithSize:13];
+    _todoContentLabel.textColor = [SGHelper subTextColor];
     _todoContentLabel.numberOfLines = 0;
     [self.contentView addSubview:_todoContentLabel];
 

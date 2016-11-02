@@ -10,7 +10,7 @@
 #import "CDUser.h"
 #import "DataKeys.h"
 #import "FieldValidator.h"
-#import "ImageUploader.h"
+#import "SGImageUpload.h"
 #import "LCUser.h"
 #import "LCUserDataManager.h"
 #import "MRUserDataManager.h"
@@ -80,7 +80,7 @@ LCUserDataManager ()
             return complete(!error);
         }];
     } else {
-        [ImageUploader uploadImage:user.avatarImage type:UploadImageTypeAvatar prefix:kUploadPrefixAvatar completion:^(bool error, NSString* path) {
+        [SGImageUpload uploadImage:user.avatarImage type:UploadImageTypeAvatar prefix:kUploadPrefixAvatar completion:^(bool error, NSString* path) {
             if (error) {
                 [SCLAlertHelper errorAlertWithContent:_localDictionary[kPictureUploadFailedKey]];
 

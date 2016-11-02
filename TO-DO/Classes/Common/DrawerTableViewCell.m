@@ -8,7 +8,7 @@
 
 #import "DrawerTableViewCell.h"
 #import "Macros.h"
-#import "TodoHelper.h"
+#import "SGHelper.h"
 #import "UIView+SDAutoLayout.h"
 
 @interface
@@ -37,7 +37,7 @@ DrawerTableViewCell ()
 - (void)setup
 {
     _titleLabel = [UILabel new];
-    _titleLabel.font = [TodoHelper themeFontWithSize:18];
+    _titleLabel.font = [SGHelper themeFontWithSize:18];
     _titleLabel.textColor = ColorWithRGB(0xDDDDDD);
     [self.contentView addSubview:_titleLabel];
 

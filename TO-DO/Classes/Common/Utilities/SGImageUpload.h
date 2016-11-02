@@ -1,5 +1,5 @@
 //
-//  ImageUploader.h
+//  SGImageUpload.h
 //  TO-DO
 //
 //  Created by Siegrain on 16/5/12.
@@ -21,6 +21,6 @@ typedef NS_ENUM(NSUInteger, UploadImageType) {
 static NSString* const kUploadPrefixAvatar = @"avatar/";
 static NSString* const kUploadPrefixUser = @"user/";
 
-@interface ImageUploader : NSObject
+@interface SGImageUpload : NSObject
 + (void)uploadImage:(UIImage*)image type:(UploadImageType)type prefix:(NSString*)prefix completion:(void (^)(bool error, NSString* path))completion;
 @end

@@ -1,5 +1,5 @@
 //
-//  SyncDataManager.m
+//  SGSyncManager.m
 //  TO-DO
 //
 //  Created by Siegrain on 16/6/2.
@@ -13,7 +13,7 @@
 #import "LCSyncRecord.h"
 #import "LCTodo.h"
 #import "SCLAlertHelper.h"
-#import "SyncDataManager.h"
+#import "SGSyncManager.h"
 
 // TODO: 本地化
 
@@ -27,8 +27,7 @@ static NSInteger const kMaximumSyncCountPerFetch = 100;
 /* 本地时间与服务器时间相差多少秒禁止同步 */
 static NSInteger const kInvalidTimeInterval = 10;
 
-@interface
-SyncDataManager ()
+@interface SGSyncManager ()
 @property(nonatomic, strong) CDUser *cdUser;
 @property(nonatomic, strong) LCUser *lcUser;
 
@@ -43,21 +42,21 @@ SyncDataManager ()
 @property(nonatomic, strong) NSString *recordMark;
 @end
 
-@implementation SyncDataManager
+@implementation SGSyncManager
 @synthesize localDictionary = _localDictionary;
 #pragma mark - accessors
 
 + (BOOL)isSyncing {
-    return [[self dataManager] isSyncing];
+    return [[self sharedInstance] isSyncing];
 }
 
 #pragma mark - initial
 
-+ (instancetype)dataManager {
-    static SyncDataManager *dataManager = nil;
++ (instancetype)sharedInstance {
+    static SGSyncManager *dataManager = nil;
     static dispatch_once_t onceToken;
     dispatch_once(&onceToken, ^{
-        dataManager = [SyncDataManager new];
+        dataManager = [SGSyncManager new];
         dataManager.isSyncing = NO;
         dataManager.errorHandler = [SyncErrorHandler new];
         dataManager.lastCreateTimeDictionary = [NSMutableDictionary new];

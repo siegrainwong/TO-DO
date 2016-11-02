@@ -50,7 +50,7 @@ BaseViewController ()
     _titleLabel = [[UILabel alloc] init];
     _titleLabel.textColor = [UIColor whiteColor];
     _titleLabel.frame = CGRectMake(0, 0, 100, 20);
-    _titleLabel.font = [TodoHelper themeFontWithSize:17];
+    _titleLabel.font = [SGHelper themeFontWithSize:17];
 
     UIBarButtonItem* leftBarButtonItem = [[UIBarButtonItem alloc] initWithCustomView:_leftNavigationButton];
     UIBarButtonItem* titleBarButtonItem = [[UIBarButtonItem alloc] initWithCustomView:_titleLabel];

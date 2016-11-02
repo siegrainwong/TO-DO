@@ -91,7 +91,7 @@ CreateViewController ()
     [_containerView addSubview:self.headerView];
 
     _titleTextField = [SGTextField textField];
-    _titleTextField.field.font = [TodoHelper themeFontWithSize:32];
+    _titleTextField.field.font = [SGHelper themeFontWithSize:32];
     _titleTextField.field.textColor = [UIColor whiteColor];
     _titleTextField.field.returnKeyType = UIReturnKeyNext;
     _titleTextField.isUnderlineHidden = YES;
@@ -216,14 +216,14 @@ CreateViewController ()
 - (void)headerViewDidPressRightOperationButton
 {
     __weak typeof(self) weakSelf = self;
-    [TodoHelper pictureActionSheetFrom:self
+    [SGHelper pictureActionSheetFrom:self
       selectCameraHandler:^{ [weakSelf actionSheetItemDidSelect:UIImagePickerControllerSourceTypeCamera]; }
       selectAlbumHandler:^{ [weakSelf actionSheetItemDidSelect:UIImagePickerControllerSourceTypePhotoLibrary]; }];
 }
 - (void)actionSheetItemDidSelect:(UIImagePickerControllerSourceType)type
 {
     BOOL error = false;
-    [TodoHelper pickPictureFromSource:type target:self error:&error];
+    [SGHelper pickPictureFromSource:type target:self error:&error];
     super.releaseWhileDisappear = error;
 }
 #pragma mark - imagePicker delegate

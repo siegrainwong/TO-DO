@@ -23,5 +23,7 @@ pod 'DGActivityIndicatorView'
 pod 'AFNetworking-Synchronous'
 pod 'RealReachability'
 pod 'IGLDropDownMenu'
+pod 'MXParallaxHeader'
+pod 'NetworkEye'
 
 end

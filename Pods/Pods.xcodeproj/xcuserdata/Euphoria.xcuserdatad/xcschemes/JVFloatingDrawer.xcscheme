@@ -13,11 +13,11 @@
             buildForProfiling = "YES"
             buildForArchiving = "YES">
             <BuildableReference
-               BuildableIdentifier = "primary"
-               BlueprintIdentifier = "625D968912B53321939D1ABC5AABE1F7"
-               BlueprintName = "JVFloatingDrawer"
-               ReferencedContainer = "container:Pods.xcodeproj"
-               BuildableName = "libJVFloatingDrawer.a">
+               BuildableIdentifier = 'primary'
+               BlueprintIdentifier = '625D968912B53321939D1ABC5AABE1F7'
+               BlueprintName = 'JVFloatingDrawer'
+               ReferencedContainer = 'container:Pods.xcodeproj'
+               BuildableName = 'libJVFloatingDrawer.a'>
             </BuildableReference>
          </BuildActionEntry>
       </BuildActionEntries>

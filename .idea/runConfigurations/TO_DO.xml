@@ -4,7 +4,7 @@
       <env name="XcodeColors" value="YES" />
     </envs>
     <EXTENSION ID="org.jetbrains.appcode.reveal.RevealRunConfigurationExtension">
-      <REVEAL_SETTINGS autoInject="false" autoInstall="true" askToEnableAutoInstall="true" />
+      <REVEAL_SETTINGS autoInject="true" autoInstall="true" askToEnableAutoInstall="true" />
     </EXTENSION>
     <method />
   </configuration>
