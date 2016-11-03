@@ -87,10 +87,10 @@ LoginView ()
 - (void)setup
 {
     __weak typeof(self) weakSelf = self;
-    _headerView = [HeaderView headerViewWithAvatarPosition:HeaderAvatarPositionBottom titleAlignement:HeaderTitleAlignementCenter];
+    _headerView = [HeaderView headerViewWithAvatarPosition:HeaderAvatarPositionBottom titleAlignement:HeaderTitleAlignmentCenter];
     _headerView.rightOperationButton.hidden = YES;
     _headerView.titleLabel.layer.opacity = 0;
-    [_headerView.backgroundImageView setImage:[UIImage imageAtResourcePath:@"login header bg"]];
+    _headerView.backgroundImage = [UIImage imageAtResourcePath:@"login header bg"];
     [_headerView setHeaderViewDidPressAvatarButton:^{
         [weakSelf avatarButtonDidPress];
     }];

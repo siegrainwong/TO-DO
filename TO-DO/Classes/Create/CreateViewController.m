@@ -83,8 +83,8 @@ CreateViewController ()
     _containerView.backgroundColor = [UIColor whiteColor];
     [self.view addSubview:_containerView];
 
-    self.headerView = [HeaderView headerViewWithAvatarPosition:HeaderAvatarPositionCenter titleAlignement:HeaderTitleAlignementCenter];
-    self.headerView.backgroundImageView.image = [UIImage imageAtResourcePath:@"create header bg"];
+    self.headerView = [HeaderView headerViewWithAvatarPosition:HeaderAvatarPositionCenter titleAlignement:HeaderTitleAlignmentCenter];
+    self.headerView.backgroundImage = [UIImage imageAtResourcePath:@"create header bg"];
     [self.headerView.rightOperationButton setImage:[UIImage imageNamed:@"photo"] forState:UIControlStateNormal];
     [self.headerView setHeaderViewDidPressRightOperationButton:^{ [weakSelf headerViewDidPressRightOperationButton]; }];
     self.headerView.avatarButton.hidden = YES;

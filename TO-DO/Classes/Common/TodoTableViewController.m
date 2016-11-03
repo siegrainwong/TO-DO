@@ -66,6 +66,7 @@ TodoTableViewController ()
 - (void)viewDidLayoutSubviews {
     [super viewDidLayoutSubviews];
     
+    //Mark: 这里如果把ScollView的ContentInset设为0的话，TopBounce的效果就没了。。。不过正常情况下如果不设置这个，会留出几个像素的空白出来，所以才会写了这一句代码。
 //    [self.tableView ignoreNavigationHeight];
 }
 

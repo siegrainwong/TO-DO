@@ -53,12 +53,12 @@ CalendarViewController ()
     [self addChildViewController:_todoTableViewController];
     [self.view addSubview:_todoTableViewController.tableView];
 
-    self.headerView = [HeaderView headerViewWithAvatarPosition:HeaderAvatarPositionCenter titleAlignement:HeaderTitleAlignementCenter];
+    self.headerView = [HeaderView headerViewWithAvatarPosition:HeaderAvatarPositionCenter titleAlignement:HeaderTitleAlignmentCenter];
     [self.headerView.avatarButton setHidden:YES];
     [self.headerView.subtitleLabel setHidden:YES];
     self.headerView.subtitleLabel.text = [SGHelper localizedFormatDate:[NSDate date]];
     [self.headerView.rightOperationButton setImage:[UIImage imageNamed:@"add"] forState:UIControlStateNormal];
-    self.headerView.backgroundImageView.image = [UIImage imageAtResourcePath:@"calendar header bg"];
+    self.headerView.backgroundImage = [UIImage imageAtResourcePath:@"calendar header bg"];
     __weak typeof(self) weakSelf = self;
     [self.headerView setHeaderViewDidPressRightOperationButton:^{
         weakSelf.releaseWhileDisappear = NO;

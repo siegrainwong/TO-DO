@@ -59,12 +59,12 @@ HomeViewController ()
     [self addChildViewController:_todoTableViewController];
     [self.view addSubview:_todoTableViewController.tableView];
     
-    self.headerView = [HeaderView headerViewWithAvatarPosition:HeaderAvatarPositionCenter titleAlignement:HeaderTitleAlignementCenter];
+    self.headerView = [HeaderView headerViewWithAvatarPosition:HeaderAvatarPositionCenter titleAlignement:HeaderTitleAlignmentCenter];
     self.headerView.frame = CGRectMake(0, 0, kScreenWidth, self.headerHeight);
     self.headerView.subtitleLabel.text = [SGHelper localizedFormatDate:[NSDate date]];
     [self.headerView.rightOperationButton setImage:[UIImage imageNamed:@"add"] forState:UIControlStateNormal];
     [self.headerView.avatarButton sd_setImageWithURL:GetPictureUrl(super.lcUser.avatar, kQiniuImageStyleSmall) forState:UIControlStateNormal];
-    self.headerView.backgroundImageView.image = [UIImage imageAtResourcePath:@"header bg"];
+    self.headerView.backgroundImage = [UIImage imageAtResourcePath:@"header bg"];
     [self.headerView setHeaderViewDidPressAvatarButton:^{[LCUser logOut];}];
     __weak typeof(self) weakSelf = self;
     [self.headerView setHeaderViewDidPressRightOperationButton:^{
@@ -84,6 +84,7 @@ HomeViewController ()
     header.view = self.headerView;
     header.height = self.headerHeight;
     header.mode = MXParallaxHeaderModeFill;
+    header.minimumHeight = 20;
 }
 
 - (void)bindConstraints {
