@@ -47,5 +47,5 @@ typedef NS_ENUM(NSInteger, HeaderTitleAlignement) {
  */
 @property(nonatomic, readwrite, copy) void (^headerViewDidPressRightOperationButton)();
 
-+ (instancetype)headerViewWithAvatarPosition:(HeaderAvatarPosition)avatarPosition titleAlignement:(HeaderTitleAlignement)titleAlignement;
++ (instancetype)headerViewWithAvatarPosition:(HeaderAvatarPosition)avatarPosition titleAlignement:(HeaderTitleAlignement)titleAlignment;
 @end

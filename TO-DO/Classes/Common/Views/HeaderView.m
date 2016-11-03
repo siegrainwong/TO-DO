@@ -7,12 +7,9 @@
 //
 
 #import "HeaderView.h"
-#import "Macros.h"
 #import "Masonry.h"
-#import "SGHelper.h"
-#import "UIImage+Extension.h"
-#import "CALayer+FSExtension.h"
 #import "SGRectangleView.h"
+#import "SGGraphics.h"
 
 static CGFloat const kAvatarButtonSizeMultipliedByHeight = 0.16;
 static CGFloat const kRightOperationButtonSizeMultipliedByHeight = 0.1;
@@ -25,43 +22,32 @@ HeaderView ()
 @property(nonatomic, readwrite, assign) HeaderAvatarPosition avatarPosition;
 @property(nonatomic, readwrite, assign) HeaderTitleAlignement titleAlignment;
 @property(nonatomic, strong) SGRectangleView *rectangleView;
-@property(nonatomic, strong) CAGradientLayer *maskLayer;
 @end
 
 @implementation HeaderView
+#pragma mark - accessors
+
+- (void)setBackgroundImage:(UIImage *)backgroundImage {
+    _backgroundImage = backgroundImage;
+    CGFloat paths[] = {0, 1};
+    _backgroundImageView.image = [SGGraphics imageWithGradientMask:backgroundImage paths:paths colors:@[ColorWithRGBA(0x4A486E, .2), ColorWithRGBA(0x000000, .75)]];
+}
+
 #pragma mark - initial
 
-+ (instancetype)headerViewWithAvatarPosition:(HeaderAvatarPosition)avatarPosition titleAlignement:(HeaderTitleAlignement)titleAlignement {
++ (instancetype)headerViewWithAvatarPosition:(HeaderAvatarPosition)avatarPosition titleAlignement:(HeaderTitleAlignement)titleAlignment {
     HeaderView *headerView = [[HeaderView alloc] init];
     headerView.avatarPosition = avatarPosition;
-    headerView.titleAlignment = titleAlignement;
+    headerView.titleAlignment = titleAlignment;
     [headerView setup];
     [headerView bindConstraints];
     
     return headerView;
 }
 
-- (UIImage *)maskWithImage:(UIImage *)image {
-    CGSize size = [image size];
-    UIGraphicsBeginImageContextWithOptions(CGSizeMake(size.width * 2, size.height), NO, 0);
-    [image drawAtPoint:CGPointMake(0, 0)];
-    [image drawAtPoint:CGPointMake(size.width, 0)];
-    UIImage *result = UIGraphicsGetImageFromCurrentImageContext();
-    UIGraphicsEndImageContext();
-    
-    return result;
-}
-
 - (void)setup {
-//    _maskLayer = [CAGradientLayer layer];
-//    _maskLayer.borderWidth = 0;
-//    _maskLayer.colors = @[(id) [UIColor clearColor].CGColor, (id) [UIColor colorWithWhite:0 alpha:0.85].CGColor];
-//    _maskLayer.locations = @[@0.0F, @1.0F];
-    
     _backgroundImageView = [[UIImageView alloc] init];
     _backgroundImageView.contentMode = UIViewContentModeScaleAspectFill;
-    _backgroundImageView.image = [self maskWithImage:self.backgroundImage];
-//    [_backgroundImageView.layer insertSublayer:_maskLayer atIndex:0];
     [self addSubview:_backgroundImageView];
     
     _titleLabel = [[UILabel alloc] init];
@@ -117,7 +103,7 @@ HeaderView ()
     
     [_avatarButton mas_makeConstraints:^(MASConstraintMaker *make) {
         make.centerX.equalTo(_backgroundImageView);
-        make.bottom.offset((CGFloat) (_avatarPosition == HeaderAvatarPositionCenter ? -kScreenHeight * 0.23 : 0));
+        make.bottom.offset((CGFloat) (_avatarPosition == HeaderAvatarPositionCenter ? -kScreenHeight * 0.25 : 0));
         make.width.offset(kScreenHeight * kAvatarButtonSizeMultipliedByHeight);
         make.height.equalTo(_avatarButton.mas_width);
     }];
@@ -136,11 +122,6 @@ HeaderView ()
         make.height.offset(20);
         make.centerX.equalTo(_titleLabel);
     }];
-}
-
-- (void)layoutSubviews {
-    [super layoutSubviews];
-//    if (!_maskLayer.frame.size.height) _maskLayer.frame = self.frame;
 }
 
 #pragma mark - avatar button event
