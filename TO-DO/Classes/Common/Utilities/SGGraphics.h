@@ -11,5 +11,7 @@
  * @param colors
  * @return
  */
-+ (UIImage *)imageWithGradientMask:(UIImage *)image paths:(CGFloat[])paths colors:(NSArray<UIColor *> *)colors;
++ (UIImage *)gradientImageWithImage:(UIImage *)image paths:(CGFloat[])paths colors:(NSArray<UIColor *> *)colors;
+
++ (UIImage *)gradientImageWithSize:(CGSize)size paths:(CGFloat[])paths colors:(NSArray<UIColor *> *)colors;
 @end

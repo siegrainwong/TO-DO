@@ -191,7 +191,7 @@ DrawerTableViewController ()
         if ([[weakSelf.dataManager class] isSyncing]) return;
         
         [weakSelf isSyncing:YES];
-        [weakSelf.dataManager synchronize:syncType complete:^(bool succeed) {
+        [weakSelf.dataManager synchronize:syncType complete:^(BOOL succeed) {
             [weakSelf isSyncing:NO];
         }];
     }];

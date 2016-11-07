@@ -30,7 +30,7 @@ HeaderView ()
 - (void)setBackgroundImage:(UIImage *)backgroundImage {
     _backgroundImage = backgroundImage;
     CGFloat paths[] = {0, 1};
-    _backgroundImageView.image = [SGGraphics imageWithGradientMask:backgroundImage paths:paths colors:@[ColorWithRGBA(0x4A486E, .2), ColorWithRGBA(0x000000, .75)]];
+    _backgroundImageView.image = [SGGraphics gradientImageWithImage:backgroundImage paths:paths colors:@[ColorWithRGBA(0x4A486E, .2), ColorWithRGBA(0x000000, .75)]];
 }
 
 #pragma mark - initial
@@ -48,7 +48,11 @@ HeaderView ()
 - (void)setup {
     _backgroundImageView = [[UIImageView alloc] init];
     _backgroundImageView.contentMode = UIViewContentModeScaleAspectFill;
+    _backgroundImageView.clipsToBounds = YES;
     [self addSubview:_backgroundImageView];
+    
+    _rectangleView = [SGRectangleView new];
+    [self.backgroundImageView addSubview:_rectangleView];
     
     _titleLabel = [[UILabel alloc] init];
     _titleLabel.font = [SGHelper themeFontWithSize:32];
@@ -66,9 +70,6 @@ HeaderView ()
     [_avatarButton addTarget:self action:@selector(avatarButtonDidPress) forControlEvents:UIControlEventTouchUpInside];
     [self addSubview:_avatarButton];
     
-    _rectangleView = [SGRectangleView new];
-    [self addSubview:_rectangleView];
-    
     _rightOperationButton = [[UIButton alloc] init];
     _rightOperationButton.layer.masksToBounds = YES;
     _rightOperationButton.layer.cornerRadius = kScreenHeight * kRightOperationButtonSizeMultipliedByHeight / 2;
@@ -77,12 +78,6 @@ HeaderView ()
 }
 
 - (void)bindConstraints {
-    [_rectangleView mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.centerX.bottom.offset(0);
-        make.width.offset(kScreenWidth);
-        make.height.offset(kRectangleHeight);
-    }];
-    
     [_backgroundImageView mas_makeConstraints:^(MASConstraintMaker *make) {
         make.left.right.offset(0);
         if (_avatarPosition == HeaderAvatarPositionBottom) {
@@ -92,6 +87,12 @@ HeaderView ()
             make.bottom.offset(0);
             make.height.equalTo(self);
         }
+    }];
+    
+    [_rectangleView mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.centerX.bottom.offset(0);
+        make.width.offset(kScreenWidth);
+        make.height.offset(kRectangleHeight);
     }];
     
     [_rightOperationButton mas_makeConstraints:^(MASConstraintMaker *make) {

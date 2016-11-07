@@ -91,16 +91,6 @@ didFinishPickingMediaWithInfo:(NSDictionary<NSString *, id> *)info {
     [super didReceiveMemoryWarning];
 }
 
-- (void)viewDidDisappear:(BOOL)animated {
-    [super viewDidDisappear:animated];
-    
-    if (!_releaseWhileDisappear)
-        return;
-    
-    [_loginView removeFromSuperview];
-    _loginView = nil;
-}
-
 - (void)dealloc {
     NSLog(@"%s", __func__);
 }
