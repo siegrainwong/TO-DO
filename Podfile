@@ -10,7 +10,7 @@ target "TO-DO" do
   pod 'GTMBase64'
   pod 'AVOSCloud'
   pod 'SDWebImage'
-  pod 'JTNavigationController'
+  pod "RTRootNavigationController"
   pod 'AutoLinearLayoutView'
   pod 'JVFloatingDrawer'
   pod 'MGSwipeTableCell'
@@ -25,4 +25,5 @@ target "TO-DO" do
   pod 'MXParallaxHeader'
   pod 'NetworkEye'
   pod 'LCActionSheet'
+  pod 'FDFullscreenPopGesture'
 end

@@ -35,12 +35,12 @@ PODS:
   - CocoaLumberjack/Extensions (2.3.0):
     - CocoaLumberjack/Default
   - DGActivityIndicatorView (2.0)
+  - FDFullscreenPopGesture (1.1)
   - FSCalendar (2.1.1)
   - GTMBase64 (1.0.0)
   - HappyDNS (0.2.3)
   - IGLDropDownMenu (1.5.0)
   - JSONModel (1.2.0)
-  - JTNavigationController (1.0.1)
   - JVFloatingDrawer (0.1.0)
   - LCActionSheet (1.2.3)
   - MagicalRecord (2.3.2):
@@ -57,6 +57,7 @@ PODS:
     - AFNetworking (~> 2.0)
     - HappyDNS (~> 0.2)
   - RealReachability (1.1.3)
+  - RTRootNavigationController (0.5.22)
   - SDAutoLayout (1.53)
   - SDWebImage (3.7.6):
     - SDWebImage/Core (= 3.7.6)
@@ -70,11 +71,11 @@ DEPENDENCIES:
   - AVOSCloud
   - CocoaLumberjack
   - DGActivityIndicatorView
+  - FDFullscreenPopGesture
   - FSCalendar
   - GTMBase64
   - IGLDropDownMenu
   - JSONModel
-  - JTNavigationController
   - JVFloatingDrawer
   - LCActionSheet
   - MagicalRecord
@@ -85,6 +86,7 @@ DEPENDENCIES:
   - NetworkEye
   - Qiniu
   - RealReachability
+  - RTRootNavigationController
   - SDAutoLayout
   - SDWebImage
   - TPKeyboardAvoiding
@@ -97,12 +99,12 @@ SPEC CHECKSUMS:
   AVOSCloud: b020009b1f2e35c271d4d019075458c879fc1d21
   CocoaLumberjack: 97fab7ee5f507fe54445cca7ea80f926729cfd15
   DGActivityIndicatorView: 52875b025a6ccf6a431a905285c12e2bb95eb559
+  FDFullscreenPopGesture: a8a620179e3d9c40e8e00256dcee1c1a27c6d0f0
   FSCalendar: 04dc531f06fbde8a8e5b7394e9d4edebd45a591f
   GTMBase64: 0da7372e95f5171f3f652db38cde6716f8eb5e24
   HappyDNS: 6d85942e64c28b4fa61f8c76580398f52d6d1d11
   IGLDropDownMenu: 1ce06c17b4846f784e2b610f90bd741ab2037f2c
   JSONModel: 12523685c4b623553ccf844bbbf7007624317b2c
-  JTNavigationController: a3563e6d1adbd00301af8f049e546342fad7ffa9
   JVFloatingDrawer: 4782b1df21411aef2c1818f3b346cace02cc2e24
   LCActionSheet: 690882cd8b9a6713f1b2881c3bb2c7f11954d034
   MagicalRecord: 53bed74b4323b930992a725be713e53b37d19755
@@ -113,11 +115,12 @@ SPEC CHECKSUMS:
   NetworkEye: 54afcde161ab50e407445b86abd7350f3cd08533
   Qiniu: 2c05af1f9d580c036b18faf832cc98e98bfb21bc
   RealReachability: 9eb2aeccff2f26491dbaa9cf36f906ad28e8e7d9
+  RTRootNavigationController: cf134c044a8ce14d97fc668847ed4567efc53f91
   SDAutoLayout: ea6e2ae9fbb438aa2feb0c4363dba9297e98638a
   SDWebImage: c325cf02c30337336b95beff20a13df489ec0ec9
   TPKeyboardAvoiding: a5138f318c06fb3e151f886e18ce4a72695d9cbe
   ZFDragableModalTransition: 0d294eaaba6edfcb9839595de765f9ca06a4b524
 
-PODFILE CHECKSUM: 6f023212cdf1b2eea34f2b4d6845b5c3c450d89c
+PODFILE CHECKSUM: 8c4fa1aaeaa2b0af8d8b4d433d498150186501c6
 
 COCOAPODS: 1.0.1

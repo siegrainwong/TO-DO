@@ -249,7 +249,8 @@ DrawerTableViewController ()
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
     UIViewController *destinationViewController = [_dataArray[indexPath.row][kDataKeyClass] new];
     
-    [[AppDelegate globalDelegate] switchRootViewController:destinationViewController isNavigation:YES];
+//    [[AppDelegate globalDelegate] switchRootViewController:destinationViewController isNavigation:YES];
+    [[AppDelegate globalDelegate] setCenterViewController:destinationViewController];
     [[AppDelegate globalDelegate] toggleDrawer:self animated:YES];
 }
 

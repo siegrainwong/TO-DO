@@ -12,7 +12,7 @@
 #import "DataKeys.h"
 #import "DrawerTableViewController.h"
 #import "HomeViewController.h"
-#import "JTNavigationController.h"
+#import "RTRootNavigationController.h"
 #import "JVFloatingDrawerSpringAnimator.h"
 #import "JVFloatingDrawerView.h"
 #import "LCSyncRecord.h"
@@ -182,7 +182,7 @@ didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
 
 - (void)switchRootViewController:(UIViewController *)viewController isNavigation:(BOOL)isNavigation {
     if (isNavigation) {
-        JTNavigationController *navigationController = [[JTNavigationController alloc] initWithRootViewController:viewController];
+        RTRootNavigationController *navigationController = [[RTRootNavigationController alloc] initWithRootViewController:viewController];
         _drawerViewController.centerViewController = navigationController;
     }
     UIView *snapShot = [self.window snapshotViewAfterScreenUpdates:true];
