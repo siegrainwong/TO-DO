@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		8A80814723BDF84A9866A1C1 /* libPods-TO-DO.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 874BB13DFF8BBE53341474BC /* libPods-TO-DO.a */; };
+		F1F6A49B0B4764086E7B47C5 /* MBProgressHUD+SGExtension.m in Sources */ = {isa = PBXBuildFile; fileRef = F1F6ACC309D8ADC4FB8734C1 /* MBProgressHUD+SGExtension.m */; };
 		F1F6A68DCCB16413F566B346 /* EmptyDataView.m in Sources */ = {isa = PBXBuildFile; fileRef = F1F6A1FA388CF728AE1FB045 /* EmptyDataView.m */; };
 		F1F6A77905D5C8431AAF4E70 /* SGGraphics.m in Sources */ = {isa = PBXBuildFile; fileRef = F1F6A731F0B33EA4B81AE09F /* SGGraphics.m */; };
 		F1F6A8ADE671A4D528A4E341 /* SGRectangleView.m in Sources */ = {isa = PBXBuildFile; fileRef = F1F6AE460B77EC2BE5BB0FA5 /* SGRectangleView.m */; };
@@ -132,7 +133,9 @@
 		F1F6A63CD4780AAF6A0A6888 /* EmptyDataView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = EmptyDataView.h; path = "TO-DO/Classes/Common/EmptyDataView.h"; sourceTree = SOURCE_ROOT; };
 		F1F6A731F0B33EA4B81AE09F /* SGGraphics.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SGGraphics.m; sourceTree = "<group>"; };
 		F1F6A8A0740505126718EA47 /* UIView+Extension.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIView+Extension.m"; sourceTree = "<group>"; };
+		F1F6AA97887536814EE82427 /* MBProgressHUD+SGExtension.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "MBProgressHUD+SGExtension.h"; sourceTree = "<group>"; };
 		F1F6AA9B2F59528335E9B4FE /* SGGraphics.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SGGraphics.h; sourceTree = "<group>"; };
+		F1F6ACC309D8ADC4FB8734C1 /* MBProgressHUD+SGExtension.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "MBProgressHUD+SGExtension.m"; sourceTree = "<group>"; };
 		F1F6AE460B77EC2BE5BB0FA5 /* SGRectangleView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SGRectangleView.m; sourceTree = "<group>"; };
 		F1F6AFD0F8F9B27BA3CC5CAA /* SGViews.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SGViews.h; sourceTree = "<group>"; };
 		F9096E4E1DCB53DB007D746D /* header bg.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "header bg.png"; sourceTree = "<group>"; };
@@ -623,6 +626,8 @@
 				F9E953511CF875B70046E1C9 /* HSDatePickerViewController+Configure.m */,
 				F1F6A37F439E94DD8DD9F7C8 /* UIView+Extension.h */,
 				F1F6A8A0740505126718EA47 /* UIView+Extension.m */,
+				F1F6ACC309D8ADC4FB8734C1 /* MBProgressHUD+SGExtension.m */,
+				F1F6AA97887536814EE82427 /* MBProgressHUD+SGExtension.h */,
 			);
 			path = Categories;
 			sourceTree = "<group>";
@@ -1232,6 +1237,7 @@
 				F1F6AC66CE20B5D9C269FA27 /* UIView+Extension.m in Sources */,
 				F1F6A8ADE671A4D528A4E341 /* SGRectangleView.m in Sources */,
 				F1F6A77905D5C8431AAF4E70 /* SGGraphics.m in Sources */,
+				F1F6A49B0B4764086E7B47C5 /* MBProgressHUD+SGExtension.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

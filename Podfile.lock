@@ -42,6 +42,7 @@ PODS:
   - JSONModel (1.2.0)
   - JTNavigationController (1.0.1)
   - JVFloatingDrawer (0.1.0)
+  - LCActionSheet (1.2.3)
   - MagicalRecord (2.3.2):
     - MagicalRecord/Core (= 2.3.2)
   - MagicalRecord/Core (2.3.2)
@@ -75,6 +76,7 @@ DEPENDENCIES:
   - JSONModel
   - JTNavigationController
   - JVFloatingDrawer
+  - LCActionSheet
   - MagicalRecord
   - Masonry
   - MBProgressHUD
@@ -102,6 +104,7 @@ SPEC CHECKSUMS:
   JSONModel: 12523685c4b623553ccf844bbbf7007624317b2c
   JTNavigationController: a3563e6d1adbd00301af8f049e546342fad7ffa9
   JVFloatingDrawer: 4782b1df21411aef2c1818f3b346cace02cc2e24
+  LCActionSheet: 690882cd8b9a6713f1b2881c3bb2c7f11954d034
   MagicalRecord: 53bed74b4323b930992a725be713e53b37d19755
   Masonry: b529bb169217897b6354d4b56b1fada6d475b13d
   MBProgressHUD: 1569cf7ace17a8bac47aabfbb8580a49690386d1
@@ -115,6 +118,6 @@ SPEC CHECKSUMS:
   TPKeyboardAvoiding: a5138f318c06fb3e151f886e18ce4a72695d9cbe
   ZFDragableModalTransition: 0d294eaaba6edfcb9839595de765f9ca06a4b524
 
-PODFILE CHECKSUM: a1ba130ba3553f084dc1b1206f4ed011f55987d1
+PODFILE CHECKSUM: 6f023212cdf1b2eea34f2b4d6845b5c3c450d89c
 
 COCOAPODS: 1.0.1

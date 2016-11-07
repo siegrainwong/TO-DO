@@ -14,10 +14,10 @@
             buildForArchiving = "YES">
             <BuildableReference
                BuildableIdentifier = 'primary'
-               BlueprintIdentifier = '7FC773B2A2CC820F5D416D5D4D75733F'
-               BlueprintName = 'Qiniu'
+               BlueprintIdentifier = 'BBD31B258AB88D877D5D602AE3F16E6B'
+               BlueprintName = 'LCActionSheet'
                ReferencedContainer = 'container:Pods.xcodeproj'
-               BuildableName = 'libQiniu.a'>
+               BuildableName = 'libLCActionSheet.a'>
             </BuildableReference>
          </BuildActionEntry>
       </BuildActionEntries>

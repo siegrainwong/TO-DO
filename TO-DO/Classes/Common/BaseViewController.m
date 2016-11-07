@@ -89,14 +89,4 @@ BaseViewController ()
 {
     [self.view endEditing:YES];
 }
-#pragma mark - release
-- (void)viewDidDisappear:(BOOL)animated
-{
-    [super viewDidDisappear:animated];
-
-    if (!_releaseWhileDisappear) return;
-
-    [_headerView removeFromSuperview];
-    _headerView = nil;
-}
 @end

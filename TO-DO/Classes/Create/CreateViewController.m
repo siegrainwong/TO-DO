@@ -215,16 +215,7 @@ CreateViewController ()
 #pragma mark - pick picture
 - (void)headerViewDidPressRightOperationButton
 {
-    __weak typeof(self) weakSelf = self;
-    [SGHelper pictureActionSheetFrom:self
-      selectCameraHandler:^{ [weakSelf actionSheetItemDidSelect:UIImagePickerControllerSourceTypeCamera]; }
-      selectAlbumHandler:^{ [weakSelf actionSheetItemDidSelect:UIImagePickerControllerSourceTypePhotoLibrary]; }];
-}
-- (void)actionSheetItemDidSelect:(UIImagePickerControllerSourceType)type
-{
-    BOOL error = false;
-    [SGHelper pickPictureFromSource:type target:self error:&error];
-    super.releaseWhileDisappear = error;
+    [SGHelper photoPickerFromTarget:self];
 }
 #pragma mark - imagePicker delegate
 - (void)imagePickerController:(UIImagePickerController*)picker
@@ -233,12 +224,10 @@ didFinishPickingMediaWithInfo:(NSDictionary<NSString*, id>*)info
     _selectedImage = info[UIImagePickerControllerEditedImage];
     [self.headerView.rightOperationButton setImage:_selectedImage forState:UIControlStateNormal];
     [picker dismissViewControllerAnimated:true completion:nil];
-    super.releaseWhileDisappear = true;
 }
 - (void)imagePickerControllerDidCancel:(UIImagePickerController*)picker
 {
     [picker dismissViewControllerAnimated:true completion:nil];
-    super.releaseWhileDisappear = true;
 }
 #pragma mark - keyboard events & animation
 - (void)keyboardWillShow:(NSNotification*)notification
@@ -299,20 +288,6 @@ didFinishPickingMediaWithInfo:(NSDictionary<NSString*, id>*)info
     _datetimePickerField.field.text = [DateUtil dateString:date withFormat:@"yyyy.MM.dd HH:mm"];
 
     return true;
-}
-#pragma mark - release
-- (void)viewDidDisappear:(BOOL)animated
-{
-    [super viewDidDisappear:animated];
-
-    if (!super.releaseWhileDisappear) return;
-
-    if (_createViewControllerDidDisappear) _createViewControllerDidDisappear();
-
-    [self.view removeFromSuperview];
-    self.view = nil;
-
-    [self removeFromParentViewController];
 }
 - (void)dealloc
 {

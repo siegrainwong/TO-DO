@@ -12,14 +12,9 @@
 static NSInteger const kPopHeightWhenKeyboardShow = 170;
 
 @interface SGHelper : NSObject
-/**
- *  获取指定大小的系统字体
- *
- *  @param size <#size description#>
- *
- *  @return <#return value description#>
- */
-+ (UIFont*)themeFontWithSize:(CGFloat)size;
+#pragma mark - fonts & colors
+
++ (UIFont *)themeFontWithSize:(CGFloat)size;
 
 + (UIFont *)themeFontDefault;
 
@@ -29,33 +24,32 @@ static NSInteger const kPopHeightWhenKeyboardShow = 170;
 
 + (UIColor *)themeColorLightGray;
 
-/**
- *  根据状态获取主题颜色
- *
- *  @return <#return value description#>
- */
-+ (UIColor*)themeColorNormal;
-+ (UIColor*)themeColorHighlighted;
-+ (UIColor*)themeColorDisabled;
++ (UIColor *)subTextColor;
 
-/**
- *
- *  创建并配置一个图像选取器，根据sourceType来决定打开摄像头还是媒体库
- *
- *  @param sourceType <#sourceType description#>
- *  @param target     <#target description#>
- */
-+ (void)pickPictureFromSource:(UIImagePickerControllerSourceType)sourceType target:(UIViewController<UINavigationControllerDelegate, UIImagePickerControllerDelegate>*)target error:(BOOL*)error;
++ (UIColor *)themeColorNormal;
 
-/**
- *  配置一个用来选取图像的 ActionSheet
- *
- *  @param viewController <#viewController description#>
- *  @param cameraHandler  <#cameraHandler description#>
- *  @param albumHandler   <#albumHandler description#>
- */
-+ (void)pictureActionSheetFrom:(UIViewController*)viewController selectCameraHandler:(void (^)())cameraHandler selectAlbumHandler:(void (^)())albumHandler;
++ (UIColor *)themeColorHighlighted;
 
++ (UIColor *)themeColorDisabled;
+
+#pragma mark - photo picker
++ (void)photoPickerFromTarget:(UIViewController <UINavigationControllerDelegate, UIImagePickerControllerDelegate> *)viewController;
+
+#pragma mark - alerts
+
+/*转菊花*/
++ (void)waitingAlert;
+
+/*隐藏提示*/
++ (void)dismissAlert;
+
+/*错误提示*/
++ (void)errorAlertWithMessage:(NSString *)message;
+
+/*文本提示*/
++ (void)alertWithMessage:(NSString *)message;
+
+#pragma mark - date
 /**
  *  获取本地化格式的日期字符串
  *
@@ -63,10 +57,5 @@ static NSInteger const kPopHeightWhenKeyboardShow = 170;
  *
  *  @return <#return value description#>
  */
-+ (NSString*)localizedFormatDate:(NSDate*)date;
-
-/**
- *  非重点文字颜色
- */
-+ (UIColor*)subTextColor;
++ (NSString *)localizedFormatDate:(NSDate *)date;
 @end
