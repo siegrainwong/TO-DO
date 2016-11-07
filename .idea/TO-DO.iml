@@ -76,6 +76,8 @@
       <sourceFolder url="file://$MODULE_DIR$/TO-DO/Classes/Common/DataManager/CoredataManager/MRTodoDataManager.h" isTestSource="false" />
       <sourceFolder url="file://$MODULE_DIR$/TO-DO/Classes/Common/DataManager/CoredataManager/MRUserDataManager.h" isTestSource="false" />
       <sourceFolder url="file://$MODULE_DIR$/TO-DO/Classes/Common/DataManager/CoredataManager/MRUserDataManager.m" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/TO-DO/Classes/Common/DataManager/CommonDataManager.h" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/TO-DO/Classes/Common/DataManager/CommonDataManager.m" isTestSource="false" />
       <sourceFolder url="file://$MODULE_DIR$/TO-DO/Classes/Common/DataManager/SyncDataManagers/SGSyncManager.h" isTestSource="false" />
       <sourceFolder url="file://$MODULE_DIR$/TO-DO/Classes/Common/DataManager/SyncDataManagers/ErrorHandler/SyncErrorHandler.m" isTestSource="false" />
       <sourceFolder url="file://$MODULE_DIR$/TO-DO/Classes/Common/DataManager/SyncDataManagers/ErrorHandler/SyncErrorHandler.h" isTestSource="false" />

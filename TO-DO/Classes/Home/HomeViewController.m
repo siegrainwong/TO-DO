@@ -15,6 +15,7 @@
 #import "EmptyDataView.h"
 #import "MXParallaxHeader.h"
 #import "SGImageUpload.h"
+#import "CommonDataManager.h"
 
 // TODO: 滚动到一定高度后需要修改导航栏颜色为不透明，同样需要调整状态栏字体颜色
 // TODO: 搜索功能
@@ -101,16 +102,10 @@ HomeViewController () <UINavigationControllerDelegate, UIImagePickerControllerDe
 
 - (void)imagePickerController:(UIImagePickerController *)picker didFinishPickingMediaWithInfo:(NSDictionary<NSString *, id> *)info {
     UIImage *image = info[UIImagePickerControllerEditedImage];
-    [self.headerView.avatarButton setImage:image forState:UIControlStateNormal];
     [picker dismissViewControllerAnimated:true completion:nil];
-    
-    [SGImageUpload uploadImage:image type:UploadImageTypeAvatar prefix:kUploadPrefixAvatar completion:^(bool error, NSString *path) {
-        if (error) return [SGHelper errorAlertWithMessage:Localized(@"Failed to upload avatar, please try again")];
-        self.lcUser.avatar = path;
-        self.cdUser.avatar = path;
-        
-        [self.lcUser saveInBackground];
-        MR_saveAndWait();
+    __weak __typeof(self) weakSelf = self;
+    [CommonDataManager modifyAvatarWithImage:image block:^{
+        [weakSelf.headerView.avatarButton sd_setImageWithURL:GetPictureUrl(weakSelf.lcUser.avatar, kQiniuImageStyleSmall) forState:UIControlStateNormal];
     }];
 }
 
