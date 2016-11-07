@@ -186,7 +186,10 @@ didFinishLaunchingWithOptions:(NSDictionary*)launchOptions
         JTNavigationController* navigationController = [[JTNavigationController alloc] initWithRootViewController:viewController];
         _drawerViewController.centerViewController = navigationController;
     }
+    UIViewController * preViewController = self.window.rootViewController;
     self.window.rootViewController = isNavigation ? _drawerViewController : viewController;
+    [preViewController removeFromParentViewController];
+    preViewController = nil;
 }
 #pragma mark - JVDrawer
 - (void)toggleDrawer:(id)sender animated:(BOOL)animated

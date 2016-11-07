@@ -24,8 +24,6 @@ typedef NS_ENUM(NSInteger, TodoFetchType) {
 
 /* 每次同步最大获取数据量 */
 static NSInteger const kMaximumSyncCountPerFetch = 100;
-/* 本地时间与服务器时间相差多少秒禁止同步 */
-static NSInteger const kInvalidTimeInterval = 10;
 
 @interface SGSyncManager ()
 @property(nonatomic, strong) CDUser *cdUser;
@@ -87,8 +85,7 @@ static NSInteger const kInvalidTimeInterval = 10;
 	 
 	 注意事项：
 	 1. 所有同步时间戳均以服务器时间为准，每次同步之前先获取服务器的时间戳
-	 2. 若本地时间与服务器时间相差xx秒以上，提醒并不予同步
-	 3. 对比同步规则：1.大版本同步小版本 2.版本相同的话，以线上数据为准进行覆盖（另一种做法是建立冲突副本，根据本项目的实际情况不采用这种方式）
+	 2. 对比同步规则：1.大版本同步小版本 2.版本相同的话，以线上数据为准进行覆盖（另一种做法是建立冲突副本，根据本项目的实际情况不采用这种方式）
 	 
 	 异常情况：
 	 以下几种情况会影响同步时数据的原子性：
@@ -481,8 +478,10 @@ static NSInteger const kInvalidTimeInterval = 10;
     
     NSDate *serverDate = [DateUtil dateFromISO8601String:responseObject[@"iso"]];
     NSInteger intervalFromServer = fabs([serverDate timeIntervalSince1970] - [[NSDate date] timeIntervalSince1970]);
-    if (intervalFromServer > kInvalidTimeInterval)
-        return [self.errorHandler returnWithError:nil description:@"2. 本地时间和服务器时间相差过大，已停止同步"];
+    
+    // 现在不判断服务器与本地时间差，这个应该不会造成什么问题。
+    //    if (intervalFromServer > kInvalidTimeInterval)
+    //        return [self.errorHandler returnWithError:nil description:@"2. 本地时间和服务器时间相差过大，已停止同步"];
     
     return serverDate;
 }
