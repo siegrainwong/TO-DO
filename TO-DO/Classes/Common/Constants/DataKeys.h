@@ -20,7 +20,7 @@ static NSString* const kQiniuDomain = @"http://o6yj5t1zc.bkt.clouddn.com/";
 //static NSString* const kQiniuDomain = @"http://o8uecvzxf.bkt.clouddn.com/";
 
 /* 七牛图片样式 */
-static NSString* const kQiniuImageStyleMidium = @"midium";
+static NSString* const kQiniuImageStyleMedium = @"medium";
 static NSString* const kQiniuImageStyleSmall = @"small";
 static NSString* const kQiniuImageStyleThumbnail = @"thumb";
 

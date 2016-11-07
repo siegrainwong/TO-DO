@@ -54,7 +54,7 @@
 #pragma mark - 创建一个选择照片的 action sheet
 
 + (void)photoPickerFromTarget:(UIViewController <UINavigationControllerDelegate, UIImagePickerControllerDelegate> *)viewController {
-    LCActionSheet *sheet = [LCActionSheet sheetWithTitle:@"选择照片" buttonTitles:@[@"拍照", @"从相册选择"] redButtonIndex:-1 clicked:^(NSInteger buttonIndex) {
+    LCActionSheet *sheet = [LCActionSheet sheetWithTitle:Localized(@"Choose photo") buttonTitles:@[Localized(@"Take a photo"), Localized(@"Pick from album")] redButtonIndex:-1 clicked:^(NSInteger buttonIndex) {
         if (buttonIndex == 0)
             [self pickPictureFromSource:UIImagePickerControllerSourceTypeCamera target:viewController error:nil];
         else if (buttonIndex == 1)

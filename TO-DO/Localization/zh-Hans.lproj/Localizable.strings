@@ -31,7 +31,8 @@
 "Email has already been taken" = "邮箱已被占用";
 "Failed login count over limit, reset your password or try again later(15 mins)" = "登录失败次数超过限制，请稍候再试（15分钟后），或者通过忘记密码重设密码。";
 
-/* Actions */
+/* Photo */
+"Choose photo" = "选择照片";
 "Take a photo" = "拍照";
 "Pick from album" = "从相册选择";
 "Cancel" = "取消";

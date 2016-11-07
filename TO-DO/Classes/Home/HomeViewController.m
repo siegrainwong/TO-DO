@@ -105,7 +105,7 @@ HomeViewController () <UINavigationControllerDelegate, UIImagePickerControllerDe
     [picker dismissViewControllerAnimated:true completion:nil];
     
     [SGImageUpload uploadImage:image type:UploadImageTypeAvatar prefix:kUploadPrefixAvatar completion:^(bool error, NSString *path) {
-        if (error) [SGHelper errorAlertWithMessage:Localized(@"Failed to upload avatar, please try again")];
+        if (error) return [SGHelper errorAlertWithMessage:Localized(@"Failed to upload avatar, please try again")];
         self.lcUser.avatar = path;
         self.cdUser.avatar = path;
         
