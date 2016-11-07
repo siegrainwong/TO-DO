@@ -39,15 +39,15 @@
     return ColorWithRGB(0xEEEEEE);
 }
 
-+ (UIColor *)themeColorNormal {
++ (UIColor *)themeColorRed {
     return ColorWithRGB(0xFF3366);
 }
 
-+ (UIColor *)themeColorHighlighted {
++ (UIColor *)buttonColorHighlighted {
     return ColorWithRGB(0xEE2B5B);
 }
 
-+ (UIColor *)themeColorDisabled {
++ (UIColor *)buttonColorDisabled {
     return ColorWithRGB(0xFE7295);
 }
 

@@ -9,15 +9,12 @@
 #import "CDTodo.h"
 #import "CreateViewController.h"
 #import "HomeViewController.h"
-#import "TodoTableViewController.h"
 #import "UIButton+WebCache.h"
 #import "UIImage+Extension.h"
 #import "EmptyDataView.h"
 #import "MXParallaxHeader.h"
-#import "SGImageUpload.h"
 #import "CommonDataManager.h"
 
-// TODO: 滚动到一定高度后需要修改导航栏颜色为不透明，同样需要调整状态栏字体颜色
 // TODO: 搜索功能
 // TODO: 待办事项展开功能
 // Mark: 再不能全局变量都用成员变量了，内存释放太操心
@@ -29,6 +26,10 @@ HomeViewController () <UINavigationControllerDelegate, UIImagePickerControllerDe
 @end
 
 @implementation HomeViewController
+
+- (void)dealloc {
+    DDLogWarn(@"%s", __func__);
+}
 
 #pragma mark - localization
 
@@ -49,6 +50,9 @@ HomeViewController () <UINavigationControllerDelegate, UIImagePickerControllerDe
     
     [self localizeStrings];
     [self retrieveDataFromServer];
+    
+    //Mark: 切换到新的NavigationController加载进来之后ContentOffset.Y会是负的不明数值。
+    [_todoTableViewController.tableView setContentOffset:CGPointMake(0, 0) animated:YES];
 }
 
 - (void)setupView {
@@ -122,11 +126,21 @@ HomeViewController () <UINavigationControllerDelegate, UIImagePickerControllerDe
 
 #pragma mark - TodoTableViewController
 
-- (void)todoTableViewControllerDidReloadData {
-    [self localizeStrings];
+- (void)todoTableViewDidScrollToY:(CGFloat)y {
+    //计算alpha
+    float alpha = y > self.headerHeight ? 1 : y <= 0 ? 0 : y / self.headerHeight;
+    //alpha为1时设置不透明
+    [self.navigationController.navigationBar setTranslucent:alpha != 1];
+    [self.navigationController.navigationBar setBackgroundImage:[UIImage imageWithColor:ColorWithRGBA(0xFF3366, alpha)] forBarMetrics:UIBarMetricsDefault];
+    //Mark: 我反正是不清楚为啥设置autoAdjustScrollViewInsets = NO是没有效果的，只能改约束，为了避免滚动条跳跃，设置其在alpha = 1时才显示
+    [_todoTableViewController.tableView mas_remakeConstraints:^(MASConstraintMaker *make) {
+        make.bottom.right.left.offset(0);
+        make.top.offset(alpha == 1 ? -64 : 0);
+    }];
+    _todoTableViewController.tableView.showsVerticalScrollIndicator = alpha == 1;
 }
 
-- (void)dealloc {
-    DDLogWarn(@"%s", __func__);
+- (void)todoTableViewControllerDidReloadData {
+    [self localizeStrings];
 }
 @end

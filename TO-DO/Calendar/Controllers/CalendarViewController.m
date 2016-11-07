@@ -88,8 +88,8 @@ CalendarViewController ()
     _calendar.appearance.titleFont = [SGHelper themeFontWithSize:15];
     _calendar.appearance.weekdayFont = [SGHelper themeFontWithSize:15];
     _calendar.appearance.selectionColor = [UIColor whiteColor];
-    _calendar.appearance.titleSelectionColor = [SGHelper themeColorNormal];
-    _calendar.appearance.todayColor = [SGHelper themeColorNormal];
+    _calendar.appearance.titleSelectionColor = [SGHelper themeColorRed];
+    _calendar.appearance.todayColor = [SGHelper themeColorRed];
     [_calendar selectDate:[NSDate date]];
     [self.headerView addSubview:_calendar];
 

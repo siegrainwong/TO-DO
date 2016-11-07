@@ -30,7 +30,6 @@ TodoTableViewController ()
 
 @property(nonatomic, readwrite, strong) TodoTableViewCell *snoozingCell;
 
-@property(nonatomic, readwrite, assign) BOOL releaseWhileDisappear;
 @property(nonatomic, readwrite, strong) NSDate *date;
 @end
 
@@ -54,7 +53,6 @@ TodoTableViewController ()
 - (void)viewDidLoad {
     [super viewDidLoad];
     
-    _releaseWhileDisappear = YES;
     _dataDictionary = [NSMutableDictionary new];
     _dateArray = [NSMutableArray new];
     _dataManager = [MRTodoDataManager new];
@@ -66,11 +64,13 @@ TodoTableViewController ()
 - (void)viewDidLayoutSubviews {
     [super viewDidLayoutSubviews];
     
-    //Mark: 这里如果把ScollView的ContentInset设为0的话，TopBounce的效果就没了。。。不过正常情况下如果不设置这个，会留出几个像素的空白出来，所以才会写了这一句代码。
+    //Mark: 这里如果把ScrollView的ContentInset设为0的话，TopBounce的效果就没了。。。不过正常情况下如果不设置这个，会留出几个像素的空白出来，所以才会写了这一句代码。
 //    [self.tableView ignoreNavigationHeight];
 }
 
 - (void)setupView {
+    self.automaticallyAdjustsScrollViewInsets = NO;
+    
     self.tableView.dataSource = self;
     self.tableView.delegate = self;
     self.tableView.sectionHeaderHeight = _style == TodoTableViewControllerStyleWithoutSection ? 0 : 15;
@@ -261,8 +261,6 @@ TodoTableViewController ()
 #pragma mark - date time picker delegate
 
 - (void)showDatetimePicker:(NSDate *)deadline {
-    _releaseWhileDisappear = NO;
-    
     // Mark: 这个库有Bug，每次必须重新初始化才能正确选择时间
     _datePickerViewController = [HSDatePickerViewController new];
     [_datePickerViewController configure];
@@ -274,8 +272,6 @@ TodoTableViewController ()
 }
 
 - (BOOL)hsDatePickerPickedDate:(NSDate *)date {
-    _releaseWhileDisappear = YES;
-    
     if ([date compare:_datePickerViewController.minDate] == NSOrderedAscending) date = [NSDate date];
     
     __weak typeof(self) weakSelf = self;
@@ -293,10 +289,6 @@ TodoTableViewController ()
     weakSelf.snoozingCell = nil;
     
     return YES;
-}
-
-- (void)hsDatePickerDidDismissWithQuitMethod:(HSDatePickerQuitMethod)method {
-    _releaseWhileDisappear = YES;
 }
 
 #pragma mark - timer to overdue

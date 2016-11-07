@@ -26,11 +26,11 @@ static NSInteger const kPopHeightWhenKeyboardShow = 170;
 
 + (UIColor *)subTextColor;
 
-+ (UIColor *)themeColorNormal;
++ (UIColor *)themeColorRed;
 
-+ (UIColor *)themeColorHighlighted;
++ (UIColor *)buttonColorHighlighted;
 
-+ (UIColor *)themeColorDisabled;
++ (UIColor *)buttonColorDisabled;
 
 #pragma mark - photo picker
 + (void)photoPickerFromTarget:(UIViewController <UINavigationControllerDelegate, UIImagePickerControllerDelegate> *)viewController;
