@@ -52,6 +52,9 @@
 "Create New" = "添加";
 "Title" = "标题";
 
+/* Map */
+"Choose location" = "选择位置";
+
 /* HSDatePickerViewController */
 "Today" = "今天";
 "Set date" = "设置时间";

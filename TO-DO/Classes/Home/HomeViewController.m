@@ -57,8 +57,8 @@ HomeViewController () <UINavigationControllerDelegate, UIImagePickerControllerDe
     [_todoTableViewController.tableView setContentOffset:CGPointMake(0, 0) animated:YES];
 }
 
-- (void)setupView {
-    [super setupView];
+- (void)setupViews {
+    [super setupViews];
     
     __weak typeof(self) weakSelf = self;
     

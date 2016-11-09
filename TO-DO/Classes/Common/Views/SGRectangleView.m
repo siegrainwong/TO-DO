@@ -12,13 +12,13 @@
 @implementation SGRectangleView
 - (instancetype)init {
     if(self = [super init]){
-        [self setupView];
+        [self setupViews];
         [self bindConstraints];
     }
     return self;
 }
 
-- (void)setupView {
+- (void)setupViews {
     self.backgroundColor = [UIColor clearColor];
     
     _rectangleLayer = [CALayer layer];

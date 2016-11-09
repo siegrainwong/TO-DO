@@ -1,0 +1,1 @@
+../../../../AMapSearch/AMapSearchKit.framework/Headers/AMapSearchError.h

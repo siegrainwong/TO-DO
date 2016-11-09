@@ -8,6 +8,6 @@
 #import "UIView+Extension.h"
 
 @protocol SGViews <NSObject>
-- (void)setupView;
+- (void)setupViews;
 - (void)bindConstraints;
 @end

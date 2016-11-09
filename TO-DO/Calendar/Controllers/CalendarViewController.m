@@ -40,9 +40,9 @@ CalendarViewController ()
 {
     [super viewDidLayoutSubviews];
 }
-- (void)setupView
+- (void)setupViews
 {
-    [super setupView];
+    [super setupViews];
 
     _dataManager = [MRTodoDataManager new];
 
@@ -61,14 +61,12 @@ CalendarViewController ()
     self.headerView.backgroundImage = [UIImage imageAtResourcePath:@"calendar header bg"];
     __weak typeof(self) weakSelf = self;
     [self.headerView setHeaderViewDidPressRightOperationButton:^{
-        weakSelf.releaseWhileDisappear = NO;
         CreateViewController* createViewController = [[CreateViewController alloc] init];
         [createViewController setCreateViewControllerDidFinishCreate:^(CDTodo* model) {
             model.photoImage = [model.photoImage imageAddCornerWithRadius:model.photoImage.size.width / 2 andSize:model.photoImage.size];
             [weakSelf.todoTableViewController insertTodo:model];
         }];
         [createViewController setCreateViewControllerDidDisappear:^{
-            weakSelf.releaseWhileDisappear = YES;
         }];
         [weakSelf.navigationController pushViewController:createViewController animated:YES];
     }];

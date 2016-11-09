@@ -80,10 +80,12 @@ EOM
   esac
 }
 if [[ "$CONFIGURATION" == "Debug" ]]; then
+  install_resource "AMap2DMap/MAMapKit.framework/AMap.bundle"
   install_resource "$PODS_CONFIGURATION_BUILD_DIR/AutoLinearLayoutView/AutoLinearLayoutView.bundle"
   install_resource "LCActionSheet/LCActionSheet/LCActionSheet.bundle"
 fi
 if [[ "$CONFIGURATION" == "Release" ]]; then
+  install_resource "AMap2DMap/MAMapKit.framework/AMap.bundle"
   install_resource "$PODS_CONFIGURATION_BUILD_DIR/AutoLinearLayoutView/AutoLinearLayoutView.bundle"
   install_resource "LCActionSheet/LCActionSheet/LCActionSheet.bundle"
 fi

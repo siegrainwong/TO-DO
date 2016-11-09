@@ -46,42 +46,42 @@
 			<key>orderHint</key>
 			<integer>6</integer>
 		</dict>
-		<key>FSCalendar.xcscheme</key>
+		<key>FDFullscreenPopGesture.xcscheme</key>
 		<dict>
 			<key>isShown</key>
 			<false />
 			<key>orderHint</key>
 			<integer>7</integer>
 		</dict>
-		<key>GTMBase64.xcscheme</key>
+		<key>FSCalendar.xcscheme</key>
 		<dict>
 			<key>isShown</key>
 			<false />
 			<key>orderHint</key>
 			<integer>8</integer>
 		</dict>
-		<key>HappyDNS.xcscheme</key>
+		<key>GTMBase64.xcscheme</key>
 		<dict>
 			<key>isShown</key>
 			<false />
 			<key>orderHint</key>
 			<integer>9</integer>
 		</dict>
-		<key>IGLDropDownMenu.xcscheme</key>
+		<key>HappyDNS.xcscheme</key>
 		<dict>
 			<key>isShown</key>
 			<false />
 			<key>orderHint</key>
 			<integer>10</integer>
 		</dict>
-		<key>JSONModel.xcscheme</key>
+		<key>IGLDropDownMenu.xcscheme</key>
 		<dict>
 			<key>isShown</key>
 			<false />
 			<key>orderHint</key>
 			<integer>11</integer>
 		</dict>
-		<key>JTNavigationController.xcscheme</key>
+		<key>JSONModel.xcscheme</key>
 		<dict>
 			<key>isShown</key>
 			<false />
@@ -158,40 +158,47 @@
 			<key>orderHint</key>
 			<integer>22</integer>
 		</dict>
-		<key>RealReachability.xcscheme</key>
+		<key>RTRootNavigationController.xcscheme</key>
 		<dict>
 			<key>isShown</key>
 			<false />
 			<key>orderHint</key>
 			<integer>23</integer>
 		</dict>
-		<key>SDAutoLayout.xcscheme</key>
+		<key>RealReachability.xcscheme</key>
 		<dict>
 			<key>isShown</key>
 			<false />
 			<key>orderHint</key>
 			<integer>24</integer>
 		</dict>
-		<key>SDWebImage.xcscheme</key>
+		<key>SDAutoLayout.xcscheme</key>
 		<dict>
 			<key>isShown</key>
 			<false />
 			<key>orderHint</key>
 			<integer>25</integer>
 		</dict>
-		<key>TPKeyboardAvoiding.xcscheme</key>
+		<key>SDWebImage.xcscheme</key>
 		<dict>
 			<key>isShown</key>
 			<false />
 			<key>orderHint</key>
 			<integer>26</integer>
 		</dict>
-		<key>ZFDragableModalTransition.xcscheme</key>
+		<key>TPKeyboardAvoiding.xcscheme</key>
 		<dict>
 			<key>isShown</key>
 			<false />
 			<key>orderHint</key>
 			<integer>27</integer>
+		</dict>
+		<key>ZFDragableModalTransition.xcscheme</key>
+		<dict>
+			<key>isShown</key>
+			<false />
+			<key>orderHint</key>
+			<integer>28</integer>
 		</dict>
 	</dict>
 	<key>SuppressBuildableAutocreation</key>
@@ -226,12 +233,32 @@
 			<key>primary</key>
 			<true />
 		</dict>
+		<key>2D96AF544D6D5E3F1B9F88FFE7891AEA</key>
+		<dict>
+			<key>primary</key>
+			<true />
+		</dict>
+		<key>2E213B8682D5AFC3C4F8CB845F3CA624</key>
+		<dict>
+			<key>primary</key>
+			<true />
+		</dict>
 		<key>304EA90FC13024DFA4D6193A29D69F53</key>
 		<dict>
 			<key>primary</key>
 			<true />
 		</dict>
 		<key>313EB10C14D75F04156762F5B3554049</key>
+		<dict>
+			<key>primary</key>
+			<true />
+		</dict>
+		<key>3805C65B824756D21A708CFC023B2B2A</key>
+		<dict>
+			<key>primary</key>
+			<true />
+		</dict>
+		<key>38DFB4957036DB820B51468AFB75C2F6</key>
 		<dict>
 			<key>primary</key>
 			<true />
@@ -247,6 +274,11 @@
 			<true />
 		</dict>
 		<key>53480ED0BE09FF49E34B1702D485CAAB</key>
+		<dict>
+			<key>primary</key>
+			<true />
+		</dict>
+		<key>5A56C804096973D6EA99D3FD1CF9E0A5</key>
 		<dict>
 			<key>primary</key>
 			<true />
@@ -291,6 +323,16 @@
 			<key>primary</key>
 			<true />
 		</dict>
+		<key>9EAB3E42EF957541E6C3C76D35FD008E</key>
+		<dict>
+			<key>primary</key>
+			<true />
+		</dict>
+		<key>B90F0772BB171B507A5ECF7BCBCB3954</key>
+		<dict>
+			<key>primary</key>
+			<true />
+		</dict>
 		<key>BBD31B258AB88D877D5D602AE3F16E6B</key>
 		<dict>
 			<key>primary</key>
@@ -311,6 +353,11 @@
 			<key>primary</key>
 			<true />
 		</dict>
+		<key>D0F8594FE65FDFD417913BA4063B7F77</key>
+		<dict>
+			<key>primary</key>
+			<true />
+		</dict>
 		<key>D54AB3ECEB9A8FBA15D4F73CBE326692</key>
 		<dict>
 			<key>primary</key>
@@ -322,6 +369,11 @@
 			<true />
 		</dict>
 		<key>DE18BD04A358184167E295967F5D3FED</key>
+		<dict>
+			<key>primary</key>
+			<true />
+		</dict>
+		<key>F096809E3B7D6BC92447EC9CC0A28497</key>
 		<dict>
 			<key>primary</key>
 			<true />

@@ -12,6 +12,9 @@
 #ifndef DataKeys_h
 #define DataKeys_h
 
+/* 高德地图 */
+static NSString * const kAmapKey = @"f387111b6ebe49a4a9c4477706a6c7e8";
+
 /* 野狗空间地址 */
 static NSString* const kWilddogConnectionString = @"https://sgtodo.wilddogio.com/";
 

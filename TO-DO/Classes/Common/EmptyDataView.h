@@ -4,7 +4,7 @@
 //
 
 #import <Foundation/Foundation.h>
-#import "BaseViewController.h"
+#import "SGBaseViewController.h"
 
 
 @interface EmptyDataView : UIView<SGViews>

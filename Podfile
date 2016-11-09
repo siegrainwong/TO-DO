@@ -26,4 +26,8 @@ target "TO-DO" do
   pod 'NetworkEye'
   pod 'LCActionSheet'
   pod 'FDFullscreenPopGesture'
+  pod 'AMap2DMap'
+  pod 'AMapSearch'
+  pod 'AMapLocation'
+  pod 'MJExtension'
 end

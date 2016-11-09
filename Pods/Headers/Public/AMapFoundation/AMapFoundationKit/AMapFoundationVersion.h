@@ -1,0 +1,1 @@
+../../../../AMapFoundation/AMapFoundationKit.framework/Headers/AMapFoundationVersion.h

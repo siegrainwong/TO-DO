@@ -25,6 +25,8 @@
 #import "GCDQueue.h"
 #import "SGSyncManager.h"
 #import <AVOSCloud.h>
+#import <AMapFoundationKit/AMapFoundationKit.h>
+
 
 // FIXME: 每次进入一个新的ViewController，都会在AF库中的SecPolicy对象上发生几百b的内存泄漏，wtf?
 
@@ -65,6 +67,7 @@
     [self setupUser];
     [self setupLeanCloud];
     [self setupReachability];
+    [self setupAmap];
     [self setupDrawerViewController];
     [self applicationDocumentsDirectory];
     //    [self insertTestTodoToLC];
@@ -135,12 +138,17 @@
     [DDLog addLogger:fileLogger];
 }
 
+- (void)setupAmap {
+    [AMapServices sharedServices].apiKey = kAmapKey;
+}
+
 - (void)setupMagicRecord {
     [MagicalRecord setupAutoMigratingCoreDataStack];
 }
 
 - (void)setupReachability {
     _reachability = [RealReachability sharedInstance];
+    _reachability.autoCheckInterval = 0.1;
     [_reachability startNotifier];
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(networkChanged) name:kRealReachabilityChangedNotification object:nil];
 }

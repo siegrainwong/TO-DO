@@ -1,0 +1,1 @@
+../../../../AMap2DMap/MAMapKit.framework/Headers/MAAnnotationView.h

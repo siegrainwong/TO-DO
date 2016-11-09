@@ -16,13 +16,13 @@
 
 - (instancetype)initWithFrame:(CGRect)frame {
     if (self = [super initWithFrame:frame]) {
-        [self setupView];
+        [self setupViews];
         [self bindConstraints];
     }
     return self;
 }
 
-- (void)setupView {
+- (void)setupViews {
     self.backgroundColor = [SGHelper themeColorLightGray];
     
     self.label = [UILabel new];

@@ -25,6 +25,10 @@
     return [self themeFontWithSize:13];
 }
 
++ (UIFont *)themeFontNavBar {
+    return [self themeFontWithSize:17];
+}
+
 #pragma mark - color
 
 + (UIColor *)themeColorGray {

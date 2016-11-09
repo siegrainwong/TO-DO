@@ -6,13 +6,13 @@
 //  Copyright © 2016年 com.siegrain. All rights reserved.
 //
 
-#import "BaseViewController.h"
+#import "SGBaseViewController.h"
 #import "HSDatePickerViewController.h"
 #import "Localized.h"
 
 @class CDTodo;
 
-@interface CreateViewController : BaseViewController<Localized, HSDatePickerViewControllerDelegate, UINavigationControllerDelegate, UIImagePickerControllerDelegate>
+@interface CreateViewController : SGBaseViewController<Localized, HSDatePickerViewControllerDelegate, UINavigationControllerDelegate, UIImagePickerControllerDelegate>
 
 /**
  *  用于回传刚提交成功的数据
