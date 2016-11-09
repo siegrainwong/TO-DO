@@ -18,8 +18,6 @@ static NSInteger const kPopHeightWhenKeyboardShow = 170;
 
 + (UIFont *)themeFontDefault;
 
-+ (UIColor *)themeColorSubTitle;
-
 + (UIColor *)themeColorGray;
 
 + (UIColor *)themeColorLightGray;

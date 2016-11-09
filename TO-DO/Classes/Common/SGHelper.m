@@ -27,10 +27,6 @@
 
 #pragma mark - color
 
-+ (UIColor *)themeColorSubTitle {
-    return ColorWithRGB(0xCCCCCC);
-}
-
 + (UIColor *)themeColorGray {
     return ColorWithRGB(0x999999);
 }

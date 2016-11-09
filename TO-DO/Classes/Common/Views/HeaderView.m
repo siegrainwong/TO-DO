@@ -29,8 +29,8 @@ HeaderView ()
 
 - (void)setBackgroundImage:(UIImage *)backgroundImage {
     _backgroundImage = backgroundImage;
-    CGFloat paths[] = {0, 1};
-    _backgroundImageView.image = [SGGraphics gradientImageWithImage:backgroundImage paths:paths colors:@[ColorWithRGBA(0x6563A4, .5), ColorWithRGBA(0x6563A4, .5)]];
+    CGFloat paths[] = {0, .7, 1};
+    _backgroundImageView.image = [SGGraphics gradientImageWithImage:backgroundImage paths:paths colors:@[ColorWithRGBA(0x6563A4, .2), ColorWithRGBA(0x6563A4, .2), ColorWithRGBA(0x6563A4, .35)]];
 }
 
 #pragma mark - initial
@@ -61,7 +61,7 @@ HeaderView ()
     
     _subtitleLabel = [[UILabel alloc] init];
     _subtitleLabel.font = [SGHelper themeFontWithSize:12];
-    _subtitleLabel.textColor = [SGHelper themeColorSubTitle];
+    _subtitleLabel.textColor = [SGHelper themeColorLightGray];
     [self addSubview:_subtitleLabel];
     
     _avatarButton = [[UIButton alloc] init];
