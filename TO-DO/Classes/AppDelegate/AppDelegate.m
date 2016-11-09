@@ -22,19 +22,19 @@
 #import "Macros.h"
 #import "UIImage+Extension.h"
 #import "NEHTTPEye.h"
+#import "GCDQueue.h"
+#import "SGSyncManager.h"
 #import <AVOSCloud.h>
 
 // FIXME: 每次进入一个新的ViewController，都会在AF库中的SecPolicy对象上发生几百b的内存泄漏，wtf?
 
-@interface
-AppDelegate ()
+@interface AppDelegate ()
 @end
 
 @implementation AppDelegate
 #pragma mark - application delegate
 
-- (BOOL)          application:(UIApplication *)application
-didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
+- (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
     [self setup];
     
     return YES;
@@ -78,6 +78,7 @@ didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
         DDLogInfo(@"当前用户：%@", _lcUser.username);
         HomeViewController *homeViewController = [HomeViewController new];
         [self switchRootViewController:homeViewController isNavigation:YES];
+        [self synchronize:SyncModeAutomatically];
     } else {
         [self switchRootViewController:[LoginViewController new] isNavigation:NO];
     }
@@ -176,6 +177,22 @@ didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
     NSLog(@"%@", [[[NSFileManager defaultManager] URLsForDirectory:NSDocumentDirectory inDomains:NSUserDomainMask] lastObject]);
     
     return [[[NSFileManager defaultManager] URLsForDirectory:NSDocumentDirectory inDomains:NSUserDomainMask] lastObject];
+}
+
+#pragma mark - sync
+
+- (void)synchronize:(SyncMode)syncType {
+    __weak typeof(self) weakSelf = self;
+    [[GCDQueue globalQueueWithLevel:DISPATCH_QUEUE_PRIORITY_DEFAULT] sync:^{
+        if ([SGSyncManager isSyncing]) return;
+        if (![weakSelf.window.rootViewController isKindOfClass:[JVFloatingDrawerViewController class]]) return;
+        DrawerTableViewController *drawer = (DrawerTableViewController *) _drawerViewController.leftViewController;
+        
+        drawer.isSyncing = YES;
+        [[SGSyncManager sharedInstance] synchronize:syncType complete:^(BOOL succeed) {
+            drawer.isSyncing = NO;
+        }];
+    }];
 }
 
 #pragma mark - switch root view controller

@@ -10,5 +10,8 @@
 #import <UIKit/UIKit.h>
 
 @interface DrawerTableViewController : UITableViewController<Localized>
-
+/**
+ * 指示是否正在同步
+ */
+@property(nonatomic, assign) BOOL isSyncing;
 @end

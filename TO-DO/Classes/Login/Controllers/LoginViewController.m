@@ -62,6 +62,7 @@ LoginViewController ()
         AppDelegate *delegate = (AppDelegate *) [UIApplication sharedApplication].delegate;
         [delegate setupUser];
         [delegate switchRootViewController:[[HomeViewController alloc] init] isNavigation:YES];
+        [delegate synchronize:SyncModeAutomatically];
     }];
 }
 

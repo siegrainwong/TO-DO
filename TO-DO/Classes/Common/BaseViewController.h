@@ -15,37 +15,39 @@
 /**
  *  基页（除登录）
  */
-@interface BaseViewController : UIViewController<SGViews>
+@interface BaseViewController : UIViewController <SGViews>
 /**
  *  右侧导航栏按钮
  */
-@property (nonatomic, readonly, strong) UIButton* rightNavigationButton;
+@property(nonatomic, readonly, strong) UIButton *rightNavigationButton;
 /**
  *  左侧导航栏按钮
  */
-@property (nonatomic, readonly, strong) UIButton* leftNavigationButton;
+@property(nonatomic, readonly, strong) UIButton *leftNavigationButton;
 /**
  *  头视图
  */
-@property (nonatomic, readwrite, strong) HeaderView* headerView;
+@property(nonatomic, readwrite, strong) HeaderView *headerView;
 /**
  *  当前用户(LeanCloud)
  */
-@property (nonatomic, readonly, strong) LCUser* lcUser;
+@property(nonatomic, readonly, strong) LCUser *lcUser;
 /**
  *  当前用户(Coredata)
  */
-@property (nonatomic, readonly, strong) CDUser* cdUser;
+@property(nonatomic, readonly, strong) CDUser *cdUser;
 /**
  *  在viewDidDisappear时释放该视图
  */
-@property (nonatomic, readwrite, assign) BOOL releaseWhileDisappear;
+@property(nonatomic, readwrite, assign) BOOL releaseWhileDisappear;
 
-- (void)setupView;
-- (void)bindConstraints;
+/**
+ *  替代导航栏的Title
+ * */
+@property(nonatomic, readwrite, strong) UILabel *titleLabel;
 
 /**
  *  设置 NavBar 上的标题
  */
-- (void)setMenuTitle:(NSString*)title;
+- (void)setMenuTitle:(NSString *)title;
 @end

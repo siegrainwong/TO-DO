@@ -10,6 +10,7 @@
 #import "JVFloatingDrawerViewController.h"
 #import "LCUser.h"
 #import "RealReachability.h"
+#import "SGSyncManager.h"
 #import <CoreData/CoreData.h>
 #import <UIKit/UIKit.h>
 
@@ -23,7 +24,10 @@
 @property (nonatomic, readonly, strong) RealReachability* reachability;
 
 + (AppDelegate*)globalDelegate;
-
+/**
+ * 全局同步方法
+ */
+- (void)synchronize:(SyncMode)syncType;
 /**
  *  切换根控制器
  */
@@ -36,7 +40,6 @@
  *  切换目标视图
  */
 - (void)setCenterViewController:(UIViewController*)viewController;
-
 /**
  *  登录后调用该方法配置用户
  */

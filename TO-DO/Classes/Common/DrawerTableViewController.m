@@ -1,9 +1,9 @@
 //
-//  JVLeftDrawerTableViewController.m
-//  JVFloatingDrawer
+//  DrawerTableViewController.m
+//  TO-DO
 //
-//  Created by Julian Villella on 2015-01-15.
-//  Copyright (c) 2015 JVillella. All rights reserved.
+//  Created by Siegrain on 16/5/31.
+//  Copyright © 2016年 com.siegrain. All rights reserved.
 //
 
 #import "AppDelegate.h"
@@ -37,7 +37,6 @@ static CGFloat const kSyncIndicatorSize = 15;
 
 @interface
 DrawerTableViewController ()
-@property(nonatomic, readwrite, strong) SGSyncManager *dataManager;
 @property(nonatomic, readwrite, strong) NSArray<NSDictionary *> *dataArray;
 
 @property(nonatomic, readwrite, strong) UIView *bottomView;
@@ -101,8 +100,6 @@ DrawerTableViewController ()
     self.tableView.rowHeight = kRowHeight;
     [self.tableView registerClass:[DrawerTableViewCell class] forCellReuseIdentifier:kDrawerCellReuseIdentifier];
     self.clearsSelectionOnViewWillAppear = NO;
-    
-    _dataManager = [SGSyncManager sharedInstance];
     
     __weak UIImageView *bottomContainerView = [AppDelegate globalDelegate].drawerViewController.drawerView.backgroundImageView;
     [bottomContainerView setUserInteractionEnabled:YES];
@@ -180,34 +177,25 @@ DrawerTableViewController ()
 #pragma mark - sync button
 
 - (void)syncButtonDidPress {
-    [self synchronize:SyncModeManually];
+    [[AppDelegate globalDelegate] synchronize:SyncModeManually];
 }
 
 #pragma mark - synchronize
 
-- (void)synchronize:(SyncMode)syncType {
-    __weak typeof(self) weakSelf = self;
-    [[GCDQueue globalQueueWithLevel:DISPATCH_QUEUE_PRIORITY_DEFAULT] sync:^{
-        if ([[weakSelf.dataManager class] isSyncing]) return;
+- (void)setIsSyncing:(BOOL)isSyncing {
+    _isSyncing = isSyncing;
+    [[GCDQueue mainQueue] async:^{
+        if (isSyncing)
+            [_indicatorView startAnimating];
+        else
+            [_indicatorView stopAnimating];
         
-        [weakSelf isSyncing:YES];
-        [weakSelf.dataManager synchronize:syncType complete:^(BOOL succeed) {
-            [weakSelf isSyncing:NO];
-        }];
+        [_leftBottomButton setEnabled:!isSyncing];
     }];
 }
 
-- (void)isSyncing:(BOOL)isBegin {
-    if (isBegin)
-        [_indicatorView startAnimating];
-    else
-        [_indicatorView stopAnimating];
-    
-    [_leftBottomButton setEnabled:!isBegin];
-}
-
 - (void)needsToSyncAutomatically {
-    [self synchronize:SyncModeAutomatically];
+    [[AppDelegate globalDelegate] synchronize:SyncModeAutomatically];
 }
 
 #pragma mark - show settings
@@ -248,7 +236,7 @@ DrawerTableViewController ()
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
     UIViewController *destinationViewController = [_dataArray[indexPath.row][kDataKeyClass] new];
-    
+
 //    [[AppDelegate globalDelegate] switchRootViewController:destinationViewController isNavigation:YES];
     [[AppDelegate globalDelegate] setCenterViewController:destinationViewController];
     [[AppDelegate globalDelegate] toggleDrawer:self animated:YES];

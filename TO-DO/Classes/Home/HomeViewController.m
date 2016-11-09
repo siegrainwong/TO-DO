@@ -17,12 +17,14 @@
 
 // TODO: 搜索功能
 // TODO: 待办事项展开功能
+// TODO: 为不透明的导航栏添加标题
 // Mark: 再不能全局变量都用成员变量了，内存释放太操心
 
 @interface
 HomeViewController () <UINavigationControllerDelegate, UIImagePickerControllerDelegate>
 @property(nonatomic, readwrite, strong) TodoTableViewController *todoTableViewController;
 @property(nonatomic, strong) EmptyDataView *emptyDataView;
+@property(nonatomic, assign) BOOL isOpacityNavigation;
 @end
 
 @implementation HomeViewController
@@ -65,6 +67,9 @@ HomeViewController () <UINavigationControllerDelegate, UIImagePickerControllerDe
     _todoTableViewController.headerHeight = self.headerHeight;
     [self addChildViewController:_todoTableViewController];
     [self.view addSubview:_todoTableViewController.tableView];
+    
+    self.titleLabel.textAlignment = NSTextAlignmentCenter;
+    self.titleLabel.alpha = 0;
     
     self.headerView = [HeaderView headerViewWithAvatarPosition:HeaderAvatarPositionCenter titleAlignement:HeaderTitleAlignmentCenter];
     self.headerView.frame = CGRectMake(0, 0, kScreenWidth, self.headerHeight);
@@ -132,12 +137,33 @@ HomeViewController () <UINavigationControllerDelegate, UIImagePickerControllerDe
     //alpha为1时设置不透明
     [self.navigationController.navigationBar setTranslucent:alpha != 1];
     [self.navigationController.navigationBar setBackgroundImage:[UIImage imageWithColor:ColorWithRGBA(0xFF3366, alpha)] forBarMetrics:UIBarMetricsDefault];
-    //Mark: 我反正是不清楚为啥设置autoAdjustScrollViewInsets = NO是没有效果的，只能改约束，为了避免滚动条跳跃，设置其在alpha = 1时才显示
-    [_todoTableViewController.tableView mas_remakeConstraints:^(MASConstraintMaker *make) {
-        make.bottom.right.left.offset(0);
-        make.top.offset(alpha == 1 ? -64 : 0);
-    }];
     _todoTableViewController.tableView.showsVerticalScrollIndicator = alpha == 1;
+    if (alpha == 1 && !_isOpacityNavigation) {
+        _isOpacityNavigation = YES;
+        
+        //Mark: 我反正是不清楚为啥设置autoAdjustScrollViewInsets = NO是没有效果的，只能改约束，为了避免滚动条跳跃，设置其在alpha = 1时才显示
+        [_todoTableViewController.tableView mas_remakeConstraints:^(MASConstraintMaker *make) {
+            make.bottom.right.left.offset(0);
+            make.top.offset(alpha == 1 ? -64 : 0);
+        }];
+        
+        [UIView animateWithDuration:.3 animations:^{
+            self.titleLabel.text = self.headerView.titleLabel.text;
+            self.titleLabel.alpha = 1;
+        }];
+    } else if (alpha != 1 && _isOpacityNavigation) {
+        _isOpacityNavigation = NO;
+        
+        [_todoTableViewController.tableView mas_remakeConstraints:^(MASConstraintMaker *make) {
+            make.bottom.right.left.offset(0);
+            make.top.offset(alpha == 1 ? -64 : 0);
+        }];
+        
+        [UIView animateWithDuration:.3 animations:^{
+            self.titleLabel.text = nil;
+            self.titleLabel.alpha = 0;
+        }];
+    }
 }
 
 - (void)todoTableViewControllerDidReloadData {
