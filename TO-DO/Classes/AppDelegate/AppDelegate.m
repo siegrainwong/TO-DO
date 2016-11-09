@@ -142,6 +142,7 @@
 - (void)setupReachability {
     _reachability = [RealReachability sharedInstance];
     [_reachability startNotifier];
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(networkChanged) name:kRealReachabilityChangedNotification object:nil];
 }
 
 - (void)truncateLocalData {
@@ -193,6 +194,10 @@
             drawer.isSyncing = NO;
         }];
     }];
+}
+
+- (void)networkChanged {
+    [self synchronize:SyncModeAutomatically];
 }
 
 #pragma mark - switch root view controller

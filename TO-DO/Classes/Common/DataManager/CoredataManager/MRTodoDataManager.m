@@ -14,24 +14,25 @@
 #import "NSDate+Extension.h"
 #import "NSString+Extension.h"
 #import "SCLAlertHelper.h"
+#import "AppDelegate.h"
 
 /* localization dictionary keys */
-static NSString* const kTitleInvalidKey = @"TitleInvalid";
-static NSString* const kDescriptionInvalidKey = @"DescriptionInvalid";
-static NSString* const kTimeInvalidKey = @"TimeInvalid";
-static NSString* const kLocationInvalidKey = @"LocationInvalid";
-static NSString* const kPictureUploadFailedKey = @"PictureUploadFailed";
+static NSString *const kTitleInvalidKey = @"TitleInvalid";
+static NSString *const kDescriptionInvalidKey = @"DescriptionInvalid";
+static NSString *const kTimeInvalidKey = @"TimeInvalid";
+static NSString *const kLocationInvalidKey = @"LocationInvalid";
+static NSString *const kPictureUploadFailedKey = @"PictureUploadFailed";
 
 @interface
 MRTodoDataManager ()
-@property (nonatomic, readwrite, strong) CDTodo* model;
+@property(nonatomic, readwrite, strong) CDTodo *model;
 @end
 
 @implementation MRTodoDataManager
 @synthesize localDictionary = _localDictionary;
 #pragma mark - localization
-- (void)localizeStrings
-{
+
+- (void)localizeStrings {
     _localDictionary = [NSMutableDictionary new];
     _localDictionary[kTitleInvalidKey] = ConcatLocalizedString1(@"Title", @" can not be empty");
     _localDictionary[kTimeInvalidKey] = ConcatLocalizedString1(@"Time", @" can not be empty");
@@ -39,33 +40,34 @@ MRTodoDataManager ()
     _localDictionary[kLocationInvalidKey] = ConcatLocalizedString1(@"Location", @" is invalid");
     _localDictionary[kPictureUploadFailedKey] = NSLocalizedString(@"Failed to upload picture, please try again", nil);
 }
-- (instancetype)init
-{
+
+- (instancetype)init {
     if (self = [super init]) {
         [self localizeStrings];
     }
     return self;
 }
+
 #pragma mark - retrieve
-- (void)retrieveDataWithUser:(CDUser*)user date:(NSDate*)date complete:(void (^)(bool succeed, NSDictionary* dataDictionary, NSInteger dataCount))complete
-{
-    NSMutableArray* arguments = [NSMutableArray new];
-    NSString* predicateFormat = @"user = %@ and isHidden = %@ and isCompleted = %@";
-    [arguments addObjectsFromArray:@[ user, @(NO), @(NO) ]];
+
+- (void)retrieveDataWithUser:(CDUser *)user date:(NSDate *)date complete:(void (^)(bool succeed, NSDictionary *dataDictionary, NSInteger dataCount))complete {
+    NSMutableArray *arguments = [NSMutableArray new];
+    NSString *predicateFormat = @"user = %@ and isHidden = %@ and isCompleted = %@";
+    [arguments addObjectsFromArray:@[user, @(NO), @(NO)]];
     if (date) {
         predicateFormat = [predicateFormat stringByAppendingString:@" and deadline >= %@ and deadline <= %@"];
-        [arguments addObjectsFromArray:@[ date, [date dateByAddingTimeInterval:kTimeIntervalDay] ]];
+        [arguments addObjectsFromArray:@[date, [date dateByAddingTimeInterval:kTimeIntervalDay]]];
     }
-    NSPredicate* filter = [NSPredicate predicateWithFormat:predicateFormat argumentArray:[arguments copy]];
-    NSArray<CDTodo*>* data = [CDTodo MR_findAllSortedBy:@"deadline" ascending:YES withPredicate:filter];
-
+    NSPredicate *filter = [NSPredicate predicateWithFormat:predicateFormat argumentArray:[arguments copy]];
+    NSArray<CDTodo *> *data = [CDTodo MR_findAllSortedBy:@"deadline" ascending:YES withPredicate:filter];
+    
     NSInteger dataCount = data.count;
-    NSMutableDictionary* dataDictionary = [NSMutableDictionary new];
-
-    NSMutableArray* dataInSameDay;
-    NSString* dateString;
-    for (CDTodo* todo in data) {
-        NSString* newDateString = todo.deadline.stringInYearMonthDay;
+    NSMutableDictionary *dataDictionary = [NSMutableDictionary new];
+    
+    NSMutableArray *dataInSameDay;
+    NSString *dateString;
+    for (CDTodo *todo in data) {
+        NSString *newDateString = todo.deadline.stringInYearMonthDay;
         if (![dateString isEqualToString:newDateString]) {
             dateString = newDateString;
             dataInSameDay = [NSMutableArray new];
@@ -73,36 +75,38 @@ MRTodoDataManager ()
         }
         [dataInSameDay addObject:todo];
     }
-
+    
     return complete(YES, [dataDictionary copy], dataCount);
 }
-- (BOOL)hasDataWithDate:(NSDate*)date user:(CDUser*)user
-{
+
+- (BOOL)hasDataWithDate:(NSDate *)date user:(CDUser *)user {
     return [CDTodo MR_countOfEntitiesWithPredicate:[NSPredicate predicateWithFormat:@"user = %@ AND isHidden = %@ AND deadline >= %@ AND deadline <= %@", user, @(NO), date, [date dateByAddingTimeInterval:kTimeIntervalDay]]];
 }
+
 #pragma mark - insertion
 #pragma mark - commit
-- (BOOL)isInsertedTodo:(CDTodo*)todo
-{
+
+- (BOOL)isInsertedTodo:(CDTodo *)todo {
     _model = todo;
     if (![self validate]) return NO;
-
+    
     MR_saveAndWait();
-
-    [self postNotificationWhenTodosHasBeenChanged];
+    
+    [self syncIfNeeded];
     return YES;
 }
-#pragma mark - validate
-- (BOOL)validate
-{
-    NSLog(@"%@", [NSThread currentThread]);
 
+#pragma mark - validate
+
+- (BOOL)validate {
+    NSLog(@"%@", [NSThread currentThread]);
+    
     // 暂时不做正则验证
     // remove whitespaces
     _model.title = [_model.title stringByRemovingUnneccessaryWhitespaces];
     _model.sgDescription = [_model.sgDescription stringByRemovingUnneccessaryWhitespaces];
     _model.location = [_model.location stringByRemovingUnneccessaryWhitespaces];
-
+    
     // title validation
     if (!_model.title.length) {
         [SCLAlertHelper errorAlertWithContent:_localDictionary[kTitleInvalidKey]];
@@ -111,7 +115,7 @@ MRTodoDataManager ()
     if ([SCLAlertHelper errorAlertValidateLengthWithString:_model.title minLength:1 maxLength:30 alertName:NSLocalizedString(@"Title", nil)]) {
         return NO;
     }
-
+    
     // FIXME: 不是很懂这里为什么不能访问成员变量
     // deadline validation
     if (!_model.deadline) {
@@ -126,12 +130,13 @@ MRTodoDataManager ()
     if ([SCLAlertHelper errorAlertValidateLengthWithString:_model.location minLength:0 maxLength:50 alertName:NSLocalizedString(@"Location", nil)]) {
         return NO;
     }
-
+    
     return YES;
 }
+
 #pragma mark - modify
-- (BOOL)isModifiedTodo:(CDTodo*)todo
-{
+
+- (BOOL)isModifiedTodo:(CDTodo *)todo {
     __weak typeof(self) weakSelf = self;
     [[GCDQueue globalQueueWithLevel:DISPATCH_QUEUE_PRIORITY_DEFAULT] sync:^{
         todo.syncStatus = @(SyncStatusWaiting);
@@ -139,15 +144,14 @@ MRTodoDataManager ()
         todo.updatedAt = [NSDate date];
         MR_saveAndWait();
     }];
-
-    [weakSelf postNotificationWhenTodosHasBeenChanged];
-
+    
+    [self syncIfNeeded];
+    
     return YES;
 }
-#pragma mark - post notification when todos has been modified
-- (void)postNotificationWhenTodosHasBeenChanged
-{
-    // Mark: NSNotificationCenter 发送通知必须在主线程...但是它居然会等待同步完成才会返回，不是很懂...所以把它放进了异步队列
-    [[GCDQueue mainQueue] async:^{ [[NSNotificationCenter defaultCenter] postNotificationName:kTodosChangedNotification object:self]; }];
+
+#pragma mark - private methods
+- (void)syncIfNeeded {
+    [[GCDQueue mainQueue] async:^{[[AppDelegate globalDelegate] synchronize:SyncModeAutomatically];}];
 }
 @end
