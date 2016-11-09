@@ -30,7 +30,7 @@ HeaderView ()
 - (void)setBackgroundImage:(UIImage *)backgroundImage {
     _backgroundImage = backgroundImage;
     CGFloat paths[] = {0, 1};
-    _backgroundImageView.image = [SGGraphics gradientImageWithImage:backgroundImage paths:paths colors:@[ColorWithRGBA(0x4A486E, .2), ColorWithRGBA(0x000000, .75)]];
+    _backgroundImageView.image = [SGGraphics gradientImageWithImage:backgroundImage paths:paths colors:@[ColorWithRGBA(0x6563A4, .5), ColorWithRGBA(0x6563A4, .5)]];
 }
 
 #pragma mark - initial
