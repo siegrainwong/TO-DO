@@ -15,14 +15,8 @@
 @implementation SGImageUpload
 #pragma mark - upload methods
 
-+ (void)uploadImage:(UIImage *)image type:(UploadImageType)type prefix:(NSString *)prefix completion:(void (^)(bool error, NSString *path))completion {
-    NSData *imageData = UIImageJPEGRepresentation(image, 0.7);
-    UIImage *compressedImage = [UIImage imageWithData:imageData];
-    NSUInteger shouldCompressedSize = [self shouldCompressedSizeByType:type];
-    if (shouldCompressedSize)
-        compressedImage = [compressedImage imageCompressForWidth:300];
-    imageData = UIImageJPEGRepresentation(compressedImage, 1);
-    
++ (void)uploadImage:(UIImage *)image type:(SGImageType)type prefix:(NSString *)prefix completion:(void (^)(bool error, NSString *path))completion {
+    NSData *imageData = [self dataWithImage:image type:type quality:kSGDefaultImageQuality];
     NSString *url = [NSString stringWithFormat:@"%@%@%04d.jpg", prefix, [DateUtil dateIdentifierNow], arc4random() % 10000];
     NSString *key = [url stringByAddingPercentEncodingWithAllowedCharacters:[NSCharacterSet URLQueryAllowedCharacterSet]];
     
@@ -38,16 +32,25 @@
 /**
  *  根据上传图片类型决定其需要被压缩的尺寸
  */
-+ (NSUInteger)shouldCompressedSizeByType:(UploadImageType)type {
++ (NSUInteger)shouldCompressedSizeByType:(SGImageType)type {
     switch (type) {
-        case UploadImageTypeAvatar:
+        case SGImageTypeAvatar:
             return 300;
-        case UploadImageTypeMidium:
+        case SGImageTypePhoto:
             return 600;
+        case SGImageTypeOriginal:
+            return 0;
         default:
             break;
     }
     
     return 0;
+}
+
++ (NSData *)dataWithImage:(UIImage *)image type:(SGImageType)type quality:(float)quality {
+    NSUInteger shouldCompressedSize = [self shouldCompressedSizeByType:type];
+    UIImage *result = nil;
+    if (shouldCompressedSize) result = [image imageCompressForWidth:shouldCompressedSize];
+    return UIImageJPEGRepresentation(result, quality);
 }
 @end

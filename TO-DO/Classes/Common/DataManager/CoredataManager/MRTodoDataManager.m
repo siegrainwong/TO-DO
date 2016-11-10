@@ -88,7 +88,11 @@ MRTodoDataManager ()
 
 - (BOOL)isInsertedTodo:(CDTodo *)todo {
     _model = todo;
-    if (![self validate]) return NO;
+    if (![self validate]) {
+        // Mark: MagicalRecord 这个地方...新创建的实体如果验证失败的话，一定要记住移除它，不然它还在上下文中，等你下次保存的时候，会直接报错
+        [todo MR_deleteEntity];
+        return NO;
+    }
     
     MR_saveAndWait();
     

@@ -66,7 +66,7 @@ static NSInteger const kMaximumSyncCountPerFetch = 100;
 
 #pragma mark - synchronization
 
-- (void)synchronize:(SyncMode)syncMode complete:(CompleteBlock)complete; {
+- (void)synchronize:(SyncMode)syncMode complete:(CompleteBlock)complete {
     [self setupSyncMode:syncMode];
     
     if (isNetworkUnreachable) return [self.errorHandler returnWithError:nil description:NSLocalizedString(@"Unable to sync, please check your network connection!", nil) failBlock:complete];
@@ -133,12 +133,7 @@ static NSInteger const kMaximumSyncCountPerFetch = 100;
         //2-3. 汇总线程：上传并保存
         [operation setCompletionBlock:^{
             DDLogInfo(@"进入汇总线程");
-            //检查网络
-            if (isNetworkUnreachable) return [self.errorHandler returnWithError:nil description:NSLocalizedString(@"Unable to sync, please check your network connection!", nil) failBlock:complete];
-            //上传并保存本地数据
-            if (![weakSelf commitAndSaveWithTodoArray:todosReadyToCommit]) return [self.errorHandler returnWithError:nil description:@"2-3. 上传\\保存数据失败" failBlock:complete];
-            //判断是否需要进行下一批次的同步
-            return [weakSelf syncIfNeeded:complete];
+            [weakSelf saveWithTodosArray:todosReadyToCommit complete:complete];
         }];
         [operation start];
     }];
@@ -234,7 +229,6 @@ static NSInteger const kMaximumSyncCountPerFetch = 100;
         CDTodo *cdTodo = [CDTodo cdTodoWithLCTodo:todo inContext:_localContext];
         cdTodo.syncStatus = @(SyncStatusSynchronized);
     }
-    
     return YES;
 }
 
@@ -275,6 +269,38 @@ static NSInteger const kMaximumSyncCountPerFetch = 100;
 }
 
 #pragma mark - saving methods
+
+/**
+ * 保存/提交所有数据，并上传图片
+ * @param todosReadyToCommit
+ * @param complete
+ */
+- (void)saveWithTodosArray:(NSArray<CDTodo *> *)todosReadyToCommit complete:(CompleteBlock)complete {
+    //检查网络
+    if (isNetworkUnreachable) return [self.errorHandler returnWithError:nil description:NSLocalizedString(@"Unable to sync, please check your network connection!", nil) failBlock:complete];
+    
+    //并行上传图片
+    NSBlockOperation *operation = [NSBlockOperation new];
+    [todosReadyToCommit enumerateObjectsUsingBlock:^(CDTodo *obj, NSUInteger idx, BOOL *stop) {
+        //只有新增时需要上传图片
+        if (!obj.identifier || !obj.photoData) return;
+        
+        __block CDTodo *cdTodo = obj;
+        [operation addExecutionBlock:^{
+            AVFile *photo = [AVFile fileWithName:[NSString stringWithFormat:@"%@.jpg", cdTodo.identifier] data:cdTodo.photoData];
+            if ([photo save]) cdTodo.photo = photo.url;
+            else [self.errorHandler returnWithError:nil description:[NSString stringWithFormat:@"2-3. 上传图片失败：%@", cdTodo.identifier] failBlock:nil];
+        }];
+    }];
+    
+    [operation setCompletionBlock:^{
+        //上传并保存本地数据
+        if (![self commitAndSaveWithTodoArray:todosReadyToCommit]) return [self.errorHandler returnWithError:nil description:@"2-3. 上传\\保存数据失败" failBlock:complete];
+        //判断是否需要进行下一批次的同步
+        return [self syncIfNeeded:complete];
+    }];
+    [operation start];
+}
 
 /**
  *  将准备提交给服务器的待办事项转换为字典，并将本地待办事项标记为“已同步”状态

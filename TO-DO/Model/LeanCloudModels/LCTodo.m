@@ -21,6 +21,7 @@
 @dynamic isHidden;
 @dynamic isCompleted;
 @dynamic photo;
+@dynamic photoData;
 @dynamic syncVersion;
 @dynamic localCreatedAt;
 @dynamic localUpdatedAt;
@@ -32,12 +33,13 @@
     lcTodo.identifier = cdTodo.identifier;
     lcTodo.title = cdTodo.title;
     lcTodo.sgDescription = cdTodo.sgDescription;
+    lcTodo.photo = cdTodo.photo;
     lcTodo.deadline = cdTodo.deadline;
+    
     lcTodo.user = [LCUser currentUser];
     lcTodo.status = [cdTodo.status integerValue];
     lcTodo.isHidden = [cdTodo.isHidden boolValue];
     lcTodo.isCompleted = [cdTodo.isCompleted boolValue];
-    lcTodo.photo = cdTodo.photo;
     lcTodo.syncVersion = [cdTodo.syncVersion integerValue];
     lcTodo.localUpdatedAt = cdTodo.updatedAt;
     lcTodo.localCreatedAt = cdTodo.createdAt;

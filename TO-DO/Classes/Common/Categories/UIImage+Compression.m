@@ -9,6 +9,7 @@
 #import "UIImage+Compression.h"
 
 @implementation UIImage (Compression)
+
 - (UIImage*)scaleToSize:(CGSize)size
 {
     // 创建一个bitmap的context

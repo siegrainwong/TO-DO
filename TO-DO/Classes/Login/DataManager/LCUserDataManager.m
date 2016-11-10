@@ -80,7 +80,7 @@ LCUserDataManager ()
             return complete(!error);
         }];
     } else {
-        [SGImageUpload uploadImage:user.avatarImage type:UploadImageTypeAvatar prefix:kUploadPrefixAvatar completion:^(bool error, NSString* path) {
+        [SGImageUpload uploadImage:user.avatarImage type:SGImageTypeAvatar prefix:kUploadPrefixAvatar completion:^(bool error, NSString* path) {
             if (error) {
                 [SCLAlertHelper errorAlertWithContent:_localDictionary[kPictureUploadFailedKey]];
 

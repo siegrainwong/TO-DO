@@ -10,21 +10,19 @@
 #import "SyncErrorHandler.h"
 
 @implementation SyncErrorHandler
-- (id)returnWithError:(NSError* _Nullable)error description:(NSString* _Nonnull)description
-{
+- (id)returnWithError:(NSError *_Nullable)error description:(NSString *_Nonnull)description {
     [self errorHandler:error description:description];
     return nil;
 }
-- (void)returnWithError:(NSError* _Nullable)error description:(NSString* _Nonnull)description failBlock:(CompleteBlock)block
-{
+
+- (void)returnWithError:(NSError *_Nullable)error description:(NSString *_Nonnull)description failBlock:(CompleteBlock)block {
     [self errorHandler:error description:description];
     [[NSOperationQueue mainQueue] addOperationWithBlock:^{
-        return block(NO);
+        if (block) return block(NO);
     }];
 }
 
-- (void)errorHandler:(NSError* _Nullable)error description:(NSString* _Nonnull)description
-{
+- (void)errorHandler:(NSError *_Nullable)error description:(NSString *_Nonnull)description {
     [[NSOperationQueue mainQueue] addOperationWithBlock:^{
         if (_isAlert) [SCLAlertHelper errorAlertWithContent:description];
     }];

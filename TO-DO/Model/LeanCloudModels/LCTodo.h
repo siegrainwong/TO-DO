@@ -39,8 +39,10 @@ typedef NS_ENUM(NSInteger, LCTodoStatus) {
 @property(nonatomic, assign) BOOL isHidden;
 /* 是否完成 */
 @property(nonatomic, assign) BOOL isCompleted;
-/* 照片 */
+/* 照片地址 */
 @property(nonatomic, strong) NSString *photo;
+/* 照片数据 */
+@property(nonatomic, strong) NSData *photoData;
 /* 本地创建时间 */
 @property(nonatomic, strong) NSDate *localCreatedAt;
 /* 本地更新时间 */

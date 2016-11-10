@@ -23,6 +23,8 @@
 #import "UIImage+Extension.h"
 #import "SGBaseMapViewController.h"
 #import "SGCoordinate.h"
+#import "SGImageUpload.h"
+#import "GTMBase64.h"
 
 // FIXME: iPhone4s 上 NavigationBar 会遮挡一部分标题文本框
 // TODO: 多人协作
@@ -188,8 +190,6 @@
         todo.title = weakSelf.titleTextField.field.text;
         todo.sgDescription = weakSelf.descriptionTextField.field.text;
         todo.deadline = self.selectedDate;
-        todo.photoData = UIImageJPEGRepresentation(weakSelf.selectedImage, 0.5);
-        todo.photoImage = [UIImage imageWithData:todo.photoData];
         todo.user = weakSelf.cdUser;
         todo.status = @(TodoStatusNormal);
         todo.isCompleted = @(NO);
@@ -203,17 +203,14 @@
             todo.generalAddress = _selectedCoordinate.generalAddress;
             todo.explicitAddress = _selectedCoordinate.explicitAddress;
         }
+        if (_selectedImage) {
+            NSData *imageData = [SGImageUpload dataWithImage:_selectedImage type:SGImageTypePhoto quality:kSGDefaultImageQuality];
+            todo.photoData = imageData;
+            todo.photoImage = [UIImage imageWithData:imageData];
+        }
         
         [weakSelf enableView:YES];
-        NSLog(@"%@", [NSThread currentThread]);
-        if (![weakSelf.dataManager isInsertedTodo:todo]) {
-            /*
-			 Mark: MagicalRecord
-			 这个地方...新创建的实体如果验证失败的话，一定要记住移除它，不然它还在上下文中，等你下次保存的时候，会直接报错。
-			 */
-            [todo MR_deleteEntity];
-            return;
-        }
+        if (![weakSelf.dataManager isInsertedTodo:todo]) return;
         if (weakSelf.createViewControllerDidFinishCreate) weakSelf.createViewControllerDidFinishCreate(todo);
         [weakSelf.navigationController popToRootViewControllerAnimated:YES];
     }];

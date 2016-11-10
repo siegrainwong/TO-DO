@@ -102,7 +102,7 @@ LCTodoDataManager ()
 {
     if (!_model.photoImage) return complete(YES);
 
-    [SGImageUpload uploadImage:_model.photoImage type:UploadImageTypeOriginal prefix:GetPicturePrefix(kUploadPrefixUser, _model.user.objectId) completion:^(bool error, NSString* path) {
+    [SGImageUpload uploadImage:_model.photoImage type:SGImageTypeOriginal prefix:GetPicturePrefix(kUploadPrefixUser, _model.user.objectId) completion:^(bool error, NSString* path) {
         if (error) {
             [SCLAlertHelper errorAlertWithContent:_localDictionary[kPictureUploadFailedKey]];
 

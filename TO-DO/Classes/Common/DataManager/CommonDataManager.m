@@ -12,7 +12,7 @@
 @implementation CommonDataManager
 + (void)modifyAvatarWithImage:(UIImage *)image block:(void (^)())block {
     [SGHelper waitingAlert];
-    [SGImageUpload uploadImage:image type:UploadImageTypeAvatar prefix:kUploadPrefixAvatar completion:^(bool error, NSString *path) {
+    [SGImageUpload uploadImage:image type:SGImageTypeAvatar prefix:kUploadPrefixAvatar completion:^(bool error, NSString *path) {
         if (error) return [SGHelper errorAlertWithMessage:Localized(@"Failed to upload avatar, please try again")];
         [AppDelegate globalDelegate].cdUser.avatar = path;
         [AppDelegate globalDelegate].lcUser.avatar = path;
