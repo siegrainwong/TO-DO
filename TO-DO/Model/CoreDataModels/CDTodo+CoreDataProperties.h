@@ -2,34 +2,37 @@
 //  CDTodo+CoreDataProperties.h
 //  TO-DO
 //
-//  Created by Siegrain on 16/6/14.
+//  Created by Siegrain on 16/11/10.
 //  Copyright © 2016年 com.siegrain. All rights reserved.
-//
-//  Choose "Create NSManagedObject Subclass…" from the Core Data editor menu
-//  to delete and recreate this implementation file for your updated model.
 //
 
 #import "CDTodo.h"
+
 
 NS_ASSUME_NONNULL_BEGIN
 
 @interface CDTodo (CoreDataProperties)
 
-@property (nullable, nonatomic, retain) NSDate *createdAt;
-@property (nullable, nonatomic, retain) NSDate *deadline;
-@property (nullable, nonatomic, retain) NSNumber *isCompleted;
-@property (nullable, nonatomic, retain) NSNumber *isHidden;
-@property (nullable, nonatomic, retain) NSString *location;
-@property (nullable, nonatomic, retain) NSString *objectId;
-@property (nullable, nonatomic, retain) NSString *photo;
++ (NSFetchRequest<CDTodo *> *)fetchRequest;
+
+@property (nullable, nonatomic, copy) NSDate *createdAt;
+@property (nullable, nonatomic, copy) NSDate *deadline;
+@property (nullable, nonatomic, copy) NSString *identifier;
+@property (nullable, nonatomic, copy) NSNumber *isCompleted;
+@property (nullable, nonatomic, copy) NSNumber *isHidden;
+@property (nullable, nonatomic, copy) NSString *generalAddress;
+@property (nullable, nonatomic, copy) NSString *objectId;
+@property (nullable, nonatomic, copy) NSString *photo;
 @property (nullable, nonatomic, retain) NSData *photoData;
-@property (nullable, nonatomic, retain) NSString *sgDescription;
-@property (nullable, nonatomic, retain) NSNumber *status;
-@property (nullable, nonatomic, retain) NSNumber *syncStatus;
-@property (nullable, nonatomic, retain) NSNumber *syncVersion;
-@property (nullable, nonatomic, retain) NSString *title;
-@property (nullable, nonatomic, retain) NSDate *updatedAt;
-@property (nullable, nonatomic, retain) NSString *identifier;
+@property (nullable, nonatomic, copy) NSString *sgDescription;
+@property (nullable, nonatomic, copy) NSNumber *status;
+@property (nullable, nonatomic, copy) NSNumber *syncStatus;
+@property (nullable, nonatomic, copy) NSNumber *syncVersion;
+@property (nullable, nonatomic, copy) NSString *title;
+@property (nullable, nonatomic, copy) NSDate *updatedAt;
+@property (nullable, nonatomic, copy) NSNumber *longitude;
+@property (nullable, nonatomic, copy) NSNumber *latitude;
+@property (nullable, nonatomic, copy) NSString *explicitAddress;
 @property (nullable, nonatomic, retain) CDUser *user;
 
 @end

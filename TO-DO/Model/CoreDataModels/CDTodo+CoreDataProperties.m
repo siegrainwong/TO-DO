@@ -2,22 +2,24 @@
 //  CDTodo+CoreDataProperties.m
 //  TO-DO
 //
-//  Created by Siegrain on 16/6/14.
+//  Created by Siegrain on 16/11/10.
 //  Copyright © 2016年 com.siegrain. All rights reserved.
-//
-//  Choose "Create NSManagedObject Subclass…" from the Core Data editor menu
-//  to delete and recreate this implementation file for your updated model.
 //
 
 #import "CDTodo+CoreDataProperties.h"
 
 @implementation CDTodo (CoreDataProperties)
 
++ (NSFetchRequest<CDTodo *> *)fetchRequest {
+	return [[NSFetchRequest alloc] initWithEntityName:@"Todo"];
+}
+
 @dynamic createdAt;
 @dynamic deadline;
+@dynamic identifier;
 @dynamic isCompleted;
 @dynamic isHidden;
-@dynamic location;
+@dynamic generalAddress;
 @dynamic objectId;
 @dynamic photo;
 @dynamic photoData;
@@ -27,7 +29,9 @@
 @dynamic syncVersion;
 @dynamic title;
 @dynamic updatedAt;
-@dynamic identifier;
+@dynamic longitude;
+@dynamic latitude;
+@dynamic explicitAddress;
 @dynamic user;
 
 @end

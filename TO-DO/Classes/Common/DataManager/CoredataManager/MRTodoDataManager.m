@@ -99,13 +99,10 @@ MRTodoDataManager ()
 #pragma mark - validate
 
 - (BOOL)validate {
-    NSLog(@"%@", [NSThread currentThread]);
-    
     // 暂时不做正则验证
     // remove whitespaces
     _model.title = [_model.title stringByRemovingUnneccessaryWhitespaces];
     _model.sgDescription = [_model.sgDescription stringByRemovingUnneccessaryWhitespaces];
-    _model.location = [_model.location stringByRemovingUnneccessaryWhitespaces];
     
     // title validation
     if (!_model.title.length) {
@@ -124,10 +121,6 @@ MRTodoDataManager ()
     }
     // description validation
     if ([SCLAlertHelper errorAlertValidateLengthWithString:_model.sgDescription minLength:0 maxLength:200 alertName:NSLocalizedString(@"Description", nil)]) {
-        return NO;
-    }
-    //location validation
-    if ([SCLAlertHelper errorAlertValidateLengthWithString:_model.location minLength:0 maxLength:50 alertName:NSLocalizedString(@"Location", nil)]) {
         return NO;
     }
     

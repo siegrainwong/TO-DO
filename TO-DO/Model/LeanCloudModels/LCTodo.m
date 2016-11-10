@@ -13,7 +13,9 @@
 @dynamic title;
 @dynamic sgDescription;
 @dynamic deadline;
-@dynamic location;
+@dynamic coordinate;
+@dynamic generalAddress;
+@dynamic explicitAddress;
 @dynamic user;
 @dynamic status;
 @dynamic isHidden;
@@ -24,15 +26,13 @@
 @dynamic localUpdatedAt;
 @dynamic identifier;
 
-+ (LCTodo*)lcTodoWithCDTodo:(CDTodo*)cdTodo
-{
-    LCTodo* lcTodo = [LCTodo object];
++ (LCTodo *)lcTodoWithCDTodo:(CDTodo *)cdTodo {
+    LCTodo *lcTodo = [LCTodo object];
     lcTodo.objectId = cdTodo.objectId;
     lcTodo.identifier = cdTodo.identifier;
     lcTodo.title = cdTodo.title;
     lcTodo.sgDescription = cdTodo.sgDescription;
     lcTodo.deadline = cdTodo.deadline;
-    lcTodo.location = cdTodo.location;
     lcTodo.user = [LCUser currentUser];
     lcTodo.status = [cdTodo.status integerValue];
     lcTodo.isHidden = [cdTodo.isHidden boolValue];
@@ -41,40 +41,55 @@
     lcTodo.syncVersion = [cdTodo.syncVersion integerValue];
     lcTodo.localUpdatedAt = cdTodo.updatedAt;
     lcTodo.localCreatedAt = cdTodo.createdAt;
-
+    if (cdTodo.generalAddress) {
+        lcTodo.coordinate = [AVGeoPoint geoPointWithLatitude:cdTodo.latitude.doubleValue longitude:cdTodo.longitude.doubleValue];
+        lcTodo.generalAddress = cdTodo.generalAddress;
+        lcTodo.explicitAddress = cdTodo.explicitAddress;
+    }
+    
     return lcTodo;
 }
-+ (NSArray<LCTodo*>*)lcTodoArrayWithCDTodoArray:(NSArray<CDTodo*>*)cdArray
-{
+
++ (NSArray<LCTodo *> *)lcTodoArrayWithCDTodoArray:(NSArray<CDTodo *> *)cdArray {
     __weak typeof(self) weakSelf = self;
-    __block NSMutableArray<LCTodo*>* lcArray = [NSMutableArray new];
-    [cdArray enumerateObjectsUsingBlock:^(CDTodo* cdTodo, NSUInteger idx, BOOL* stop) {
+    __block NSMutableArray<LCTodo *> *lcArray = [NSMutableArray new];
+    [cdArray enumerateObjectsUsingBlock:^(CDTodo *cdTodo, NSUInteger idx, BOOL *stop) {
         [lcArray addObject:[weakSelf lcTodoWithCDTodo:cdTodo]];
     }];
-
+    
     return lcArray;
 }
 
-- (BOOL)isSameDataAsCDTodo:(CDTodo*)cdTodo
-{
-    if ([self.deadline compare:cdTodo.deadline] != NSOrderedSame) return NO;
-    if (self.status != cdTodo.status.integerValue) return NO;
-    if (self.isHidden != cdTodo.isHidden.boolValue) return NO;
-    if (self.isCompleted != cdTodo.isCompleted.boolValue) return NO;
-    if (![self.location isEqualToString:cdTodo.location]) return NO;
-    if (![self.title isEqualToString:cdTodo.title]) return NO;
-    if (![self.sgDescription isEqualToString:cdTodo.sgDescription]) return NO;
-    if (![self.photo isEqualToString:cdTodo.photo]) return NO;
-    if ([self.localCreatedAt compare:cdTodo.createdAt] != NSOrderedSame) return NO;
-    if ([self.localUpdatedAt compare:cdTodo.updatedAt] != NSOrderedSame) return NO;
-    if (self.syncVersion != cdTodo.syncVersion.integerValue) return NO;
-
-    return YES;
+- (BOOL)isEqual:(id)object {
+    if ([object isKindOfClass:[CDTodo class]]) {
+        CDTodo *cdTodo = (CDTodo *) object;
+        if ([self.deadline compare:cdTodo.deadline] != NSOrderedSame) return NO;
+        if (self.status != cdTodo.status.integerValue) return NO;
+        if (self.isHidden != cdTodo.isHidden.boolValue) return NO;
+        if (self.isCompleted != cdTodo.isCompleted.boolValue) return NO;
+        if (![self.title isEqualToString:cdTodo.title]) return NO;
+        if (![self.sgDescription isEqualToString:cdTodo.sgDescription]) return NO;
+        if (![self.photo isEqualToString:cdTodo.photo]) return NO;
+        if ([self.localCreatedAt compare:cdTodo.createdAt] != NSOrderedSame) return NO;
+        if ([self.localUpdatedAt compare:cdTodo.updatedAt] != NSOrderedSame) return NO;
+        if (self.syncVersion != cdTodo.syncVersion.integerValue) return NO;
+        if (self.generalAddress) {
+            if (self.coordinate.latitude != cdTodo.latitude.doubleValue) return NO;
+            if (self.coordinate.longitude != cdTodo.longitude.doubleValue) return NO;
+            if (![self.generalAddress isEqualToString:cdTodo.generalAddress]) return NO;
+            if (![self.explicitAddress isEqualToString:cdTodo.explicitAddress]) return NO;
+        }
+        
+        return YES;
+    } else if ([object isKindOfClass:[LCTodo class]]) {
+        return [super isEqual:object];
+    }
+    return NO;
 }
 
 #pragma mark - leancloud subclass methods
-+ (NSString*)parseClassName
-{
+
++ (NSString *)parseClassName {
     return @"Todo";
 }
 @end

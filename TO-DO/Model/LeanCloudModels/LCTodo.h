@@ -13,67 +13,68 @@
 
 typedef NS_ENUM(NSInteger, LCTodoStatus) {
     /* 普通 */
-    LCTodoStatusNormal,
+            LCTodoStatusNormal,
     /* 延迟 */
-    LCTodoStatusSnoozed,
+            LCTodoStatusSnoozed,
     /* 过期 */
-    LCTodoStatusOverdue
+            LCTodoStatusOverdue
 };
 
 @class CDTodo;
 
-@interface LCTodo : LCSync<AVSubclassing>
+@interface LCTodo : LCSync <AVSubclassing>
 /* 本地唯一标识 */
-@property (nonatomic, readwrite, strong) NSString* identifier;
+@property(nonatomic, strong) NSString *identifier;
 /* 标题 */
-@property (nonatomic, readwrite, strong) NSString* title;
+@property(nonatomic, strong) NSString *title;
 /* 描述（被内置字段占用） */
-@property (nonatomic, readwrite, strong) NSString* sgDescription;
+@property(nonatomic, strong) NSString *sgDescription;
 /* 过期时间 */
-@property (nonatomic, readwrite, strong) NSDate* deadline;
-/* 位置 */
-@property (nonatomic, readwrite, strong) NSString* location;
+@property(nonatomic, strong) NSDate *deadline;
 /* 用户 */
-@property (nonatomic, readwrite, strong) LCUser* user;
+@property(nonatomic, strong) LCUser *user;
 /* 状态 */
-@property (nonatomic, readwrite, assign) LCTodoStatus status;
+@property(nonatomic, assign) LCTodoStatus status;
 /* 是否删除 */
-@property (nonatomic, readwrite, assign) BOOL isHidden;
+@property(nonatomic, assign) BOOL isHidden;
 /* 是否完成 */
-@property (nonatomic, readwrite, assign) BOOL isCompleted;
+@property(nonatomic, assign) BOOL isCompleted;
 /* 照片 */
-@property (nonatomic, readwrite, strong) NSString* photo;
+@property(nonatomic, strong) NSString *photo;
 /* 本地创建时间 */
-@property (nonatomic, readwrite, strong) NSDate* localCreatedAt;
+@property(nonatomic, strong) NSDate *localCreatedAt;
 /* 本地更新时间 */
-@property (nonatomic, readwrite, strong) NSDate* localUpdatedAt;
-
+@property(nonatomic, strong) NSDate *localUpdatedAt;
+/* 地址相关
+ * 坐标*/
+@property(nonatomic, assign) AVGeoPoint *coordinate;
+/* 基础地址 */
+@property(nonatomic, strong) NSString *generalAddress;
+/* 具体地址 */
+@property(nonatomic, strong) NSString *explicitAddress;
 /**
  *  未实现
  */
 /* 相关人员 */
-@property (nonatomic, readwrite, copy) NSSet<LCUser*>* relatedPersonnel;
-/* 坐标 */
-@property (nonatomic, readwrite, strong) NSString* coordinate;
+@property(nonatomic, copy) NSSet<LCUser *> *relatedPersonnel;
 
 /**
  *  辅助属性
  */
 /* 照片实例 */
-@property (nonatomic, readwrite, strong) UIImage* photoImage;
+@property(nonatomic, strong) UIImage *photoImage;
 /* 缓存表格单元高度 */
-@property (nonatomic, readwrite, assign) CGFloat cellHeight;
+@property(nonatomic, assign) CGFloat cellHeight;
 /* 上次过期时间，该字段用于 snooze 后移除老位置的数据所用 */
-@property (nonatomic, readwrite, strong) NSDate* lastDeadline;
+@property(nonatomic, strong) NSDate *lastDeadline;
 /* 指示该待办事项是否在重新排序中 */
-@property (nonatomic, readwrite, assign) BOOL isReordering;
+@property(nonatomic, assign) BOOL isReordering;
 
 /**
  *  辅助方法
  */
 /* CDTodo 转换为 LCTodo */
-+ (LCTodo*)lcTodoWithCDTodo:(CDTodo*)cdTodo;
-+ (NSArray<LCTodo*>*)lcTodoArrayWithCDTodoArray:(NSArray<CDTodo*>*)cdArray;
-/* 判断LCTodo和CDTodo的数据是否相同 */
-- (BOOL)isSameDataAsCDTodo:(CDTodo*)cdTodo;
++ (LCTodo *)lcTodoWithCDTodo:(CDTodo *)cdTodo;
+
++ (NSArray<LCTodo *> *)lcTodoArrayWithCDTodoArray:(NSArray<CDTodo *> *)cdArray;
 @end

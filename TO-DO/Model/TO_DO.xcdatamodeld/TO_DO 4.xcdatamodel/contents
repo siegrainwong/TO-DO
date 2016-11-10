@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<model type="com.apple.IDECoreDataModeler.DataModel" documentVersion="1.0" lastSavedToolsVersion="11542" systemVersion="15G31" minimumToolsVersion="Xcode 7.3" sourceLanguage="Objective-C" userDefinedModelVersionIdentifier="">
+    <entity name="SyncRecord" representedClassName="CDSyncRecord" syncable="YES">
+        <attribute name="commitCount" attributeType="Integer 64" defaultValueString="0" usesScalarValueType="NO" syncable="YES"/>
+        <attribute name="createdAt" attributeType="Date" usesScalarValueType="NO" indexed="YES" syncable="YES"/>
+        <attribute name="downloadCount" attributeType="Integer 64" defaultValueString="0" usesScalarValueType="NO" syncable="YES"/>
+        <attribute name="isFinished" attributeType="Boolean" usesScalarValueType="NO" syncable="YES"/>
+        <attribute name="objectId" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="recordMark" attributeType="String" syncable="YES"/>
+        <attribute name="syncBeginTime" attributeType="Date" usesScalarValueType="NO" indexed="YES" syncable="YES"/>
+        <attribute name="syncEndTime" optional="YES" attributeType="Date" usesScalarValueType="NO" indexed="YES" syncable="YES"/>
+        <attribute name="syncType" optional="YES" attributeType="Integer 16" defaultValueString="0" usesScalarValueType="NO" indexed="YES" syncable="YES"/>
+        <attribute name="updatedAt" attributeType="Date" usesScalarValueType="NO" indexed="YES" syncable="YES"/>
+        <relationship name="user" maxCount="1" deletionRule="Cascade" destinationEntity="User" inverseName="syncRecords" inverseEntity="User" syncable="YES"/>
+    </entity>
+    <entity name="Todo" representedClassName="CDTodo" syncable="YES">
+        <attribute name="createdAt" attributeType="Date" usesScalarValueType="NO" indexed="YES" syncable="YES"/>
+        <attribute name="deadline" attributeType="Date" usesScalarValueType="NO" indexed="YES" syncable="YES"/>
+        <attribute name="explicitAddress" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="generalAddress" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="identifier" attributeType="String" syncable="YES"/>
+        <attribute name="isCompleted" attributeType="Boolean" defaultValueString="NO" usesScalarValueType="NO" syncable="YES"/>
+        <attribute name="isHidden" attributeType="Boolean" defaultValueString="NO" usesScalarValueType="NO" syncable="YES"/>
+        <attribute name="latitude" optional="YES" attributeType="Double" defaultValueString="0.0" usesScalarValueType="NO" syncable="YES"/>
+        <attribute name="longitude" optional="YES" attributeType="Double" defaultValueString="0.0" usesScalarValueType="NO" syncable="YES"/>
+        <attribute name="objectId" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="photo" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="photoData" optional="YES" attributeType="Binary" allowsExternalBinaryDataStorage="YES" storedInTruthFile="YES" syncable="YES"/>
+        <attribute name="sgDescription" optional="YES" attributeType="String" minValueString="0" maxValueString="200" syncable="YES"/>
+        <attribute name="status" attributeType="Integer 16" minValueString="0" maxValueString="2" defaultValueString="0" usesScalarValueType="NO" indexed="YES" syncable="YES"/>
+        <attribute name="syncStatus" optional="YES" attributeType="Integer 16" minValueString="0" maxValueString="2" defaultValueString="0" usesScalarValueType="NO" indexed="YES" syncable="YES"/>
+        <attribute name="syncVersion" optional="YES" attributeType="Integer 64" minValueString="0" defaultValueString="0" usesScalarValueType="NO" indexed="YES" syncable="YES"/>
+        <attribute name="title" attributeType="String" syncable="YES"/>
+        <attribute name="updatedAt" attributeType="Date" usesScalarValueType="NO" indexed="YES" syncable="YES"/>
+        <relationship name="user" maxCount="1" deletionRule="Nullify" destinationEntity="User" inverseName="todos" inverseEntity="User" syncable="YES"/>
+    </entity>
+    <entity name="User" representedClassName="CDUser" syncable="YES">
+        <attribute name="avatar" attributeType="String" syncable="YES"/>
+        <attribute name="avatarData" optional="YES" attributeType="Binary" allowsExternalBinaryDataStorage="YES" storedInTruthFile="YES" syncable="YES"/>
+        <attribute name="createdAt" attributeType="Date" usesScalarValueType="NO" syncable="YES"/>
+        <attribute name="email" attributeType="String" syncable="YES"/>
+        <attribute name="name" attributeType="String" syncable="YES"/>
+        <attribute name="objectId" attributeType="String" syncable="YES"/>
+        <attribute name="phoneIdentifier" attributeType="String" syncable="YES"/>
+        <attribute name="updatedAt" attributeType="Date" usesScalarValueType="NO" syncable="YES"/>
+        <attribute name="username" attributeType="String" syncable="YES"/>
+        <relationship name="syncRecords" optional="YES" toMany="YES" deletionRule="Nullify" ordered="YES" destinationEntity="SyncRecord" inverseName="user" inverseEntity="SyncRecord" syncable="YES"/>
+        <relationship name="todos" optional="YES" toMany="YES" deletionRule="Cascade" ordered="YES" destinationEntity="Todo" inverseName="user" inverseEntity="Todo" syncable="YES"/>
+    </entity>
+    <elements>
+        <element name="SyncRecord" positionX="-119" positionY="-81" width="128" height="210"/>
+        <element name="Todo" positionX="61" positionY="36" width="128" height="330"/>
+        <element name="User" positionX="-317" positionY="9" width="128" height="210"/>
+    </elements>
+</model>

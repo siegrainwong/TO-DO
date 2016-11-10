@@ -188,7 +188,6 @@
         todo.title = weakSelf.titleTextField.field.text;
         todo.sgDescription = weakSelf.descriptionTextField.field.text;
         todo.deadline = self.selectedDate;
-        todo.location = weakSelf.locationTextField.field.text;
         todo.photoData = UIImageJPEGRepresentation(weakSelf.selectedImage, 0.5);
         todo.photoImage = [UIImage imageWithData:todo.photoData];
         todo.user = weakSelf.cdUser;
@@ -198,6 +197,12 @@
         todo.createdAt = [NSDate date];
         todo.updatedAt = [todo.createdAt copy];
         todo.identifier = [[NSUUID UUID] UUIDString];
+        if (_selectedCoordinate) {
+            todo.longitude = @(_selectedCoordinate.longitude);
+            todo.latitude = @(_selectedCoordinate.latitude);
+            todo.generalAddress = _selectedCoordinate.generalAddress;
+            todo.explicitAddress = _selectedCoordinate.explicitAddress;
+        }
         
         [weakSelf enableView:YES];
         NSLog(@"%@", [NSThread currentThread]);
