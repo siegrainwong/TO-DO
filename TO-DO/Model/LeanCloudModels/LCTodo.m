@@ -33,8 +33,8 @@
     lcTodo.identifier = cdTodo.identifier;
     lcTodo.title = cdTodo.title;
     lcTodo.sgDescription = cdTodo.sgDescription;
-    lcTodo.photo = cdTodo.photo;
     lcTodo.deadline = cdTodo.deadline;
+    lcTodo.photo = cdTodo.photoUrl;
     
     lcTodo.user = [LCUser currentUser];
     lcTodo.status = [cdTodo.status integerValue];
@@ -47,6 +47,10 @@
         lcTodo.coordinate = [AVGeoPoint geoPointWithLatitude:cdTodo.latitude.doubleValue longitude:cdTodo.longitude.doubleValue];
         lcTodo.generalAddress = cdTodo.generalAddress;
         lcTodo.explicitAddress = cdTodo.explicitAddress;
+    }
+    //没有提交过的数据才加载photoData
+    if(!cdTodo.objectId && cdTodo.photoPath){
+        cdTodo.photoData = [NSData dataWithContentsOfFile:cdTodo.photoPath];
     }
     
     return lcTodo;
@@ -71,7 +75,6 @@
         if (self.isCompleted != cdTodo.isCompleted.boolValue) return NO;
         if (![self.title isEqualToString:cdTodo.title]) return NO;
         if (![self.sgDescription isEqualToString:cdTodo.sgDescription]) return NO;
-        if (![self.photo isEqualToString:cdTodo.photo]) return NO;
         if ([self.localCreatedAt compare:cdTodo.createdAt] != NSOrderedSame) return NO;
         if ([self.localUpdatedAt compare:cdTodo.updatedAt] != NSOrderedSame) return NO;
         if (self.syncVersion != cdTodo.syncVersion.integerValue) return NO;

@@ -33,7 +33,13 @@ static NSInteger const kPopHeightWhenKeyboardShow = 170;
 + (UIColor *)buttonColorDisabled;
 
 #pragma mark - photo picker
+
 + (void)photoPickerFromTarget:(UIViewController <UINavigationControllerDelegate, UIImagePickerControllerDelegate> *)viewController;
+
+#pragma mark - convenience
+
+/*沙盒照片保存路径*/
++ (NSString *)photoPath;
 
 #pragma mark - alerts
 
@@ -50,6 +56,7 @@ static NSInteger const kPopHeightWhenKeyboardShow = 170;
 + (void)alertWithMessage:(NSString *)message;
 
 #pragma mark - date
+
 /**
  *  获取本地化格式的日期字符串
  *

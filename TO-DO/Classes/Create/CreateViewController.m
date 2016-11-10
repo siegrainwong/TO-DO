@@ -25,6 +25,7 @@
 #import "SGCoordinate.h"
 #import "SGImageUpload.h"
 #import "GTMBase64.h"
+#import "AppDelegate.h"
 
 // FIXME: iPhone4s 上 NavigationBar 会遮挡一部分标题文本框
 // TODO: 多人协作

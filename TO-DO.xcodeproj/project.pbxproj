@@ -245,6 +245,7 @@
 		F961B55A1CF42DED0096DAF4 /* LCTodoDataManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = LCTodoDataManager.m; path = ../../../Home/LCTodoDataManager.m; sourceTree = "<group>"; };
 		F9773EAC1CFECD7400469A0E /* TO_DO.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = TO_DO.xcdatamodel; sourceTree = "<group>"; };
 		F98081591DD445EB009356B7 /* TO_DO 4.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = "TO_DO 4.xcdatamodel"; sourceTree = "<group>"; };
+		F980815D1DD4C6A7009356B7 /* TO_DO 5.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = "TO_DO 5.xcdatamodel"; sourceTree = "<group>"; };
 		F980EDCD1CE70F4E00A861FE /* HeaderView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HeaderView.h; sourceTree = "<group>"; };
 		F980EDCE1CE70F4E00A861FE /* HeaderView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HeaderView.m; sourceTree = "<group>"; };
 		F98DE68A1CFDCE6B00859A81 /* TodoTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TodoTableViewController.h; sourceTree = "<group>"; };
@@ -1060,7 +1061,7 @@
 		F9A723661CDDF8A800E3BC8E /* Project object */ = {
 			isa = PBXProject;
 			attributes = {
-				LastUpgradeCheck = 0720;
+				LastUpgradeCheck = 0810;
 				ORGANIZATIONNAME = com.siegrain;
 				TargetAttributes = {
 					F9A7236D1CDDF8A800E3BC8E = {
@@ -1340,6 +1341,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_LOCALIZABILITY_NONLOCALIZED = YES;
 				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
 				CLANG_CXX_LIBRARY = "libc++";
 				CLANG_ENABLE_MODULES = YES;
@@ -1349,8 +1351,10 @@
 				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
 				CLANG_WARN_EMPTY_BODY = YES;
 				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
 				CLANG_WARN_INT_CONVERSION = YES;
 				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
 				CLANG_WARN_UNREACHABLE_CODE = YES;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
@@ -1383,6 +1387,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_LOCALIZABILITY_NONLOCALIZED = YES;
 				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
 				CLANG_CXX_LIBRARY = "libc++";
 				CLANG_ENABLE_MODULES = YES;
@@ -1392,8 +1397,10 @@
 				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
 				CLANG_WARN_EMPTY_BODY = YES;
 				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
 				CLANG_WARN_INT_CONVERSION = YES;
 				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
 				CLANG_WARN_UNREACHABLE_CODE = YES;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
@@ -1552,12 +1559,13 @@
 		F9773EAB1CFECD7400469A0E /* TO_DO.xcdatamodeld */ = {
 			isa = XCVersionGroup;
 			children = (
+				F980815D1DD4C6A7009356B7 /* TO_DO 5.xcdatamodel */,
 				F98081591DD445EB009356B7 /* TO_DO 4.xcdatamodel */,
 				F9BA65E41D0D7E25004D59DE /* TO_DO 3.xcdatamodel */,
 				F9FAB5E51D01BB2700C519B9 /* TO_DO 2.xcdatamodel */,
 				F9773EAC1CFECD7400469A0E /* TO_DO.xcdatamodel */,
 			);
-			currentVersion = F98081591DD445EB009356B7 /* TO_DO 4.xcdatamodel */;
+			currentVersion = F980815D1DD4C6A7009356B7 /* TO_DO 5.xcdatamodel */;
 			path = TO_DO.xcdatamodeld;
 			sourceTree = "<group>";
 			versionGroupType = wrapper.xcdatamodel;

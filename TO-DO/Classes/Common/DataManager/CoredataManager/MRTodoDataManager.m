@@ -21,7 +21,7 @@ static NSString *const kTitleInvalidKey = @"TitleInvalid";
 static NSString *const kDescriptionInvalidKey = @"DescriptionInvalid";
 static NSString *const kTimeInvalidKey = @"TimeInvalid";
 static NSString *const kLocationInvalidKey = @"LocationInvalid";
-static NSString *const kPictureUploadFailedKey = @"PictureUploadFailed";
+static NSString *const kPhotoSaveFailedKey = @"PictureUploadFailed";
 
 @interface
 MRTodoDataManager ()
@@ -38,7 +38,7 @@ MRTodoDataManager ()
     _localDictionary[kTimeInvalidKey] = ConcatLocalizedString1(@"Time", @" can not be empty");
     _localDictionary[kDescriptionInvalidKey] = ConcatLocalizedString1(@"Description", @" is invalid");
     _localDictionary[kLocationInvalidKey] = ConcatLocalizedString1(@"Location", @" is invalid");
-    _localDictionary[kPictureUploadFailedKey] = NSLocalizedString(@"Failed to upload picture, please try again", nil);
+    _localDictionary[kPhotoSaveFailedKey] = Localized(@"Failed to save photo, please check your storage on device and try again");
 }
 
 - (instancetype)init {
@@ -128,13 +128,29 @@ MRTodoDataManager ()
         return NO;
     }
     
+    // 存储照片，如果失败了返回
+    if (_model.photoData) {
+		NSString* folderPath = [SGHelper photoPath];
+		NSFileManager* manager = [NSFileManager defaultManager];
+		
+		NSError* error = nil;
+		if (![manager fileExistsAtPath:folderPath]) {
+			[manager createDirectoryAtPath:folderPath withIntermediateDirectories:YES attributes:nil error:&error];
+		}
+        NSString *imagePath = [NSString stringWithFormat:@"%@/%@.jpg", [SGHelper photoPath], _model.identifier];
+        if (![_model.photoData writeToFile:imagePath atomically:YES]) {
+            [SCLAlertHelper errorAlertWithContent:_localDictionary[kPhotoSaveFailedKey]];
+            return NO;
+        }
+        _model.photoPath = imagePath;
+    }
+    
     return YES;
 }
 
 #pragma mark - modify
 
 - (BOOL)isModifiedTodo:(CDTodo *)todo {
-    __weak typeof(self) weakSelf = self;
     [[GCDQueue globalQueueWithLevel:DISPATCH_QUEUE_PRIORITY_DEFAULT] sync:^{
         todo.syncStatus = @(SyncStatusWaiting);
         todo.syncVersion = @([todo.syncVersion integerValue] + 1);
@@ -148,6 +164,7 @@ MRTodoDataManager ()
 }
 
 #pragma mark - private methods
+
 - (void)syncIfNeeded {
     [[GCDQueue mainQueue] async:^{[[AppDelegate globalDelegate] synchronize:SyncModeAutomatically];}];
 }

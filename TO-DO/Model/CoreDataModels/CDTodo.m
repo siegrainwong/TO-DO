@@ -14,6 +14,7 @@
 @synthesize cellHeight = _cellHeight;
 @synthesize lastDeadline = _lastDeadline;
 @synthesize isReordering = _isReordering;
+@synthesize photoData = _photoData;
 
 #pragma mark - accessors
 
@@ -47,7 +48,7 @@
     self.status = @(lcTodo.status);
     self.isHidden = @(lcTodo.isHidden);
     self.isCompleted = @(lcTodo.isCompleted);
-    self.photo = lcTodo.photo;
+    self.photoUrl = lcTodo.photo;
     self.createdAt = lcTodo.localCreatedAt;
     self.updatedAt = lcTodo.localUpdatedAt;
     self.syncVersion = @(lcTodo.syncVersion);

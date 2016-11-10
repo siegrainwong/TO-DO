@@ -30,4 +30,5 @@ target "TO-DO" do
   pod 'AMapSearch'
   pod 'AMapLocation'
   pod 'MJExtension'
+  pod 'JMRoundedCorner'
 end

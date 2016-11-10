@@ -69,7 +69,7 @@
     [self setupReachability];
     [self setupAmap];
     [self setupDrawerViewController];
-    [self applicationDocumentsDirectory];
+    NSLog(@"%@", [self sandboxUrl]);
     //    [self insertTestTodoToLC];
     
     [UIApplication sharedApplication].statusBarStyle = UIStatusBarStyleLightContent;
@@ -182,10 +182,9 @@
     [LCTodo saveAll:[array copy]];
 }
 
-- (NSURL *)applicationDocumentsDirectory {
-    NSLog(@"%@", [[[NSFileManager defaultManager] URLsForDirectory:NSDocumentDirectory inDomains:NSUserDomainMask] lastObject]);
-    
-    return [[[NSFileManager defaultManager] URLsForDirectory:NSDocumentDirectory inDomains:NSUserDomainMask] lastObject];
+- (NSString *)sandboxUrl {
+	NSArray* array = NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES);
+	return array[0];
 }
 
 #pragma mark - sync

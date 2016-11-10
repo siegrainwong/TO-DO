@@ -11,6 +11,7 @@
 #import "MBProgressHUD.h"
 #import "LCActionSheet.h"
 #import "MBProgressHUD+SGExtension.h"
+#import "AppDelegate.h"
 #import <AVFoundation/AVFoundation.h>
 #import <MobileCoreServices/UTCoreTypes.h>
 
@@ -88,6 +89,12 @@
         return;
     }
 }
+
+#pragma mark - convenience
++ (NSString *)photoPath {
+    return [[[AppDelegate globalDelegate] sandboxUrl] stringByAppendingPathComponent:[NSString stringWithFormat:@"savedImages"]];
+}
+
 
 #pragma mark - alerts
 

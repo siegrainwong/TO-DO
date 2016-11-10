@@ -281,17 +281,29 @@ static NSInteger const kMaximumSyncCountPerFetch = 100;
     
     //并行上传图片
     NSBlockOperation *operation = [NSBlockOperation new];
-    [todosReadyToCommit enumerateObjectsUsingBlock:^(CDTodo *obj, NSUInteger idx, BOOL *stop) {
-        //只有新增时需要上传图片
-        if (!obj.identifier || !obj.photoData) return;
-        
-        __block CDTodo *cdTodo = obj;
+    for (int i = 0; i < todosReadyToCommit.count; i++) {
+        __block CDTodo *cdTodo = todosReadyToCommit[i];
+        NSLog(@"::: cnm");
+        if (!cdTodo.photoData) continue;
         [operation addExecutionBlock:^{
+            NSLog(@"::: cnmm");
             AVFile *photo = [AVFile fileWithName:[NSString stringWithFormat:@"%@.jpg", cdTodo.identifier] data:cdTodo.photoData];
-            if ([photo save]) cdTodo.photo = photo.url;
+            if ([photo save]) cdTodo.photoUrl = photo.url;
             else [self.errorHandler returnWithError:nil description:[NSString stringWithFormat:@"2-3. 上传图片失败：%@", cdTodo.identifier] failBlock:nil];
         }];
-    }];
+    }
+//    [todosReadyToCommit enumerateObjectsUsingBlock:^(CDTodo *obj, NSUInteger idx, BOOL *stop) {
+//        NSLog(@"::: cnm");
+//        if (!obj.photoData) return;
+//
+//        __block CDTodo *cdTodo = obj;
+//        [operation addExecutionBlock:^{
+//            NSLog(@"::: cnmm");
+//            AVFile *photo = [AVFile fileWithName:[NSString stringWithFormat:@"%@.jpg", cdTodo.identifier] data:cdTodo.photoData];
+//            if ([photo save]) cdTodo.photoUrl = photo.url;
+//            else [self.errorHandler returnWithError:nil description:[NSString stringWithFormat:@"2-3. 上传图片失败：%@", cdTodo.identifier] failBlock:nil];
+//        }];
+//    }];
     
     [operation setCompletionBlock:^{
         //上传并保存本地数据
@@ -503,9 +515,10 @@ static NSInteger const kMaximumSyncCountPerFetch = 100;
     if (error) return [self.errorHandler returnWithError:error description:@"2. 无法获取服务器时间"];
     
     NSDate *serverDate = [DateUtil dateFromISO8601String:responseObject[@"iso"]];
-    NSInteger intervalFromServer = fabs([serverDate timeIntervalSince1970] - [[NSDate date] timeIntervalSince1970]);
+	
     
     // 现在不判断服务器与本地时间差，这个应该不会造成什么问题。
+	// NSInteger intervalFromServer = fabs([serverDate timeIntervalSince1970] - [[NSDate date] timeIntervalSince1970]);
     //    if (intervalFromServer > kInvalidTimeInterval)
     //        return [self.errorHandler returnWithError:nil description:@"2. 本地时间和服务器时间相差过大，已停止同步"];
     

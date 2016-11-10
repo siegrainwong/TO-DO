@@ -7,386 +7,365 @@
 		<key>AFNetworking-Synchronous.xcscheme</key>
 		<dict>
 			<key>isShown</key>
-			<false />
+			<false/>
 			<key>orderHint</key>
 			<integer>1</integer>
 		</dict>
 		<key>AFNetworking.xcscheme</key>
 		<dict>
 			<key>isShown</key>
-			<false />
+			<false/>
 			<key>orderHint</key>
 			<integer>2</integer>
 		</dict>
 		<key>AutoLinearLayoutView-AutoLinearLayoutView.xcscheme</key>
 		<dict>
 			<key>isShown</key>
-			<false />
+			<false/>
 			<key>orderHint</key>
 			<integer>3</integer>
 		</dict>
 		<key>AutoLinearLayoutView.xcscheme</key>
 		<dict>
 			<key>isShown</key>
-			<false />
+			<false/>
 			<key>orderHint</key>
 			<integer>4</integer>
 		</dict>
 		<key>CocoaLumberjack.xcscheme</key>
 		<dict>
 			<key>isShown</key>
-			<false />
+			<false/>
 			<key>orderHint</key>
 			<integer>5</integer>
 		</dict>
 		<key>DGActivityIndicatorView.xcscheme</key>
 		<dict>
 			<key>isShown</key>
-			<false />
+			<false/>
 			<key>orderHint</key>
 			<integer>6</integer>
 		</dict>
 		<key>FDFullscreenPopGesture.xcscheme</key>
 		<dict>
 			<key>isShown</key>
-			<false />
+			<false/>
 			<key>orderHint</key>
 			<integer>7</integer>
 		</dict>
 		<key>FSCalendar.xcscheme</key>
 		<dict>
 			<key>isShown</key>
-			<false />
+			<false/>
 			<key>orderHint</key>
 			<integer>8</integer>
 		</dict>
 		<key>GTMBase64.xcscheme</key>
 		<dict>
 			<key>isShown</key>
-			<false />
+			<false/>
 			<key>orderHint</key>
 			<integer>9</integer>
 		</dict>
 		<key>HappyDNS.xcscheme</key>
 		<dict>
 			<key>isShown</key>
-			<false />
+			<false/>
 			<key>orderHint</key>
 			<integer>10</integer>
 		</dict>
 		<key>IGLDropDownMenu.xcscheme</key>
 		<dict>
 			<key>isShown</key>
-			<false />
+			<false/>
 			<key>orderHint</key>
 			<integer>11</integer>
+		</dict>
+		<key>JMRoundedCorner.xcscheme</key>
+		<dict>
+			<key>isShown</key>
+			<false/>
+			<key>orderHint</key>
+			<integer>12</integer>
 		</dict>
 		<key>JSONModel.xcscheme</key>
 		<dict>
 			<key>isShown</key>
-			<false />
+			<false/>
 			<key>orderHint</key>
-			<integer>12</integer>
+			<integer>13</integer>
 		</dict>
 		<key>JVFloatingDrawer.xcscheme</key>
 		<dict>
 			<key>isShown</key>
-			<false />
+			<false/>
 			<key>orderHint</key>
-			<integer>13</integer>
+			<integer>14</integer>
 		</dict>
 		<key>LCActionSheet.xcscheme</key>
 		<dict>
 			<key>isShown</key>
-			<false />
+			<false/>
 			<key>orderHint</key>
-			<integer>14</integer>
+			<integer>15</integer>
 		</dict>
 		<key>MBProgressHUD.xcscheme</key>
 		<dict>
 			<key>isShown</key>
-			<false />
+			<false/>
 			<key>orderHint</key>
-			<integer>15</integer>
+			<integer>16</integer>
 		</dict>
 		<key>MGSwipeTableCell.xcscheme</key>
 		<dict>
 			<key>isShown</key>
-			<false />
+			<false/>
 			<key>orderHint</key>
-			<integer>16</integer>
+			<integer>17</integer>
+		</dict>
+		<key>MJExtension.xcscheme</key>
+		<dict>
+			<key>isShown</key>
+			<false/>
+			<key>orderHint</key>
+			<integer>18</integer>
 		</dict>
 		<key>MXParallaxHeader.xcscheme</key>
 		<dict>
 			<key>isShown</key>
-			<false />
+			<false/>
 			<key>orderHint</key>
-			<integer>17</integer>
+			<integer>19</integer>
 		</dict>
 		<key>MagicalRecord.xcscheme</key>
 		<dict>
 			<key>isShown</key>
-			<false />
+			<false/>
 			<key>orderHint</key>
-			<integer>18</integer>
+			<integer>20</integer>
 		</dict>
 		<key>Masonry.xcscheme</key>
 		<dict>
 			<key>isShown</key>
-			<false />
+			<false/>
 			<key>orderHint</key>
-			<integer>19</integer>
+			<integer>21</integer>
 		</dict>
 		<key>NetworkEye.xcscheme</key>
 		<dict>
 			<key>isShown</key>
-			<false />
+			<false/>
 			<key>orderHint</key>
-			<integer>20</integer>
+			<integer>22</integer>
 		</dict>
 		<key>Pods-TO-DO.xcscheme</key>
 		<dict>
 			<key>isShown</key>
-			<false />
+			<false/>
 			<key>orderHint</key>
-			<integer>21</integer>
+			<integer>23</integer>
 		</dict>
 		<key>Qiniu.xcscheme</key>
 		<dict>
 			<key>isShown</key>
-			<false />
+			<false/>
 			<key>orderHint</key>
-			<integer>22</integer>
+			<integer>24</integer>
 		</dict>
 		<key>RTRootNavigationController.xcscheme</key>
 		<dict>
 			<key>isShown</key>
-			<false />
+			<false/>
 			<key>orderHint</key>
-			<integer>23</integer>
+			<integer>25</integer>
 		</dict>
 		<key>RealReachability.xcscheme</key>
 		<dict>
 			<key>isShown</key>
-			<false />
+			<false/>
 			<key>orderHint</key>
-			<integer>24</integer>
+			<integer>26</integer>
 		</dict>
 		<key>SDAutoLayout.xcscheme</key>
 		<dict>
 			<key>isShown</key>
-			<false />
+			<false/>
 			<key>orderHint</key>
-			<integer>25</integer>
+			<integer>27</integer>
 		</dict>
 		<key>SDWebImage.xcscheme</key>
 		<dict>
 			<key>isShown</key>
-			<false />
+			<false/>
 			<key>orderHint</key>
-			<integer>26</integer>
+			<integer>28</integer>
 		</dict>
 		<key>TPKeyboardAvoiding.xcscheme</key>
 		<dict>
 			<key>isShown</key>
-			<false />
+			<false/>
 			<key>orderHint</key>
-			<integer>27</integer>
+			<integer>29</integer>
 		</dict>
 		<key>ZFDragableModalTransition.xcscheme</key>
 		<dict>
 			<key>isShown</key>
-			<false />
+			<false/>
 			<key>orderHint</key>
-			<integer>28</integer>
+			<integer>30</integer>
 		</dict>
 	</dict>
 	<key>SuppressBuildableAutocreation</key>
 	<dict>
-		<key>099CFFEB9737740A53D1F2ED9BDED157</key>
-		<dict>
-			<key>primary</key>
-			<true />
-		</dict>
 		<key>09FA060F1A0492FB25232F489AC4E573</key>
 		<dict>
 			<key>primary</key>
-			<true />
-		</dict>
-		<key>106AF384AF3ED62F1D840F964D211D4A</key>
-		<dict>
-			<key>primary</key>
-			<true />
+			<true/>
 		</dict>
 		<key>12AC35F9C569FA2A4543EFEDD802D2C9</key>
 		<dict>
 			<key>primary</key>
-			<true />
+			<true/>
 		</dict>
 		<key>12E2BC28C62976C425F4B71C2723F0B1</key>
 		<dict>
 			<key>primary</key>
-			<true />
+			<true/>
+		</dict>
+		<key>23AF43AD958A6380366D2E3E998E1BD6</key>
+		<dict>
+			<key>primary</key>
+			<true/>
 		</dict>
 		<key>2C71DE0FB8A6E5BB6EAF9FB037D799CC</key>
 		<dict>
 			<key>primary</key>
-			<true />
-		</dict>
-		<key>2D96AF544D6D5E3F1B9F88FFE7891AEA</key>
-		<dict>
-			<key>primary</key>
-			<true />
-		</dict>
-		<key>2E213B8682D5AFC3C4F8CB845F3CA624</key>
-		<dict>
-			<key>primary</key>
-			<true />
+			<true/>
 		</dict>
 		<key>304EA90FC13024DFA4D6193A29D69F53</key>
 		<dict>
 			<key>primary</key>
-			<true />
-		</dict>
-		<key>313EB10C14D75F04156762F5B3554049</key>
-		<dict>
-			<key>primary</key>
-			<true />
-		</dict>
-		<key>3805C65B824756D21A708CFC023B2B2A</key>
-		<dict>
-			<key>primary</key>
-			<true />
-		</dict>
-		<key>38DFB4957036DB820B51468AFB75C2F6</key>
-		<dict>
-			<key>primary</key>
-			<true />
+			<true/>
 		</dict>
 		<key>410B25DF16EA5C5B3E2698F74F9625FB</key>
 		<dict>
 			<key>primary</key>
-			<true />
-		</dict>
-		<key>49711537C7E4C32CA39079BCC48BA503</key>
-		<dict>
-			<key>primary</key>
-			<true />
+			<true/>
 		</dict>
 		<key>53480ED0BE09FF49E34B1702D485CAAB</key>
 		<dict>
 			<key>primary</key>
-			<true />
-		</dict>
-		<key>5A56C804096973D6EA99D3FD1CF9E0A5</key>
-		<dict>
-			<key>primary</key>
-			<true />
+			<true/>
 		</dict>
 		<key>5C62045F455139E6963539AC3EBD9960</key>
 		<dict>
 			<key>primary</key>
-			<true />
+			<true/>
 		</dict>
 		<key>625D968912B53321939D1ABC5AABE1F7</key>
 		<dict>
 			<key>primary</key>
-			<true />
+			<true/>
 		</dict>
 		<key>65FC464968B54AEEC9527E53FF8198E2</key>
 		<dict>
 			<key>primary</key>
-			<true />
+			<true/>
 		</dict>
 		<key>6627E2CE58504A680DE862D5526B302C</key>
 		<dict>
 			<key>primary</key>
-			<true />
+			<true/>
 		</dict>
 		<key>89D4FB23854D26791B0378BBBC7C2AC3</key>
 		<dict>
 			<key>primary</key>
-			<true />
+			<true/>
 		</dict>
 		<key>8C463CD491D989B457394A7AA95384BC</key>
 		<dict>
 			<key>primary</key>
-			<true />
+			<true/>
 		</dict>
 		<key>974C6EF600D2699DDE46AD1111806FC3</key>
 		<dict>
 			<key>primary</key>
-			<true />
+			<true/>
 		</dict>
 		<key>97D26B5AF5AEC74375C947371A1EF471</key>
 		<dict>
 			<key>primary</key>
-			<true />
+			<true/>
+		</dict>
+		<key>998F5BF6B28D7B7C910C7EE62320D98C</key>
+		<dict>
+			<key>primary</key>
+			<true/>
 		</dict>
 		<key>9EAB3E42EF957541E6C3C76D35FD008E</key>
 		<dict>
 			<key>primary</key>
-			<true />
+			<true/>
 		</dict>
-		<key>B90F0772BB171B507A5ECF7BCBCB3954</key>
+		<key>A1A6584E30394C4E0B94F948FA515500</key>
 		<dict>
 			<key>primary</key>
-			<true />
+			<true/>
+		</dict>
+		<key>A40FE31FE2AC2CEF18D9E09EB696863C</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
+		<key>A8AFB623854FF71C0BB28A818EB2DC05</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
+		<key>AC393B0EDEAA33C6ED5C6A2BCC7CCC73</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
+		<key>B58AE9150F017AC1E3E69371EC850776</key>
+		<dict>
+			<key>primary</key>
+			<true/>
 		</dict>
 		<key>BBD31B258AB88D877D5D602AE3F16E6B</key>
 		<dict>
 			<key>primary</key>
-			<true />
-		</dict>
-		<key>BEEA126AF376E1BAF9A264441A1170C5</key>
-		<dict>
-			<key>primary</key>
-			<true />
+			<true/>
 		</dict>
 		<key>C4652D32456E3D324EC466CA950493E9</key>
 		<dict>
 			<key>primary</key>
-			<true />
+			<true/>
 		</dict>
-		<key>C6C5886D2E5D4EE7382EA53E310F4C43</key>
+		<key>C860652980D36045FBFF5D912928271E</key>
 		<dict>
 			<key>primary</key>
-			<true />
-		</dict>
-		<key>D0F8594FE65FDFD417913BA4063B7F77</key>
-		<dict>
-			<key>primary</key>
-			<true />
+			<true/>
 		</dict>
 		<key>D54AB3ECEB9A8FBA15D4F73CBE326692</key>
 		<dict>
 			<key>primary</key>
-			<true />
+			<true/>
 		</dict>
-		<key>DB02D139AD2328DE79ED6FEA93307D30</key>
+		<key>DA8AD3D5956C92B47923523F29F41AF2</key>
 		<dict>
 			<key>primary</key>
-			<true />
-		</dict>
-		<key>DE18BD04A358184167E295967F5D3FED</key>
-		<dict>
-			<key>primary</key>
-			<true />
-		</dict>
-		<key>F096809E3B7D6BC92447EC9CC0A28497</key>
-		<dict>
-			<key>primary</key>
-			<true />
+			<true/>
 		</dict>
 		<key>F2FC0AF0815B5D127E0AA79352D5EB6A</key>
 		<dict>
 			<key>primary</key>
-			<true />
+			<true/>
 		</dict>
 		<key>FE2F1D7B9D9FCEA148517E4657B243F4</key>
 		<dict>
 			<key>primary</key>
-			<true />
+			<true/>
 		</dict>
 	</dict>
 </dict>

@@ -24,6 +24,10 @@
 @property (nonatomic, readonly, strong) RealReachability* reachability;
 
 + (AppDelegate*)globalDelegate;
+
+/* 沙盒目录 */
+- (NSString *)sandboxUrl;
+
 /**
  * 全局同步方法
  */
