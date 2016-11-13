@@ -47,20 +47,11 @@ HomeViewController () <UINavigationControllerDelegate, UIImagePickerControllerDe
 
 #pragma mark - initial
 
-- (void)viewDidLayoutSubviews {
-    [super viewDidLayoutSubviews];
-    
-    [_todoTableViewController.tableView resizeTableHeaderView];
-}
-
 - (void)viewDidLoad {
     [super viewDidLoad];
     
     [self localizeStrings];
     [self retrieveDataFromServer];
-    
-    //Mark: 切换到新的NavigationController加载进来之后ContentOffset.Y会是负的不明数值。
-    [_todoTableViewController.tableView setContentOffset:CGPointMake(0, 0) animated:YES];
 }
 
 - (void)setupViews {
