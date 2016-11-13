@@ -292,18 +292,6 @@ static NSInteger const kMaximumSyncCountPerFetch = 100;
             else [self.errorHandler returnWithError:nil description:[NSString stringWithFormat:@"2-3. 上传图片失败：%@", cdTodo.identifier] failBlock:nil];
         }];
     }
-//    [todosReadyToCommit enumerateObjectsUsingBlock:^(CDTodo *obj, NSUInteger idx, BOOL *stop) {
-//        NSLog(@"::: cnm");
-//        if (!obj.photoData) return;
-//
-//        __block CDTodo *cdTodo = obj;
-//        [operation addExecutionBlock:^{
-//            NSLog(@"::: cnmm");
-//            AVFile *photo = [AVFile fileWithName:[NSString stringWithFormat:@"%@.jpg", cdTodo.identifier] data:cdTodo.photoData];
-//            if ([photo save]) cdTodo.photoUrl = photo.url;
-//            else [self.errorHandler returnWithError:nil description:[NSString stringWithFormat:@"2-3. 上传图片失败：%@", cdTodo.identifier] failBlock:nil];
-//        }];
-//    }];
     
     [operation setCompletionBlock:^{
         //上传并保存本地数据

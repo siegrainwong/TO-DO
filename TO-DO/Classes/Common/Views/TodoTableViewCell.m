@@ -71,7 +71,6 @@ TodoTableViewCell ()
     _todoContentLabel = [UILabel new];
     _todoContentLabel.font = [SGHelper themeFontWithSize:13];
     _todoContentLabel.textColor = [SGHelper subTextColor];
-    _todoContentLabel.numberOfLines = 0;
     [self.contentView addSubview:_todoContentLabel];
     
     _statusButton = [UIButton new];
@@ -114,8 +113,7 @@ TodoTableViewCell ()
             .topSpaceToView(_todoTitleLabel, 2)
             .leftEqualToView(_todoTitleLabel)
             .rightEqualToView(_todoTitleLabel)
-            .autoHeightRatio(0)
-            .maxHeightIs(MAXFLOAT);
+            .heightIs(20);
 }
 
 - (void)configureSwipeBehavior {
