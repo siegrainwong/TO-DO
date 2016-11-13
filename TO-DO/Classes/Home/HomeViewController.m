@@ -11,18 +11,19 @@
 #import "HomeViewController.h"
 #import "UIButton+WebCache.h"
 #import "UIImage+Extension.h"
-#import "EmptyDataView.h"
-#import "MXParallaxHeader.h"
+#import "UITableView+Extension.h"
 #import "CommonDataManager.h"
 
 // TODO: 搜索功能
 // TODO: 待办事项展开功能
+// TODO: 空数据页面长度在Calendar下有问题，且三角遮盖和背景色不一致
+// TODO: Canlendar页面下要显示完成和未完成的任务
+// TODO: 导航栏不透明时，需要把加好按钮添加到导航栏上。
 // Mark: 再不能全局变量都用成员变量了，内存释放太操心
 
 @interface
 HomeViewController () <UINavigationControllerDelegate, UIImagePickerControllerDelegate>
 @property(nonatomic, readwrite, strong) TodoTableViewController *todoTableViewController;
-@property(nonatomic, strong) EmptyDataView *emptyDataView;
 @property(nonatomic, assign) BOOL isOpacityNavigation;
 @end
 
@@ -46,6 +47,12 @@ HomeViewController () <UINavigationControllerDelegate, UIImagePickerControllerDe
 
 #pragma mark - initial
 
+- (void)viewDidLayoutSubviews {
+    [super viewDidLayoutSubviews];
+    
+    [_todoTableViewController.tableView resizeTableHeaderView];
+}
+
 - (void)viewDidLoad {
     [super viewDidLoad];
     
@@ -60,12 +67,6 @@ HomeViewController () <UINavigationControllerDelegate, UIImagePickerControllerDe
     [super setupViews];
     
     __weak typeof(self) weakSelf = self;
-    
-    _todoTableViewController = [TodoTableViewController todoTableViewControllerWithStyle:TodoTableViewControllerStyleCellAndSection];
-    _todoTableViewController.delegate = self;
-    _todoTableViewController.headerHeight = self.headerHeight;
-    [self addChildViewController:_todoTableViewController];
-    [self.view addSubview:_todoTableViewController.tableView];
     
     self.titleLabel.textAlignment = NSTextAlignmentCenter;
     self.titleLabel.alpha = 0;
@@ -86,23 +87,32 @@ HomeViewController () <UINavigationControllerDelegate, UIImagePickerControllerDe
         [weakSelf.navigationController pushViewController:createViewController animated:YES];
     }];
     
-    MXParallaxHeader *header = _todoTableViewController.tableView.parallaxHeader;
-    header.view = self.headerView;
-    header.height = self.headerHeight;
-    header.mode = MXParallaxHeaderModeFill;
-    header.minimumHeight = 20;
+    _todoTableViewController = [TodoTableViewController todoTableViewControllerWithStyle:TodoTableViewControllerStyleHome];
+    _todoTableViewController.delegate = self;
+    _todoTableViewController.headerHeight = self.headerHeight;
+    _todoTableViewController.tableView.tableHeaderView = self.headerView;
+    [self addChildViewController:_todoTableViewController];
+    [self.view addSubview:_todoTableViewController.tableView];
+    
+//    MXParallaxHeader *header = _todoTableViewController.tableView.parallaxHeader;
+//    header.view = self.headerView;
+//    header.height = self.headerHeight;
+//    header.mode = MXParallaxHeaderModeFill;
+//    header.minimumHeight = 20;
 }
 
 - (void)bindConstraints {
     [super bindConstraints];
     
     [_todoTableViewController.tableView mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.top.bottom.right.left.offset(0);
+        make.top.offset(-64);
+        make.bottom.right.left.offset(0);
     }];
     
-    [_emptyDataView mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.top.offset(self.headerHeight);
-        make.bottom.right.left.offset(0);
+    [self.headerView mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.top.left.offset(0);
+        make.width.offset(kScreenWidth);
+        make.height.offset(self.headerHeight);
     }];
 }
 
@@ -143,7 +153,7 @@ HomeViewController () <UINavigationControllerDelegate, UIImagePickerControllerDe
         //Mark: 我反正是不清楚为啥设置autoAdjustScrollViewInsets = NO是没有效果的，只能改约束，为了避免滚动条跳跃，设置其在alpha = 1时才显示
         [_todoTableViewController.tableView mas_remakeConstraints:^(MASConstraintMaker *make) {
             make.bottom.right.left.offset(0);
-            make.top.offset(alpha == 1 ? -64 : 0);
+            make.top.offset(-128);
         }];
         
         [UIView animateWithDuration:.3 animations:^{
@@ -155,7 +165,7 @@ HomeViewController () <UINavigationControllerDelegate, UIImagePickerControllerDe
         
         [_todoTableViewController.tableView mas_remakeConstraints:^(MASConstraintMaker *make) {
             make.bottom.right.left.offset(0);
-            make.top.offset(alpha == 1 ? -64 : 0);
+            make.top.offset(-64);
         }];
         
         [UIView animateWithDuration:.3 animations:^{

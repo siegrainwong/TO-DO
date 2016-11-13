@@ -140,61 +140,41 @@
       <change type="DELETED" beforePath="$PROJECT_DIR$/TO-DO/Classes/Login/DataManager/LoginDataManager.m" afterPath="" />
       <change type="DELETED" beforePath="$PROJECT_DIR$/TO-DO/Classes/Login/Model/LCUser.m" afterPath="" />
       <change type="DELETED" beforePath="$PROJECT_DIR$/TO-DO/Classes/Login/Model/SGUser.h" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/TO-DO/Images/drawerbg.png" afterPath="" />
       <change type="MOVED" beforePath="$PROJECT_DIR$/TO-DO/Classes/Common/Localizable.h" afterPath="$PROJECT_DIR$/TO-DO/Classes/Common/Localized.h" />
       <change type="MOVED" beforePath="$PROJECT_DIR$/TO-DO/Classes/Common/Utilities/GCDUtil.h" afterPath="$PROJECT_DIR$/TO-DO/Classes/Common/Utilities/GCDQueue.h" />
       <change type="MOVED" beforePath="$PROJECT_DIR$/TO-DO/Classes/Login/DataManager/LoginDataManager.h" afterPath="$PROJECT_DIR$/TO-DO/Classes/Login/DataManager/LCUserDataManager.h" />
       <change type="MOVED" beforePath="$PROJECT_DIR$/TO-DO/Images/1. Login/header bg.png" afterPath="$PROJECT_DIR$/TO-DO/Images/1. Login/login header bg.png" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/dictionaries/Euphoria.xml" afterPath="$PROJECT_DIR$/.idea/dictionaries/Euphoria.xml" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Pods/Pods.xcodeproj/xcuserdata/Euphoria.xcuserdatad/xcschemes/AFNetworking-Synchronous.xcscheme" afterPath="$PROJECT_DIR$/Pods/Pods.xcodeproj/xcuserdata/Euphoria.xcuserdatad/xcschemes/AFNetworking-Synchronous.xcscheme" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Pods/Pods.xcodeproj/xcuserdata/Euphoria.xcuserdatad/xcschemes/AFNetworking.xcscheme" afterPath="$PROJECT_DIR$/Pods/Pods.xcodeproj/xcuserdata/Euphoria.xcuserdatad/xcschemes/AFNetworking.xcscheme" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Pods/Pods.xcodeproj/xcuserdata/Euphoria.xcuserdatad/xcschemes/AutoLinearLayoutView-AutoLinearLayoutView.xcscheme" afterPath="$PROJECT_DIR$/Pods/Pods.xcodeproj/xcuserdata/Euphoria.xcuserdatad/xcschemes/AutoLinearLayoutView-AutoLinearLayoutView.xcscheme" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Pods/Pods.xcodeproj/xcuserdata/Euphoria.xcuserdatad/xcschemes/AutoLinearLayoutView.xcscheme" afterPath="$PROJECT_DIR$/Pods/Pods.xcodeproj/xcuserdata/Euphoria.xcuserdatad/xcschemes/AutoLinearLayoutView.xcscheme" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Pods/Pods.xcodeproj/xcuserdata/Euphoria.xcuserdatad/xcschemes/CocoaLumberjack.xcscheme" afterPath="$PROJECT_DIR$/Pods/Pods.xcodeproj/xcuserdata/Euphoria.xcuserdatad/xcschemes/CocoaLumberjack.xcscheme" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Pods/Pods.xcodeproj/xcuserdata/Euphoria.xcuserdatad/xcschemes/DGActivityIndicatorView.xcscheme" afterPath="$PROJECT_DIR$/Pods/Pods.xcodeproj/xcuserdata/Euphoria.xcuserdatad/xcschemes/DGActivityIndicatorView.xcscheme" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Pods/Pods.xcodeproj/xcuserdata/Euphoria.xcuserdatad/xcschemes/FDFullscreenPopGesture.xcscheme" afterPath="$PROJECT_DIR$/Pods/Pods.xcodeproj/xcuserdata/Euphoria.xcuserdatad/xcschemes/FDFullscreenPopGesture.xcscheme" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Pods/Pods.xcodeproj/xcuserdata/Euphoria.xcuserdatad/xcschemes/FSCalendar.xcscheme" afterPath="$PROJECT_DIR$/Pods/Pods.xcodeproj/xcuserdata/Euphoria.xcuserdatad/xcschemes/FSCalendar.xcscheme" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Pods/Pods.xcodeproj/xcuserdata/Euphoria.xcuserdatad/xcschemes/GTMBase64.xcscheme" afterPath="$PROJECT_DIR$/Pods/Pods.xcodeproj/xcuserdata/Euphoria.xcuserdatad/xcschemes/GTMBase64.xcscheme" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Pods/Pods.xcodeproj/xcuserdata/Euphoria.xcuserdatad/xcschemes/HappyDNS.xcscheme" afterPath="$PROJECT_DIR$/Pods/Pods.xcodeproj/xcuserdata/Euphoria.xcuserdatad/xcschemes/HappyDNS.xcscheme" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Pods/Pods.xcodeproj/xcuserdata/Euphoria.xcuserdatad/xcschemes/IGLDropDownMenu.xcscheme" afterPath="$PROJECT_DIR$/Pods/Pods.xcodeproj/xcuserdata/Euphoria.xcuserdatad/xcschemes/IGLDropDownMenu.xcscheme" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Pods/Pods.xcodeproj/xcuserdata/Euphoria.xcuserdatad/xcschemes/JMRoundedCorner.xcscheme" afterPath="$PROJECT_DIR$/Pods/Pods.xcodeproj/xcuserdata/Euphoria.xcuserdatad/xcschemes/JMRoundedCorner.xcscheme" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Pods/Pods.xcodeproj/xcuserdata/Euphoria.xcuserdatad/xcschemes/JSONModel.xcscheme" afterPath="$PROJECT_DIR$/Pods/Pods.xcodeproj/xcuserdata/Euphoria.xcuserdatad/xcschemes/JSONModel.xcscheme" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Pods/Pods.xcodeproj/xcuserdata/Euphoria.xcuserdatad/xcschemes/JVFloatingDrawer.xcscheme" afterPath="$PROJECT_DIR$/Pods/Pods.xcodeproj/xcuserdata/Euphoria.xcuserdatad/xcschemes/JVFloatingDrawer.xcscheme" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Pods/Pods.xcodeproj/xcuserdata/Euphoria.xcuserdatad/xcschemes/LCActionSheet.xcscheme" afterPath="$PROJECT_DIR$/Pods/Pods.xcodeproj/xcuserdata/Euphoria.xcuserdatad/xcschemes/LCActionSheet.xcscheme" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Pods/Pods.xcodeproj/xcuserdata/Euphoria.xcuserdatad/xcschemes/MBProgressHUD.xcscheme" afterPath="$PROJECT_DIR$/Pods/Pods.xcodeproj/xcuserdata/Euphoria.xcuserdatad/xcschemes/MBProgressHUD.xcscheme" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Pods/Pods.xcodeproj/xcuserdata/Euphoria.xcuserdatad/xcschemes/MGSwipeTableCell.xcscheme" afterPath="$PROJECT_DIR$/Pods/Pods.xcodeproj/xcuserdata/Euphoria.xcuserdatad/xcschemes/MGSwipeTableCell.xcscheme" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Pods/Pods.xcodeproj/xcuserdata/Euphoria.xcuserdatad/xcschemes/MJExtension.xcscheme" afterPath="$PROJECT_DIR$/Pods/Pods.xcodeproj/xcuserdata/Euphoria.xcuserdatad/xcschemes/MJExtension.xcscheme" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Pods/Pods.xcodeproj/xcuserdata/Euphoria.xcuserdatad/xcschemes/MXParallaxHeader.xcscheme" afterPath="$PROJECT_DIR$/Pods/Pods.xcodeproj/xcuserdata/Euphoria.xcuserdatad/xcschemes/MXParallaxHeader.xcscheme" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Pods/Pods.xcodeproj/xcuserdata/Euphoria.xcuserdatad/xcschemes/MagicalRecord.xcscheme" afterPath="$PROJECT_DIR$/Pods/Pods.xcodeproj/xcuserdata/Euphoria.xcuserdatad/xcschemes/MagicalRecord.xcscheme" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Pods/Pods.xcodeproj/xcuserdata/Euphoria.xcuserdatad/xcschemes/Masonry.xcscheme" afterPath="$PROJECT_DIR$/Pods/Pods.xcodeproj/xcuserdata/Euphoria.xcuserdatad/xcschemes/Masonry.xcscheme" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Pods/Pods.xcodeproj/xcuserdata/Euphoria.xcuserdatad/xcschemes/NetworkEye.xcscheme" afterPath="$PROJECT_DIR$/Pods/Pods.xcodeproj/xcuserdata/Euphoria.xcuserdatad/xcschemes/NetworkEye.xcscheme" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Pods/Pods.xcodeproj/xcuserdata/Euphoria.xcuserdatad/xcschemes/Pods-TO-DO.xcscheme" afterPath="$PROJECT_DIR$/Pods/Pods.xcodeproj/xcuserdata/Euphoria.xcuserdatad/xcschemes/Pods-TO-DO.xcscheme" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Pods/Pods.xcodeproj/xcuserdata/Euphoria.xcuserdatad/xcschemes/Qiniu.xcscheme" afterPath="$PROJECT_DIR$/Pods/Pods.xcodeproj/xcuserdata/Euphoria.xcuserdatad/xcschemes/Qiniu.xcscheme" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Pods/Pods.xcodeproj/xcuserdata/Euphoria.xcuserdatad/xcschemes/RTRootNavigationController.xcscheme" afterPath="$PROJECT_DIR$/Pods/Pods.xcodeproj/xcuserdata/Euphoria.xcuserdatad/xcschemes/RTRootNavigationController.xcscheme" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Pods/Pods.xcodeproj/xcuserdata/Euphoria.xcuserdatad/xcschemes/RealReachability.xcscheme" afterPath="$PROJECT_DIR$/Pods/Pods.xcodeproj/xcuserdata/Euphoria.xcuserdatad/xcschemes/RealReachability.xcscheme" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Pods/Pods.xcodeproj/xcuserdata/Euphoria.xcuserdatad/xcschemes/SDAutoLayout.xcscheme" afterPath="$PROJECT_DIR$/Pods/Pods.xcodeproj/xcuserdata/Euphoria.xcuserdatad/xcschemes/SDAutoLayout.xcscheme" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Pods/Pods.xcodeproj/xcuserdata/Euphoria.xcuserdatad/xcschemes/SDWebImage.xcscheme" afterPath="$PROJECT_DIR$/Pods/Pods.xcodeproj/xcuserdata/Euphoria.xcuserdatad/xcschemes/SDWebImage.xcscheme" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Pods/Pods.xcodeproj/xcuserdata/Euphoria.xcuserdatad/xcschemes/TPKeyboardAvoiding.xcscheme" afterPath="$PROJECT_DIR$/Pods/Pods.xcodeproj/xcuserdata/Euphoria.xcuserdatad/xcschemes/TPKeyboardAvoiding.xcscheme" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Pods/Pods.xcodeproj/xcuserdata/Euphoria.xcuserdatad/xcschemes/ZFDragableModalTransition.xcscheme" afterPath="$PROJECT_DIR$/Pods/Pods.xcodeproj/xcuserdata/Euphoria.xcuserdatad/xcschemes/ZFDragableModalTransition.xcscheme" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/TO-DO.xcodeproj/project.pbxproj" afterPath="$PROJECT_DIR$/TO-DO.xcodeproj/project.pbxproj" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Podfile" afterPath="$PROJECT_DIR$/Podfile" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Podfile.lock" afterPath="$PROJECT_DIR$/Podfile.lock" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Pods/MXParallaxHeader/MXParallaxHeader/MXParallaxHeader.h" afterPath="$PROJECT_DIR$/Pods/MXParallaxHeader/MXParallaxHeader/MXParallaxHeader.h" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Pods/MXParallaxHeader/MXParallaxHeader/MXParallaxHeader.m" afterPath="$PROJECT_DIR$/Pods/MXParallaxHeader/MXParallaxHeader/MXParallaxHeader.m" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Pods/MXParallaxHeader/MXParallaxHeader/MXScrollView.h" afterPath="$PROJECT_DIR$/Pods/MXParallaxHeader/MXParallaxHeader/MXScrollView.h" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Pods/MXParallaxHeader/MXParallaxHeader/MXScrollView.m" afterPath="$PROJECT_DIR$/Pods/MXParallaxHeader/MXParallaxHeader/MXScrollView.m" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Pods/MXParallaxHeader/MXParallaxHeader/MXScrollViewController.h" afterPath="$PROJECT_DIR$/Pods/MXParallaxHeader/MXParallaxHeader/MXScrollViewController.h" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Pods/MXParallaxHeader/MXParallaxHeader/MXScrollViewController.m" afterPath="$PROJECT_DIR$/Pods/MXParallaxHeader/MXParallaxHeader/MXScrollViewController.m" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Pods/MXParallaxHeader/README.md" afterPath="$PROJECT_DIR$/Pods/MXParallaxHeader/README.md" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Pods/Manifest.lock" afterPath="$PROJECT_DIR$/Pods/Manifest.lock" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Pods/Pods.xcodeproj/xcuserdata/Euphoria.xcuserdatad/xcschemes/xcschememanagement.plist" afterPath="$PROJECT_DIR$/Pods/Pods.xcodeproj/xcuserdata/Euphoria.xcuserdatad/xcschemes/xcschememanagement.plist" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/TO-DO/Assets.xcassets/AppIcon.appiconset/Contents.json" afterPath="$PROJECT_DIR$/TO-DO/Assets.xcassets/AppIcon.appiconset/Contents.json" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/TO-DO/Base.lproj/Main.storyboard" afterPath="$PROJECT_DIR$/TO-DO/Base.lproj/Main.storyboard" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/TO-DO/Calendar/Controllers/CalendarViewController.m" afterPath="$PROJECT_DIR$/TO-DO/Calendar/Controllers/CalendarViewController.m" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/TO-DO/Classes/AppDelegate/AppDelegate.h" afterPath="$PROJECT_DIR$/TO-DO/Classes/AppDelegate/AppDelegate.h" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/TO-DO/Classes/AppDelegate/AppDelegate.m" afterPath="$PROJECT_DIR$/TO-DO/Classes/AppDelegate/AppDelegate.m" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/TO-DO/Classes/Common/Categories/NSString+Extension.h" afterPath="$PROJECT_DIR$/TO-DO/Classes/Common/Categories/NSString+Extension.h" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/TO-DO/Classes/Common/Categories/NSString+Extension.m" afterPath="$PROJECT_DIR$/TO-DO/Classes/Common/Categories/NSString+Extension.m" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/TO-DO/Classes/Common/Categories/UIImage+Compression.h" afterPath="$PROJECT_DIR$/TO-DO/Classes/Common/Categories/UIImage+Compression.h" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/TO-DO/Classes/Common/Categories/UIImage+Compression.m" afterPath="$PROJECT_DIR$/TO-DO/Classes/Common/Categories/UIImage+Compression.m" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/TO-DO/Classes/Common/Categories/UIImage+Extension.h" afterPath="$PROJECT_DIR$/TO-DO/Classes/Common/Categories/UIImage+Extension.h" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/TO-DO/Classes/Common/Categories/UIImage+Extension.m" afterPath="$PROJECT_DIR$/TO-DO/Classes/Common/Categories/UIImage+Extension.m" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/TO-DO/Classes/Common/Constants/DataKeys.h" afterPath="$PROJECT_DIR$/TO-DO/Classes/Common/Constants/DataKeys.h" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/TO-DO/Classes/Common/Constants/Macros.h" afterPath="$PROJECT_DIR$/TO-DO/Classes/Common/Constants/Macros.h" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/TO-DO/Classes/Common/DrawerTableViewController.m" afterPath="$PROJECT_DIR$/TO-DO/Classes/Common/DrawerTableViewController.m" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/TO-DO/Classes/Common/SCLAlertHelper.h" afterPath="$PROJECT_DIR$/TO-DO/Classes/Common/SCLAlertHelper.h" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/TO-DO/Classes/Common/SCLAlertHelper.m" afterPath="$PROJECT_DIR$/TO-DO/Classes/Common/SCLAlertHelper.m" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/TO-DO/Classes/Common/SGViews.h" afterPath="$PROJECT_DIR$/TO-DO/Classes/Common/SGViews.h" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/TO-DO/Classes/Common/TodoTableViewController.h" afterPath="$PROJECT_DIR$/TO-DO/Classes/Common/TodoTableViewController.h" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/TO-DO/Classes/Common/TodoTableViewController.m" afterPath="$PROJECT_DIR$/TO-DO/Classes/Common/TodoTableViewController.m" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/TO-DO/Classes/Common/Utilities/FieldValidator.m" afterPath="$PROJECT_DIR$/TO-DO/Classes/Common/Utilities/FieldValidator.m" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/TO-DO/Classes/Common/Views/TodoTableViewCell.m" afterPath="$PROJECT_DIR$/TO-DO/Classes/Common/Views/TodoTableViewCell.m" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/TO-DO/Classes/Home/HomeViewController.m" afterPath="$PROJECT_DIR$/TO-DO/Classes/Home/HomeViewController.m" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/TO-DO/Classes/Login/Controllers/LoginViewController.h" afterPath="$PROJECT_DIR$/TO-DO/Classes/Login/Controllers/LoginViewController.h" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/TO-DO/Classes/Login/Controllers/LoginViewController.m" afterPath="$PROJECT_DIR$/TO-DO/Classes/Login/Controllers/LoginViewController.m" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/TO-DO/Classes/Login/Views/LoginView.h" afterPath="$PROJECT_DIR$/TO-DO/Classes/Login/Views/LoginView.h" />
@@ -231,11 +211,43 @@
   </component>
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-      <file leaf-file-name="HomeViewController.m" pinned="false" current-in-tab="false">
+      <file leaf-file-name="HomeViewController.m" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/TO-DO/Classes/Home/HomeViewController.m">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="-531">
-              <caret line="51" column="27" lean-forward="false" selection-start-line="51" selection-start-column="27" selection-end-line="51" selection-end-column="27" />
+            <state relative-caret-position="578">
+              <caret line="113" column="40" lean-forward="false" selection-start-line="113" selection-start-column="40" selection-end-line="113" selection-end-column="40" />
+              <folding>
+                <element signature="e#138#156#0" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="MXParallaxHeader.m" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/Pods/MXParallaxHeader/MXParallaxHeader/MXParallaxHeader.m">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="3039">
+              <caret line="257" column="0" lean-forward="true" selection-start-line="257" selection-start-column="0" selection-end-line="257" selection-end-column="0" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="MXScrollView.m" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/Pods/MXParallaxHeader/MXParallaxHeader/MXScrollView.m">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="255">
+              <caret line="30" column="66" lean-forward="false" selection-start-line="30" selection-start-column="66" selection-end-line="30" selection-end-column="66" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="MXScrollViewController.m" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/Pods/MXParallaxHeader/MXParallaxHeader/MXScrollViewController.m">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="1258">
+              <caret line="110" column="94" lean-forward="true" selection-start-line="110" selection-start-column="94" selection-end-line="110" selection-end-column="94" />
               <folding />
             </state>
           </provider>
@@ -244,35 +256,30 @@
       <file leaf-file-name="TodoTableViewController.m" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/TO-DO/Classes/Common/TodoTableViewController.m">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="294">
-              <caret line="147" column="28" lean-forward="false" selection-start-line="147" selection-start-column="28" selection-end-line="147" selection-end-column="28" />
+            <state relative-caret-position="1275">
+              <caret line="77" column="64" lean-forward="false" selection-start-line="77" selection-start-column="63" selection-end-line="77" selection-end-column="64" />
               <folding>
-                <marker date="1479023341000" expanded="true" signature="1126:13381" ph="..." />
-                <marker date="1479023341000" expanded="true" signature="1168:1267" ph="{...}" />
-                <marker date="1479023341000" expanded="true" signature="1378:1507" ph="{...}" />
-                <marker date="1479023341000" expanded="true" signature="1529:1895" ph="{...}" />
-                <marker date="1479023341000" expanded="true" signature="1927:2122" ph="{...}" />
-                <marker date="1479023341000" expanded="true" signature="2142:2682" ph="{...}" />
-                <marker date="1479023341000" expanded="true" signature="2778:3178" ph="{...}" />
-                <marker date="1479023341000" expanded="true" signature="3273:4029" ph="{...}" />
-                <marker date="1479023341000" expanded="true" signature="4081:4539" ph="{...}" />
-                <marker date="1479023341000" expanded="true" signature="4563:5238" ph="{...}" />
-                <marker date="1479023341000" expanded="true" signature="5370:5446" ph="{...}" />
-                <marker date="1479023341000" expanded="true" signature="5543:5822" ph="{...}" />
-                <marker date="1479023341000" expanded="true" signature="5890:5922" ph="{...}" />
-                <marker date="1479023341000" expanded="true" signature="6013:6132" ph="{...}" />
-                <marker date="1479023341000" expanded="true" signature="6223:6278" ph="{...}" />
-                <marker date="1479023341000" expanded="true" signature="6383:6599" ph="{...}" />
+                <element signature="e#143#166#0" expanded="true" />
               </folding>
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="TodoTableViewCell.m" pinned="false" current-in-tab="true">
+      <file leaf-file-name="AppDelegate.m" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/TO-DO/Classes/AppDelegate/AppDelegate.m">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="3757">
+              <caret line="221" column="60" lean-forward="false" selection-start-line="221" selection-start-column="60" selection-end-line="221" selection-end-column="60" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="TodoTableViewCell.m" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/TO-DO/Classes/Common/Views/TodoTableViewCell.m">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="816">
-              <caret line="76" column="37" lean-forward="true" selection-start-line="76" selection-start-column="37" selection-end-line="76" selection-end-column="37" />
+            <state relative-caret-position="-3">
+              <caret line="167" column="7" lean-forward="true" selection-start-line="167" selection-start-column="7" selection-end-line="167" selection-end-column="7" />
               <folding>
                 <element signature="e#137#155#0" expanded="true" />
               </folding>
@@ -280,42 +287,26 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="DrawerTableViewController.m" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/TO-DO/Classes/Common/DrawerTableViewController.m">
+      <file leaf-file-name="CalendarViewController.m" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/TO-DO/Calendar/Controllers/CalendarViewController.m">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="608">
-              <caret line="223" column="40" lean-forward="true" selection-start-line="223" selection-start-column="40" selection-end-line="223" selection-end-column="40" />
-              <folding />
+            <state relative-caret-position="748">
+              <caret line="44" column="4" lean-forward="false" selection-start-line="44" selection-start-column="4" selection-end-line="44" selection-end-column="4" />
+              <folding>
+                <element signature="e#142#187#0" expanded="true" />
+              </folding>
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="UIImage+Compression.m" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/TO-DO/Classes/Common/Categories/UIImage+Compression.m">
+      <file leaf-file-name="TodoTableViewController.h" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/TO-DO/Classes/Common/TodoTableViewController.h">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="170">
-              <caret line="10" column="37" lean-forward="false" selection-start-line="10" selection-start-column="37" selection-end-line="10" selection-end-column="37" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="UIImage+Compression.h" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/TO-DO/Classes/Common/Categories/UIImage+Compression.h">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="204">
-              <caret line="12" column="46" lean-forward="false" selection-start-line="12" selection-start-column="46" selection-end-line="12" selection-end-column="46" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="SGSyncManager.m" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/TO-DO/Classes/Common/DataManager/SyncDataManagers/SGSyncManager.m">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="925">
-              <caret line="309" column="40" lean-forward="false" selection-start-line="309" selection-start-column="40" selection-end-line="309" selection-end-column="40" />
-              <folding />
+            <state relative-caret-position="714">
+              <caret line="42" column="61" lean-forward="false" selection-start-line="42" selection-start-column="61" selection-end-line="42" selection-end-column="61" />
+              <folding>
+                <marker date="1479034730000" expanded="true" signature="293:446" ph="{...}" />
+              </folding>
             </state>
           </provider>
         </entry>
@@ -334,6 +325,9 @@
       <find>completedblock</find>
       <find>didselect</find>
       <find>drawerbg</find>
+      <find>bounce</find>
+      <find>section</find>
+      <find>tableview</find>
     </findStrings>
   </component>
   <component name="Git.Settings">
@@ -342,7 +336,6 @@
   <component name="IdeDocumentHistory">
     <option name="CHANGED_PATHS">
       <list>
-        <option value="$PROJECT_DIR$/TO-DO/Classes/Common/TodoTableViewController.h" />
         <option value="$PROJECT_DIR$/TO-DO/Classes/Common/Views/SGRectangleView.h" />
         <option value="$PROJECT_DIR$/TO-DO/Classes/Common/Views/HeaderView.h" />
         <option value="$PROJECT_DIR$/TO-DO/Classes/Common/Utilities/SGGraphics.h" />
@@ -357,7 +350,6 @@
         <option value="$PROJECT_DIR$/TO-DO/Classes/Common/BaseViewController.h" />
         <option value="$PROJECT_DIR$/TO-DO/Classes/Common/DrawerTableViewController.h" />
         <option value="$PROJECT_DIR$/TO-DO/Classes/Login/Controllers/LoginViewController.m" />
-        <option value="$PROJECT_DIR$/TO-DO/Classes/Common/DrawerTableViewController.m" />
         <option value="$PROJECT_DIR$/TO-DO/Classes/Common/Views/HeaderView.m" />
         <option value="$PROJECT_DIR$/TO-DO/Classes/Common/Constants/DataKeys.h" />
         <option value="$PROJECT_DIR$/TO-DO/Classes/Common/Utilities/SGLocating.h" />
@@ -366,7 +358,6 @@
         <option value="$PROJECT_DIR$/TO-DO/Classes/Common/Utilities/SGLocating.m" />
         <option value="$PROJECT_DIR$/TO-DO/Model/SGCoordinate.m" />
         <option value="$PROJECT_DIR$/TO-DO/Classes/Common/SGBaseViewController.h" />
-        <option value="$PROJECT_DIR$/TO-DO/Calendar/Controllers/CalendarViewController.m" />
         <option value="$PROJECT_DIR$/TO-DO/Classes/Common/SGBaseViewController.m" />
         <option value="$PROJECT_DIR$/TO-DO/Classes/Common/SGBaseMapViewController.m" />
         <option value="$PROJECT_DIR$/TO-DO/Classes/Common/Utilities/SGImageUpload.h" />
@@ -383,16 +374,19 @@
         <option value="$PROJECT_DIR$/TO-DO/Model/LeanCloudModels/LCTodo.m" />
         <option value="$PROJECT_DIR$/TO-DO/Model/CoreDataModels/CDTodo.m" />
         <option value="$PROJECT_DIR$/TO-DO/Classes/Common/DataManager/CoredataManager/MRTodoDataManager.m" />
-        <option value="$PROJECT_DIR$/TO-DO/Classes/Home/HomeViewController.m" />
-        <option value="$PROJECT_DIR$/TO-DO/Classes/Common/TodoTableViewController.m" />
         <option value="$PROJECT_DIR$/TO-DO/Classes/Common/SGHelper.m" />
         <option value="$PROJECT_DIR$/TO-DO/Classes/Common/DataManager/SyncDataManagers/SGSyncManager.m" />
-        <option value="$PROJECT_DIR$/Podfile" />
         <option value="$PROJECT_DIR$/TO-DO/Classes/Common/SGViews.h" />
         <option value="$PROJECT_DIR$/TO-DO/Classes/Common/Categories/UIImage+Compression.m" />
         <option value="$PROJECT_DIR$/TO-DO/Classes/Common/Categories/UIImage+Compression.h" />
-        <option value="$PROJECT_DIR$/TO-DO/Classes/Common/Views/TodoTableViewCell.m" />
+        <option value="$PROJECT_DIR$/TO-DO/Classes/Common/DrawerTableViewController.m" />
         <option value="$PROJECT_DIR$/TO-DO/Classes/AppDelegate/AppDelegate.m" />
+        <option value="$PROJECT_DIR$/TO-DO/Classes/Common/TodoTableViewController.h" />
+        <option value="$PROJECT_DIR$/TO-DO/Calendar/Controllers/CalendarViewController.m" />
+        <option value="$PROJECT_DIR$/Podfile" />
+        <option value="$PROJECT_DIR$/TO-DO/Classes/Common/TodoTableViewController.m" />
+        <option value="$PROJECT_DIR$/TO-DO/Classes/Common/Views/TodoTableViewCell.m" />
+        <option value="$PROJECT_DIR$/TO-DO/Classes/Home/HomeViewController.m" />
       </list>
     </option>
   </component>
@@ -539,23 +533,21 @@
               <option name="myItemType" value="com.jetbrains.cidr.projectView.XcodeRootNode" />
             </PATH_ELEMENT>
             <PATH_ELEMENT>
-              <option name="myItemId" value="TO-DO" />
+              <option name="myItemId" value="Pods" />
+              <option name="myItemType" value="com.jetbrains.cidr.projectView.XcodeProjectNode" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" />
+              <option name="myItemType" value="com.jetbrains.cidr.projectView.XcodeRootNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="Pods" />
               <option name="myItemType" value="com.jetbrains.cidr.projectView.XcodeProjectNode" />
             </PATH_ELEMENT>
             <PATH_ELEMENT>
-              <option name="myItemId" value="TO-DO" />
-              <option name="myItemType" value="com.jetbrains.cidr.projectView.XcodeViewNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="Classes" />
-              <option name="myItemType" value="com.jetbrains.cidr.projectView.XcodeViewNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="DataManagers" />
-              <option name="myItemType" value="com.jetbrains.cidr.projectView.XcodeViewNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="SyncDataManagers" />
+              <option name="myItemId" value="Pods" />
               <option name="myItemType" value="com.jetbrains.cidr.projectView.XcodeViewNode" />
             </PATH_ELEMENT>
           </PATH>
@@ -565,45 +557,15 @@
               <option name="myItemType" value="com.jetbrains.cidr.projectView.XcodeRootNode" />
             </PATH_ELEMENT>
             <PATH_ELEMENT>
-              <option name="myItemId" value="TO-DO" />
+              <option name="myItemId" value="Pods" />
               <option name="myItemType" value="com.jetbrains.cidr.projectView.XcodeProjectNode" />
             </PATH_ELEMENT>
             <PATH_ELEMENT>
-              <option name="myItemId" value="TO-DO" />
+              <option name="myItemId" value="Pods" />
               <option name="myItemType" value="com.jetbrains.cidr.projectView.XcodeViewNode" />
             </PATH_ELEMENT>
             <PATH_ELEMENT>
-              <option name="myItemId" value="Classes" />
-              <option name="myItemType" value="com.jetbrains.cidr.projectView.XcodeViewNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="Common" />
-              <option name="myItemType" value="com.jetbrains.cidr.projectView.XcodeViewNode" />
-            </PATH_ELEMENT>
-          </PATH>
-          <PATH>
-            <PATH_ELEMENT>
-              <option name="myItemId" />
-              <option name="myItemType" value="com.jetbrains.cidr.projectView.XcodeRootNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="TO-DO" />
-              <option name="myItemType" value="com.jetbrains.cidr.projectView.XcodeProjectNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="TO-DO" />
-              <option name="myItemType" value="com.jetbrains.cidr.projectView.XcodeViewNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="Classes" />
-              <option name="myItemType" value="com.jetbrains.cidr.projectView.XcodeViewNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="Common" />
-              <option name="myItemType" value="com.jetbrains.cidr.projectView.XcodeViewNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="Categories" />
+              <option name="myItemId" value="MXParallaxHeader" />
               <option name="myItemType" value="com.jetbrains.cidr.projectView.XcodeViewNode" />
             </PATH_ELEMENT>
           </PATH>
@@ -616,7 +578,7 @@
     <property name="settings.editor.selected.configurable" value="preferences.pluginManager" />
     <property name="settings.editor.splitter.proportion" value="0.2" />
     <property name="js-jscs-nodeInterpreter" value="/usr/local/bin/node" />
-    <property name="SearchEverywhereHistoryKey" value="appdele&#9;FILE&#9;file:///Volumes/Data/Project/MyProject/TO-DO/TO-DO/Classes/AppDelegate/AppDelegate.m&#10;drawerviewcon&#9;null&#9;null&#10;podfile&#9;FILE&#9;file:///Volumes/Data/Project/MyProject/TO-DO/Podfile&#10;sgviews&#9;FILE&#9;file:///Volumes/Data/Project/MyProject/TO-DO/TO-DO/Classes/Common/SGViews.h&#10;sghelper&#9;FILE&#9;file:///Volumes/Data/Project/MyProject/TO-DO/TO-DO/Classes/Common/SGHelper.m&#10;tableview&#9;FILE&#9;file:///Volumes/Data/Project/MyProject/TO-DO/TO-DO/Classes/Common/TodoTableViewController.m&#10;homeviewcon&#9;null&#9;null&#10;downloadimagewithurl&#9;null&#9;null&#10;macros&#9;FILE&#9;file:///Volumes/Data/Project/MyProject/TO-DO/TO-DO/Classes/Common/Constants/Macros.h&#10;syncmana&#9;FILE&#9;file:///Volumes/Data/Project/MyProject/TO-DO/TO-DO/Classes/Common/DataManager/SyncDataManagers/SGSyncManager.m&#10;local&#9;FILE&#9;file:///Volumes/Data/Project/MyProject/TO-DO/TO-DO/Localization/zh-Hans.lproj/Localizable.strings&#10;cdtodo&#9;FILE&#9;file:///Volumes/Data/Project/MyProject/TO-DO/TO-DO/Model/CoreDataModels/CDTodo.m&#10;sg&#9;FILE&#9;file:///Volumes/Data/Project/MyProject/TO-DO/TO-DO/Classes/Common/Utilities/SGImageUpload.m&#10;compress&#9;FILE&#9;file:///Volumes/Data/Project/MyProject/TO-DO/TO-DO/Classes/Common/Categories/UIImage+Compression.m&#10;upload&#9;FILE&#9;file:///Volumes/Data/Project/MyProject/TO-DO/TO-DO/Classes/Common/Utilities/SGImageUpload.m&#10;sync&#9;FILE&#9;file:///Volumes/Data/Project/MyProject/TO-DO/TO-DO/Classes/Common/DataManager/SyncDataManagers/SGSyncManager.m&#10;lcmana&#9;null&#9;null&#10;baseview&#9;FILE&#9;file:///Volumes/Data/Project/MyProject/TO-DO/TO-DO/Classes/Common/SGBaseViewController.m&#10;baseviewcon&#9;FILE&#9;file:///Volumes/Data/Project/MyProject/TO-DO/TO-DO/Classes/Common/SGBaseViewController.m&#10;sgcoordina&#9;FILE&#9;file:///Volumes/Data/Project/MyProject/TO-DO/TO-DO/Model/SGCoordinate.m&#10;sgbaseviewcon&#9;FILE&#9;file:///Volumes/Data/Project/MyProject/TO-DO/TO-DO/Classes/Common/SGBaseViewController.m&#10;coordinate&#9;FILE&#9;file:///Volumes/Data/Project/MyProject/TO-DO/TO-DO/Model/SGCoordinate.m&#10;createview&#9;FILE&#9;file:///Volumes/Data/Project/MyProject/TO-DO/TO-DO/Classes/Create/CreateViewController.m&#10;keys&#9;FILE&#9;file:///Volumes/Data/Project/MyProject/TO-DO/TO-DO/Classes/Common/Constants/DataKeys.h&#10;sghel&#9;FILE&#9;file:///Volumes/Data/Project/MyProject/TO-DO/TO-DO/Classes/Common/SGHelper.m&#10;headerview&#9;FILE&#9;file:///Volumes/Data/Project/MyProject/TO-DO/TO-DO/Classes/Common/Views/HeaderView.m&#10;createviewcon&#9;FILE&#9;file:///Volumes/Data/Project/MyProject/TO-DO/TO-DO/Classes/Create/CreateViewController.m&#10;mrtodo&#9;null&#9;null&#10;loginview&#9;FILE&#9;file:///Volumes/Data/Project/MyProject/TO-DO/TO-DO/Classes/Login/Controllers/LoginViewController.m&#10;drawer&#9;FILE&#9;file:///Volumes/Data/Project/MyProject/TO-DO/TO-DO/Classes/Common/DrawerTableViewController.m&#10;loginviewcon&#9;FILE&#9;file:///Volumes/Data/Project/MyProject/TO-DO/TO-DO/Classes/Login/Controllers/LoginViewController.m&#10;drawertableview&#9;FILE&#9;file:///Volumes/Data/Project/MyProject/TO-DO/TO-DO/Classes/Common/DrawerTableViewController.m&#10;qiniu&#9;FILE&#9;file:///Volumes/Data/Project/MyProject/TO-DO/TO-DO/Classes/Common/QiniuTokenGenerator.m&#10;pod&#9;FILE&#9;file:///Volumes/Data/Project/MyProject/TO-DO/Podfile&#10;error&#9;null&#9;null&#10;empty&#9;FILE&#9;file:///Volumes/Data/Project/MyProject/TO-DO/TO-DO/Classes/Common/EmptyDataView.m&#10;themecolor&#9;null&#9;null&#10;homeview&#9;null&#9;null&#10;syncdata&#9;FILE&#9;file:///Volumes/Data/Project/MyProject/TO-DO/TO-DO/Classes/Common/DataManager/SyncDataManagers/SyncDataManager.m&#10;login&#9;null&#9;null" />
+    <property name="SearchEverywhereHistoryKey" value="podfile&#9;FILE&#9;file:///Volumes/Data/Project/MyProject/TO-DO/Podfile&#10;appdele&#9;FILE&#9;file:///Volumes/Data/Project/MyProject/TO-DO/TO-DO/Classes/AppDelegate/AppDelegate.m&#10;calendar&#9;FILE&#9;file:///Volumes/Data/Project/MyProject/TO-DO/TO-DO/Calendar/Controllers/CalendarViewController.m&#10;drawerviewcon&#9;null&#9;null&#10;sgviews&#9;FILE&#9;file:///Volumes/Data/Project/MyProject/TO-DO/TO-DO/Classes/Common/SGViews.h&#10;sghelper&#9;FILE&#9;file:///Volumes/Data/Project/MyProject/TO-DO/TO-DO/Classes/Common/SGHelper.m&#10;tableview&#9;FILE&#9;file:///Volumes/Data/Project/MyProject/TO-DO/TO-DO/Classes/Common/TodoTableViewController.m&#10;homeviewcon&#9;null&#9;null&#10;downloadimagewithurl&#9;null&#9;null&#10;macros&#9;FILE&#9;file:///Volumes/Data/Project/MyProject/TO-DO/TO-DO/Classes/Common/Constants/Macros.h&#10;syncmana&#9;FILE&#9;file:///Volumes/Data/Project/MyProject/TO-DO/TO-DO/Classes/Common/DataManager/SyncDataManagers/SGSyncManager.m&#10;local&#9;FILE&#9;file:///Volumes/Data/Project/MyProject/TO-DO/TO-DO/Localization/zh-Hans.lproj/Localizable.strings&#10;cdtodo&#9;FILE&#9;file:///Volumes/Data/Project/MyProject/TO-DO/TO-DO/Model/CoreDataModels/CDTodo.m&#10;sg&#9;FILE&#9;file:///Volumes/Data/Project/MyProject/TO-DO/TO-DO/Classes/Common/Utilities/SGImageUpload.m&#10;compress&#9;FILE&#9;file:///Volumes/Data/Project/MyProject/TO-DO/TO-DO/Classes/Common/Categories/UIImage+Compression.m&#10;upload&#9;FILE&#9;file:///Volumes/Data/Project/MyProject/TO-DO/TO-DO/Classes/Common/Utilities/SGImageUpload.m&#10;sync&#9;FILE&#9;file:///Volumes/Data/Project/MyProject/TO-DO/TO-DO/Classes/Common/DataManager/SyncDataManagers/SGSyncManager.m&#10;lcmana&#9;null&#9;null&#10;baseview&#9;FILE&#9;file:///Volumes/Data/Project/MyProject/TO-DO/TO-DO/Classes/Common/SGBaseViewController.m&#10;baseviewcon&#9;FILE&#9;file:///Volumes/Data/Project/MyProject/TO-DO/TO-DO/Classes/Common/SGBaseViewController.m&#10;sgcoordina&#9;FILE&#9;file:///Volumes/Data/Project/MyProject/TO-DO/TO-DO/Model/SGCoordinate.m&#10;sgbaseviewcon&#9;FILE&#9;file:///Volumes/Data/Project/MyProject/TO-DO/TO-DO/Classes/Common/SGBaseViewController.m&#10;coordinate&#9;FILE&#9;file:///Volumes/Data/Project/MyProject/TO-DO/TO-DO/Model/SGCoordinate.m&#10;createview&#9;FILE&#9;file:///Volumes/Data/Project/MyProject/TO-DO/TO-DO/Classes/Create/CreateViewController.m&#10;keys&#9;FILE&#9;file:///Volumes/Data/Project/MyProject/TO-DO/TO-DO/Classes/Common/Constants/DataKeys.h&#10;sghel&#9;FILE&#9;file:///Volumes/Data/Project/MyProject/TO-DO/TO-DO/Classes/Common/SGHelper.m&#10;headerview&#9;FILE&#9;file:///Volumes/Data/Project/MyProject/TO-DO/TO-DO/Classes/Common/Views/HeaderView.m&#10;createviewcon&#9;FILE&#9;file:///Volumes/Data/Project/MyProject/TO-DO/TO-DO/Classes/Create/CreateViewController.m&#10;mrtodo&#9;null&#9;null&#10;loginview&#9;FILE&#9;file:///Volumes/Data/Project/MyProject/TO-DO/TO-DO/Classes/Login/Controllers/LoginViewController.m&#10;drawer&#9;FILE&#9;file:///Volumes/Data/Project/MyProject/TO-DO/TO-DO/Classes/Common/DrawerTableViewController.m&#10;loginviewcon&#9;FILE&#9;file:///Volumes/Data/Project/MyProject/TO-DO/TO-DO/Classes/Login/Controllers/LoginViewController.m&#10;drawertableview&#9;FILE&#9;file:///Volumes/Data/Project/MyProject/TO-DO/TO-DO/Classes/Common/DrawerTableViewController.m&#10;qiniu&#9;FILE&#9;file:///Volumes/Data/Project/MyProject/TO-DO/TO-DO/Classes/Common/QiniuTokenGenerator.m&#10;pod&#9;FILE&#9;file:///Volumes/Data/Project/MyProject/TO-DO/Podfile&#10;error&#9;null&#9;null&#10;empty&#9;FILE&#9;file:///Volumes/Data/Project/MyProject/TO-DO/TO-DO/Classes/Common/EmptyDataView.m&#10;themecolor&#9;null&#9;null&#10;homeview&#9;null&#9;null&#10;syncdata&#9;FILE&#9;file:///Volumes/Data/Project/MyProject/TO-DO/TO-DO/Classes/Common/DataManager/SyncDataManagers/SyncDataManager.m&#10;login&#9;null&#9;null" />
     <property name="OBJC.PRESERVED_TARGET_SELECTION" value="TO-DO" />
     <property name="FullScreen" value="true" />
     <property name="nodejs_interpreter_path" value="/usr/local/bin/node" />
@@ -700,12 +662,13 @@
       <workItem from="1478766378287" duration="14161000" />
       <workItem from="1478791286447" duration="3694000" />
       <workItem from="1478795114467" duration="865000" />
-      <workItem from="1479021958321" duration="4135000" />
+      <workItem from="1479021958321" duration="9047000" />
+      <workItem from="1479033711989" duration="2717000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="107810000" />
+    <option name="totallyTimeSpent" value="115439000" />
   </component>
   <component name="TodoView">
     <todo-panel id="selected-file">
@@ -721,25 +684,25 @@
     <frame x="1440" y="-180" width="2560" height="1080" extended-state="0" />
     <editor active="true" />
     <layout>
+      <window_info id="Designer" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
+      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.09968479" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.23861386" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
       <window_info id="Messages" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.19306931" sideWeight="0.49842396" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Palette&#9;" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25445545" sideWeight="0.50157607" order="8" side_tool="true" content_ui="tabs" />
       <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.21980198" sideWeight="0.5" order="9" side_tool="false" content_ui="tabs" />
       <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.2733051" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" x="-189" y="-659" width="1817" height="244" />
-      <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.20396039" sideWeight="0.49807376" order="10" side_tool="false" content_ui="tabs" />
-      <window_info id="Designer" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
-      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.09968479" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
-      <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.26633662" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.09692671" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
+      <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.20396039" sideWeight="0.49807376" order="10" side_tool="false" content_ui="tabs" />
       <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="true" content_ui="tabs" />
-      <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.26831684" sideWeight="0.49842396" order="3" side_tool="false" content_ui="tabs" />
+      <window_info id="Debug" active="true" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.26831684" sideWeight="0.49842396" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Cvs" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
       <window_info id="Message" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
       <window_info id="Commander" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
       <window_info id="Documentation" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.23069307" sideWeight="0.5" order="11" side_tool="true" content_ui="tabs" x="3168" y="-102" width="762" height="459" />
       <window_info id="Inspection" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
       <window_info id="Hierarchy" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="2" side_tool="false" content_ui="combo" />
+      <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.26633662" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Ant Build" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
     </layout>
   </component>
@@ -777,54 +740,11 @@
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
-      <option name="time" value="61" />
+      <option name="time" value="62" />
     </breakpoint-manager>
     <watches-manager />
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/Pods/Headers/Public/RealReachability/RealReachability.h">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="310">
-          <caret line="54" column="83" lean-forward="true" selection-start-line="54" selection-start-column="83" selection-end-line="54" selection-end-column="83" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/TO-DO/Classes/Common/Utilities/SGLocating.m">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="595">
-          <caret line="35" column="44" lean-forward="true" selection-start-line="35" selection-start-column="44" selection-end-line="35" selection-end-column="44" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/TO-DO/Model/SGCoordinate.h">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="459">
-          <caret line="27" column="84" lean-forward="true" selection-start-line="27" selection-start-column="84" selection-end-line="27" selection-end-column="84" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/TO-DO/Model/SGCoordinate.m">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="608">
-          <caret line="36" column="5" lean-forward="true" selection-start-line="36" selection-start-column="5" selection-end-line="36" selection-end-column="5" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file:///Applications/Xcode.app/Contents/Developer/Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS.sdk/System/Library/Frameworks/UIKit.framework/Headers/UIViewController.h">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="327">
-          <caret line="331" column="43" lean-forward="false" selection-start-line="331" selection-start-column="43" selection-end-line="331" selection-end-column="43" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/TO-DO/Calendar/Controllers/CalendarViewController.m">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="119">
-          <caret line="68" column="68" lean-forward="false" selection-start-line="68" selection-start-column="68" selection-end-line="68" selection-end-column="68" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/TO-DO/Classes/Common/SGBaseViewController.h">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="241">
@@ -844,7 +764,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="289">
           <caret line="17" column="86" lean-forward="true" selection-start-line="17" selection-start-column="86" selection-end-line="17" selection-end-column="86" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -930,9 +849,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="748">
           <caret line="44" column="47" lean-forward="false" selection-start-line="44" selection-start-column="47" selection-end-line="44" selection-end-column="47" />
-          <folding>
-            <marker date="1478785337000" expanded="true" signature="462:1947" ph="..." />
-          </folding>
         </state>
       </provider>
     </entry>
@@ -968,7 +884,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="323">
           <caret line="20" column="36" lean-forward="true" selection-start-line="20" selection-start-column="36" selection-end-line="20" selection-end-column="36" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -976,7 +891,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="578">
           <caret line="35" column="55" lean-forward="true" selection-start-line="35" selection-start-column="55" selection-end-line="35" selection-end-column="55" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -984,7 +898,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="306">
           <caret line="24" column="0" lean-forward="true" selection-start-line="24" selection-start-column="0" selection-end-line="24" selection-end-column="0" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -1014,9 +927,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="1292">
           <caret line="76" column="82" lean-forward="false" selection-start-line="76" selection-start-column="82" selection-end-line="76" selection-end-column="82" />
-          <folding>
-            <element signature="e#188#203#0" expanded="true" />
-          </folding>
         </state>
       </provider>
     </entry>
@@ -1024,7 +934,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="833">
           <caret line="50" column="33" lean-forward="false" selection-start-line="50" selection-start-column="33" selection-end-line="50" selection-end-column="33" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -1032,7 +941,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="472">
           <caret line="122" column="88" lean-forward="false" selection-start-line="122" selection-start-column="88" selection-end-line="122" selection-end-column="88" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -1040,7 +948,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="340">
           <caret line="24" column="19" lean-forward="false" selection-start-line="24" selection-start-column="19" selection-end-line="24" selection-end-column="19" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -1050,39 +957,6 @@
           <caret line="174" column="32" lean-forward="false" selection-start-line="174" selection-start-column="32" selection-end-line="174" selection-end-column="32" />
           <folding>
             <element signature="e#140#172#0" expanded="false" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/TO-DO/Classes/Home/HomeViewController.m">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-531">
-          <caret line="51" column="27" lean-forward="false" selection-start-line="51" selection-start-column="27" selection-end-line="51" selection-end-column="27" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/TO-DO/Classes/Common/TodoTableViewController.m">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="294">
-          <caret line="147" column="28" lean-forward="false" selection-start-line="147" selection-start-column="28" selection-end-line="147" selection-end-column="28" />
-          <folding>
-            <marker date="1479023341000" expanded="true" signature="1126:13381" ph="..." />
-            <marker date="1479023341000" expanded="true" signature="1168:1267" ph="{...}" />
-            <marker date="1479023341000" expanded="true" signature="1378:1507" ph="{...}" />
-            <marker date="1479023341000" expanded="true" signature="1529:1895" ph="{...}" />
-            <marker date="1479023341000" expanded="true" signature="1927:2122" ph="{...}" />
-            <marker date="1479023341000" expanded="true" signature="2142:2682" ph="{...}" />
-            <marker date="1479023341000" expanded="true" signature="2778:3178" ph="{...}" />
-            <marker date="1479023341000" expanded="true" signature="3273:4029" ph="{...}" />
-            <marker date="1479023341000" expanded="true" signature="4081:4539" ph="{...}" />
-            <marker date="1479023341000" expanded="true" signature="4563:5238" ph="{...}" />
-            <marker date="1479023341000" expanded="true" signature="5370:5446" ph="{...}" />
-            <marker date="1479023341000" expanded="true" signature="5543:5822" ph="{...}" />
-            <marker date="1479023341000" expanded="true" signature="5890:5922" ph="{...}" />
-            <marker date="1479023341000" expanded="true" signature="6013:6132" ph="{...}" />
-            <marker date="1479023341000" expanded="true" signature="6223:6278" ph="{...}" />
-            <marker date="1479023341000" expanded="true" signature="6383:6599" ph="{...}" />
           </folding>
         </state>
       </provider>
@@ -1101,7 +975,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="327">
           <caret line="54" column="13" lean-forward="false" selection-start-line="54" selection-start-column="13" selection-end-line="54" selection-end-column="13" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -1117,15 +990,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="391">
           <caret line="23" column="36" lean-forward="true" selection-start-line="23" selection-start-column="36" selection-end-line="23" selection-end-column="36" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/Podfile">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="561">
-          <caret line="33" column="3" lean-forward="true" selection-start-line="33" selection-start-column="3" selection-end-line="33" selection-end-column="3" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -1133,7 +997,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="204">
           <caret line="12" column="46" lean-forward="false" selection-start-line="12" selection-start-column="46" selection-end-line="12" selection-end-column="46" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -1141,22 +1004,13 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="731">
           <caret line="43" column="3" lean-forward="true" selection-start-line="43" selection-start-column="3" selection-end-line="43" selection-end-column="3" />
-          <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/TO-DO/Classes/Common/DataManager/SyncDataManagers/SGSyncManager.m">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="925">
+        <state relative-caret-position="5253">
           <caret line="309" column="40" lean-forward="false" selection-start-line="309" selection-start-column="40" selection-end-line="309" selection-end-column="40" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/TO-DO/Classes/AppDelegate/AppDelegate.m">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="527">
-          <caret line="130" column="51" lean-forward="true" selection-start-line="130" selection-start-column="51" selection-end-line="130" selection-end-column="51" />
           <folding />
         </state>
       </provider>
@@ -1173,24 +1027,110 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="170">
           <caret line="10" column="37" lean-forward="false" selection-start-line="10" selection-start-column="37" selection-end-line="10" selection-end-column="37" />
-          <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/TO-DO/Classes/Common/DrawerTableViewController.m">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="608">
-          <caret line="223" column="40" lean-forward="true" selection-start-line="223" selection-start-column="40" selection-end-line="223" selection-end-column="40" />
+        <state relative-caret-position="-1496">
+          <caret line="70" column="32" lean-forward="true" selection-start-line="70" selection-start-column="32" selection-end-line="70" selection-end-column="32" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/TO-DO/Classes/Common/TodoTableViewController.h">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="714">
+          <caret line="42" column="61" lean-forward="false" selection-start-line="42" selection-start-column="61" selection-end-line="42" selection-end-column="61" />
+          <folding>
+            <marker date="1479034730000" expanded="true" signature="293:446" ph="{...}" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/TO-DO/Calendar/Controllers/CalendarViewController.m">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="748">
+          <caret line="44" column="4" lean-forward="false" selection-start-line="44" selection-start-column="4" selection-end-line="44" selection-end-column="4" />
+          <folding>
+            <element signature="e#142#187#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Podfile">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="527">
+          <caret line="31" column="19" lean-forward="false" selection-start-line="31" selection-start-column="19" selection-end-line="31" selection-end-column="19" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/TO-DO/Classes/AppDelegate/AppDelegate.m">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="3757">
+          <caret line="221" column="60" lean-forward="false" selection-start-line="221" selection-start-column="60" selection-end-line="221" selection-end-column="60" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Pods/Headers/Public/MXParallaxHeader/MXParallaxHeader.h">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="1309">
+          <caret line="125" column="57" lean-forward="false" selection-start-line="125" selection-start-column="57" selection-end-line="125" selection-end-column="57" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Pods/MXParallaxHeader/MXParallaxHeader/MXScrollView.m">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="255">
+          <caret line="30" column="66" lean-forward="false" selection-start-line="30" selection-start-column="66" selection-end-line="30" selection-end-column="66" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Pods/MXParallaxHeader/MXParallaxHeader/MXScrollViewController.m">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="1258">
+          <caret line="110" column="94" lean-forward="true" selection-start-line="110" selection-start-column="94" selection-end-line="110" selection-end-column="94" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Pods/MXParallaxHeader/MXParallaxHeader/MXParallaxHeader.m">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="3039">
+          <caret line="257" column="0" lean-forward="true" selection-start-line="257" selection-start-column="0" selection-end-line="257" selection-end-column="0" />
           <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/TO-DO/Classes/Common/Views/TodoTableViewCell.m">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="816">
-          <caret line="76" column="37" lean-forward="true" selection-start-line="76" selection-start-column="37" selection-end-line="76" selection-end-column="37" />
+        <state relative-caret-position="-3">
+          <caret line="167" column="7" lean-forward="true" selection-start-line="167" selection-start-column="7" selection-end-line="167" selection-end-column="7" />
           <folding>
             <element signature="e#137#155#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/TO-DO/Classes/Common/TodoTableViewController.m">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="1275">
+          <caret line="77" column="64" lean-forward="false" selection-start-line="77" selection-start-column="63" selection-end-line="77" selection-end-column="64" />
+          <folding>
+            <element signature="e#143#166#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/TO-DO/Classes/Home/HomeViewController.m">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="578">
+          <caret line="113" column="40" lean-forward="false" selection-start-line="113" selection-start-column="40" selection-end-line="113" selection-end-column="40" />
+          <folding>
+            <element signature="e#138#156#0" expanded="true" />
           </folding>
         </state>
       </provider>

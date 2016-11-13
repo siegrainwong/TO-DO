@@ -21,16 +21,16 @@
 
 @interface
 TodoTableViewController ()
-@property(nonatomic, readwrite, assign) TodoTableViewControllerStyle style;
 
-@property(nonatomic, readwrite, strong) HSDatePickerViewController *datePickerViewController;
-@property(nonatomic, readwrite, strong) MRTodoDataManager *dataManager;
-@property(nonatomic, readwrite, strong) NSMutableDictionary *dataDictionary;
-@property(nonatomic, readwrite, strong) NSMutableArray<NSString *> *dateArray;
+@property(nonatomic, strong) HSDatePickerViewController *datePickerViewController;
+@property(nonatomic, strong) MRTodoDataManager *dataManager;
+@property(nonatomic, strong) NSMutableDictionary *dataDictionary;
+@property(nonatomic, strong) NSMutableArray<NSString *> *dateArray;
 
-@property(nonatomic, readwrite, strong) TodoTableViewCell *snoozingCell;
+@property(nonatomic, strong) TodoTableViewCell *snoozingCell;
 
-@property(nonatomic, readwrite, strong) NSDate *date;
+@property(nonatomic, strong) NSDate *date;
+@property (nonatomic, strong) NSTimer* timer;
 @end
 
 @implementation TodoTableViewController
@@ -73,7 +73,7 @@ TodoTableViewController ()
     
     self.tableView.dataSource = self;
     self.tableView.delegate = self;
-    self.tableView.sectionHeaderHeight = _style == TodoTableViewControllerStyleWithoutSection ? 0 : 15;
+    self.tableView.sectionHeaderHeight = _style == TodoTableViewControllerStyleCalendar ? 0 : 15;
     [self.tableView registerClass:[TodoTableViewCell class] forCellReuseIdentifier:kTodoIdentifierArray[TodoIdentifierNormal]];
     self.tableView.separatorInset = UIEdgeInsetsMake(0, kScreenHeight * kCellHorizontalInsetsMuiltipledByHeight, 0, kScreenHeight * kCellHorizontalInsetsMuiltipledByHeight);
 }
@@ -115,7 +115,7 @@ TodoTableViewController ()
         NSInteger index = [_dateArray indexOfObject:dateString];
         [_dateArray removeObject:dateString];
         
-        if (_style != TodoTableViewControllerStyleWithoutSection) [self.tableView deleteSections:[NSIndexSet indexSetWithIndex:index] withRowAnimation:UITableViewRowAnimationLeft];
+        if (_style != TodoTableViewControllerStyleCalendar) [self.tableView deleteSections:[NSIndexSet indexSetWithIndex:index] withRowAnimation:UITableViewRowAnimationLeft];
     }
 }
 
@@ -257,7 +257,7 @@ TodoTableViewController ()
     
     NSString *deadline = model.deadline.stringInYearMonthDay;
     // 日历视图中，如果不是同一天的话，删掉就可以返回了
-    if (_style == TodoTableViewControllerStyleWithoutSection && ![model.lastDeadline.stringInYearMonthDay isEqualToString:deadline]) return;
+    if (_style == TodoTableViewControllerStyleCalendar && ![model.lastDeadline.stringInYearMonthDay isEqualToString:deadline]) return;
     
     [self insertTodo:model];
 }

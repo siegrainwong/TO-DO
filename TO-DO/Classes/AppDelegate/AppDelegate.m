@@ -229,7 +229,8 @@
 }
 
 - (void)setCenterViewController:(UIViewController *)viewController {
-    _drawerViewController.centerViewController = viewController;
+    RTRootNavigationController *navigationController = [[RTRootNavigationController alloc] initWithRootViewController:viewController];
+    _drawerViewController.centerViewController = navigationController;
 }
 
 #pragma mark - global access helper

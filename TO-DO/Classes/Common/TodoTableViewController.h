@@ -14,11 +14,11 @@ typedef NS_ENUM(NSInteger, TodoTableViewControllerStyle) {
     /**
 	 *  显示Cell和Section，首页用
 	 */
-    TodoTableViewControllerStyleCellAndSection,
+    TodoTableViewControllerStyleHome,
     /**
 	 *  隐藏Section，日历界面用
 	 */
-    TodoTableViewControllerStyleWithoutSection
+    TodoTableViewControllerStyleCalendar
 };
 
 @protocol TodoTableViewControllerDelegate<NSObject>
@@ -41,12 +41,10 @@ typedef NS_ENUM(NSInteger, TodoTableViewControllerStyle) {
  *  获取到的数据数量
  */
 @property (nonatomic, readwrite, assign) NSInteger dataCount;
-/**
- *  定时器，暴露出来只是为了方便释放
- */
-@property (nonatomic, readwrite, strong) NSTimer* timer;
 /*Header高度*/
 @property(nonatomic, assign) CGFloat headerHeight;
+
+@property(nonatomic, assign) TodoTableViewControllerStyle style;
 
 + (instancetype)todoTableViewControllerWithStyle:(TodoTableViewControllerStyle)style;
 

@@ -54,9 +54,9 @@ DrawerTableViewController ()
             @{kDataKeyTitle: NSLocalizedString(@"Home", nil),
                     kDataKeyIcon: @"",
                     kDataKeyClass: [HomeViewController class]},
-//            @{kDataKeyTitle: NSLocalizedString(@"Calendar", nil),
-//                    kDataKeyIcon: @"",
-//                    kDataKeyClass: [CalendarViewController class]}
+            @{kDataKeyTitle: NSLocalizedString(@"Calendar", nil),
+                    kDataKeyIcon: @"",
+                    kDataKeyClass: [CalendarViewController class]}
     ];
     
     [_leftBottomButton setTitle:NSLocalizedString(@"SYNC", nil) forState:UIControlStateNormal];

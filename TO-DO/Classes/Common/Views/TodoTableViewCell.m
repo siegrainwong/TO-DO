@@ -79,7 +79,7 @@ TodoTableViewCell ()
 
 - (void)setup {
     self.selectionStyle = UITableViewCellSelectionStyleDefault;
-    self.selectedBackgroundView = [[UIImageView alloc] initWithImage:[UIImage imageWithColor:ColorWithRGBA(0xFF3366, .4)]];
+    self.selectedBackgroundView = [[UIImageView alloc] initWithImage:[UIImage imageWithColor:ColorWithRGBA(0xFF3366, .2)]];
     
     _timeLabel = [UILabel new];
     _timeLabel.font = [SGHelper themeFontWithSize:22];
