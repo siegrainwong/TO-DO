@@ -137,23 +137,12 @@ HomeViewController () <UINavigationControllerDelegate, UIImagePickerControllerDe
     if (alpha == 1 && !_isOpacityNavigation) {
         _isOpacityNavigation = YES;
         
-        //Mark: 我反正是不清楚为啥设置autoAdjustScrollViewInsets = NO是没有效果的，只能改约束，为了避免滚动条跳跃，设置其在alpha = 1时才显示
-        [_todoTableViewController.tableView mas_remakeConstraints:^(MASConstraintMaker *make) {
-            make.bottom.right.left.offset(0);
-            make.top.offset(-64);
-        }];
-        
         [UIView animateWithDuration:.3 animations:^{
             self.titleLabel.text = self.headerView.titleLabel.text;
             self.titleLabel.alpha = 1;
         }];
     } else if (alpha != 1 && _isOpacityNavigation) {
         _isOpacityNavigation = NO;
-        
-        [_todoTableViewController.tableView mas_remakeConstraints:^(MASConstraintMaker *make) {
-            make.bottom.right.left.offset(0);
-            make.top.offset(-64);
-        }];
         
         [UIView animateWithDuration:.3 animations:^{
             self.titleLabel.text = nil;

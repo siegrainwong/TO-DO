@@ -22,7 +22,6 @@ target "TO-DO" do
   pod 'AFNetworking-Synchronous'
   pod 'RealReachability'
   pod 'IGLDropDownMenu'
-  pod 'MXParallaxHeader', :git => "https://github.com/maxep/MXParallaxHeader.git"
   pod 'NetworkEye'
   pod 'LCActionSheet'
   pod 'FDFullscreenPopGesture'

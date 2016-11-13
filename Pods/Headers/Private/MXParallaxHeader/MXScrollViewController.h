@@ -1,1 +1,0 @@
-../../../MXParallaxHeader/MXParallaxHeader/MXScrollViewController.h
