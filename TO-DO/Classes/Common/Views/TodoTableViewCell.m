@@ -7,15 +7,13 @@
 //
 
 #import "CDTodo.h"
-#import "DateUtil.h"
-#import "Macros.h"
 #import "NSDateFormatter+Extension.h"
 #import "SDWebImageManager.h"
-#import "SGHelper.h"
 #import "TodoTableViewCell.h"
 #import "UIImage+Extension.h"
-#import "UIImage+Qiniu.h"
 #import "UIView+SDAutoLayout.h"
+#import "ZLIconLabel.h"、
+#import "UIImage+Compression.h"
 
 static NSInteger const kButtonSize = 45;
 static CGFloat const kSlideItemWidth = 60;
@@ -27,7 +25,7 @@ TodoTableViewCell ()
 @property(nonatomic, readwrite, strong) UILabel *timeLabel;
 @property(nonatomic, readwrite, strong) UILabel *meridiemLabel;
 @property(nonatomic, readwrite, strong) UIButton *photoButton;
-@property(nonatomic, readwrite, strong) UILabel *todoTitleLabel;
+@property(nonatomic, readwrite, strong) ZLIconLabel *todoTitleLabel;
 @property(nonatomic, readwrite, strong) UILabel *todoContentLabel;
 @property(nonatomic, readwrite, strong) UIButton *statusButton;
 @end
@@ -47,6 +45,38 @@ TodoTableViewCell ()
     return self;
 }
 
+- (void)setModel:(CDTodo *)model {
+    _model = model;
+    
+    __weak __typeof(self) weakSelf = self;
+    if (model.photoPath) {
+        model.photoImage = [UIImage imageWithContentsOfFile:[NSString stringWithFormat:@"%@/%@.jpg", [SGHelper photoPath], model.identifier]];
+        [_photoButton setImage:[model.photoImage jm_imageWithRoundedCornersAndSize:CGSizeMake(kButtonSize, kButtonSize) andCornerRadius:kButtonSize / 2] forState:UIControlStateNormal];
+    } else if (model.photoUrl) {
+        SDImageDownload(model.photoUrl, ^(UIImage *image) {
+            model.photoImage = image;
+            [weakSelf.photoButton setImage:[model.photoImage jm_imageWithRoundedCornersAndSize:CGSizeMake(kButtonSize, kButtonSize) andCornerRadius:kButtonSize / 2] forState:UIControlStateNormal];
+        });
+    }
+    
+    // Mark: 苹果的智障框架，系统是24小时制就打印不出12小时，非要设置地区，且该地区只能转换为12小时制
+    NSDateFormatter *formatter = [NSDateFormatter dateFormatterWithFormatString:@"h"];
+    formatter.locale = [[NSLocale alloc] initWithLocaleIdentifier:@"en_US_POSIX"];
+    _timeLabel.text = [formatter stringFromDate:_model.deadline];
+    formatter.dateFormat = @"a";
+    _meridiemLabel.text = [[formatter stringFromDate:_model.deadline] lowercaseString];
+    
+    [_statusButton setImage:[UIImage imageNamed:[NSString stringWithFormat:@"status-%d", [_model.status integerValue]]] forState:UIControlStateNormal];
+    
+    _todoTitleLabel.text = _model.title;
+    _todoContentLabel.text = _model.sgDescription;
+    
+    _todoTitleLabel.icon = [UIImage imageWithImage:model.generalAddress ? [UIImage imageNamed:@"location"] : [UIImage new] scaledToSize:CGSizeMake(15, 15)];
+    
+    [self setNeedsUpdateConstraints];
+    [self updateConstraintsIfNeeded];
+}
+
 - (void)setup {
     self.selectionStyle = UITableViewCellSelectionStyleDefault;
     self.selectedBackgroundView = [[UIImageView alloc] initWithImage:[UIImage imageWithColor:ColorWithRGBA(0xFF3366, .4)]];
@@ -62,11 +92,13 @@ TodoTableViewCell ()
     _meridiemLabel.textAlignment = NSTextAlignmentCenter;
     [self.contentView addSubview:_meridiemLabel];
     
-    // TODO: 这个地方圆角需要用其他方法来绘制
     _photoButton = [UIButton new];
     [self.contentView addSubview:_photoButton];
     
-    _todoTitleLabel = [UILabel new];
+    _todoTitleLabel = [ZLIconLabel new];
+    _todoTitleLabel.textAlignment = NSTextAlignmentLeft;
+    _todoTitleLabel.iconPosition = ZLIconLabelPositionRight;
+    _todoTitleLabel.iconPadding = 5;
     _todoTitleLabel.font = [SGHelper themeFontWithSize:18];
     [self.contentView addSubview:_todoTitleLabel];
     
@@ -148,40 +180,6 @@ TodoTableViewCell ()
     self.rightButtons = @[completeButton];
     self.leftButtons = @[snoozeButton, deleteButton];
 }
-
-#pragma mark - set model
-
-- (void)setModel:(CDTodo *)todo {
-    _model = todo;
-    
-    __weak __typeof(self) weakSelf = self;
-    if (todo.photoPath) {
-        todo.photoImage = [UIImage imageWithContentsOfFile:[NSString stringWithFormat:@"%@/%@.jpg", [SGHelper photoPath], todo.identifier]];
-        [_photoButton setImage:[todo.photoImage jm_imageWithRoundedCornersAndSize:CGSizeMake(kButtonSize, kButtonSize) andCornerRadius:kButtonSize / 2] forState:UIControlStateNormal];
-    } else if (todo.photoUrl) {
-        SDImageDownload(todo.photoUrl, ^(UIImage *image) {
-            todo.photoImage = image;
-            [weakSelf.photoButton setImage:[todo.photoImage jm_imageWithRoundedCornersAndSize:CGSizeMake(kButtonSize, kButtonSize) andCornerRadius:kButtonSize / 2] forState:UIControlStateNormal];
-        });
-    }
-    
-    // Mark: 苹果的智障框架，系统是24小时制就打印不出12小时，非要设置地区，且该地区只能转换为12小时制
-    NSDateFormatter *formatter = [NSDateFormatter dateFormatterWithFormatString:@"h"];
-    formatter.locale = [[NSLocale alloc] initWithLocaleIdentifier:@"en_US_POSIX"];
-    _timeLabel.text = [formatter stringFromDate:_model.deadline];
-    formatter.dateFormat = @"a";
-    _meridiemLabel.text = [[formatter stringFromDate:_model.deadline] lowercaseString];
-    
-    [_statusButton setImage:[UIImage imageNamed:[NSString stringWithFormat:@"status-%d", [_model.status integerValue]]] forState:UIControlStateNormal];
-    
-    _todoTitleLabel.text = _model.title;
-    _todoContentLabel.text = _model.sgDescription;
-    
-    [self setNeedsUpdateConstraints];
-    [self updateConstraintsIfNeeded];
-}
-
-#pragma mark - update constraints
 
 - (void)updateConstraints {
     if (!_model.photoImage) {

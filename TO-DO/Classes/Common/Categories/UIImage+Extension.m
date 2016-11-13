@@ -16,6 +16,14 @@
 
     return image;
 }
++ (UIImage*)imageWithImage:(UIImage*)image scaledToSize:(CGSize)newSize;
+{
+    UIGraphicsBeginImageContextWithOptions(newSize, NO, [UIScreen mainScreen].scale);
+    [image drawInRect:CGRectMake(0, 0, newSize.width, newSize.height)];
+    UIImage* newImage = UIGraphicsGetImageFromCurrentImageContext();
+    UIGraphicsEndImageContext();
+    return newImage;
+}
 + (UIImage*)imageWithColor:(UIColor*)color
 {
     CGRect rect = CGRectMake(0.0f, 0.0f, 1.0f, 1.0f);

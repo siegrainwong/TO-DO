@@ -18,13 +18,22 @@
  */
 + (instancetype)imageAtResourcePath:(NSString*)imageName;
 /**
+ *  重新设置图片尺寸
+ *
+ *  @param image   <#image description#>
+ *  @param newSize <#newSize description#>
+ *
+ *  @return <#return value description#>
+ */
++ (instancetype)imageWithImage:(UIImage*)image scaledToSize:(CGSize)newSize;
+/**
  *  绘制指定颜色的图片
  *
  *  @param color <#color description#>
  *
  *  @return <#return value description#>
  */
-+ (UIImage*)imageWithColor:(UIColor*)color;
++ (instancetype)imageWithColor:(UIColor*)color;
 /**
  *  高效率绘制圆角的方法
  *
@@ -33,5 +42,5 @@
  *
  *  @return <#return value description#>
  */
-- (UIImage*)imageAddCornerWithRadius:(CGFloat)radius andSize:(CGSize)size;
+- (instancetype)imageAddCornerWithRadius:(CGFloat)radius andSize:(CGSize)size;
 @end

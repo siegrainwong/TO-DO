@@ -124,7 +124,7 @@
     
     _drawerViewController.leftViewController = [DrawerTableViewController new];
     
-    _drawerViewController.backgroundImage = [UIImage imageAtResourcePath:@"drawerbg"];
+    _drawerViewController.backgroundImage = [UIImage imageNamed:@"drawerbg"];
 }
 
 - (void)setupDDLog {

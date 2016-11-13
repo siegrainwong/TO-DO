@@ -11,5 +11,4 @@
 @interface UIImage (Compression)
 - (UIImage*)imageCompressForWidth:(CGFloat)defineWidth;
 - (UIImage*)imageCompressForSize:(CGSize)size;
-- (UIImage*)scaleToSize:(CGSize)size;
 @end
