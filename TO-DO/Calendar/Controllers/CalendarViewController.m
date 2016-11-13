@@ -6,14 +6,10 @@
 //  Copyright © 2016年 com.siegrain. All rights reserved.
 //
 
-#import <MXParallaxHeader/MXParallaxHeader.h>
 #import "CDTodo.h"
 #import "CalendarViewController.h"
 #import "CreateViewController.h"
-#import "DateUtil.h"
-#import "GCDQueue.h"
 #import "MRTodoDataManager.h"
-#import "NSDate+Extension.h"
 #import "UIImage+Extension.h"
 
 @interface
@@ -29,7 +25,7 @@ CalendarViewController ()
 @implementation CalendarViewController
 #pragma mark - accessors
 -(CGFloat)headerHeight{
-    return kScreenHeight * 0.47;
+    return kScreenHeight * 0.48;
 }
 
 #pragma mark - initial
@@ -37,23 +33,14 @@ CalendarViewController ()
 - (void)viewDidLoad {
     [super viewDidLoad];
     
+    _dataManager = [MRTodoDataManager new];
     [self retrieveDataFromServer:[_calendar today]];
-    
-    //Mark: 切换到新的NavigationController加载进来之后ContentOffset.Y会是负的不明数值。
-    [_todoTableViewController.tableView setContentOffset:CGPointMake(0, 0) animated:YES];
 }
 
 - (void)setupViews {
     [super setupViews];
     
-    _dataManager = [MRTodoDataManager new];
-    
     self.view.backgroundColor = [UIColor whiteColor];
-    
-    _todoTableViewController = [TodoTableViewController todoTableViewControllerWithStyle:TodoTableViewControllerStyleCalendar];
-    _todoTableViewController.delegate = self;
-    [self addChildViewController:_todoTableViewController];
-    [self.view addSubview:_todoTableViewController.tableView];
     
     self.headerView = [SGHeaderView headerViewWithAvatarPosition:HeaderAvatarPositionCenter titleAlignement:HeaderTitleAlignmentCenter];
     [self.headerView.avatarButton setHidden:YES];
@@ -70,6 +57,17 @@ CalendarViewController ()
         }];
         [weakSelf.navigationController pushViewController:createViewController animated:YES];
     }];
+    
+    _todoTableViewController = [TodoTableViewController todoTableViewControllerWithStyle:TodoTableViewControllerStyleCalendar];
+    _todoTableViewController.delegate = self;
+    _todoTableViewController.headerHeight = self.headerHeight;
+    _todoTableViewController.tableView.tableHeaderView = self.headerView;
+    [self addChildViewController:_todoTableViewController];
+    [self.view addSubview:_todoTableViewController.tableView];
+    
+    self.headerView.parallaxScrollView = _todoTableViewController.tableView;
+    self.headerView.parallaxHeight = self.headerHeight;
+    self.headerView.parallaxMinimumHeight = 100;
     
     _calendar = [FSCalendar new];
     _calendar.delegate = self;
@@ -98,19 +96,6 @@ CalendarViewController ()
 
 - (void)bindConstraints {
     [super bindConstraints];
-
-//    [self.headerView mas_makeConstraints:^(MASConstraintMaker* make) {
-//        make.top.left.offset(0);
-//        make.width.offset(kScreenWidth);
-//        make.height.offset(kScreenHeight * 0.6);
-//    }];
-    
-    [_calendar mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.left.offset(10);
-        make.right.offset(-10);
-        make.bottom.offset(-kScreenHeight * 0.08);
-        make.height.offset(self.headerHeight);
-    }];
     
     [_todoTableViewController.tableView mas_makeConstraints:^(MASConstraintMaker *make) {
         make.top.bottom.right.left.offset(0);
@@ -119,6 +104,13 @@ CalendarViewController ()
     [self.headerView mas_makeConstraints:^(MASConstraintMaker *make) {
         make.top.left.offset(0);
         make.width.offset(kScreenWidth);
+        make.height.offset(self.headerHeight);
+    }];
+    
+    [_calendar mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.left.offset(10);
+        make.right.offset(-10);
+        make.bottom.offset(-kScreenHeight * 0.075);
         make.height.offset(self.headerHeight);
     }];
 

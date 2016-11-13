@@ -25,6 +25,8 @@ TodoHeaderCell ()
 }
 - (void)setup
 {
+    self.backgroundColor = [UIColor whiteColor];
+    
     _label = [UILabel new];
     _label.font = [SGHelper themeFontWithSize:13];
     _label.textColor = [SGHelper subTextColor];

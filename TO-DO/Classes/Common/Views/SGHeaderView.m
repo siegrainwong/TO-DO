@@ -10,6 +10,7 @@
 #import "Masonry.h"
 #import "SGRectangleView.h"
 #import "SGGraphics.h"
+#import "UIView+Extentsion.h"
 
 static CGFloat const kAvatarButtonSizeMultipliedByHeight = 0.16;
 static CGFloat const kRightOperationButtonSizeMultipliedByHeight = 0.1;
@@ -23,6 +24,7 @@ static void *const kHeaderViewKVOContext = (void *) &kHeaderViewKVOContext;
 @property(nonatomic, readwrite, assign) HeaderTitleAlignement titleAlignment;
 @property(nonatomic, strong) SGRectangleView *rectangleView;
 
+@property(nonatomic, assign) BOOL isStickMode;
 @end
 
 @implementation SGHeaderView
@@ -34,6 +36,14 @@ static void *const kHeaderViewKVOContext = (void *) &kHeaderViewKVOContext;
 }
 
 #pragma mark - accessors
+
+- (BOOL)isAdjustTopInset {
+    if ([_parallaxScrollView.nextResponder isKindOfClass:[UIViewController class]]) {
+        UIViewController *viewController = (UIViewController *) _parallaxScrollView.nextResponder;
+        if (viewController.navigationController.navigationBar.translucent) return NO;
+    }
+    return YES;
+}
 
 - (void)setBackgroundImage:(UIImage *)backgroundImage {
     _backgroundImage = backgroundImage;
@@ -166,15 +176,43 @@ static void *const kHeaderViewKVOContext = (void *) &kHeaderViewKVOContext;
     if (context == kHeaderViewKVOContext) {
         if ([keyPath isEqualToString:NSStringFromSelector(@selector(contentOffset))]) {
             UIScrollView *scrollView = object;
-            [self updateHeaderFrameWithOffsetY:scrollView.contentOffset.y];
+            [self scrollView:scrollView didScrollToPoint:scrollView.contentOffset];
         }
     } else {
         [super observeValueForKeyPath:keyPath ofObject:object change:change context:context];
     }
 }
 
+- (void)scrollView:(UIScrollView *)scrollView didScrollToPoint:(CGPoint)contentOffset {
+    [self updateHeaderFrameWithOffsetY:contentOffset.y];
+    
+    if(!_parallaxMinimumHeight) return;
+    
+    CGFloat offset = contentOffset.y + (self.isAdjustTopInset ? 64 : 0);
+    CGFloat needsToStick = _parallaxHeight - offset <= _parallaxMinimumHeight;
+    
+    if (needsToStick) {
+        _isStickMode = YES;
+        [self mas_remakeConstraints:^(MASConstraintMaker *make) {
+            make.left.offset(0);
+            make.width.offset(kScreenWidth);
+            make.height.offset(_parallaxHeight);
+            make.top.offset(offset - (_parallaxHeight - _parallaxMinimumHeight));
+        }];
+    } else if (!needsToStick && _isStickMode) {
+        _isStickMode = NO;
+        [self mas_remakeConstraints:^(MASConstraintMaker *make) {
+            make.left.offset(0);
+            make.width.offset(kScreenWidth);
+            make.height.offset(_parallaxHeight);
+            make.top.offset(0);
+        }];
+    }
+}
+
 - (void)updateHeaderFrameWithOffsetY:(CGFloat)y {
-    if (self.height - y < 0) return;
+//    CGFloat
+    if (self.height - y < _parallaxMinimumHeight || self.height - y < 0) return;
     
     //Mark: 这里只需要修改背景图的约束即可，其他约束不要动，因为其他视图的位置是ScrollView本身就已经控制了的
     [self.backgroundImageView mas_updateConstraints:^(MASConstraintMaker *make) {

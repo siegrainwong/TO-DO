@@ -59,4 +59,8 @@ typedef NS_ENUM(NSInteger, HeaderTitleAlignement) {
  *  parallaxScrollView的初始高度
  */
 @property(nonatomic, assign) CGFloat parallaxHeight;
+/**
+ *  保留高度
+ */
+@property(nonatomic, assign) CGFloat parallaxMinimumHeight;
 @end
