@@ -1,5 +1,5 @@
 //
-//  HeaderView.h
+//  SGHeaderView.h
 //  TO-DO
 //
 //  Created by Siegrain on 16/5/14.
@@ -18,7 +18,7 @@ typedef NS_ENUM(NSInteger, HeaderTitleAlignement) {
     HeaderTitleAlignmentLeft
 };
 
-@interface HeaderView : UIView
+@interface SGHeaderView : UIView
 /**
  *  标题Label
  */
@@ -27,7 +27,9 @@ typedef NS_ENUM(NSInteger, HeaderTitleAlignement) {
  *  副标题Label
  */
 @property(nonatomic, readonly, strong) UILabel *subtitleLabel;
-/*背景图*/
+/**
+ *  背景图
+ */
 @property(nonatomic, strong) UIImage *backgroundImage;
 /**
  *  头像按钮
@@ -37,7 +39,6 @@ typedef NS_ENUM(NSInteger, HeaderTitleAlignement) {
  *  右边的操作按钮
  */
 @property(nonatomic, readonly, strong) UIButton *rightOperationButton;
-
 /**
  *  头像按钮被按下的事件
  */
@@ -48,4 +49,14 @@ typedef NS_ENUM(NSInteger, HeaderTitleAlignement) {
 @property(nonatomic, readwrite, copy) void (^headerViewDidPressRightOperationButton)();
 
 + (instancetype)headerViewWithAvatarPosition:(HeaderAvatarPosition)avatarPosition titleAlignement:(HeaderTitleAlignement)titleAlignment;
+
+#pragma mark - parallax
+/**
+ *  需要设置视差特效的ScrollView
+ */
+@property(nonatomic, weak) UIScrollView* parallaxScrollView;
+/**
+ *  parallaxScrollView的初始高度
+ */
+@property(nonatomic, assign) CGFloat parallaxHeight;
 @end

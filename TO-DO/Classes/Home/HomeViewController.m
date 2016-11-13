@@ -62,8 +62,7 @@ HomeViewController () <UINavigationControllerDelegate, UIImagePickerControllerDe
     self.titleLabel.textAlignment = NSTextAlignmentCenter;
     self.titleLabel.alpha = 0;
     
-    self.headerView = [HeaderView headerViewWithAvatarPosition:HeaderAvatarPositionCenter titleAlignement:HeaderTitleAlignmentCenter];
-    self.headerView.frame = CGRectMake(0, 0, kScreenWidth, self.headerHeight);
+    self.headerView = [SGHeaderView headerViewWithAvatarPosition:HeaderAvatarPositionCenter titleAlignement:HeaderTitleAlignmentCenter];
     self.headerView.subtitleLabel.text = [SGHelper localizedFormatDate:[NSDate date]];
     [self.headerView.rightOperationButton setImage:[UIImage imageNamed:@"add"] forState:UIControlStateNormal];
     [self.headerView.avatarButton sd_setImageWithURL:GetPictureUrl(super.lcUser.avatar, kQiniuImageStyleSmall) forState:UIControlStateNormal];
@@ -85,11 +84,8 @@ HomeViewController () <UINavigationControllerDelegate, UIImagePickerControllerDe
     [self addChildViewController:_todoTableViewController];
     [self.view addSubview:_todoTableViewController.tableView];
     
-//    MXParallaxHeader *header = _todoTableViewController.tableView.parallaxHeader;
-//    header.view = self.headerView;
-//    header.height = self.headerHeight;
-//    header.mode = MXParallaxHeaderModeFill;
-//    header.minimumHeight = 20;
+    self.headerView.parallaxScrollView = _todoTableViewController.tableView;
+    self.headerView.parallaxHeight = self.headerHeight;
 }
 
 - (void)bindConstraints {
@@ -144,7 +140,7 @@ HomeViewController () <UINavigationControllerDelegate, UIImagePickerControllerDe
         //Mark: 我反正是不清楚为啥设置autoAdjustScrollViewInsets = NO是没有效果的，只能改约束，为了避免滚动条跳跃，设置其在alpha = 1时才显示
         [_todoTableViewController.tableView mas_remakeConstraints:^(MASConstraintMaker *make) {
             make.bottom.right.left.offset(0);
-            make.top.offset(-128);
+            make.top.offset(-64);
         }];
         
         [UIView animateWithDuration:.3 animations:^{

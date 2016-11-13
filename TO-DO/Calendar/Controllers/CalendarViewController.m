@@ -27,6 +27,11 @@ CalendarViewController ()
 @end
 
 @implementation CalendarViewController
+#pragma mark - accessors
+-(CGFloat)headerHeight{
+    return kScreenHeight * 0.47;
+}
+
 #pragma mark - initial
 
 - (void)viewDidLoad {
@@ -50,7 +55,7 @@ CalendarViewController ()
     [self addChildViewController:_todoTableViewController];
     [self.view addSubview:_todoTableViewController.tableView];
     
-    self.headerView = [HeaderView headerViewWithAvatarPosition:HeaderAvatarPositionCenter titleAlignement:HeaderTitleAlignmentCenter];
+    self.headerView = [SGHeaderView headerViewWithAvatarPosition:HeaderAvatarPositionCenter titleAlignement:HeaderTitleAlignmentCenter];
     [self.headerView.avatarButton setHidden:YES];
     [self.headerView.subtitleLabel setHidden:YES];
     self.headerView.subtitleLabel.text = [SGHelper localizedFormatDate:[NSDate date]];
@@ -65,11 +70,6 @@ CalendarViewController ()
         }];
         [weakSelf.navigationController pushViewController:createViewController animated:YES];
     }];
-    MXParallaxHeader *header = _todoTableViewController.tableView.parallaxHeader;
-    header.view = self.headerView;
-    header.height = kScreenHeight * 0.6;
-    header.mode = MXParallaxHeaderModeFill;
-    header.minimumHeight = 50;
     
     _calendar = [FSCalendar new];
     _calendar.delegate = self;
@@ -109,11 +109,17 @@ CalendarViewController ()
         make.left.offset(10);
         make.right.offset(-10);
         make.bottom.offset(-kScreenHeight * 0.08);
-        make.height.offset(kScreenHeight * 0.47);
+        make.height.offset(self.headerHeight);
     }];
     
     [_todoTableViewController.tableView mas_makeConstraints:^(MASConstraintMaker *make) {
         make.top.bottom.right.left.offset(0);
+    }];
+    
+    [self.headerView mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.top.left.offset(0);
+        make.width.offset(kScreenWidth);
+        make.height.offset(self.headerHeight);
     }];
 
 //    [_menuButton mas_makeConstraints:^(MASConstraintMaker* make) {

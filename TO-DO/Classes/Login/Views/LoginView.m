@@ -6,7 +6,7 @@
 //  Copyright © 2016年 com.siegrain. All rights reserved.
 //
 
-#import "HeaderView.h"
+#import "SGHeaderView.h"
 #import "LCUser.h"
 #import "LoginView.h"
 #import "Macros.h"
@@ -20,7 +20,7 @@
 
 @interface
 LoginView ()
-@property (nonatomic, readwrite, strong) HeaderView* headerView;
+@property (nonatomic, readwrite, strong) SGHeaderView* headerView;
 @property (nonatomic, readwrite, strong) SGTextField* nameTextField;
 @property (nonatomic, readwrite, strong) SGTextField* usernameTextField;
 @property (nonatomic, readwrite, strong) SGTextField* passwordTextField;
@@ -88,7 +88,7 @@ LoginView ()
 - (void)setup
 {
     __weak typeof(self) weakSelf = self;
-    _headerView = [HeaderView headerViewWithAvatarPosition:HeaderAvatarPositionBottom titleAlignement:HeaderTitleAlignmentCenter];
+    _headerView = [SGHeaderView headerViewWithAvatarPosition:HeaderAvatarPositionBottom titleAlignement:HeaderTitleAlignmentCenter];
     _headerView.rightOperationButton.hidden = YES;
     _headerView.titleLabel.layer.opacity = 0;
     _headerView.backgroundImage = [UIImage imageAtResourcePath:@"login header bg"];

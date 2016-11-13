@@ -7,7 +7,7 @@
 //
 
 #import "CDUser.h"
-#import "HeaderView.h"
+#import "SGHeaderView.h"
 #import "LCUser.h"
 #import "Masonry.h"
 #import "SGViews.h"
@@ -27,7 +27,7 @@
 /**
  *  头视图
  */
-@property(nonatomic, readwrite, strong) HeaderView *headerView;
+@property(nonatomic, readwrite, strong) SGHeaderView *headerView;
 /**
  *  当前用户(LeanCloud)
  */

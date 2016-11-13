@@ -67,7 +67,7 @@
 		F959945E1CE481CD00B042BD /* DateUtil.m in Sources */ = {isa = PBXBuildFile; fileRef = F959945D1CE481CD00B042BD /* DateUtil.m */; };
 		F961B55B1CF42DED0096DAF4 /* LCTodoDataManager.m in Sources */ = {isa = PBXBuildFile; fileRef = F961B55A1CF42DED0096DAF4 /* LCTodoDataManager.m */; };
 		F9773EAD1CFECD7400469A0E /* TO_DO.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = F9773EAB1CFECD7400469A0E /* TO_DO.xcdatamodeld */; };
-		F980EDCF1CE70F4E00A861FE /* HeaderView.m in Sources */ = {isa = PBXBuildFile; fileRef = F980EDCE1CE70F4E00A861FE /* HeaderView.m */; };
+		F980EDCF1CE70F4E00A861FE /* SGHeaderView.m in Sources */ = {isa = PBXBuildFile; fileRef = F980EDCE1CE70F4E00A861FE /* SGHeaderView.m */; };
 		F98DE68C1CFDCE6B00859A81 /* TodoTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = F98DE68B1CFDCE6B00859A81 /* TodoTableViewController.m */; };
 		F9964A991D02CD2F008387E5 /* LCSyncRecord.m in Sources */ = {isa = PBXBuildFile; fileRef = F9964A981D02CD2F008387E5 /* LCSyncRecord.m */; };
 		F9964A9C1D030409008387E5 /* CDSyncRecord+CoreDataProperties.m in Sources */ = {isa = PBXBuildFile; fileRef = F9964A9B1D030409008387E5 /* CDSyncRecord+CoreDataProperties.m */; };
@@ -250,8 +250,8 @@
 		F9773EAC1CFECD7400469A0E /* TO_DO.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = TO_DO.xcdatamodel; sourceTree = "<group>"; };
 		F98081591DD445EB009356B7 /* TO_DO 4.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = "TO_DO 4.xcdatamodel"; sourceTree = "<group>"; };
 		F980815D1DD4C6A7009356B7 /* TO_DO 5.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = "TO_DO 5.xcdatamodel"; sourceTree = "<group>"; };
-		F980EDCD1CE70F4E00A861FE /* HeaderView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HeaderView.h; sourceTree = "<group>"; };
-		F980EDCE1CE70F4E00A861FE /* HeaderView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HeaderView.m; sourceTree = "<group>"; };
+		F980EDCD1CE70F4E00A861FE /* SGHeaderView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SGHeaderView.h; sourceTree = "<group>"; };
+		F980EDCE1CE70F4E00A861FE /* SGHeaderView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SGHeaderView.m; sourceTree = "<group>"; };
 		F98DE68A1CFDCE6B00859A81 /* TodoTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TodoTableViewController.h; sourceTree = "<group>"; };
 		F98DE68B1CFDCE6B00859A81 /* TodoTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TodoTableViewController.m; sourceTree = "<group>"; };
 		F9964A971D02CD2F008387E5 /* LCSyncRecord.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LCSyncRecord.h; sourceTree = "<group>"; };
@@ -509,8 +509,8 @@
 				F94CA25D1CE2FB940006904F /* SGTextField.h */,
 				F94CA25E1CE2FB940006904F /* SGTextField.m */,
 				F94CA25F1CE2FB940006904F /* SGTextField.xib */,
-				F980EDCD1CE70F4E00A861FE /* HeaderView.h */,
-				F980EDCE1CE70F4E00A861FE /* HeaderView.m */,
+				F980EDCD1CE70F4E00A861FE /* SGHeaderView.h */,
+				F980EDCE1CE70F4E00A861FE /* SGHeaderView.m */,
 				F9A1E07E1CEDFA4C00FFC453 /* SGCommitButton.h */,
 				F9A1E07F1CEDFA4C00FFC453 /* SGCommitButton.m */,
 				F1F6A63CD4780AAF6A0A6888 /* EmptyDataView.h */,
@@ -1252,7 +1252,7 @@
 				F9D0E9781CEC46D10005027B /* UIImage+Qiniu.m in Sources */,
 				F94CA2641CE2FB940006904F /* SGTextField.m in Sources */,
 				F9E953521CF875B70046E1C9 /* HSDatePickerViewController+Configure.m in Sources */,
-				F980EDCF1CE70F4E00A861FE /* HeaderView.m in Sources */,
+				F980EDCF1CE70F4E00A861FE /* SGHeaderView.m in Sources */,
 				F94CA24B1CE2FA9E0006904F /* MD5Util.m in Sources */,
 				F94CA2481CE2FA9E0006904F /* SGHelper.m in Sources */,
 				F94CA2091CE2F9780006904F /* SCLTimerDisplay.m in Sources */,
