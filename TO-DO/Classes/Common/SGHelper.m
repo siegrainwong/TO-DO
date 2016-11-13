@@ -52,6 +52,10 @@
     return ColorWithRGB(0xFE7295);
 }
 
++ (UIColor *)subTextColor {
+    return ColorWithRGB(0x777777);
+}
+
 #pragma mark - 创建一个选择照片的 action sheet
 
 + (void)photoPickerFromTarget:(UIViewController <UINavigationControllerDelegate, UIImagePickerControllerDelegate> *)viewController {
@@ -121,9 +125,4 @@
     return [DateUtil dateString:date withFormat:dateFormat];
 }
 
-#pragma mark -
-
-+ (UIColor *)subTextColor {
-    return ColorWithRGB(0x777777);
-}
 @end

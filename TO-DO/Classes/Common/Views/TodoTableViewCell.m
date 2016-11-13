@@ -39,7 +39,6 @@ TodoTableViewCell ()
     if (self = [super initWithStyle:style reuseIdentifier:reuseIdentifier]) {
         _cellInsets = UIEdgeInsetsMake(kScreenHeight * kCellVerticalInsetsMuiltipledByHeight, kScreenHeight * kCellHorizontalInsetsMuiltipledByHeight, kScreenHeight * kCellVerticalInsetsMuiltipledByHeight, kScreenHeight * kCellHorizontalInsetsMuiltipledByHeight);
         _identifier = [kTodoIdentifierArray indexOfObject:reuseIdentifier];
-        self.selectionStyle = UITableViewCellSelectionStyleNone;
         
         [self setup];
         [self bindConstraints];
@@ -49,6 +48,9 @@ TodoTableViewCell ()
 }
 
 - (void)setup {
+    self.selectionStyle = UITableViewCellSelectionStyleDefault;
+    self.selectedBackgroundView = [[UIImageView alloc] initWithImage:[UIImage imageWithColor:ColorWithRGBA(0xFF3366, .4)]];
+    
     _timeLabel = [UILabel new];
     _timeLabel.font = [SGHelper themeFontWithSize:22];
     _timeLabel.textAlignment = NSTextAlignmentCenter;

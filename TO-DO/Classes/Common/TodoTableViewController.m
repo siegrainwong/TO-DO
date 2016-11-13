@@ -164,6 +164,10 @@ TodoTableViewController ()
     return cell;
 }
 
+- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
+    [tableView deselectRowAtIndexPath:indexPath animated:YES];
+}
+
 #pragma mark - swipe left cell events
 
 - (void)setupCellEvents:(TodoTableViewCell *)cell {
