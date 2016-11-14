@@ -6,6 +6,7 @@
 //  Copyright © 2016年 com.siegrain. All rights reserved.
 //
 
+#import <SDAutoLayout/UIView+SDAutoLayout.h>
 #import "SGHeaderView.h"
 #import "Masonry.h"
 #import "SGRectangleView.h"
@@ -52,10 +53,10 @@ static void *const kHeaderViewKVOContext = (void *) &kHeaderViewKVOContext;
     return YES;
 }
 
-- (void)setBackgroundImage:(UIImage *)backgroundImage {
-    _backgroundImage = backgroundImage;
+- (void)setImage:(UIImage *)image {
+    _image = image;
     CGFloat paths[] = {0, .7, 1};
-    _backgroundImageView.image = [SGGraphics gradientImageWithImage:backgroundImage paths:paths colors:@[ColorWithRGBA(0x6563A4, .2), ColorWithRGBA(0x6563A4, .2), ColorWithRGBA(0x6563A4, .35)]];
+    _backgroundImageView.image = [SGGraphics gradientImageWithImage:image paths:paths colors:@[ColorWithRGBA(0x6563A4, .2), ColorWithRGBA(0x6563A4, .2), ColorWithRGBA(0x6563A4, .35)]];
 }
 
 - (void)setParallaxScrollView:(UIScrollView *)parallaxScrollView {
@@ -130,7 +131,8 @@ static void *const kHeaderViewKVOContext = (void *) &kHeaderViewKVOContext;
     }];
     
     [_rectangleView mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.centerX.bottom.offset(0);
+        make.centerX.offset(0);
+        make.bottom.equalTo(_backgroundImageView.mas_bottom);
         make.width.offset(kScreenWidth);
         make.height.offset(kRectangleHeight);
     }];
@@ -192,20 +194,29 @@ static void *const kHeaderViewKVOContext = (void *) &kHeaderViewKVOContext;
 
 - (void)scrollView:(UIScrollView *)scrollView didScrollToPoint:(CGPoint)contentOffset {
     [self updateHeaderFrameWithOffsetY:contentOffset.y];
-    
+    [self setHeaderStickWithOffsetY:contentOffset.y];
+}
+
+-(void)setHeaderStickWithOffsetY:(CGFloat)y{
     if(!_parallaxMinimumHeight) return;
     
-    CGFloat offset = contentOffset.y + (self.isAdjustTopInset ? 64 : 0);
+    CGFloat offset = y + (self.isAdjustTopInset ? 64 : 0);
     CGFloat needsToStick = _parallaxHeight - offset <= _parallaxMinimumHeight;
     
     if (needsToStick) {
+        if(_isStickMode){
+            [self mas_updateConstraints:^(MASConstraintMaker *make) {
+                make.top.offset(offset - (_parallaxHeight - _parallaxMinimumHeight));
+            }];
+        }else{
+            [self mas_remakeConstraints:^(MASConstraintMaker *make) {
+                make.left.offset(0);
+                make.width.offset(kScreenWidth);
+                make.height.offset(_parallaxHeight);
+                make.top.offset(offset - (_parallaxHeight - _parallaxMinimumHeight));
+            }];
+        }
         _isStickMode = YES;
-        [self mas_remakeConstraints:^(MASConstraintMaker *make) {
-            make.left.offset(0);
-            make.width.offset(kScreenWidth);
-            make.height.offset(_parallaxHeight);
-            make.top.offset(offset - (_parallaxHeight - _parallaxMinimumHeight));
-        }];
     } else if (!needsToStick && _isStickMode) {
         _isStickMode = NO;
         [self mas_remakeConstraints:^(MASConstraintMaker *make) {
@@ -218,10 +229,9 @@ static void *const kHeaderViewKVOContext = (void *) &kHeaderViewKVOContext;
 }
 
 - (void)updateHeaderFrameWithOffsetY:(CGFloat)y {
-//    CGFloat
     if (self.height - y < _parallaxMinimumHeight || self.height - y < 0) return;
     
-    //Mark: 这里只需要修改背景图的约束即可，其他约束不要动，因为其他视图的位置是ScrollView本身就已经控制了的
+    //Mark: 这里只需要修改背景图的约束，其他约束不要动
     [self.backgroundImageView mas_updateConstraints:^(MASConstraintMaker *make) {
         make.height.offset(self.height - y);
     }];

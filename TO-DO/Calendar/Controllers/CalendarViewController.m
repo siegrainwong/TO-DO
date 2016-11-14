@@ -52,7 +52,7 @@ CalendarViewController ()
     [self.headerView.subtitleLabel setHidden:YES];
     self.headerView.subtitleLabel.text = [SGHelper localizedFormatDate:[NSDate date]];
     [self.headerView.rightOperationButton setImage:[UIImage imageNamed:@"add"] forState:UIControlStateNormal];
-    self.headerView.backgroundImage = [UIImage imageAtResourcePath:@"calendar header bg"];
+    self.headerView.image = [UIImage imageAtResourcePath:@"calendar header bg"];
     __weak typeof(self) weakSelf = self;
     [self.headerView setHeaderViewDidPressRightOperationButton:^{
         CreateViewController *createViewController = [[CreateViewController alloc] init];
@@ -94,7 +94,7 @@ CalendarViewController ()
     [self.headerView bringSubviewToFront:self.headerView.rightOperationButton];
 
 //    _menuButton = [UIButton new];
-//    [_menuButton setBackgroundImage:[UIImage imageNamed:@"menu-button2"] forState:UIControlStateNormal];
+//    [_menuButton setImage:[UIImage imageNamed:@"menu-button2"] forState:UIControlStateNormal];
 //    [_menuButton addTarget:self action:@selector(menuButtonDidPress) forControlEvents:UIControlEventTouchUpInside];
 //    [self.view addSubview:_menuButton];
 }

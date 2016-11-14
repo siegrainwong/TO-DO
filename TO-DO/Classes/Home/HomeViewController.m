@@ -16,9 +16,12 @@
 
 // TODO: 搜索功能
 // TODO: 待办事项展开功能
-// TODO: 空数据页面长度在Calendar下有问题
+// TODO: Calendar页面下，日历收起时滑动会很卡
 // TODO: Canlendar页面下要显示完成和未完成的任务
-// TODO: 导航栏不透明时，需要把加好按钮添加到导航栏上。
+// TODO: 导航栏不透明时，需要把+号按钮添加到导航栏上。
+// TODO: HeaderView上的花式屏幕分辨率问题
+
+
 // Mark: 再不能全局变量都用成员变量了，内存释放太操心
 
 @interface
@@ -66,7 +69,7 @@ HomeViewController () <UINavigationControllerDelegate, UIImagePickerControllerDe
     self.headerView.subtitleLabel.text = [SGHelper localizedFormatDate:[NSDate date]];
     [self.headerView.rightOperationButton setImage:[UIImage imageNamed:@"add"] forState:UIControlStateNormal];
     [self.headerView.avatarButton sd_setImageWithURL:GetPictureUrl(super.lcUser.avatar, kQiniuImageStyleSmall) forState:UIControlStateNormal];
-    self.headerView.backgroundImage = [UIImage imageAtResourcePath:@"header bg"];
+    self.headerView.image = [UIImage imageAtResourcePath:@"header bg"];
     [self.headerView setHeaderViewDidPressAvatarButton:^{[SGHelper photoPickerFromTarget:weakSelf];}];
     [self.headerView setHeaderViewDidPressRightOperationButton:^{
         CreateViewController *createViewController = [[CreateViewController alloc] init];

@@ -20,31 +20,31 @@
 
 @interface
 LoginView ()
-@property (nonatomic, readwrite, strong) SGHeaderView* headerView;
-@property (nonatomic, readwrite, strong) SGTextField* nameTextField;
-@property (nonatomic, readwrite, strong) SGTextField* usernameTextField;
-@property (nonatomic, readwrite, strong) SGTextField* passwordTextField;
-@property (nonatomic, readwrite, strong) SGCommitButton* commitButton;
-@property (nonatomic, readwrite, strong) UIButton* leftOperationButton;
-@property (nonatomic, readwrite, strong) UIButton* rightOperationButton;
+@property(nonatomic, strong) SGHeaderView *headerView;
+@property(nonatomic, strong) SGTextField *nameTextField;
+@property(nonatomic, strong) SGTextField *usernameTextField;
+@property(nonatomic, strong) SGTextField *passwordTextField;
+@property(nonatomic, strong) SGCommitButton *commitButton;
+@property(nonatomic, strong) UIButton *leftOperationButton;
+@property(nonatomic, strong) UIButton *rightOperationButton;
 
-@property (nonatomic, readwrite, assign) BOOL isSignUp;
-@property (nonatomic, readwrite, assign) CGFloat textFieldHeight;
-@property (nonatomic, readwrite, strong) UIImage* avatarImage;
+@property(nonatomic, assign) BOOL isSignUp;
+@property(nonatomic, assign) CGFloat textFieldHeight;
+@property(nonatomic, strong) UIImage *avatarImage;
 @end
 
 @implementation LoginView
 #pragma mark - localization
-- (void)localizeStrings
-{
+
+- (void)localizeStrings {
     _headerView.titleLabel.text = NSLocalizedString(@"Sign Up", nil);
     _nameTextField.label.text = NSLocalizedString(@"Name", nil);
     _passwordTextField.label.text = NSLocalizedString(@"Password", nil);
-
-    [self bindSwitchableDatas];
+    
+    [self bindSwitchableData];
 }
-- (void)bindSwitchableDatas
-{
+
+- (void)bindSwitchableData {
     if (_isSignUp) {
         _usernameTextField.label.text = NSLocalizedString(@"Email", nil);
         [_commitButton.button setTitle:NSLocalizedString(@"DONE", nil) forState:UIControlStateNormal];
@@ -61,78 +61,78 @@ LoginView ()
         _headerView.userInteractionEnabled = NO;
     }
 }
+
 #pragma mark - initial
-+ (instancetype)loginView
-{
-    LoginView* loginView = [[LoginView alloc] init];
+
++ (instancetype)loginView {
+    LoginView *loginView = [[LoginView alloc] init];
     loginView->_isSignUp = false;
     loginView->_textFieldHeight = kScreenHeight * 0.08;
-
+    
     [loginView setup];
     [loginView bindConstraints];
     [loginView localizeStrings];
     [loginView debug];
-
+    
     [NSNotificationCenter attachKeyboardObservers:loginView keyboardWillShowSelector:@selector(keyboardWillShow:) keyboardWillHideSelector:@selector(keyboardWillHide:)];
-
+    
     return loginView;
 }
-- (void)debug
-{
-    //FIXME: 这个通过info.plist的判断有点傻逼，以后换掉
+
+- (void)debug {
+    //FIXME: 这个通过info.plist的判断贼傻逼，以后换掉...
     if ([InfoDictionary(@"IsDebugging") boolValue]) {
         _usernameTextField.field.text = @"siegrain@qq.com";
         _passwordTextField.field.text = @"Weck33";
     }
 }
-- (void)setup
-{
+
+- (void)setup {
     __weak typeof(self) weakSelf = self;
     _headerView = [SGHeaderView headerViewWithAvatarPosition:HeaderAvatarPositionBottom titleAlignement:HeaderTitleAlignmentCenter];
     _headerView.rightOperationButton.hidden = YES;
     _headerView.titleLabel.layer.opacity = 0;
-    _headerView.backgroundImage = [UIImage imageAtResourcePath:@"login header bg"];
+    _headerView.image = [UIImage imageAtResourcePath:@"login header bg"];
     [_headerView setHeaderViewDidPressAvatarButton:^{
         [weakSelf avatarButtonDidPress];
     }];
     [self addSubview:_headerView];
-
+    
     _nameTextField = [SGTextField textField];
     _nameTextField.field.returnKeyType = UIReturnKeyNext;
     _nameTextField.layer.opacity = 0;
-    // Mark: 这个地方必须要用 weakSelf strongSelf 大法，弱持有 block 没用...
-    [_nameTextField setTextFieldShouldReturn:^(SGTextField* textField) {
+    [_nameTextField setTextFieldShouldReturn:^(SGTextField *textField) {
         [weakSelf.usernameTextField becomeFirstResponder];
     }];
     [self addSubview:_nameTextField];
-
+    
     _usernameTextField = [SGTextField textField];
     _usernameTextField.field.returnKeyType = UIReturnKeyNext;
-    [_usernameTextField setTextFieldShouldReturn:^(SGTextField* textField) {
+    [_usernameTextField setTextFieldShouldReturn:^(SGTextField *textField) {
         [weakSelf.passwordTextField becomeFirstResponder];
     }];
     [self addSubview:_usernameTextField];
-
+    
     _passwordTextField = [SGTextField textField];
     _passwordTextField.field.returnKeyType = UIReturnKeyJoin;
     _passwordTextField.field.secureTextEntry = YES;
-    [_passwordTextField setTextFieldShouldReturn:^(SGTextField* textField) {
+    [_passwordTextField setTextFieldShouldReturn:^(SGTextField *textField) {
         [weakSelf commitButtonDidPress];
     }];
     [self addSubview:_passwordTextField];
-
+    
     _commitButton = [SGCommitButton commitButton];
     [_commitButton setCommitButtonDidPress:^{
         [weakSelf commitButtonDidPress];
     }];
     [self addSubview:_commitButton];
-
+    
     _leftOperationButton = [[UIButton alloc] init];
     [_leftOperationButton setTitleColor:[UIColor lightGrayColor] forState:UIControlStateNormal];
     _leftOperationButton.titleLabel.font = [SGHelper themeFontWithSize:12];
     _leftOperationButton.contentHorizontalAlignment = UIControlContentHorizontalAlignmentLeft;
     [self addSubview:_leftOperationButton];
-
+    
     _rightOperationButton = [[UIButton alloc] init];
     [_rightOperationButton setTitleColor:ColorWithRGB(0xFF3366) forState:UIControlStateNormal];
     _rightOperationButton.titleLabel.font = [SGHelper themeFontWithSize:12];
@@ -142,150 +142,150 @@ LoginView ()
     [self addSubview:_rightOperationButton];
 }
 
-- (void)bindConstraints
-{
+- (void)bindConstraints {
     __weak typeof(self) weakSelf = self;
-    [_headerView mas_makeConstraints:^(MASConstraintMaker* make) {
+    [_headerView mas_makeConstraints:^(MASConstraintMaker *make) {
         make.left.top.right.offset(0);
         make.height.equalTo(weakSelf).multipliedBy(0.4);
     }];
-
-    [_nameTextField mas_makeConstraints:^(MASConstraintMaker* make) {
+    
+    [_nameTextField mas_makeConstraints:^(MASConstraintMaker *make) {
         make.left.offset(25);
         make.right.offset(-25);
         make.centerY.offset(-20);
         make.height.offset(0);
     }];
-
-    [_usernameTextField mas_makeConstraints:^(MASConstraintMaker* make) {
+    
+    [_usernameTextField mas_makeConstraints:^(MASConstraintMaker *make) {
         make.left.right.equalTo(_nameTextField);
         make.top.equalTo(_nameTextField.mas_bottom).offset(0);
         make.height.offset(_textFieldHeight);
     }];
-
-    [_passwordTextField mas_makeConstraints:^(MASConstraintMaker* make) {
+    
+    [_passwordTextField mas_makeConstraints:^(MASConstraintMaker *make) {
         make.left.right.equalTo(_nameTextField);
         make.top.equalTo(_usernameTextField.mas_bottom).offset(20);
         make.height.equalTo(_usernameTextField);
     }];
-
-    [_commitButton mas_makeConstraints:^(MASConstraintMaker* make) {
+    
+    [_commitButton mas_makeConstraints:^(MASConstraintMaker *make) {
         make.left.right.equalTo(_usernameTextField);
         make.bottom.offset(-55);
         make.height.equalTo(weakSelf).dividedBy(12);
     }];
-
-    [_leftOperationButton mas_makeConstraints:^(MASConstraintMaker* make) {
+    
+    [_leftOperationButton mas_makeConstraints:^(MASConstraintMaker *make) {
         make.left.equalTo(_usernameTextField);
         make.top.equalTo(_commitButton.mas_bottom).offset(15);
         make.width.equalTo(_commitButton).multipliedBy(0.5);
         make.height.offset(25);
     }];
-
-    [_rightOperationButton mas_makeConstraints:^(MASConstraintMaker* make) {
+    
+    [_rightOperationButton mas_makeConstraints:^(MASConstraintMaker *make) {
         make.right.equalTo(_usernameTextField);
         make.top.equalTo(_leftOperationButton);
         make.width.height.equalTo(_leftOperationButton);
     }];
-
+    
     MASAttachKeys(_nameTextField, _usernameTextField, _passwordTextField, _commitButton, _leftOperationButton, _rightOperationButton);
 }
 
 #pragma mark - commit & commit animation
-- (void)commitButtonDidPress
-{
+
+- (void)commitButtonDidPress {
     __weak typeof(self) weakSelf = self;
-    // Mark: synchronized lock
     dispatch_queue_t serialQueue = dispatch_queue_create("LoginViewCommitSynchronizedLock", DISPATCH_QUEUE_SERIAL);
     dispatch_sync(serialQueue, ^{
         if (_commitButton.indicator.isAnimating)
             return;
-
+        
         if ([_delegate respondsToSelector:@selector(loginViewDidPressCommitButton:isSignUp:)]) {
-
+            
             [weakSelf startCommitAnimation];
             [weakSelf endEditing:YES];
-
-            LCUser* user = [LCUser object];
+            
+            LCUser *user = [LCUser object];
             user.username = _usernameTextField.field.text;
             user.name = _nameTextField.field.text;
             user.email = user.username;
             user.password = _passwordTextField.field.text;
             user.avatarImage = _avatarImage;
-
+            
             [_delegate loginViewDidPressCommitButton:user isSignUp:_isSignUp];
         }
     });
 }
-- (void)startCommitAnimation
-{
+
+- (void)startCommitAnimation {
     [self enableView:NO];
 }
-- (void)stopCommitAnimation
-{
+
+- (void)stopCommitAnimation {
     [self enableView:YES];
 }
-- (void)enableView:(BOOL)isEnable
-{
+
+- (void)enableView:(BOOL)isEnable {
     _headerView.userInteractionEnabled = isEnable;
     _leftOperationButton.enabled = isEnable;
     _rightOperationButton.enabled = isEnable;
     _commitButton.enabled = isEnable;
-
+    
     if (isEnable)
         [_commitButton.indicator stopAnimating];
     else
         [_commitButton.indicator startAnimating];
 }
+
 #pragma mark - avatar
-- (void)avatarButtonDidPress
-{
+
+- (void)avatarButtonDidPress {
     if ([_delegate respondsToSelector:@selector(loginViewDidPressAvatarButton)])
         [_delegate loginViewDidPressAvatarButton];
 }
-- (void)setAvatar:(UIImage*)image
-{
+
+- (void)setAvatar:(UIImage *)image {
     _avatarImage = image;
     [_headerView.avatarButton setBackgroundImage:image forState:UIControlStateNormal];
 }
+
 #pragma mark - switch to sign in/ sign up mode with animation
-- (void)switchModeAnimate
-{
+
+- (void)switchModeAnimate {
     _isSignUp = !_isSignUp;
-
-    [self bindSwitchableDatas];
-
+    
+    [self bindSwitchableData];
+    
     __weak typeof(self) weakSelf = self;
-    [_nameTextField mas_updateConstraints:^(MASConstraintMaker* make) {
+    [_nameTextField mas_updateConstraints:^(MASConstraintMaker *make) {
         __typeof__(self) __strong strongSelf = weakSelf;
         make.height.offset(_isSignUp ? strongSelf->_textFieldHeight : 0);
     }];
-    [_usernameTextField mas_updateConstraints:^(MASConstraintMaker* make) {
+    [_usernameTextField mas_updateConstraints:^(MASConstraintMaker *make) {
         make.top.equalTo(_nameTextField.mas_bottom).offset(_isSignUp ? 20 : 0);
     }];
-    [UIView animateWithDuration:0.3
-                     animations:^{
-                         _headerView.titleLabel.layer.opacity = _isSignUp;
-                         _nameTextField.layer.opacity = _isSignUp;
-                         [weakSelf layoutIfNeeded];
-                     }];
+    [UIView animateWithDuration:0.3 animations:^{
+        _headerView.titleLabel.layer.opacity = _isSignUp;
+        _nameTextField.layer.opacity = _isSignUp;
+        [weakSelf layoutIfNeeded];
+    }];
 }
+
 #pragma mark - keyboard events & animation
-- (void)keyboardWillShow:(NSNotification*)notification
-{
+
+- (void)keyboardWillShow:(NSNotification *)notification {
     [self animateByKeyboard:YES];
 }
-- (void)keyboardWillHide:(NSNotification*)notification
-{
+
+- (void)keyboardWillHide:(NSNotification *)notification {
     [self animateByKeyboard:NO];
 }
-- (void)animateByKeyboard:(BOOL)isShowAnimation
-{
+
+- (void)animateByKeyboard:(BOOL)isShowAnimation {
     __weak typeof(self) weakSelf = self;
-    [self mas_updateConstraints:^(MASConstraintMaker* make) {
+    [self mas_updateConstraints:^(MASConstraintMaker *make) {
         make.top.bottom.offset(isShowAnimation ? -kPopHeightWhenKeyboardShow : 0);
     }];
-    [_commitButton mas_remakeConstraints:^(MASConstraintMaker* make) {
+    [_commitButton mas_remakeConstraints:^(MASConstraintMaker *make) {
         make.left.right.equalTo(_usernameTextField);
         make.height.equalTo(weakSelf).dividedBy(12);
         if (isShowAnimation)
@@ -293,13 +293,13 @@ LoginView ()
         else
             make.bottom.offset(-55);
     }];
-
-    [UIView animateWithDuration:1 animations:^{ [weakSelf.superview layoutIfNeeded]; }];
+    
+    [UIView animateWithDuration:1 animations:^{[weakSelf.superview layoutIfNeeded];}];
 }
 
 #pragma mark - dealloc
-- (void)dealloc
-{
+
+- (void)dealloc {
     [[NSNotificationCenter defaultCenter] removeObserver:self];
     NSLog(@"%s", __func__);
 }

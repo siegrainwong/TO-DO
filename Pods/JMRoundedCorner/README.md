@@ -84,7 +84,7 @@ view.layer.backgroundColor = backgroundColor.CGColor;
 #####设置所有属性配置出一个圆角背景图
 
 ```objc
-- (void)jm_setCornerRadius:(CGFloat)radius withBorderColor:(UIColor *)borderColor borderWidth:(CGFloat)borderWidth backgroundColor:(UIColor *)backgroundColor backgroundImage:(UIImage *)backgroundImage contentMode:(UIViewContentMode)contentMode;
+- (void)jm_setCornerRadius:(CGFloat)radius withBorderColor:(UIColor *)borderColor borderWidth:(CGFloat)borderWidth backgroundColor:(UIColor *)backgroundColor image:(UIImage *)image contentMode:(UIViewContentMode)contentMode;
 ```
 
 #####代码示例

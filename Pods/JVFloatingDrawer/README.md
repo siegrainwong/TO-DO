@@ -21,7 +21,7 @@ JVFloatingDrawer is very easy to use. Below is all that is needed to get going.
     drawerViewController.rightViewController  = rightDrawerViewController;
     drawerViewController.centerViewController = centerViewController;
     
-    self.drawerViewController.backgroundImage = [UIImage imageNamed:@"background-image-example.jpg"];
+    self.drawerViewController.image = [UIImage imageNamed:@"background-image-example.jpg"];
     
     drawerViewController.animator = [[JVFloatingDrawerSpringAnimator alloc] init];
     
@@ -61,7 +61,7 @@ You can also customize the `leftDrawerWidth` and `rightDrawerWidth` by setting t
 
 ##### Background Image
 
-The background image is set by assigning the `backgroundImage` property.
+The background image is set by assigning the `image` property.
 
 ##### Animators
 

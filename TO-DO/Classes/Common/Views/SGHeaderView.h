@@ -30,7 +30,7 @@ typedef NS_ENUM(NSInteger, HeaderTitleAlignement) {
 /**
  *  背景图
  */
-@property(nonatomic, strong) UIImage *backgroundImage;
+@property(nonatomic, strong) UIImage *image;
 /**
  *  头像按钮
  */
