@@ -159,7 +159,7 @@ typedef NS_ENUM(NSInteger, MAUserTrackingMode)
 
 /*!
  @brief 设定地图中心点经纬度
- @param coordinate 要设定的地图中心点经纬度
+ @param centerCoordinate 要设定的地图中心点经纬度
  @param animated 是否采用动画效果
  */
 - (void)setCenterCoordinate:(CLLocationCoordinate2D)centerCoordinate animated:(BOOL)animated;
@@ -218,6 +218,18 @@ typedef NS_ENUM(NSInteger, MAUserTrackingMode)
  */
 - (MAMapRect)mapRectThatFits:(MAMapRect)mapRect edgePadding:(UIEdgeInsets)insets;
 
+#pragma mark - Limitation
+
+/*!
+ @brief 设置可见地图区域的矩形边界，如限制地图只显示北京市范围
+ */
+@property (nonatomic, assign) MACoordinateRegion limitRegion;
+
+/*!
+ @brief 设置可见地图区域的矩形边界，如限制地图只显示北京市范围
+ */
+@property (nonatomic, assign) MAMapRect limitMapRect;
+
 #pragma mark - Zoom
 
 /*!
@@ -237,14 +249,14 @@ typedef NS_ENUM(NSInteger, MAUserTrackingMode)
 
 /*!
  @brief 设置当前地图的缩放级别zoom level
- @param zoomLevel 要设置的zoom level
+ @param newZoomLevel 要设置的zoom level
  @param animated 是否采用动画效果
  */
 - (void)setZoomLevel:(double)newZoomLevel animated:(BOOL)animated;
 
 /*!
  @brief 设置当前地图的缩放级别zoom level
- @param zoomLevel 要设置的zoom level
+ @param newZoomLevel 要设置的zoom level
  @param pivot 指定缩放的锚点，屏幕坐标
  @param animated 是否采用动画效果
  */
@@ -346,7 +358,7 @@ typedef NS_ENUM(NSInteger, MAUserTrackingMode)
 
 /*!
  @brief 移除一组标注
- @param annotation 要移除的标注数组
+ @param annotations 要移除的标注数组
  */
 - (void)removeAnnotations:(NSArray *)annotations;
 
@@ -577,14 +589,14 @@ typedef NS_ENUM(NSInteger, MAUserTrackingMode)
 
 /*!
  @brief 地图区域即将改变时会调用此接口
- @param mapview 地图View
+ @param mapView 地图View
  @param animated 是否动画
  */
 - (void)mapView:(MAMapView *)mapView regionWillChangeAnimated:(BOOL)animated;
 
 /*!
  @brief 地图区域改变完成后会调用此接口
- @param mapview 地图View
+ @param mapView 地图View
  @param animated 是否动画
  */
 - (void)mapView:(MAMapView *)mapView regionDidChangeAnimated:(BOOL)animated;
@@ -655,21 +667,21 @@ typedef NS_ENUM(NSInteger, MAUserTrackingMode)
 /*!
  @brief 当选中一个annotation views时调用此接口
  @param mapView 地图View
- @param views 选中的annotation views
+ @param view 选中的annotationView
  */
 - (void)mapView:(MAMapView *)mapView didSelectAnnotationView:(MAAnnotationView *)view;
 
 /*!
  @brief 当取消选中一个annotation views时调用此接口
  @param mapView 地图View
- @param views 取消选中的annotation views
+ @param view 取消选中的annotationView
  */
 - (void)mapView:(MAMapView *)mapView didDeselectAnnotationView:(MAAnnotationView *)view;
 
 /*!
  @brief 标注view的accessory view(必须继承自UIControl)被点击时调用此接口
  @param mapView 地图View
- @param annotationView callout所属的标注view
+ @param view callout所属的标注view
  @param control 对应的control
  */
 - (void)mapView:(MAMapView *)mapView annotationView:(MAAnnotationView *)view calloutAccessoryControlTapped:(UIControl *)control;

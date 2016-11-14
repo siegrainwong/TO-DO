@@ -17,8 +17,12 @@
 #define NSLog(...)
 #endif
 
-#define kDefaultHost @"www.baidu.com"
+#define kDefaultHost @"www.apple.com"
 #define kDefaultCheckInterval 2.0f
+#define kDefaultPingTimeout 2.0f
+
+#define kMinAutoCheckInterval 0.3f
+#define kMaxAutoCheckInterval 60.0f
 
 NSString *const kRealReachabilityChangedNotification = @"kRealReachabilityChangedNotification";
 
@@ -60,6 +64,7 @@ NSString *const kRealReachabilityChangedNotification = @"kRealReachabilityChange
         
         _hostForPing = kDefaultHost;
         _autoCheckInterval = kDefaultCheckInterval;
+        _pingTimeout = kDefaultPingTimeout;
         
         [[NSNotificationCenter defaultCenter] addObserver:self
                                                  selector:@selector(appBecomeActive)
@@ -128,6 +133,7 @@ NSString *const kRealReachabilityChangedNotification = @"kRealReachabilityChange
                                                object:nil];
     
     GPingHelper.host = _hostForPing;
+    GPingHelper.timeout = self.pingTimeout;
     [self autoCheckReachability];
 }
 
@@ -150,7 +156,7 @@ NSString *const kRealReachabilityChangedNotification = @"kRealReachabilityChange
 
 #pragma mark - outside invoke
 
-- (void)reachabilityWithBlock:(void (^)(ReachabilityStatus))asyncHandler
+- (void)reachabilityWithBlock:(void (^)(ReachabilityStatus status))asyncHandler
 {
     // logic optimization: no need to ping when Local connection unavailable!
     if ([GLocalConnection currentLocalConnectionStatus] == LC_UnReachable)
@@ -261,6 +267,11 @@ NSString *const kRealReachabilityChangedNotification = @"kRealReachabilityChange
     GPingHelper.host = _hostForPing;
 }
 
+- (void)setPingTimeout:(NSTimeInterval)pingTimeout {
+    _pingTimeout = pingTimeout;
+    GPingHelper.timeout = pingTimeout;
+}
+
 - (WWANAccessType)currentWWANtype
 {
     if ([[[UIDevice currentDevice] systemVersion] floatValue] >= 7.0)
@@ -316,7 +327,18 @@ NSString *const kRealReachabilityChangedNotification = @"kRealReachabilityChange
         return;
     }
     
-    dispatch_time_t time = dispatch_time(DISPATCH_TIME_NOW, self.autoCheckInterval*60*NSEC_PER_SEC);
+    if (self.autoCheckInterval < kMinAutoCheckInterval)
+    {
+        self.autoCheckInterval = kMinAutoCheckInterval;
+    }
+    
+    if (self.autoCheckInterval > kMaxAutoCheckInterval)
+    {
+        self.autoCheckInterval = kMaxAutoCheckInterval;
+    }
+    
+    
+    dispatch_time_t time = dispatch_time(DISPATCH_TIME_NOW, (int64_t)(self.autoCheckInterval*60*NSEC_PER_SEC));
     __weak __typeof(self)weakSelf = self;
     dispatch_after(time, dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
         __strong __typeof(weakSelf)strongSelf = weakSelf;
@@ -350,7 +372,7 @@ NSString *const kRealReachabilityChangedNotification = @"kRealReachabilityChange
 {
     LocalConnection *lc = (LocalConnection *)notification.object;
     LocalConnectionStatus lcStatus = [lc currentLocalConnectionStatus];
-    NSLog(@"currentLocalConnectionStatus:%@",@(lcStatus));
+    //NSLog(@"currentLocalConnectionStatus:%@",@(lcStatus));
     ReachabilityStatus status = [self currentReachabilityStatus];
     
     NSDictionary *inputDic = @{kEventKeyID:@(RREventLocalConnectionCallback), kEventKeyParam:[self paramValueFromStatus:lcStatus]};

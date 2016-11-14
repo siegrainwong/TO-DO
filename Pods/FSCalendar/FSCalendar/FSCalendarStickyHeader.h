@@ -17,7 +17,6 @@
 
 @property (weak, nonatomic) UILabel *titleLabel;
 
-@property (strong, nonatomic) NSArray *weekdayLabels;
 @property (strong, nonatomic) NSDate *month;
 
 - (void)invalidateHeaderFont;
@@ -26,5 +25,7 @@
 - (void)invalidateWeekdayTextColor;
 
 - (void)invalidateWeekdaySymbols;
+
+- (void)reloadData;
 
 @end

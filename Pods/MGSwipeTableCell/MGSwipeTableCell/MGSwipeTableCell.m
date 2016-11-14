@@ -1,6 +1,6 @@
 /*
  * MGSwipeTableCell is licensed under MIT license. See LICENSE.md file for more information.
- * Copyright (c) 2014 Imanol Fernandez @MortimerGoro
+ * Copyright (c) 2016 Imanol Fernandez @MortimerGoro
  */
 
 #import "MGSwipeTableCell.h"
@@ -24,6 +24,9 @@
 
 -(UIView *) hitTest:(CGPoint)point withEvent:(UIEvent *)event
 {
+    if (event == nil) {
+        return nil;
+    }
     if (!_currentCell) {
         [self removeFromSuperview];
         return nil;
@@ -39,7 +42,7 @@
     if (hide) {
         [_currentCell hideSwipeAnimated:YES];
     }
-    return _currentCell.touchOnDismissSwipe ? nil : self;;
+    return _currentCell.touchOnDismissSwipe ? nil : self;
 }
 
 @end
@@ -393,6 +396,7 @@
         self.offset = 0;
         self.keepButtonsSwiped = YES;
         self.enableSwipeBounces = YES;
+        self.swipeBounceRate = 1.0;
         self.showAnimation = [[MGSwipeAnimation alloc] init];
         self.hideAnimation = [[MGSwipeAnimation alloc] init];
         self.stretchAnimation = [[MGSwipeAnimation alloc] init];
@@ -509,9 +513,9 @@ static inline CGFloat mgEaseInOutBounce(CGFloat t, CGFloat b, CGFloat c) {
     }
     CGFloat (*easingFunction)(CGFloat t, CGFloat b, CGFloat c) = 0;
     switch (_easingFunction) {
-        case MGSwipeEasingFunctionLinear: easingFunction = mgEaseLinear; break;
-        case MGSwipeEasingFunctionQuadIn: easingFunction = mgEaseInQuad;;break;
-        case MGSwipeEasingFunctionQuadOut: easingFunction = mgEaseOutQuad;;break;
+        case MGSwipeEasingFunctionLinear: easingFunction = mgEaseLinear;break;
+        case MGSwipeEasingFunctionQuadIn: easingFunction = mgEaseInQuad;break;
+        case MGSwipeEasingFunctionQuadOut: easingFunction = mgEaseOutQuad;break;
         case MGSwipeEasingFunctionQuadInOut: easingFunction = mgEaseInOutQuad;break;
         case MGSwipeEasingFunctionCubicIn: easingFunction = mgEaseInCubic;break;
         default:
@@ -580,6 +584,7 @@ static inline CGFloat mgEaseInOutBounce(CGFloat t, CGFloat b, CGFloat c) {
 
 -(void) awakeFromNib
 {
+    [super awakeFromNib];
     if (!_panRecognizer) {
         [self initViews:YES];
     }
@@ -636,12 +641,16 @@ static inline CGFloat mgEaseInOutBounce(CGFloat t, CGFloat b, CGFloat c) {
 
 -(BOOL) isRTLLocale
 {
-    if ([[UIView class] instancesRespondToSelector:@selector(userInterfaceLayoutDirectionForSemanticContentAttribute:)]) {
+    if ([[UIView class] respondsToSelector:@selector(userInterfaceLayoutDirectionForSemanticContentAttribute:)]) {
         return [UIView userInterfaceLayoutDirectionForSemanticContentAttribute:self.semanticContentAttribute] == UIUserInterfaceLayoutDirectionRightToLeft;
     }
+#ifndef TARGET_IS_EXTENSION
     else {
         return [UIApplication sharedApplication].userInterfaceLayoutDirection == UIUserInterfaceLayoutDirectionRightToLeft;
     }
+#else
+    return NO;
+#endif
 }
 
 -(void) fixRegionAndAccesoryViews
@@ -972,6 +981,12 @@ static inline CGFloat mgEaseInOutBounce(CGFloat t, CGFloat b, CGFloat c) {
   
     if(activeSettings.enableSwipeBounces) {
         _swipeOffset = newOffset;
+
+        CGFloat maxUnbouncedOffset = sign * activeButtons.bounds.size.width;
+        
+        if ((sign > 0 && newOffset > maxUnbouncedOffset) || (sign < 0 && newOffset < maxUnbouncedOffset)) {
+            _swipeOffset = maxUnbouncedOffset + (newOffset - maxUnbouncedOffset) * activeSettings.swipeBounceRate;
+        }
     }
     else {
         CGFloat maxOffset = sign * activeButtons.bounds.size.width;
@@ -1101,8 +1116,9 @@ static inline CGFloat mgEaseInOutBounce(CGFloat t, CGFloat b, CGFloat c) {
         [timer invalidate];
         _displayLink = nil;
         if (_animationCompletion) {
-            _animationCompletion(YES);
+            void (^callbackCopy)(BOOL finished) = _animationCompletion; //copy to avoid duplicated callbacks
             _animationCompletion = nil;
+            callbackCopy(YES);
         }
     }
 }
@@ -1119,8 +1135,9 @@ static inline CGFloat mgEaseInOutBounce(CGFloat t, CGFloat b, CGFloat c) {
         _displayLink = nil;
     }
     if (_animationCompletion) { //notify previous animation cancelled
-        _animationCompletion(NO);
+        void (^callbackCopy)(BOOL finished) = _animationCompletion; //copy to avoid duplicated callbacks
         _animationCompletion = nil;
+        callbackCopy(NO);
     }
     if (offset !=0) {
         [self createSwipeViewIfNeeded];
@@ -1216,9 +1233,9 @@ static inline CGFloat mgEaseInOutBounce(CGFloat t, CGFloat b, CGFloat c) {
         self.swipeOffset = [self filterSwipe:offset];
     }
     else {
-        MGSwipeButtonsView * expansion = _activeExpansion;
+        __weak MGSwipeButtonsView * expansion = _activeExpansion;
         if (expansion) {
-            UIView * expandedButton = [expansion getExpandedButton];
+            __weak UIView * expandedButton = [expansion getExpandedButton];
             MGSwipeExpansionSettings * expSettings = _swipeOffset > 0 ? _leftExpansion : _rightExpansion;
             UIColor * backgroundColor = nil;
             if (!expSettings.fillOnTrigger && expSettings.expansionColor) {
@@ -1226,14 +1243,14 @@ static inline CGFloat mgEaseInOutBounce(CGFloat t, CGFloat b, CGFloat c) {
                 expansion.backgroundColorCopy = expSettings.expansionColor;
             }
             [self setSwipeOffset:_targetOffset animation:expSettings.triggerAnimation completion:^(BOOL finished){
-                if (!finished || self.hidden) {
+                if (!finished || self.hidden || !expansion) {
                     return; //cell might be hidden after a delete row animation without being deallocated (to be reused later)
                 }
                 BOOL autoHide = [expansion handleClick:expandedButton fromExpansion:YES];
                 if (autoHide) {
                     [expansion endExpansionAnimated:NO];
                 }
-                if (backgroundColor) {
+                if (backgroundColor && expandedButton) {
                     expandedButton.backgroundColor = backgroundColor;
                 }
             }];
@@ -1329,5 +1346,20 @@ static inline CGFloat mgEaseInOutBounce(CGFloat t, CGFloat b, CGFloat c) {
         _swipeOverlay.backgroundColor = swipeBackgroundColor;
     }
 }
+
+#pragma mark Accessibility
+
+- (NSInteger)accessibilityElementCount {
+    return _swipeOffset == 0 ? [super accessibilityElementCount] : 1;
+}
+
+- (id)accessibilityElementAtIndex:(NSInteger)index {
+    return _swipeOffset == 0  ? [super accessibilityElementAtIndex:index] : self.contentView;
+}
+
+- (NSInteger)indexOfAccessibilityElement:(id)element {
+    return _swipeOffset == 0  ? [super indexOfAccessibilityElement:element] : 0;
+}
+
 
 @end

@@ -24,52 +24,57 @@ PODS:
   - AFNetworking/UIKit (2.6.3):
     - AFNetworking/NSURLConnection
     - AFNetworking/NSURLSession
-  - AMap2DMap (4.3.0):
+  - AMap2DMap (4.4.0):
     - AMapFoundation (~> 1.2)
-  - AMapFoundation (1.3.1)
-  - AMapLocation (2.1.1):
+  - AMapFoundation (1.3.2)
+  - AMapLocation (2.2.0):
+    - AMapFoundation (~> 1.3)
+  - AMapSearch (4.4.0):
     - AMapFoundation (~> 1.2)
-  - AMapSearch (4.3.0):
-    - AMapFoundation (~> 1.2)
-  - AutoLinearLayoutView (0.2.0)
-  - AVOSCloud (3.2.9)
-  - CocoaLumberjack (2.3.0):
-    - CocoaLumberjack/Default (= 2.3.0)
-    - CocoaLumberjack/Extensions (= 2.3.0)
-  - CocoaLumberjack/Core (2.3.0)
-  - CocoaLumberjack/Default (2.3.0):
+  - AutoLinearLayoutView (0.3.0)
+  - AVOSCloud (3.2.12)
+  - CocoaLumberjack (3.0.0):
+    - CocoaLumberjack/Default (= 3.0.0)
+    - CocoaLumberjack/Extensions (= 3.0.0)
+  - CocoaLumberjack/Core (3.0.0)
+  - CocoaLumberjack/Default (3.0.0):
     - CocoaLumberjack/Core
-  - CocoaLumberjack/Extensions (2.3.0):
+  - CocoaLumberjack/Extensions (3.0.0):
     - CocoaLumberjack/Default
-  - DGActivityIndicatorView (2.0)
+  - DGActivityIndicatorView (2.1.1)
   - FDFullscreenPopGesture (1.1)
-  - FSCalendar (2.1.1)
+  - FSCalendar (2.5.1)
   - GTMBase64 (1.0.0)
-  - HappyDNS (0.2.3)
-  - IGLDropDownMenu (1.5.0)
+  - HappyDNS (0.3.10)
+  - IGLDropDownMenu (1.6.2)
   - JMRoundedCorner (1.2.1)
-  - JSONModel (1.2.0)
+  - JSONModel (1.7.0)
   - JVFloatingDrawer (0.1.0)
-  - LCActionSheet (1.2.3)
+  - LCActionSheet (2.6.0):
+    - Masonry (~> 1.0.1)
   - MagicalRecord (2.3.2):
     - MagicalRecord/Core (= 2.3.2)
   - MagicalRecord/Core (2.3.2)
-  - Masonry (1.0.0)
-  - MBProgressHUD (0.9.2)
-  - MGSwipeTableCell (1.5.5)
+  - Masonry (1.0.2)
+  - MBProgressHUD (1.0.0)
+  - MGSwipeTableCell (1.5.6)
   - MJExtension (3.0.13)
   - NetworkEye (1.0.6):
     - NetworkEye/standard (= 1.0.6)
   - NetworkEye/standard (1.0.6)
-  - Qiniu (7.0.17):
+  - Qiniu (7.0.20):
     - AFNetworking (~> 2.0)
-    - HappyDNS (~> 0.2)
-  - RealReachability (1.1.3)
+    - HappyDNS (~> 0.3)
+  - RealReachability (1.1.8):
+    - RealReachability/Connection (= 1.1.8)
+    - RealReachability/Ping (= 1.1.8)
+  - RealReachability/Connection (1.1.8)
+  - RealReachability/Ping (1.1.8)
   - RTRootNavigationController (0.5.22)
-  - SDAutoLayout (1.53)
-  - SDWebImage (3.7.6):
-    - SDWebImage/Core (= 3.7.6)
-  - SDWebImage/Core (3.7.6)
+  - SDAutoLayout (2.1.7)
+  - SDWebImage (3.8.2):
+    - SDWebImage/Core (= 3.8.2)
+  - SDWebImage/Core (3.8.2)
   - TPKeyboardAvoiding (1.3)
   - ZFDragableModalTransition (0.6)
 
@@ -79,11 +84,11 @@ DEPENDENCIES:
   - AMapLocation
   - AMapSearch
   - AutoLinearLayoutView
-  - AVOSCloud
+  - AVOSCloud (~> 3.2.9)
   - CocoaLumberjack
   - DGActivityIndicatorView
   - FDFullscreenPopGesture
-  - FSCalendar
+  - FSCalendar (from `https://github.com/Seanwong933/FSCalendar.git`)
   - GTMBase64
   - IGLDropDownMenu
   - JMRoundedCorner
@@ -104,40 +109,49 @@ DEPENDENCIES:
   - TPKeyboardAvoiding
   - ZFDragableModalTransition
 
+EXTERNAL SOURCES:
+  FSCalendar:
+    :git: https://github.com/Seanwong933/FSCalendar.git
+
+CHECKOUT OPTIONS:
+  FSCalendar:
+    :commit: 32e8b32edfc3f9e129c35ea5ea8c2057ccb2bafd
+    :git: https://github.com/Seanwong933/FSCalendar.git
+
 SPEC CHECKSUMS:
   AFNetworking: cb8d14a848e831097108418f5d49217339d4eb60
   AFNetworking-Synchronous: 29531ad341ec465a4ff9b66dea9cf7272080e12e
-  AMap2DMap: f3f0fc5cdbf0242ff22da0c8605f24f8d7187b35
-  AMapFoundation: 636834a27cd003084f56b4232f3031e6a44c7e7e
-  AMapLocation: dd203f76b034ef5cb546600f4e1ffad2a3a14072
-  AMapSearch: c90cc018a6c5281af17af6058ca99218a4d4b442
-  AutoLinearLayoutView: 1370d70257b925f4eccb3356d3092132ce613df6
-  AVOSCloud: b020009b1f2e35c271d4d019075458c879fc1d21
-  CocoaLumberjack: 97fab7ee5f507fe54445cca7ea80f926729cfd15
-  DGActivityIndicatorView: 52875b025a6ccf6a431a905285c12e2bb95eb559
+  AMap2DMap: 5e310b546e93776462cf5a561cc74bafd6acee58
+  AMapFoundation: 843dc27b2c02bc0bc2ef3346bb3dd0456cf64dbb
+  AMapLocation: 3f2005c6dec6a7a1107258d0cde43b9d7399d217
+  AMapSearch: a6c7c83905dbe12aa059c7ff83cb0726cb4fc32f
+  AutoLinearLayoutView: b4da48a230fcbe03c38e3fd01f435d830071c49b
+  AVOSCloud: fcbb5c2bcccaddbdea8c2b4f6c1ad7f13e6639fe
+  CocoaLumberjack: c823149bccc5519a9447aeb433be7b1212a7d6a5
+  DGActivityIndicatorView: ff2c76073d79692f724863c8dd38685866a03cb6
   FDFullscreenPopGesture: a8a620179e3d9c40e8e00256dcee1c1a27c6d0f0
-  FSCalendar: 04dc531f06fbde8a8e5b7394e9d4edebd45a591f
+  FSCalendar: 8efeb4b92240937204165c7743f4375923112fb5
   GTMBase64: 0da7372e95f5171f3f652db38cde6716f8eb5e24
-  HappyDNS: 6d85942e64c28b4fa61f8c76580398f52d6d1d11
-  IGLDropDownMenu: 1ce06c17b4846f784e2b610f90bd741ab2037f2c
+  HappyDNS: 06a9fed2796663fd87626dbf02552933265bf059
+  IGLDropDownMenu: ae118618ae858fa66ce7c2ac80ed9124a710b228
   JMRoundedCorner: 214e56c2a7e3a0916e8d6040c66d85519cc1be87
-  JSONModel: 12523685c4b623553ccf844bbbf7007624317b2c
+  JSONModel: 840bc0fcffb24b8454d2c026bf26fea454b8e98d
   JVFloatingDrawer: 4782b1df21411aef2c1818f3b346cace02cc2e24
-  LCActionSheet: 690882cd8b9a6713f1b2881c3bb2c7f11954d034
+  LCActionSheet: 25b62201ad1ef2954ab5359795fbf46b2d2cd35b
   MagicalRecord: 53bed74b4323b930992a725be713e53b37d19755
-  Masonry: b529bb169217897b6354d4b56b1fada6d475b13d
-  MBProgressHUD: 1569cf7ace17a8bac47aabfbb8580a49690386d1
-  MGSwipeTableCell: bafeb5f351124544c9364ecbdf24c7b06a37d340
+  Masonry: 7c429b56da9d4ee0bbb3ed77a5ea710d6a5df39e
+  MBProgressHUD: 4890f671c94e8a0f3cf959aa731e9de2f036d71a
+  MGSwipeTableCell: 616700eb0ffd1c611ba909066cb7fd739790a0a7
   MJExtension: 5932755f451458eefa24239358817f8d291240c7
   NetworkEye: 54afcde161ab50e407445b86abd7350f3cd08533
-  Qiniu: 2c05af1f9d580c036b18faf832cc98e98bfb21bc
-  RealReachability: 9eb2aeccff2f26491dbaa9cf36f906ad28e8e7d9
+  Qiniu: 8958e70c02fb563c8c04d555bb5041441c5f4216
+  RealReachability: e6c8a2bbffa316006e8c282efc1ee2567d61a920
   RTRootNavigationController: cf134c044a8ce14d97fc668847ed4567efc53f91
-  SDAutoLayout: ea6e2ae9fbb438aa2feb0c4363dba9297e98638a
-  SDWebImage: c325cf02c30337336b95beff20a13df489ec0ec9
+  SDAutoLayout: e9b36d04b8c0b504762a04d76fbbe5108944297a
+  SDWebImage: 098e97e6176540799c27e804c96653ee0833d13c
   TPKeyboardAvoiding: a5138f318c06fb3e151f886e18ce4a72695d9cbe
   ZFDragableModalTransition: 0d294eaaba6edfcb9839595de765f9ca06a4b524
 
-PODFILE CHECKSUM: a81947303c505fd3a7d16ca4440f1f6abbe30414
+PODFILE CHECKSUM: bc1a43b533b8680af537a07a82ab07493983e2ae
 
 COCOAPODS: 1.0.1

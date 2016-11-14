@@ -131,6 +131,70 @@
       <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/TO-DO/Model/TO_DO.xcdatamodeld/TO_DO 4.xcdatamodel/contents" />
       <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/TO-DO/Model/TO_DO.xcdatamodeld/TO_DO 5.xcdatamodel/contents" />
       <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/TO-DO/PrefixHeader.pch" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/Pods/AMap2DMap/MAMapKit.framework/4.3.0.c0f5df9" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/Pods/AMapFoundation/AMapFoundationKit.framework/1.3.1.4f053bd" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/Pods/AMapLocation/AMapLocationKit.framework/2.1.1.0edf019" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/Pods/AMapSearch/AMapSearchKit.framework/4.3.0.03f89c0" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/Pods/AVOSCloud/iOS/release-v3.2.9/Static/AVOSCloud.framework/AVOSCloud" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/Pods/FSCalendar/FSCalendar/CALayer+FSExtension.h" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/Pods/FSCalendar/FSCalendar/CALayer+FSExtension.m" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/Pods/FSCalendar/FSCalendar/FSCalendar+IBExtension.h" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/Pods/FSCalendar/FSCalendar/FSCalendar+IBExtension.m" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/Pods/FSCalendar/FSCalendar/FSCalendarConstance.h" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/Pods/FSCalendar/FSCalendar/FSCalendarConstance.m" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/Pods/FSCalendar/FSCalendar/FSCalendarEventIndicator.h" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/Pods/FSCalendar/FSCalendar/FSCalendarEventIndicator.m" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/Pods/FSCalendar/FSCalendar/FSCalendarFlowLayout.h" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/Pods/FSCalendar/FSCalendar/FSCalendarFlowLayout.m" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/Pods/FSCalendar/FSCalendar/FSCalendarHeader.h" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/Pods/FSCalendar/FSCalendar/FSCalendarHeader.m" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/Pods/FSCalendar/FSCalendar/NSDate+FSExtension.h" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/Pods/FSCalendar/FSCalendar/NSDate+FSExtension.m" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/Pods/FSCalendar/FSCalendar/NSString+FSExtension.h" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/Pods/FSCalendar/FSCalendar/NSString+FSExtension.m" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/Pods/FSCalendar/FSCalendar/UIView+FSExtension.h" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/Pods/FSCalendar/FSCalendar/UIView+FSExtension.m" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/Pods/Headers/Private/FSCalendar/CALayer+FSExtension.h" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/Pods/Headers/Private/FSCalendar/FSCalendar+IBExtension.h" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/Pods/Headers/Private/FSCalendar/FSCalendarConstance.h" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/Pods/Headers/Private/FSCalendar/FSCalendarEventIndicator.h" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/Pods/Headers/Private/FSCalendar/FSCalendarFlowLayout.h" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/Pods/Headers/Private/FSCalendar/FSCalendarHeader.h" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/Pods/Headers/Private/FSCalendar/NSDate+FSExtension.h" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/Pods/Headers/Private/FSCalendar/NSString+FSExtension.h" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/Pods/Headers/Private/FSCalendar/UIView+FSExtension.h" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/Pods/Headers/Private/JSONModel/JSONModelArray.h" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/Pods/Headers/Private/JSONModel/NSArray+JSONModel.h" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/Pods/Headers/Private/Qiniu/QNDns.h" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/Pods/Headers/Public/FSCalendar/CALayer+FSExtension.h" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/Pods/Headers/Public/FSCalendar/FSCalendar+IBExtension.h" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/Pods/Headers/Public/FSCalendar/FSCalendarConstance.h" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/Pods/Headers/Public/FSCalendar/FSCalendarEventIndicator.h" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/Pods/Headers/Public/FSCalendar/FSCalendarFlowLayout.h" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/Pods/Headers/Public/FSCalendar/FSCalendarHeader.h" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/Pods/Headers/Public/FSCalendar/NSDate+FSExtension.h" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/Pods/Headers/Public/FSCalendar/NSString+FSExtension.h" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/Pods/Headers/Public/FSCalendar/UIView+FSExtension.h" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/Pods/Headers/Public/JSONModel/JSONModelArray.h" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/Pods/Headers/Public/JSONModel/NSArray+JSONModel.h" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/Pods/Headers/Public/Qiniu/QNDns.h" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/Pods/Headers/Public/RealReachability/FSMDefines.h" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/Pods/Headers/Public/RealReachability/FSMEngine.h" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/Pods/Headers/Public/RealReachability/FSMStateUtil.h" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/Pods/Headers/Public/RealReachability/PingFoundation.h" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/Pods/Headers/Public/RealReachability/ReachState.h" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/Pods/Headers/Public/RealReachability/ReachStateLoading.h" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/Pods/Headers/Public/RealReachability/ReachStateUnReachable.h" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/Pods/Headers/Public/RealReachability/ReachStateUnloaded.h" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/Pods/Headers/Public/RealReachability/ReachStateWIFI.h" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/Pods/Headers/Public/RealReachability/ReachStateWWAN.h" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/Pods/JSONModel/JSONModel/JSONModel/JSONModelArray.h" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/Pods/JSONModel/JSONModel/JSONModel/JSONModelArray.m" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/Pods/JSONModel/JSONModel/JSONModelCategories/NSArray+JSONModel.h" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/Pods/JSONModel/JSONModel/JSONModelCategories/NSArray+JSONModel.m" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/Pods/JSONModel/LICENSE_jsonmodel.txt" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/Pods/Qiniu/QiniuSDK/Http/QNDns.h" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/Pods/Qiniu/QiniuSDK/Http/QNDns.m" afterPath="" />
       <change type="DELETED" beforePath="$PROJECT_DIR$/TO-DO/Classes/Common/Categories/WAuthData+Extension.h" afterPath="" />
       <change type="DELETED" beforePath="$PROJECT_DIR$/TO-DO/Classes/Common/Categories/WAuthData+Extension.m" afterPath="" />
       <change type="DELETED" beforePath="$PROJECT_DIR$/TO-DO/Classes/Common/TodoHelper.h" afterPath="" />
@@ -143,7 +207,239 @@
       <change type="MOVED" beforePath="$PROJECT_DIR$/TO-DO/Classes/Login/DataManager/LoginDataManager.h" afterPath="$PROJECT_DIR$/TO-DO/Classes/Login/DataManager/LCUserDataManager.h" />
       <change type="MOVED" beforePath="$PROJECT_DIR$/TO-DO/Classes/Login/Model/SGUser.m" afterPath="$PROJECT_DIR$/TO-DO/Model/LeanCloudModels/LCUser.m" />
       <change type="MOVED" beforePath="$PROJECT_DIR$/TO-DO/Images/1. Login/header bg.png" afterPath="$PROJECT_DIR$/TO-DO/Images/1. Login/login header bg.png" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Pods/AMap2DMap/MAMapKit.framework/MAMapKit" afterPath="$PROJECT_DIR$/Pods/AMap2DMap/MAMapKit.framework/MAMapKit" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Pods/AMapFoundation/AMapFoundationKit.framework/AMapFoundationKit" afterPath="$PROJECT_DIR$/Pods/AMapFoundation/AMapFoundationKit.framework/AMapFoundationKit" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Pods/AMapLocation/AMapLocationKit.framework/AMapLocationKit" afterPath="$PROJECT_DIR$/Pods/AMapLocation/AMapLocationKit.framework/AMapLocationKit" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Pods/AMapSearch/AMapSearchKit.framework/AMapSearchKit" afterPath="$PROJECT_DIR$/Pods/AMapSearch/AMapSearchKit.framework/AMapSearchKit" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Pods/AVOSCloud/libAVOSCloud.a" afterPath="$PROJECT_DIR$/Pods/AVOSCloud/libAVOSCloud.a" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Pods/LCActionSheet/LCActionSheet/LCActionSheet.bundle/bgImage_HL@2x.png" afterPath="$PROJECT_DIR$/Pods/LCActionSheet/LCActionSheet/LCActionSheet.bundle/bgImage_HL@2x.png" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Pods/LCActionSheet/LCActionSheet/LCActionSheet.bundle/cellLine@2x.png" afterPath="$PROJECT_DIR$/Pods/LCActionSheet/LCActionSheet/LCActionSheet.bundle/cellLine@2x.png" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Pods/LCActionSheet/README.md" afterPath="$PROJECT_DIR$/Pods/LCActionSheet/README.md" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Podfile" afterPath="$PROJECT_DIR$/Podfile" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Podfile.lock" afterPath="$PROJECT_DIR$/Podfile.lock" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Pods/AMap2DMap/MAMapKit.framework/Headers/MAGeometry.h" afterPath="$PROJECT_DIR$/Pods/AMap2DMap/MAMapKit.framework/Headers/MAGeometry.h" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Pods/AMap2DMap/MAMapKit.framework/Headers/MAMapVersion.h" afterPath="$PROJECT_DIR$/Pods/AMap2DMap/MAMapKit.framework/Headers/MAMapVersion.h" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Pods/AMap2DMap/MAMapKit.framework/Headers/MAMapView.h" afterPath="$PROJECT_DIR$/Pods/AMap2DMap/MAMapKit.framework/Headers/MAMapView.h" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Pods/AMap2DMap/MAMapKit.framework/Headers/MAMultiColoredPolylineRenderer.h" afterPath="$PROJECT_DIR$/Pods/AMap2DMap/MAMapKit.framework/Headers/MAMultiColoredPolylineRenderer.h" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Pods/AMap2DMap/MAMapKit.framework/Headers/MAPointAnnotation.h" afterPath="$PROJECT_DIR$/Pods/AMap2DMap/MAMapKit.framework/Headers/MAPointAnnotation.h" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Pods/AMap2DMap/MAMapKit.framework/Headers/MATileOverlay.h" afterPath="$PROJECT_DIR$/Pods/AMap2DMap/MAMapKit.framework/Headers/MATileOverlay.h" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Pods/AMap2DMap/MAMapKit.framework/Headers/MATileOverlayRenderer.h" afterPath="$PROJECT_DIR$/Pods/AMap2DMap/MAMapKit.framework/Headers/MATileOverlayRenderer.h" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Pods/AMap2DMap/MAMapKit.framework/Headers/MATileOverlayView.h" afterPath="$PROJECT_DIR$/Pods/AMap2DMap/MAMapKit.framework/Headers/MATileOverlayView.h" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Pods/AMapFoundation/AMapFoundationKit.framework/Headers/AMapFoundationKit.h" afterPath="$PROJECT_DIR$/Pods/AMapFoundation/AMapFoundationKit.framework/Headers/AMapFoundationKit.h" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Pods/AMapFoundation/AMapFoundationKit.framework/Headers/AMapFoundationVersion.h" afterPath="$PROJECT_DIR$/Pods/AMapFoundation/AMapFoundationKit.framework/Headers/AMapFoundationVersion.h" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Pods/AMapFoundation/AMapFoundationKit.framework/Headers/AMapServices.h" afterPath="$PROJECT_DIR$/Pods/AMapFoundation/AMapFoundationKit.framework/Headers/AMapServices.h" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Pods/AMapLocation/AMapLocationKit.framework/Headers/AMapLocationCommonObj.h" afterPath="$PROJECT_DIR$/Pods/AMapLocation/AMapLocationKit.framework/Headers/AMapLocationCommonObj.h" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Pods/AMapLocation/AMapLocationKit.framework/Headers/AMapLocationManager.h" afterPath="$PROJECT_DIR$/Pods/AMapLocation/AMapLocationKit.framework/Headers/AMapLocationManager.h" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Pods/AMapLocation/AMapLocationKit.framework/Headers/AMapLocationVersion.h" afterPath="$PROJECT_DIR$/Pods/AMapLocation/AMapLocationKit.framework/Headers/AMapLocationVersion.h" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Pods/AMapSearch/AMapSearchKit.framework/Headers/AMapCommonObj.h" afterPath="$PROJECT_DIR$/Pods/AMapSearch/AMapSearchKit.framework/Headers/AMapCommonObj.h" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Pods/AMapSearch/AMapSearchKit.framework/Headers/AMapSearchAPI.h" afterPath="$PROJECT_DIR$/Pods/AMapSearch/AMapSearchKit.framework/Headers/AMapSearchAPI.h" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Pods/AMapSearch/AMapSearchKit.framework/Headers/AMapSearchObj.h" afterPath="$PROJECT_DIR$/Pods/AMapSearch/AMapSearchKit.framework/Headers/AMapSearchObj.h" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Pods/AMapSearch/AMapSearchKit.framework/Headers/AMapSearchVersion.h" afterPath="$PROJECT_DIR$/Pods/AMapSearch/AMapSearchKit.framework/Headers/AMapSearchVersion.h" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Pods/AVOSCloud/AVOSCloud.h" afterPath="$PROJECT_DIR$/Pods/AVOSCloud/AVOSCloud.h" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Pods/AVOSCloud/AVPush.h" afterPath="$PROJECT_DIR$/Pods/AVOSCloud/AVPush.h" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Pods/AutoLinearLayoutView/Pod/Classes/AutoLinearLayoutView.m" afterPath="$PROJECT_DIR$/Pods/AutoLinearLayoutView/Pod/Classes/AutoLinearLayoutView.m" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Pods/CocoaLumberjack/Classes/CocoaLumberjack.swift" afterPath="$PROJECT_DIR$/Pods/CocoaLumberjack/Classes/CocoaLumberjack.swift" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Pods/CocoaLumberjack/Classes/DDFileLogger.h" afterPath="$PROJECT_DIR$/Pods/CocoaLumberjack/Classes/DDFileLogger.h" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Pods/CocoaLumberjack/Classes/DDFileLogger.m" afterPath="$PROJECT_DIR$/Pods/CocoaLumberjack/Classes/DDFileLogger.m" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Pods/CocoaLumberjack/Classes/DDLog.h" afterPath="$PROJECT_DIR$/Pods/CocoaLumberjack/Classes/DDLog.h" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Pods/CocoaLumberjack/Classes/DDLog.m" afterPath="$PROJECT_DIR$/Pods/CocoaLumberjack/Classes/DDLog.m" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Pods/CocoaLumberjack/Classes/Extensions/DDContextFilterLogFormatter.h" afterPath="$PROJECT_DIR$/Pods/CocoaLumberjack/Classes/Extensions/DDContextFilterLogFormatter.h" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Pods/CocoaLumberjack/Classes/Extensions/DDMultiFormatter.h" afterPath="$PROJECT_DIR$/Pods/CocoaLumberjack/Classes/Extensions/DDMultiFormatter.h" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Pods/CocoaLumberjack/README.md" afterPath="$PROJECT_DIR$/Pods/CocoaLumberjack/README.md" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Pods/DGActivityIndicatorView/DGActivityIndicatorView/Animations/DGActivityIndicatorBallBeatAnimation.h" afterPath="$PROJECT_DIR$/Pods/DGActivityIndicatorView/DGActivityIndicatorView/Animations/DGActivityIndicatorBallBeatAnimation.h" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Pods/DGActivityIndicatorView/DGActivityIndicatorView/Animations/DGActivityIndicatorBallBeatAnimation.m" afterPath="$PROJECT_DIR$/Pods/DGActivityIndicatorView/DGActivityIndicatorView/Animations/DGActivityIndicatorBallBeatAnimation.m" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Pods/DGActivityIndicatorView/DGActivityIndicatorView/Animations/DGActivityIndicatorBallClipRotateAnimation.h" afterPath="$PROJECT_DIR$/Pods/DGActivityIndicatorView/DGActivityIndicatorView/Animations/DGActivityIndicatorBallClipRotateAnimation.h" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Pods/DGActivityIndicatorView/DGActivityIndicatorView/Animations/DGActivityIndicatorBallClipRotateAnimation.m" afterPath="$PROJECT_DIR$/Pods/DGActivityIndicatorView/DGActivityIndicatorView/Animations/DGActivityIndicatorBallClipRotateAnimation.m" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Pods/DGActivityIndicatorView/DGActivityIndicatorView/Animations/DGActivityIndicatorBallClipRotateMultipleAnimation.h" afterPath="$PROJECT_DIR$/Pods/DGActivityIndicatorView/DGActivityIndicatorView/Animations/DGActivityIndicatorBallClipRotateMultipleAnimation.h" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Pods/DGActivityIndicatorView/DGActivityIndicatorView/Animations/DGActivityIndicatorBallClipRotateMultipleAnimation.m" afterPath="$PROJECT_DIR$/Pods/DGActivityIndicatorView/DGActivityIndicatorView/Animations/DGActivityIndicatorBallClipRotateMultipleAnimation.m" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Pods/DGActivityIndicatorView/DGActivityIndicatorView/Animations/DGActivityIndicatorBallClipRotatePulseAnimation.h" afterPath="$PROJECT_DIR$/Pods/DGActivityIndicatorView/DGActivityIndicatorView/Animations/DGActivityIndicatorBallClipRotatePulseAnimation.h" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Pods/DGActivityIndicatorView/DGActivityIndicatorView/Animations/DGActivityIndicatorBallClipRotatePulseAnimation.m" afterPath="$PROJECT_DIR$/Pods/DGActivityIndicatorView/DGActivityIndicatorView/Animations/DGActivityIndicatorBallClipRotatePulseAnimation.m" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Pods/DGActivityIndicatorView/DGActivityIndicatorView/Animations/DGActivityIndicatorBallGridBeatAnimation.h" afterPath="$PROJECT_DIR$/Pods/DGActivityIndicatorView/DGActivityIndicatorView/Animations/DGActivityIndicatorBallGridBeatAnimation.h" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Pods/DGActivityIndicatorView/DGActivityIndicatorView/Animations/DGActivityIndicatorBallGridBeatAnimation.m" afterPath="$PROJECT_DIR$/Pods/DGActivityIndicatorView/DGActivityIndicatorView/Animations/DGActivityIndicatorBallGridBeatAnimation.m" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Pods/DGActivityIndicatorView/DGActivityIndicatorView/Animations/DGActivityIndicatorBallGridPulseAnimation.h" afterPath="$PROJECT_DIR$/Pods/DGActivityIndicatorView/DGActivityIndicatorView/Animations/DGActivityIndicatorBallGridPulseAnimation.h" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Pods/DGActivityIndicatorView/DGActivityIndicatorView/Animations/DGActivityIndicatorBallGridPulseAnimation.m" afterPath="$PROJECT_DIR$/Pods/DGActivityIndicatorView/DGActivityIndicatorView/Animations/DGActivityIndicatorBallGridPulseAnimation.m" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Pods/DGActivityIndicatorView/DGActivityIndicatorView/Animations/DGActivityIndicatorBallPulseAnimation.h" afterPath="$PROJECT_DIR$/Pods/DGActivityIndicatorView/DGActivityIndicatorView/Animations/DGActivityIndicatorBallPulseAnimation.h" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Pods/DGActivityIndicatorView/DGActivityIndicatorView/Animations/DGActivityIndicatorBallPulseAnimation.m" afterPath="$PROJECT_DIR$/Pods/DGActivityIndicatorView/DGActivityIndicatorView/Animations/DGActivityIndicatorBallPulseAnimation.m" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Pods/DGActivityIndicatorView/DGActivityIndicatorView/Animations/DGActivityIndicatorBallPulseSyncAnimation.h" afterPath="$PROJECT_DIR$/Pods/DGActivityIndicatorView/DGActivityIndicatorView/Animations/DGActivityIndicatorBallPulseSyncAnimation.h" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Pods/DGActivityIndicatorView/DGActivityIndicatorView/Animations/DGActivityIndicatorBallPulseSyncAnimation.m" afterPath="$PROJECT_DIR$/Pods/DGActivityIndicatorView/DGActivityIndicatorView/Animations/DGActivityIndicatorBallPulseSyncAnimation.m" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Pods/DGActivityIndicatorView/DGActivityIndicatorView/Animations/DGActivityIndicatorBallRotateAnimation.h" afterPath="$PROJECT_DIR$/Pods/DGActivityIndicatorView/DGActivityIndicatorView/Animations/DGActivityIndicatorBallRotateAnimation.h" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Pods/DGActivityIndicatorView/DGActivityIndicatorView/Animations/DGActivityIndicatorBallRotateAnimation.m" afterPath="$PROJECT_DIR$/Pods/DGActivityIndicatorView/DGActivityIndicatorView/Animations/DGActivityIndicatorBallRotateAnimation.m" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Pods/DGActivityIndicatorView/DGActivityIndicatorView/Animations/DGActivityIndicatorBallScaleAnimation.h" afterPath="$PROJECT_DIR$/Pods/DGActivityIndicatorView/DGActivityIndicatorView/Animations/DGActivityIndicatorBallScaleAnimation.h" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Pods/DGActivityIndicatorView/DGActivityIndicatorView/Animations/DGActivityIndicatorBallScaleAnimation.m" afterPath="$PROJECT_DIR$/Pods/DGActivityIndicatorView/DGActivityIndicatorView/Animations/DGActivityIndicatorBallScaleAnimation.m" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Pods/DGActivityIndicatorView/DGActivityIndicatorView/Animations/DGActivityIndicatorBallScaleMultipleAnimation.h" afterPath="$PROJECT_DIR$/Pods/DGActivityIndicatorView/DGActivityIndicatorView/Animations/DGActivityIndicatorBallScaleMultipleAnimation.h" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Pods/DGActivityIndicatorView/DGActivityIndicatorView/Animations/DGActivityIndicatorBallScaleMultipleAnimation.m" afterPath="$PROJECT_DIR$/Pods/DGActivityIndicatorView/DGActivityIndicatorView/Animations/DGActivityIndicatorBallScaleMultipleAnimation.m" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Pods/DGActivityIndicatorView/DGActivityIndicatorView/Animations/DGActivityIndicatorBallScaleRippleAnimation.h" afterPath="$PROJECT_DIR$/Pods/DGActivityIndicatorView/DGActivityIndicatorView/Animations/DGActivityIndicatorBallScaleRippleAnimation.h" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Pods/DGActivityIndicatorView/DGActivityIndicatorView/Animations/DGActivityIndicatorBallScaleRippleAnimation.m" afterPath="$PROJECT_DIR$/Pods/DGActivityIndicatorView/DGActivityIndicatorView/Animations/DGActivityIndicatorBallScaleRippleAnimation.m" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Pods/DGActivityIndicatorView/DGActivityIndicatorView/Animations/DGActivityIndicatorBallScaleRippleMultipleAnimation.h" afterPath="$PROJECT_DIR$/Pods/DGActivityIndicatorView/DGActivityIndicatorView/Animations/DGActivityIndicatorBallScaleRippleMultipleAnimation.h" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Pods/DGActivityIndicatorView/DGActivityIndicatorView/Animations/DGActivityIndicatorBallScaleRippleMultipleAnimation.m" afterPath="$PROJECT_DIR$/Pods/DGActivityIndicatorView/DGActivityIndicatorView/Animations/DGActivityIndicatorBallScaleRippleMultipleAnimation.m" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Pods/DGActivityIndicatorView/DGActivityIndicatorView/Animations/DGActivityIndicatorBallSpinFadeLoader.h" afterPath="$PROJECT_DIR$/Pods/DGActivityIndicatorView/DGActivityIndicatorView/Animations/DGActivityIndicatorBallSpinFadeLoader.h" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Pods/DGActivityIndicatorView/DGActivityIndicatorView/Animations/DGActivityIndicatorBallSpinFadeLoader.m" afterPath="$PROJECT_DIR$/Pods/DGActivityIndicatorView/DGActivityIndicatorView/Animations/DGActivityIndicatorBallSpinFadeLoader.m" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Pods/DGActivityIndicatorView/DGActivityIndicatorView/Animations/DGActivityIndicatorBallTrianglePathAnimation.h" afterPath="$PROJECT_DIR$/Pods/DGActivityIndicatorView/DGActivityIndicatorView/Animations/DGActivityIndicatorBallTrianglePathAnimation.h" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Pods/DGActivityIndicatorView/DGActivityIndicatorView/Animations/DGActivityIndicatorBallTrianglePathAnimation.m" afterPath="$PROJECT_DIR$/Pods/DGActivityIndicatorView/DGActivityIndicatorView/Animations/DGActivityIndicatorBallTrianglePathAnimation.m" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Pods/DGActivityIndicatorView/DGActivityIndicatorView/Animations/DGActivityIndicatorBallZigZagAnimation.h" afterPath="$PROJECT_DIR$/Pods/DGActivityIndicatorView/DGActivityIndicatorView/Animations/DGActivityIndicatorBallZigZagAnimation.h" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Pods/DGActivityIndicatorView/DGActivityIndicatorView/Animations/DGActivityIndicatorBallZigZagAnimation.m" afterPath="$PROJECT_DIR$/Pods/DGActivityIndicatorView/DGActivityIndicatorView/Animations/DGActivityIndicatorBallZigZagAnimation.m" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Pods/DGActivityIndicatorView/DGActivityIndicatorView/Animations/DGActivityIndicatorBallZigZagDeflectAnimation.h" afterPath="$PROJECT_DIR$/Pods/DGActivityIndicatorView/DGActivityIndicatorView/Animations/DGActivityIndicatorBallZigZagDeflectAnimation.h" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Pods/DGActivityIndicatorView/DGActivityIndicatorView/Animations/DGActivityIndicatorBallZigZagDeflectAnimation.m" afterPath="$PROJECT_DIR$/Pods/DGActivityIndicatorView/DGActivityIndicatorView/Animations/DGActivityIndicatorBallZigZagDeflectAnimation.m" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Pods/DGActivityIndicatorView/DGActivityIndicatorView/Animations/DGActivityIndicatorCookieTerminatorAnimation.h" afterPath="$PROJECT_DIR$/Pods/DGActivityIndicatorView/DGActivityIndicatorView/Animations/DGActivityIndicatorCookieTerminatorAnimation.h" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Pods/DGActivityIndicatorView/DGActivityIndicatorView/Animations/DGActivityIndicatorCookieTerminatorAnimation.m" afterPath="$PROJECT_DIR$/Pods/DGActivityIndicatorView/DGActivityIndicatorView/Animations/DGActivityIndicatorCookieTerminatorAnimation.m" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Pods/DGActivityIndicatorView/DGActivityIndicatorView/Animations/DGActivityIndicatorDoubleBounceAnimation.h" afterPath="$PROJECT_DIR$/Pods/DGActivityIndicatorView/DGActivityIndicatorView/Animations/DGActivityIndicatorDoubleBounceAnimation.h" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Pods/DGActivityIndicatorView/DGActivityIndicatorView/Animations/DGActivityIndicatorDoubleBounceAnimation.m" afterPath="$PROJECT_DIR$/Pods/DGActivityIndicatorView/DGActivityIndicatorView/Animations/DGActivityIndicatorDoubleBounceAnimation.m" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Pods/DGActivityIndicatorView/DGActivityIndicatorView/Animations/DGActivityIndicatorFiveDotsAnimation.h" afterPath="$PROJECT_DIR$/Pods/DGActivityIndicatorView/DGActivityIndicatorView/Animations/DGActivityIndicatorFiveDotsAnimation.h" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Pods/DGActivityIndicatorView/DGActivityIndicatorView/Animations/DGActivityIndicatorFiveDotsAnimation.m" afterPath="$PROJECT_DIR$/Pods/DGActivityIndicatorView/DGActivityIndicatorView/Animations/DGActivityIndicatorFiveDotsAnimation.m" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Pods/DGActivityIndicatorView/DGActivityIndicatorView/Animations/DGActivityIndicatorLineScaleAnimation.h" afterPath="$PROJECT_DIR$/Pods/DGActivityIndicatorView/DGActivityIndicatorView/Animations/DGActivityIndicatorLineScaleAnimation.h" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Pods/DGActivityIndicatorView/DGActivityIndicatorView/Animations/DGActivityIndicatorLineScaleAnimation.m" afterPath="$PROJECT_DIR$/Pods/DGActivityIndicatorView/DGActivityIndicatorView/Animations/DGActivityIndicatorLineScaleAnimation.m" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Pods/DGActivityIndicatorView/DGActivityIndicatorView/Animations/DGActivityIndicatorLineScalePartyAnimation.h" afterPath="$PROJECT_DIR$/Pods/DGActivityIndicatorView/DGActivityIndicatorView/Animations/DGActivityIndicatorLineScalePartyAnimation.h" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Pods/DGActivityIndicatorView/DGActivityIndicatorView/Animations/DGActivityIndicatorLineScalePartyAnimation.m" afterPath="$PROJECT_DIR$/Pods/DGActivityIndicatorView/DGActivityIndicatorView/Animations/DGActivityIndicatorLineScalePartyAnimation.m" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Pods/DGActivityIndicatorView/DGActivityIndicatorView/Animations/DGActivityIndicatorLineScalePulseOutAnimation.h" afterPath="$PROJECT_DIR$/Pods/DGActivityIndicatorView/DGActivityIndicatorView/Animations/DGActivityIndicatorLineScalePulseOutAnimation.h" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Pods/DGActivityIndicatorView/DGActivityIndicatorView/Animations/DGActivityIndicatorLineScalePulseOutAnimation.m" afterPath="$PROJECT_DIR$/Pods/DGActivityIndicatorView/DGActivityIndicatorView/Animations/DGActivityIndicatorLineScalePulseOutAnimation.m" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Pods/DGActivityIndicatorView/DGActivityIndicatorView/Animations/DGActivityIndicatorLineScalePulseOutRapidAnimation.h" afterPath="$PROJECT_DIR$/Pods/DGActivityIndicatorView/DGActivityIndicatorView/Animations/DGActivityIndicatorLineScalePulseOutRapidAnimation.h" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Pods/DGActivityIndicatorView/DGActivityIndicatorView/Animations/DGActivityIndicatorLineScalePulseOutRapidAnimation.m" afterPath="$PROJECT_DIR$/Pods/DGActivityIndicatorView/DGActivityIndicatorView/Animations/DGActivityIndicatorLineScalePulseOutRapidAnimation.m" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Pods/DGActivityIndicatorView/DGActivityIndicatorView/Animations/DGActivityIndicatorNineDotsAnimation.h" afterPath="$PROJECT_DIR$/Pods/DGActivityIndicatorView/DGActivityIndicatorView/Animations/DGActivityIndicatorNineDotsAnimation.h" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Pods/DGActivityIndicatorView/DGActivityIndicatorView/Animations/DGActivityIndicatorNineDotsAnimation.m" afterPath="$PROJECT_DIR$/Pods/DGActivityIndicatorView/DGActivityIndicatorView/Animations/DGActivityIndicatorNineDotsAnimation.m" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Pods/DGActivityIndicatorView/DGActivityIndicatorView/Animations/DGActivityIndicatorRotatingSandglassAnimation.h" afterPath="$PROJECT_DIR$/Pods/DGActivityIndicatorView/DGActivityIndicatorView/Animations/DGActivityIndicatorRotatingSandglassAnimation.h" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Pods/DGActivityIndicatorView/DGActivityIndicatorView/Animations/DGActivityIndicatorRotatingSandglassAnimation.m" afterPath="$PROJECT_DIR$/Pods/DGActivityIndicatorView/DGActivityIndicatorView/Animations/DGActivityIndicatorRotatingSandglassAnimation.m" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Pods/DGActivityIndicatorView/DGActivityIndicatorView/Animations/DGActivityIndicatorRotatingSquaresAnimation.h" afterPath="$PROJECT_DIR$/Pods/DGActivityIndicatorView/DGActivityIndicatorView/Animations/DGActivityIndicatorRotatingSquaresAnimation.h" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Pods/DGActivityIndicatorView/DGActivityIndicatorView/Animations/DGActivityIndicatorRotatingSquaresAnimation.m" afterPath="$PROJECT_DIR$/Pods/DGActivityIndicatorView/DGActivityIndicatorView/Animations/DGActivityIndicatorRotatingSquaresAnimation.m" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Pods/DGActivityIndicatorView/DGActivityIndicatorView/Animations/DGActivityIndicatorRotatingTrigonAnimation.h" afterPath="$PROJECT_DIR$/Pods/DGActivityIndicatorView/DGActivityIndicatorView/Animations/DGActivityIndicatorRotatingTrigonAnimation.h" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Pods/DGActivityIndicatorView/DGActivityIndicatorView/Animations/DGActivityIndicatorRotatingTrigonAnimation.m" afterPath="$PROJECT_DIR$/Pods/DGActivityIndicatorView/DGActivityIndicatorView/Animations/DGActivityIndicatorRotatingTrigonAnimation.m" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Pods/DGActivityIndicatorView/DGActivityIndicatorView/Animations/DGActivityIndicatorThreeDotsAnimation.h" afterPath="$PROJECT_DIR$/Pods/DGActivityIndicatorView/DGActivityIndicatorView/Animations/DGActivityIndicatorThreeDotsAnimation.h" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Pods/DGActivityIndicatorView/DGActivityIndicatorView/Animations/DGActivityIndicatorThreeDotsAnimation.m" afterPath="$PROJECT_DIR$/Pods/DGActivityIndicatorView/DGActivityIndicatorView/Animations/DGActivityIndicatorThreeDotsAnimation.m" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Pods/DGActivityIndicatorView/DGActivityIndicatorView/Animations/DGActivityIndicatorTriangleSkewSpinAnimation.h" afterPath="$PROJECT_DIR$/Pods/DGActivityIndicatorView/DGActivityIndicatorView/Animations/DGActivityIndicatorTriangleSkewSpinAnimation.h" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Pods/DGActivityIndicatorView/DGActivityIndicatorView/Animations/DGActivityIndicatorTriangleSkewSpinAnimation.m" afterPath="$PROJECT_DIR$/Pods/DGActivityIndicatorView/DGActivityIndicatorView/Animations/DGActivityIndicatorTriangleSkewSpinAnimation.m" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Pods/DGActivityIndicatorView/DGActivityIndicatorView/Animations/DGActivityIndicatorTriplePulseAnimation.h" afterPath="$PROJECT_DIR$/Pods/DGActivityIndicatorView/DGActivityIndicatorView/Animations/DGActivityIndicatorTriplePulseAnimation.h" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Pods/DGActivityIndicatorView/DGActivityIndicatorView/Animations/DGActivityIndicatorTriplePulseAnimation.m" afterPath="$PROJECT_DIR$/Pods/DGActivityIndicatorView/DGActivityIndicatorView/Animations/DGActivityIndicatorTriplePulseAnimation.m" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Pods/DGActivityIndicatorView/DGActivityIndicatorView/Animations/DGActivityIndicatorTripleRingsAnimation.h" afterPath="$PROJECT_DIR$/Pods/DGActivityIndicatorView/DGActivityIndicatorView/Animations/DGActivityIndicatorTripleRingsAnimation.h" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Pods/DGActivityIndicatorView/DGActivityIndicatorView/Animations/DGActivityIndicatorTripleRingsAnimation.m" afterPath="$PROJECT_DIR$/Pods/DGActivityIndicatorView/DGActivityIndicatorView/Animations/DGActivityIndicatorTripleRingsAnimation.m" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Pods/DGActivityIndicatorView/DGActivityIndicatorView/Animations/DGActivityIndicatorTwoDotsAnimation.h" afterPath="$PROJECT_DIR$/Pods/DGActivityIndicatorView/DGActivityIndicatorView/Animations/DGActivityIndicatorTwoDotsAnimation.h" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Pods/DGActivityIndicatorView/DGActivityIndicatorView/Animations/DGActivityIndicatorTwoDotsAnimation.m" afterPath="$PROJECT_DIR$/Pods/DGActivityIndicatorView/DGActivityIndicatorView/Animations/DGActivityIndicatorTwoDotsAnimation.m" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Pods/DGActivityIndicatorView/DGActivityIndicatorView/DGActivityIndicatorView.m" afterPath="$PROJECT_DIR$/Pods/DGActivityIndicatorView/DGActivityIndicatorView/DGActivityIndicatorView.m" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Pods/DGActivityIndicatorView/README.md" afterPath="$PROJECT_DIR$/Pods/DGActivityIndicatorView/README.md" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Pods/FSCalendar/FSCalendar/FSCalendar.h" afterPath="$PROJECT_DIR$/Pods/FSCalendar/FSCalendar/FSCalendar.h" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Pods/FSCalendar/FSCalendar/FSCalendar.m" afterPath="$PROJECT_DIR$/Pods/FSCalendar/FSCalendar/FSCalendar.m" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Pods/FSCalendar/FSCalendar/FSCalendarAnimator.h" afterPath="$PROJECT_DIR$/Pods/FSCalendar/FSCalendar/FSCalendarAnimator.h" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Pods/FSCalendar/FSCalendar/FSCalendarAnimator.m" afterPath="$PROJECT_DIR$/Pods/FSCalendar/FSCalendar/FSCalendarAnimator.m" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Pods/FSCalendar/FSCalendar/FSCalendarAppearance.h" afterPath="$PROJECT_DIR$/Pods/FSCalendar/FSCalendar/FSCalendarAppearance.h" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Pods/FSCalendar/FSCalendar/FSCalendarAppearance.m" afterPath="$PROJECT_DIR$/Pods/FSCalendar/FSCalendar/FSCalendarAppearance.m" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Pods/FSCalendar/FSCalendar/FSCalendarCell.h" afterPath="$PROJECT_DIR$/Pods/FSCalendar/FSCalendar/FSCalendarCell.h" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Pods/FSCalendar/FSCalendar/FSCalendarCell.m" afterPath="$PROJECT_DIR$/Pods/FSCalendar/FSCalendar/FSCalendarCell.m" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Pods/FSCalendar/FSCalendar/FSCalendarCollectionView.h" afterPath="$PROJECT_DIR$/Pods/FSCalendar/FSCalendar/FSCalendarCollectionView.h" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Pods/FSCalendar/FSCalendar/FSCalendarCollectionView.m" afterPath="$PROJECT_DIR$/Pods/FSCalendar/FSCalendar/FSCalendarCollectionView.m" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Pods/FSCalendar/FSCalendar/FSCalendarDynamicHeader.h" afterPath="$PROJECT_DIR$/Pods/FSCalendar/FSCalendar/FSCalendarDynamicHeader.h" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Pods/FSCalendar/FSCalendar/FSCalendarStickyHeader.h" afterPath="$PROJECT_DIR$/Pods/FSCalendar/FSCalendar/FSCalendarStickyHeader.h" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Pods/FSCalendar/FSCalendar/FSCalendarStickyHeader.m" afterPath="$PROJECT_DIR$/Pods/FSCalendar/FSCalendar/FSCalendarStickyHeader.m" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Pods/FSCalendar/README.md" afterPath="$PROJECT_DIR$/Pods/FSCalendar/README.md" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Pods/HappyDNS/HappyDNS/Common/QNDnsManager.h" afterPath="$PROJECT_DIR$/Pods/HappyDNS/HappyDNS/Common/QNDnsManager.h" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Pods/HappyDNS/HappyDNS/Common/QNDnsManager.m" afterPath="$PROJECT_DIR$/Pods/HappyDNS/HappyDNS/Common/QNDnsManager.m" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Pods/HappyDNS/HappyDNS/Common/QNDomain.h" afterPath="$PROJECT_DIR$/Pods/HappyDNS/HappyDNS/Common/QNDomain.h" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Pods/HappyDNS/HappyDNS/Common/QNDomain.m" afterPath="$PROJECT_DIR$/Pods/HappyDNS/HappyDNS/Common/QNDomain.m" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Pods/HappyDNS/HappyDNS/Common/QNNetworkInfo.h" afterPath="$PROJECT_DIR$/Pods/HappyDNS/HappyDNS/Common/QNNetworkInfo.h" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Pods/HappyDNS/HappyDNS/Common/QNNetworkInfo.m" afterPath="$PROJECT_DIR$/Pods/HappyDNS/HappyDNS/Common/QNNetworkInfo.m" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Pods/HappyDNS/HappyDNS/Common/QNRecord.h" afterPath="$PROJECT_DIR$/Pods/HappyDNS/HappyDNS/Common/QNRecord.h" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Pods/HappyDNS/HappyDNS/Common/QNRecord.m" afterPath="$PROJECT_DIR$/Pods/HappyDNS/HappyDNS/Common/QNRecord.m" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Pods/HappyDNS/HappyDNS/Common/QNResolverDelegate.h" afterPath="$PROJECT_DIR$/Pods/HappyDNS/HappyDNS/Common/QNResolverDelegate.h" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Pods/HappyDNS/HappyDNS/HappyDNS.h" afterPath="$PROJECT_DIR$/Pods/HappyDNS/HappyDNS/HappyDNS.h" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Pods/HappyDNS/HappyDNS/Http/QNDnspodEnterprise.h" afterPath="$PROJECT_DIR$/Pods/HappyDNS/HappyDNS/Http/QNDnspodEnterprise.h" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Pods/HappyDNS/HappyDNS/Http/QNDnspodEnterprise.m" afterPath="$PROJECT_DIR$/Pods/HappyDNS/HappyDNS/Http/QNDnspodEnterprise.m" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Pods/HappyDNS/HappyDNS/Http/QNDnspodFree.h" afterPath="$PROJECT_DIR$/Pods/HappyDNS/HappyDNS/Http/QNDnspodFree.h" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Pods/HappyDNS/HappyDNS/Http/QNDnspodFree.m" afterPath="$PROJECT_DIR$/Pods/HappyDNS/HappyDNS/Http/QNDnspodFree.m" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Pods/HappyDNS/HappyDNS/Local/QNHijackingDetectWrapper.m" afterPath="$PROJECT_DIR$/Pods/HappyDNS/HappyDNS/Local/QNHijackingDetectWrapper.m" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Pods/HappyDNS/HappyDNS/Local/QNHosts.h" afterPath="$PROJECT_DIR$/Pods/HappyDNS/HappyDNS/Local/QNHosts.h" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Pods/HappyDNS/HappyDNS/Local/QNHosts.m" afterPath="$PROJECT_DIR$/Pods/HappyDNS/HappyDNS/Local/QNHosts.m" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Pods/HappyDNS/HappyDNS/Local/QNResolver.h" afterPath="$PROJECT_DIR$/Pods/HappyDNS/HappyDNS/Local/QNResolver.h" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Pods/HappyDNS/HappyDNS/Local/QNResolver.m" afterPath="$PROJECT_DIR$/Pods/HappyDNS/HappyDNS/Local/QNResolver.m" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Pods/HappyDNS/HappyDNS/Util/QNDes.h" afterPath="$PROJECT_DIR$/Pods/HappyDNS/HappyDNS/Util/QNDes.h" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Pods/HappyDNS/HappyDNS/Util/QNDes.m" afterPath="$PROJECT_DIR$/Pods/HappyDNS/HappyDNS/Util/QNDes.m" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Pods/HappyDNS/HappyDNS/Util/QNHex.h" afterPath="$PROJECT_DIR$/Pods/HappyDNS/HappyDNS/Util/QNHex.h" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Pods/HappyDNS/HappyDNS/Util/QNHex.m" afterPath="$PROJECT_DIR$/Pods/HappyDNS/HappyDNS/Util/QNHex.m" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Pods/HappyDNS/LICENSE" afterPath="$PROJECT_DIR$/Pods/HappyDNS/LICENSE" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Pods/HappyDNS/README.md" afterPath="$PROJECT_DIR$/Pods/HappyDNS/README.md" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Pods/IGLDropDownMenu/IGLDropDownMenu/IGLDropDownItem.m" afterPath="$PROJECT_DIR$/Pods/IGLDropDownMenu/IGLDropDownMenu/IGLDropDownItem.m" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Pods/IGLDropDownMenu/IGLDropDownMenu/IGLDropDownMenu.h" afterPath="$PROJECT_DIR$/Pods/IGLDropDownMenu/IGLDropDownMenu/IGLDropDownMenu.h" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Pods/IGLDropDownMenu/IGLDropDownMenu/IGLDropDownMenu.m" afterPath="$PROJECT_DIR$/Pods/IGLDropDownMenu/IGLDropDownMenu/IGLDropDownMenu.m" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Pods/JSONModel/JSONModel/JSONModel/JSONModel.h" afterPath="$PROJECT_DIR$/Pods/JSONModel/JSONModel/JSONModel/JSONModel.h" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Pods/JSONModel/JSONModel/JSONModel/JSONModel.m" afterPath="$PROJECT_DIR$/Pods/JSONModel/JSONModel/JSONModel/JSONModel.m" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Pods/JSONModel/JSONModel/JSONModel/JSONModelClassProperty.h" afterPath="$PROJECT_DIR$/Pods/JSONModel/JSONModel/JSONModel/JSONModelClassProperty.h" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Pods/JSONModel/JSONModel/JSONModel/JSONModelClassProperty.m" afterPath="$PROJECT_DIR$/Pods/JSONModel/JSONModel/JSONModel/JSONModelClassProperty.m" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Pods/JSONModel/JSONModel/JSONModel/JSONModelError.h" afterPath="$PROJECT_DIR$/Pods/JSONModel/JSONModel/JSONModel/JSONModelError.h" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Pods/JSONModel/JSONModel/JSONModel/JSONModelError.m" afterPath="$PROJECT_DIR$/Pods/JSONModel/JSONModel/JSONModel/JSONModelError.m" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Pods/JSONModel/JSONModel/JSONModelLib.h" afterPath="$PROJECT_DIR$/Pods/JSONModel/JSONModel/JSONModelLib.h" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Pods/JSONModel/JSONModel/JSONModelNetworking/JSONAPI.h" afterPath="$PROJECT_DIR$/Pods/JSONModel/JSONModel/JSONModelNetworking/JSONAPI.h" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Pods/JSONModel/JSONModel/JSONModelNetworking/JSONAPI.m" afterPath="$PROJECT_DIR$/Pods/JSONModel/JSONModel/JSONModelNetworking/JSONAPI.m" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Pods/JSONModel/JSONModel/JSONModelNetworking/JSONHTTPClient.h" afterPath="$PROJECT_DIR$/Pods/JSONModel/JSONModel/JSONModelNetworking/JSONHTTPClient.h" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Pods/JSONModel/JSONModel/JSONModelNetworking/JSONHTTPClient.m" afterPath="$PROJECT_DIR$/Pods/JSONModel/JSONModel/JSONModelNetworking/JSONHTTPClient.m" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Pods/JSONModel/JSONModel/JSONModelNetworking/JSONModel+networking.h" afterPath="$PROJECT_DIR$/Pods/JSONModel/JSONModel/JSONModelNetworking/JSONModel+networking.h" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Pods/JSONModel/JSONModel/JSONModelNetworking/JSONModel+networking.m" afterPath="$PROJECT_DIR$/Pods/JSONModel/JSONModel/JSONModelNetworking/JSONModel+networking.m" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Pods/JSONModel/JSONModel/JSONModelTransformations/JSONKeyMapper.h" afterPath="$PROJECT_DIR$/Pods/JSONModel/JSONModel/JSONModelTransformations/JSONKeyMapper.h" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Pods/JSONModel/JSONModel/JSONModelTransformations/JSONKeyMapper.m" afterPath="$PROJECT_DIR$/Pods/JSONModel/JSONModel/JSONModelTransformations/JSONKeyMapper.m" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Pods/JSONModel/JSONModel/JSONModelTransformations/JSONValueTransformer.h" afterPath="$PROJECT_DIR$/Pods/JSONModel/JSONModel/JSONModelTransformations/JSONValueTransformer.h" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Pods/JSONModel/JSONModel/JSONModelTransformations/JSONValueTransformer.m" afterPath="$PROJECT_DIR$/Pods/JSONModel/JSONModel/JSONModelTransformations/JSONValueTransformer.m" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Pods/JSONModel/README.md" afterPath="$PROJECT_DIR$/Pods/JSONModel/README.md" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Pods/LCActionSheet/LCActionSheet/LCActionSheet.h" afterPath="$PROJECT_DIR$/Pods/LCActionSheet/LCActionSheet/LCActionSheet.h" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Pods/LCActionSheet/LCActionSheet/LCActionSheet.m" afterPath="$PROJECT_DIR$/Pods/LCActionSheet/LCActionSheet/LCActionSheet.m" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Pods/MBProgressHUD/LICENSE" afterPath="$PROJECT_DIR$/Pods/MBProgressHUD/LICENSE" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Pods/MBProgressHUD/MBProgressHUD.h" afterPath="$PROJECT_DIR$/Pods/MBProgressHUD/MBProgressHUD.h" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Pods/MBProgressHUD/MBProgressHUD.m" afterPath="$PROJECT_DIR$/Pods/MBProgressHUD/MBProgressHUD.m" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Pods/MBProgressHUD/README.mdown" afterPath="$PROJECT_DIR$/Pods/MBProgressHUD/README.mdown" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Pods/MGSwipeTableCell/LICENSE" afterPath="$PROJECT_DIR$/Pods/MGSwipeTableCell/LICENSE" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Pods/MGSwipeTableCell/MGSwipeTableCell/MGSwipeButton.h" afterPath="$PROJECT_DIR$/Pods/MGSwipeTableCell/MGSwipeTableCell/MGSwipeButton.h" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Pods/MGSwipeTableCell/MGSwipeTableCell/MGSwipeButton.m" afterPath="$PROJECT_DIR$/Pods/MGSwipeTableCell/MGSwipeTableCell/MGSwipeButton.m" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Pods/MGSwipeTableCell/MGSwipeTableCell/MGSwipeTableCell.h" afterPath="$PROJECT_DIR$/Pods/MGSwipeTableCell/MGSwipeTableCell/MGSwipeTableCell.h" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Pods/MGSwipeTableCell/MGSwipeTableCell/MGSwipeTableCell.m" afterPath="$PROJECT_DIR$/Pods/MGSwipeTableCell/MGSwipeTableCell/MGSwipeTableCell.m" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Pods/MGSwipeTableCell/README.md" afterPath="$PROJECT_DIR$/Pods/MGSwipeTableCell/README.md" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Pods/Manifest.lock" afterPath="$PROJECT_DIR$/Pods/Manifest.lock" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Pods/Masonry/Masonry/MASConstraint.h" afterPath="$PROJECT_DIR$/Pods/Masonry/Masonry/MASConstraint.h" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Pods/Masonry/Masonry/MASConstraint.m" afterPath="$PROJECT_DIR$/Pods/Masonry/Masonry/MASConstraint.m" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Pods/Masonry/Masonry/MASConstraintMaker.h" afterPath="$PROJECT_DIR$/Pods/Masonry/Masonry/MASConstraintMaker.h" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Pods/Masonry/Masonry/MASConstraintMaker.m" afterPath="$PROJECT_DIR$/Pods/Masonry/Masonry/MASConstraintMaker.m" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Pods/Masonry/Masonry/MASViewConstraint.m" afterPath="$PROJECT_DIR$/Pods/Masonry/Masonry/MASViewConstraint.m" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Pods/Masonry/Masonry/NSArray+MASAdditions.m" afterPath="$PROJECT_DIR$/Pods/Masonry/Masonry/NSArray+MASAdditions.m" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Pods/Masonry/Masonry/NSLayoutConstraint+MASDebugAdditions.m" afterPath="$PROJECT_DIR$/Pods/Masonry/Masonry/NSLayoutConstraint+MASDebugAdditions.m" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Pods/Masonry/Masonry/View+MASAdditions.h" afterPath="$PROJECT_DIR$/Pods/Masonry/Masonry/View+MASAdditions.h" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Pods/Masonry/Masonry/View+MASAdditions.m" afterPath="$PROJECT_DIR$/Pods/Masonry/Masonry/View+MASAdditions.m" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Pods/Masonry/Masonry/View+MASShorthandAdditions.h" afterPath="$PROJECT_DIR$/Pods/Masonry/Masonry/View+MASShorthandAdditions.h" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Pods/Masonry/README.md" afterPath="$PROJECT_DIR$/Pods/Masonry/README.md" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Pods/Pods.xcodeproj/project.pbxproj" afterPath="$PROJECT_DIR$/Pods/Pods.xcodeproj/project.pbxproj" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Pods/Pods.xcodeproj/xcuserdata/Euphoria.xcuserdatad/xcschemes/DGActivityIndicatorView.xcscheme" afterPath="$PROJECT_DIR$/Pods/Pods.xcodeproj/xcuserdata/Euphoria.xcuserdatad/xcschemes/DGActivityIndicatorView.xcscheme" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Pods/Pods.xcodeproj/xcuserdata/Euphoria.xcuserdatad/xcschemes/FSCalendar.xcscheme" afterPath="$PROJECT_DIR$/Pods/Pods.xcodeproj/xcuserdata/Euphoria.xcuserdatad/xcschemes/FSCalendar.xcscheme" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Pods/Pods.xcodeproj/xcuserdata/Euphoria.xcuserdatad/xcschemes/HappyDNS.xcscheme" afterPath="$PROJECT_DIR$/Pods/Pods.xcodeproj/xcuserdata/Euphoria.xcuserdatad/xcschemes/HappyDNS.xcscheme" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Pods/Pods.xcodeproj/xcuserdata/Euphoria.xcuserdatad/xcschemes/JSONModel.xcscheme" afterPath="$PROJECT_DIR$/Pods/Pods.xcodeproj/xcuserdata/Euphoria.xcuserdatad/xcschemes/JSONModel.xcscheme" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Pods/Pods.xcodeproj/xcuserdata/Euphoria.xcuserdatad/xcschemes/LCActionSheet.xcscheme" afterPath="$PROJECT_DIR$/Pods/Pods.xcodeproj/xcuserdata/Euphoria.xcuserdatad/xcschemes/LCActionSheet.xcscheme" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Pods/Pods.xcodeproj/xcuserdata/Euphoria.xcuserdatad/xcschemes/MBProgressHUD.xcscheme" afterPath="$PROJECT_DIR$/Pods/Pods.xcodeproj/xcuserdata/Euphoria.xcuserdatad/xcschemes/MBProgressHUD.xcscheme" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Pods/Pods.xcodeproj/xcuserdata/Euphoria.xcuserdatad/xcschemes/Masonry.xcscheme" afterPath="$PROJECT_DIR$/Pods/Pods.xcodeproj/xcuserdata/Euphoria.xcuserdatad/xcschemes/Masonry.xcscheme" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Pods/Qiniu/QiniuSDK/Common/QNSystem.h" afterPath="$PROJECT_DIR$/Pods/Qiniu/QiniuSDK/Common/QNSystem.h" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Pods/Qiniu/QiniuSDK/Common/QNSystem.m" afterPath="$PROJECT_DIR$/Pods/Qiniu/QiniuSDK/Common/QNSystem.m" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Pods/Qiniu/QiniuSDK/Common/QNVersion.h" afterPath="$PROJECT_DIR$/Pods/Qiniu/QiniuSDK/Common/QNVersion.h" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Pods/Qiniu/QiniuSDK/Http/QNHttpManager.m" afterPath="$PROJECT_DIR$/Pods/Qiniu/QiniuSDK/Http/QNHttpManager.m" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Pods/Qiniu/QiniuSDK/Http/QNSessionManager.m" afterPath="$PROJECT_DIR$/Pods/Qiniu/QiniuSDK/Http/QNSessionManager.m" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Pods/Qiniu/README.md" afterPath="$PROJECT_DIR$/Pods/Qiniu/README.md" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Pods/RealReachability/README.md" afterPath="$PROJECT_DIR$/Pods/RealReachability/README.md" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Pods/RealReachability/RealReachability/Connection/LocalConnection.h" afterPath="$PROJECT_DIR$/Pods/RealReachability/RealReachability/Connection/LocalConnection.h" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Pods/RealReachability/RealReachability/Connection/LocalConnection.m" afterPath="$PROJECT_DIR$/Pods/RealReachability/RealReachability/Connection/LocalConnection.m" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Pods/RealReachability/RealReachability/FSM/FSMEngine.m" afterPath="$PROJECT_DIR$/Pods/RealReachability/RealReachability/FSM/FSMEngine.m" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Pods/RealReachability/RealReachability/Ping/PingFoundation.h" afterPath="$PROJECT_DIR$/Pods/RealReachability/RealReachability/Ping/PingFoundation.h" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Pods/RealReachability/RealReachability/Ping/PingFoundation.m" afterPath="$PROJECT_DIR$/Pods/RealReachability/RealReachability/Ping/PingFoundation.m" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Pods/RealReachability/RealReachability/Ping/PingHelper.h" afterPath="$PROJECT_DIR$/Pods/RealReachability/RealReachability/Ping/PingHelper.h" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Pods/RealReachability/RealReachability/Ping/PingHelper.m" afterPath="$PROJECT_DIR$/Pods/RealReachability/RealReachability/Ping/PingHelper.m" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Pods/RealReachability/RealReachability/RealReachability.h" afterPath="$PROJECT_DIR$/Pods/RealReachability/RealReachability/RealReachability.h" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Pods/RealReachability/RealReachability/RealReachability.m" afterPath="$PROJECT_DIR$/Pods/RealReachability/RealReachability/RealReachability.m" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Pods/SDAutoLayout/README.md" afterPath="$PROJECT_DIR$/Pods/SDAutoLayout/README.md" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Pods/SDAutoLayout/SDAutoLayoutDemo/SDAutoLayout/UITableView+SDAutoTableViewCellHeight.h" afterPath="$PROJECT_DIR$/Pods/SDAutoLayout/SDAutoLayoutDemo/SDAutoLayout/UITableView+SDAutoTableViewCellHeight.h" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Pods/SDAutoLayout/SDAutoLayoutDemo/SDAutoLayout/UITableView+SDAutoTableViewCellHeight.m" afterPath="$PROJECT_DIR$/Pods/SDAutoLayout/SDAutoLayoutDemo/SDAutoLayout/UITableView+SDAutoTableViewCellHeight.m" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Pods/SDAutoLayout/SDAutoLayoutDemo/SDAutoLayout/UIView+SDAutoLayout.h" afterPath="$PROJECT_DIR$/Pods/SDAutoLayout/SDAutoLayoutDemo/SDAutoLayout/UIView+SDAutoLayout.h" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Pods/SDAutoLayout/SDAutoLayoutDemo/SDAutoLayout/UIView+SDAutoLayout.m" afterPath="$PROJECT_DIR$/Pods/SDAutoLayout/SDAutoLayoutDemo/SDAutoLayout/UIView+SDAutoLayout.m" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Pods/SDWebImage/README.md" afterPath="$PROJECT_DIR$/Pods/SDWebImage/README.md" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Pods/SDWebImage/SDWebImage/SDImageCache.h" afterPath="$PROJECT_DIR$/Pods/SDWebImage/SDWebImage/SDImageCache.h" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Pods/SDWebImage/SDWebImage/SDWebImageDownloader.m" afterPath="$PROJECT_DIR$/Pods/SDWebImage/SDWebImage/SDWebImageDownloader.m" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Pods/SDWebImage/SDWebImage/SDWebImageDownloaderOperation.h" afterPath="$PROJECT_DIR$/Pods/SDWebImage/SDWebImage/SDWebImageDownloaderOperation.h" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Pods/SDWebImage/SDWebImage/SDWebImageDownloaderOperation.m" afterPath="$PROJECT_DIR$/Pods/SDWebImage/SDWebImage/SDWebImageDownloaderOperation.m" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Pods/SDWebImage/SDWebImage/SDWebImageManager.h" afterPath="$PROJECT_DIR$/Pods/SDWebImage/SDWebImage/SDWebImageManager.h" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Pods/SDWebImage/SDWebImage/SDWebImageManager.m" afterPath="$PROJECT_DIR$/Pods/SDWebImage/SDWebImage/SDWebImageManager.m" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Pods/Target Support Files/AutoLinearLayoutView/ResourceBundle-AutoLinearLayoutView-Info.plist" afterPath="$PROJECT_DIR$/Pods/Target Support Files/AutoLinearLayoutView/ResourceBundle-AutoLinearLayoutView-Info.plist" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Pods/Target Support Files/LCActionSheet/LCActionSheet.xcconfig" afterPath="$PROJECT_DIR$/Pods/Target Support Files/LCActionSheet/LCActionSheet.xcconfig" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Pods/Target Support Files/MBProgressHUD/MBProgressHUD.xcconfig" afterPath="$PROJECT_DIR$/Pods/Target Support Files/MBProgressHUD/MBProgressHUD.xcconfig" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Pods/Target Support Files/Pods-TO-DO/Pods-TO-DO-acknowledgements.markdown" afterPath="$PROJECT_DIR$/Pods/Target Support Files/Pods-TO-DO/Pods-TO-DO-acknowledgements.markdown" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Pods/Target Support Files/Pods-TO-DO/Pods-TO-DO-acknowledgements.plist" afterPath="$PROJECT_DIR$/Pods/Target Support Files/Pods-TO-DO/Pods-TO-DO-acknowledgements.plist" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/TO-DO/Assets.xcassets/AppIcon.appiconset/Contents.json" afterPath="$PROJECT_DIR$/TO-DO/Assets.xcassets/AppIcon.appiconset/Contents.json" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/TO-DO/Base.lproj/Main.storyboard" afterPath="$PROJECT_DIR$/TO-DO/Base.lproj/Main.storyboard" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/TO-DO/Calendar/Controllers/CalendarViewController.m" afterPath="$PROJECT_DIR$/TO-DO/Calendar/Controllers/CalendarViewController.m" />
@@ -157,12 +453,8 @@
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/TO-DO/Classes/Common/Constants/Macros.h" afterPath="$PROJECT_DIR$/TO-DO/Classes/Common/Constants/Macros.h" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/TO-DO/Classes/Common/SCLAlertHelper.h" afterPath="$PROJECT_DIR$/TO-DO/Classes/Common/SCLAlertHelper.h" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/TO-DO/Classes/Common/SCLAlertHelper.m" afterPath="$PROJECT_DIR$/TO-DO/Classes/Common/SCLAlertHelper.m" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/TO-DO/Classes/Common/TodoTableViewController.m" afterPath="$PROJECT_DIR$/TO-DO/Classes/Common/TodoTableViewController.m" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/TO-DO/Classes/Common/SGHelper.m" afterPath="$PROJECT_DIR$/TO-DO/Classes/Common/SGHelper.m" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/TO-DO/Classes/Common/Utilities/FieldValidator.m" afterPath="$PROJECT_DIR$/TO-DO/Classes/Common/Utilities/FieldValidator.m" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/TO-DO/Classes/Common/Views/SGHeaderView.m" afterPath="$PROJECT_DIR$/TO-DO/Classes/Common/Views/SGHeaderView.m" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/TO-DO/Classes/Common/Views/SGRectangleView.h" afterPath="$PROJECT_DIR$/TO-DO/Classes/Common/Views/SGRectangleView.h" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/TO-DO/Classes/Common/Views/SGRectangleView.m" afterPath="$PROJECT_DIR$/TO-DO/Classes/Common/Views/SGRectangleView.m" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/TO-DO/Classes/Home/HomeViewController.m" afterPath="$PROJECT_DIR$/TO-DO/Classes/Home/HomeViewController.m" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/TO-DO/Classes/Login/Controllers/LoginViewController.h" afterPath="$PROJECT_DIR$/TO-DO/Classes/Login/Controllers/LoginViewController.h" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/TO-DO/Classes/Login/Controllers/LoginViewController.m" afterPath="$PROJECT_DIR$/TO-DO/Classes/Login/Controllers/LoginViewController.m" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/TO-DO/Classes/Login/Views/LoginView.h" afterPath="$PROJECT_DIR$/TO-DO/Classes/Login/Views/LoginView.h" />
@@ -203,7 +495,7 @@
         <entry file="file://$PROJECT_DIR$/TO-DO/Classes/Home/HomeViewController.m">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="697">
-              <caret line="41" column="24" lean-forward="true" selection-start-line="41" selection-start-column="24" selection-end-line="41" selection-end-column="24" />
+              <caret line="41" column="24" lean-forward="false" selection-start-line="41" selection-start-column="24" selection-end-line="41" selection-end-column="24" />
               <folding>
                 <element signature="e#138#156#0" expanded="true" />
               </folding>
@@ -214,8 +506,8 @@
       <file leaf-file-name="CalendarViewController.m" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/TO-DO/Calendar/Controllers/CalendarViewController.m">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="523">
-              <caret line="151" column="2" lean-forward="true" selection-start-line="151" selection-start-column="2" selection-end-line="151" selection-end-column="2" />
+            <state relative-caret-position="506">
+              <caret line="157" column="35" lean-forward="true" selection-start-line="157" selection-start-column="35" selection-end-line="157" selection-end-column="35" />
               <folding>
                 <element signature="e#142#160#0" expanded="true" />
               </folding>
@@ -226,8 +518,8 @@
       <file leaf-file-name="TodoTableViewController.m" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/TO-DO/Classes/Common/TodoTableViewController.m">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="481">
-              <caret line="115" column="45" lean-forward="true" selection-start-line="115" selection-start-column="45" selection-end-line="115" selection-end-column="45" />
+            <state relative-caret-position="-2452">
+              <caret line="123" column="26" lean-forward="true" selection-start-line="123" selection-start-column="26" selection-end-line="123" selection-end-column="26" />
               <folding>
                 <element signature="e#143#166#0" expanded="true" />
               </folding>
@@ -238,11 +530,21 @@
       <file leaf-file-name="SGHeaderView.m" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/TO-DO/Classes/Common/Views/SGHeaderView.m">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="574">
-              <caret line="211" column="32" lean-forward="true" selection-start-line="211" selection-start-column="32" selection-end-line="211" selection-end-column="32" />
+            <state relative-caret-position="3689">
+              <caret line="220" column="13" lean-forward="false" selection-start-line="220" selection-start-column="13" selection-end-line="220" selection-end-column="13" />
               <folding>
                 <element signature="e#132#156#0" expanded="true" />
               </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="SGHelper.m" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/TO-DO/Classes/Common/SGHelper.m">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="217">
+              <caret line="90" column="12" lean-forward="false" selection-start-line="90" selection-start-column="12" selection-end-line="90" selection-end-column="12" />
+              <folding />
             </state>
           </provider>
         </entry>
@@ -251,7 +553,7 @@
         <entry file="file://$PROJECT_DIR$/TO-DO/Classes/Common/Views/SGRectangleView.h">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="136">
-              <caret line="8" column="44" lean-forward="true" selection-start-line="8" selection-start-column="44" selection-end-line="8" selection-end-column="44" />
+              <caret line="8" column="44" lean-forward="false" selection-start-line="8" selection-start-column="44" selection-end-line="8" selection-end-column="44" />
               <folding />
             </state>
           </provider>
@@ -261,8 +563,10 @@
         <entry file="file://$PROJECT_DIR$/TO-DO/Classes/Common/Views/SGRectangleView.m">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="408">
-              <caret line="24" column="26" lean-forward="true" selection-start-line="24" selection-start-column="26" selection-end-line="24" selection-end-column="26" />
-              <folding />
+              <caret line="24" column="26" lean-forward="false" selection-start-line="24" selection-start-column="26" selection-end-line="24" selection-end-column="26" />
+              <folding>
+                <marker date="1479107280000" expanded="true" signature="249:2084" ph="..." />
+              </folding>
             </state>
           </provider>
         </entry>
@@ -270,33 +574,19 @@
       <file leaf-file-name="SGHeaderView.h" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/TO-DO/Classes/Common/Views/SGHeaderView.h">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="387">
-              <caret line="37" column="3" lean-forward="true" selection-start-line="37" selection-start-column="3" selection-end-line="37" selection-end-column="3" />
+            <state relative-caret-position="336">
+              <caret line="34" column="8" lean-forward="false" selection-start-line="34" selection-start-column="8" selection-end-line="34" selection-end-column="8" />
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="TodoTableViewCell.m" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/TO-DO/Classes/Common/Views/TodoTableViewCell.m">
+      <file leaf-file-name="Podfile" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/Podfile">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="1071">
-              <caret line="63" column="82" lean-forward="true" selection-start-line="63" selection-start-column="82" selection-end-line="63" selection-end-column="82" />
-              <folding>
-                <element signature="e#137#155#0" expanded="true" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="TodoTableViewController.h" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/TO-DO/Classes/Common/TodoTableViewController.h">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="714">
-              <caret line="42" column="61" lean-forward="false" selection-start-line="42" selection-start-column="61" selection-end-line="42" selection-end-column="61" />
-              <folding>
-                <marker date="1479034730000" expanded="true" signature="293:446" ph="{...}" />
-              </folding>
+            <state relative-caret-position="323">
+              <caret line="19" column="23" lean-forward="false" selection-start-line="19" selection-start-column="23" selection-end-line="19" selection-end-column="23" />
+              <folding />
             </state>
           </provider>
         </entry>
@@ -322,6 +612,14 @@
       <find>observ</find>
       <find>addobserver</find>
       <find>emptydata</find>
+      <find>header</find>
+      <find>_header</find>
+      <find>_contentview</find>
+      <find>__contentview</find>
+      <find>masklayer</find>
+      <find>contentview</find>
+      <find>modified</find>
+      <find>topborder</find>
     </findStrings>
   </component>
   <component name="Git.Settings">
@@ -330,9 +628,6 @@
   <component name="IdeDocumentHistory">
     <option name="CHANGED_PATHS">
       <list>
-        <option value="$PROJECT_DIR$/TO-DO/Classes/Common/DataManager/CommonDataManager.h" />
-        <option value="$PROJECT_DIR$/TO-DO/Classes/Common/DataManager/CommonDataManager.m" />
-        <option value="$PROJECT_DIR$/TO-DO/Classes/Login/Views/LoginView.m" />
         <option value="$PROJECT_DIR$/TO-DO/Classes/Common/Utilities/SGGraphics.m" />
         <option value="$PROJECT_DIR$/TO-DO/Classes/Common/BaseViewController.m" />
         <option value="$PROJECT_DIR$/TO-DO/Classes/Common/BaseViewController.h" />
@@ -358,10 +653,8 @@
         <option value="$PROJECT_DIR$/TO-DO/Localization/zh-Hans.lproj/Localizable.strings" />
         <option value="$PROJECT_DIR$/TO-DO/Classes/Common/SGHelper.h" />
         <option value="$PROJECT_DIR$/TO-DO/Classes/Common/Constants/Macros.h" />
-        <option value="$PROJECT_DIR$/TO-DO/Model/LeanCloudModels/LCTodo.m" />
         <option value="$PROJECT_DIR$/TO-DO/Model/CoreDataModels/CDTodo.m" />
         <option value="$PROJECT_DIR$/TO-DO/Classes/Common/DataManager/CoredataManager/MRTodoDataManager.m" />
-        <option value="$PROJECT_DIR$/TO-DO/Classes/Common/SGHelper.m" />
         <option value="$PROJECT_DIR$/TO-DO/Classes/Common/DataManager/SyncDataManagers/SGSyncManager.m" />
         <option value="$PROJECT_DIR$/TO-DO/Classes/Common/SGViews.h" />
         <option value="$PROJECT_DIR$/TO-DO/Classes/Common/Categories/UIImage+Compression.m" />
@@ -372,7 +665,6 @@
         <option value="$PROJECT_DIR$/TO-DO/Classes/Common/Views/TodoTableViewCell.m" />
         <option value="$PROJECT_DIR$/TO-DO/Classes/Common/Views/HeaderView.h" />
         <option value="$PROJECT_DIR$/TO-DO/Classes/Common/Views/HeaderView.m" />
-        <option value="$PROJECT_DIR$/Podfile" />
         <option value="$PROJECT_DIR$/TO-DO/Classes/Common/Views/Cells/TodoHeaderCell.m" />
         <option value="$PROJECT_DIR$/TO-DO/Classes/Common/Views/SGHeaderView.h" />
         <option value="$PROJECT_DIR$/TO-DO/Classes/Common/Views/SGRectangleView.h" />
@@ -380,6 +672,12 @@
         <option value="$PROJECT_DIR$/TO-DO/Classes/Common/Views/SGHeaderView.m" />
         <option value="$PROJECT_DIR$/TO-DO/Classes/Home/HomeViewController.m" />
         <option value="$PROJECT_DIR$/TO-DO/Classes/Common/TodoTableViewController.m" />
+        <option value="$PROJECT_DIR$/Pods/FSCalendar/FSCalendar/FSCalendarConstance.m" />
+        <option value="$PROJECT_DIR$/Pods/FSCalendar/FSCalendar/FSCalendarCell.m" />
+        <option value="$PROJECT_DIR$/Pods/FSCalendar/FSCalendar/FSCalendar.m" />
+        <option value="$PROJECT_DIR$/TO-DO/Model/LeanCloudModels/LCTodo.m" />
+        <option value="$PROJECT_DIR$/Podfile" />
+        <option value="$PROJECT_DIR$/TO-DO/Classes/Common/SGHelper.m" />
         <option value="$PROJECT_DIR$/TO-DO/Calendar/Controllers/CalendarViewController.m" />
       </list>
     </option>
@@ -500,86 +798,6 @@
               <option name="myItemType" value="com.jetbrains.cidr.projectView.XcodeViewNode" />
             </PATH_ELEMENT>
           </PATH>
-          <PATH>
-            <PATH_ELEMENT>
-              <option name="myItemId" />
-              <option name="myItemType" value="com.jetbrains.cidr.projectView.XcodeRootNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="TO-DO" />
-              <option name="myItemType" value="com.jetbrains.cidr.projectView.XcodeProjectNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="TO-DO" />
-              <option name="myItemType" value="com.jetbrains.cidr.projectView.XcodeViewNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="Classes" />
-              <option name="myItemType" value="com.jetbrains.cidr.projectView.XcodeViewNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="DataManagers" />
-              <option name="myItemType" value="com.jetbrains.cidr.projectView.XcodeViewNode" />
-            </PATH_ELEMENT>
-          </PATH>
-          <PATH>
-            <PATH_ELEMENT>
-              <option name="myItemId" />
-              <option name="myItemType" value="com.jetbrains.cidr.projectView.XcodeRootNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="TO-DO" />
-              <option name="myItemType" value="com.jetbrains.cidr.projectView.XcodeProjectNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="TO-DO" />
-              <option name="myItemType" value="com.jetbrains.cidr.projectView.XcodeViewNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="Classes" />
-              <option name="myItemType" value="com.jetbrains.cidr.projectView.XcodeViewNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="Common" />
-              <option name="myItemType" value="com.jetbrains.cidr.projectView.XcodeViewNode" />
-            </PATH_ELEMENT>
-          </PATH>
-          <PATH>
-            <PATH_ELEMENT>
-              <option name="myItemId" />
-              <option name="myItemType" value="com.jetbrains.cidr.projectView.XcodeRootNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="TO-DO" />
-              <option name="myItemType" value="com.jetbrains.cidr.projectView.XcodeProjectNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="TO-DO" />
-              <option name="myItemType" value="com.jetbrains.cidr.projectView.XcodeViewNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="Classes" />
-              <option name="myItemType" value="com.jetbrains.cidr.projectView.XcodeViewNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="Common" />
-              <option name="myItemType" value="com.jetbrains.cidr.projectView.XcodeViewNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="Views" />
-              <option name="myItemType" value="com.jetbrains.cidr.projectView.XcodeViewNode" />
-            </PATH_ELEMENT>
-          </PATH>
-          <PATH>
-            <PATH_ELEMENT>
-              <option name="myItemId" />
-              <option name="myItemType" value="com.jetbrains.cidr.projectView.XcodeRootNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="Pods" />
-              <option name="myItemType" value="com.jetbrains.cidr.projectView.XcodeProjectNode" />
-            </PATH_ELEMENT>
-          </PATH>
         </subPane>
       </pane>
     </panes>
@@ -588,7 +806,7 @@
     <property name="settings.editor.selected.configurable" value="preferences.pluginManager" />
     <property name="settings.editor.splitter.proportion" value="0.2" />
     <property name="js-jscs-nodeInterpreter" value="/usr/local/bin/node" />
-    <property name="SearchEverywhereHistoryKey" value="headercell&#9;null&#9;null&#10;podfile&#9;FILE&#9;file:///Volumes/Data/Project/MyProject/TO-DO/Podfile&#10;mxpara&#9;FILE&#9;file:///Volumes/Data/Project/MyProject/TO-DO/Pods/MXParallaxHeader/MXParallaxHeader/MXParallaxHeader.m&#10;headerview&#9;null&#9;null&#10;appdele&#9;FILE&#9;file:///Volumes/Data/Project/MyProject/TO-DO/TO-DO/Classes/AppDelegate/AppDelegate.m&#10;calendar&#9;FILE&#9;file:///Volumes/Data/Project/MyProject/TO-DO/TO-DO/Calendar/Controllers/CalendarViewController.m&#10;drawerviewcon&#9;null&#9;null&#10;sgviews&#9;FILE&#9;file:///Volumes/Data/Project/MyProject/TO-DO/TO-DO/Classes/Common/SGViews.h&#10;sghelper&#9;FILE&#9;file:///Volumes/Data/Project/MyProject/TO-DO/TO-DO/Classes/Common/SGHelper.m&#10;tableview&#9;FILE&#9;file:///Volumes/Data/Project/MyProject/TO-DO/TO-DO/Classes/Common/TodoTableViewController.m&#10;homeviewcon&#9;null&#9;null&#10;downloadimagewithurl&#9;null&#9;null&#10;macros&#9;FILE&#9;file:///Volumes/Data/Project/MyProject/TO-DO/TO-DO/Classes/Common/Constants/Macros.h&#10;syncmana&#9;FILE&#9;file:///Volumes/Data/Project/MyProject/TO-DO/TO-DO/Classes/Common/DataManager/SyncDataManagers/SGSyncManager.m&#10;local&#9;FILE&#9;file:///Volumes/Data/Project/MyProject/TO-DO/TO-DO/Localization/zh-Hans.lproj/Localizable.strings&#10;cdtodo&#9;FILE&#9;file:///Volumes/Data/Project/MyProject/TO-DO/TO-DO/Model/CoreDataModels/CDTodo.m&#10;sg&#9;FILE&#9;file:///Volumes/Data/Project/MyProject/TO-DO/TO-DO/Classes/Common/Utilities/SGImageUpload.m&#10;compress&#9;FILE&#9;file:///Volumes/Data/Project/MyProject/TO-DO/TO-DO/Classes/Common/Categories/UIImage+Compression.m&#10;upload&#9;FILE&#9;file:///Volumes/Data/Project/MyProject/TO-DO/TO-DO/Classes/Common/Utilities/SGImageUpload.m&#10;sync&#9;FILE&#9;file:///Volumes/Data/Project/MyProject/TO-DO/TO-DO/Classes/Common/DataManager/SyncDataManagers/SGSyncManager.m&#10;lcmana&#9;null&#9;null&#10;baseview&#9;FILE&#9;file:///Volumes/Data/Project/MyProject/TO-DO/TO-DO/Classes/Common/SGBaseViewController.m&#10;baseviewcon&#9;FILE&#9;file:///Volumes/Data/Project/MyProject/TO-DO/TO-DO/Classes/Common/SGBaseViewController.m&#10;sgcoordina&#9;FILE&#9;file:///Volumes/Data/Project/MyProject/TO-DO/TO-DO/Model/SGCoordinate.m&#10;sgbaseviewcon&#9;FILE&#9;file:///Volumes/Data/Project/MyProject/TO-DO/TO-DO/Classes/Common/SGBaseViewController.m&#10;coordinate&#9;FILE&#9;file:///Volumes/Data/Project/MyProject/TO-DO/TO-DO/Model/SGCoordinate.m&#10;createview&#9;FILE&#9;file:///Volumes/Data/Project/MyProject/TO-DO/TO-DO/Classes/Create/CreateViewController.m&#10;keys&#9;FILE&#9;file:///Volumes/Data/Project/MyProject/TO-DO/TO-DO/Classes/Common/Constants/DataKeys.h&#10;sghel&#9;FILE&#9;file:///Volumes/Data/Project/MyProject/TO-DO/TO-DO/Classes/Common/SGHelper.m&#10;createviewcon&#9;FILE&#9;file:///Volumes/Data/Project/MyProject/TO-DO/TO-DO/Classes/Create/CreateViewController.m&#10;mrtodo&#9;null&#9;null&#10;loginview&#9;FILE&#9;file:///Volumes/Data/Project/MyProject/TO-DO/TO-DO/Classes/Login/Controllers/LoginViewController.m&#10;drawer&#9;FILE&#9;file:///Volumes/Data/Project/MyProject/TO-DO/TO-DO/Classes/Common/DrawerTableViewController.m&#10;loginviewcon&#9;FILE&#9;file:///Volumes/Data/Project/MyProject/TO-DO/TO-DO/Classes/Login/Controllers/LoginViewController.m&#10;drawertableview&#9;FILE&#9;file:///Volumes/Data/Project/MyProject/TO-DO/TO-DO/Classes/Common/DrawerTableViewController.m&#10;qiniu&#9;FILE&#9;file:///Volumes/Data/Project/MyProject/TO-DO/TO-DO/Classes/Common/QiniuTokenGenerator.m&#10;pod&#9;FILE&#9;file:///Volumes/Data/Project/MyProject/TO-DO/Podfile&#10;error&#9;null&#9;null&#10;empty&#9;FILE&#9;file:///Volumes/Data/Project/MyProject/TO-DO/TO-DO/Classes/Common/EmptyDataView.m&#10;themecolor&#9;null&#9;null&#10;homeview&#9;null&#9;null&#10;syncdata&#9;FILE&#9;file:///Volumes/Data/Project/MyProject/TO-DO/TO-DO/Classes/Common/DataManager/SyncDataManagers/SyncDataManager.m&#10;login&#9;null&#9;null" />
+    <property name="SearchEverywhereHistoryKey" value="fsca&#9;FILE&#9;file:///Volumes/Data/Project/MyProject/TO-DO/Pods/FSCalendar/FSCalendar/FSCalendar.m&#10;podfile&#9;FILE&#9;file:///Volumes/Data/Project/MyProject/TO-DO/Podfile&#10;fscalen&#9;FILE&#9;file:///Volumes/Data/Project/MyProject/TO-DO/Pods/FSCalendar/FSCalendar/FSCalendar.m&#10;fscalendar&#9;null&#9;null&#10;headercell&#9;null&#9;null&#10;mxpara&#9;FILE&#9;file:///Volumes/Data/Project/MyProject/TO-DO/Pods/MXParallaxHeader/MXParallaxHeader/MXParallaxHeader.m&#10;headerview&#9;null&#9;null&#10;appdele&#9;FILE&#9;file:///Volumes/Data/Project/MyProject/TO-DO/TO-DO/Classes/AppDelegate/AppDelegate.m&#10;calendar&#9;FILE&#9;file:///Volumes/Data/Project/MyProject/TO-DO/TO-DO/Calendar/Controllers/CalendarViewController.m&#10;drawerviewcon&#9;null&#9;null&#10;sgviews&#9;FILE&#9;file:///Volumes/Data/Project/MyProject/TO-DO/TO-DO/Classes/Common/SGViews.h&#10;sghelper&#9;FILE&#9;file:///Volumes/Data/Project/MyProject/TO-DO/TO-DO/Classes/Common/SGHelper.m&#10;tableview&#9;FILE&#9;file:///Volumes/Data/Project/MyProject/TO-DO/TO-DO/Classes/Common/TodoTableViewController.m&#10;homeviewcon&#9;null&#9;null&#10;downloadimagewithurl&#9;null&#9;null&#10;macros&#9;FILE&#9;file:///Volumes/Data/Project/MyProject/TO-DO/TO-DO/Classes/Common/Constants/Macros.h&#10;syncmana&#9;FILE&#9;file:///Volumes/Data/Project/MyProject/TO-DO/TO-DO/Classes/Common/DataManager/SyncDataManagers/SGSyncManager.m&#10;local&#9;FILE&#9;file:///Volumes/Data/Project/MyProject/TO-DO/TO-DO/Localization/zh-Hans.lproj/Localizable.strings&#10;cdtodo&#9;FILE&#9;file:///Volumes/Data/Project/MyProject/TO-DO/TO-DO/Model/CoreDataModels/CDTodo.m&#10;sg&#9;FILE&#9;file:///Volumes/Data/Project/MyProject/TO-DO/TO-DO/Classes/Common/Utilities/SGImageUpload.m&#10;compress&#9;FILE&#9;file:///Volumes/Data/Project/MyProject/TO-DO/TO-DO/Classes/Common/Categories/UIImage+Compression.m&#10;upload&#9;FILE&#9;file:///Volumes/Data/Project/MyProject/TO-DO/TO-DO/Classes/Common/Utilities/SGImageUpload.m&#10;sync&#9;FILE&#9;file:///Volumes/Data/Project/MyProject/TO-DO/TO-DO/Classes/Common/DataManager/SyncDataManagers/SGSyncManager.m&#10;lcmana&#9;null&#9;null&#10;baseview&#9;FILE&#9;file:///Volumes/Data/Project/MyProject/TO-DO/TO-DO/Classes/Common/SGBaseViewController.m&#10;baseviewcon&#9;FILE&#9;file:///Volumes/Data/Project/MyProject/TO-DO/TO-DO/Classes/Common/SGBaseViewController.m&#10;sgcoordina&#9;FILE&#9;file:///Volumes/Data/Project/MyProject/TO-DO/TO-DO/Model/SGCoordinate.m&#10;sgbaseviewcon&#9;FILE&#9;file:///Volumes/Data/Project/MyProject/TO-DO/TO-DO/Classes/Common/SGBaseViewController.m&#10;coordinate&#9;FILE&#9;file:///Volumes/Data/Project/MyProject/TO-DO/TO-DO/Model/SGCoordinate.m&#10;createview&#9;FILE&#9;file:///Volumes/Data/Project/MyProject/TO-DO/TO-DO/Classes/Create/CreateViewController.m&#10;keys&#9;FILE&#9;file:///Volumes/Data/Project/MyProject/TO-DO/TO-DO/Classes/Common/Constants/DataKeys.h&#10;sghel&#9;FILE&#9;file:///Volumes/Data/Project/MyProject/TO-DO/TO-DO/Classes/Common/SGHelper.m&#10;createviewcon&#9;FILE&#9;file:///Volumes/Data/Project/MyProject/TO-DO/TO-DO/Classes/Create/CreateViewController.m&#10;mrtodo&#9;null&#9;null&#10;loginview&#9;FILE&#9;file:///Volumes/Data/Project/MyProject/TO-DO/TO-DO/Classes/Login/Controllers/LoginViewController.m&#10;drawer&#9;FILE&#9;file:///Volumes/Data/Project/MyProject/TO-DO/TO-DO/Classes/Common/DrawerTableViewController.m&#10;loginviewcon&#9;FILE&#9;file:///Volumes/Data/Project/MyProject/TO-DO/TO-DO/Classes/Login/Controllers/LoginViewController.m&#10;drawertableview&#9;FILE&#9;file:///Volumes/Data/Project/MyProject/TO-DO/TO-DO/Classes/Common/DrawerTableViewController.m&#10;qiniu&#9;FILE&#9;file:///Volumes/Data/Project/MyProject/TO-DO/TO-DO/Classes/Common/QiniuTokenGenerator.m&#10;pod&#9;FILE&#9;file:///Volumes/Data/Project/MyProject/TO-DO/Podfile&#10;error&#9;null&#9;null&#10;empty&#9;FILE&#9;file:///Volumes/Data/Project/MyProject/TO-DO/TO-DO/Classes/Common/EmptyDataView.m&#10;themecolor&#9;null&#9;null&#10;homeview&#9;null&#9;null&#10;syncdata&#9;FILE&#9;file:///Volumes/Data/Project/MyProject/TO-DO/TO-DO/Classes/Common/DataManager/SyncDataManagers/SyncDataManager.m&#10;login&#9;null&#9;null" />
     <property name="OBJC.PRESERVED_TARGET_SELECTION" value="TO-DO" />
     <property name="FullScreen" value="true" />
     <property name="nodejs_interpreter_path" value="/usr/local/bin/node" />
@@ -674,12 +892,12 @@
       <workItem from="1478795114467" duration="865000" />
       <workItem from="1479021958321" duration="9047000" />
       <workItem from="1479033711989" duration="7318000" />
-      <workItem from="1479041201829" duration="12453000" />
+      <workItem from="1479041201829" duration="18073000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="132493000" />
+    <option name="totallyTimeSpent" value="138113000" />
   </component>
   <component name="TodoView">
     <todo-panel id="selected-file">
@@ -695,25 +913,25 @@
     <frame x="1440" y="-180" width="2560" height="1080" extended-state="0" />
     <editor active="true" />
     <layout>
-      <window_info id="Designer" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
-      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.09968479" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.23861386" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
       <window_info id="Messages" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.19306931" sideWeight="0.49842396" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Palette&#9;" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25445545" sideWeight="0.50157607" order="8" side_tool="true" content_ui="tabs" />
       <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.21980198" sideWeight="0.5" order="9" side_tool="false" content_ui="tabs" />
       <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.2733051" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" x="-189" y="-659" width="1817" height="244" />
-      <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.09692671" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.20396039" sideWeight="0.49807376" order="10" side_tool="false" content_ui="tabs" />
+      <window_info id="Designer" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
+      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.09968479" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
+      <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.26633662" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
+      <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.09692671" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="true" content_ui="tabs" />
-      <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.21980198" sideWeight="0.49842396" order="3" side_tool="false" content_ui="tabs" />
+      <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.24950495" sideWeight="0.49842396" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Cvs" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
       <window_info id="Message" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
       <window_info id="Commander" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
       <window_info id="Documentation" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.23069307" sideWeight="0.5" order="11" side_tool="true" content_ui="tabs" x="3168" y="-102" width="762" height="459" />
       <window_info id="Inspection" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
       <window_info id="Hierarchy" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="2" side_tool="false" content_ui="combo" />
-      <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.26633662" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Ant Build" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
     </layout>
   </component>
@@ -756,62 +974,6 @@
     <watches-manager />
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/TO-DO/Classes/Common/Utilities/SGImageUpload.h">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="272">
-          <caret line="16" column="48" lean-forward="true" selection-start-line="16" selection-start-column="48" selection-end-line="16" selection-end-column="48" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/TO-DO/Classes/Common/Categories/NSString+Encrytion.m">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="744">
-          <caret line="59" column="13" lean-forward="false" selection-start-line="59" selection-start-column="13" selection-end-line="59" selection-end-column="13" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/TO-DO/Model/CoreDataModels/CDTodo+CoreDataProperties.h">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="354">
-          <caret line="25" column="58" lean-forward="true" selection-start-line="25" selection-start-column="58" selection-end-line="25" selection-end-column="58" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file:///Applications/Xcode.app/Contents/Developer/Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS.sdk/System/Library/Frameworks/Foundation.framework/Headers/NSData.h">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="237">
-          <caret line="51" column="4" lean-forward="false" selection-start-line="51" selection-start-column="4" selection-end-line="51" selection-end-column="4" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/TO-DO/Classes/Common/Categories/NSString+Encrytion.h">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="0">
-          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/TO-DO/Classes/Common/QiniuTokenGenerator.m">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="136">
-          <caret line="8" column="21" lean-forward="true" selection-start-line="8" selection-start-column="21" selection-end-line="8" selection-end-column="21" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/TO-DO/Model/LeanCloudModels/LCTodo.h">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="748">
-          <caret line="44" column="47" lean-forward="false" selection-start-line="44" selection-start-column="47" selection-end-line="44" selection-end-column="47" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/Pods/Qiniu/QiniuSDK/Storage/QNUploadManager.m">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="446">
-          <caret line="130" column="5" lean-forward="true" selection-start-line="130" selection-start-column="5" selection-end-line="130" selection-end-column="5" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/Pods/Qiniu/QiniuSDK/Storage/QNUploadManager.h">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="1479">
@@ -869,13 +1031,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/TO-DO/Model/LeanCloudModels/LCTodo.m">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="1292">
-          <caret line="76" column="82" lean-forward="false" selection-start-line="76" selection-start-column="82" selection-end-line="76" selection-end-column="82" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/TO-DO/Model/CoreDataModels/CDTodo.m">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="833">
@@ -914,13 +1069,6 @@
           <folding>
             <element signature="e#181#201#0" expanded="false" />
           </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/TO-DO/Classes/Common/SGHelper.m">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="327">
-          <caret line="54" column="13" lean-forward="false" selection-start-line="54" selection-start-column="13" selection-end-line="54" selection-end-column="13" />
         </state>
       </provider>
     </entry>
@@ -988,13 +1136,6 @@
     <entry file="file://$PROJECT_DIR$/Pods/MXParallaxHeader/MXParallaxHeader/MXScrollView.m" />
     <entry file="file://$PROJECT_DIR$/Pods/MXParallaxHeader/MXParallaxHeader/MXScrollViewController.m" />
     <entry file="file://$PROJECT_DIR$/Pods/MXParallaxHeader/MXParallaxHeader/MXParallaxHeader.m" />
-    <entry file="file://$PROJECT_DIR$/Podfile">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="340">
-          <caret line="20" column="31" lean-forward="true" selection-start-line="20" selection-start-column="31" selection-end-line="20" selection-end-column="31" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/TO-DO/Classes/Common/TodoTableViewController.h">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="714">
@@ -1018,7 +1159,7 @@
         <state relative-caret-position="1071">
           <caret line="63" column="82" lean-forward="true" selection-start-line="63" selection-start-column="82" selection-end-line="63" selection-end-column="82" />
           <folding>
-            <element signature="e#137#155#0" expanded="true" />
+            <element signature="e#137#155#0" expanded="false" />
           </folding>
         </state>
       </provider>
@@ -1066,17 +1207,57 @@
     <entry file="file://$PROJECT_DIR$/TO-DO/Classes/Home/HomeViewController.m">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="697">
-          <caret line="41" column="24" lean-forward="true" selection-start-line="41" selection-start-column="24" selection-end-line="41" selection-end-column="24" />
+          <caret line="41" column="24" lean-forward="false" selection-start-line="41" selection-start-column="24" selection-end-line="41" selection-end-column="24" />
           <folding>
             <element signature="e#138#156#0" expanded="true" />
           </folding>
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/TO-DO/Classes/Common/Views/SGRectangleView.h">
+    <entry file="file://$PROJECT_DIR$/Pods/FSCalendar/FSCalendar/CALayer+FSExtension.m">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="136">
-          <caret line="8" column="44" lean-forward="true" selection-start-line="8" selection-start-column="44" selection-end-line="8" selection-end-column="44" />
+        <state relative-caret-position="0">
+          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Pods/FSCalendar/FSCalendar/FSCalendarAppearance.m">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-340">
+          <caret line="26" column="60" lean-forward="true" selection-start-line="26" selection-start-column="60" selection-end-line="26" selection-end-column="60" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Pods/FSCalendar/FSCalendar/FSCalendarAppearance.h">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="0">
+          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Pods/FSCalendar/FSCalendar/FSCalendarDynamicHeader.h">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="0">
+          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Pods/FSCalendar/FSCalendar/FSCalendarConstance.m">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="289">
+          <caret line="17" column="48" lean-forward="true" selection-start-line="17" selection-start-column="48" selection-end-line="17" selection-end-column="48" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Pods/FSCalendar/FSCalendar/FSCalendarCell.m">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="544">
+          <caret line="83" column="18" lean-forward="true" selection-start-line="83" selection-start-column="18" selection-end-line="83" selection-end-column="18" />
           <folding />
         </state>
       </provider>
@@ -1084,33 +1265,83 @@
     <entry file="file://$PROJECT_DIR$/TO-DO/Classes/Common/Views/SGRectangleView.m">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="408">
-          <caret line="24" column="26" lean-forward="true" selection-start-line="24" selection-start-column="26" selection-end-line="24" selection-end-column="26" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/TO-DO/Classes/Common/Views/SGHeaderView.h">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="387">
-          <caret line="37" column="3" lean-forward="true" selection-start-line="37" selection-start-column="3" selection-end-line="37" selection-end-column="3" />
-          <folding />
+          <caret line="24" column="26" lean-forward="false" selection-start-line="24" selection-start-column="26" selection-end-line="24" selection-end-column="26" />
+          <folding>
+            <marker date="1479107280000" expanded="true" signature="249:2084" ph="..." />
+          </folding>
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/TO-DO/Classes/Common/Views/SGHeaderView.m">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="574">
-          <caret line="211" column="32" lean-forward="true" selection-start-line="211" selection-start-column="32" selection-end-line="211" selection-end-column="32" />
+        <state relative-caret-position="3689">
+          <caret line="220" column="13" lean-forward="false" selection-start-line="220" selection-start-column="13" selection-end-line="220" selection-end-column="13" />
           <folding>
             <element signature="e#132#156#0" expanded="true" />
           </folding>
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/TO-DO/Classes/Common/Views/SGHeaderView.h">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="336">
+          <caret line="34" column="8" lean-forward="false" selection-start-line="34" selection-start-column="8" selection-end-line="34" selection-end-column="8" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Pods/Headers/Public/AVOSCloud/AVObject.h">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="258">
+          <caret line="80" column="40" lean-forward="false" selection-start-line="80" selection-start-column="40" selection-end-line="80" selection-end-column="40" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/TO-DO/Classes/Common/Views/SGRectangleView.h">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="136">
+          <caret line="8" column="44" lean-forward="false" selection-start-line="8" selection-start-column="44" selection-end-line="8" selection-end-column="44" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/TO-DO/Model/LeanCloudModels/LCTodo.m">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="340">
+          <caret line="36" column="35" lean-forward="false" selection-start-line="36" selection-start-column="35" selection-end-line="36" selection-end-column="35" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Podfile">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="323">
+          <caret line="19" column="23" lean-forward="false" selection-start-line="19" selection-start-column="23" selection-end-line="19" selection-end-column="23" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/TO-DO/Classes/Common/SGHelper.m">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="217">
+          <caret line="90" column="12" lean-forward="false" selection-start-line="90" selection-start-column="12" selection-end-line="90" selection-end-column="12" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Pods/FSCalendar/FSCalendar/FSCalendar.m">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="141">
+          <caret line="215" column="41" lean-forward="true" selection-start-line="215" selection-start-column="41" selection-end-line="215" selection-end-column="41" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/TO-DO/Classes/Common/TodoTableViewController.m">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="481">
-          <caret line="115" column="45" lean-forward="true" selection-start-line="115" selection-start-column="45" selection-end-line="115" selection-end-column="45" />
+        <state relative-caret-position="-2452">
+          <caret line="123" column="26" lean-forward="true" selection-start-line="123" selection-start-column="26" selection-end-line="123" selection-end-column="26" />
           <folding>
             <element signature="e#143#166#0" expanded="true" />
           </folding>
@@ -1119,8 +1350,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/TO-DO/Calendar/Controllers/CalendarViewController.m">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="523">
-          <caret line="151" column="2" lean-forward="true" selection-start-line="151" selection-start-column="2" selection-end-line="151" selection-end-column="2" />
+        <state relative-caret-position="506">
+          <caret line="157" column="35" lean-forward="true" selection-start-line="157" selection-start-column="35" selection-end-line="157" selection-end-column="35" />
           <folding>
             <element signature="e#142#160#0" expanded="true" />
           </folding>

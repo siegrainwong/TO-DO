@@ -42,22 +42,21 @@ typedef NS_ENUM(NSInteger, AMapLocationRegionState)
 
 @property (nonatomic, copy) NSString *formattedAddress;//!< 格式化地址
 
-@property (nonatomic, copy) NSString *country; //!< 国家
+@property (nonatomic, copy) NSString *country;  //!< 国家
 @property (nonatomic, copy) NSString *province; //!< 省/直辖市
 @property (nonatomic, copy) NSString *city;     //!< 市
 @property (nonatomic, copy) NSString *district; //!< 区
-@property (nonatomic, copy) NSString *township; //!< 乡镇
-@property (nonatomic, copy) NSString *neighborhood; //!< 社区
-@property (nonatomic, copy) NSString *building; //!< 建筑
+@property (nonatomic, copy) NSString *township __attribute((deprecated("该字段从v2.2.0版本起不再返回数据,建议您使用AMapSearchKit的逆地理功能获取."))); //!< 乡镇
+@property (nonatomic, copy) NSString *neighborhood __attribute((deprecated("该字段从v2.2.0版本起不再返回数据,建议您使用AMapSearchKit的逆地理功能获取."))); //!< 社区
+@property (nonatomic, copy) NSString *building __attribute((deprecated("该字段从v2.2.0版本起不再返回数据,建议您使用AMapSearchKit的逆地理功能获取."))); //!< 建筑
 @property (nonatomic, copy) NSString *citycode; //!< 城市编码
 @property (nonatomic, copy) NSString *adcode;   //!< 区域编码
 
 @property (nonatomic, copy) NSString *street;   //!< 街道名称
 @property (nonatomic, copy) NSString *number;   //!< 门牌号
 
-@property (nonatomic, copy) NSString *POIName; //!< 兴趣点名称
-@property (nonatomic, copy) NSString *AOIName; //!< 所属兴趣点名称
-
+@property (nonatomic, copy) NSString *POIName;  //!< 兴趣点名称
+@property (nonatomic, copy) NSString *AOIName;  //!< 所属兴趣点名称
 
 @end
 

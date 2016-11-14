@@ -59,12 +59,12 @@
 #pragma mark - 创建一个选择照片的 action sheet
 
 + (void)photoPickerFromTarget:(UIViewController <UINavigationControllerDelegate, UIImagePickerControllerDelegate> *)viewController {
-    LCActionSheet *sheet = [LCActionSheet sheetWithTitle:Localized(@"Choose photo") buttonTitles:@[Localized(@"Take a photo"), Localized(@"Pick from album")] redButtonIndex:-1 clicked:^(NSInteger buttonIndex) {
-        if (buttonIndex == 0)
+    LCActionSheet *sheet = [LCActionSheet sheetWithTitle:Localized(@"Choose photo") cancelButtonTitle:Localized(@"Cancel") clicked:^(LCActionSheet *actionSheet, NSInteger buttonIndex) {
+        if (buttonIndex == 1)
             [self pickPictureFromSource:UIImagePickerControllerSourceTypeCamera target:viewController error:nil];
-        else if (buttonIndex == 1)
+        else if (buttonIndex == 2)
             [self pickPictureFromSource:UIImagePickerControllerSourceTypePhotoLibrary target:viewController error:nil];
-    }];
+    } otherButtonTitles:Localized(@"Take a photo"), Localized(@"Pick from album"), nil];
     [sheet show];
 }
 
@@ -95,6 +95,7 @@
 }
 
 #pragma mark - convenience
+
 + (NSString *)photoPath {
     return [[[AppDelegate globalDelegate] sandboxUrl] stringByAppendingPathComponent:[NSString stringWithFormat:@"savedImages"]];
 }

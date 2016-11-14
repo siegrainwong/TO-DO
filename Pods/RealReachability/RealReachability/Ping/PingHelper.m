@@ -34,7 +34,7 @@ NSString *const kPingResultNotification = @"kPingResultNotification";
     if ((self = [super init]))
     {
         _isPinging = NO;
-        
+        _timeout = 2.0f;
         _completionBlocks = [NSMutableArray array];
     }
     return self;
@@ -44,6 +44,8 @@ NSString *const kPingResultNotification = @"kPingResultNotification";
 {
     [self.completionBlocks removeAllObjects];
     self.completionBlocks = nil;
+    
+    [self clearPingFoundation];
 }
 
 #pragma mark - Singlton Method
@@ -66,10 +68,10 @@ NSString *const kPingResultNotification = @"kPingResultNotification";
     //NSLog(@"pingWithBlock");
     if (completion)
     {
-        // Temp: need to copy the block?
+        // copy the block, then added to the blocks array.
         @synchronized(self)
         {
-            [self.completionBlocks addObject:completion];
+            [self.completionBlocks addObject:[completion copy]];
         }
     }
     
@@ -80,24 +82,40 @@ NSString *const kPingResultNotification = @"kPingResultNotification";
         if (![[NSThread currentThread] isMainThread]) {
             dispatch_sync(dispatch_get_main_queue(), ^{
                 __strong __typeof(weakSelf)strongSelf = weakSelf;
-                // safe protection for exceptional situation, background app or multi-thread, eg.
-                [strongSelf.pingFoundation stop];
-                strongSelf.isPinging = YES;
-                [strongSelf.pingFoundation start];
-                
-                [strongSelf performSelector:@selector(pingTimeOut) withObject:nil afterDelay:2.0f];
+                [strongSelf startPing];
             });
         }
         else
         {
-            // safe protection for exceptional situation, background app or multi-thread, eg.
-            [self.pingFoundation stop];
-            self.isPinging = YES;
-            [self.pingFoundation start];
-            
-            [self performSelector:@selector(pingTimeOut) withObject:nil afterDelay:2.0f];
+            [self startPing];
         }
     }
+}
+
+- (void)clearPingFoundation
+{
+    //NSLog(@"clearPingFoundation");
+    
+    if (self.pingFoundation)
+    {
+        [self.pingFoundation stop];
+        self.pingFoundation.delegate = nil;
+        self.pingFoundation = nil;
+    }
+}
+
+- (void)startPing
+{
+    //NSLog(@"startPing");
+    [self clearPingFoundation];
+    
+    self.isPinging = YES;
+    
+    self.pingFoundation = [[PingFoundation alloc] initWithHostName:self.host];
+    self.pingFoundation.delegate = self;
+    [self.pingFoundation start];
+    
+    [self performSelector:@selector(pingTimeOut) withObject:nil afterDelay:self.timeout];
 }
 
 - (void)setHost:(NSString *)host
@@ -108,7 +126,8 @@ NSString *const kPingResultNotification = @"kPingResultNotification";
     self.pingFoundation.delegate = nil;
     self.pingFoundation = nil;
     
-    self.pingFoundation = [PingFoundation pingFoundationWithHostName:_host];
+    self.pingFoundation = [[PingFoundation alloc] initWithHostName:_host];
+    
     self.pingFoundation.delegate = self;
 }
 
@@ -120,13 +139,15 @@ NSString *const kPingResultNotification = @"kPingResultNotification";
     //somewhere around here we should introduce a double check after 3 seconds on another host,
     // if maybe not truely failed.
     
+    [NSObject cancelPreviousPerformRequestsWithTarget:self selector:@selector(pingTimeOut) object:nil];
+    
     if (!self.isPinging)
     {
         return;
     }
     
     self.isPinging = NO;
-    [self.pingFoundation stop];
+    [self clearPingFoundation];
     
     @synchronized(self)
     {
@@ -148,34 +169,65 @@ NSString *const kPingResultNotification = @"kPingResultNotification";
 // When the pinger starts, send the ping immediately
 - (void)pingFoundation:(PingFoundation *)pinger didStartWithAddress:(NSData *)address
 {
+    //NSLog(@"didStartWithAddress");
     [self.pingFoundation sendPingWithData:nil];
 }
 
 - (void)pingFoundation:(PingFoundation *)pinger didFailWithError:(NSError *)error
 {
+    //NSLog(@"didFailWithError, error=%@", error);
     [self endWithFlag:NO];
 }
 
-- (void)PingFoundation:(PingFoundation *)pinger didFailToSendPacket:(NSData *)packet error:(NSError *)error
+- (void)pingFoundation:(PingFoundation *)pinger didFailToSendPacket:(NSData *)packet sequenceNumber:(uint16_t)sequenceNumber error:(NSError *)error
 {
+    //NSLog(@"didFailToSendPacket, sequenceNumber = %@, error=%@", @(sequenceNumber), error);
     [self endWithFlag:NO];
 }
 
-- (void)pingFoundation:(PingFoundation *)pinger didReceivePingResponsePacket:(NSData *)packet
+- (void)pingFoundation:(PingFoundation *)pinger didReceivePingResponsePacket:(NSData *)packet sequenceNumber:(uint16_t)sequenceNumber
 {
+    //NSLog(@"didReceivePingResponsePacket, sequenceNumber = %@", @(sequenceNumber));
     [self endWithFlag:YES];
 }
 
-- (void)pingFoundation:(PingFoundation *)pinger didSendPacket:(NSData *)packet
+- (void)pingFoundation:(PingFoundation *)pinger didSendPacket:(NSData *)packet sequenceNumber:(uint16_t)sequenceNumber
 {
-    
+    //NSLog(@"didSendPacket, sequenceNumber = %@", @(sequenceNumber));
+}
+
+- (void)pingFoundation:(PingFoundation *)pinger didReceiveUnexpectedPacket:(NSData *)packet
+{
+    //NSLog(@"didReceiveUnexpectedPacket");
 }
 
 #pragma mark - TimeOut handler
 
 - (void)pingTimeOut
 {
-    [self endWithFlag:NO];
+    //NSLog(@"pingTimeOut");
+    
+    if (!self.isPinging)
+    {
+        return;
+    }
+    
+    self.isPinging = NO;
+    [self clearPingFoundation];
+    
+    @synchronized(self)
+    {
+        for (void (^completion)(BOOL) in self.completionBlocks)
+        {
+            completion(NO);
+        }
+        [self.completionBlocks removeAllObjects];
+    }
+    
+    dispatch_async(dispatch_get_main_queue(), ^{
+        [[NSNotificationCenter defaultCenter] postNotificationName:kPingResultNotification
+                                                            object:[NSNumber numberWithBool:NO]];
+    });
 }
 
 @end

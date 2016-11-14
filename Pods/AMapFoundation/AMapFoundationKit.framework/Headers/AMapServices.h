@@ -19,7 +19,7 @@
 
 /**
  *  是否开启HTTPS，默认为NO。
- *  目前已支持服务：key鉴权、云图（不支持iOS9 SSL限制）、搜索（短串分享除外）。
+ *  目前已支持服务：key鉴权、云图、搜索。
  */
 @property (nonatomic, assign) BOOL enableHTTPS;
 

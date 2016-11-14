@@ -55,7 +55,7 @@
 @property (nonatomic, copy)   NSString  *city;  //!< 城市名称
 @property (nonatomic, copy)   NSString  *citycode; //!< 城市编码
 @property (nonatomic, copy)   NSString  *adcode; //!< 城市区域编码
-@property (nonatomic, assign) NSInteger  num;   //!< 此区域的建议结果数目,AMapSuggestion中使用
+@property (nonatomic, assign) NSInteger  num;   //!< 此区域的建议结果数目, AMapSuggestion 中使用
 @property (nonatomic, strong) NSArray<AMapDistrict *> *districts; //!< 途径区域 AMapDistrict 数组，AMepStep中使用，只有name和adcode。
 
 @end
@@ -141,11 +141,13 @@
 @property (nonatomic, copy)   NSString     *uid; //!< POI全局唯一ID
 @property (nonatomic, copy)   NSString     *name; //!< 名称
 @property (nonatomic, copy)   NSString     *type; //!< 兴趣点类型
+@property (nonatomic, copy)   NSString     *typecode; //!< 类型编码
 @property (nonatomic, copy)   AMapGeoPoint *location; //!< 经纬度
 @property (nonatomic, copy)   NSString     *address;  //!< 地址
 @property (nonatomic, copy)   NSString     *tel;  //!< 电话
 @property (nonatomic, assign) NSInteger     distance; //!< 距中心点的距离，单位米。在周边搜索时有效。
 @property (nonatomic, copy)   NSString     *parkingType; //!< 停车场类型，地上、地下、路边
+@property (nonatomic, copy)   NSString     *shopID; //!< 商铺id
 
 // 扩展信息
 @property (nonatomic, copy)   NSString     *postcode; //!< 邮编
@@ -305,7 +307,7 @@
 @property (nonatomic, copy) NSString     *citycode; //!< 城市编码
 @property (nonatomic, copy) NSString     *startStop; //!< 首发站
 @property (nonatomic, copy) NSString     *endStop; //!< 终点站
-@property (nonatomic, copy) AMapGeoPoint *location; //!< 当查询公交站点时，返回的AMapBusLine中含有该字段
+@property (nonatomic, copy) AMapGeoPoint *location; //!< 当查询公交站点时，返回的 AMapBusLine 中含有该字段
 
 // 扩展信息
 @property (nonatomic, copy)   NSString *startTime; //!< 首班车时间
@@ -378,7 +380,7 @@
 @property (nonatomic, assign) NSInteger  distance; //!< 起点和终点的距离
 @property (nonatomic, assign) NSInteger  duration; //!< 预计耗时（单位：秒）
 @property (nonatomic, copy)   NSString  *strategy; //!< 导航策略
-@property (nonatomic, strong) NSArray<AMapStep *> *steps; //!< 导航路段 AMapStep数组
+@property (nonatomic, strong) NSArray<AMapStep *> *steps; //!< 导航路段 AMapStep 数组
 @property (nonatomic, assign) CGFloat    tolls; //!< 此方案费用（单位：元）
 @property (nonatomic, assign) NSInteger  tollDistance; //!< 此方案收费路段长度（单位：米）
 @property (nonatomic, assign) NSInteger  totalTrafficLights; //!< 此方案交通信号灯个数
@@ -564,7 +566,7 @@
 @property (nonatomic, strong) NSDictionary *customFields; //!< 用户自定义字段
 @property (nonatomic, copy)   NSString     *createTime; //!< 创建时间
 @property (nonatomic, copy)   NSString     *updateTime; //!< 更新时间
-@property (nonatomic, assign) NSInteger     distance; //!< 离当前位置的距离(只在PlaceAround搜索时有效)
+@property (nonatomic, assign) NSInteger     distance; //!< 离当前位置的距离(只在云图周边搜索时有效)
 @property (nonatomic, strong) NSArray<AMapCloudImage *> *images;  //!< 图片信息
 
 @end

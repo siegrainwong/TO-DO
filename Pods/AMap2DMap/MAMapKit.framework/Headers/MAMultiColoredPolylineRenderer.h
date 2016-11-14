@@ -17,7 +17,7 @@
 
 /*!
  @brief 根据指定的MAPolyline生成一个多段线Renderer
- @param polyline 指定MAMultiPolyline
+ @param multiPolyline 指定MAMultiPolyline
  @return 新生成的多段线Renderer
  */
 - (instancetype)initWithMultiPolyline:(MAMultiPolyline *)multiPolyline;

@@ -7,6 +7,10 @@
 //
 
 #import "LocalConnection.h"
+#import <netinet/in.h>
+#import <netinet6/in6.h>
+#import <arpa/inet.h>
+#import <ifaddrs.h>
 
 #if (!defined(DEBUG))
 #define NSLog(...)
@@ -56,12 +60,11 @@ static NSString *connectionFlags(SCNetworkReachabilityFlags flags)
 {
     if ((self = [super init]))
     {
-        struct sockaddr zeroAddr;
-        bzero(&zeroAddr, sizeof(zeroAddr));
-        zeroAddr.sa_len = sizeof(zeroAddr);
-        zeroAddr.sa_family = AF_INET;
-        
-        _reachabilityRef = SCNetworkReachabilityCreateWithAddress(NULL, (struct sockaddr *) &zeroAddr);
+        struct sockaddr_in address;
+        bzero(&address, sizeof(address));
+        address.sin_len = sizeof(address);
+        address.sin_family = AF_INET;
+        _reachabilityRef = SCNetworkReachabilityCreateWithAddress(NULL, (struct sockaddr *) &address);
         
         _reachabilitySerialQueue = dispatch_queue_create("com.dustturtle.realreachability", NULL);
     }
@@ -116,6 +119,9 @@ static NSString *connectionFlags(SCNetworkReachabilityFlags flags)
     }
 
     // First time we come in, notify the initialization of local connection.
+    
+    self.isReachable = [self _isReachable];
+    
     __weak __typeof(self)weakSelf = self;
     dispatch_async(dispatch_get_main_queue(), ^{
         __strong __typeof(weakSelf)strongSelf = weakSelf;
@@ -136,7 +142,7 @@ static NSString *connectionFlags(SCNetworkReachabilityFlags flags)
 #pragma mark - outside invoke
 - (LocalConnectionStatus)currentLocalConnectionStatus
 {
-    if ([self isReachable])
+    if ([self _isReachable])
     {
         if ([self isReachableViaWiFi])
         {
@@ -157,6 +163,8 @@ static NSString *connectionFlags(SCNetworkReachabilityFlags flags)
 
 - (void)localConnectionChanged
 {
+    self.isReachable = [self _isReachable];
+    
     // this makes sure the change notification happens on the MAIN THREAD
     __weak __typeof(self)weakSelf = self;
     dispatch_async(dispatch_get_main_queue(), ^{
@@ -186,7 +194,8 @@ static NSString *connectionFlags(SCNetworkReachabilityFlags flags)
 
 #pragma mark - LocalReachability
 
-- (BOOL)isReachable
+/// added underline prefix to distinguish the method from the property "isReachable"
+- (BOOL)_isReachable
 {
     SCNetworkReachabilityFlags flags;
     

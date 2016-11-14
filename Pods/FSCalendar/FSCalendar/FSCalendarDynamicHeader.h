@@ -13,25 +13,33 @@
 
 #import "FSCalendar.h"
 #import "FSCalendarCell.h"
-#import "FSCalendarHeader.h"
+#import "FSCalendarHeaderView.h"
 #import "FSCalendarStickyHeader.h"
+#import "FSCalendarCollectionView.h"
+#import "FSCalendarCollectionViewLayout.h"
+#import "FSCalendarScopeHandle.h"
+#import "FSCalendarCalculator.h"
+#import "FSCalendarAnimator.h"
+#import "FSCalendarDelegateProxy.h"
 
 @interface FSCalendar (Dynamic)
 
-@property (readonly, nonatomic) CAShapeLayer *maskLayer;
-@property (readonly, nonatomic) FSCalendarHeader *header;
-@property (readonly, nonatomic) UICollectionView *collectionView;
-@property (readonly, nonatomic) UICollectionViewFlowLayout *collectionViewLayout;
-@property (readonly, nonatomic) NSArray *weekdays;
-@property (readonly, nonatomic) BOOL ibEditing;
+@property (readonly, nonatomic) FSCalendarCollectionView *collectionView;
+@property (readonly, nonatomic) FSCalendarScopeHandle *scopeHandle;
+@property (readonly, nonatomic) FSCalendarCollectionViewLayout *collectionViewLayout;
+@property (readonly, nonatomic) FSCalendarAnimator *animator;
+@property (readonly, nonatomic) FSCalendarCalculator *calculator;
+@property (readonly, nonatomic) FSCalendarDelegateProxy *proxy;
+@property (readonly, nonatomic) NSArray<UILabel *> *weekdays;
 @property (readonly, nonatomic) BOOL floatingMode;
 @property (readonly, nonatomic) NSArray *visibleStickyHeaders;
 @property (readonly, nonatomic) CGFloat preferredHeaderHeight;
 @property (readonly, nonatomic) CGFloat preferredWeekdayHeight;
 @property (readonly, nonatomic) CGFloat preferredRowHeight;
+@property (readonly, nonatomic) CGFloat preferredPadding;
 @property (readonly, nonatomic) UIView *bottomBorder;
 
-@property (readonly, nonatomic) NSCalendar *calendar;
+@property (readonly, nonatomic) NSCalendar *gregorian;
 @property (readonly, nonatomic) NSDateComponents *components;
 @property (readonly, nonatomic) NSDateFormatter *formatter;
 
@@ -46,14 +54,9 @@
 
 - (void)invalidateHeaders;
 - (void)invalidateWeekdaySymbols;
-- (void)invalidateAppearanceForCell:(FSCalendarCell *)cell;
 
-- (NSDate *)dateForIndexPath:(NSIndexPath *)indexPath;
-- (NSDate *)dateForIndexPath:(NSIndexPath *)indexPath scope:(FSCalendarScope)scope;
-- (NSIndexPath *)indexPathForDate:(NSDate *)date;
-- (NSIndexPath *)indexPathForDate:(NSDate *)date scope:(FSCalendarScope)scope;
-
-- (NSInteger)numberOfHeadPlaceholdersForMonth:(NSDate *)month;
+- (BOOL)isPageInRange:(NSDate *)page;
+- (BOOL)isDateInRange:(NSDate *)date;
 
 - (CGSize)sizeThatFits:(CGSize)size scope:(FSCalendarScope)scope;
 
@@ -77,12 +80,4 @@
 - (void)invalidateFonts;
 
 @end
-
-
-@interface FSCalendarHeader (Dynamic)
-
-@property (readonly, nonatomic) UICollectionView *collectionView;
-
-@end
-
 

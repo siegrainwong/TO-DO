@@ -32,7 +32,7 @@
     if (self = [super init])
     {
         // created only once
-        _allStates = @[[ReachStateUnloaded state], [ReachStateUnReachable state], [ReachStateLoading state], [ReachStateWIFI state], [ReachStateWWAN state]];
+        _allStates = @[[ReachStateUnloaded state], [ReachStateLoading state], [ReachStateUnReachable state], [ReachStateWIFI state], [ReachStateWWAN state]];
     }
     return self;
 }
@@ -59,7 +59,7 @@
   
     RRStateID previousStateID = self.currentStateID;
     self.currentStateID = newStateID;
-    NSLog(@"curStateID is %@", @(self.currentStateID));
+    //NSLog(@"curStateID is %@", @(self.currentStateID));
     
     return (previousStateID == self.currentStateID) ? -1 : 0;
 }

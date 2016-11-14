@@ -8,14 +8,14 @@ target "TO-DO" do
   pod 'JSONModel'
   pod 'Qiniu'
   pod 'GTMBase64'
-  pod 'AVOSCloud'
+  pod 'AVOSCloud', '~> 3.2.9'
   pod 'SDWebImage'
   pod "RTRootNavigationController"
   pod 'AutoLinearLayoutView'
   pod 'JVFloatingDrawer'
   pod 'MGSwipeTableCell'
   pod 'ZFDragableModalTransition'
-  pod 'FSCalendar'
+  pod 'FSCalendar', :git => "https://github.com/Seanwong933/FSCalendar.git"
   pod 'MagicalRecord'
   pod 'CocoaLumberjack'
   pod 'DGActivityIndicatorView'

@@ -8,7 +8,7 @@
 //  https://github.com/WenchaoD
 //
 
-#import "FSCalendarConstance.h"
+#import "FSCalendarConstants.h"
 
 @class FSCalendar;
 
@@ -22,11 +22,6 @@ typedef NS_ENUM(NSInteger, FSCalendarCellState) {
     FSCalendarCellStateTodaySelected = FSCalendarCellStateToday|FSCalendarCellStateSelected
 };
 
-typedef NS_ENUM(NSUInteger, FSCalendarCellShape) {
-    FSCalendarCellShapeCircle    = 0,
-    FSCalendarCellShapeRectangle = 1
-};
-
 typedef NS_OPTIONS(NSUInteger, FSCalendarCaseOptions) {
     FSCalendarCaseOptionsHeaderUsesDefaultCase      = 0,
     FSCalendarCaseOptionsHeaderUsesUpperCase        = 1,
@@ -34,6 +29,13 @@ typedef NS_OPTIONS(NSUInteger, FSCalendarCaseOptions) {
     FSCalendarCaseOptionsWeekdayUsesDefaultCase     = 0 << 4,
     FSCalendarCaseOptionsWeekdayUsesUpperCase       = 1 << 4,
     FSCalendarCaseOptionsWeekdayUsesSingleUpperCase = 2 << 4,
+};
+
+typedef NS_OPTIONS(NSUInteger, FSCalendarSeparators) {
+    FSCalendarSeparatorNone          = 0,
+    FSCalendarSeparatorInterRows     = 1 << 0,
+    FSCalendarSeparatorInterColumns  = 1 << 1,   // Will implemented soon
+    FSCalendarSeparatorBelowWeekdays = 1 << 2    // Will implemented soon
 };
 
 /**
@@ -72,19 +74,34 @@ typedef NS_OPTIONS(NSUInteger, FSCalendarCaseOptions) {
 @property (strong, nonatomic) UIFont   *headerTitleFont;
 
 /**
- * The vertical offset of the day text from default position.
+ * The offset of the day text from default position.
  */
-@property (assign, nonatomic) CGFloat  titleVerticalOffset;
+@property (assign, nonatomic) CGPoint  titleOffset;
 
 /**
- * The vertical offset of the suntitle text from default position.
+ * The offset of the day text from default position.
  */
-@property (assign, nonatomic) CGFloat  subtitleVerticalOffset;
+@property (assign, nonatomic) CGPoint  subtitleOffset;
+
+/**
+ * The offset of the event dots from default position.
+ */
+@property (assign, nonatomic) CGPoint eventOffset;
+
+/**
+ * The offset of the image from default position.
+ */
+@property (assign, nonatomic) CGPoint imageOffset;
 
 /**
  * The color of event dots.
  */
-@property (strong, nonatomic) UIColor  *eventColor;
+@property (strong, nonatomic) UIColor  *eventDefaultColor;
+
+/**
+ * The color of event dots.
+ */
+@property (strong, nonatomic) UIColor  *eventSelectionColor;
 
 /**
  * The color of weekday text.
@@ -182,11 +199,9 @@ typedef NS_OPTIONS(NSUInteger, FSCalendarCaseOptions) {
 @property (strong, nonatomic) UIColor  *borderSelectionColor;
 
 /**
- * The shape appears when a day is selected or today.
- *
- * @see FSCalendarCellShape
+ * The border radius, while 1 means a circle, 0 means a rectangle, and the middle value will give it a corner radius.
  */
-@property (assign, nonatomic) FSCalendarCellShape cellShape;
+@property (assign, nonatomic) CGFloat borderRadius;
 
 /**
  * The case options manage the case of month label and weekday symbols.
@@ -194,6 +209,12 @@ typedef NS_OPTIONS(NSUInteger, FSCalendarCaseOptions) {
  * @see FSCalendarCaseOptions
  */
 @property (assign, nonatomic) FSCalendarCaseOptions caseOptions;
+
+/**
+ * The line integrations for calendar.
+ *
+ */
+@property (assign, nonatomic) FSCalendarSeparators separators;
 
 /**
  * A Boolean value indicates whether the calendar should adjust font size by its content size.
@@ -209,6 +230,7 @@ typedef NS_OPTIONS(NSUInteger, FSCalendarCaseOptions) {
 
 // For preview only
 @property (assign, nonatomic) BOOL      fakeSubtitles;
+@property (assign, nonatomic) BOOL      fakeEventDots;
 @property (assign, nonatomic) NSInteger fakedSelectedDay;
 
 #endif
@@ -225,15 +247,16 @@ typedef NS_OPTIONS(NSUInteger, FSCalendarCaseOptions) {
  */
 @interface FSCalendarAppearance (Deprecated)
 
-@property (assign, nonatomic) FSCalendarCellStyle cellStyle FSCalendarDeprecated('cellShape');
 @property (assign, nonatomic) BOOL useVeryShortWeekdaySymbols FSCalendarDeprecated('caseOptions');
-@property (assign, nonatomic) BOOL autoAdjustTitleSize FSCalendarDeprecated('adjustFontSizeToFitContentSize');
 @property (assign, nonatomic) BOOL adjustsFontSizeToFitCellSize FSCalendarDeprecated('adjustFontSizeToFitContentSize');
-
 @property (assign, nonatomic) CGFloat titleTextSize FSCalendarDeprecated('titleFont');
 @property (assign, nonatomic) CGFloat subtitleTextSize FSCalendarDeprecated('subtitleFont');
 @property (assign, nonatomic) CGFloat weekdayTextSize FSCalendarDeprecated('weekdayFont');
 @property (assign, nonatomic) CGFloat headerTitleTextSize FSCalendarDeprecated('headerTitleFont');
+@property (assign, nonatomic) CGFloat titleVerticalOffset FSCalendarDeprecated('titleOffset');
+@property (assign, nonatomic) CGFloat subtitleVerticalOffset FSCalendarDeprecated('subtitleOffset');
+@property (strong, nonatomic) UIColor *eventColor FSCalendarDeprecated('eventDefaultColor');
+@property (assign, nonatomic) FSCalendarCellShape cellShape FSCalendarDeprecated('borderRadius');
 
 @end
 

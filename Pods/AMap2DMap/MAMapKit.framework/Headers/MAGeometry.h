@@ -13,20 +13,23 @@
 extern "C" {
 #endif
     
-    typedef struct {
+    struct MACoordinateBounds{
         CLLocationCoordinate2D northEast;
         CLLocationCoordinate2D southWest;
-    } MACoordinateBounds;
+    };
+    typedef struct MACoordinateBounds MACoordinateBounds;
     
-    typedef struct {
+    struct MACoordinateSpan{
         CLLocationDegrees latitudeDelta;
         CLLocationDegrees longitudeDelta;
-    } MACoordinateSpan;
+    };
+    typedef struct MACoordinateSpan MACoordinateSpan;
     
-    typedef struct {
+    struct MACoordinateRegion{
         CLLocationCoordinate2D center;
         MACoordinateSpan span;
-    } MACoordinateRegion;
+    };
+    typedef struct MACoordinateRegion MACoordinateRegion;
     
     static inline MACoordinateBounds MACoordinateBoundsMake(CLLocationCoordinate2D northEast,CLLocationCoordinate2D southWest)
     {
@@ -52,23 +55,31 @@ extern "C" {
      */
     extern MACoordinateRegion MACoordinateRegionMakeWithDistance(CLLocationCoordinate2D centerCoordinate, CLLocationDistance latitudinalMeters, CLLocationDistance longitudinalMeters);
     
-    /** 平面投影坐标结构定义 */
-    typedef struct {
+    /**
+     *  平面投影坐标结构定义
+     */
+    struct MAMapPoint{
         double x;
         double y;
-    } MAMapPoint;
+    };
+    typedef struct MAMapPoint MAMapPoint;
     
-    /** 平面投影大小结构定义 */
-    typedef struct {
+    /**
+     *  平面投影大小结构定义
+     */
+    struct MAMapSize{
         double width;
         double height;
-    } MAMapSize;
-    
-    /** 平面投影矩形结构定义 */
-    typedef struct {
+    };
+    typedef struct MAMapSize MAMapSize;
+    /**
+     *  平面投影矩形结构定义
+     */
+    struct MAMapRect{
         MAMapPoint origin;
         MAMapSize size;
-    } MAMapRect;
+    };
+    typedef struct MAMapRect MAMapRect;
     
     /**
      比例关系:MAZoomScale = Screen Point / MAMapPoint, 当MAZoomScale = 1时, 1 screen point = 1 MAMapPoint, 当MAZoomScale = 0.5时, 1 screen point = 2 MAMapPoints
@@ -102,7 +113,7 @@ extern "C" {
     
     /*!
      @brief 平面投影矩形转region
-     @param mapPoint 要转化的平面投影矩形
+     @param rect 要转化的平面投影矩形
      @return region
      */
     extern MACoordinateRegion MACoordinateRegionForMapRect(MAMapRect rect);

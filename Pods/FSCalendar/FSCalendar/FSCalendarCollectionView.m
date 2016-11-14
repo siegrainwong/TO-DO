@@ -7,7 +7,8 @@
 //
 
 #import "FSCalendarCollectionView.h"
-#import "FSCalendarCell.h"
+#import "FSCalendarExtensions.h"
+#import "FSCalendarConstants.h"
 
 @interface FSCalendarCollectionView ()
 
@@ -41,9 +42,17 @@
 {
     self.scrollsToTop = NO;
     self.contentInset = UIEdgeInsetsZero;
+    
 #ifdef __IPHONE_9_0
     if ([self respondsToSelector:@selector(setSemanticContentAttribute:)]) {
         self.semanticContentAttribute = UISemanticContentAttributeForceLeftToRight;
+    }
+#endif
+    
+#ifdef __IPHONE_10_0
+    SEL selector = NSSelectorFromString(@"setPrefetchingEnabled:");
+    if (selector && [self respondsToSelector:selector]) {
+        [self fs_performSelector:selector withObjects:@NO, nil];
     }
 #endif
 }
@@ -59,4 +68,25 @@
 }
 
 @end
+
+
+@implementation FSCalendarSeparator
+
+- (instancetype)initWithFrame:(CGRect)frame
+{
+    self = [super initWithFrame:frame];
+    if (self) {
+        self.backgroundColor = FSCalendarStandardSeparatorColor;
+    }
+    return self;
+}
+
+- (void)applyLayoutAttributes:(UICollectionViewLayoutAttributes *)layoutAttributes
+{
+    self.frame = layoutAttributes.frame;
+}
+
+@end
+
+
 

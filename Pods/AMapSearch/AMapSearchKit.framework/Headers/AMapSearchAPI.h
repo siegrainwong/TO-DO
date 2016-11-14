@@ -349,7 +349,7 @@ typedef NS_ENUM(NSInteger, AMapSearchLanguage)
 /**
  *   云图查询回调函数
  *
- *   @param request 发起的请求，具体字段参考AMapCloudSearchBaseRequest 。
+ *   @param request 发起的请求，具体字段参考 AMapCloudSearchBaseRequest 。
  *   @param response 响应结果，具体字段参考 AMapCloudPOISearchResponse 。
  */
 - (void)onCloudSearchDone:(AMapCloudSearchBaseRequest *)request response:(AMapCloudPOISearchResponse *)response;

@@ -38,12 +38,13 @@ typedef NS_ENUM(NSUInteger, IGLDropDownMenuDirection) {
 @optional
 - (void)dropDownMenu:(IGLDropDownMenu*)dropDownMenu selectedItemAtIndex:(NSInteger)index;
 - (void)dropDownMenu:(IGLDropDownMenu *)dropDownMenu expandingChanged:(BOOL)isExpending;
+- (void)dropDownMenu:(IGLDropDownMenu *)dropDownMenu expandingChangedWithAnimationCompledted:(BOOL)isExpending;
 
 @end
 
 @interface IGLDropDownMenu : UIControl
 
-@property (nonatomic, strong, readonly) IGLDropDownItem *menuButton;
+@property (nonatomic, strong) IGLDropDownItem *menuButton;
 @property (nonatomic, copy) NSString* menuText;
 @property (nonatomic, strong) id object;
 @property (nonatomic, strong) UIImage *menuIconImage;
@@ -67,7 +68,7 @@ typedef NS_ENUM(NSUInteger, IGLDropDownMenuDirection) {
 @property (nonatomic, assign, getter = shouldFlipWhenToggleView) BOOL flipWhenToggleView;
 @property (nonatomic, assign, getter = shouldUseSpringAnimation) BOOL useSpringAnimation;
 
-@property (nonatomic, assign) id<IGLDropDownMenuDelegate> delegate;
+@property (nonatomic, weak) id<IGLDropDownMenuDelegate> delegate;
 
 - (instancetype)initWithMenuButtonCustomView:(UIView*)customView;
 

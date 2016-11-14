@@ -78,7 +78,7 @@ typedef NS_ENUM(NSInteger, AVStorageType) {
     AVStorageTypeQiniu = 0,
     AVStorageTypeParse,
     AVStorageTypeS3,
-
+    AVStorageTypeQCloud,
     /* Default service region */
     AVStorageTypeDefault = AVStorageTypeQiniu
 } ;
@@ -162,8 +162,8 @@ typedef NS_ENUM(NSInteger, AVServiceRegion) {
 +(void)clearLastModifyCache;
 
 /**
- *  Set third party file storage service. If uses China server, the default is Qiniu, if uses US server, the default is AWS S3.
- *  @param type Qiniu or AWS S3
+ *  Set third party file storage service. If uses China server, you can use QCloud or Qiniu, the default is Qiniu, if uses US server, the default is AWS S3.
+ *  @param type Qiniu, QCloud or AWS S3.
  */
 + (void)setStorageType:(AVStorageType)type;
 

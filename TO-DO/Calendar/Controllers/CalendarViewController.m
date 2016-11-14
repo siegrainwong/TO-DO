@@ -67,14 +67,13 @@ CalendarViewController ()
     
     self.headerView.parallaxScrollView = _todoTableViewController.tableView;
     self.headerView.parallaxHeight = self.headerHeight;
-    self.headerView.parallaxMinimumHeight = 100;
+    self.headerView.parallaxMinimumHeight = 200;
     
     _calendar = [FSCalendar new];
     _calendar.delegate = self;
     _calendar.dataSource = self;
     _calendar.scrollDirection = FSCalendarScrollDirectionVertical;
     _calendar.headerHeight = 40;
-    [_calendar.bottomBorder setHidden:YES];
     _calendar.appearance.adjustsFontSizeToFitContentSize = NO;
     _calendar.appearance.headerTitleColor = [UIColor whiteColor];
     _calendar.appearance.titleDefaultColor = [UIColor whiteColor];
@@ -146,11 +145,19 @@ CalendarViewController ()
 
 /* 滚动时切换日历状态 */
 - (void)todoTableViewDidScrollToY:(CGFloat)y {
-//    CGFloat collapseTriggerDistance = kScreenHeight * 0.8;
-//    if ((y > collapseTriggerDistance && _calendar.scope == FSCalendarScopeWeek) || (y < collapseTriggerDistance && _calendar.scope == FSCalendarScopeMonth)) return;
-//    BOOL isCollapsed = y > collapseTriggerDistance;
-//
-//    [self.headerView mas_updateConstraints:^(MASConstraintMaker *make) {make.height.offset(kScreenHeight * (isCollapsed ? 0.25 : 0.6));}];
+    CGFloat collapseTriggerDistance = kScreenHeight * 0.8;
+    if ((y > collapseTriggerDistance && _calendar.scope == FSCalendarScopeWeek) || (y < collapseTriggerDistance && _calendar.scope == FSCalendarScopeMonth)) return;
+    BOOL isCollapsed = y > collapseTriggerDistance;
+    
+    [_calendar setScope:isCollapsed ? FSCalendarScopeWeek : FSCalendarScopeMonth animated:YES];
+    [_calendar mas_updateConstraints:^(MASConstraintMaker *make) {
+        make.height.offset(isCollapsed ? 200 : self.headerHeight);
+    }];
+    
+    [UIView animateWithDuration:.3 animations:^{
+        [_calendar layoutIfNeeded];
+    }];
+    
 //    [UIView animateWithDuration:0.3 animations:^{
 //                self.leftNavigationButton.alpha = !isCollapsed;
 //                self.rightNavigationButton.alpha = !isCollapsed;

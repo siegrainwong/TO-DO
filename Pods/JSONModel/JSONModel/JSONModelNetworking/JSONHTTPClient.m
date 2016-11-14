@@ -1,20 +1,12 @@
 //
 //  JSONModelHTTPClient.m
+//  JSONModel
 //
-//  @version 1.2
-//  @author Marin Todorov (http://www.underplot.com) and contributors
-//
-
-// Copyright (c) 2012-2015 Marin Todorov, Underplot ltd.
-// This code is distributed under the terms and conditions of the MIT license.
-//
-// Permission is hereby granted, free of charge, to any person obtaining a copy of this software and associated documentation files (the "Software"), to deal in the Software without restriction, including without limitation the rights to use, copy, modify, merge, publish, distribute, sublicense, and/or sell copies of the Software, and to permit persons to whom the Software is furnished to do so, subject to the following conditions:
-// The above copyright notice and this permission notice shall be included in all copies or substantial portions of the Software.
-// THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
-//
-
 
 #import "JSONHTTPClient.h"
+
+#pragma GCC diagnostic ignored "-Wdeprecated-declarations"
+#pragma GCC diagnostic ignored "-Wdeprecated-implementations"
 
 typedef void (^RequestResultBlock)(NSData *data, JSONModelError *error);
 
@@ -97,7 +89,7 @@ static NSString* requestContentType = nil;
                                       [requestString substringToIndex:1],
                                       [requestString substringFromIndex: requestString.length -1]
                                       ];
-        
+
         if ([firstAndLastChar isEqualToString:@"{}"] || [firstAndLastChar isEqualToString:@"[]"]) {
             //guessing for a JSON request
             contentType = kContentTypeJSON;
@@ -118,7 +110,7 @@ static NSString* requestContentType = nil;
     if ([value isKindOfClass:[NSNumber class]]) {
         value = [(NSNumber*)value stringValue];
     }
-    
+
     NSAssert([value isKindOfClass:[NSString class]], @"request parameters can be only of NSString or NSNumber classes. '%@' is of class %@.", value, [value class]);
 
     NSString *str = (NSString *)value;
@@ -142,7 +134,7 @@ static NSString* requestContentType = nil;
     NSMutableURLRequest *request = [[NSMutableURLRequest alloc] initWithURL: url
                                                                 cachePolicy: defaultCachePolicy
                                                             timeoutInterval: defaultTimeoutInSeconds];
-	[request setHTTPMethod:method];
+    [request setHTTPMethod:method];
 
     if ([requestContentType isEqualToString:kContentTypeAutomatic]) {
         //automatic content type
@@ -154,17 +146,17 @@ static NSString* requestContentType = nil;
         //user set content type
         [request setValue: requestContentType forHTTPHeaderField:@"Content-type"];
     }
-    
+
     //add all the custom headers defined
     for (NSString* key in [requestHeaders allKeys]) {
         [request setValue:requestHeaders[key] forHTTPHeaderField:key];
     }
-    
+
     //add the custom headers
     for (NSString* key in [headers allKeys]) {
         [request setValue:headers[key] forHTTPHeaderField:key];
     }
-    
+
     if (bodyData) {
         [request setHTTPBody: bodyData];
         [request setValue:[NSString stringWithFormat:@"%lu", (unsigned long)bodyData.length] forHTTPHeaderField:@"Content-Length"];
@@ -198,7 +190,7 @@ static NSString* requestContentType = nil;
         if (!data.length) {
             data = nil;
         }
-        
+
         handler(data, error);
     };
 
@@ -231,7 +223,7 @@ static NSString* requestContentType = nil;
             paramsString = [[NSMutableString alloc] initWithString: [paramsString substringToIndex: paramsString.length-1]];
         }
     }
-    
+
     //set the request params
     if ([method isEqualToString:kHTTPMethodGET] && params) {
 
@@ -242,7 +234,7 @@ static NSString* requestContentType = nil;
                                     paramsString
                                     ]];
     }
-    
+
     //call the more general synq request method
     [self requestDataFromURL: url
                       method: method
@@ -285,13 +277,13 @@ static NSString* requestContentType = nil;
 
         //step 4: if there's a response at this and no errors, convert to object
         if (error==nil) {
-			// Note: it is possible to have a valid response with empty response data (204 No Content).
-			// So only create the JSON object if there is some response data.
-			if(responseData.length > 0)
-			{
-				//convert to an object
-				jsonObject = [NSJSONSerialization JSONObjectWithData:responseData options:kNilOptions error:&error];
-			}
+            // Note: it is possible to have a valid response with empty response data (204 No Content).
+            // So only create the JSON object if there is some response data.
+            if(responseData.length > 0)
+            {
+                //convert to an object
+                jsonObject = [NSJSONSerialization JSONObjectWithData:responseData options:kNilOptions error:&error];
+            }
         }
         //step 4.5: cover an edge case in which meaningful content is return along an error HTTP status code
         else if (error && responseData && jsonObject==nil) {
@@ -300,7 +292,7 @@ static NSString* requestContentType = nil;
             //keep responseData just in case it contains error information
             error.responseData = responseData;
         }
-        
+
         //step 5: invoke the complete block
         dispatch_async(dispatch_get_main_queue(), ^{
             if (completeBlock) {

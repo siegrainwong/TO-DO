@@ -1,6 +1,6 @@
 /*
  * MGSwipeTableCell is licensed under MIT license. See LICENSE.md file for more information.
- * Copyright (c) 2014 Imanol Fernandez @MortimerGoro
+ * Copyright (c) 2016 Imanol Fernandez @MortimerGoro
  */
 
 #import "MGSwipeButton.h"
@@ -92,16 +92,31 @@
 }
 
 -(void) centerIconOverTextWithSpacing: (CGFloat) spacing {
-	CGSize size = self.imageView.image.size;
-	self.titleEdgeInsets = UIEdgeInsetsMake(0.0,
-											-size.width,
-											-(size.height + spacing),
-											0.0);
-	size = [self.titleLabel.text sizeWithAttributes:@{ NSFontAttributeName: self.titleLabel.font }];
-	self.imageEdgeInsets = UIEdgeInsetsMake(-(size.height + spacing),
-											0.0,
-											0.0,
-											-size.width);
+  CGSize size = self.imageView.image.size;
+  
+  if ([UIDevice currentDevice].systemVersion.floatValue >= 9.0 && [UIApplication sharedApplication].userInterfaceLayoutDirection == UIUserInterfaceLayoutDirectionRightToLeft) {
+    self.titleEdgeInsets = UIEdgeInsetsMake(0.0,
+                                            0.0,
+                                            -(size.height + spacing),
+                                            -size.width);
+    size = [self.titleLabel.text sizeWithAttributes:@{ NSFontAttributeName: self.titleLabel.font }];
+    self.imageEdgeInsets = UIEdgeInsetsMake(-(size.height + spacing),
+                                            -size.width,
+                                            0.0,
+                                            0.0);
+  }
+  else
+  {
+    self.titleEdgeInsets = UIEdgeInsetsMake(0.0,
+                                            -size.width,
+                                            -(size.height + spacing),
+                                            0.0);
+    size = [self.titleLabel.text sizeWithAttributes:@{ NSFontAttributeName: self.titleLabel.font }];
+    self.imageEdgeInsets = UIEdgeInsetsMake(-(size.height + spacing),
+                                            0.0,
+                                            0.0,
+                                            -size.width);
+  }
 }
 
 -(void) setPadding:(CGFloat) padding
@@ -129,6 +144,16 @@
 {
     self.contentEdgeInsets = insets;
     [self sizeToFit];
+}
+
+-(void) iconTintColor:(UIColor *)tintColor
+{
+    UIImage *currentIcon = self.imageView.image;
+    if (currentIcon.renderingMode != UIImageRenderingModeAlwaysTemplate) {
+        currentIcon = [currentIcon imageWithRenderingMode:UIImageRenderingModeAlwaysTemplate];
+        [self setImage:currentIcon forState:UIControlStateNormal];
+    }
+    self.tintColor = tintColor;
 }
 
 @end
