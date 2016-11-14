@@ -5,5 +5,6 @@
 
 #import "SGViews.h"
 
-@interface SGRectangleView : UIView<SGViews>
+@interface SGRectangleView : UIView <SGViews>
+@property(nonatomic, strong) UIColor *color;
 @end

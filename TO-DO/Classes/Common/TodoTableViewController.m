@@ -122,7 +122,7 @@ TodoTableViewController ()
 - (void)didReloadData {
     if ([_delegate respondsToSelector:@selector(todoTableViewControllerDidReloadData)]) [_delegate todoTableViewControllerDidReloadData];
     if (!self.dataCount) {
-        EmptyDataView *emptyDataView = [[EmptyDataView alloc] initWithFrame:CGRectMake(0, 0, self.tableView.width, kScreenHeight - self.headerHeight)];
+        EmptyDataView *emptyDataView = [[EmptyDataView alloc] initWithFrame:CGRectMake(0, 0, self.tableView.width, kScreenHeight - self.headerHeight - 64)];
         self.tableView.backgroundColor = self.tableView.tableHeaderView.backgroundColor = [SGHelper themeColorLightGray];
         self.tableView.tableFooterView = emptyDataView;
     } else {

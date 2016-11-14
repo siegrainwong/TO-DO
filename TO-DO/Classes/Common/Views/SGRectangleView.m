@@ -5,13 +5,23 @@
 
 #import "SGRectangleView.h"
 
-@interface SGRectangleView()
+@interface SGRectangleView ()
 @property(nonatomic, strong) CALayer *rectangleLayer;
 @end
 
 @implementation SGRectangleView
+#pragma mark - accessors
+
+- (void)setColor:(UIColor *)color {
+    _color = color;
+    
+    [self setNeedsDisplay];
+}
+
+#pragma mark - initial
+
 - (instancetype)init {
-    if(self = [super init]){
+    if (self = [super init]) {
         [self setupViews];
         [self bindConstraints];
     }
@@ -54,13 +64,15 @@
 - (void)drawRect:(CGRect)rect {
     [super drawRect:rect];
     
+    UIColor *color = _color ?: [UIColor whiteColor];
+    
     CGContextRef ctx = UIGraphicsGetCurrentContext();
     //设置笔触颜色
-    CGContextSetStrokeColorWithColor(ctx, [UIColor whiteColor].CGColor);//设置颜色有很多方法，我觉得这个方法最好用
+    CGContextSetStrokeColorWithColor(ctx, color.CGColor);//设置颜色有很多方法，我觉得这个方法最好用
     //设置笔触宽度
     CGContextSetLineWidth(ctx, 2);
     //设置填充色
-    CGContextSetFillColorWithColor(ctx, [UIColor whiteColor].CGColor);
+    CGContextSetFillColorWithColor(ctx, color.CGColor);
     //设置拐点样式
     CGContextSetLineJoin(ctx, kCGLineJoinRound);
     //Line cap 线的两端的样式

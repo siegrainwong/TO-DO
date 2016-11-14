@@ -146,23 +146,23 @@ CalendarViewController ()
 
 /* 滚动时切换日历状态 */
 - (void)todoTableViewDidScrollToY:(CGFloat)y {
-    CGFloat collapseTriggerDistance = kScreenHeight * 0.8;
-    if ((y > collapseTriggerDistance && _calendar.scope == FSCalendarScopeWeek) || (y < collapseTriggerDistance && _calendar.scope == FSCalendarScopeMonth)) return;
-    BOOL isCollapsed = y > collapseTriggerDistance;
-    
-    [self.headerView mas_updateConstraints:^(MASConstraintMaker *make) {make.height.offset(kScreenHeight * (isCollapsed ? 0.25 : 0.6));}];
-    [UIView animateWithDuration:0.3 animations:^{
-                self.leftNavigationButton.alpha = !isCollapsed;
-                self.rightNavigationButton.alpha = !isCollapsed;
-                self.headerView.rightOperationButton.alpha = !isCollapsed;
-                _calendar.alpha = 0;
-                [self.view layoutIfNeeded];
-            }
-            completion:^(BOOL finished) {
-                [UIView animateWithDuration:0.3 animations:^{_calendar.alpha = 1;} completion:^(BOOL finished) {
-                    [_calendar setScope:isCollapsed ? FSCalendarScopeWeek : FSCalendarScopeMonth animated:NO];
-                }];
-            }];
+//    CGFloat collapseTriggerDistance = kScreenHeight * 0.8;
+//    if ((y > collapseTriggerDistance && _calendar.scope == FSCalendarScopeWeek) || (y < collapseTriggerDistance && _calendar.scope == FSCalendarScopeMonth)) return;
+//    BOOL isCollapsed = y > collapseTriggerDistance;
+//
+//    [self.headerView mas_updateConstraints:^(MASConstraintMaker *make) {make.height.offset(kScreenHeight * (isCollapsed ? 0.25 : 0.6));}];
+//    [UIView animateWithDuration:0.3 animations:^{
+//                self.leftNavigationButton.alpha = !isCollapsed;
+//                self.rightNavigationButton.alpha = !isCollapsed;
+//                self.headerView.rightOperationButton.alpha = !isCollapsed;
+//                _calendar.alpha = 0;
+//                [self.view layoutIfNeeded];
+//            }
+//            completion:^(BOOL finished) {
+//                [UIView animateWithDuration:0.3 animations:^{_calendar.alpha = 1;} completion:^(BOOL finished) {
+//                    [_calendar setScope:isCollapsed ? FSCalendarScopeWeek : FSCalendarScopeMonth animated:NO];
+//                }];
+//            }];
 }
 
 #pragma mark - menu button

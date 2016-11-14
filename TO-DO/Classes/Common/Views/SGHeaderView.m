@@ -37,7 +37,14 @@ static void *const kHeaderViewKVOContext = (void *) &kHeaderViewKVOContext;
 
 #pragma mark - accessors
 
+- (void)setBackgroundColor:(UIColor *)backgroundColor {
+    [super setBackgroundColor:backgroundColor];
+    
+    _rectangleView.color = backgroundColor;
+}
+
 - (BOOL)isAdjustTopInset {
+    //根据导航栏的透明属性来判断
     if ([_parallaxScrollView.nextResponder isKindOfClass:[UIViewController class]]) {
         UIViewController *viewController = (UIViewController *) _parallaxScrollView.nextResponder;
         if (viewController.navigationController.navigationBar.translucent) return NO;
