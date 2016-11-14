@@ -179,6 +179,7 @@ CalendarViewController ()
         _calendar.alpha = 1;
     } completion:^(BOOL complete) {
         [_calendar setScope:isCollapsed ? FSCalendarScopeWeek : FSCalendarScopeMonth animated:NO];
+        [_calendar selectDate:_calendar.selectedDate scrollToDate:YES];
     }];
 }
 
