@@ -92,8 +92,7 @@ HomeViewController () <UINavigationControllerDelegate, UIImagePickerControllerDe
     [super bindConstraints];
     
     [_todoTableViewController.tableView mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.top.offset(0);
-        make.bottom.right.left.offset(0);
+        make.top.bottom.right.left.offset(0);
     }];
     
     [self.headerView mas_makeConstraints:^(MASConstraintMaker *make) {
@@ -136,14 +135,14 @@ HomeViewController () <UINavigationControllerDelegate, UIImagePickerControllerDe
     _todoTableViewController.tableView.showsVerticalScrollIndicator = alpha == 1;
     if (alpha == 1 && !_isOpacityNavigation) {
         _isOpacityNavigation = YES;
-    
+        
         [UIView animateWithDuration:.3 animations:^{
             self.titleLabel.text = self.headerView.titleLabel.text;
             self.titleLabel.alpha = 1;
         }];
     } else if (alpha != 1 && _isOpacityNavigation) {
         _isOpacityNavigation = NO;
-    
+        
         [UIView animateWithDuration:.3 animations:^{
             self.titleLabel.text = nil;
             self.titleLabel.alpha = 0;

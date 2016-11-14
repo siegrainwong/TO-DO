@@ -24,8 +24,13 @@ CalendarViewController ()
 
 @implementation CalendarViewController
 #pragma mark - accessors
--(CGFloat)headerHeight{
-    return kScreenHeight * 0.48;
+
+- (CGFloat)headerHeight {
+    return kScreenWidth * 0.85;
+}
+
+- (CGFloat)headerCollapseHeight {
+    return self.headerHeight * 0.36;
 }
 
 #pragma mark - initial
@@ -58,17 +63,6 @@ CalendarViewController ()
         [weakSelf.navigationController pushViewController:createViewController animated:YES];
     }];
     
-    _todoTableViewController = [TodoTableViewController todoTableViewControllerWithStyle:TodoTableViewControllerStyleCalendar];
-    _todoTableViewController.delegate = self;
-    _todoTableViewController.headerHeight = self.headerHeight;
-    _todoTableViewController.tableView.tableHeaderView = self.headerView;
-    [self addChildViewController:_todoTableViewController];
-    [self.view addSubview:_todoTableViewController.tableView];
-    
-    self.headerView.parallaxScrollView = _todoTableViewController.tableView;
-    self.headerView.parallaxHeight = self.headerHeight;
-    self.headerView.parallaxMinimumHeight = 200;
-    
     _calendar = [FSCalendar new];
     _calendar.delegate = self;
     _calendar.dataSource = self;
@@ -86,6 +80,18 @@ CalendarViewController ()
     _calendar.appearance.weekdayFont = [SGHelper themeFontWithSize:15];
     [_calendar selectDate:[NSDate date]];
     [self.headerView addSubview:_calendar];
+    
+    _todoTableViewController = [TodoTableViewController todoTableViewControllerWithStyle:TodoTableViewControllerStyleCalendar];
+    _todoTableViewController.delegate = self;
+    _todoTableViewController.headerHeight = self.headerHeight;
+    _todoTableViewController.tableView.tableHeaderView = self.headerView;
+    [self addChildViewController:_todoTableViewController];
+    [self.view addSubview:_todoTableViewController.tableView];
+    
+    self.headerView.parallaxScrollView = _todoTableViewController.tableView;
+    self.headerView.parallaxHeight = self.headerHeight;
+    self.headerView.parallaxMinimumHeight = self.headerCollapseHeight + 64;
+    [self.headerView bringSubviewToFront:self.headerView.rightOperationButton];
 
 //    _menuButton = [UIButton new];
 //    [_menuButton setBackgroundImage:[UIImage imageNamed:@"menu-button2"] forState:UIControlStateNormal];
@@ -109,7 +115,7 @@ CalendarViewController ()
     [_calendar mas_makeConstraints:^(MASConstraintMaker *make) {
         make.left.offset(10);
         make.right.offset(-10);
-        make.bottom.offset(-kScreenHeight * 0.075);
+        make.top.offset(-44);
         make.height.offset(self.headerHeight);
     }];
 
@@ -145,31 +151,35 @@ CalendarViewController ()
 
 /* 滚动时切换日历状态 */
 - (void)todoTableViewDidScrollToY:(CGFloat)y {
-    CGFloat collapseTriggerDistance = kScreenHeight * 0.8;
+    [self toggleCalendarWithOffsetY:y];
+    [self setNavItemAlphaWithOffsetY:y];
+}
+
+- (void)setNavItemAlphaWithOffsetY:(CGFloat)y {
+    CGFloat collapseTriggerDistance = self.headerCollapseHeight + 64;
+    float offsetY = y + 64;
+    float alpha = offsetY > 0 ? offsetY >= collapseTriggerDistance ? 0 : 1 - offsetY / collapseTriggerDistance : 1;
+    self.leftNavigationButton.alpha = alpha;
+    self.rightNavigationButton.alpha = alpha;
+}
+
+- (void)toggleCalendarWithOffsetY:(CGFloat)y {
+    CGFloat collapseTriggerDistance = self.headerCollapseHeight + 64;
     if ((y > collapseTriggerDistance && _calendar.scope == FSCalendarScopeWeek) || (y < collapseTriggerDistance && _calendar.scope == FSCalendarScopeMonth)) return;
     BOOL isCollapsed = y > collapseTriggerDistance;
     
-    [_calendar setScope:isCollapsed ? FSCalendarScopeWeek : FSCalendarScopeMonth animated:YES];
     [_calendar mas_updateConstraints:^(MASConstraintMaker *make) {
-        make.height.offset(isCollapsed ? 200 : self.headerHeight);
+        make.top.offset(isCollapsed ? self.headerHeight - self.headerCollapseHeight - 44 : -44);
+        make.height.offset(isCollapsed ? self.headerCollapseHeight : self.headerHeight);
     }];
     
+    _calendar.alpha = 0;
     [UIView animateWithDuration:.3 animations:^{
         [_calendar layoutIfNeeded];
+        _calendar.alpha = 1;
+    } completion:^(BOOL complete) {
+        [_calendar setScope:isCollapsed ? FSCalendarScopeWeek : FSCalendarScopeMonth animated:NO];
     }];
-    
-//    [UIView animateWithDuration:0.3 animations:^{
-//                self.leftNavigationButton.alpha = !isCollapsed;
-//                self.rightNavigationButton.alpha = !isCollapsed;
-//                self.headerView.rightOperationButton.alpha = !isCollapsed;
-//                _calendar.alpha = 0;
-//                [self.view layoutIfNeeded];
-//            }
-//            completion:^(BOOL finished) {
-//                [UIView animateWithDuration:0.3 animations:^{_calendar.alpha = 1;} completion:^(BOOL finished) {
-//                    [_calendar setScope:isCollapsed ? FSCalendarScopeWeek : FSCalendarScopeMonth animated:NO];
-//                }];
-//            }];
 }
 
 #pragma mark - menu button
