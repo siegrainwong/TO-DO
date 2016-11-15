@@ -37,13 +37,13 @@ static CGFloat const kSyncIndicatorSize = 15;
 
 @interface
 DrawerTableViewController ()
-@property(nonatomic, readwrite, strong) NSArray<NSDictionary *> *dataArray;
+@property(nonatomic, strong) NSArray<NSDictionary *> *dataArray;
 
-@property(nonatomic, readwrite, strong) UIView *bottomView;
-@property(nonatomic, readwrite, strong) DGActivityIndicatorView *indicatorView;
-@property(nonatomic, readwrite, strong) UIButton *leftBottomButton;
-@property(nonatomic, readwrite, strong) UIButton *centerBottomButton;
-@property(nonatomic, readwrite, strong) UIButton *rightBottomButton;
+@property(nonatomic, strong) UIView *bottomView;
+@property(nonatomic, strong) DGActivityIndicatorView *indicatorView;
+@property(nonatomic, strong) UIButton *leftBottomButton;
+@property(nonatomic, strong) UIButton *centerBottomButton;
+@property(nonatomic, strong) UIButton *rightBottomButton;
 @end
 
 @implementation DrawerTableViewController
@@ -51,7 +51,7 @@ DrawerTableViewController ()
 
 - (void)localizeStrings {
     _dataArray = @[
-            @{kDataKeyTitle: NSLocalizedString(@"Home", nil),
+            @{kDataKeyTitle: [AppDelegate homeViewControllerKey],
                     kDataKeyIcon: @"",
                     kDataKeyClass: [HomeViewController class]},
             @{kDataKeyTitle: NSLocalizedString(@"Calendar", nil),
@@ -201,7 +201,7 @@ DrawerTableViewController ()
     [LCUser logOut];
     [[AppDelegate globalDelegate] toggleDrawer:self animated:YES];
     LoginViewController *loginViewController = [LoginViewController new];
-    [[AppDelegate globalDelegate] switchRootViewController:loginViewController isNavigation:NO];
+    [[AppDelegate globalDelegate] switchRootViewController:loginViewController isNavigation:NO key:nil];
 }
 
 #pragma mark - tableview
@@ -227,8 +227,9 @@ DrawerTableViewController ()
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
     UIViewController *destinationViewController = [_dataArray[indexPath.row][kDataKeyClass] new];
+    NSString *key = _dataArray[indexPath.row][kDataKeyTitle];
     
-    [[AppDelegate globalDelegate] setCenterViewController:destinationViewController];
+    [[AppDelegate globalDelegate] setCenterViewController:destinationViewController key:key];
     [[AppDelegate globalDelegate] toggleDrawer:self animated:YES];
 }
 

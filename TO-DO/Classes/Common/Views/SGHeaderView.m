@@ -87,6 +87,8 @@ static void *const kHeaderViewKVOContext = (void *) &kHeaderViewKVOContext;
 }
 
 - (void)setup {
+    self.translatesAutoresizingMaskIntoConstraints = NO;
+    
     _backgroundImageView = [[UIImageView alloc] init];
     _backgroundImageView.contentMode = UIViewContentModeScaleAspectFill;
     _backgroundImageView.clipsToBounds = YES;

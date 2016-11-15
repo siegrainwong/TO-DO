@@ -23,7 +23,10 @@
 @property (nonatomic, readonly, strong) JVFloatingDrawerViewController* drawerViewController;
 @property (nonatomic, readonly, strong) RealReachability* reachability;
 
+/* 全局访问器 */
 + (AppDelegate*)globalDelegate;
+/* 首页Key */
++ (NSString *)homeViewControllerKey;
 
 /* 沙盒目录 */
 - (NSString *)sandboxUrl;
@@ -35,15 +38,18 @@
 /**
  *  切换根控制器
  */
-- (void)switchRootViewController:(UIViewController*)viewController isNavigation:(BOOL)isNavigation;
+- (void)switchRootViewController:(UIViewController *)viewController isNavigation:(BOOL)isNavigation key:(NSString *)key;
+
 /**
  *  切换到抽屉视图
  */
 - (void)toggleDrawer:(id)sender animated:(BOOL)animated;
+
 /**
- *  切换目标视图
+ *  切换Drawer的目标视图
  */
-- (void)setCenterViewController:(UIViewController*)viewController;
+- (void)setCenterViewController:(UIViewController *)viewController key:(NSString *)key;
+
 /**
  *  登录后调用该方法配置用户
  */

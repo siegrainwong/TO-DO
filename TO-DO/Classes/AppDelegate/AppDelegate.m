@@ -31,9 +31,21 @@
 // FIXME: 每次进入一个新的ViewController，都会在AF库中的SecPolicy对象上发生几百b的内存泄漏，wtf?
 
 @interface AppDelegate ()
+/* 视图状态存储 */
+@property(nonatomic, strong) NSMutableDictionary *stateHolder;
 @end
 
 @implementation AppDelegate
+#pragma mark - accessors
+
++ (AppDelegate *)globalDelegate {
+    return (AppDelegate *) [UIApplication sharedApplication].delegate;
+}
+
++ (NSString *)homeViewControllerKey {
+    return Localized(@"Home");
+}
+
 #pragma mark - application delegate
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
@@ -42,16 +54,8 @@
     return YES;
 }
 
-- (void)applicationWillResignActive:(UIApplication *)application {
-}
-
-- (void)applicationDidEnterBackground:(UIApplication *)application {
-}
-
-- (void)applicationWillEnterForeground:(UIApplication *)application {
-}
-
-- (void)applicationDidBecomeActive:(UIApplication *)application {
+- (void)applicationDidReceiveMemoryWarning:(UIApplication *)application {
+    [_stateHolder removeAllObjects];
 }
 
 - (void)applicationWillTerminate:(UIApplication *)application {
@@ -61,6 +65,8 @@
 #pragma mark - initial
 
 - (void)setup {
+    _stateHolder = [NSMutableDictionary new];
+    
     [self setupNetworkEye];
     [self setupDDLog];
     [self setupMagicRecord];
@@ -79,11 +85,10 @@
     // validate user's login state
     if (_lcUser) {
         DDLogInfo(@"当前用户：%@", _lcUser.username);
-        HomeViewController *homeViewController = [HomeViewController new];
-        [self switchRootViewController:homeViewController isNavigation:YES];
+        [self switchRootViewController:[HomeViewController new] isNavigation:YES key:[AppDelegate homeViewControllerKey]];
         [self synchronize:SyncModeAutomatically];
     } else {
-        [self switchRootViewController:[LoginViewController new] isNavigation:NO];
+        [self switchRootViewController:[LoginViewController new] isNavigation:NO key:nil];
     }
     
     [self.window makeKeyAndVisible];
@@ -120,10 +125,9 @@
     animator.animationDuration = 0.5;
     animator.initialSpringVelocity = 2;
     animator.springDamping = 0.8;
+    
     _drawerViewController.animator = animator;
-    
     _drawerViewController.leftViewController = [DrawerTableViewController new];
-    
     _drawerViewController.backgroundImage = [UIImage imageNamed:@"drawerbg"];
 }
 
@@ -183,8 +187,8 @@
 }
 
 - (NSString *)sandboxUrl {
-	NSArray* array = NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES);
-	return array[0];
+    NSArray *array = NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES);
+    return array[0];
 }
 
 #pragma mark - sync
@@ -209,10 +213,9 @@
 
 #pragma mark - switch root view controller
 
-- (void)switchRootViewController:(UIViewController *)viewController isNavigation:(BOOL)isNavigation {
+- (void)switchRootViewController:(UIViewController *)viewController isNavigation:(BOOL)isNavigation key:(NSString *)key {
     if (isNavigation) {
-        RTRootNavigationController *navigationController = [[RTRootNavigationController alloc] initWithRootViewController:viewController];
-        _drawerViewController.centerViewController = navigationController;
+        [self setCenterViewController:viewController key:key];
     }
     UIView *snapShot = [self.window snapshotViewAfterScreenUpdates:true];
     [viewController.view addSubview:snapShot];
@@ -222,20 +225,22 @@
     [UIView animateWithDuration:.5 animations:^{snapShot.layer.opacity = 0;} completion:^(BOOL finished) {[snapShot removeFromSuperview];}];
 }
 
-#pragma mark - JVDrawer
+#pragma mark - drawer
 
 - (void)toggleDrawer:(id)sender animated:(BOOL)animated {
     [_drawerViewController toggleDrawerWithSide:JVFloatingDrawerSideLeft animated:animated completion:nil];
 }
 
-- (void)setCenterViewController:(UIViewController *)viewController {
-    RTRootNavigationController *navigationController = [[RTRootNavigationController alloc] initWithRootViewController:viewController];
+- (void)setCenterViewController:(UIViewController *)viewController key:(NSString *)key {
+    RTRootNavigationController *navigationController = nil;
+    if (!key)
+        navigationController = [[RTRootNavigationController alloc] initWithRootViewController:viewController];
+    else if (!_stateHolder[key]) {
+        navigationController = [[RTRootNavigationController alloc] initWithRootViewController:viewController];
+        _stateHolder[key] = navigationController;
+    } else
+        navigationController = _stateHolder[key];
+    
     _drawerViewController.centerViewController = navigationController;
-}
-
-#pragma mark - global access helper
-
-+ (AppDelegate *)globalDelegate {
-    return (AppDelegate *) [UIApplication sharedApplication].delegate;
 }
 @end
