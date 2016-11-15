@@ -89,6 +89,10 @@ typedef NS_ENUM(NSUInteger, FSCalendarOrientation) {
 
 @property (readonly, nonatomic) id<FSCalendarDelegateAppearance> delegateAppearance;
 
+//Modified: FSCalendar
+@property(nonatomic, assign) CGRect lastRect;
+
+
 - (void)orientationDidChange:(NSNotification *)notification;
 
 - (CGSize)sizeThatFits:(CGSize)size scope:(FSCalendarScope)scope;
@@ -284,6 +288,15 @@ typedef NS_ENUM(NSUInteger, FSCalendarOrientation) {
 {
     [super setBounds:bounds];
     if (!CGRectIsEmpty(bounds) && self.animator.state == FSCalendarTransitionStateIdle) {
+		//Modified: FSCalendar: 在我刷新headerView的位置的时候，这里会不停的setBounds导致CPU占用狂飙，所以判断了一下同样的位置就别set了，模拟器里面不会出现这种情况。
+		CGRect rect = bounds;
+		rect.size.height = (int)rect.size.height;
+		bounds = rect;
+		
+		if(CGRectEqualToRect(_lastRect, bounds)) return;
+		
+		_lastRect = bounds;
+
         [self invalidateViewFrames];
     }
 }

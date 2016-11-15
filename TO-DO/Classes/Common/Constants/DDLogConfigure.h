@@ -14,7 +14,7 @@
 #ifdef DEBUG
 static const DDLogLevel ddLogLevel = DDLogLevelVerbose;
 #else
-static const DDLogLevel ddLogLevel = DDLogLevelNone;
+static const DDLogLevel ddLogLevel = DDLogLevelOff;
 #endif
 
 #endif

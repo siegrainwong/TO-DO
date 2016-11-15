@@ -30,6 +30,8 @@
 
 // FIXME: 每次进入一个新的ViewController，都会在AF库中的SecPolicy对象上发生几百b的内存泄漏，wtf?
 
+static BOOL const kEnableViewControllerStateHolder = YES;
+
 @interface AppDelegate ()
 /* 视图状态存储 */
 @property(nonatomic, strong) NSMutableDictionary *stateHolder;
@@ -152,7 +154,10 @@
 
 - (void)setupReachability {
     _reachability = [RealReachability sharedInstance];
-    _reachability.autoCheckInterval = 0.1;
+	_reachability.autoCheckInterval = 0.3f;
+    [_reachability reachabilityWithBlock:^(ReachabilityStatus status) {
+                
+    }];
     [_reachability startNotifier];
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(networkChanged) name:kRealReachabilityChangedNotification object:nil];
 }
@@ -233,7 +238,7 @@
 
 - (void)setCenterViewController:(UIViewController *)viewController key:(NSString *)key {
     RTRootNavigationController *navigationController = nil;
-    if (!key)
+    if (!key || !kEnableViewControllerStateHolder)
         navigationController = [[RTRootNavigationController alloc] initWithRootViewController:viewController];
     else if (!_stateHolder[key]) {
         navigationController = [[RTRootNavigationController alloc] initWithRootViewController:viewController];

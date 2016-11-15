@@ -6,12 +6,10 @@
 //  Copyright © 2016年 com.siegrain. All rights reserved.
 //
 
-#import <SDAutoLayout/UIView+SDAutoLayout.h>
 #import "SGHeaderView.h"
 #import "Masonry.h"
 #import "SGRectangleView.h"
 #import "SGGraphics.h"
-#import "UIView+Extentsion.h"
 
 static CGFloat const kAvatarButtonSizeMultipliedByHeight = 0.16;
 static CGFloat const kRightOperationButtonSizeMultipliedByHeight = 0.1;

@@ -20,7 +20,6 @@
 LoginViewController ()
 @property(nonatomic, readwrite, strong) LoginView *loginView;
 @property(nonatomic, readwrite, strong) LCUserDataManager *dataManager;
-@property(nonatomic, readwrite, assign) BOOL releaseWhileDisappear;
 @end
 
 @implementation LoginViewController
@@ -46,8 +45,6 @@ LoginViewController ()
     }];
     
     _dataManager = [[LCUserDataManager alloc] init];
-    
-    _releaseWhileDisappear = true;
 }
 
 #pragma mark - loginView delegate
@@ -78,19 +75,13 @@ LoginViewController ()
 didFinishPickingMediaWithInfo:(NSDictionary<NSString *, id> *)info {
     [_loginView setAvatar:info[UIImagePickerControllerEditedImage]];
     [picker dismissViewControllerAnimated:true completion:nil];
-    _releaseWhileDisappear = true;
 }
 
 - (void)imagePickerControllerDidCancel:(UIImagePickerController *)picker {
     [picker dismissViewControllerAnimated:true completion:nil];
-    _releaseWhileDisappear = true;
 }
 
 #pragma mark - release
-
-- (void)didReceiveMemoryWarning {
-    [super didReceiveMemoryWarning];
-}
 
 - (void)dealloc {
     NSLog(@"%s", __func__);

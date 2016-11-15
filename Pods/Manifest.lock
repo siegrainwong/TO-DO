@@ -115,7 +115,7 @@ EXTERNAL SOURCES:
 
 CHECKOUT OPTIONS:
   FSCalendar:
-    :commit: 32e8b32edfc3f9e129c35ea5ea8c2057ccb2bafd
+    :commit: 927f6cce17456b8876feae07bec3f1fb0b57f440
     :git: https://github.com/Seanwong933/FSCalendar.git
 
 SPEC CHECKSUMS:
