@@ -15,7 +15,7 @@
 
     if (!headerView) return;
 
-    // Mark: tableviewHeader 不认约束
+    // Mark: tableHeaderView 不认约束
     CGFloat height = [headerView systemLayoutSizeFittingSize:UILayoutFittingCompressedSize].height;
     CGRect frame = headerView.frame;
     frame.size.height = height;

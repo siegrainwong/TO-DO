@@ -45,7 +45,7 @@ HomeViewController () <UINavigationControllerDelegate, UIImagePickerControllerDe
 #pragma mark - accessors
 
 - (CGFloat)headerHeight {
-    return kScreenHeight * 0.48;
+    return kScreenWidth * 1.1f;
 }
 
 #pragma mark - initial
@@ -89,17 +89,19 @@ HomeViewController () <UINavigationControllerDelegate, UIImagePickerControllerDe
     
     self.headerView.parallaxScrollView = _todoTableViewController.tableView;
     self.headerView.parallaxHeight = self.headerHeight;
+    self.headerView.parallaxMode = SGParallaxModeScaleToFill;
 }
 
 - (void)bindConstraints {
     [super bindConstraints];
     
     [_todoTableViewController.tableView mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.top.bottom.right.left.offset(0);
+        make.top.offset(-64);
+        make.bottom.right.left.offset(0);
     }];
     
     [self.headerView mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.top.left.offset(0);
+        make.top.left.offset(CGFLOAT_MIN);
         make.width.offset(kScreenWidth);
         make.height.offset(self.headerHeight);
     }];

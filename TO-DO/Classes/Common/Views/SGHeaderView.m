@@ -31,7 +31,6 @@ static void *const kHeaderViewKVOContext = (void *) &kHeaderViewKVOContext;
 
 - (void)dealloc {
     DDLogWarn(@"%s", __func__);
-    if (_parallaxScrollView) [self removeObserver:_parallaxScrollView forKeyPath:NSStringFromSelector(@selector(contentOffset))];
 }
 
 #pragma mark - accessors
@@ -42,35 +41,12 @@ static void *const kHeaderViewKVOContext = (void *) &kHeaderViewKVOContext;
     _rectangleView.color = backgroundColor;
 }
 
-- (BOOL)isAdjustTopInset {
-    //根据导航栏的透明属性来判断
-    if ([_parallaxScrollView.nextResponder isKindOfClass:[UIViewController class]]) {
-        UIViewController *viewController = (UIViewController *) _parallaxScrollView.nextResponder;
-        if (viewController.navigationController.navigationBar.translucent) return NO;
-    }
-    return YES;
-}
-
 - (void)setImage:(UIImage *)image {
     _image = image;
     CGFloat paths[] = {0, .7, 1};
     _backgroundImageView.image = [SGGraphics gradientImageWithImage:image paths:paths colors:@[ColorWithRGBA(0x6563A4, .2), ColorWithRGBA(0x6563A4, .2), ColorWithRGBA(0x6563A4, .35)]];
 }
 
-- (void)setParallaxScrollView:(UIScrollView *)parallaxScrollView {
-    _parallaxScrollView = parallaxScrollView;
-    
-    [_parallaxScrollView addObserver:self forKeyPath:NSStringFromSelector(@selector(contentOffset)) options:NSKeyValueObservingOptionNew context:kHeaderViewKVOContext];
-}
-
-- (void)setParallaxHeight:(CGFloat)parallaxHeight {
-    _parallaxHeight = parallaxHeight;
-    
-    [_backgroundImageView mas_remakeConstraints:^(MASConstraintMaker *make) {
-        make.left.right.bottom.offset(0);
-        make.height.offset(self.parallaxHeight);
-    }];
-}
 
 #pragma mark - initial
 
@@ -120,14 +96,11 @@ static void *const kHeaderViewKVOContext = (void *) &kHeaderViewKVOContext;
 
 - (void)bindConstraints {
     [_backgroundImageView mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.left.right.offset(0);
-        if (_avatarPosition == HeaderAvatarPositionBottom) {
-            make.top.offset(0);
+        make.bottom.left.right.offset(0);
+        if (_avatarPosition == HeaderAvatarPositionBottom)
             make.height.equalTo(self).multipliedBy(0.9);
-        } else {
-            make.bottom.offset(0);
+        else
             make.height.equalTo(self);
-        }
     }];
     
     [_rectangleView mas_makeConstraints:^(MASConstraintMaker *make) {
@@ -178,8 +151,32 @@ static void *const kHeaderViewKVOContext = (void *) &kHeaderViewKVOContext;
 - (void)rightOperationButtonDidPress {
     if (_headerViewDidPressRightOperationButton) _headerViewDidPressRightOperationButton();
 }
+@end
 
-#pragma mark - parallax header
+@implementation SGHeaderView (ParallaxHeader)
+
+- (void)dealloc {
+    if (_parallaxMode) [self removeObserver:_parallaxScrollView forKeyPath:NSStringFromSelector(@selector(contentOffset))];
+}
+
+#pragma mark - accessors
+
+- (void)setParallaxMode:(SGParallaxMode)parallaxMode {
+    _parallaxMode = parallaxMode;
+    
+    if (_parallaxMode)[_parallaxScrollView addObserver:self forKeyPath:NSStringFromSelector(@selector(contentOffset)) options:NSKeyValueObservingOptionNew context:kHeaderViewKVOContext];
+}
+
+- (void)setParallaxHeight:(CGFloat)parallaxHeight {
+    _parallaxHeight = parallaxHeight;
+    
+    [_backgroundImageView mas_remakeConstraints:^(MASConstraintMaker *make) {
+        make.left.right.bottom.offset(0);
+        make.height.offset(_parallaxHeight);
+    }];
+}
+
+#pragma mark - KVO
 
 - (void)observeValueForKeyPath:(NSString *)keyPath ofObject:(id)object change:(NSDictionary *)change context:(void *)context {
     if (context == kHeaderViewKVOContext) {
@@ -192,48 +189,38 @@ static void *const kHeaderViewKVOContext = (void *) &kHeaderViewKVOContext;
     }
 }
 
+#pragma mark - private methods
+
 - (void)scrollView:(UIScrollView *)scrollView didScrollToPoint:(CGPoint)contentOffset {
-    [self updateHeaderFrameWithOffsetY:contentOffset.y];
-    [self setHeaderStickWithOffsetY:contentOffset.y];
+    CGFloat offset = contentOffset.y + 64;
+    [self updateHeaderFrameWithOffsetY:offset];
+    [self setHeaderStickWithOffsetY:offset];
 }
 
--(void)setHeaderStickWithOffsetY:(CGFloat)y{
-    if(!_parallaxMinimumHeight) return;
+- (void)setHeaderStickWithOffsetY:(CGFloat)y {
+    if (!self.parallaxMinimumHeight) return;
     
-    CGFloat offset = y + (self.isAdjustTopInset ? 64 : 0);
-    CGFloat needsToStick = _parallaxHeight - offset <= _parallaxMinimumHeight;
-    
+    CGFloat needsToStick = self.parallaxHeight - y <= self.parallaxMinimumHeight;
     if (needsToStick) {
-        if(_isStickMode){
-            [self mas_updateConstraints:^(MASConstraintMaker *make) {
-                make.top.offset(offset - (_parallaxHeight - _parallaxMinimumHeight));
-            }];
-        }else{
-            [self mas_remakeConstraints:^(MASConstraintMaker *make) {
-                make.left.offset(0);
-                make.width.offset(kScreenWidth);
-                make.height.offset(_parallaxHeight);
-                make.top.offset(offset - (_parallaxHeight - _parallaxMinimumHeight));
-            }];
-        }
-        _isStickMode = YES;
-    } else if (!needsToStick && _isStickMode) {
-        _isStickMode = NO;
-        [self mas_remakeConstraints:^(MASConstraintMaker *make) {
-            make.left.offset(0);
-            make.width.offset(kScreenWidth);
-            make.height.offset(_parallaxHeight);
-            make.top.offset(0);
+        [self mas_updateConstraints:^(MASConstraintMaker *make) {
+            make.top.offset(y - (self.parallaxHeight - self.parallaxMinimumHeight));
         }];
+        self.isStickMode = YES;
+    } else if (!needsToStick && self.isStickMode) {
+        [self mas_updateConstraints:^(MASConstraintMaker *make) {
+            make.top.offset(CGFLOAT_MIN);
+        }];
+        self.isStickMode = NO;
     }
 }
 
 - (void)updateHeaderFrameWithOffsetY:(CGFloat)y {
-    if (self.height - y < _parallaxMinimumHeight || self.height - y < 0) return;
+    if (self.height - y < self.parallaxMinimumHeight || self.height - y < 0) return;
     
     //Mark: 这里只需要修改背景图的约束，其他约束不要动
     [self.backgroundImageView mas_updateConstraints:^(MASConstraintMaker *make) {
         make.height.offset(self.height - y);
     }];
 }
+
 @end

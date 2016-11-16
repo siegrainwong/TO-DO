@@ -11,26 +11,38 @@
 #import "CreateViewController.h"
 #import "MRTodoDataManager.h"
 #import "UIImage+Extension.h"
+#import "UITableView+Extension.h"
+
+static CGFloat const kCalendarOffset = 20;
 
 @interface
 CalendarViewController ()
+@property(nonatomic, strong) UIView *calendarContainer;
 @property(nonatomic, strong) FSCalendar *calendar;
 @property(nonatomic, strong) TodoTableViewController *todoTableViewController;
 @property(nonatomic, strong) UIButton *menuButton;
 
 @property(nonatomic, strong) MRTodoDataManager *dataManager;
-
+@property(nonatomic, assign) BOOL isCalendarCollapsed;
 @end
 
 @implementation CalendarViewController
 #pragma mark - accessors
 
 - (CGFloat)headerHeight {
-    return kScreenWidth * 0.85;
+    return kScreenWidth * 1.1f;
 }
 
 - (CGFloat)headerCollapseHeight {
-    return self.headerHeight * 0.36;
+    return self.headerHeight * 0.5f;
+}
+
+- (CGFloat)calendarHeight {
+    return self.headerHeight - 64;
+}
+
+- (CGFloat)calendarCollapseHeight {
+    return self.headerCollapseHeight - 64;
 }
 
 #pragma mark - initial
@@ -40,6 +52,8 @@ CalendarViewController ()
     
     _dataManager = [MRTodoDataManager new];
     [self retrieveDataFromServer:[_calendar today]];
+    
+    [_todoTableViewController.tableView setContentOffset:CGPointMake(0, -64) animated:YES];
 }
 
 - (void)setupViews {
@@ -63,6 +77,10 @@ CalendarViewController ()
         [weakSelf.navigationController pushViewController:createViewController animated:YES];
     }];
     
+    _calendarContainer = [UIView new];
+    _calendarContainer.clipsToBounds = YES;
+    [self.headerView addSubview:_calendarContainer];
+    
     _calendar = [FSCalendar new];
     _calendar.delegate = self;
     _calendar.dataSource = self;
@@ -79,7 +97,7 @@ CalendarViewController ()
     _calendar.appearance.titleFont = [SGHelper themeFontWithSize:15];
     _calendar.appearance.weekdayFont = [SGHelper themeFontWithSize:15];
     [_calendar selectDate:[NSDate date]];
-    [self.headerView addSubview:_calendar];
+    [_calendarContainer addSubview:_calendar];
     
     _todoTableViewController = [TodoTableViewController todoTableViewControllerWithStyle:TodoTableViewControllerStyleCalendar];
     _todoTableViewController.delegate = self;
@@ -89,8 +107,9 @@ CalendarViewController ()
     [self.view addSubview:_todoTableViewController.tableView];
     
     self.headerView.parallaxScrollView = _todoTableViewController.tableView;
+    self.headerView.parallaxMode = SGParallaxModeBottomFill;
     self.headerView.parallaxHeight = self.headerHeight;
-    self.headerView.parallaxMinimumHeight = self.headerCollapseHeight + 64;
+    self.headerView.parallaxMinimumHeight = self.headerCollapseHeight;
     [self.headerView bringSubviewToFront:self.headerView.rightOperationButton];
 
 //    _menuButton = [UIButton new];
@@ -103,20 +122,26 @@ CalendarViewController ()
     [super bindConstraints];
     
     [_todoTableViewController.tableView mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.top.bottom.right.left.offset(0);
+        make.top.offset(-64);
+        make.bottom.right.left.offset(0);
     }];
     
     [self.headerView mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.top.left.offset(0);
+        make.top.left.offset(CGFLOAT_MIN);
         make.width.offset(kScreenWidth);
         make.height.offset(self.headerHeight);
     }];
     
+    [_calendarContainer mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.left.offset(5);
+        make.right.offset(-5);
+        make.top.offset(kCalendarOffset);
+        make.height.offset(self.calendarHeight);
+    }];
+    
     [_calendar mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.left.offset(10);
-        make.right.offset(-10);
-        make.top.offset(-44);
-        make.height.offset(self.headerHeight);
+        make.top.left.right.offset(0);
+        make.height.offset(self.calendarHeight);
     }];
 
 //    [_menuButton mas_makeConstraints:^(MASConstraintMaker* make) {
@@ -147,39 +172,57 @@ CalendarViewController ()
     return nil;
 }
 
-#pragma mark - todo tableview controller delegate
+#pragma mark - todo tableView controller delegate
 
 /* 滚动时切换日历状态 */
 - (void)todoTableViewDidScrollToY:(CGFloat)y {
-    [self toggleCalendarWithOffsetY:y];
     [self setNavItemAlphaWithOffsetY:y];
+    [self setCalendarWithOffsetY:y];
 }
 
+#pragma mark - private methods
+
 - (void)setNavItemAlphaWithOffsetY:(CGFloat)y {
-    CGFloat collapseTriggerDistance = self.headerCollapseHeight + 64;
-    float offsetY = y + 64;
-    float alpha = offsetY > 0 ? offsetY >= collapseTriggerDistance ? 0 : 1 - offsetY / collapseTriggerDistance : 1;
+    float alpha = y > 0 ? y >= self.headerCollapseHeight ? 0 : 1 - y / self.headerCollapseHeight : 1;
     self.leftNavigationButton.alpha = alpha;
     self.rightNavigationButton.alpha = alpha;
 }
 
-- (void)toggleCalendarWithOffsetY:(CGFloat)y {
-    CGFloat collapseTriggerDistance = self.headerCollapseHeight + 64;
-    if ((y > collapseTriggerDistance && _calendar.scope == FSCalendarScopeWeek) || (y < collapseTriggerDistance && _calendar.scope == FSCalendarScopeMonth)) return;
-    BOOL isCollapsed = y > collapseTriggerDistance;
-    
-    [_calendar mas_updateConstraints:^(MASConstraintMaker *make) {
-        make.top.offset(isCollapsed ? self.headerHeight - self.headerCollapseHeight - 44 : -44);
-        make.height.offset(isCollapsed ? self.headerCollapseHeight : self.headerHeight);
-    }];
-    
-    _calendar.alpha = 0;
-    [UIView animateWithDuration:.3 animations:^{
-        [_calendar layoutIfNeeded];
-        _calendar.alpha = 1;
+- (void)setCalendarWithOffsetY:(CGFloat)y {
+    CGFloat offset = y + 64;
+    CGFloat collapseOffset = self.headerHeight - self.headerCollapseHeight;
+    BOOL needsToCollapse = offset >= collapseOffset;
+    if (needsToCollapse && !_isCalendarCollapsed) {
+        [_calendarContainer mas_updateConstraints:^(MASConstraintMaker *make) {
+            make.top.offset(kCalendarOffset + collapseOffset);
+            make.height.offset(self.calendarCollapseHeight);
+        }];
+        
+        _isCalendarCollapsed = YES;
+        [self setCalendarCollapsed:YES];
+    } else if (!needsToCollapse) {
+        if (_isCalendarCollapsed) {
+            _isCalendarCollapsed = NO;
+            [self setCalendarCollapsed:NO];
+        }
+        
+        [_calendarContainer mas_updateConstraints:^(MASConstraintMaker *make) {
+            make.top.offset(kCalendarOffset + offset);
+            make.height.offset(self.calendarHeight - offset);
+        }];
+    }
+}
+
+- (void)setCalendarCollapsed:(BOOL)collapsed {
+    [UIView animateWithDuration:.15 animations:^{
+        [_calendar setScope:collapsed ? FSCalendarScopeWeek : FSCalendarScopeMonth animated:NO];
+        _calendarContainer.alpha = 0;
     } completion:^(BOOL complete) {
-        [_calendar setScope:isCollapsed ? FSCalendarScopeWeek : FSCalendarScopeMonth animated:NO];
-        [_calendar selectDate:_calendar.selectedDate scrollToDate:YES];
+        [UIView animateWithDuration:.15 animations:^{
+            _calendarContainer.alpha = 1;
+        } completion:^(BOOL complete) {
+            [_calendar selectDate:_calendar.selectedDate scrollToDate:YES];
+        }];
     }];
 }
 
