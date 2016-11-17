@@ -16,13 +16,13 @@
 
 // TODO: 搜索功能
 // TODO: 待办事项展开功能
-// TODO: Calendar页面下，日历收起时滑动会很卡
 // TODO: Canlendar页面下要显示完成和未完成的任务
 // TODO: 导航栏不透明时，需要把+号按钮添加到导航栏上。
 // TODO: HeaderView上的花式屏幕分辨率问题
 
 
 // Mark: 再不能全局变量都用成员变量了，内存释放太操心
+// Mark: 这里为了让Section能够挂在NavigationBar之下，设置了HeaderView的IgnoreInset属性忽略了NavigationBar的64Inset
 
 @interface
 HomeViewController () <UINavigationControllerDelegate, UIImagePickerControllerDelegate>
@@ -46,7 +46,7 @@ HomeViewController () <UINavigationControllerDelegate, UIImagePickerControllerDe
 #pragma mark - accessors
 
 - (CGFloat)headerHeight {
-    return kScreenWidth * 1.1f;
+    return kScreenWidth * 0.9f;
 }
 
 #pragma mark - initial
@@ -90,13 +90,14 @@ HomeViewController () <UINavigationControllerDelegate, UIImagePickerControllerDe
     
     self.headerView.parallaxScrollView = _todoTableViewController.tableView;
     self.headerView.parallaxHeight = self.headerHeight;
+    self.headerView.parallaxIgnoreInset = 64;
 }
 
 - (void)bindConstraints {
     [super bindConstraints];
     
     [_todoTableViewController.tableView mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.top.offset(-64);
+        make.top.offset(0);
         make.bottom.right.left.offset(0);
     }];
     

@@ -16,6 +16,8 @@
 #import "SGSyncManager.h"
 
 // TODO: 本地化
+// FIXME: 会出现+entityForName: nil is not a legal NSManagedObjectContext parameter searching for entity name 'Todo'这个异常，初步断定是因为准备同步时获取线上同步记录失败，但是没有判断并返回了YES导致的Bug
+// FIXME: 会在自动同步时弹出错误提示...初步断定是因为没有去掉老代码
 
 typedef NS_ENUM(NSInteger, TodoFetchType) {
     TodoFetchTypeCommit,
@@ -147,6 +149,7 @@ static NSInteger const kMaximumSyncCountPerFetch = 100;
  */
 - (void)setupSyncMode:(SyncMode)syncMode {
     _errorHandler.isAlert = syncMode == SyncModeManually;
+    DDLogInfo(@"0. 开始同步");
 }
 
 /**
@@ -174,7 +177,9 @@ static NSInteger const kMaximumSyncCountPerFetch = 100;
     _localContext = [NSManagedObjectContext MR_contextWithParent:[NSManagedObjectContext MR_rootSavingContext]];
     
     //1. 根据服务器和本地的最新同步记录获取此次同步的同步类型
-    _syncType = [self syncTypeWithRecord:[self fetchLastRecordOnServer] andLocalRecord:[self fetchLastRecordOnLocal]];
+    LCSyncRecord *lastRecordOnServer = [self fetchLastRecordOnServer];
+    if (!lastRecordOnServer) return NO;
+    _syncType = [self syncTypeWithRecord:lastRecordOnServer andLocalRecord:[self fetchLastRecordOnLocal]];
     
     //2. 在本地和线上插入同步记录，准备开始同步
     _syncRecord = [self syncRecordByInsertOnServerAndLocal];
@@ -375,7 +380,6 @@ static NSInteger const kMaximumSyncCountPerFetch = 100;
     NSError *error = nil;
     LCSyncRecord *record = (LCSyncRecord *) [query getFirstObject:&error];
     if (error && error.code != 101) {  //101意思是没有这个表
-        [SCLAlertHelper errorAlertWithContent:error.localizedDescription];
         return [self.errorHandler returnWithError:error description:[NSString stringWithFormat:@"1. 获取服务器同步记录失败 %s", __func__]];
     }
     
@@ -395,7 +399,6 @@ static NSInteger const kMaximumSyncCountPerFetch = 100;
     NSError *error = nil;
     NSArray<LCTodo *> *array = [query findObjects:&error];
     if (error && error.code != 101) {  //101意思是没有这个表
-        [SCLAlertHelper errorAlertWithContent:error.localizedDescription];
         return [self.errorHandler returnWithError:error description:[NSString stringWithFormat:@"2-1. %s", __func__]];
     }
     
@@ -503,10 +506,10 @@ static NSInteger const kMaximumSyncCountPerFetch = 100;
     if (error) return [self.errorHandler returnWithError:error description:@"2. 无法获取服务器时间"];
     
     NSDate *serverDate = [DateUtil dateFromISO8601String:responseObject[@"iso"]];
-	
+    
     
     // 现在不判断服务器与本地时间差，这个应该不会造成什么问题。
-	// NSInteger intervalFromServer = fabs([serverDate timeIntervalSince1970] - [[NSDate date] timeIntervalSince1970]);
+    // NSInteger intervalFromServer = fabs([serverDate timeIntervalSince1970] - [[NSDate date] timeIntervalSince1970]);
     //    if (intervalFromServer > kInvalidTimeInterval)
     //        return [self.errorHandler returnWithError:nil description:@"2. 本地时间和服务器时间相差过大，已停止同步"];
     

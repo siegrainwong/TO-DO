@@ -173,10 +173,10 @@ CalendarViewController ()
 
 #pragma mark - todo tableView controller delegate
 
-/* 滚动时切换日历状态 */
 - (void)todoTableViewDidScrollToY:(CGFloat)y {
-    [self setNavItemAlphaWithOffsetY:y];
-    [self setCalendarWithOffsetY:y];
+    CGFloat offset = y + 64;
+    [self setNavItemAlphaWithOffsetY:offset];
+    [self setCalendarWithOffsetY:offset];
 }
 
 #pragma mark - private methods
@@ -188,9 +188,8 @@ CalendarViewController ()
 }
 
 - (void)setCalendarWithOffsetY:(CGFloat)y {
-    CGFloat offset = y + 64;
     CGFloat collapseOffset = self.headerHeight - self.headerCollapseHeight;
-    BOOL needsToCollapse = offset >= collapseOffset;
+    BOOL needsToCollapse = y >= collapseOffset;
     if (needsToCollapse && !_isCalendarCollapsed) {
         [_calendarContainer mas_updateConstraints:^(MASConstraintMaker *make) {
             make.top.offset(kCalendarOffset + collapseOffset);
@@ -206,8 +205,8 @@ CalendarViewController ()
         }
         
         [_calendarContainer mas_updateConstraints:^(MASConstraintMaker *make) {
-            make.top.offset(kCalendarOffset + offset);
-            make.height.offset(self.calendarHeight - offset);
+            make.top.offset(kCalendarOffset + y);
+            make.height.offset(self.calendarHeight - y);
         }];
     }
 }
@@ -223,6 +222,7 @@ CalendarViewController ()
             [_calendar selectDate:_calendar.selectedDate scrollToDate:YES];
         }];
     }];
+    _todoTableViewController.tableView.contentInset = UIEdgeInsetsMake(collapsed ? self.headerCollapseHeight + 64 : 64, 0, 0, 0);
 }
 
 #pragma mark - menu button

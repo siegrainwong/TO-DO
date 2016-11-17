@@ -59,7 +59,6 @@ typedef NS_ENUM(NSInteger, HeaderMaskStyle) {
 - (void)setImage:(UIImage *)image style:(HeaderMaskStyle)style;
 
 #pragma mark - parallax header
-
 /**
  *  需要设置Parallax效果的ScrollView
  */
@@ -72,5 +71,9 @@ typedef NS_ENUM(NSInteger, HeaderMaskStyle) {
  *  保留高度
  */
 @property(nonatomic, assign) CGFloat parallaxMinimumHeight;
+/**
+ *  忽略的InsetTop
+ */
+@property(nonatomic, assign) CGFloat parallaxIgnoreInset;
 @end
 

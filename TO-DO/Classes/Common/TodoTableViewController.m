@@ -70,19 +70,10 @@ TodoTableViewController ()
     [self setupView];
 }
 
-- (void)viewDidLayoutSubviews {
-    [super viewDidLayoutSubviews];
-    
-    //Mark: 这里如果把ScrollView的ContentInset设为0的话，TopBounce的效果就没了。。。不过正常情况下如果不设置这个，会留出几个像素的空白出来，所以才会写了这一句代码。
-//    [self.tableView ignoreNavigationHeight];
-}
-
 - (void)setupView {
-    self.automaticallyAdjustsScrollViewInsets = NO;
-    
     self.tableView.dataSource = self;
     self.tableView.delegate = self;
-    self.tableView.sectionHeaderHeight = _style == TodoTableViewControllerStyleCalendar ? 0 : 15;
+    self.tableView.sectionHeaderHeight = 15;
     [self.tableView registerClass:[TodoTableViewCell class] forCellReuseIdentifier:kTodoIdentifierArray[TodoIdentifierNormal]];
     self.tableView.separatorInset = UIEdgeInsetsMake(0, kScreenHeight * kCellHorizontalInsetsMuiltipledByHeight, 0, kScreenHeight * kCellHorizontalInsetsMuiltipledByHeight);
 }

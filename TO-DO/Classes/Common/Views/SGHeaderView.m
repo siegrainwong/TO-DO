@@ -221,11 +221,12 @@ static void *const kHeaderViewKVOContext = (void *) &kHeaderViewKVOContext;
 }
 
 - (void)updateHeaderFrameWithOffsetY:(CGFloat)y {
-    if (self.height - y < self.parallaxMinimumHeight || self.height - y < 0) return;
+    CGFloat offset = y - self.parallaxIgnoreInset;
+    if (self.height - offset < self.parallaxMinimumHeight || self.height - offset < 0) return;
     
     //Mark: 这里只需要修改背景图的约束，其他约束不要动
     [self.backgroundImageView mas_updateConstraints:^(MASConstraintMaker *make) {
-        make.height.offset(self.height - y);
+        make.height.offset(self.height - offset);
     }];
     [self.superview bringSubviewToFront:self];
 }
