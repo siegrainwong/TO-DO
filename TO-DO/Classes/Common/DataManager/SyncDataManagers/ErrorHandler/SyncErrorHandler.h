@@ -10,24 +10,29 @@
 
 typedef void (^_Nullable CompleteBlock)(BOOL succeed);
 
+NS_ASSUME_NONNULL_BEGIN
+
 @interface SyncErrorHandler : NSObject
 /**
  *  是否在错误时弹出对应的提醒框
  */
-@property (nonatomic, readwrite, assign) BOOL isAlert;
+@property(nonatomic, assign) BOOL isAlert;
 /**
  *  在错误处理Return之前要执行的block
  */
-@property (nonatomic, readwrite, copy) void (^_Nullable errorHandlerWillReturn)();
+@property(nonatomic, copy) void (^_Nullable errorHandlerWillReturn)();
 
 /**
  *  错误处理后 return nil
  *  用于返回对象的方法
  */
-- (id _Nullable)returnWithError:(NSError* _Nullable)error description:(NSString* _Nonnull)description;
+- (nullable id)returnWithError:(nullable NSError *)error description:(NSString *)description;
+
 /**
  *  错误处理后 return，block 中的 succeed 值为 NO 
  *  用于返回void的方法
  */
-- (void)returnWithError:(NSError* _Nullable)error description:(NSString* _Nonnull)description failBlock:(CompleteBlock)block;
+- (void)returnWithError:(nullable NSError *)error description:(NSString *)description failBlock:(CompleteBlock)block;
 @end
+
+NS_ASSUME_NONNULL_END

@@ -12,7 +12,6 @@
 #import "SGGraphics.h"
 
 static CGFloat const kAvatarButtonSizeMultipliedByHeight = 0.16;
-static CGFloat const kRightOperationButtonSizeMultipliedByHeight = 0.1;
 static CGFloat const kTitleLabelHeight = 40;
 static CGFloat const kRectangleHeight = 40;
 static void *const kHeaderViewKVOContext = (void *) &kHeaderViewKVOContext;
@@ -36,6 +35,10 @@ static void *const kHeaderViewKVOContext = (void *) &kHeaderViewKVOContext;
 
 #pragma mark - accessors
 
+- (CGFloat)rightOperationButtonSize {
+    return kScreenWidth * 0.17f;
+}
+
 - (void)setBackgroundColor:(UIColor *)backgroundColor {
     _rectangleView.color = backgroundColor;
 }
@@ -46,8 +49,7 @@ static void *const kHeaderViewKVOContext = (void *) &kHeaderViewKVOContext;
     if (style == HeaderMaskStyleLight) {
         colors = @[ColorWithRGBA(0x6563A4, .2), ColorWithRGBA(0x6563A4, .2), ColorWithRGBA(0x6563A4, .35)];
         _backgroundImageView.backgroundColor = [UIColor clearColor];
-    }
-    else if (style == HeaderMaskStyleDark) {
+    } else if (style == HeaderMaskStyleDark) {
         colors = @[ColorWithRGBA(0x3A3A52, .2), ColorWithRGBA(0x3A3A52, .5), ColorWithRGBA(0x3A3A52, .7)];
         _backgroundImageView.backgroundColor = ColorWithRGB(0xA5A4BC);
     }
@@ -95,7 +97,7 @@ static void *const kHeaderViewKVOContext = (void *) &kHeaderViewKVOContext;
     
     _rightOperationButton = [[UIButton alloc] init];
     _rightOperationButton.layer.masksToBounds = YES;
-    _rightOperationButton.layer.cornerRadius = kScreenHeight * kRightOperationButtonSizeMultipliedByHeight / 2;
+    _rightOperationButton.layer.cornerRadius = self.rightOperationButtonSize / 2;
     [_rightOperationButton addTarget:self action:@selector(rightOperationButtonDidPress) forControlEvents:UIControlEventTouchUpInside];
     [self addSubview:_rightOperationButton];
 }
@@ -117,9 +119,9 @@ static void *const kHeaderViewKVOContext = (void *) &kHeaderViewKVOContext;
     }];
     
     [_rightOperationButton mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.bottom.offset(-6);
+        make.centerY.equalTo(self.rectangleView).offset(-kRectangleHeight / 2 + 5);
         make.right.offset(-20);
-        make.width.offset(kScreenHeight * kRightOperationButtonSizeMultipliedByHeight);
+        make.width.offset(self.rightOperationButtonSize);
         make.height.equalTo(_rightOperationButton.mas_width);
     }];
     

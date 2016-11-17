@@ -52,8 +52,6 @@ CalendarViewController ()
     
     _dataManager = [MRTodoDataManager new];
     [self retrieveDataFromServer:[_calendar today]];
-    
-    [_todoTableViewController.tableView setContentOffset:CGPointMake(0, -64) animated:YES];
 }
 
 - (void)setupViews {
