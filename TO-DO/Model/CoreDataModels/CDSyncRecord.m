@@ -17,7 +17,7 @@
     CDSyncRecord* syncRecord = [CDSyncRecord MR_createEntityInContext:context];
     syncRecord.objectId = lcSyncRecord.objectId;
     syncRecord.isFinished = @(lcSyncRecord.isFinished);
-    syncRecord.user = [[CDUser userWithLCUser:lcSyncRecord.user] MR_inContext:context];
+    syncRecord.user = [CDUser userWithLCUser:lcSyncRecord.user inContext:context];
     syncRecord.syncBeginTime = lcSyncRecord.syncBeginTime;
     syncRecord.syncEndTime = lcSyncRecord.syncEndTime;
     syncRecord.createdAt = lcSyncRecord.createdAt;

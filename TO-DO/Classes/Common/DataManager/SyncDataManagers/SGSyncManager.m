@@ -16,8 +16,9 @@
 #import "SGSyncManager.h"
 
 // TODO: 本地化
-// FIXME: 会出现+entityForName: nil is not a legal NSManagedObjectContext parameter searching for entity name 'Todo'这个异常，初步断定是因为准备同步时获取线上同步记录失败，但是没有判断并返回了YES导致的Bug
-// FIXME: 会在自动同步时弹出错误提示...初步断定是因为没有去掉老代码
+// FIXME: 某些情况下会出现+entityForName: nil is not a legal NSManagedObjectContext parameter searching for entity name 'Todo'这个异常，初步断定是因为准备同步时获取线上同步记录失败，但是没有判断并返回了YES导致的Bug
+// FIXME: 某些情况下会在自动同步时弹出错误提示。
+// FIXME: 某些情况下（仅在iPhone5 iOS8.1 以下的模拟器中测试出现）一同步主线程就会锁死，先不管。
 
 typedef NS_ENUM(NSInteger, TodoFetchType) {
     TodoFetchTypeCommit,
@@ -288,10 +289,8 @@ static NSInteger const kMaximumSyncCountPerFetch = 100;
     NSBlockOperation *operation = [NSBlockOperation new];
     for (int i = 0; i < todosReadyToCommit.count; i++) {
         __block CDTodo *cdTodo = todosReadyToCommit[i];
-        NSLog(@"::: cnm");
         if (!cdTodo.photoData) continue;
         [operation addExecutionBlock:^{
-            NSLog(@"::: cnmm");
             AVFile *photo = [AVFile fileWithName:[NSString stringWithFormat:@"%@.jpg", cdTodo.identifier] data:cdTodo.photoData];
             if ([photo save]) cdTodo.photoUrl = photo.url;
             else [self.errorHandler returnWithError:nil description:[NSString stringWithFormat:@"2-3. 上传图片失败：%@", cdTodo.identifier] failBlock:nil];
