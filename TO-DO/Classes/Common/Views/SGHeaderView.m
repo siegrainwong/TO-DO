@@ -227,6 +227,7 @@ static void *const kHeaderViewKVOContext = (void *) &kHeaderViewKVOContext;
     [self.backgroundImageView mas_updateConstraints:^(MASConstraintMaker *make) {
         make.height.offset(self.height - y);
     }];
+    [self.superview bringSubviewToFront:self];
 }
 
 @end
