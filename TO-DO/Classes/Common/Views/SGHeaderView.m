@@ -104,11 +104,15 @@ static void *const kHeaderViewKVOContext = (void *) &kHeaderViewKVOContext;
 
 - (void)bindConstraints {
     [_backgroundImageView mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.bottom.left.right.offset(0);
-        if (_avatarPosition == HeaderAvatarPositionBottom)
+        make.left.right.offset(0);
+        if (_avatarPosition == HeaderAvatarPositionBottom) {
             make.height.equalTo(self).multipliedBy(0.9);
-        else
+            make.top.offset(0);
+        }
+        else {
             make.height.equalTo(self);
+            make.bottom.offset(0);
+        }
     }];
     
     [_rectangleView mas_makeConstraints:^(MASConstraintMaker *make) {
