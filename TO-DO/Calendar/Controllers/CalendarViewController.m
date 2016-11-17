@@ -179,6 +179,11 @@ CalendarViewController ()
     [self setCalendarWithOffsetY:offset];
 }
 
+- (void)todoTableViewControllerDidReloadData {
+    // 重新加载数据后，日历的位置在某些情况下需要修正
+    [self todoTableViewDidScrollToY:-64];
+}
+
 #pragma mark - private methods
 
 - (void)setNavItemAlphaWithOffsetY:(CGFloat)y {
@@ -222,6 +227,7 @@ CalendarViewController ()
             [_calendar selectDate:_calendar.selectedDate scrollToDate:YES];
         }];
     }];
+    //Mark: 为了让SectionHeader能够正确浮动在HeaderView下方，需要设置contentInset
     _todoTableViewController.tableView.contentInset = UIEdgeInsetsMake(collapsed ? self.headerCollapseHeight + 64 : 64, 0, 0, 0);
 }
 
