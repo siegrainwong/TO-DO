@@ -176,8 +176,10 @@ TodoTableViewController ()
         [cell setTodoDidComplete:^BOOL(TodoTableViewCell *sender) {
             [sender setUserInteractionEnabled:NO];
             sender.model.isCompleted = @(YES);
-            if ([weakSelf.dataManager isModifiedTodo:sender.model])
+            if ([weakSelf.dataManager isModifiedTodo:sender.model]) {
                 [weakSelf removeTodo:sender.model atIndexPath:[weakSelf.tableView indexPathForCell:sender] reordering:NO animate:YES];
+                if ([weakSelf.delegate respondsToSelector:@selector(todoTableViewControllerDidUpdateTodo)]) [weakSelf.delegate todoTableViewControllerDidUpdateTodo];
+            }
             
             [sender setUserInteractionEnabled:YES];
             return NO;
@@ -186,7 +188,7 @@ TodoTableViewController ()
     if (!cell.todoDidSnooze) {
         [cell setTodoDidSnooze:^BOOL(TodoTableViewCell *sender) {
             weakSelf.snoozingCell = sender;
-            [weakSelf showDatetimePicker:sender.model.deadline];
+            [weakSelf showDatetimePicker:[[NSDate date] dateByAddingTimeInterval:-60]];
             return YES;
         }];
     }
@@ -194,8 +196,10 @@ TodoTableViewController ()
         [cell setTodoDidRemove:^BOOL(TodoTableViewCell *sender) {
             [sender setUserInteractionEnabled:NO];
             sender.model.isHidden = @(YES);
-            if ([weakSelf.dataManager isModifiedTodo:sender.model])
+            if ([weakSelf.dataManager isModifiedTodo:sender.model]) {
                 [weakSelf removeTodo:sender.model atIndexPath:[weakSelf.tableView indexPathForCell:sender] reordering:NO animate:YES];
+                if ([weakSelf.delegate respondsToSelector:@selector(todoTableViewControllerDidUpdateTodo)]) [weakSelf.delegate todoTableViewControllerDidUpdateTodo];
+            }
             
             [sender setUserInteractionEnabled:YES];
             return YES;
@@ -267,9 +271,8 @@ TodoTableViewController ()
 - (void)showDatetimePicker:(NSDate *)deadline {
     // Mark: 这个库有Bug，每次必须重新初始化才能正确选择时间
     _datePickerViewController = [HSDatePickerViewController new];
-    [_datePickerViewController configure];
     _datePickerViewController.delegate = self;
-    _datePickerViewController.minDate = [[NSDate date] dateByAddingTimeInterval:-60];
+    [_datePickerViewController configure];
     [_datePickerViewController setDate:deadline];
     
     [self presentViewController:_datePickerViewController animated:YES completion:nil];
@@ -286,8 +289,10 @@ TodoTableViewController ()
     if ([todo.lastDeadline compare:todo.deadline] == NSOrderedAscending)
         todo.status = @(TodoStatusSnoozed);
     [_snoozingCell setUserInteractionEnabled:NO];
-    if ([_dataManager isModifiedTodo:todo])
+    if ([_dataManager isModifiedTodo:todo]) {
         [weakSelf reorderTodo:todo atIndexPath:[self.tableView indexPathForCell:weakSelf.snoozingCell]];
+        if ([weakSelf.delegate respondsToSelector:@selector(todoTableViewControllerDidUpdateTodo)]) [weakSelf.delegate todoTableViewControllerDidUpdateTodo];
+    }
     
     [weakSelf.snoozingCell setUserInteractionEnabled:YES];
     weakSelf.snoozingCell = nil;
@@ -300,10 +305,10 @@ TodoTableViewController ()
 - (void)setupTimer {
     if (_timer.valid) return;
     
-    _timer = [NSTimer scheduledTimerWithTimeInterval:5 target:self selector:@selector(expireTasksWhenTimerTick) userInfo:nil repeats:YES];
+    _timer = [NSTimer scheduledTimerWithTimeInterval:5 target:self selector:@selector(checkTaskDeadline) userInfo:nil repeats:YES];
 }
 
-- (void)expireTasksWhenTimerTick {
+- (void)checkTaskDeadline {
     __weak typeof(self) weakSelf = self;
     dispatch_queue_t serialQueue = dispatch_queue_create("TodoExpireTasksLock", DISPATCH_QUEUE_SERIAL);
     dispatch_sync(serialQueue, ^{

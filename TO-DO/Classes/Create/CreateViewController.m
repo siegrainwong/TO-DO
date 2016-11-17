@@ -29,7 +29,6 @@
 
 // FIXME: iPhone4s 上 NavigationBar 会遮挡一部分标题文本框
 // TODO: 多人协作
-// TODO: 为实体添加坐标字段
 
 @interface CreateViewController () <UITextFieldDelegate>
 @property(nonatomic, strong) MRTodoDataManager *dataManager;
@@ -62,6 +61,13 @@
     _titleTextField.field.attributedPlaceholder = [[NSAttributedString alloc] initWithString:Localized(@"Title") attributes:@{NSForegroundColorAttributeName: ColorWithRGB(0xCCCCCC), NSFontAttributeName: _titleTextField.field.font}];
 }
 
+#pragma mark - accessors
+
+- (void)setSelectedDate:(NSDate *)selectedDate {
+    _selectedDate = selectedDate;
+    _datetimePickerField.field.text = [DateUtil dateString:_selectedDate withFormat:@"yyyy.MM.dd HH:mm"];
+}
+
 #pragma mark - initial
 
 - (void)viewDidLoad {
@@ -74,8 +80,8 @@
 - (void)setupViews {
     [super setupViews];
     
-    _fieldHeight = kScreenHeight * 0.08;
-    _fieldSpacing = kScreenHeight * 0.03;
+    _fieldHeight = kScreenHeight * 0.08f;
+    _fieldSpacing = kScreenHeight * 0.03f;
     [NSNotificationCenter attachKeyboardObservers:self keyboardWillShowSelector:@selector(keyboardWillShow:) keyboardWillHideSelector:@selector(keyboardWillHide:)];
     
     _dataManager = [MRTodoDataManager new];
@@ -115,6 +121,7 @@
     
     _datetimePickerField = [SGTextField textField];
     _datetimePickerField.field.returnKeyType = UIReturnKeyNext;
+    if (_selectedDate) _datetimePickerField.field.text = [DateUtil dateString:_selectedDate withFormat:@"yyyy.MM.dd HH:mm"];
     _datetimePickerField.enabled = NO;
     [_datetimePickerField addTarget:self action:@selector(showDatetimePicker) forControlEvents:UIControlEventTouchUpInside];
     [_linearView addSubview:_datetimePickerField];
@@ -192,7 +199,7 @@
         todo.sgDescription = weakSelf.descriptionTextField.field.text;
         todo.deadline = self.selectedDate;
         todo.user = weakSelf.cdUser;
-        todo.status = @(TodoStatusNormal);
+        todo.status = [self.selectedDate compare:[NSDate date]] == NSOrderedAscending ? @(TodoStatusOverdue) : @(TodoStatusNormal);
         todo.isCompleted = @(NO);
         todo.isHidden = @(NO);
         todo.createdAt = [NSDate date];
@@ -294,12 +301,7 @@ didFinishPickingMediaWithInfo:(NSDictionary<NSString *, id> *)info {
 }
 
 - (BOOL)hsDatePickerPickedDate:(NSDate *)date {
-    if ([date timeIntervalSince1970] < [_datePickerViewController.minDate timeIntervalSince1970])
-        date = [NSDate date];
-    
-    _selectedDate = date;
-    _datetimePickerField.field.text = [DateUtil dateString:date withFormat:@"yyyy.MM.dd HH:mm"];
-    
+    self.selectedDate = date;
     return true;
 }
 

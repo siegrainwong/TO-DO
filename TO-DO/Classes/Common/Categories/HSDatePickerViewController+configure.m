@@ -13,7 +13,6 @@
 @implementation HSDatePickerViewController (Configure)
 - (void)configure
 {
-    self.minDate = [[NSDate date] dateByAddingTimeInterval:-60];
     if (isChina) {
         self.dateFormatter = [NSDateFormatter dateFormatterWithFormatString:@"MMM d ccc"];
         self.monthAndYearLabelDateFormater = [NSDateFormatter dateFormatterWithFormatString:@"yyyy MMMM"];

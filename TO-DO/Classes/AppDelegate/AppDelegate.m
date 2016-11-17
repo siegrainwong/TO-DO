@@ -78,7 +78,6 @@ static BOOL const kEnableViewControllerStateHolder = YES;
     [self setupAmap];
     [self setupDrawerViewController];
     NSLog(@"%@", [self sandboxUrl]);
-    //    [self insertTestTodoToLC];
     
     [UIApplication sharedApplication].statusBarStyle = UIStatusBarStyleLightContent;
     self.window = [[UIWindow alloc] initWithFrame:[[UIScreen mainScreen] bounds]];

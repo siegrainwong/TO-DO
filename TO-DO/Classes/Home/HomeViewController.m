@@ -16,10 +16,10 @@
 
 // TODO: 搜索功能
 // TODO: 待办事项展开功能
-// TODO: Canlendar页面下要显示完成和未完成的任务
+// TODO: Calendar页面下要显示完成和未完成的任务
 // TODO: 导航栏不透明时，需要把+号按钮添加到导航栏上。
 // TODO: HeaderView上的花式屏幕分辨率问题
-
+// FIXME: 我的6P启动时会有一两秒黑屏
 
 // Mark: 再不能全局变量都用成员变量了，内存释放太操心
 // Mark: 这里为了让Section能够挂在NavigationBar之下，设置了HeaderView的IgnoreInset属性忽略了NavigationBar的64Inset
@@ -73,7 +73,8 @@ HomeViewController () <UINavigationControllerDelegate, UIImagePickerControllerDe
     [self.headerView setImage:[UIImage imageAtResourcePath:@"header bg"] style:HeaderMaskStyleLight];
     [self.headerView setHeaderViewDidPressAvatarButton:^{[SGHelper photoPickerFromTarget:weakSelf];}];
     [self.headerView setHeaderViewDidPressRightOperationButton:^{
-        CreateViewController *createViewController = [[CreateViewController alloc] init];
+        CreateViewController *createViewController = [CreateViewController new];
+        [createViewController setSelectedDate:[[NSDate date] dateByAddingTimeInterval:60 * 10]];
         [createViewController setCreateViewControllerDidFinishCreate:^(CDTodo *model) {
             model.photoImage = [model.photoImage imageAddCornerWithRadius:model.photoImage.size.width / 2 andSize:model.photoImage.size];
             [weakSelf.todoTableViewController insertTodo:model];

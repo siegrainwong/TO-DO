@@ -22,4 +22,10 @@
  *  在该控制器引发viewDidDisappear时引发
  */
 @property (nonatomic, readwrite, copy) void (^createViewControllerDidDisappear)();
+
+/**
+ * 设置选择的时间
+ * @param selectedDate
+ */
+- (void)setSelectedDate:(NSDate *)selectedDate;
 @end

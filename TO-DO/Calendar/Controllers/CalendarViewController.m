@@ -68,9 +68,12 @@ CalendarViewController ()
     __weak typeof(self) weakSelf = self;
     [self.headerView setHeaderViewDidPressRightOperationButton:^{
         CreateViewController *createViewController = [[CreateViewController alloc] init];
+        NSDate *selectedDate = [weakSelf.calendar.selectedDate compare:weakSelf.calendar.today] == NSOrderedSame ? [[NSDate date] dateByAddingTimeInterval:60 * 10] : weakSelf.calendar.selectedDate;
+        [createViewController setSelectedDate:selectedDate];
         [createViewController setCreateViewControllerDidFinishCreate:^(CDTodo *model) {
             model.photoImage = [model.photoImage imageAddCornerWithRadius:model.photoImage.size.width / 2 andSize:model.photoImage.size];
             [weakSelf.todoTableViewController insertTodo:model];
+            [weakSelf.calendar reloadData];
         }];
         [weakSelf.navigationController pushViewController:createViewController animated:YES];
     }];
@@ -180,6 +183,10 @@ CalendarViewController ()
 - (void)todoTableViewControllerDidReloadData {
     // 重新加载数据后，日历的位置在某些情况下需要修正
     [self todoTableViewDidScrollToY:-64];
+}
+
+- (void)todoTableViewControllerDidUpdateTodo {
+    [_calendar reloadData];
 }
 
 #pragma mark - private methods
