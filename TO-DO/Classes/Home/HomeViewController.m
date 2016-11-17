@@ -89,7 +89,6 @@ HomeViewController () <UINavigationControllerDelegate, UIImagePickerControllerDe
     
     self.headerView.parallaxScrollView = _todoTableViewController.tableView;
     self.headerView.parallaxHeight = self.headerHeight;
-    self.headerView.parallaxMode = SGParallaxModeScaleToFill;
 }
 
 - (void)bindConstraints {

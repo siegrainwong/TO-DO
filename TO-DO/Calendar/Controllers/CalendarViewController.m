@@ -107,7 +107,6 @@ CalendarViewController ()
     [self.view addSubview:_todoTableViewController.tableView];
     
     self.headerView.parallaxScrollView = _todoTableViewController.tableView;
-    self.headerView.parallaxMode = SGParallaxModeBottomFill;
     self.headerView.parallaxHeight = self.headerHeight;
     self.headerView.parallaxMinimumHeight = self.headerCollapseHeight;
     [self.headerView bringSubviewToFront:self.headerView.rightOperationButton];

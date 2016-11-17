@@ -156,15 +156,15 @@ static void *const kHeaderViewKVOContext = (void *) &kHeaderViewKVOContext;
 @implementation SGHeaderView (ParallaxHeader)
 
 - (void)dealloc {
-    if (_parallaxMode) [self removeObserver:_parallaxScrollView forKeyPath:NSStringFromSelector(@selector(contentOffset))];
+    if (_parallaxScrollView) [self removeObserver:_parallaxScrollView forKeyPath:NSStringFromSelector(@selector(contentOffset))];
 }
 
 #pragma mark - accessors
 
-- (void)setParallaxMode:(SGParallaxMode)parallaxMode {
-    _parallaxMode = parallaxMode;
+- (void)setParallaxScrollView:(UIScrollView *)parallaxScrollView {
+    _parallaxScrollView = parallaxScrollView;
     
-    if (_parallaxMode)[_parallaxScrollView addObserver:self forKeyPath:NSStringFromSelector(@selector(contentOffset)) options:NSKeyValueObservingOptionNew context:kHeaderViewKVOContext];
+    if (_parallaxScrollView)[_parallaxScrollView addObserver:self forKeyPath:NSStringFromSelector(@selector(contentOffset)) options:NSKeyValueObservingOptionNew context:kHeaderViewKVOContext];
 }
 
 - (void)setParallaxHeight:(CGFloat)parallaxHeight {

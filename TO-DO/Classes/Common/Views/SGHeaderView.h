@@ -51,11 +51,6 @@ typedef NS_ENUM(NSInteger, HeaderTitleAlignement) {
 + (instancetype)headerViewWithAvatarPosition:(HeaderAvatarPosition)avatarPosition titleAlignement:(HeaderTitleAlignement)titleAlignment;
 
 #pragma mark - parallax header
-typedef NS_ENUM(NSInteger, SGParallaxMode) {
-    SGParallaxModeNone,
-    SGParallaxModeScaleToFill,
-    SGParallaxModeBottomFill
-};
 
 /**
  *  需要设置Parallax效果的ScrollView
@@ -69,9 +64,5 @@ typedef NS_ENUM(NSInteger, SGParallaxMode) {
  *  保留高度
  */
 @property(nonatomic, assign) CGFloat parallaxMinimumHeight;
-/**
- *  效果模式（请在parallaxScrollView设置后设置）
- */
-@property(nonatomic, assign) SGParallaxMode parallaxMode;
 @end
 
