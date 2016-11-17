@@ -167,7 +167,7 @@ CalendarViewController ()
 
 /* 在包含待办事项的日期上加上灰色圈儿 */
 - (UIColor *)calendar:(FSCalendar *)calendar appearance:(FSCalendarAppearance *)appearance borderDefaultColorForDate:(NSDate *)date {
-    if ([_dataManager hasDataWithDate:date user:self.cdUser]) return ColorWithRGB(0xBBBBBB);
+    if ([_dataManager hasDataWithDate:date user:self.cdUser] && [date compare:_calendar.today] != NSOrderedSame) return ColorWithRGB(0xBBBBBB);
     
     return nil;
 }
