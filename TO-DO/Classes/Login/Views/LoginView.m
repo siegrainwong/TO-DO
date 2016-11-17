@@ -92,7 +92,7 @@ LoginView ()
     _headerView = [SGHeaderView headerViewWithAvatarPosition:HeaderAvatarPositionBottom titleAlignement:HeaderTitleAlignmentCenter];
     _headerView.rightOperationButton.hidden = YES;
     _headerView.titleLabel.layer.opacity = 0;
-    _headerView.image = [UIImage imageAtResourcePath:@"login header bg"];
+    [_headerView setImage:[UIImage imageAtResourcePath:@"login header bg"] style:HeaderMaskStyleDark];
     [_headerView setHeaderViewDidPressAvatarButton:^{
         [weakSelf avatarButtonDidPress];
     }];

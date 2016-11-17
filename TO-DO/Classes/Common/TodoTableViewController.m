@@ -29,7 +29,7 @@ TodoTableViewController ()
 @property(nonatomic, strong) TodoTableViewCell *snoozingCell;
 
 @property(nonatomic, strong) NSDate *date;
-@property (nonatomic, strong) NSTimer* timer;
+@property(nonatomic, strong) NSTimer *timer;
 @end
 
 @implementation TodoTableViewController
@@ -39,6 +39,16 @@ TodoTableViewController ()
 - (void)dealloc {
     DDLogWarn(@"%s", __func__);
     [[NSNotificationCenter defaultCenter] removeObserver:self];
+}
+
+- (void)viewDidDisappear:(BOOL)animated {
+    [super viewDidDisappear:animated];
+    [_timer invalidate];
+}
+
+- (void)viewWillAppear:(BOOL)animated {
+    [super viewDidDisappear:animated];
+    [self setupTimer];
 }
 
 #pragma mark - initial

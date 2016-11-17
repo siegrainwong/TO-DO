@@ -66,6 +66,7 @@
 		F959945B1CE47BC200B042BD /* SGImageUpload.m in Sources */ = {isa = PBXBuildFile; fileRef = F959945A1CE47BC200B042BD /* SGImageUpload.m */; };
 		F959945E1CE481CD00B042BD /* DateUtil.m in Sources */ = {isa = PBXBuildFile; fileRef = F959945D1CE481CD00B042BD /* DateUtil.m */; };
 		F961B55B1CF42DED0096DAF4 /* LCTodoDataManager.m in Sources */ = {isa = PBXBuildFile; fileRef = F961B55A1CF42DED0096DAF4 /* LCTodoDataManager.m */; };
+		F969EAFF1DDD9C8400B8060E /* calendar header bg.png in Resources */ = {isa = PBXBuildFile; fileRef = F969EAFE1DDD9C8400B8060E /* calendar header bg.png */; };
 		F9773EAD1CFECD7400469A0E /* TO_DO.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = F9773EAB1CFECD7400469A0E /* TO_DO.xcdatamodeld */; };
 		F980EDCF1CE70F4E00A861FE /* SGHeaderView.m in Sources */ = {isa = PBXBuildFile; fileRef = F980EDCE1CE70F4E00A861FE /* SGHeaderView.m */; };
 		F98DE68C1CFDCE6B00859A81 /* TodoTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = F98DE68B1CFDCE6B00859A81 /* TodoTableViewController.m */; };
@@ -108,7 +109,6 @@
 		F9F723461CEEF40200128254 /* NSNotificationCenter+Extension.m in Sources */ = {isa = PBXBuildFile; fileRef = F9F723451CEEF40200128254 /* NSNotificationCenter+Extension.m */; };
 		F9FAB5EB1D02B3EA00C519B9 /* CDSyncRecord.m in Sources */ = {isa = PBXBuildFile; fileRef = F9FAB5E91D02B3EA00C519B9 /* CDSyncRecord.m */; };
 		F9FB96C41CFC74C6002581A0 /* CalendarViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = F9FB96C31CFC74C6002581A0 /* CalendarViewController.m */; };
-		F9FB96C71CFC77D1002581A0 /* calendar header bg.png in Resources */ = {isa = PBXBuildFile; fileRef = F9FB96C61CFC77D1002581A0 /* calendar header bg.png */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -247,6 +247,7 @@
 		F960B9301D17B88C000AAC2B /* Constants.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Constants.h; sourceTree = "<group>"; };
 		F961B5591CF42DED0096DAF4 /* LCTodoDataManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = LCTodoDataManager.h; path = ../../../Home/LCTodoDataManager.h; sourceTree = "<group>"; };
 		F961B55A1CF42DED0096DAF4 /* LCTodoDataManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = LCTodoDataManager.m; path = ../../../Home/LCTodoDataManager.m; sourceTree = "<group>"; };
+		F969EAFE1DDD9C8400B8060E /* calendar header bg.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "calendar header bg.png"; sourceTree = "<group>"; };
 		F9773EAC1CFECD7400469A0E /* TO_DO.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = TO_DO.xcdatamodel; sourceTree = "<group>"; };
 		F98081591DD445EB009356B7 /* TO_DO 4.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = "TO_DO 4.xcdatamodel"; sourceTree = "<group>"; };
 		F980815D1DD4C6A7009356B7 /* TO_DO 5.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = "TO_DO 5.xcdatamodel"; sourceTree = "<group>"; };
@@ -331,7 +332,6 @@
 		F9FAB5E91D02B3EA00C519B9 /* CDSyncRecord.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CDSyncRecord.m; sourceTree = "<group>"; };
 		F9FB96C21CFC74C6002581A0 /* CalendarViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CalendarViewController.h; sourceTree = "<group>"; };
 		F9FB96C31CFC74C6002581A0 /* CalendarViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CalendarViewController.m; sourceTree = "<group>"; };
-		F9FB96C61CFC77D1002581A0 /* calendar header bg.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "calendar header bg.png"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -1006,7 +1006,7 @@
 		F9FB96C51CFC77D1002581A0 /* 4. Calendar */ = {
 			isa = PBXGroup;
 			children = (
-				F9FB96C61CFC77D1002581A0 /* calendar header bg.png */,
+				F969EAFE1DDD9C8400B8060E /* calendar header bg.png */,
 			);
 			path = "4. Calendar";
 			sourceTree = "<group>";
@@ -1123,10 +1123,10 @@
 			files = (
 				F94CA2651CE2FB940006904F /* SGTextField.xib in Resources */,
 				F9A723841CDDF8A800E3BC8E /* LaunchScreen.storyboard in Resources */,
+				F969EAFF1DDD9C8400B8060E /* calendar header bg.png in Resources */,
 				F9096E4F1DCB53DB007D746D /* header bg.png in Resources */,
 				F94CA1EE1CE2F91F0006904F /* mark-signup.png in Resources */,
 				F94CA1ED1CE2F91F0006904F /* login header bg.png in Resources */,
-				F9FB96C71CFC77D1002581A0 /* calendar header bg.png in Resources */,
 				F9A723811CDDF8A800E3BC8E /* Assets.xcassets in Resources */,
 				F99A902E1CE30CB600EC0762 /* Localizable.strings in Resources */,
 				F94CA1EF1CE2F91F0006904F /* mark.png in Resources */,

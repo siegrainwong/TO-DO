@@ -18,6 +18,11 @@ typedef NS_ENUM(NSInteger, HeaderTitleAlignement) {
     HeaderTitleAlignmentLeft
 };
 
+typedef NS_ENUM(NSInteger, HeaderMaskStyle) {
+    HeaderMaskStyleLight,
+    HeaderMaskStyleDark
+};
+
 @interface SGHeaderView : UIView
 /**
  *  标题Label
@@ -27,10 +32,6 @@ typedef NS_ENUM(NSInteger, HeaderTitleAlignement) {
  *  副标题Label
  */
 @property(nonatomic, readonly, strong) UILabel *subtitleLabel;
-/**
- *  背景图
- */
-@property(nonatomic, strong) UIImage *image;
 /**
  *  头像按钮
  */
@@ -49,6 +50,13 @@ typedef NS_ENUM(NSInteger, HeaderTitleAlignement) {
 @property(nonatomic, readwrite, copy) void (^headerViewDidPressRightOperationButton)();
 
 + (instancetype)headerViewWithAvatarPosition:(HeaderAvatarPosition)avatarPosition titleAlignement:(HeaderTitleAlignement)titleAlignment;
+
+/**
+ * 设置背景图
+ * @param image 图片
+ * @param style 蒙版样式
+ */
+- (void)setImage:(UIImage *)image style:(HeaderMaskStyle)style;
 
 #pragma mark - parallax header
 

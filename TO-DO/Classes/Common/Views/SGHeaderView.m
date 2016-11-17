@@ -22,6 +22,7 @@ static void *const kHeaderViewKVOContext = (void *) &kHeaderViewKVOContext;
 @property(nonatomic, readwrite, assign) HeaderAvatarPosition avatarPosition;
 @property(nonatomic, readwrite, assign) HeaderTitleAlignement titleAlignment;
 @property(nonatomic, strong) SGRectangleView *rectangleView;
+@property(nonatomic, strong) UIImage *image;
 
 @property(nonatomic, assign) BOOL isStickMode;
 @end
@@ -36,17 +37,22 @@ static void *const kHeaderViewKVOContext = (void *) &kHeaderViewKVOContext;
 #pragma mark - accessors
 
 - (void)setBackgroundColor:(UIColor *)backgroundColor {
-    [super setBackgroundColor:backgroundColor];
-    
     _rectangleView.color = backgroundColor;
 }
 
-- (void)setImage:(UIImage *)image {
-    _image = image;
+- (void)setImage:(UIImage *)image style:(HeaderMaskStyle)style {
     CGFloat paths[] = {0, .7, 1};
-    _backgroundImageView.image = [SGGraphics gradientImageWithImage:image paths:paths colors:@[ColorWithRGBA(0x6563A4, .2), ColorWithRGBA(0x6563A4, .2), ColorWithRGBA(0x6563A4, .35)]];
+    NSArray *colors = nil;
+    if (style == HeaderMaskStyleLight) {
+        colors = @[ColorWithRGBA(0x6563A4, .2), ColorWithRGBA(0x6563A4, .2), ColorWithRGBA(0x6563A4, .35)];
+        _backgroundImageView.backgroundColor = [UIColor clearColor];
+    }
+    else if (style == HeaderMaskStyleDark) {
+        colors = @[ColorWithRGBA(0x3A3A52, .2), ColorWithRGBA(0x3A3A52, .5), ColorWithRGBA(0x3A3A52, .7)];
+        _backgroundImageView.backgroundColor = ColorWithRGB(0xA5A4BC);
+    }
+    _backgroundImageView.image = [SGGraphics gradientImageWithImage:image paths:paths colors:colors];
 }
-
 
 #pragma mark - initial
 

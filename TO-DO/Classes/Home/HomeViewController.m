@@ -40,6 +40,7 @@ HomeViewController () <UINavigationControllerDelegate, UIImagePickerControllerDe
 
 - (void)localizeStrings {
     self.headerView.titleLabel.text = [NSString stringWithFormat:@"%ld %@", (long) _todoTableViewController.dataCount, NSLocalizedString(@"Tasks", nil)];
+    if (self.titleLabel.alpha == 1) self.titleLabel.text = self.headerView.titleLabel.text;
 }
 
 #pragma mark - accessors
@@ -69,7 +70,7 @@ HomeViewController () <UINavigationControllerDelegate, UIImagePickerControllerDe
     self.headerView.subtitleLabel.text = [SGHelper localizedFormatDate:[NSDate date]];
     [self.headerView.rightOperationButton setImage:[UIImage imageNamed:@"add"] forState:UIControlStateNormal];
     [self.headerView.avatarButton sd_setImageWithURL:GetPictureUrl(super.lcUser.avatar, kQiniuImageStyleSmall) forState:UIControlStateNormal];
-    self.headerView.image = [UIImage imageAtResourcePath:@"header bg"];
+    [self.headerView setImage:[UIImage imageAtResourcePath:@"header bg"] style:HeaderMaskStyleLight];
     [self.headerView setHeaderViewDidPressAvatarButton:^{[SGHelper photoPickerFromTarget:weakSelf];}];
     [self.headerView setHeaderViewDidPressRightOperationButton:^{
         CreateViewController *createViewController = [[CreateViewController alloc] init];

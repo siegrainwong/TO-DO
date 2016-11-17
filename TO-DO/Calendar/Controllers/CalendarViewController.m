@@ -66,7 +66,7 @@ CalendarViewController ()
     [self.headerView.subtitleLabel setHidden:YES];
     self.headerView.subtitleLabel.text = [SGHelper localizedFormatDate:[NSDate date]];
     [self.headerView.rightOperationButton setImage:[UIImage imageNamed:@"add"] forState:UIControlStateNormal];
-    self.headerView.image = [UIImage imageAtResourcePath:@"calendar header bg"];
+    [self.headerView setImage:[UIImage imageAtResourcePath:@"calendar header bg"] style:HeaderMaskStyleDark];
     __weak typeof(self) weakSelf = self;
     [self.headerView setHeaderViewDidPressRightOperationButton:^{
         CreateViewController *createViewController = [[CreateViewController alloc] init];

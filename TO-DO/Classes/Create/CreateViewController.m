@@ -91,7 +91,7 @@
     [self.view addSubview:_containerView];
     
     self.headerView = [SGHeaderView headerViewWithAvatarPosition:HeaderAvatarPositionCenter titleAlignement:HeaderTitleAlignmentCenter];
-    self.headerView.image = [UIImage imageAtResourcePath:@"create header bg"];
+    [self.headerView setImage:[UIImage imageAtResourcePath:@"create header bg"] style:HeaderMaskStyleDark];
     [self.headerView.rightOperationButton setImage:[UIImage imageNamed:@"photo"] forState:UIControlStateNormal];
     [self.headerView setHeaderViewDidPressRightOperationButton:^{[weakSelf headerViewDidPressRightOperationButton];}];
     self.headerView.avatarButton.hidden = YES;
