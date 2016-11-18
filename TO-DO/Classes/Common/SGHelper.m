@@ -44,6 +44,14 @@
     return ColorWithRGB(0xFF3366);
 }
 
++ (UIColor *)themeColorCyan {
+    return ColorWithRGB(0x50D2C2);
+}
+
++ (UIColor *)themeColorBrown {
+    return ColorWithRGB(0xFCAB53);
+}
+
 + (UIColor *)buttonColorHighlighted {
     return ColorWithRGB(0xEE2B5B);
 }

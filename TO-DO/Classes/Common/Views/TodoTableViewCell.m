@@ -168,23 +168,23 @@ TodoTableViewCell ()
     self.leftExpansion.threshold = 1;
     
     __weak typeof(self) weakSelf = self;
-    MGSwipeButton *completeButton = [MGSwipeButton buttonWithTitle:@"" icon:[UIImage imageNamed:@"check"] backgroundColor:ColorWithRGB(0x33AF67) callback:^BOOL(MGSwipeTableCell *sender) {
-        if (_todoDidComplete) return _todoDidComplete(weakSelf);
+    MGSwipeButton *completeButton = [MGSwipeButton buttonWithTitle:@"" icon:[UIImage imageNamed:@"check"] backgroundColor:[SGHelper themeColorCyan] callback:^BOOL(MGSwipeTableCell *sender) {
+        if(weakSelf.todoDidSwipe) return _todoDidSwipe(weakSelf, TodoSwipeOperationComplete);
         return NO;
     }];
-    MGSwipeButton *snoozeButton = [MGSwipeButton buttonWithTitle:@"" icon:[UIImage imageNamed:@"clock"] backgroundColor:[UIColor brownColor] callback:^BOOL(MGSwipeTableCell *sender) {
-        if (_todoDidSnooze) return _todoDidSnooze(weakSelf);
+    MGSwipeButton *snoozeButton = [MGSwipeButton buttonWithTitle:@"" icon:[UIImage imageNamed:@"clock"] backgroundColor:[SGHelper themeColorBrown] callback:^BOOL(MGSwipeTableCell *sender) {
+        if(weakSelf.todoDidSwipe) return _todoDidSwipe(weakSelf, TodoSwipeOperationSnooze);
         return NO;
     }];
-    MGSwipeButton *deleteButton = [MGSwipeButton buttonWithTitle:@"" icon:[UIImage imageNamed:@"cross"] backgroundColor:[UIColor redColor] callback:^BOOL(MGSwipeTableCell *sender) {
-        if (_todoDidRemove) return _todoDidRemove(weakSelf);
+    MGSwipeButton *removeButton = [MGSwipeButton buttonWithTitle:@"" icon:[UIImage imageNamed:@"cross"] backgroundColor:[UIColor redColor] callback:^BOOL(MGSwipeTableCell *sender) {
+        if(weakSelf.todoDidSwipe) return _todoDidSwipe(weakSelf, TodoSwipeOperationRemove);
         return NO;
     }];
     
-    completeButton.width = snoozeButton.width = deleteButton.width = kSlideItemWidth;
+    completeButton.width = snoozeButton.width = removeButton.width = kSlideItemWidth;
     
     self.rightButtons = @[completeButton];
-    self.leftButtons = @[snoozeButton, deleteButton];
+    self.leftButtons = @[snoozeButton, removeButton];
 }
 
 - (void)updateConstraints {

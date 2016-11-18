@@ -16,18 +16,27 @@ typedef NS_ENUM(NSInteger, TodoIdentifier) {
     TodoIdentifierNormal,
     TodoIdentifierTimeline
 };
+
+typedef NS_ENUM(NSInteger, TodoSwipeOperation) {
+    TodoSwipeOperationComplete,
+    TodoSwipeOperationSnooze,
+    TodoSwipeOperationRemove,
+    TodoSwipeOperationRevert,
+};
+
 #define kTodoIdentifierArray (@[ @"Normal", @"Timeline" ])
 
 @class CDTodo;
+@class TodoTableViewCell;
+
+typedef BOOL (^todoSwipedBlock)(TodoTableViewCell *sender, TodoSwipeOperation operation);
 
 /**
  *  待办事项Cell
  */
 @interface TodoTableViewCell : MGSwipeTableCell
-@property (nonatomic, readwrite, strong) CDTodo* model;
+@property(nonatomic, strong) CDTodo *model;
 
-@property (nonatomic, readwrite, copy) BOOL (^todoDidComplete)(TodoTableViewCell* cell);
-@property (nonatomic, readwrite, copy) BOOL (^todoDidSnooze)(TodoTableViewCell* cell);
-@property (nonatomic, readwrite, copy) BOOL (^todoDidRemove)(TodoTableViewCell* cell);
+@property(nonatomic, copy) todoSwipedBlock todoDidSwipe;
 
 @end

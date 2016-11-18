@@ -203,85 +203,67 @@ TodoTableViewController ()
 
 - (void)setupCellEvents:(TodoTableViewCell *)cell {
     __weak typeof(self) weakSelf = self;
-    if (!cell.todoDidComplete) {
-        [cell setTodoDidComplete:^BOOL(TodoTableViewCell *sender) {
-            [sender setUserInteractionEnabled:NO];
-            sender.model.isCompleted = @(YES);
-            sender.model.completedAt = [NSDate date];
-            if ([weakSelf.dataManager isModifiedTodo:sender.model]) {
-                [weakSelf removeTodo:sender.model atIndexPath:[weakSelf.tableView indexPathForCell:sender] reordering:NO animate:YES];
-                if ([weakSelf.delegate respondsToSelector:@selector(todoTableViewControllerDidUpdateTodo)]) [weakSelf.delegate todoTableViewControllerDidUpdateTodo];
-            }
+    if (cell.todoDidSwipe) return;
+    
+    [cell setTodoDidSwipe:^BOOL(TodoTableViewCell *sender, TodoSwipeOperation operation) {
+        CDTodo *model = sender.model;
+        if (operation == TodoSwipeOperationComplete) {
+            model.isCompleted = @(YES);
+            model.completedAt = [NSDate date];
+            [weakSelf modifyTodoWithOperation:operation model:model indexPath:[weakSelf.tableView indexPathForCell:sender]];
             
-            [sender setUserInteractionEnabled:YES];
-            return NO;
-        }];
-    }
-    if (!cell.todoDidSnooze) {
-        [cell setTodoDidSnooze:^BOOL(TodoTableViewCell *sender) {
+            return YES;
+        } else if (operation == TodoSwipeOperationSnooze) {
             weakSelf.snoozingCell = sender;
             [weakSelf showDatetimePicker:[[NSDate date] dateByAddingTimeInterval:-60]];
-            return YES;
-        }];
-    }
-    if (!cell.todoDidRemove) {
-        [cell setTodoDidRemove:^BOOL(TodoTableViewCell *sender) {
-            [sender setUserInteractionEnabled:NO];
-            sender.model.isHidden = @(YES);
-            sender.model.deletedAt = [NSDate date];
-            if ([weakSelf.dataManager isModifiedTodo:sender.model]) {
-                [weakSelf removeTodo:sender.model atIndexPath:[weakSelf.tableView indexPathForCell:sender] reordering:NO animate:YES];
-                if ([weakSelf.delegate respondsToSelector:@selector(todoTableViewControllerDidUpdateTodo)]) [weakSelf.delegate todoTableViewControllerDidUpdateTodo];
-            }
             
-            [sender setUserInteractionEnabled:YES];
+            return NO;
+        } else if (operation == TodoSwipeOperationRemove) {
+            model.isHidden = @(YES);
+            model.deletedAt = [NSDate date];
+            [weakSelf modifyTodoWithOperation:operation model:model indexPath:[weakSelf.tableView indexPathForCell:sender]];
+            
             return YES;
-        }];
-    }
-}
-
-#pragma mark - tableview helper
-
-- (void)removeTodo:(CDTodo *)model atIndexPath:(NSIndexPath *)indexPath reordering:(BOOL)reordering animate:(BOOL)animate {
-    // FIXME: 多次请求可能会异常
-    NSString *deadline = reordering ? model.lastDeadline.stringInYearMonthDay : model.deadline.stringInYearMonthDay;
-    NSMutableArray<CDTodo *> *array = _dataDictionary[deadline];
-    [array removeObject:model];
-    
-    [UIView setAnimationsEnabled:animate];
-    if (!array.count) {
-        [self removeEmptySection:deadline];
-    } else {
-        [self.tableView deleteRowsAtIndexPaths:@[indexPath] withRowAnimation:UITableViewRowAnimationLeft];
-    }
-    [UIView setAnimationsEnabled:YES];
-    
-    _dataCount--;
-    // Mark:光用 deleteRows 方法删除该 Section 最后一行时，上一行会冒出一条迷の分割线，所以必须 reloadData
-    [self reloadDataWithArrayNeedsToReorder:nil];
-}
-
-- (void)insertTodo:(CDTodo *)model {
-    // [self reorderTodo:model];
-    NSString *deadline = model.deadline.stringInYearMonthDay;
-    NSMutableArray<CDTodo *> *array = _dataDictionary[deadline];
-    if (!array) array = _dataDictionary[deadline] = [NSMutableArray new];
-    if (![_sectionArray containsObject:deadline]) [_sectionArray addObject:deadline];
-    
-    _dataCount++;
-    [array addObject:model];
-    
-    [self reloadDataWithArrayNeedsToReorder:array];
-}
-
-- (void)reorderTodo:(CDTodo *)model atIndexPath:(NSIndexPath *)indexPath {
-    [self removeTodo:model atIndexPath:indexPath reordering:YES animate:NO];
-    
-    NSString *deadline = model.deadline.stringInYearMonthDay;
-    // 日历视图中，如果不是同一天的话，删掉就可以返回了
-    if (_style == TodoTableViewControllerStyleCalendar && ![model.lastDeadline.stringInYearMonthDay isEqualToString:deadline]) return;
-    
-    [self insertTodo:model];
+        } else if (operation == TodoSwipeOperationRevert) {
+            
+        }
+        return YES;
+    }];
+//    if (!cell.todoDidComplete) {
+//        [cell setTodoDidComplete:^BOOL(TodoTableViewCell *sender) {
+//            [sender setUserInteractionEnabled:NO];
+//            sender.model.isCompleted = @(YES);
+//            sender.model.completedAt = [NSDate date];
+//            if ([weakSelf.dataManager isModifiedTodo:sender.model]) {
+//                [weakSelf removeTodo:sender.model atIndexPath:[weakSelf.tableView indexPathForCell:sender] reordering:NO animate:YES];
+//                if ([weakSelf.delegate respondsToSelector:@selector(todoTableViewControllerDidUpdateTodo)]) [weakSelf.delegate todoTableViewControllerDidUpdateTodo];
+//            }
+//
+//            [sender setUserInteractionEnabled:YES];
+//            return NO;
+//        }];
+//    }
+//    if (!cell.todoDidSnooze) {
+//        [cell setTodoDidSnooze:^BOOL(TodoTableViewCell *sender) {
+//            weakSelf.snoozingCell = sender;
+//            [weakSelf showDatetimePicker:[[NSDate date] dateByAddingTimeInterval:-60]];
+//            return YES;
+//        }];
+//    }
+//    if (!cell.todoDidRemove) {
+//        [cell setTodoDidRemove:^BOOL(TodoTableViewCell *sender) {
+//            [sender setUserInteractionEnabled:NO];
+//            sender.model.isHidden = @(YES);
+//            sender.model.deletedAt = [NSDate date];
+//            if ([weakSelf.dataManager isModifiedTodo:sender.model]) {
+//                [weakSelf removeTodo:sender.model atIndexPath:[weakSelf.tableView indexPathForCell:sender] reordering:NO animate:YES];
+//                if ([weakSelf.delegate respondsToSelector:@selector(todoTableViewControllerDidUpdateTodo)]) [weakSelf.delegate todoTableViewControllerDidUpdateTodo];
+//            }
+//
+//            [sender setUserInteractionEnabled:YES];
+//            return YES;
+//        }];
+//    }
 }
 
 #pragma mark - date time picker delegate
@@ -306,16 +288,67 @@ TodoTableViewController ()
     // 时间推迟了才算你Snoozed
     if ([todo.lastDeadline compare:todo.deadline] == NSOrderedAscending)
         todo.status = @(TodoStatusSnoozed);
-    [_snoozingCell setUserInteractionEnabled:NO];
-    if ([_dataManager isModifiedTodo:todo]) {
-        [weakSelf reorderTodo:todo atIndexPath:[self.tableView indexPathForCell:weakSelf.snoozingCell]];
-        if ([weakSelf.delegate respondsToSelector:@selector(todoTableViewControllerDidUpdateTodo)]) [weakSelf.delegate todoTableViewControllerDidUpdateTodo];
-    }
     
-    [weakSelf.snoozingCell setUserInteractionEnabled:YES];
+    [weakSelf modifyTodoWithOperation:TodoSwipeOperationSnooze model:todo indexPath:[weakSelf.tableView indexPathForCell:_snoozingCell]];
     weakSelf.snoozingCell = nil;
     
     return YES;
+}
+
+#pragma mark - private methods
+
+- (void)modifyTodoWithOperation:(TodoSwipeOperation)operation model:(CDTodo *)model indexPath:(NSIndexPath *)indexPath {
+    if ([_dataManager isModifiedTodo:model]) {
+        if (_style == TodoTableViewControllerStyleCalendar) {   //如果是日历视图，直接重新请求数据
+            [self retrieveDataWithUser:[AppDelegate globalDelegate].cdUser date:_date];
+        } else if (operation == TodoSwipeOperationSnooze)
+            [self reorderTodo:model atIndexPath:indexPath];
+        else
+            [self removeTodo:model atIndexPath:indexPath reordering:NO animate:YES];
+        
+        if ([self.delegate respondsToSelector:@selector(todoTableViewControllerDidUpdateTodo)]) [self.delegate todoTableViewControllerDidUpdateTodo];
+    }
+}
+
+- (void)removeTodo:(CDTodo *)model atIndexPath:(NSIndexPath *)indexPath reordering:(BOOL)reordering animate:(BOOL)animate {
+    // FIXME: 多次请求可能会异常
+    NSString *deadline = reordering ? model.lastDeadline.stringInYearMonthDay : model.deadline.stringInYearMonthDay;
+    NSMutableArray<CDTodo *> *array = _dataDictionary[deadline];
+    [array removeObject:model];
+    
+    [UIView setAnimationsEnabled:animate];
+    if (!array.count) {
+        [self removeEmptySection:deadline];
+    } else {
+        [self.tableView deleteRowsAtIndexPaths:@[indexPath] withRowAnimation:UITableViewRowAnimationLeft];
+    }
+    [UIView setAnimationsEnabled:YES];
+    
+    _dataCount--;
+    // Mark:光用 deleteRows 方法删除该 Section 最后一行时，上一行会冒出一条迷の分割线，所以必须 reloadData
+    [self reloadDataWithArrayNeedsToReorder:nil];
+}
+
+- (void)insertTodo:(CDTodo *)model {
+    NSString *deadline = model.deadline.stringInYearMonthDay;
+    NSMutableArray<CDTodo *> *array = _dataDictionary[deadline];
+    if (!array) array = _dataDictionary[deadline] = [NSMutableArray new];
+    if (![_sectionArray containsObject:deadline]) [_sectionArray addObject:deadline];
+    
+    _dataCount++;
+    [array addObject:model];
+    
+    [self reloadDataWithArrayNeedsToReorder:array];
+}
+
+- (void)reorderTodo:(CDTodo *)model atIndexPath:(NSIndexPath *)indexPath {
+    [self removeTodo:model atIndexPath:indexPath reordering:YES animate:NO];
+    
+    NSString *deadline = model.deadline.stringInYearMonthDay;
+    // 日历视图中，如果不是同一天的话，删掉就可以返回了
+    if (_style == TodoTableViewControllerStyleCalendar && ![model.lastDeadline.stringInYearMonthDay isEqualToString:deadline]) return;
+    
+    [self insertTodo:model];
 }
 
 #pragma mark - timer to overdue
