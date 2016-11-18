@@ -71,7 +71,7 @@ TodoTableViewCell ()
     
     NSString *statusImageName = _model.isCompleted.boolValue ? @"status-complete" : [NSString stringWithFormat:@"status-%d", _model.status.intValue];
     [_statusButton setImage:[UIImage imageNamed:statusImageName] forState:UIControlStateNormal];
-    if (!_model.isCompleted.boolValue) [self configureSwipeBehavior];
+    [self configureSwipeBehavior];
     
     [self setNeedsUpdateConstraints];
     [self updateConstraintsIfNeeded];
@@ -151,6 +151,12 @@ TodoTableViewCell ()
 }
 
 - (void)configureSwipeBehavior {
+    if (_model.isCompleted.boolValue) {
+        self.leftButtons = @[];
+        self.rightButtons = @[];
+        return;
+    }
+    
     self.rightExpansion.triggerAnimation.easingFunction = self.leftExpansion.triggerAnimation.easingFunction = MGSwipeEasingFunctionQuadIn;
     self.rightExpansion.expansionLayout = self.leftExpansion.expansionLayout = MGSwipeExpansionLayoutBorder;
     self.rightSwipeSettings.transition = self.leftSwipeSettings.transition = MGSwipeTransitionBorder;
