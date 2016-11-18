@@ -80,6 +80,8 @@
 - (void)setupViews {
     [super setupViews];
     
+    [self.rightNavigationButton setImage:[UIImage new] forState:UIControlStateNormal];
+    
     _fieldHeight = kScreenHeight * 0.08f;
     _fieldSpacing = kScreenHeight * 0.03f;
     [NSNotificationCenter attachKeyboardObservers:self keyboardWillShowSelector:@selector(keyboardWillShow:) keyboardWillHideSelector:@selector(keyboardWillHide:)];

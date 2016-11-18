@@ -44,16 +44,17 @@ static void *const kHeaderViewKVOContext = (void *) &kHeaderViewKVOContext;
 }
 
 - (void)setImage:(UIImage *)image style:(HeaderMaskStyle)style {
-    CGFloat paths[] = {0, .7, 1};
-    NSArray *colors = nil;
     if (style == HeaderMaskStyleLight) {
-        colors = @[ColorWithRGBA(0x6563A4, .2), ColorWithRGBA(0x6563A4, .2), ColorWithRGBA(0x6563A4, .35)];
+        CGFloat paths[] = {0, .7, 1};
+        NSArray *colors = @[ColorWithRGBA(0x6563A4, .2), ColorWithRGBA(0x6563A4, .2), ColorWithRGBA(0x6563A4, .35)];
         _backgroundImageView.backgroundColor = [UIColor clearColor];
+        _backgroundImageView.image = [SGGraphics gradientImageWithImage:image paths:paths colors:colors];
     } else if (style == HeaderMaskStyleDark) {
-        colors = @[ColorWithRGBA(0x3A3A52, .2), ColorWithRGBA(0x3A3A52, .5), ColorWithRGBA(0x3A3A52, .7)];
-        _backgroundImageView.backgroundColor = ColorWithRGB(0xA5A4BC);
+        CGFloat paths[] = {0, .5, 1};
+        NSArray *colors = @[ColorWithRGBA(0xFFFFFF, .0), ColorWithRGBA(0x555555, .5), ColorWithRGBA(0x000000, .8)];
+        _backgroundImageView.backgroundColor = ColorWithRGB(0x9092AC);
+        _backgroundImageView.image = [SGGraphics gradientImageWithImage:image paths:paths colors:colors];
     }
-    _backgroundImageView.image = [SGGraphics gradientImageWithImage:image paths:paths colors:colors];
 }
 
 #pragma mark - initial
@@ -108,8 +109,7 @@ static void *const kHeaderViewKVOContext = (void *) &kHeaderViewKVOContext;
         if (_avatarPosition == HeaderAvatarPositionBottom) {
             make.height.equalTo(self).multipliedBy(0.9);
             make.top.offset(0);
-        }
-        else {
+        } else {
             make.height.equalTo(self);
             make.bottom.offset(0);
         }
