@@ -93,8 +93,13 @@ TodoTableViewController ()
         [_dataManager retrieveCalendarDataWithUser:user date:date complete:^(BOOL succeed, NSDictionary *data, NSInteger count) {
             weakSelf.dataDictionary = [NSMutableDictionary dictionaryWithDictionary:data];
             weakSelf.dataCount = count;
-            if (count) weakSelf.sectionArray = [@[kDataNotCompleteTaskKey, kDataCompletedTaskKey] mutableCopy];
+            if (count)
+                weakSelf.sectionArray = [@[kDataNotCompleteTaskKey, kDataCompletedTaskKey] mutableCopy];
+            else
+                [weakSelf.sectionArray removeAllObjects];
+            
             [weakSelf.tableView reloadData];
+            [weakSelf didReloadData];
             [weakSelf setupTimer];
         }];
     }
@@ -305,8 +310,6 @@ TodoTableViewController ()
             [self reorderTodo:model atIndexPath:indexPath];
         else
             [self removeTodo:model atIndexPath:indexPath reordering:NO animate:YES];
-        
-        if ([self.delegate respondsToSelector:@selector(todoTableViewControllerDidUpdateTodo)]) [self.delegate todoTableViewControllerDidUpdateTodo];
     }
 }
 

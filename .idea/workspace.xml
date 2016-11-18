@@ -158,12 +158,8 @@
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/TO-DO/Classes/Common/Constants/Macros.h" afterPath="$PROJECT_DIR$/TO-DO/Classes/Common/Constants/Macros.h" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/TO-DO/Classes/Common/SCLAlertHelper.h" afterPath="$PROJECT_DIR$/TO-DO/Classes/Common/SCLAlertHelper.h" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/TO-DO/Classes/Common/SCLAlertHelper.m" afterPath="$PROJECT_DIR$/TO-DO/Classes/Common/SCLAlertHelper.m" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/TO-DO/Classes/Common/SGHelper.h" afterPath="$PROJECT_DIR$/TO-DO/Classes/Common/SGHelper.h" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/TO-DO/Classes/Common/SGHelper.m" afterPath="$PROJECT_DIR$/TO-DO/Classes/Common/SGHelper.m" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/TO-DO/Classes/Common/TodoTableViewController.m" afterPath="$PROJECT_DIR$/TO-DO/Classes/Common/TodoTableViewController.m" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/TO-DO/Classes/Common/Utilities/FieldValidator.m" afterPath="$PROJECT_DIR$/TO-DO/Classes/Common/Utilities/FieldValidator.m" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/TO-DO/Classes/Common/Views/TodoTableViewCell.h" afterPath="$PROJECT_DIR$/TO-DO/Classes/Common/Views/TodoTableViewCell.h" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/TO-DO/Classes/Common/Views/TodoTableViewCell.m" afterPath="$PROJECT_DIR$/TO-DO/Classes/Common/Views/TodoTableViewCell.m" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/TO-DO/Classes/Login/Controllers/LoginViewController.h" afterPath="$PROJECT_DIR$/TO-DO/Classes/Login/Controllers/LoginViewController.h" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/TO-DO/Classes/Login/Controllers/LoginViewController.m" afterPath="$PROJECT_DIR$/TO-DO/Classes/Login/Controllers/LoginViewController.m" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/TO-DO/Classes/Login/Views/LoginView.h" afterPath="$PROJECT_DIR$/TO-DO/Classes/Login/Views/LoginView.h" />
@@ -200,21 +196,21 @@
   </component>
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-      <file leaf-file-name="HomeViewController.m" pinned="false" current-in-tab="true">
+      <file leaf-file-name="HomeViewController.m" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/TO-DO/Classes/Home/HomeViewController.m">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="255">
-              <caret line="21" column="0" lean-forward="true" selection-start-line="21" selection-start-column="0" selection-end-line="21" selection-end-column="0" />
+            <state relative-caret-position="447">
+              <caret line="50" column="22" lean-forward="true" selection-start-line="50" selection-start-column="22" selection-end-line="50" selection-end-column="22" />
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="TodoTableViewController.m" pinned="false" current-in-tab="false">
+      <file leaf-file-name="TodoTableViewController.m" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/TO-DO/Classes/Common/TodoTableViewController.m">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="5032">
-              <caret line="306" column="84" lean-forward="true" selection-start-line="306" selection-start-column="84" selection-end-line="306" selection-end-column="84" />
+            <state relative-caret-position="498">
+              <caret line="97" column="16" lean-forward="true" selection-start-line="97" selection-start-column="16" selection-end-line="97" selection-end-column="16" />
               <folding />
             </state>
           </provider>
@@ -276,10 +272,6 @@
   </component>
   <component name="FindInProjectRecents">
     <findStrings>
-      <find>topborder</find>
-      <find>layout</find>
-      <find>layoutsub</find>
-      <find>setbounds</find>
       <find>64</find>
       <find>viewdiddisa</find>
       <find>timer</find>
@@ -306,6 +298,10 @@
       <find>reorder</find>
       <find>hsDatePickerPickedDate</find>
       <find>hsdatepickerpickeddate</find>
+      <find>empty</find>
+      <find>emptydata</find>
+      <find>modify</find>
+      <find>modifytodo</find>
     </findStrings>
   </component>
   <component name="Git.Settings">
@@ -585,12 +581,12 @@
       <workItem from="1479376039321" duration="25624000" />
       <workItem from="1479462840148" duration="28000" />
       <workItem from="1479462894077" duration="124000" />
-      <workItem from="1479463121186" duration="6702000" />
+      <workItem from="1479463121186" duration="7131000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="225866000" />
+    <option name="totallyTimeSpent" value="226295000" />
   </component>
   <component name="TodoView">
     <todo-panel id="selected-file">
@@ -619,7 +615,7 @@
       <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.26633662" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.09692671" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="true" content_ui="tabs" />
-      <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.24950495" sideWeight="0.49842396" order="3" side_tool="false" content_ui="tabs" />
+      <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.24950495" sideWeight="0.49842396" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Cvs" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
       <window_info id="Message" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
       <window_info id="Commander" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
@@ -663,7 +659,7 @@
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
-      <option name="time" value="172" />
+      <option name="time" value="173" />
     </breakpoint-manager>
     <watches-manager />
   </component>
@@ -1019,18 +1015,18 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/TO-DO/Classes/Common/TodoTableViewController.m">
+    <entry file="file://$PROJECT_DIR$/TO-DO/Classes/Home/HomeViewController.m">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="5032">
-          <caret line="306" column="84" lean-forward="true" selection-start-line="306" selection-start-column="84" selection-end-line="306" selection-end-column="84" />
+        <state relative-caret-position="447">
+          <caret line="50" column="22" lean-forward="true" selection-start-line="50" selection-start-column="22" selection-end-line="50" selection-end-column="22" />
           <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/TO-DO/Classes/Home/HomeViewController.m">
+    <entry file="file://$PROJECT_DIR$/TO-DO/Classes/Common/TodoTableViewController.m">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="255">
-          <caret line="21" column="0" lean-forward="true" selection-start-line="21" selection-start-column="0" selection-end-line="21" selection-end-column="0" />
+        <state relative-caret-position="498">
+          <caret line="97" column="16" lean-forward="true" selection-start-line="97" selection-start-column="16" selection-end-line="97" selection-end-column="16" />
           <folding />
         </state>
       </provider>
