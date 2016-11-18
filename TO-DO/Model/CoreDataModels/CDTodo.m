@@ -56,6 +56,8 @@
     self.sgDescription = lcTodo.sgDescription;
     self.deadline = lcTodo.deadline;
     self.identifier = lcTodo.identifier;
+    self.completedAt = lcTodo.completedAt;
+    self.deletedAt = lcTodo.deletedAt;
     if (lcTodo.coordinate) {
         self.longitude = @(lcTodo.coordinate.longitude);
         self.latitude = @(lcTodo.coordinate.latitude);

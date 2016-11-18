@@ -45,6 +45,7 @@ TodoHeaderCell ()
 {
     _text = text;
     _text = [DateUtil dateString:_text fromFormat:@"yyyy-MM-dd" toFormat:@"MMM d"];
+    if(!_text) _text = text;
     _label.text = _text;
 }
 @end

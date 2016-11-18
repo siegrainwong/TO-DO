@@ -47,6 +47,11 @@ typedef NS_ENUM(NSInteger, LCTodoStatus) {
 @property(nonatomic, strong) NSDate *localCreatedAt;
 /* 本地更新时间 */
 @property(nonatomic, strong) NSDate *localUpdatedAt;
+/* 完成时间 */
+@property(nonatomic, assign) NSDate *completedAt;
+/* 删除时间 */
+@property(nonatomic, assign) NSDate *deletedAt;
+
 /* 地址相关
  * 坐标*/
 @property(nonatomic, assign) AVGeoPoint *coordinate;

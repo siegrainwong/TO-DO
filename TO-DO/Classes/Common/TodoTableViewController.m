@@ -24,7 +24,7 @@ TodoTableViewController ()
 @property(nonatomic, strong) HSDatePickerViewController *datePickerViewController;
 @property(nonatomic, strong) MRTodoDataManager *dataManager;
 @property(nonatomic, strong) NSMutableDictionary *dataDictionary;
-@property(nonatomic, strong) NSMutableArray<NSString *> *dateArray;
+@property(nonatomic, strong) NSMutableArray<NSString *> *sectionArray;
 
 @property(nonatomic, strong) TodoTableViewCell *snoozingCell;
 
@@ -63,7 +63,7 @@ TodoTableViewController ()
     [super viewDidLoad];
     
     _dataDictionary = [NSMutableDictionary new];
-    _dateArray = [NSMutableArray new];
+    _sectionArray = [NSMutableArray new];
     _dataManager = [MRTodoDataManager new];
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(syncDataManagerDidFinishedSyncInOneBatch) name:kFinishedSyncInOneBatchNotification object:nil];
     
@@ -73,7 +73,6 @@ TodoTableViewController ()
 - (void)setupView {
     self.tableView.dataSource = self;
     self.tableView.delegate = self;
-    self.tableView.sectionHeaderHeight = 15;
     [self.tableView registerClass:[TodoTableViewCell class] forCellReuseIdentifier:kTodoIdentifierArray[TodoIdentifierNormal]];
     self.tableView.separatorInset = UIEdgeInsetsMake(0, kScreenHeight * kCellHorizontalInsetsMuiltipledByHeight, 0, kScreenHeight * kCellHorizontalInsetsMuiltipledByHeight);
 }
@@ -83,16 +82,27 @@ TodoTableViewController ()
 - (void)retrieveDataWithUser:(CDUser *)user date:(NSDate *)date {
     _date = date;
     __weak typeof(self) weakSelf = self;
-    [_dataManager retrieveDataWithUser:user date:date complete:^(bool succeed, NSDictionary *data, NSInteger count) {
-        weakSelf.dataDictionary = [NSMutableDictionary dictionaryWithDictionary:data];
-        weakSelf.dataCount = count;
-        [weakSelf reloadDataWithArrayNeedsToReorder:nil];
-        [weakSelf setupTimer];
-    }];
+    if (_style == TodoTableViewControllerStyleHome) {
+        [_dataManager retrieveDataWithUser:user date:date complete:^(BOOL succeed, NSDictionary *data, NSInteger count) {
+            weakSelf.dataDictionary = [NSMutableDictionary dictionaryWithDictionary:data];
+            weakSelf.dataCount = count;
+            [weakSelf reloadDataWithArrayNeedsToReorder:nil];
+            [weakSelf setupTimer];
+        }];
+    } else if (_style == TodoTableViewControllerStyleCalendar) {
+        [_dataManager retrieveCalendarDataWithUser:user date:date complete:^(BOOL succeed, NSDictionary *data, NSInteger count) {
+            weakSelf.dataDictionary = [NSMutableDictionary dictionaryWithDictionary:data];
+            weakSelf.dataCount = count;
+            if (count) weakSelf.sectionArray = [@[kDataNotCompleteTaskKey, kDataCompletedTaskKey] mutableCopy];
+            [weakSelf.tableView reloadData];
+            [weakSelf setupTimer];
+        }];
+    }
 }
 
 #pragma mark - reloadData
 
+/* 将section按日期重新排序 */
 - (void)reloadDataWithArrayNeedsToReorder:(NSMutableArray *)array {
     NSSortDescriptor *sort = [NSSortDescriptor sortDescriptorWithKey:@"self.deadline.timeIntervalSince1970" ascending:YES];
     [array sortUsingDescriptors:@[sort]];
@@ -103,7 +113,7 @@ TodoTableViewController ()
         NSNumber *interval2 = @([DateUtil stringToDate:dateString2 format:format].timeIntervalSince1970);
         return [interval1 compare:interval2];
     }];
-    _dateArray = [NSMutableArray arrayWithArray:dateArrayOrder];
+    _sectionArray = [NSMutableArray arrayWithArray:dateArrayOrder];
     [self didReloadData];
     [self.tableView reloadData];
 }
@@ -112,8 +122,8 @@ TodoTableViewController ()
     NSMutableArray<CDTodo *> *array = _dataDictionary[dateString];
     if (!array.count) {
         [_dataDictionary removeObjectForKey:dateString];
-        NSInteger index = [_dateArray indexOfObject:dateString];
-        [_dateArray removeObject:dateString];
+        NSInteger index = [_sectionArray indexOfObject:dateString];
+        [_sectionArray removeObject:dateString];
         
         if (_style != TodoTableViewControllerStyleCalendar) [self.tableView deleteSections:[NSIndexSet indexSetWithIndex:index] withRowAnimation:UITableViewRowAnimationLeft];
     }
@@ -121,7 +131,7 @@ TodoTableViewController ()
 
 - (void)didReloadData {
     if ([_delegate respondsToSelector:@selector(todoTableViewControllerDidReloadData)]) [_delegate todoTableViewControllerDidReloadData];
-    if (!self.dataCount) {
+    if (!_dataCount) {
         EmptyDataView *emptyDataView = [[EmptyDataView alloc] initWithFrame:CGRectMake(0, 0, self.tableView.width, kScreenHeight - self.headerHeight)];
         self.tableView.backgroundColor = self.tableView.tableHeaderView.backgroundColor = [SGHelper themeColorLightGray];
         self.tableView.tableFooterView = emptyDataView;
@@ -144,13 +154,18 @@ TodoTableViewController ()
     return model.cellHeight;
 }
 
+- (CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section {
+    if (!section && _style == TodoTableViewControllerStyleCalendar) return 0;
+    return 15;
+}
+
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView {
-    return _dateArray.count;
+    return _sectionArray.count;
 }
 
 - (UIView *)tableView:(UITableView *)tableView viewForHeaderInSection:(NSInteger)section {
     TodoHeaderCell *header = [TodoHeaderCell headerCell];
-    header.text = _dateArray[section];
+    header.text = _sectionArray[section];
     return header;
 }
 
@@ -168,6 +183,22 @@ TodoTableViewController ()
     [tableView deselectRowAtIndexPath:indexPath animated:YES];
 }
 
+- (NSArray<CDTodo *> *)dataArrayAtSection:(NSInteger)section {
+    return _dataDictionary[_sectionArray[section]];
+}
+
+- (CDTodo *)modelAtIndexPath:(NSIndexPath *)indexPath {
+    NSArray<CDTodo *> *dataArray = [self dataArrayAtSection:indexPath.section];
+    return dataArray[indexPath.row];
+}
+
+- (void)configureCell:(TodoTableViewCell *)cell atIndexPath:(NSIndexPath *)indexPath {
+    CDTodo *model = [self modelAtIndexPath:indexPath];
+    cell.model = model;
+    if (_style == TodoTableViewControllerStyleCalendar && indexPath.section == 1) return;   //已完成的任务暂时不需要滑动操作
+    [self setupCellEvents:cell];
+}
+
 #pragma mark - swipe left cell events
 
 - (void)setupCellEvents:(TodoTableViewCell *)cell {
@@ -176,6 +207,7 @@ TodoTableViewController ()
         [cell setTodoDidComplete:^BOOL(TodoTableViewCell *sender) {
             [sender setUserInteractionEnabled:NO];
             sender.model.isCompleted = @(YES);
+            sender.model.completedAt = [NSDate date];
             if ([weakSelf.dataManager isModifiedTodo:sender.model]) {
                 [weakSelf removeTodo:sender.model atIndexPath:[weakSelf.tableView indexPathForCell:sender] reordering:NO animate:YES];
                 if ([weakSelf.delegate respondsToSelector:@selector(todoTableViewControllerDidUpdateTodo)]) [weakSelf.delegate todoTableViewControllerDidUpdateTodo];
@@ -196,6 +228,7 @@ TodoTableViewController ()
         [cell setTodoDidRemove:^BOOL(TodoTableViewCell *sender) {
             [sender setUserInteractionEnabled:NO];
             sender.model.isHidden = @(YES);
+            sender.model.deletedAt = [NSDate date];
             if ([weakSelf.dataManager isModifiedTodo:sender.model]) {
                 [weakSelf removeTodo:sender.model atIndexPath:[weakSelf.tableView indexPathForCell:sender] reordering:NO animate:YES];
                 if ([weakSelf.delegate respondsToSelector:@selector(todoTableViewControllerDidUpdateTodo)]) [weakSelf.delegate todoTableViewControllerDidUpdateTodo];
@@ -205,21 +238,6 @@ TodoTableViewController ()
             return YES;
         }];
     }
-}
-
-- (NSArray<CDTodo *> *)dataArrayAtSection:(NSInteger)section {
-    return _dataDictionary[_dateArray[section]];
-}
-
-- (CDTodo *)modelAtIndexPath:(NSIndexPath *)indexPath {
-    NSArray<CDTodo *> *dataArray = [self dataArrayAtSection:indexPath.section];
-    return dataArray[indexPath.row];
-}
-
-- (void)configureCell:(TodoTableViewCell *)cell atIndexPath:(NSIndexPath *)indexPath {
-    CDTodo *model = [self modelAtIndexPath:indexPath];
-    [self setupCellEvents:cell];
-    cell.model = model;
 }
 
 #pragma mark - tableview helper
@@ -248,7 +266,7 @@ TodoTableViewController ()
     NSString *deadline = model.deadline.stringInYearMonthDay;
     NSMutableArray<CDTodo *> *array = _dataDictionary[deadline];
     if (!array) array = _dataDictionary[deadline] = [NSMutableArray new];
-    if (![_dateArray containsObject:deadline]) [_dateArray addObject:deadline];
+    if (![_sectionArray containsObject:deadline]) [_sectionArray addObject:deadline];
     
     _dataCount++;
     [array addObject:model];
@@ -314,12 +332,15 @@ TodoTableViewController ()
     dispatch_sync(serialQueue, ^{
         NSDate *today = [NSDate date].dateInYearMonthDay;
         BOOL needsToReload = NO;
-        for (NSString *dateString in weakSelf.dateArray) {
-            NSDate *date = [DateUtil stringToDate:dateString format:@"yyyy-MM-dd"];
-            // 只需要遍历今天及今天以前的任务
-            if ([date compare:today] == NSOrderedDescending) continue;
+        for (NSString *sectionTitle in weakSelf.sectionArray) {
+            if (_style == TodoTableViewControllerStyleHome) { // 首页中只需要遍历今天及今天以前的任务
+                NSDate *date = [DateUtil stringToDate:sectionTitle format:@"yyyy-MM-dd"];
+                if ([date compare:today] == NSOrderedDescending) continue;
+            } else if (_style == TodoTableViewControllerStyleCalendar) {  // 日历页面只需要遍历未完成的任务
+                if ([sectionTitle isEqualToString:kDataCompletedTaskKey]) continue;
+            }
             
-            NSArray<CDTodo *> *array = weakSelf.dataDictionary[dateString];
+            NSArray<CDTodo *> *array = weakSelf.dataDictionary[sectionTitle];
             for (CDTodo *todo in array) {
                 if ([todo.status integerValue] != TodoStatusOverdue && [todo.deadline compare:[NSDate date]] == NSOrderedAscending) {
                     todo.status = @(TodoStatusOverdue);

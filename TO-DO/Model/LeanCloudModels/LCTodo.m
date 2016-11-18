@@ -26,6 +26,8 @@
 @dynamic localCreatedAt;
 @dynamic localUpdatedAt;
 @dynamic identifier;
+@dynamic deletedAt;
+@dynamic completedAt;
 
 + (LCTodo *)lcTodoWithCDTodo:(CDTodo *)cdTodo {
     LCTodo *lcTodo = [LCTodo object];
@@ -43,13 +45,15 @@
     lcTodo.syncVersion = [cdTodo.syncVersion integerValue];
     lcTodo.localUpdatedAt = cdTodo.updatedAt;
     lcTodo.localCreatedAt = cdTodo.createdAt;
+    lcTodo.completedAt = cdTodo.completedAt;
+    lcTodo.deletedAt = cdTodo.deletedAt;
     if (cdTodo.generalAddress) {
         lcTodo.coordinate = [AVGeoPoint geoPointWithLatitude:cdTodo.latitude.doubleValue longitude:cdTodo.longitude.doubleValue];
         lcTodo.generalAddress = cdTodo.generalAddress;
         lcTodo.explicitAddress = cdTodo.explicitAddress;
     }
     //没有提交过的数据才加载photoData
-    if(!cdTodo.objectId && cdTodo.photoPath){
+    if (!cdTodo.objectId && cdTodo.photoPath) {
         cdTodo.photoData = [NSData dataWithContentsOfFile:cdTodo.photoPath];
     }
     

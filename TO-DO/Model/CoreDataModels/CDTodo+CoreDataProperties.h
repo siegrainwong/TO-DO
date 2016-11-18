@@ -2,7 +2,7 @@
 //  CDTodo+CoreDataProperties.h
 //  TO-DO
 //
-//  Created by Siegrain on 16/11/10.
+//  Created by Siegrain on 16/11/18.
 //  Copyright © 2016年 com.siegrain. All rights reserved.
 //
 
@@ -25,6 +25,7 @@ NS_ASSUME_NONNULL_BEGIN
 @property (nullable, nonatomic, copy) NSNumber *latitude;
 @property (nullable, nonatomic, copy) NSNumber *longitude;
 @property (nullable, nonatomic, copy) NSString *objectId;
+@property (nullable, nonatomic, copy) NSString *photoPath;
 @property (nullable, nonatomic, copy) NSString *photoUrl;
 @property (nullable, nonatomic, copy) NSString *sgDescription;
 @property (nullable, nonatomic, copy) NSNumber *status;
@@ -32,7 +33,8 @@ NS_ASSUME_NONNULL_BEGIN
 @property (nullable, nonatomic, copy) NSNumber *syncVersion;
 @property (nullable, nonatomic, copy) NSString *title;
 @property (nullable, nonatomic, copy) NSDate *updatedAt;
-@property (nullable, nonatomic, copy) NSString *photoPath;
+@property (nullable, nonatomic, copy) NSDate *completedAt;
+@property (nullable, nonatomic, copy) NSDate *deletedAt;
 @property (nullable, nonatomic, retain) CDUser *user;
 
 @end

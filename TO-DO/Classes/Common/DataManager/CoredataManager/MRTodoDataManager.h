@@ -9,9 +9,15 @@
 #import "CDTodo.h"
 #import "Localized.h"
 
+static NSString *const kDataNotCompleteTaskKey = @"Not complete";
+static NSString *const kDataCompletedTaskKey = @"Completed";
+
+typedef void (^retrieveResult)(BOOL succeed, NSDictionary *data, NSInteger count);
+
 @interface MRTodoDataManager : NSObject<Localized>
 /* retrieve */
-- (void)retrieveDataWithUser:(CDUser*)user date:(NSDate*)date complete:(void (^)(bool succeed, NSDictionary* dataDictionary, NSInteger dataCount))complete;
+- (void)retrieveDataWithUser:(CDUser*)user date:(NSDate*)date complete:(retrieveResult)complete;
+- (void)retrieveCalendarDataWithUser:(CDUser *)user date:(NSDate *)date complete:(retrieveResult)complete;
 - (BOOL)hasDataWithDate:(NSDate*)date user:(CDUser*)user;
 
 /* modify */

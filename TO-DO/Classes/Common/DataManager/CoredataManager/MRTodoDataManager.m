@@ -50,15 +50,8 @@ MRTodoDataManager ()
 
 #pragma mark - retrieve
 
-- (void)retrieveDataWithUser:(CDUser *)user date:(NSDate *)date complete:(void (^)(bool succeed, NSDictionary *dataDictionary, NSInteger dataCount))complete {
-    NSMutableArray *arguments = [NSMutableArray new];
-    NSString *predicateFormat = @"user = %@ and isHidden = %@ and isCompleted = %@";
-    [arguments addObjectsFromArray:@[user, @(NO), @(NO)]];
-    if (date) {
-        predicateFormat = [predicateFormat stringByAppendingString:@" and deadline >= %@ and deadline <= %@"];
-        [arguments addObjectsFromArray:@[date, [date dateByAddingTimeInterval:kTimeIntervalDay]]];
-    }
-    NSPredicate *filter = [NSPredicate predicateWithFormat:predicateFormat argumentArray:[arguments copy]];
+- (void)retrieveDataWithUser:(CDUser *)user date:(NSDate *)date complete:(retrieveResult)complete {
+    NSPredicate *filter = [self predicateWithUser:user date:date isComplete:@(NO)];
     NSArray<CDTodo *> *data = [CDTodo MR_findAllSortedBy:@"deadline" ascending:YES withPredicate:filter];
     
     NSInteger dataCount = data.count;
@@ -79,8 +72,22 @@ MRTodoDataManager ()
     return complete(YES, [dataDictionary copy], dataCount);
 }
 
+- (void)retrieveCalendarDataWithUser:(CDUser *)user date:(NSDate *)date complete:(retrieveResult)complete {
+    NSPredicate *filter = [self predicateWithUser:user date:date isComplete:@(NO)];
+    NSArray<CDTodo *> *tasks = [CDTodo MR_findAllSortedBy:@"deadline" ascending:YES withPredicate:filter];
+    filter = [self predicateWithUser:user date:date isComplete:@(YES)];
+    NSArray<CDTodo *> *completedTasks = [CDTodo MR_findAllSortedBy:@"completedAt" ascending:YES withPredicate:filter];
+    
+    NSInteger dataCount = tasks.count + completedTasks.count;
+    NSMutableDictionary *dataDictionary = [NSMutableDictionary new];
+    dataDictionary[kDataNotCompleteTaskKey] = tasks;
+    dataDictionary[kDataCompletedTaskKey] = completedTasks;
+    
+    return complete(YES, [dataDictionary copy], dataCount);
+}
+
 - (BOOL)hasDataWithDate:(NSDate *)date user:(CDUser *)user {
-    return [CDTodo MR_countOfEntitiesWithPredicate:[NSPredicate predicateWithFormat:@"user = %@ AND isHidden = %@ AND deadline >= %@ AND deadline <= %@", user, @(NO), date, [date dateByAddingTimeInterval:kTimeIntervalDay]]];
+    return (BOOL) [CDTodo MR_countOfEntitiesWithPredicate:[NSPredicate predicateWithFormat:@"user = %@ AND isHidden = %@ AND deadline >= %@ AND deadline <= %@", user, @(NO), date, [date dateByAddingTimeInterval:kTimeIntervalDay]]];
 }
 
 #pragma mark - insertion
@@ -130,13 +137,13 @@ MRTodoDataManager ()
     
     // 存储照片，如果失败了返回
     if (_model.photoData) {
-		NSString* folderPath = [SGHelper photoPath];
-		NSFileManager* manager = [NSFileManager defaultManager];
-		
-		NSError* error = nil;
-		if (![manager fileExistsAtPath:folderPath]) {
-			[manager createDirectoryAtPath:folderPath withIntermediateDirectories:YES attributes:nil error:&error];
-		}
+        NSString *folderPath = [SGHelper photoPath];
+        NSFileManager *manager = [NSFileManager defaultManager];
+        
+        NSError *error = nil;
+        if (![manager fileExistsAtPath:folderPath]) {
+            [manager createDirectoryAtPath:folderPath withIntermediateDirectories:YES attributes:nil error:&error];
+        }
         NSString *imagePath = [NSString stringWithFormat:@"%@/%@.jpg", [SGHelper photoPath], _model.identifier];
         if (![_model.photoData writeToFile:imagePath atomically:YES]) {
             [SCLAlertHelper errorAlertWithContent:_localDictionary[kPhotoSaveFailedKey]];
@@ -167,5 +174,18 @@ MRTodoDataManager ()
 
 - (void)syncIfNeeded {
     [[GCDQueue mainQueue] async:^{[[AppDelegate globalDelegate] synchronize:SyncModeAutomatically];}];
+}
+
+- (NSPredicate *)predicateWithUser:(CDUser *)user date:(NSDate *)date isComplete:(NSNumber *)isComplete {
+    NSMutableArray *arguments = [NSMutableArray new];
+    NSString *predicateFormat = [@"user = %@ and isHidden = %@" stringByAppendingString:isComplete ? @" and isCompleted = %@" : @""];
+    [arguments addObjectsFromArray:@[user, @(NO)]];
+    if(isComplete) [arguments addObject:isComplete];
+    if (date) {
+        predicateFormat = [predicateFormat stringByAppendingString:@" and deadline >= %@ and deadline <= %@"];
+        [arguments addObjectsFromArray:@[date, [date dateByAddingTimeInterval:kTimeIntervalDay]]];
+    }
+    NSPredicate *filter = [NSPredicate predicateWithFormat:predicateFormat argumentArray:[arguments copy]];
+    return filter;
 }
 @end

@@ -19,8 +19,7 @@
     MBProgressHUD *hud = [self show];
     if(!hud) return nil;
     hud.mode = MBProgressHUDModeText;
-    hud.labelText = text;
-//    hud.label.text = ;
+    hud.label.text = text;
     hud.userInteractionEnabled = NO;
     if (seconds) dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t) (seconds * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{[self dismiss];});
     return hud;

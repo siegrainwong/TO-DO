@@ -5,7 +5,7 @@
 
 #import <Foundation/Foundation.h>
 #import "Masonry.h"
-#import "UIView+Extension.h";
+#import "UIView+Extension.h"
 
 @protocol SGViews <NSObject>
 - (void)setupViews;

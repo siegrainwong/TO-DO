@@ -2,7 +2,7 @@
 //  CDTodo+CoreDataProperties.m
 //  TO-DO
 //
-//  Created by Siegrain on 16/11/10.
+//  Created by Siegrain on 16/11/18.
 //  Copyright © 2016年 com.siegrain. All rights reserved.
 //
 
@@ -24,6 +24,7 @@
 @dynamic latitude;
 @dynamic longitude;
 @dynamic objectId;
+@dynamic photoPath;
 @dynamic photoUrl;
 @dynamic sgDescription;
 @dynamic status;
@@ -31,7 +32,8 @@
 @dynamic syncVersion;
 @dynamic title;
 @dynamic updatedAt;
-@dynamic photoPath;
+@dynamic completedAt;
+@dynamic deletedAt;
 @dynamic user;
 
 @end

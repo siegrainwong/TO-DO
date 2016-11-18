@@ -12,7 +12,7 @@
 #import "TodoTableViewCell.h"
 #import "UIImage+Extension.h"
 #import "UIView+SDAutoLayout.h"
-#import "ZLIconLabel.h"、
+#import "ZLIconLabel.h"
 #import "UIImage+Compression.h"
 
 static NSInteger const kButtonSize = 45;
@@ -40,7 +40,6 @@ TodoTableViewCell ()
         
         [self setup];
         [self bindConstraints];
-        [self configureSwipeBehavior];
     }
     return self;
 }
@@ -66,12 +65,13 @@ TodoTableViewCell ()
     formatter.dateFormat = @"a";
     _meridiemLabel.text = [[formatter stringFromDate:_model.deadline] lowercaseString];
     
-    [_statusButton setImage:[UIImage imageNamed:[NSString stringWithFormat:@"status-%d", [_model.status integerValue]]] forState:UIControlStateNormal];
-    
     _todoTitleLabel.text = _model.title;
+    _todoTitleLabel.icon = [UIImage imageWithImage:model.generalAddress ? [UIImage imageNamed:@"location"] : [UIImage new] scaledToSize:CGSizeMake(15, 15)];
     _todoContentLabel.text = _model.sgDescription;
     
-    _todoTitleLabel.icon = [UIImage imageWithImage:model.generalAddress ? [UIImage imageNamed:@"location"] : [UIImage new] scaledToSize:CGSizeMake(15, 15)];
+    NSString *statusImageName = _model.isCompleted.boolValue ? @"status-complete" : [NSString stringWithFormat:@"status-%d", _model.status.intValue];
+    [_statusButton setImage:[UIImage imageNamed:statusImageName] forState:UIControlStateNormal];
+    if (!_model.isCompleted.boolValue) [self configureSwipeBehavior];
     
     [self setNeedsUpdateConstraints];
     [self updateConstraintsIfNeeded];

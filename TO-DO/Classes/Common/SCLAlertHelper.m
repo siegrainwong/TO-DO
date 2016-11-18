@@ -32,7 +32,7 @@
     if (validateString)
         [self errorAlertWithContent:[NSString stringWithFormat:@"%@%@%ld", name, validateString, (long)errorLength]];
 
-    return validateString;
+    return (BOOL)validateString;
 }
 
 @end
