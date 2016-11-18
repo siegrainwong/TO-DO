@@ -105,7 +105,7 @@
     
     _titleTextField = [SGTextField textField];
     _titleTextField.field.font = [SGHelper themeFontWithSize:32];
-    _titleTextField.field.textColor = [UIColor whiteColor];
+    _titleTextField.field.textColor = _titleTextField.field.tintColor =  [UIColor whiteColor];
     _titleTextField.field.returnKeyType = UIReturnKeyNext;
     _titleTextField.isUnderlineHidden = YES;
     [_titleTextField setTextFieldShouldReturn:^(SGTextField *textField) {
@@ -159,8 +159,7 @@
     }];
     
     [_titleTextField mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.left.right.offset(0);
-        make.centerY.offset(-10);
+        make.left.right.centerY.offset(0);
         make.height.offset(40);
     }];
     
