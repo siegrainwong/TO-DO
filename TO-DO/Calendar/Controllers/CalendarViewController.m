@@ -19,13 +19,20 @@ CalendarViewController ()
 @property(nonatomic, strong) UIView *calendarContainer;
 @property(nonatomic, strong) FSCalendar *calendar;
 @property(nonatomic, strong) TodoTableViewController *todoTableViewController;
-@property(nonatomic, strong) UIButton *menuButton;
 
 @property(nonatomic, strong) MRTodoDataManager *dataManager;
 @property(nonatomic, assign) BOOL isCalendarCollapsed;
 @end
 
 @implementation CalendarViewController
+#pragma mark - release
+- (void)dealloc {
+    //Mark: 由于释放顺序的原因，导致TableView释放后KVO还没有移除，只有先移除HeaderView
+    [_todoTableViewController.tableView.tableHeaderView removeFromSuperview];
+    self.headerView = nil;
+    DDLogWarn(@"%s", __func__);
+}
+
 #pragma mark - accessors
 
 - (CGFloat)headerHeight {
@@ -110,11 +117,6 @@ CalendarViewController ()
     self.headerView.parallaxHeight = self.headerHeight;
     self.headerView.parallaxMinimumHeight = self.headerCollapseHeight;
     [self.headerView bringSubviewToFront:self.headerView.rightOperationButton];
-
-//    _menuButton = [UIButton new];
-//    [_menuButton setImage:[UIImage imageNamed:@"menu-button2"] forState:UIControlStateNormal];
-//    [_menuButton addTarget:self action:@selector(menuButtonDidPress) forControlEvents:UIControlEventTouchUpInside];
-//    [self.view addSubview:_menuButton];
 }
 
 - (void)bindConstraints {

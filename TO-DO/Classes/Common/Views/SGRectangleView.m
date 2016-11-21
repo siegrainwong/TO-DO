@@ -59,6 +59,7 @@
     
     //填充
     CGContextFillPath(ctx);
+	CGPathRelease(path);
 }
 
 - (void)drawRect:(CGRect)rect {

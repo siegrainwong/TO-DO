@@ -167,8 +167,8 @@ static void *const kHeaderViewKVOContext = (void *) &kHeaderViewKVOContext;
 
 @implementation SGHeaderView (ParallaxHeader)
 
-- (void)dealloc {
-    if (_parallaxScrollView) [self removeObserver:_parallaxScrollView forKeyPath:NSStringFromSelector(@selector(contentOffset))];
+- (void)removeFromSuperview {
+    if (_parallaxScrollView) [_parallaxScrollView removeObserver:self forKeyPath:NSStringFromSelector(@selector(contentOffset)) context:kHeaderViewKVOContext];
 }
 
 #pragma mark - accessors

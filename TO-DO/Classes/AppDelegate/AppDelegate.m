@@ -29,8 +29,9 @@
 
 
 // FIXME: 每次进入一个新的ViewController，都会在AF库中的SecPolicy对象上发生几百b的内存泄漏，wtf?
+// FIXME: 注销后没有清空stateHolder，而且TodoViewController溢出，其KVO也没有移除导致崩溃
 
-static BOOL const kEnableViewControllerStateHolder = YES;
+static BOOL const kEnableViewControllerStateHolder = NO;
 
 @interface AppDelegate ()
 /* 视图状态存储 */
@@ -153,9 +154,9 @@ static BOOL const kEnableViewControllerStateHolder = YES;
 
 - (void)setupReachability {
     _reachability = [RealReachability sharedInstance];
-	_reachability.autoCheckInterval = 0.3f;
+    _reachability.autoCheckInterval = 0.3f;
     [_reachability reachabilityWithBlock:^(ReachabilityStatus status) {
-                
+        
     }];
     [_reachability startNotifier];
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(networkChanged) name:kRealReachabilityChangedNotification object:nil];
@@ -193,6 +194,16 @@ static BOOL const kEnableViewControllerStateHolder = YES;
 - (NSString *)sandboxUrl {
     NSArray *array = NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES);
     return array[0];
+}
+
+#pragma mark - public methods
+
+- (void)logOut {
+    [_stateHolder removeAllObjects];
+    [LCUser logOut];
+    [[AppDelegate globalDelegate] toggleDrawer:self animated:YES];
+    LoginViewController *loginViewController = [LoginViewController new];
+    [[AppDelegate globalDelegate] switchRootViewController:loginViewController isNavigation:NO key:nil];
 }
 
 #pragma mark - sync

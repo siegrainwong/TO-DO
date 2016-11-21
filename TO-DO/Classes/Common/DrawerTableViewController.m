@@ -198,16 +198,12 @@ DrawerTableViewController ()
 #pragma mark - log out
 
 - (void)logOut {
-    [LCUser logOut];
-    [[AppDelegate globalDelegate] toggleDrawer:self animated:YES];
-    LoginViewController *loginViewController = [LoginViewController new];
-    [[AppDelegate globalDelegate] switchRootViewController:loginViewController isNavigation:NO key:nil];
+    [[AppDelegate globalDelegate] logOut];
 }
 
 #pragma mark - tableview
 
-- (NSInteger)tableView:(UITableView *)tableView
- numberOfRowsInSection:(NSInteger)section {
+- (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
     return _dataArray.count;
 }
 

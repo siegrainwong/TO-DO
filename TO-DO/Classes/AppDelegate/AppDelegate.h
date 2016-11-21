@@ -14,17 +14,18 @@
 #import <CoreData/CoreData.h>
 #import <UIKit/UIKit.h>
 
-@interface AppDelegate : UIResponder<UIApplicationDelegate>
-@property (strong, nonatomic) UIWindow* window;
+@interface AppDelegate : UIResponder <UIApplicationDelegate>
+@property(strong, nonatomic) UIWindow *window;
 
-@property (nonatomic, readonly, strong) LCUser* lcUser;
-@property (nonatomic, readonly, strong) CDUser* cdUser;
+@property(nonatomic, readonly, strong) LCUser *lcUser;
+@property(nonatomic, readonly, strong) CDUser *cdUser;
 
-@property (nonatomic, readonly, strong) JVFloatingDrawerViewController* drawerViewController;
-@property (nonatomic, readonly, strong) RealReachability* reachability;
+@property(nonatomic, readonly, strong) JVFloatingDrawerViewController *drawerViewController;
+@property(nonatomic, readonly, strong) RealReachability *reachability;
 
 /* 全局访问器 */
-+ (AppDelegate*)globalDelegate;
++ (AppDelegate *)globalDelegate;
+
 /* 首页Key */
 + (NSString *)homeViewControllerKey;
 
@@ -35,6 +36,7 @@
  * 全局同步方法
  */
 - (void)synchronize:(SyncMode)syncType;
+
 /**
  *  切换根控制器
  */
@@ -54,4 +56,9 @@
  *  登录后调用该方法配置用户
  */
 - (void)setupUser;
+
+/**
+ * 注销
+ */
+- (void)logOut;
 @end
