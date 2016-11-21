@@ -17,6 +17,7 @@
 // TODO: 待办事项展开功能
 // TODO: 导航栏不透明时，需要把+号按钮添加到导航栏上。
 // FIXME: 我的6P启动时会有一两秒黑屏，黑屏时间似乎和同步的准备同步时间相同
+// FIXME: HeaderView释放不了了，莫名其妙的
 
 // Mark: 再不能全局变量都用成员变量了，内存释放太操心
 // Mark: 这里为了让Section能够挂在NavigationBar之下，设置了HeaderView的IgnoreInset属性忽略了NavigationBar的64Inset
@@ -31,6 +32,8 @@ HomeViewController () <UINavigationControllerDelegate, UIImagePickerControllerDe
 
 - (void)dealloc {
     //Mark: 由于释放顺序的原因，导致TableView释放后KVO还没有移除，只有先移除HeaderView
+    [_todoTableViewController.tableView.tableHeaderView removeFromSuperview];
+    self.headerView = nil;
     DDLogWarn(@"%s", __func__);
 }
 

@@ -41,8 +41,6 @@ TodoTableViewController ()
 
 - (void)dealloc {
     DDLogWarn(@"%s", __func__);
-//    [self.tableView.tableHeaderView removeFromSuperview];
-//    self.tableView.tableHeaderView = nil;
     [[NSNotificationCenter defaultCenter] removeObserver:self];
 }
 

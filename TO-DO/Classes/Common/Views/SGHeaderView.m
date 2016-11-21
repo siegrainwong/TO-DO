@@ -104,51 +104,52 @@ static void *const kHeaderViewKVOContext = (void *) &kHeaderViewKVOContext;
 }
 
 - (void)bindConstraints {
+    __weak __typeof(self) weakSelf = self;
     [_backgroundImageView mas_makeConstraints:^(MASConstraintMaker *make) {
         make.left.right.offset(0);
-        if (_avatarPosition == HeaderAvatarPositionBottom) {
-            make.height.equalTo(self).multipliedBy(0.9);
+        if (weakSelf.avatarPosition == HeaderAvatarPositionBottom) {
+            make.height.equalTo(weakSelf).multipliedBy(0.9);
             make.top.offset(0);
         } else {
-            make.height.equalTo(self);
+            make.height.equalTo(weakSelf);
             make.bottom.offset(0);
         }
     }];
     
     [_rectangleView mas_makeConstraints:^(MASConstraintMaker *make) {
         make.centerX.offset(0);
-        make.bottom.equalTo(_backgroundImageView.mas_bottom);
+        make.bottom.equalTo(weakSelf.backgroundImageView.mas_bottom);
         make.width.offset(kScreenWidth);
         make.height.offset(kRectangleHeight);
     }];
     
     [_rightOperationButton mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.centerY.equalTo(self.rectangleView).offset(-kRectangleHeight / 2 + 5);
+        make.centerY.equalTo(weakSelf.rectangleView).offset(-kRectangleHeight / 2 + 5);
         make.right.offset(-20);
-        make.width.offset(self.rightOperationButtonSize);
-        make.height.equalTo(_rightOperationButton.mas_width);
+        make.width.offset(weakSelf.rightOperationButtonSize);
+        make.height.equalTo(weakSelf.rightOperationButton.mas_width);
     }];
     
     [_avatarButton mas_makeConstraints:^(MASConstraintMaker *make) {
         make.centerX.equalTo(_backgroundImageView);
-        make.bottom.offset((CGFloat) (_avatarPosition == HeaderAvatarPositionCenter ? -kScreenHeight * 0.25 : 0));
+        make.bottom.offset((CGFloat) (weakSelf.avatarPosition == HeaderAvatarPositionCenter ? -kScreenHeight * 0.25 : 0));
         make.width.offset(kScreenHeight * kAvatarButtonSizeMultipliedByHeight);
-        make.height.equalTo(_avatarButton.mas_width);
+        make.height.equalTo(weakSelf.avatarButton.mas_width);
     }];
     
     [_titleLabel mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.centerX.equalTo(_backgroundImageView);
-        if (_avatarPosition == HeaderAvatarPositionCenter && _titleAlignment == HeaderTitleAlignmentCenter)
-            make.top.equalTo(_avatarButton.mas_bottom).offset(5);
+        make.centerX.equalTo(weakSelf.backgroundImageView);
+        if (_avatarPosition == HeaderAvatarPositionCenter && weakSelf.titleAlignment == HeaderTitleAlignmentCenter)
+            make.top.equalTo(weakSelf.avatarButton.mas_bottom).offset(5);
         else
             make.centerY.offset(-30);
         make.height.offset(kTitleLabelHeight);
     }];
     
     [_subtitleLabel mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.top.equalTo(_titleLabel.mas_bottom).offset(5);
+        make.top.equalTo(weakSelf.titleLabel.mas_bottom).offset(5);
         make.height.offset(20);
-        make.centerX.equalTo(_titleLabel);
+        make.centerX.equalTo(weakSelf.titleLabel);
     }];
 }
 

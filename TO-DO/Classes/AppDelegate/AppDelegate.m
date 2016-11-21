@@ -29,9 +29,8 @@
 
 
 // FIXME: 每次进入一个新的ViewController，都会在SecPolicy对象上发生内存泄漏，wtf?
-// FIXME: 注销后没有清空stateHolder，而且TodoViewController溢出，其KVO也没有移除导致崩溃
 
-static BOOL const kEnableViewControllerStateHolder = NO;
+static BOOL const kEnableViewControllerStateHolder = YES;
 
 @interface AppDelegate ()
 /* 视图状态存储 */
@@ -204,6 +203,7 @@ static BOOL const kEnableViewControllerStateHolder = NO;
     [self setCenterViewController:[UIViewController new] key:nil];
     LoginViewController *loginViewController = [LoginViewController new];
     [self switchRootViewController:loginViewController isNavigation:NO key:nil];
+    [self toggleDrawer:nil animated:YES];
 }
 
 #pragma mark - sync
