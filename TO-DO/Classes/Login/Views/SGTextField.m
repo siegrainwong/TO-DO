@@ -23,7 +23,7 @@ SGTextField ()
     return sgTextField;
 }
 
-#pragma mark - rewrite UIControl methods & accessors
+#pragma mark - overwrite
 - (void)layoutSubviews
 {
     [super layoutSubviews];

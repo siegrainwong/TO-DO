@@ -17,6 +17,7 @@
 #import "TodoTableViewCell.h"
 #import "UITableView+SDAutoTableViewCellHeight.h"
 #import "EmptyDataView.h"
+#import "ZFModalTransitionAnimator.h"
 
 @interface
 TodoTableViewController ()
@@ -30,6 +31,8 @@ TodoTableViewController ()
 
 @property(nonatomic, strong) NSDate *date;
 @property(nonatomic, strong) NSTimer *timer;
+
+@property(nonatomic, strong) ZFModalTransitionAnimator *animator;
 @end
 
 @implementation TodoTableViewController
@@ -186,6 +189,15 @@ TodoTableViewController ()
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
     [tableView deselectRowAtIndexPath:indexPath animated:YES];
+    
+//    HomeViewController *detailViewController = [HomeViewController new];
+//    self.animator = [[ZFModalTransitionAnimator alloc] initWithModalViewController:detailViewController];
+//    self.animator.dragable = YES;
+//    self.animator.direction = ZFModalTransitonDirectionBottom;
+//    detailViewController.transitioningDelegate = self.animator;
+//    detailViewController.modalPresentationStyle = UIModalPresentationCustom;
+//
+//    [self presentViewController:detailViewController animated:YES completion:nil];
 }
 
 - (NSArray<CDTodo *> *)dataArrayAtSection:(NSInteger)section {
@@ -234,41 +246,6 @@ TodoTableViewController ()
         }
         return YES;
     }];
-//    if (!cell.todoDidComplete) {
-//        [cell setTodoDidComplete:^BOOL(TodoTableViewCell *sender) {
-//            [sender setUserInteractionEnabled:NO];
-//            sender.model.isCompleted = @(YES);
-//            sender.model.completedAt = [NSDate date];
-//            if ([weakSelf.dataManager isModifiedTodo:sender.model]) {
-//                [weakSelf removeTodo:sender.model atIndexPath:[weakSelf.tableView indexPathForCell:sender] reordering:NO animate:YES];
-//                if ([weakSelf.delegate respondsToSelector:@selector(todoTableViewControllerDidUpdateTodo)]) [weakSelf.delegate todoTableViewControllerDidUpdateTodo];
-//            }
-//
-//            [sender setUserInteractionEnabled:YES];
-//            return NO;
-//        }];
-//    }
-//    if (!cell.todoDidSnooze) {
-//        [cell setTodoDidSnooze:^BOOL(TodoTableViewCell *sender) {
-//            weakSelf.snoozingCell = sender;
-//            [weakSelf showDatetimePicker:[[NSDate date] dateByAddingTimeInterval:-60]];
-//            return YES;
-//        }];
-//    }
-//    if (!cell.todoDidRemove) {
-//        [cell setTodoDidRemove:^BOOL(TodoTableViewCell *sender) {
-//            [sender setUserInteractionEnabled:NO];
-//            sender.model.isHidden = @(YES);
-//            sender.model.deletedAt = [NSDate date];
-//            if ([weakSelf.dataManager isModifiedTodo:sender.model]) {
-//                [weakSelf removeTodo:sender.model atIndexPath:[weakSelf.tableView indexPathForCell:sender] reordering:NO animate:YES];
-//                if ([weakSelf.delegate respondsToSelector:@selector(todoTableViewControllerDidUpdateTodo)]) [weakSelf.delegate todoTableViewControllerDidUpdateTodo];
-//            }
-//
-//            [sender setUserInteractionEnabled:YES];
-//            return YES;
-//        }];
-//    }
 }
 
 #pragma mark - date time picker delegate
