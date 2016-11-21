@@ -1,6 +1,13 @@
 platform :ios, '8.0'
 
 target "TO-DO" do
+  pod 'AMap2DMap', '~> 4.4.0'
+  pod 'AMapSearch', '~> 4.4.0'
+  pod 'AMapLocation', '~> 2.1.0'
+  pod 'AVOSCloud', '~> 3.2.9'
+
+  pod 'FSCalendar', :git => "https://github.com/Seanwong933/FSCalendar.git"
+
   pod 'SDAutoLayout'
   pod 'MBProgressHUD'
   pod 'TPKeyboardAvoiding'
@@ -8,14 +15,12 @@ target "TO-DO" do
   pod 'JSONModel'
   pod 'Qiniu'
   pod 'GTMBase64'
-  pod 'AVOSCloud', '~> 3.2.9'
   pod 'SDWebImage'
   pod "RTRootNavigationController"
   pod 'AutoLinearLayoutView'
   pod 'JVFloatingDrawer'
   pod 'MGSwipeTableCell'
   pod 'ZFDragableModalTransition'
-  pod 'FSCalendar', :git => "https://github.com/Seanwong933/FSCalendar.git"
   pod 'MagicalRecord'
   pod 'CocoaLumberjack'
   pod 'DGActivityIndicatorView'
@@ -25,9 +30,6 @@ target "TO-DO" do
   pod 'NetworkEye'
   pod 'LCActionSheet'
   pod 'FDFullscreenPopGesture'
-  pod 'AMap2DMap'
-  pod 'AMapSearch'
-  pod 'AMapLocation'
   pod 'MJExtension'
   pod 'JMRoundedCorner'
   pod 'BEMCheckBox'

@@ -27,8 +27,8 @@ PODS:
   - AMap2DMap (4.4.0):
     - AMapFoundation (~> 1.2)
   - AMapFoundation (1.3.2)
-  - AMapLocation (2.2.0):
-    - AMapFoundation (~> 1.3)
+  - AMapLocation (2.1.1):
+    - AMapFoundation (~> 1.2)
   - AMapSearch (4.4.0):
     - AMapFoundation (~> 1.2)
   - AutoLinearLayoutView (0.3.0)
@@ -82,7 +82,7 @@ PODS:
 DEPENDENCIES:
   - AFNetworking-Synchronous
   - AMap2DMap
-  - AMapLocation
+  - AMapLocation (~> 2.1.0)
   - AMapSearch
   - AutoLinearLayoutView
   - AVOSCloud (~> 3.2.9)
@@ -125,7 +125,7 @@ SPEC CHECKSUMS:
   AFNetworking-Synchronous: 29531ad341ec465a4ff9b66dea9cf7272080e12e
   AMap2DMap: 5e310b546e93776462cf5a561cc74bafd6acee58
   AMapFoundation: 843dc27b2c02bc0bc2ef3346bb3dd0456cf64dbb
-  AMapLocation: 3f2005c6dec6a7a1107258d0cde43b9d7399d217
+  AMapLocation: dd203f76b034ef5cb546600f4e1ffad2a3a14072
   AMapSearch: a6c7c83905dbe12aa059c7ff83cb0726cb4fc32f
   AutoLinearLayoutView: b4da48a230fcbe03c38e3fd01f435d830071c49b
   AVOSCloud: fcbb5c2bcccaddbdea8c2b4f6c1ad7f13e6639fe
@@ -155,6 +155,6 @@ SPEC CHECKSUMS:
   TPKeyboardAvoiding: a5138f318c06fb3e151f886e18ce4a72695d9cbe
   ZFDragableModalTransition: 0d294eaaba6edfcb9839595de765f9ca06a4b524
 
-PODFILE CHECKSUM: a95ce85a83947f8b09400a027bc2b59f6411d5b9
+PODFILE CHECKSUM: c592f66bcb74ba5b0b5ca7028d5797ef68b4c8e6
 
 COCOAPODS: 1.0.1

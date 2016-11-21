@@ -28,7 +28,7 @@
 #import <AMapFoundationKit/AMapFoundationKit.h>
 
 
-// FIXME: 每次进入一个新的ViewController，都会在AF库中的SecPolicy对象上发生几百b的内存泄漏，wtf?
+// FIXME: 每次进入一个新的ViewController，都会在SecPolicy对象上发生内存泄漏，wtf?
 // FIXME: 注销后没有清空stateHolder，而且TodoViewController溢出，其KVO也没有移除导致崩溃
 
 static BOOL const kEnableViewControllerStateHolder = NO;
@@ -201,9 +201,9 @@ static BOOL const kEnableViewControllerStateHolder = NO;
 - (void)logOut {
     [_stateHolder removeAllObjects];
     [LCUser logOut];
-    [[AppDelegate globalDelegate] toggleDrawer:self animated:YES];
+    [self setCenterViewController:[UIViewController new] key:nil];
     LoginViewController *loginViewController = [LoginViewController new];
-    [[AppDelegate globalDelegate] switchRootViewController:loginViewController isNavigation:NO key:nil];
+    [self switchRootViewController:loginViewController isNavigation:NO key:nil];
 }
 
 #pragma mark - sync

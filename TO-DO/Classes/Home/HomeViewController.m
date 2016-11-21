@@ -31,8 +31,6 @@ HomeViewController () <UINavigationControllerDelegate, UIImagePickerControllerDe
 
 - (void)dealloc {
     //Mark: 由于释放顺序的原因，导致TableView释放后KVO还没有移除，只有先移除HeaderView
-    [_todoTableViewController.tableView.tableHeaderView removeFromSuperview];
-    self.headerView = nil;
     DDLogWarn(@"%s", __func__);
 }
 
