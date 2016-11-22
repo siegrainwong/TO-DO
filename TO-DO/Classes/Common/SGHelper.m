@@ -18,6 +18,10 @@
 @implementation SGHelper
 #pragma mark - font
 
++ (NSString *)themeFontName {
+    return @"Avenir";
+}
+
 + (UIFont *)themeFontWithSize:(CGFloat)size {
     return [UIFont fontWithName:@"Avenir" size:size];
 }

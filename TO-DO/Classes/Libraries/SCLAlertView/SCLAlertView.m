@@ -69,7 +69,7 @@ CGFloat kCircleBackgroundTopPosition;
 CGFloat kCircleHeightBackground;
 CGFloat kActivityIndicatorHeight;
 CGFloat kTitleTop;
-CGFloat kTitleHeight;
+CGFloat kCheckBoxHeight;
 
 // Timer
 NSTimer *durationTimer;
@@ -156,7 +156,7 @@ SCLTimerDisplay *buttonTimer;
     kCircleHeightBackground = 62.0f;
     kActivityIndicatorHeight = 40.0f;
     kTitleTop = 30.0f;
-    kTitleHeight = 40.0f;
+    kCheckBoxHeight = 40.0f;
     self.subTitleY = 70.0f;
     self.subTitleHeight = 90.0f;
     self.circleIconHeight = 20.0f;
@@ -219,7 +219,7 @@ SCLTimerDisplay *buttonTimer;
     _labelTitle.numberOfLines = 1;
     _labelTitle.textAlignment = NSTextAlignmentCenter;
     _labelTitle.font = [UIFont fontWithName:_titleFontFamily size:_titleFontSize];
-    _labelTitle.frame = CGRectMake(12.0f, kTitleTop, _windowWidth - 24.0f, kTitleHeight);
+    _labelTitle.frame = CGRectMake(12.0f, kTitleTop, _windowWidth - 24.0f, kCheckBoxHeight);
     
     // View text
     _viewText.editable = NO;
@@ -344,7 +344,7 @@ SCLTimerDisplay *buttonTimer;
         _circleViewBackground.layer.cornerRadius = _circleViewBackground.frame.size.height / 2;
         _circleView.layer.cornerRadius = _circleView.frame.size.height / 2;
         _circleIconImageView.frame = CGRectMake(kCircleHeight / 2 - _circleIconHeight / 2, kCircleHeight / 2 - _circleIconHeight / 2, _circleIconHeight, _circleIconHeight);
-        _labelTitle.frame = CGRectMake(12.0f, kTitleTop, _windowWidth - 24.0f, kTitleHeight);
+        _labelTitle.frame = CGRectMake(12.0f, kTitleTop, _windowWidth - 24.0f, kCheckBoxHeight);
     }
     else
     {
@@ -358,7 +358,7 @@ SCLTimerDisplay *buttonTimer;
         _circleViewBackground.frame = CGRectMake(x, y, kCircleHeightBackground, kCircleHeightBackground);
         _circleViewBackground.layer.cornerRadius = _circleViewBackground.frame.size.height / 2;        
         _circleIconImageView.frame = CGRectMake(kCircleHeight / 2 - _circleIconHeight / 2, kCircleHeight / 2 - _circleIconHeight / 2, _circleIconHeight, _circleIconHeight);
-        _labelTitle.frame = CGRectMake(12.0f + self.contentView.frame.origin.x, kTitleTop + self.contentView.frame.origin.y, _windowWidth - 24.0f, kTitleHeight);
+        _labelTitle.frame = CGRectMake(12.0f + self.contentView.frame.origin.x, kTitleTop + self.contentView.frame.origin.y, _windowWidth - 24.0f, kCheckBoxHeight);
     }
     
     // Text fields
@@ -948,7 +948,7 @@ SCLTimerDisplay *buttonTimer;
         [_viewText removeFromSuperview];
         
         // Move up
-        _labelTitle.frame = CGRectMake(12.0f, 37.0f, _windowWidth - 24.0f, kTitleHeight);
+        _labelTitle.frame = CGRectMake(12.0f, 37.0f, _windowWidth - 24.0f, kCheckBoxHeight);
     }
     
     // Add button, if necessary

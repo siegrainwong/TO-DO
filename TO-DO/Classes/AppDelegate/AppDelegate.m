@@ -81,7 +81,7 @@ static BOOL const kEnableViewControllerStateHolder = YES;
     
     [UIApplication sharedApplication].statusBarStyle = UIStatusBarStyleLightContent;
     self.window = [[UIWindow alloc] initWithFrame:[[UIScreen mainScreen] bounds]];
-    self.window.backgroundColor = [UIColor whiteColor];
+    self.window.backgroundColor = [UIColor blackColor];
     
     // validate user's login state
     if (_lcUser) {

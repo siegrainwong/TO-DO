@@ -18,6 +18,7 @@
 #import "UITableView+SDAutoTableViewCellHeight.h"
 #import "EmptyDataView.h"
 #import "ZFModalTransitionAnimator.h"
+#import "DetailViewController.h"
 
 @interface
 TodoTableViewController ()
@@ -190,14 +191,21 @@ TodoTableViewController ()
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
     [tableView deselectRowAtIndexPath:indexPath animated:YES];
     
-//    HomeViewController *detailViewController = [HomeViewController new];
-//    self.animator = [[ZFModalTransitionAnimator alloc] initWithModalViewController:detailViewController];
-//    self.animator.dragable = YES;
-//    self.animator.direction = ZFModalTransitonDirectionBottom;
-//    detailViewController.transitioningDelegate = self.animator;
-//    detailViewController.modalPresentationStyle = UIModalPresentationCustom;
-//
-//    [self presentViewController:detailViewController animated:YES completion:nil];
+    CDTodo *model = [self modelAtIndexPath:indexPath];
+    
+    DetailViewController *detailViewController = [DetailViewController new];
+    [detailViewController setModel:model];
+    
+    self.animator = [[ZFModalTransitionAnimator alloc] initWithModalViewController:detailViewController];
+    self.animator.dragable = YES;
+    self.animator.direction = ZFModalTransitonDirectionBottom;
+    self.animator.transitionDuration = .3;
+    self.animator.behindViewAlpha = .9;
+    self.animator.behindViewScale = 1;
+    detailViewController.transitioningDelegate = self.animator;
+    detailViewController.modalPresentationStyle = UIModalPresentationCustom;
+    
+    [self presentViewController:detailViewController animated:YES completion:nil];
 }
 
 - (NSArray<CDTodo *> *)dataArrayAtSection:(NSInteger)section {

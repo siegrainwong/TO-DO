@@ -32,5 +32,5 @@
 /**
  *  获取当前view的高度 没有字的时候获取默认高度
  */
-- (CGFloat)height;
+- (CGFloat)dzm_height;
 @end

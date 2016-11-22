@@ -76,14 +76,15 @@ PODS:
   - SDWebImage (3.8.2):
     - SDWebImage/Core (= 3.8.2)
   - SDWebImage/Core (3.8.2)
+  - SSDynamicText (1.1.0)
   - TPKeyboardAvoiding (1.3)
   - ZFDragableModalTransition (0.6)
 
 DEPENDENCIES:
   - AFNetworking-Synchronous
-  - AMap2DMap
+  - AMap2DMap (~> 4.4.0)
   - AMapLocation (~> 2.1.0)
-  - AMapSearch
+  - AMapSearch (~> 4.4.0)
   - AutoLinearLayoutView
   - AVOSCloud (~> 3.2.9)
   - BEMCheckBox
@@ -108,6 +109,7 @@ DEPENDENCIES:
   - RTRootNavigationController
   - SDAutoLayout
   - SDWebImage
+  - SSDynamicText
   - TPKeyboardAvoiding
   - ZFDragableModalTransition
 
@@ -152,9 +154,10 @@ SPEC CHECKSUMS:
   RTRootNavigationController: cf134c044a8ce14d97fc668847ed4567efc53f91
   SDAutoLayout: e9b36d04b8c0b504762a04d76fbbe5108944297a
   SDWebImage: 098e97e6176540799c27e804c96653ee0833d13c
+  SSDynamicText: e5a1d15b757814a78508de4aeb73cdd287948cfe
   TPKeyboardAvoiding: a5138f318c06fb3e151f886e18ce4a72695d9cbe
   ZFDragableModalTransition: 0d294eaaba6edfcb9839595de765f9ca06a4b524
 
-PODFILE CHECKSUM: c592f66bcb74ba5b0b5ca7028d5797ef68b4c8e6
+PODFILE CHECKSUM: d13d5868db658ad7914db56a383d17c226e5c31c
 
 COCOAPODS: 1.0.1

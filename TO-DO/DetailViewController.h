@@ -7,4 +7,6 @@
 
 @interface DetailViewController : SGBaseViewController
 - (void)setModel:(CDTodo *)model;
+
+- (CGFloat)height;
 @end

@@ -14,6 +14,8 @@ static NSInteger const kPopHeightWhenKeyboardShow = 170;
 @interface SGHelper : NSObject
 #pragma mark - fonts & colors
 
++ (NSString *)themeFontName;
+
 + (UIFont *)themeFontWithSize:(CGFloat)size;
 
 + (UIFont *)themeFontDefault;
