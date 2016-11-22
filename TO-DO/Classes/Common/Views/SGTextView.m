@@ -4,10 +4,9 @@
 //
 
 #import "SGTextView.h"
-#import "SGMultipleDelegates.h"
+#import "RNObserverManager.h"
 
-@interface SGTextView () <UITextViewDelegate>
-@property(nonatomic, strong) SGMultipleDelegates *delegates;
+@interface SGTextView ()
 @end
 
 @implementation SGTextView
@@ -30,17 +29,7 @@
     return self;
 }
 
-- (void)didMoveToSuperview {
-    [super didMoveToSuperview];
-    
-    if(!self.superview) return;
-    
-    [_delegates addDelegate:self];
-    [_delegates addDelegate:self.delegate];
-}
-
 - (void)setupViews {
-    _delegates = [SGMultipleDelegates new];
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(textChanged:) name:UITextViewTextDidChangeNotification object:nil];
 }
 
@@ -90,7 +79,6 @@
         }
         return NO;
     }
-    
     return YES;
 }
 

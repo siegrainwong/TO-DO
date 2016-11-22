@@ -12,7 +12,7 @@
 static CGFloat const kCheckBoxHeight = 40;
 static CGFloat const kTitleHeight = 40;
 static CGFloat const kOffset = 10;
-static NSUInteger const kMaxLength = 20;
+static NSUInteger const kMaxLength = 50;
 
 @interface DetailViewController ()<UITextViewDelegate>
 @property(nonatomic, strong) CDTodo *model;
@@ -132,7 +132,11 @@ static NSUInteger const kMaxLength = 20;
         return NO;
     }
     
-    return YES;
+    return [_titleTextView textView:textView shouldChangeTextInRange:range replacementText:text];
+}
+
+- (void)textViewDidChange:(UITextView *)textView {
+    return [_titleTextView textViewDidChange:textView];
 }
 
 @end
