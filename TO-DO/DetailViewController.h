@@ -9,4 +9,6 @@
 - (void)setModel:(CDTodo *)model;
 
 - (CGFloat)height;
+
+- (UITableView *)tableView;
 @end

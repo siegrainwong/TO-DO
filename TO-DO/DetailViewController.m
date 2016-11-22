@@ -4,25 +4,26 @@
 //
 
 #import "DetailViewController.h"
-#import "AutoLinearLayoutView.h"
-#import "SGTextField.h"
-#import "SSDynamicTextView.h"
 #import "BEMCheckBox.h"
 #import "CDTodo.h"
+#import "DetailTableViewController.h"
+#import "SGTextView.h"
 
 static CGFloat const kCheckBoxHeight = 40;
 static CGFloat const kTitleHeight = 40;
 static CGFloat const kOffset = 10;
+static NSUInteger const kMaxLength = 20;
 
-@interface DetailViewController () <UITextViewDelegate>
+@interface DetailViewController ()<UITextViewDelegate>
 @property(nonatomic, strong) CDTodo *model;
 
 @property(nonatomic, strong) UIView *container;
 @property(nonatomic, strong) UIView *titleContainer;
 
 @property(nonatomic, strong) BEMCheckBox *checkBox;
-@property(nonatomic, strong) UITextView *titleTextView;
-@property(nonatomic, strong) UIImageView *photoImageView;
+@property(nonatomic, strong) SGTextView *titleTextView;
+@property(nonatomic, strong) DetailTableViewController *tableViewController;
+
 @end
 
 @implementation DetailViewController
@@ -31,7 +32,6 @@ static CGFloat const kOffset = 10;
 
 - (void)dealloc {
     DDLogWarn(@"%s", __func__);
-    [[NSNotificationCenter defaultCenter] removeObserver:self];
 }
 
 #pragma mark - accessors
@@ -45,6 +45,10 @@ static CGFloat const kOffset = 10;
 
 - (CGFloat)height {
     return self.titleContainerHeight;
+}
+
+- (UITableView *)tableView {
+    return _tableViewController.tableView;
 }
 
 - (CGFloat)titleContainerHeight {
@@ -82,13 +86,15 @@ static CGFloat const kOffset = 10;
     _checkBox.lineWidth = 1;
     [_titleContainer addSubview:_checkBox];
     
-    _titleTextView = [UITextView new];
-    _titleTextView.font = [SGHelper themeFontWithSize:17];
+    _titleTextView = [SGTextView new];
     _titleTextView.delegate = self;
-    _titleTextView.contentInset = UIEdgeInsetsZero;
+    _titleTextView.container = _titleContainer;
+    _titleTextView.containerInitialHeight = self.titleContainerHeight;
+    _titleTextView.maxLength = kMaxLength;
+    _titleTextView.maxLineCount = 3;
+    _titleTextView.font = [SGHelper themeFontWithSize:17];
     _titleTextView.tintColor = [SGHelper themeColorRed];
     _titleTextView.scrollEnabled = NO;
-    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(textChanged:) name:UITextViewTextDidChangeNotification object:nil];
     [_titleContainer addSubview:_titleTextView];
 }
 
@@ -119,27 +125,14 @@ static CGFloat const kOffset = 10;
 
 #pragma mark - textview
 
-/*根据textView的行数调整视图高度*/
-- (void)textViewDidChange:(UITextView *)textView {
-    CGSize textSize = [textView sizeThatFits:CGSizeMake(textView.width, CGFLOAT_MAX)];
-    CGFloat lineHeight = textView.font.lineHeight;
-    NSInteger lineCount = (NSInteger) (textSize.height / lineHeight);
-    if (lineCount > 3) return;
-    
-    CGFloat increase = (lineCount - 1) * lineHeight;
-    [self.titleContainer mas_updateConstraints:^(MASConstraintMaker *make) {make.height.offset(self.titleContainerHeight + increase);}];
-}
-
 - (BOOL)textView:(UITextView *)textView shouldChangeTextInRange:(NSRange)range replacementText:(NSString *)text {
+    //return时关掉键盘，不提行
     if ([text isEqualToString:@"\n"]) {
         [self.view endEditing:YES];
         return NO;
     }
+    
     return YES;
 }
 
-/*在复制文字进文本框时触发该通知*/
-- (void)textChanged:(NSNotification *)notification {
-    [self textViewDidChange:_titleTextView];
-}
 @end

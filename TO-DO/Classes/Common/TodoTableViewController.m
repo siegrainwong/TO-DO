@@ -202,6 +202,7 @@ TodoTableViewController ()
     self.animator.transitionDuration = .3;
     self.animator.behindViewAlpha = .9;
     self.animator.behindViewScale = 1;
+    [self.animator setContentScrollView:detailViewController.tableView];
     detailViewController.transitioningDelegate = self.animator;
     detailViewController.modalPresentationStyle = UIModalPresentationCustom;
     

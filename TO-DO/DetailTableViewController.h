@@ -6,5 +6,5 @@
 #import <Foundation/Foundation.h>
 
 
-@interface DetailTableViewController : NSObject
+@interface DetailTableViewController : UITableViewController
 @end
