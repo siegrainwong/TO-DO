@@ -11,6 +11,7 @@
 
 static CGFloat const kCheckBoxHeight = 40;
 static CGFloat const kTitleHeight = 40;
+static CGFloat const kTableHeight = 200;
 static CGFloat const kOffset = 10;
 static NSUInteger const kMaxLength = 50;
 
@@ -44,7 +45,7 @@ static NSUInteger const kMaxLength = 50;
 }
 
 - (CGFloat)height {
-    return self.titleContainerHeight;
+    return self.titleContainerHeight + kTableHeight;
 }
 
 - (UITableView *)tableView {
@@ -96,6 +97,11 @@ static NSUInteger const kMaxLength = 50;
     _titleTextView.tintColor = [SGHelper themeColorRed];
     _titleTextView.scrollEnabled = NO;
     [_titleContainer addSubview:_titleTextView];
+    
+    _tableViewController = [DetailTableViewController new];
+    _tableViewController.model = _model;
+    [self addChildViewController:_tableViewController];
+    [_container addSubview:_tableViewController.view];
 }
 
 - (void)bindConstraints {
@@ -103,7 +109,7 @@ static NSUInteger const kMaxLength = 50;
     
     [_container mas_makeConstraints:^(MASConstraintMaker *make) {
         make.left.right.bottom.offset(0);
-        make.height.equalTo(_titleContainer);
+        make.height.offset(self.height);
     }];
     
     [_titleContainer mas_makeConstraints:^(MASConstraintMaker *make) {
@@ -121,7 +127,14 @@ static NSUInteger const kMaxLength = 50;
         make.top.equalTo(_checkBox);
         make.right.bottom.offset(-kOffset);
     }];
+    
+    [self.tableView mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.top.equalTo(_titleContainer.mas_bottom).offset(0);
+        make.left.right.offset(0);
+        make.height.offset(kTableHeight);
+    }];
 }
+
 
 #pragma mark - textview
 

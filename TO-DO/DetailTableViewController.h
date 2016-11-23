@@ -3,8 +3,10 @@
 // Copyright (c) 2016 com.siegrain. All rights reserved.
 //
 
-#import <Foundation/Foundation.h>
+#import "SGViews.h"
 
+@class CDTodo;
 
-@interface DetailTableViewController : UITableViewController
+@interface DetailTableViewController : UITableViewController<SGViews>
+- (void)setModel:(CDTodo *)model;
 @end

@@ -4,12 +4,17 @@
 //
 
 #import <Foundation/Foundation.h>
+#import "SGViews.h"
+
+@class CDTodo;
 
 typedef NS_ENUM(NSInteger, DetailCellStyle){
-    DetailCellStyleNormal,
-    DetailCellStylePhoto,
-    DetailCellStyleMap
+    DetailCellStyleText,
+    DetailCellStyleMultiLineText,
+    DetailCellStyleMap,
+    DetailCellStylePhoto
 };
 
-@interface DetailTableViewCell : UITableViewCell
+@interface DetailTableViewCell : UITableViewCell<SGViews>
+- (void)setModel:(CDTodo *)model;
 @end
