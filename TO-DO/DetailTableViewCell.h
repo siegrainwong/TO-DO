@@ -8,13 +8,13 @@
 
 @class DetailModel;
 
-typedef NS_ENUM(NSInteger, DetailCellStyle){
+typedef NS_ENUM(NSInteger, DetailCellStyle) {
     DetailCellStyleText,
     DetailCellStyleMultiLineText,
     DetailCellStyleMap,
     DetailCellStylePhoto
 };
 
-@interface DetailTableViewCell : UITableViewCell<SGViews>
+@interface DetailTableViewCell : UITableViewCell <SGViews>
 - (void)setModel:(DetailModel *)model;
 @end

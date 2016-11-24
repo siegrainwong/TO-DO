@@ -13,11 +13,19 @@
 @property(nonatomic, strong) NSString *photoUrl;
 @property(nonatomic, strong) NSString *photoPath;
 @property(nonatomic, strong) NSString *placeholder;
+@property(nonatomic, strong) NSString *identifier;
 
 @property(nonatomic, assign) CGFloat rowHeight;
+@property(nonatomic, assign) NSInteger cellStyle;
+
+
+#pragma mark -
+
+- (BOOL)hasPhoto;
 
 #pragma mark - initializers
-- (instancetype)initWithIconName:(NSString *)iconName content:(NSString *)content location:(SGCoordinate *)location photoUrl:(NSString *)photoUrl photoPath:(NSString *)photoPath placeholder:(NSString *)placeholder;
 
-+ (instancetype)modelWithIconName:(NSString *)iconName content:(NSString *)content location:(SGCoordinate *)location photoUrl:(NSString *)photoUrl photoPath:(NSString *)photoPath placeholder:(NSString *)placeholder;
+- (instancetype)initWithIconName:(NSString *)iconName content:(NSString *)content location:(SGCoordinate *)location photoUrl:(NSString *)photoUrl photoPath:(NSString *)photoPath placeholder:(NSString *)placeholder identifier:(NSString *)identifier cellStyle:(NSInteger)cellStyle;
+
++ (instancetype)modelWithIconName:(NSString *)iconName content:(NSString *)content location:(SGCoordinate *)location photoUrl:(NSString *)photoUrl photoPath:(NSString *)photoPath placeholder:(NSString *)placeholder identifier:(NSString *)identifier cellStyle:(NSInteger)cellStyle;
 @end

@@ -7,8 +7,10 @@
 #import "DetailTableViewCell.h"
 #import "SGBaseMapViewController.h"
 #import "DetailModel.h"
+#import "SDWebImageManager.h"
 
 static CGFloat const kIconSize = 18;
+static CGFloat const kSpacingY = 14;
 
 @interface DetailTableViewCell ()
 @property(nonatomic, strong) DetailModel *model;
@@ -38,6 +40,15 @@ static CGFloat const kIconSize = 18;
         _contentLabel.textColor = [SGHelper subTextColor];
     }
     
+    __weak __typeof(self) weakSelf = self;
+    if (model.photoPath) {
+        _photoView.image = [UIImage imageWithContentsOfFile:[NSString stringWithFormat:@"%@/%@.jpg", [SGHelper photoPath], model.identifier]];
+    } else if (model.photoUrl) {
+        SDImageDownload(model.photoUrl, ^(UIImage *image) {
+            weakSelf.photoView.image = image;
+        });
+    }
+    
     [self setNeedsUpdateConstraints];
 }
 
@@ -62,15 +73,14 @@ static CGFloat const kIconSize = 18;
     _contentLabel.font = [SGHelper themeFontDefault];
     [self.contentView addSubview:_contentLabel];
     
-    if (self.cellStyle == DetailCellStyleMap) {
-        
-    } else if (self.cellStyle == DetailCellStylePhoto) {
-        
-    }
+    _photoView = [UIImageView new];
+    _photoView.contentMode = UIViewContentModeScaleAspectFill;
+    _photoView.clipsToBounds = YES;
+    [self.contentView addSubview:_photoView];
 }
 
 - (void)bindConstraints {
-    CGPoint space = CGPointMake(19, 14);
+    CGPoint space = CGPointMake(19, kSpacingY);
     
     _iconView.sd_layout
             .leftSpaceToView(self.contentView, space.x)
@@ -85,11 +95,27 @@ static CGFloat const kIconSize = 18;
             .autoHeightRatio(0)
             .maxHeightIs(55);   //三排字刚好
     
-    [self setupAutoHeightWithBottomView:_contentLabel bottomMargin:space.y];
+    _photoView.sd_layout
+            .leftSpaceToView(_iconView, space.x)
+            .topEqualToView(_iconView)
+            .rightSpaceToView(self.contentView, space.x)
+            .heightIs(100);
 }
 
 - (void)updateConstraints {
     [super updateConstraints];
+    
+    UIView *bottomView = nil;
+    if (_model.cellStyle == DetailCellStyleMap) {
+        
+    } else if (_model.cellStyle == DetailCellStylePhoto && _model.hasPhoto) {
+        _contentLabel.sd_layout.maxHeightIs(0);
+        bottomView = _photoView;
+    } else {
+        bottomView = _contentLabel;
+    }
+    
+    [self setupAutoHeightWithBottomView:bottomView bottomMargin:kSpacingY];
 }
 
 @end
