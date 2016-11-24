@@ -28,18 +28,24 @@
     _model = model;
     
     _iconView.image = [UIImage imageNamed:model.iconName];
-    if(model.content) {
+    if (model.content) {
         _contentLabel.text = model.content;
         _contentLabel.textColor = [UIColor blackColor];
-    }
-    else
-    {
+    } else {
         _contentLabel.text = model.placeholder;
         _contentLabel.textColor = [SGHelper subTextColor];
     }
 }
 
 #pragma mark - initial
+
+- (instancetype)initWithStyle:(UITableViewCellStyle)style reuseIdentifier:(NSString *)reuseIdentifier {
+    if (self = [super initWithStyle:style reuseIdentifier:reuseIdentifier]) {
+        [self setupViews];
+        [self bindConstraints];
+    }
+    return self;
+}
 
 - (void)setupViews {
     self.selectionStyle = UITableViewCellSelectionStyleNone;

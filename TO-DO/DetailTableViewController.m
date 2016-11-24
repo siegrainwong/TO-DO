@@ -36,8 +36,6 @@ typedef NS_ENUM(NSInteger, SGDetailItem) {
             [DetailModel modelWithIconName:@"map" content:model.explicitAddress location:model.coordinate photoUrl:nil photoPath:nil placeholder:Localized(@"Add location")],
             [DetailModel modelWithIconName:@"camera" content:nil location:nil photoUrl:model.photoUrl photoPath:model.photoPath placeholder:Localized(@"Add a photo")],
     ];
-    
-    [self.tableView reloadData];
 }
 
 - (void)viewDidLoad {
@@ -66,7 +64,8 @@ typedef NS_ENUM(NSInteger, SGDetailItem) {
 
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath {
     DetailModel *model = [self modelAtIndexPath:indexPath];
-    return model.rowHeight ?: [self.tableView cellHeightForIndexPath:indexPath model:model keyPath:@"model" cellClass:[DetailTableViewCell class] contentViewWidth:kScreenWidth];
+    if (!model.rowHeight) model.rowHeight = [self.tableView cellHeightForIndexPath:indexPath model:model keyPath:@"model" cellClass:[DetailTableViewCell class] contentViewWidth:kScreenWidth];
+    return model.rowHeight;
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
