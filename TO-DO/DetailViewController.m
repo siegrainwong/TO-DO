@@ -42,6 +42,7 @@ static NSUInteger const kMaxLength = 50;
     
     _titleTextView.text = model.title;
     _checkBox.on = model.isCompleted.boolValue;
+    _tableViewController.model = model;
 }
 
 - (CGFloat)height {
@@ -99,7 +100,6 @@ static NSUInteger const kMaxLength = 50;
     [_titleContainer addSubview:_titleTextView];
     
     _tableViewController = [DetailTableViewController new];
-    _tableViewController.model = _model;
     [self addChildViewController:_tableViewController];
     [_container addSubview:_tableViewController.view];
 }

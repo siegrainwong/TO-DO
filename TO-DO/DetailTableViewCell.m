@@ -30,13 +30,15 @@ static CGFloat const kIconSize = 18;
     _model = model;
     
     _iconView.image = [UIImage imageNamed:model.iconName];
-    if (model.content) {
+    if (model.content && model.content.length) {
         _contentLabel.text = model.content;
         _contentLabel.textColor = [UIColor blackColor];
     } else {
         _contentLabel.text = model.placeholder;
         _contentLabel.textColor = [SGHelper subTextColor];
     }
+    
+    [self setNeedsUpdateConstraints];
 }
 
 #pragma mark - initial
@@ -59,6 +61,12 @@ static CGFloat const kIconSize = 18;
     _contentLabel.numberOfLines = 0;
     _contentLabel.font = [SGHelper themeFontDefault];
     [self.contentView addSubview:_contentLabel];
+    
+    if (self.cellStyle == DetailCellStyleMap) {
+        
+    } else if (self.cellStyle == DetailCellStylePhoto) {
+        
+    }
 }
 
 - (void)bindConstraints {
@@ -75,9 +83,13 @@ static CGFloat const kIconSize = 18;
             .topEqualToView(_iconView)
             .rightSpaceToView(self.contentView, space.x)
             .autoHeightRatio(0)
-            .maxHeightIs(100);
+            .maxHeightIs(55);   //三排字刚好
     
     [self setupAutoHeightWithBottomView:_contentLabel bottomMargin:space.y];
+}
+
+- (void)updateConstraints {
+    [super updateConstraints];
 }
 
 @end
