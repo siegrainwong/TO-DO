@@ -7,6 +7,9 @@
 
 @class CDTodo;
 
-@interface DetailTableViewController : UITableViewController<SGViews>
+@interface DetailTableViewController : UITableViewController <SGViews>
 - (void)setModel:(CDTodo *)model;
+
+/* 当TableView完成行高计算时调用，返回TableView总高度 */
+@property(nonatomic, copy) void (^tableViewDidCalculateHeight)(CGFloat height);
 @end

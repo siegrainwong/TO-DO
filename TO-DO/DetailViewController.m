@@ -11,7 +11,7 @@
 
 static CGFloat const kCheckBoxHeight = 35;
 static CGFloat const kTitleHeight = 35;
-static CGFloat const kTableHeight = 350;
+//static CGFloat const kTableHeight = 350;
 static CGFloat const kOffset = 10;
 static NSUInteger const kMaxLength = 50;
 
@@ -25,6 +25,7 @@ static NSUInteger const kMaxLength = 50;
 @property(nonatomic, strong) SGTextView *titleTextView;
 @property(nonatomic, strong) DetailTableViewController *tableViewController;
 
+@property(nonatomic, assign) CGFloat tableViewHeight;
 @end
 
 @implementation DetailViewController
@@ -43,10 +44,22 @@ static NSUInteger const kMaxLength = 50;
     _titleTextView.text = model.title;
     _checkBox.on = model.isCompleted.boolValue;
     _tableViewController.model = model;
+    
+    __weak __typeof(self) weakSelf = self;
+    [_tableViewController setTableViewDidCalculateHeight:^(CGFloat height) {
+        weakSelf.tableViewHeight = height;
+        [weakSelf.tableView mas_updateConstraints:^(MASConstraintMaker *make) {
+            make.height.offset(weakSelf.tableViewHeight);
+        }];
+        
+        [weakSelf.container mas_updateConstraints:^(MASConstraintMaker *make) {
+            make.height.offset(weakSelf.height);
+        }];
+    }];
 }
 
 - (CGFloat)height {
-    return self.titleContainerHeight + kTableHeight;
+    return self.titleContainerHeight + self.tableViewHeight;
 }
 
 - (UITableView *)tableView {
@@ -131,7 +144,7 @@ static NSUInteger const kMaxLength = 50;
     [self.tableView mas_makeConstraints:^(MASConstraintMaker *make) {
         make.top.equalTo(_titleContainer.mas_bottom).offset(0);
         make.left.right.offset(0);
-        make.height.offset(kTableHeight);
+        make.height.offset(CGFLOAT_MIN);
     }];
 }
 

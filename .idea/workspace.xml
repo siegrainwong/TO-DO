@@ -190,11 +190,9 @@
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/TO-DO/Classes/Login/Views/SGTextField.h" afterPath="$PROJECT_DIR$/TO-DO/Classes/Login/Views/SGTextField.h" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/TO-DO/Classes/Login/Views/SGTextField.m" afterPath="$PROJECT_DIR$/TO-DO/Classes/Login/Views/SGTextField.m" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/TO-DO/Classes/Login/Views/SGTextField.xib" afterPath="$PROJECT_DIR$/TO-DO/Classes/Login/Views/SGTextField.xib" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/TO-DO/DetailModel.h" afterPath="$PROJECT_DIR$/TO-DO/DetailModel.h" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/TO-DO/DetailModel.m" afterPath="$PROJECT_DIR$/TO-DO/DetailModel.m" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/TO-DO/DetailTableViewCell.h" afterPath="$PROJECT_DIR$/TO-DO/DetailTableViewCell.h" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/TO-DO/DetailTableViewCell.m" afterPath="$PROJECT_DIR$/TO-DO/DetailTableViewCell.m" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/TO-DO/DetailTableViewController.h" afterPath="$PROJECT_DIR$/TO-DO/DetailTableViewController.h" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/TO-DO/DetailTableViewController.m" afterPath="$PROJECT_DIR$/TO-DO/DetailTableViewController.m" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/TO-DO/DetailViewController.m" afterPath="$PROJECT_DIR$/TO-DO/DetailViewController.m" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/TO-DO/Info.plist" afterPath="$PROJECT_DIR$/TO-DO/Info.plist" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/TO-DO/Localization/en.lproj/Localizable.strings" afterPath="$PROJECT_DIR$/TO-DO/Localization/en.lproj/Localizable.strings" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/TO-DO/Localization/zh-Hans.lproj/Localizable.strings" afterPath="$PROJECT_DIR$/TO-DO/Localization/zh-Hans.lproj/Localizable.strings" />
@@ -224,11 +222,11 @@
   </component>
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-      <file leaf-file-name="DetailViewController.m" pinned="false" current-in-tab="false">
+      <file leaf-file-name="DetailViewController.m" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/TO-DO/DetailViewController.m">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="880">
-              <caret line="133" column="41" lean-forward="true" selection-start-line="133" selection-start-column="41" selection-end-line="133" selection-end-column="41" />
+            <state relative-caret-position="561">
+              <caret line="60" column="19" lean-forward="true" selection-start-line="60" selection-start-column="19" selection-end-line="60" selection-end-column="19" />
               <folding>
                 <element signature="e#100#132#0" expanded="true" />
               </folding>
@@ -236,11 +234,11 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="DetailTableViewController.m" pinned="false" current-in-tab="true">
+      <file leaf-file-name="DetailTableViewController.m" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/TO-DO/DetailTableViewController.m">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="574">
-              <caret line="85" column="52" lean-forward="true" selection-start-line="85" selection-start-column="52" selection-end-line="85" selection-end-column="52" />
+            <state relative-caret-position="680">
+              <caret line="84" column="93" lean-forward="true" selection-start-line="84" selection-start-column="93" selection-end-line="84" selection-end-column="93" />
               <folding>
                 <element signature="e#100#137#0" expanded="true" />
               </folding>
@@ -248,11 +246,21 @@
           </provider>
         </entry>
       </file>
+      <file leaf-file-name="DetailTableViewController.h" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/TO-DO/DetailTableViewController.h">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="238">
+              <caret line="14" column="4" lean-forward="true" selection-start-line="14" selection-start-column="4" selection-end-line="14" selection-end-column="4" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
       <file leaf-file-name="DetailTableViewCell.m" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/TO-DO/DetailTableViewCell.m">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="710">
-              <caret line="110" column="77" lean-forward="true" selection-start-line="110" selection-start-column="77" selection-end-line="110" selection-end-column="77" />
+            <state relative-caret-position="340">
+              <caret line="20" column="72" lean-forward="true" selection-start-line="20" selection-start-column="72" selection-end-line="20" selection-end-column="72" />
               <folding>
                 <element signature="e#100#137#0" expanded="true" />
               </folding>
@@ -374,19 +382,19 @@
         <option value="$PROJECT_DIR$/TO-DO/Classes/Common/Utilities/RNObserverManager.m" />
         <option value="$PROJECT_DIR$/TO-DO/Classes/Common/Views/SGTextView.m" />
         <option value="$PROJECT_DIR$/TO-DO/Classes/Common/Views/SGTextView.h" />
-        <option value="$PROJECT_DIR$/TO-DO/DetailTableViewController.h" />
         <option value="$PROJECT_DIR$/TO-DO/Classes/Common/SGViews.h" />
         <option value="$PROJECT_DIR$/TO-DO/DetailViewController.h" />
         <option value="$PROJECT_DIR$/TO-DO/Model/CoreDataModels/CDTodo.h" />
         <option value="$PROJECT_DIR$/TO-DO/Model/SGCoordinate.h" />
         <option value="$PROJECT_DIR$/TO-DO/Model/CoreDataModels/CDTodo.m" />
         <option value="$PROJECT_DIR$/TO-DO/Localization/zh-Hans.lproj/Localizable.strings" />
-        <option value="$PROJECT_DIR$/TO-DO/DetailViewController.m" />
-        <option value="$PROJECT_DIR$/TO-DO/DetailTableViewController.m" />
         <option value="$PROJECT_DIR$/TO-DO/DetailTableViewCell.h" />
         <option value="$PROJECT_DIR$/TO-DO/DetailModel.m" />
         <option value="$PROJECT_DIR$/TO-DO/DetailModel.h" />
         <option value="$PROJECT_DIR$/TO-DO/DetailTableViewCell.m" />
+        <option value="$PROJECT_DIR$/TO-DO/DetailTableViewController.h" />
+        <option value="$PROJECT_DIR$/TO-DO/DetailViewController.m" />
+        <option value="$PROJECT_DIR$/TO-DO/DetailTableViewController.m" />
       </list>
     </option>
   </component>
@@ -584,7 +592,7 @@
     <property name="settings.editor.selected.configurable" value="preferences.pluginManager" />
     <property name="settings.editor.splitter.proportion" value="0.2" />
     <property name="js-jscs-nodeInterpreter" value="/usr/local/bin/node" />
-    <property name="SearchEverywhereHistoryKey" value="todotableview&#9;FILE&#9;file:///Volumes/Data/Project/MyProject/TO-DO/TO-DO/Classes/Common/Views/TodoTableViewCell.m&#10;todocell&#9;null&#9;null&#10;localiza&#9;FILE&#9;file:///Volumes/Data/Project/MyProject/TO-DO/TO-DO/Localization/zh-Hans.lproj/Localizable.strings&#10;createviewcon&#9;FILE&#9;file:///Volumes/Data/Project/MyProject/TO-DO/TO-DO/Classes/Create/CreateViewController.m&#10;detailmodel&#9;FILE&#9;file:///Volumes/Data/Project/MyProject/TO-DO/TO-DO/DetailModel.m&#10;podfile&#9;FILE&#9;file:///Volumes/Data/Project/MyProject/TO-DO/Podfile&#10;appdele&#9;FILE&#9;file:///Volumes/Data/Project/MyProject/TO-DO/TO-DO/Classes/AppDelegate/AppDelegate.m&#10;detailviewcontroller&#9;FILE&#9;file:///Volumes/Data/Project/MyProject/TO-DO/TO-DO/DetailViewController.h&#10;headerview&#9;FILE&#9;file:///Volumes/Data/Project/MyProject/TO-DO/TO-DO/Classes/Common/Views/SGHeaderView.m&#10;secpolicy&#9;FILE&#9;file:///Applications/Xcode.app/Contents/Developer/Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS.sdk/System/Library/Frameworks/Security.framework/Headers/SecPolicy.h&#10;calendarviewcon&#9;FILE&#9;file:///Volumes/Data/Project/MyProject/TO-DO/TO-DO/Calendar/Controllers/CalendarViewController.m&#10;homeview&#9;FILE&#9;file:///Volumes/Data/Project/MyProject/TO-DO/TO-DO/Classes/Home/HomeViewController.m&#10;logout&#9;null&#9;null&#10;reate&#9;FILE&#9;file:///Volumes/Data/Project/MyProject/TO-DO/TO-DO/Classes/Create/CreateViewController.m&#10;tododatamanager&#9;FILE&#9;file:///Volumes/Data/Project/MyProject/TO-DO/TO-DO/Classes/Common/DataManager/CoredataManager/MRTodoDataManager.h&#10;tododata&#9;null&#9;null&#10;themecolor&#9;null&#9;null&#10;todostatus&#9;null&#9;null&#10;todotablecell&#9;FILE&#9;file:///Volumes/Data/Project/MyProject/TO-DO/TO-DO/Classes/Common/Views/TodoTableViewCell.h&#10;cdtodo&#9;null&#9;null&#10;todotableviewcontroller&#9;FILE&#9;file:///Volumes/Data/Project/MyProject/TO-DO/TO-DO/Classes/Common/TodoTableViewController.h&#10;fscalendarcell&#9;null&#9;null&#10;sghelper&#9;FILE&#9;file:///Volumes/Data/Project/MyProject/TO-DO/TO-DO/Classes/Common/SGHelper.m&#10;createview&#9;FILE&#9;file:///Volumes/Data/Project/MyProject/TO-DO/TO-DO/Classes/Create/CreateViewController.m&#10;todotableviewcell&#9;null&#9;null&#10;createviewcontroller&#9;null&#9;null&#10;loginview&#9;FILE&#9;file:///Volumes/Data/Project/MyProject/TO-DO/TO-DO/Classes/Login/Views/LoginView.m&#10;loginviewcontroller&#9;FILE&#9;file:///Volumes/Data/Project/MyProject/TO-DO/TO-DO/Classes/Login/Controllers/LoginViewController.m&#10;sg&#9;FILE&#9;file:///Volumes/Data/Project/MyProject/TO-DO/TO-DO/Classes/Common/DataManager/SyncDataManagers/SGSyncManager.m&#10;tableviewcontroller&#9;FILE&#9;file:///Volumes/Data/Project/MyProject/TO-DO/TO-DO/Classes/Common/TodoTableViewController.m&#10;extension&#9;FILE&#9;file:///Volumes/Data/Project/MyProject/TO-DO/TO-DO/Classes/Common/Categories/UIImage+Extension.h&#10;fscalendar&#9;FILE&#9;file:///Volumes/Data/Project/MyProject/TO-DO/Pods/FSCalendar/FSCalendar/FSCalendar.m&#10;drawertableview&#9;FILE&#9;file:///Volumes/Data/Project/MyProject/TO-DO/TO-DO/Classes/Common/DrawerTableViewController.m&#10;drawertableviewcontroller&#9;FILE&#9;file:///Volumes/Data/Project/MyProject/TO-DO/TO-DO/Classes/Common/DrawerTableViewController.m&#10;homeviewcon&#9;FILE&#9;file:///Volumes/Data/Project/MyProject/TO-DO/TO-DO/Classes/Home/HomeViewController.m&#10;fsca&#9;FILE&#9;file:///Volumes/Data/Project/MyProject/TO-DO/Pods/FSCalendar/FSCalendar/FSCalendar.m&#10;fscalen&#9;FILE&#9;file:///Volumes/Data/Project/MyProject/TO-DO/Pods/FSCalendar/FSCalendar/FSCalendar.m&#10;headercell&#9;null&#9;null&#10;mxpara&#9;FILE&#9;file:///Volumes/Data/Project/MyProject/TO-DO/Pods/MXParallaxHeader/MXParallaxHeader/MXParallaxHeader.m&#10;calendar&#9;FILE&#9;file:///Volumes/Data/Project/MyProject/TO-DO/TO-DO/Calendar/Controllers/CalendarViewController.m&#10;drawerviewcon&#9;null&#9;null&#10;sgviews&#9;FILE&#9;file:///Volumes/Data/Project/MyProject/TO-DO/TO-DO/Classes/Common/SGViews.h&#10;tableview&#9;FILE&#9;file:///Volumes/Data/Project/MyProject/TO-DO/TO-DO/Classes/Common/TodoTableViewController.m&#10;downloadimagewithurl&#9;null&#9;null&#10;macros&#9;FILE&#9;file:///Volumes/Data/Project/MyProject/TO-DO/TO-DO/Classes/Common/Constants/Macros.h&#10;syncmana&#9;FILE&#9;file:///Volumes/Data/Project/MyProject/TO-DO/TO-DO/Classes/Common/DataManager/SyncDataManagers/SGSyncManager.m&#10;local&#9;FILE&#9;file:///Volumes/Data/Project/MyProject/TO-DO/TO-DO/Localization/zh-Hans.lproj/Localizable.strings&#10;compress&#9;FILE&#9;file:///Volumes/Data/Project/MyProject/TO-DO/TO-DO/Classes/Common/Categories/UIImage+Compression.m&#10;upload&#9;FILE&#9;file:///Volumes/Data/Project/MyProject/TO-DO/TO-DO/Classes/Common/Utilities/SGImageUpload.m&#10;sync&#9;FILE&#9;file:///Volumes/Data/Project/MyProject/TO-DO/TO-DO/Classes/Common/DataManager/SyncDataManagers/SGSyncManager.m" />
+    <property name="SearchEverywhereHistoryKey" value="detailtableviewcontroller&#9;FILE&#9;file:///Volumes/Data/Project/MyProject/TO-DO/TO-DO/DetailTableViewController.h&#10;todotableview&#9;FILE&#9;file:///Volumes/Data/Project/MyProject/TO-DO/TO-DO/Classes/Common/Views/TodoTableViewCell.m&#10;todocell&#9;null&#9;null&#10;localiza&#9;FILE&#9;file:///Volumes/Data/Project/MyProject/TO-DO/TO-DO/Localization/zh-Hans.lproj/Localizable.strings&#10;createviewcon&#9;FILE&#9;file:///Volumes/Data/Project/MyProject/TO-DO/TO-DO/Classes/Create/CreateViewController.m&#10;detailmodel&#9;FILE&#9;file:///Volumes/Data/Project/MyProject/TO-DO/TO-DO/DetailModel.m&#10;podfile&#9;FILE&#9;file:///Volumes/Data/Project/MyProject/TO-DO/Podfile&#10;appdele&#9;FILE&#9;file:///Volumes/Data/Project/MyProject/TO-DO/TO-DO/Classes/AppDelegate/AppDelegate.m&#10;detailviewcontroller&#9;FILE&#9;file:///Volumes/Data/Project/MyProject/TO-DO/TO-DO/DetailViewController.h&#10;headerview&#9;FILE&#9;file:///Volumes/Data/Project/MyProject/TO-DO/TO-DO/Classes/Common/Views/SGHeaderView.m&#10;secpolicy&#9;FILE&#9;file:///Applications/Xcode.app/Contents/Developer/Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS.sdk/System/Library/Frameworks/Security.framework/Headers/SecPolicy.h&#10;calendarviewcon&#9;FILE&#9;file:///Volumes/Data/Project/MyProject/TO-DO/TO-DO/Calendar/Controllers/CalendarViewController.m&#10;homeview&#9;FILE&#9;file:///Volumes/Data/Project/MyProject/TO-DO/TO-DO/Classes/Home/HomeViewController.m&#10;logout&#9;null&#9;null&#10;reate&#9;FILE&#9;file:///Volumes/Data/Project/MyProject/TO-DO/TO-DO/Classes/Create/CreateViewController.m&#10;tododatamanager&#9;FILE&#9;file:///Volumes/Data/Project/MyProject/TO-DO/TO-DO/Classes/Common/DataManager/CoredataManager/MRTodoDataManager.h&#10;tododata&#9;null&#9;null&#10;themecolor&#9;null&#9;null&#10;todostatus&#9;null&#9;null&#10;todotablecell&#9;FILE&#9;file:///Volumes/Data/Project/MyProject/TO-DO/TO-DO/Classes/Common/Views/TodoTableViewCell.h&#10;cdtodo&#9;null&#9;null&#10;todotableviewcontroller&#9;FILE&#9;file:///Volumes/Data/Project/MyProject/TO-DO/TO-DO/Classes/Common/TodoTableViewController.h&#10;fscalendarcell&#9;null&#9;null&#10;sghelper&#9;FILE&#9;file:///Volumes/Data/Project/MyProject/TO-DO/TO-DO/Classes/Common/SGHelper.m&#10;createview&#9;FILE&#9;file:///Volumes/Data/Project/MyProject/TO-DO/TO-DO/Classes/Create/CreateViewController.m&#10;todotableviewcell&#9;null&#9;null&#10;createviewcontroller&#9;null&#9;null&#10;loginview&#9;FILE&#9;file:///Volumes/Data/Project/MyProject/TO-DO/TO-DO/Classes/Login/Views/LoginView.m&#10;loginviewcontroller&#9;FILE&#9;file:///Volumes/Data/Project/MyProject/TO-DO/TO-DO/Classes/Login/Controllers/LoginViewController.m&#10;sg&#9;FILE&#9;file:///Volumes/Data/Project/MyProject/TO-DO/TO-DO/Classes/Common/DataManager/SyncDataManagers/SGSyncManager.m&#10;tableviewcontroller&#9;FILE&#9;file:///Volumes/Data/Project/MyProject/TO-DO/TO-DO/Classes/Common/TodoTableViewController.m&#10;extension&#9;FILE&#9;file:///Volumes/Data/Project/MyProject/TO-DO/TO-DO/Classes/Common/Categories/UIImage+Extension.h&#10;fscalendar&#9;FILE&#9;file:///Volumes/Data/Project/MyProject/TO-DO/Pods/FSCalendar/FSCalendar/FSCalendar.m&#10;drawertableview&#9;FILE&#9;file:///Volumes/Data/Project/MyProject/TO-DO/TO-DO/Classes/Common/DrawerTableViewController.m&#10;drawertableviewcontroller&#9;FILE&#9;file:///Volumes/Data/Project/MyProject/TO-DO/TO-DO/Classes/Common/DrawerTableViewController.m&#10;homeviewcon&#9;FILE&#9;file:///Volumes/Data/Project/MyProject/TO-DO/TO-DO/Classes/Home/HomeViewController.m&#10;fsca&#9;FILE&#9;file:///Volumes/Data/Project/MyProject/TO-DO/Pods/FSCalendar/FSCalendar/FSCalendar.m&#10;fscalen&#9;FILE&#9;file:///Volumes/Data/Project/MyProject/TO-DO/Pods/FSCalendar/FSCalendar/FSCalendar.m&#10;headercell&#9;null&#9;null&#10;mxpara&#9;FILE&#9;file:///Volumes/Data/Project/MyProject/TO-DO/Pods/MXParallaxHeader/MXParallaxHeader/MXParallaxHeader.m&#10;calendar&#9;FILE&#9;file:///Volumes/Data/Project/MyProject/TO-DO/TO-DO/Calendar/Controllers/CalendarViewController.m&#10;drawerviewcon&#9;null&#9;null&#10;sgviews&#9;FILE&#9;file:///Volumes/Data/Project/MyProject/TO-DO/TO-DO/Classes/Common/SGViews.h&#10;tableview&#9;FILE&#9;file:///Volumes/Data/Project/MyProject/TO-DO/TO-DO/Classes/Common/TodoTableViewController.m&#10;downloadimagewithurl&#9;null&#9;null&#10;macros&#9;FILE&#9;file:///Volumes/Data/Project/MyProject/TO-DO/TO-DO/Classes/Common/Constants/Macros.h&#10;syncmana&#9;FILE&#9;file:///Volumes/Data/Project/MyProject/TO-DO/TO-DO/Classes/Common/DataManager/SyncDataManagers/SGSyncManager.m&#10;local&#9;FILE&#9;file:///Volumes/Data/Project/MyProject/TO-DO/TO-DO/Localization/zh-Hans.lproj/Localizable.strings&#10;compress&#9;FILE&#9;file:///Volumes/Data/Project/MyProject/TO-DO/TO-DO/Classes/Common/Categories/UIImage+Compression.m&#10;upload&#9;FILE&#9;file:///Volumes/Data/Project/MyProject/TO-DO/TO-DO/Classes/Common/Utilities/SGImageUpload.m" />
     <property name="OBJC.PRESERVED_TARGET_SELECTION" value="TO-DO" />
     <property name="nodejs_interpreter_path" value="/usr/local/bin/node" />
     <property name="js.eslint.eslintPackage" value="" />
@@ -686,12 +694,12 @@
       <workItem from="1479883884667" duration="11273000" />
       <workItem from="1479980834501" duration="213000" />
       <workItem from="1479981238113" duration="660000" />
-      <workItem from="1479982611337" duration="9914000" />
+      <workItem from="1479982611337" duration="11217000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="295634000" />
+    <option name="totallyTimeSpent" value="296937000" />
   </component>
   <component name="TodoView">
     <todo-panel id="selected-file">
@@ -764,18 +772,11 @@
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
-      <option name="time" value="270" />
+      <option name="time" value="273" />
     </breakpoint-manager>
     <watches-manager />
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/TO-DO/Classes/Login/Views/SGTextField.m">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="98">
-          <caret line="30" column="27" lean-forward="true" selection-start-line="30" selection-start-column="27" selection-end-line="30" selection-end-column="27" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/TO-DO/Classes/AppDelegate/AppDelegate.h">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="846">
@@ -1014,14 +1015,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/TO-DO/DetailTableViewController.h">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="187">
-          <caret line="11" column="4" lean-forward="false" selection-start-line="11" selection-start-column="4" selection-end-line="11" selection-end-column="4" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/TO-DO/Model/CoreDataModels/CDTodo.h">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="459">
@@ -1081,14 +1074,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/Pods/SDAutoLayout/SDAutoLayoutDemo/SDAutoLayout/UITableView+SDAutoTableViewCellHeight.m">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="243">
-          <caret line="436" column="0" lean-forward="false" selection-start-line="436" selection-start-column="0" selection-end-line="436" selection-end-column="0" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/TO-DO/DetailModel.h">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="425">
@@ -1115,6 +1100,14 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/Pods/SDAutoLayout/SDAutoLayoutDemo/SDAutoLayout/UITableView+SDAutoTableViewCellHeight.m">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="429">
+          <caret line="469" column="77" lean-forward="true" selection-start-line="469" selection-start-column="77" selection-end-line="469" selection-end-column="77" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/TO-DO/DetailTableViewCell.h">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="306">
@@ -1127,8 +1120,34 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/TO-DO/DetailTableViewCell.m">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="710">
-          <caret line="110" column="77" lean-forward="true" selection-start-line="110" selection-start-column="77" selection-end-line="110" selection-end-column="77" />
+        <state relative-caret-position="340">
+          <caret line="20" column="72" lean-forward="true" selection-start-line="20" selection-start-column="72" selection-end-line="20" selection-end-column="72" />
+          <folding>
+            <element signature="e#100#137#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Pods/Masonry/Masonry/MASViewConstraint.m">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="600">
+          <caret line="383" column="40" lean-forward="true" selection-start-line="383" selection-start-column="40" selection-end-line="383" selection-end-column="40" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/TO-DO/DetailTableViewController.h">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="238">
+          <caret line="14" column="4" lean-forward="true" selection-start-line="14" selection-start-column="4" selection-end-line="14" selection-end-column="4" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/TO-DO/DetailTableViewController.m">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="680">
+          <caret line="84" column="93" lean-forward="true" selection-start-line="84" selection-start-column="93" selection-end-line="84" selection-end-column="93" />
           <folding>
             <element signature="e#100#137#0" expanded="true" />
           </folding>
@@ -1137,20 +1156,10 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/TO-DO/DetailViewController.m">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="880">
-          <caret line="133" column="41" lean-forward="true" selection-start-line="133" selection-start-column="41" selection-end-line="133" selection-end-column="41" />
+        <state relative-caret-position="561">
+          <caret line="60" column="19" lean-forward="true" selection-start-line="60" selection-start-column="19" selection-end-line="60" selection-end-column="19" />
           <folding>
             <element signature="e#100#132#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/TO-DO/DetailTableViewController.m">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="574">
-          <caret line="85" column="52" lean-forward="true" selection-start-line="85" selection-start-column="52" selection-end-line="85" selection-end-column="52" />
-          <folding>
-            <element signature="e#100#137#0" expanded="true" />
           </folding>
         </state>
       </provider>
