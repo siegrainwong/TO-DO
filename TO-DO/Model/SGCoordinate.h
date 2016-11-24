@@ -17,9 +17,9 @@
 /*地址全名*/
 @property(nonatomic, strong, readonly) NSString *address;
 /*大概地址*/
-@property(nonatomic, strong, readonly) NSString *generalAddress;
+@property(nonatomic, strong) NSString *generalAddress;
 /*详细地址*/
-@property(nonatomic, strong, readonly) NSString *explicitAddress;
+@property(nonatomic, strong) NSString *explicitAddress;
 
 - (void)setRegeocode:(id)regeocode;
 

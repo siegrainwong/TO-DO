@@ -8,6 +8,7 @@
 
 #import "CDTodo.h"
 #import "LCTodo.h"
+#import "SGCoordinate.h"
 
 @implementation CDTodo
 @synthesize photoImage = _photoImage;
@@ -15,8 +16,21 @@
 @synthesize lastDeadline = _lastDeadline;
 @synthesize isReordering = _isReordering;
 @synthesize photoData = _photoData;
+@synthesize coordinate = _coordinate;
 
 #pragma mark - accessors
+
+- (SGCoordinate *)coordinate {
+    if (!self.generalAddress) return nil;
+    
+    if (!_coordinate) {
+        _coordinate = [SGCoordinate coordinateWithLatitude:self.latitude.doubleValue longitude:self.longitude.doubleValue];
+        _coordinate.generalAddress = self.generalAddress;
+        _coordinate.explicitAddress = self.explicitAddress;
+    }
+    
+    return _coordinate;
+}
 
 - (UIImage *)avatarPhoto {
     if (!_photoImage) {

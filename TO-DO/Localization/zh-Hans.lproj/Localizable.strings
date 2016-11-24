@@ -61,3 +61,7 @@
 "Set date" = "设置时间";
 "Back" = "返回";
 "Unable to sync, please check your network connection!" = "Unable to sync, please check your network connection!";
+
+/* Detail */
+"Add location" = "添加位置";
+"Add a photo" = "添加照片";

@@ -10,20 +10,23 @@
 #import <Foundation/Foundation.h>
 
 @class LCTodo;
+@class SGCoordinate;
 
 NS_ASSUME_NONNULL_BEGIN
 
 @interface CDTodo : NSManagedObject
 /* 用来存储photo的UIImage */
-@property(nonatomic, readwrite, strong) UIImage *photoImage;
+@property(nonatomic, strong) UIImage *photoImage;
 /* 存储NSData */
-@property(nonatomic, readwrite, strong) NSData *photoData;
+@property(nonatomic, strong) NSData *photoData;
 /* 缓存表格单元高度 */
-@property(nonatomic, readwrite, assign) CGFloat cellHeight;
+@property(nonatomic, assign) CGFloat cellHeight;
 /* 上次过期时间，该字段用于 snooze 后移除老位置的数据所用 */
-@property(nonatomic, readwrite, strong) NSDate *lastDeadline;
+@property(nonatomic, strong) NSDate *lastDeadline;
 /* 指示该待办事项是否在重新排序中 */
-@property(nonatomic, readwrite, assign) BOOL isReordering;
+@property(nonatomic, assign) BOOL isReordering;
+/* 位置 */
+@property(nonatomic, strong) SGCoordinate *coordinate;
 
 /**
  *  已新建实体的方式用lcTodo创建cdTodo

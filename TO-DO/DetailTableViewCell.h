@@ -6,7 +6,7 @@
 #import <Foundation/Foundation.h>
 #import "SGViews.h"
 
-@class CDTodo;
+@class DetailModel;
 
 typedef NS_ENUM(NSInteger, DetailCellStyle){
     DetailCellStyleText,
@@ -16,5 +16,5 @@ typedef NS_ENUM(NSInteger, DetailCellStyle){
 };
 
 @interface DetailTableViewCell : UITableViewCell<SGViews>
-- (void)setModel:(CDTodo *)model;
+- (void)setModel:(DetailModel *)model;
 @end
