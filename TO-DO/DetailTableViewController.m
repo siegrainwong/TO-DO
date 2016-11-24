@@ -46,6 +46,8 @@ typedef NS_ENUM(NSInteger, SGDetailItem) {
 }
 
 - (void)setupViews {
+    self.tableView.separatorInset = UIEdgeInsetsMake(0, 55, 0, 0);
+    
     [self.tableView registerClass:[DetailTableViewCell class] forCellReuseIdentifier:@(DetailCellStyleMap).stringValue];
     [self.tableView registerClass:[DetailTableViewCell class] forCellReuseIdentifier:@(DetailCellStylePhoto).stringValue];
     [self.tableView registerClass:[DetailTableViewCell class] forCellReuseIdentifier:@(DetailCellStyleText).stringValue];

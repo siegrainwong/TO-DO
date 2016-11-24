@@ -8,6 +8,8 @@
 #import "SGBaseMapViewController.h"
 #import "DetailModel.h"
 
+static CGFloat const kIconSize = 18;
+
 @interface DetailTableViewCell ()
 @property(nonatomic, strong) DetailModel *model;
 
@@ -60,20 +62,22 @@
 }
 
 - (void)bindConstraints {
+    CGPoint space = CGPointMake(19, 14);
+    
     _iconView.sd_layout
-            .leftSpaceToView(self.contentView, 10)
-            .topSpaceToView(self.contentView, 5)
-            .heightIs(20)
+            .leftSpaceToView(self.contentView, space.x)
+            .topSpaceToView(self.contentView, space.y)
+            .heightIs(kIconSize)
             .widthEqualToHeight();
     
     _contentLabel.sd_layout
-            .leftSpaceToView(_iconView, 10)
+            .leftSpaceToView(_iconView, space.x)
             .topEqualToView(_iconView)
-            .rightSpaceToView(self.contentView, 10)
+            .rightSpaceToView(self.contentView, space.x)
             .autoHeightRatio(0)
             .maxHeightIs(100);
     
-    [self setupAutoHeightWithBottomView:_contentLabel bottomMargin:5];
+    [self setupAutoHeightWithBottomView:_contentLabel bottomMargin:space.y];
 }
 
 @end

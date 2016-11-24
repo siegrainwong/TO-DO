@@ -9,9 +9,9 @@
 #import "DetailTableViewController.h"
 #import "SGTextView.h"
 
-static CGFloat const kCheckBoxHeight = 40;
-static CGFloat const kTitleHeight = 40;
-static CGFloat const kTableHeight = 200;
+static CGFloat const kCheckBoxHeight = 35;
+static CGFloat const kTitleHeight = 35;
+static CGFloat const kTableHeight = 350;
 static CGFloat const kOffset = 10;
 static NSUInteger const kMaxLength = 50;
 
@@ -123,8 +123,8 @@ static NSUInteger const kMaxLength = 50;
     }];
     
     [_titleTextView mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.left.equalTo(_checkBox.mas_right).offset(kOffset);
-        make.top.equalTo(_checkBox);
+        make.left.equalTo(_checkBox.mas_right).offset(kOffset - 4);
+        make.top.equalTo(_checkBox).offset(-2);
         make.right.bottom.offset(-kOffset);
     }];
     

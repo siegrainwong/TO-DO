@@ -191,7 +191,7 @@
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/TO-DO/Classes/Login/Views/SGTextField.m" afterPath="$PROJECT_DIR$/TO-DO/Classes/Login/Views/SGTextField.m" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/TO-DO/Classes/Login/Views/SGTextField.xib" afterPath="$PROJECT_DIR$/TO-DO/Classes/Login/Views/SGTextField.xib" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/TO-DO/DetailTableViewCell.m" afterPath="$PROJECT_DIR$/TO-DO/DetailTableViewCell.m" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/TO-DO/DetailTableViewController.m" afterPath="$PROJECT_DIR$/TO-DO/DetailTableViewController.m" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/TO-DO/DetailViewController.m" afterPath="$PROJECT_DIR$/TO-DO/DetailViewController.m" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/TO-DO/Info.plist" afterPath="$PROJECT_DIR$/TO-DO/Info.plist" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/TO-DO/Localization/en.lproj/Localizable.strings" afterPath="$PROJECT_DIR$/TO-DO/Localization/en.lproj/Localizable.strings" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/TO-DO/Localization/zh-Hans.lproj/Localizable.strings" afterPath="$PROJECT_DIR$/TO-DO/Localization/zh-Hans.lproj/Localizable.strings" />
@@ -224,8 +224,8 @@
       <file leaf-file-name="DetailViewController.m" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/TO-DO/DetailViewController.m">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="1734">
-              <caret line="102" column="55" lean-forward="false" selection-start-line="102" selection-start-column="55" selection-end-line="102" selection-end-column="55" />
+            <state relative-caret-position="390">
+              <caret line="125" column="67" lean-forward="true" selection-start-line="125" selection-start-column="67" selection-end-line="125" selection-end-column="67" />
               <folding>
                 <element signature="e#100#132#0" expanded="true" />
               </folding>
@@ -236,8 +236,8 @@
       <file leaf-file-name="DetailTableViewController.m" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/TO-DO/DetailTableViewController.m">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="594">
-              <caret line="41" column="24" lean-forward="true" selection-start-line="41" selection-start-column="24" selection-end-line="41" selection-end-column="24" />
+            <state relative-caret-position="441">
+              <caret line="53" column="130" lean-forward="true" selection-start-line="53" selection-start-column="130" selection-end-line="53" selection-end-column="130" />
               <folding>
                 <element signature="e#100#137#0" expanded="true" />
               </folding>
@@ -248,9 +248,11 @@
       <file leaf-file-name="DetailTableViewCell.m" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/TO-DO/DetailTableViewCell.m">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="-4">
-              <caret line="5" column="32" lean-forward="false" selection-start-line="5" selection-start-column="32" selection-end-line="5" selection-end-column="32" />
-              <folding />
+            <state relative-caret-position="306">
+              <caret line="18" column="72" lean-forward="true" selection-start-line="18" selection-start-column="72" selection-end-line="18" selection-end-column="72" />
+              <folding>
+                <element signature="e#100#137#0" expanded="true" />
+              </folding>
             </state>
           </provider>
         </entry>
@@ -258,8 +260,8 @@
       <file leaf-file-name="DetailTableViewCell.h" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/TO-DO/DetailTableViewCell.h">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="119">
-              <caret line="7" column="0" lean-forward="false" selection-start-line="7" selection-start-column="0" selection-end-line="7" selection-end-column="0" />
+            <state relative-caret-position="323">
+              <caret line="19" column="4" lean-forward="true" selection-start-line="19" selection-start-column="4" selection-end-line="19" selection-end-column="4" />
               <folding>
                 <element signature="e#100#133#0" expanded="true" />
               </folding>
@@ -371,7 +373,6 @@
         <option value="$PROJECT_DIR$/TO-DO/Classes/Common/Views/SGTextView.h" />
         <option value="$PROJECT_DIR$/TO-DO/DetailTableViewController.h" />
         <option value="$PROJECT_DIR$/TO-DO/Classes/Common/SGViews.h" />
-        <option value="$PROJECT_DIR$/TO-DO/DetailViewController.m" />
         <option value="$PROJECT_DIR$/TO-DO/DetailViewController.h" />
         <option value="$PROJECT_DIR$/TO-DO/DetailTableViewCell.h" />
         <option value="$PROJECT_DIR$/TO-DO/Model/CoreDataModels/CDTodo.h" />
@@ -380,8 +381,9 @@
         <option value="$PROJECT_DIR$/TO-DO/DetailModel.m" />
         <option value="$PROJECT_DIR$/TO-DO/DetailModel.h" />
         <option value="$PROJECT_DIR$/TO-DO/Localization/zh-Hans.lproj/Localizable.strings" />
-        <option value="$PROJECT_DIR$/TO-DO/DetailTableViewController.m" />
         <option value="$PROJECT_DIR$/TO-DO/DetailTableViewCell.m" />
+        <option value="$PROJECT_DIR$/TO-DO/DetailViewController.m" />
+        <option value="$PROJECT_DIR$/TO-DO/DetailTableViewController.m" />
       </list>
     </option>
   </component>
@@ -681,12 +683,12 @@
       <workItem from="1479883884667" duration="11273000" />
       <workItem from="1479980834501" duration="213000" />
       <workItem from="1479981238113" duration="660000" />
-      <workItem from="1479982611337" duration="1228000" />
+      <workItem from="1479982611337" duration="3722000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="286948000" />
+    <option name="totallyTimeSpent" value="289442000" />
   </component>
   <component name="TodoView">
     <todo-panel id="selected-file">
@@ -1031,16 +1033,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/TO-DO/DetailViewController.m">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="1734">
-          <caret line="102" column="55" lean-forward="false" selection-start-line="102" selection-start-column="55" selection-end-line="102" selection-end-column="55" />
-          <folding>
-            <element signature="e#100#132#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/TO-DO/Model/CoreDataModels/CDTodo.h">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="459">
@@ -1120,8 +1112,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/TO-DO/DetailTableViewCell.h">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="119">
-          <caret line="7" column="0" lean-forward="false" selection-start-line="7" selection-start-column="0" selection-end-line="7" selection-end-column="0" />
+        <state relative-caret-position="323">
+          <caret line="19" column="4" lean-forward="true" selection-start-line="19" selection-start-column="4" selection-end-line="19" selection-end-column="4" />
           <folding>
             <element signature="e#100#133#0" expanded="true" />
           </folding>
@@ -1130,16 +1122,28 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/TO-DO/DetailTableViewCell.m">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-4">
-          <caret line="5" column="32" lean-forward="false" selection-start-line="5" selection-start-column="32" selection-end-line="5" selection-end-column="32" />
-          <folding />
+        <state relative-caret-position="306">
+          <caret line="18" column="72" lean-forward="true" selection-start-line="18" selection-start-column="72" selection-end-line="18" selection-end-column="72" />
+          <folding>
+            <element signature="e#100#137#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/TO-DO/DetailViewController.m">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="390">
+          <caret line="125" column="67" lean-forward="true" selection-start-line="125" selection-start-column="67" selection-end-line="125" selection-end-column="67" />
+          <folding>
+            <element signature="e#100#132#0" expanded="true" />
+          </folding>
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/TO-DO/DetailTableViewController.m">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="594">
-          <caret line="41" column="24" lean-forward="true" selection-start-line="41" selection-start-column="24" selection-end-line="41" selection-end-column="24" />
+        <state relative-caret-position="441">
+          <caret line="53" column="130" lean-forward="true" selection-start-line="53" selection-start-column="130" selection-end-line="53" selection-end-column="130" />
           <folding>
             <element signature="e#100#137#0" expanded="true" />
           </folding>
