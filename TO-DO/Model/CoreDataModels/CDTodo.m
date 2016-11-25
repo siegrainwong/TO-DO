@@ -9,6 +9,7 @@
 #import "CDTodo.h"
 #import "LCTodo.h"
 #import "SGCoordinate.h"
+#import "SGImageUpload.h"
 
 @implementation CDTodo
 @synthesize photoImage = _photoImage;
@@ -37,6 +38,12 @@
         _photoImage = [UIImage imageWithData:self.photoData];
     }
     return _photoImage;
+}
+
+- (void)setPhotoImage:(UIImage *)photoImage {
+    _photoImage = photoImage;
+    
+    if (!_photoData) _photoData = UIImageJPEGRepresentation(photoImage, 1);
 }
 
 + (NSString *)MR_entityName {

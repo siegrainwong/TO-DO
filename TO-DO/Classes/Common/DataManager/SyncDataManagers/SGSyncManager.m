@@ -289,8 +289,9 @@ static NSInteger const kMaximumSyncCountPerFetch = 100;
     NSBlockOperation *operation = [NSBlockOperation new];
     for (int i = 0; i < todosReadyToCommit.count; i++) {
         __block CDTodo *cdTodo = todosReadyToCommit[i];
-        if (!cdTodo.photoData) continue;
+        if (!cdTodo.photoPath || cdTodo.photoUrl) continue;
         [operation addExecutionBlock:^{
+            cdTodo.photoData = [NSData dataWithContentsOfFile:[NSString stringWithFormat:@"%@/%@.jpg", [SGHelper photoPath], cdTodo.identifier]];
             AVFile *photo = [AVFile fileWithName:[NSString stringWithFormat:@"%@.jpg", cdTodo.identifier] data:cdTodo.photoData];
             if ([photo save]) cdTodo.photoUrl = photo.url;
             else [self.errorHandler returnWithError:nil description:[NSString stringWithFormat:@"2-3. 上传图片失败：%@", cdTodo.identifier] failBlock:nil];

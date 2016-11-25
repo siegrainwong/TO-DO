@@ -200,7 +200,7 @@ TodoTableViewController ()
     self.animator.dragable = YES;
     self.animator.direction = ZFModalTransitonDirectionBottom;
     self.animator.transitionDuration = .3;
-    self.animator.behindViewAlpha = .9;
+    self.animator.behindViewAlpha = .8;
     self.animator.behindViewScale = 1;
     [self.animator setContentScrollView:detailViewController.tableView];
     detailViewController.transitioningDelegate = self.animator;
@@ -281,9 +281,15 @@ TodoTableViewController ()
         todo.status = @(TodoStatusSnoozed);
     
     [weakSelf modifyTodoWithOperation:TodoSwipeOperationSnooze model:todo indexPath:[weakSelf.tableView indexPathForCell:_snoozingCell]];
+    [weakSelf.snoozingCell hideSwipeAnimated:YES];
     weakSelf.snoozingCell = nil;
     
     return YES;
+}
+
+- (void)hsDatePickerDidDismissWithQuitMethod:(HSDatePickerQuitMethod)method {
+    [self.snoozingCell hideSwipeAnimated:YES];
+    self.snoozingCell = nil;
 }
 
 #pragma mark - private methods
