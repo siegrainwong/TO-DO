@@ -34,8 +34,8 @@ typedef NS_ENUM(NSInteger, SGDetailItem) {
     
     _dataArray = @[
             [DetailModel modelWithIconName:@"watch" content:[DateUtil dateString:model.deadline withFormat:@"yyyy.MM.dd HH:mm"] location:nil photoUrl:nil photoPath:nil placeholder:Localized(@"Deadline") identifier:model.identifier cellStyle:DetailCellStyleText],
-            [DetailModel modelWithIconName:@"description" content:model.sgDescription location:nil photoUrl:nil photoPath:nil placeholder:Localized(@"Description") identifier:model.identifier cellStyle:DetailCellStyleMultiLineText],
-            [DetailModel modelWithIconName:@"map" content:model.explicitAddress location:model.coordinate photoUrl:nil photoPath:nil placeholder:Localized(@"Add location") identifier:model.identifier cellStyle:DetailCellStyleMap],
+            [DetailModel modelWithIconName:@"description" content:model.sgDescription location:nil photoUrl:nil photoPath:nil placeholder:Localized(@"Input description") identifier:model.identifier cellStyle:DetailCellStyleMultiLineText],
+            [DetailModel modelWithIconName:@"map" content:model.coordinate.address location:model.coordinate photoUrl:nil photoPath:nil placeholder:Localized(@"Add location") identifier:model.identifier cellStyle:DetailCellStyleMap],
             [DetailModel modelWithIconName:@"camera" content:nil location:nil photoUrl:model.photoUrl photoPath:model.photoPath placeholder:Localized(@"Add a photo") identifier:model.identifier cellStyle:DetailCellStylePhoto],
     ];
 }

@@ -49,6 +49,8 @@ static CGFloat const kSpacingY = 14;
         });
     }
     
+    _mapViewController.coordinate = model.location;
+    
     [self setNeedsUpdateConstraints];
 }
 
@@ -77,6 +79,10 @@ static CGFloat const kSpacingY = 14;
     _photoView.contentMode = UIViewContentModeScaleAspectFill;
     _photoView.clipsToBounds = YES;
     [self.contentView addSubview:_photoView];
+    
+    _mapViewController = [SGBaseMapViewController new];
+    _mapViewController.isEditing = NO;
+    [self.contentView addSubview:_mapViewController.view];
 }
 
 - (void)bindConstraints {
@@ -100,20 +106,28 @@ static CGFloat const kSpacingY = 14;
             .topEqualToView(_iconView)
             .rightSpaceToView(self.contentView, space.x)
             .heightIs(100);
+    
+    _mapViewController.view.sd_layout
+            .leftSpaceToView(_iconView, space.x)
+            .topSpaceToView(_contentLabel, space.y)
+            .rightSpaceToView(self.contentView, space.x)
+            .heightIs(0);
 }
 
 - (void)updateConstraints {
     [super updateConstraints];
     
     UIView *bottomView = nil;
-    if (_model.cellStyle == DetailCellStyleMap) {
-        
-    } else if (_model.cellStyle == DetailCellStylePhoto && _model.hasPhoto) {
+    if (_model.cellStyle == DetailCellStylePhoto && _model.hasPhoto) {
         _contentLabel.sd_layout.maxHeightIs(0);
         bottomView = _photoView;
+    } else if (_model.cellStyle == DetailCellStyleMap && _model.content) {
+        _mapViewController.view.sd_layout.heightIs(100);
+        bottomView = _mapViewController.view;
     } else {
         bottomView = _contentLabel;
     }
+    
     
     [self setupAutoHeightWithBottomView:bottomView bottomMargin:kSpacingY];
 }

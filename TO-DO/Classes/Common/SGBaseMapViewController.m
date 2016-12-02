@@ -21,28 +21,30 @@
 @end
 
 @implementation SGBaseMapViewController
+
+#pragma mark - initial
+
 - (void)viewDidLoad {
-    //因为以字典方式是不能传空值的，只有在这里来判断一下了。
-    if (!self.coordinate.latitude) self.coordinate = nil;
+    self.locating = [SGLocating new];
+    self.isCustomNavigation = YES;
+    
     [super viewDidLoad];
 }
 
 - (void)setupViews {
     [super setupViews];
     
-    self.locating = [SGLocating new];
-    
-    self.titleLabel.text = Localized(@"Choose location");
-    self.titleLabel.textAlignment = NSTextAlignmentCenter;
+    self.title = Localized(@"Choose location");
+    self.navigationController.navigationBar.titleTextAttributes = @{NSForegroundColorAttributeName: [UIColor whiteColor]};
+    self.navigationItem.rightBarButtonItem = [[UIBarButtonItem alloc] initWithTitle:Localized(@"OK") style:UIBarButtonItemStylePlain target:self action:@selector(rightNavButtonDidPress)];
+    self.navigationItem.leftBarButtonItem = [[UIBarButtonItem alloc] initWithTitle:Localized(@"Cancel") style:UIBarButtonItemStylePlain target:self action:@selector(leftNavButtonDidPress)];
+    self.navigationItem.rightBarButtonItem.tintColor = self.navigationItem.leftBarButtonItem.tintColor = [UIColor whiteColor];
     [self.navigationController.navigationBar setBackgroundImage:[UIImage imageWithColor:[SGHelper themeColorRed]] forBarMetrics:UIBarMetricsDefault];
-    
-    [self.rightNavigationButton setTitle:Localized(@"OK") forState:UIControlStateNormal];
-    [self.rightNavigationButton setImage:nil forState:UIControlStateNormal];
-    [self.rightNavigationButton sizeToFit];
     
     self.mapView = [MAMapView new];
     self.mapView.mapType = MAMapTypeStandard;
     self.mapView.delegate = self;
+    self.mapView.userInteractionEnabled = self.isEditing;
     [self.view addSubview:self.mapView];
     
     self.searchAPI = [AMapSearchAPI new];
@@ -57,11 +59,11 @@
     
     if (self.coordinate) {
         [self pinAnnotationAtCoordinate:self.coordinate];
-    } else {
+    } else if (self.isEditing) {
         __weak __typeof(self) weakSelf = self;
         [_locating locatingWithAccuracy:kCLLocationAccuracyHundredMeters succeed:^(BOOL succeed, SGCoordinate *coordinate, AMapLocationReGeocode *regeocode) {
             if (!succeed) {
-                [SGHelper errorAlertWithMessage:Localized(@"Locate failed")];
+                [SGHelper alertWithMessage:Localized(@"Locate failed")];
                 return;
             }
             if (weakSelf.coordinate) return;
@@ -86,8 +88,12 @@
     if (!self.coordinate.generalAddress) return [SGHelper errorAlertWithMessage:@"请先获取正确的位置。"];
     if (self.block) {
         self.block(self.coordinate);
-        [self.navigationController popViewControllerAnimated:YES];
+        [self dismissViewControllerAnimated:YES completion:nil];
     }
+}
+
+- (void)leftNavButtonDidPress {
+    [self dismissViewControllerAnimated:YES completion:nil];
 }
 
 #pragma mark - map methods
@@ -98,11 +104,11 @@
     self.annotation = [[MAPointAnnotation alloc] init];
     self.annotation.coordinate = CLLocationCoordinate2DMake(coordinate.latitude, coordinate.longitude);
     self.annotation.title = coordinate.explicitAddress ?: @"正在查询...";
+    
     [self.mapView addAnnotation:self.annotation];
-    
     [self.mapView setCenterCoordinate:CLLocationCoordinate2DMake(coordinate.latitude, coordinate.longitude) animated:YES];
-    
     [self.mapView selectAnnotation:self.annotation animated:YES];
+    if (!self.isEditing)[self.mapView setZoomLevel:15 animated:YES];
 }
 
 - (void)locationWithCoordinate:(SGCoordinate *)coordinate {
@@ -115,7 +121,7 @@
 #pragma mark - amap delegate
 
 - (MAAnnotationView *)mapView:(MAMapView *)mapView viewForAnnotation:(id <MAAnnotation>)annotation {
-    if ([annotation isKindOfClass:[MAPointAnnotation class]]) {
+    if ([annotation isKindOfClass:[MAPointAnnotation class]] && self.isEditing) {
         static NSString *pointReuseIdentifier = @"pointReuseIdentifier";
         MAPinAnnotationView *annotationView = (MAPinAnnotationView *) [mapView dequeueReusableAnnotationViewWithIdentifier:pointReuseIdentifier];
         if (!annotationView) annotationView = [[MAPinAnnotationView alloc] initWithAnnotation:annotation reuseIdentifier:pointReuseIdentifier];

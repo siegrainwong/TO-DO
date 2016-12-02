@@ -26,6 +26,7 @@
 #import "SGImageUpload.h"
 #import "GTMBase64.h"
 #import "AppDelegate.h"
+#import "RTRootNavigationController.h"
 
 // FIXME: iPhone4s 上 NavigationBar 会遮挡一部分标题文本框
 // TODO: 多人协作
@@ -311,6 +312,7 @@ didFinishPickingMediaWithInfo:(NSDictionary<NSString *, id> *)info {
 - (BOOL)textFieldShouldBeginEditing:(UITextField *)textField {
     if (textField == _locationTextField.field) {
         SGBaseMapViewController *viewController = [SGBaseMapViewController new];
+        viewController.isEditing = YES;
         viewController.coordinate = self.selectedCoordinate;
         __weak __typeof(self) weakSelf = self;
         [viewController setBlock:^(SGCoordinate *coordinate) {
@@ -318,7 +320,9 @@ didFinishPickingMediaWithInfo:(NSDictionary<NSString *, id> *)info {
             weakSelf.locationTextField.field.text = coordinate.explicitAddress;
         }];
         
-        [self.navigationController pushViewController:viewController animated:YES];
+        RTRootNavigationController * rootNavigationController = [[RTRootNavigationController alloc] initWithRootViewController:viewController];
+        rootNavigationController.modalPresentationStyle = UIModalPresentationPopover;
+        [self presentViewController:rootNavigationController animated:YES completion:nil];
         
         return NO;
     }

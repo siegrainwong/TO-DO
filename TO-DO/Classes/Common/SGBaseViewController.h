@@ -42,5 +42,10 @@
  * */
 @property(nonatomic, readwrite, strong) UILabel *titleLabel;
 
+/* 指示当前视图是否是编辑状态 */
+@property(nonatomic, assign) BOOL isEditing;
+/* 是否自定义导航栏 */
+@property(nonatomic, assign) BOOL isCustomNavigation;
+
 - (void)rightNavButtonDidPress;
 @end

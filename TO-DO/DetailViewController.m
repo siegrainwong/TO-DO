@@ -15,7 +15,7 @@ static CGFloat const kTitleHeight = 35;
 static CGFloat const kOffset = 10;
 static NSUInteger const kMaxLength = 50;
 
-@interface DetailViewController ()<UITextViewDelegate>
+@interface DetailViewController () <UITextViewDelegate>
 @property(nonatomic, strong) CDTodo *model;
 
 @property(nonatomic, strong) UIView *container;
@@ -59,7 +59,8 @@ static NSUInteger const kMaxLength = 50;
 }
 
 - (CGFloat)height {
-    return self.titleContainerHeight + self.tableViewHeight;
+    CGFloat height = self.titleContainerHeight + self.tableViewHeight;
+    return height > kScreenHeight ? kScreenHeight : height;
 }
 
 - (UITableView *)tableView {

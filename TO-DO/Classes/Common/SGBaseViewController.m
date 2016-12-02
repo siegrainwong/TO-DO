@@ -21,7 +21,7 @@
 }
 
 - (void)setupViews {
-    [self setupNavigation];
+    if (!_isCustomNavigation) [self setupNavigation];
     [self attachGestureRecognizer];
 }
 

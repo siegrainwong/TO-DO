@@ -78,7 +78,7 @@ CalendarViewController ()
         [createViewController setSelectedDate:selectedDate];
         [createViewController setCreateViewControllerDidFinishCreate:^(CDTodo *model) {
             model.photoImage = [model.photoImage imageAddCornerWithRadius:model.photoImage.size.width / 2 andSize:model.photoImage.size];
-            [weakSelf.todoTableViewController insertTodo:model];
+            [weakSelf.todoTableViewController retrieveDataWithUser:weakSelf.cdUser date:weakSelf.calendar.selectedDate];
             [weakSelf.calendar reloadData];
         }];
         [weakSelf.navigationController pushViewController:createViewController animated:YES];

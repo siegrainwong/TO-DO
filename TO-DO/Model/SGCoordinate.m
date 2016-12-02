@@ -15,6 +15,8 @@
 #pragma mark - accessors
 
 - (NSString *)address {
+    if(!_generalAddress) return nil;
+    
     return [NSString stringWithFormat:@"%@%@", _generalAddress, _explicitAddress];
 }
 
