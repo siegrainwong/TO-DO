@@ -10,7 +10,7 @@
 #import "DateUtil.h"
 #import "UITableView+SDAutoTableViewCellHeight.h"
 #import "HSDatePickerViewController+Configure.h"
-#import "HSDatePickerViewController.h"
+#import "MRTodoDataManager.h"
 
 typedef NS_ENUM(NSInteger, SGDetailItem) {
     SGDetailItemDeadline,
@@ -19,12 +19,13 @@ typedef NS_ENUM(NSInteger, SGDetailItem) {
     SGDetailItemPhoto
 };
 
-@interface DetailTableViewController ()
+@interface DetailTableViewController () <HSDatePickerViewControllerDelegate>
 @property(nonatomic, strong) CDTodo *model;
-
 @property(nonatomic, strong) NSArray<DetailModel *> *dataArray;
-
 @property(nonatomic, assign) CGFloat cellsTotalHeight;
+
+@property(nonatomic, strong) HSDatePickerViewController *datePickerViewController;
+@property(nonatomic, strong) MRTodoDataManager *dataManager;
 @end
 
 @implementation DetailTableViewController
@@ -48,6 +49,7 @@ typedef NS_ENUM(NSInteger, SGDetailItem) {
 }
 
 - (void)setupViews {
+    self.dataManager = [MRTodoDataManager new];
     self.tableView.separatorInset = UIEdgeInsetsMake(0, 55, 0, 0);
     
     [self.tableView registerClass:[DetailTableViewCell class] forCellReuseIdentifier:@(DetailCellStyleMap).stringValue];
@@ -82,18 +84,6 @@ typedef NS_ENUM(NSInteger, SGDetailItem) {
     return cell;
 }
 
-- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
-    if (indexPath.row == SGDetailItemDeadline) {
-        
-    } else if (indexPath.row == SGDetailItemDescription) {
-        
-    } else if (indexPath.row == SGDetailItemLocation) {
-        
-    } else if (indexPath.row == SGDetailItemPhoto) {
-        
-    }
-}
-
 - (DetailModel *)modelAtIndexPath:(NSIndexPath *)indexPath {
     return _dataArray[indexPath.row];
 }
@@ -105,6 +95,45 @@ typedef NS_ENUM(NSInteger, SGDetailItem) {
     else if (indexPath.row == SGDetailItemPhoto) return @(DetailCellStylePhoto).stringValue;
     
     return @(DetailCellStyleText).stringValue;
+}
+
+- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
+    if (indexPath.row == SGDetailItemDeadline) {
+        [self showDatetimePicker:_model.deadline];
+    } else if (indexPath.row == SGDetailItemDescription) {
+        
+    } else if (indexPath.row == SGDetailItemLocation) {
+        
+    } else if (indexPath.row == SGDetailItemPhoto) {
+        
+    }
+}
+
+#pragma mark - date time picker
+
+- (void)showDatetimePicker:(NSDate *)deadline {
+    _datePickerViewController = [HSDatePickerViewController new];
+    _datePickerViewController.delegate = self;
+    [_datePickerViewController configure];
+    [_datePickerViewController setDate:deadline];
+    
+    [self presentViewController:_datePickerViewController animated:YES completion:nil];
+}
+
+- (BOOL)hsDatePickerPickedDate:(NSDate *)date {
+    _model.deadline = date;
+    if ([_model.lastDeadline compare:_model.deadline] == NSOrderedAscending) _model.status = @(TodoStatusSnoozed);  // 时间推迟了才算你Snoozed
+    _dataArray[SGDetailItemDeadline].content = [DateUtil dateString:_model.deadline withFormat:@"yyyy.MM.dd HH:mm"];
+    [self save];
+    
+    return YES;
+}
+
+#pragma mark - private methods
+
+- (void)save {
+    if (![_dataManager isModifiedTodo:_model]) return [SGHelper errorAlertWithMessage:@"Saving failed, please try again"];
+    [self.tableView reloadData];
 }
 
 @end

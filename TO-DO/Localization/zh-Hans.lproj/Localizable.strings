@@ -66,6 +66,7 @@
 "Add location" = "添加位置";
 "Add a photo" = "添加照片";
 "Input description" = "输入描述";
+"Saving failed, please try again" = "保存失败，请重试";
 
 /* Map */
 "Locate failed" = "定位失败";
