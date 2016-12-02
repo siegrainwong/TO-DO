@@ -44,8 +44,13 @@
 
 /* 指示当前视图是否是编辑状态 */
 @property(nonatomic, assign) BOOL isEditing;
-/* 是否自定义导航栏 */
-@property(nonatomic, assign) BOOL isCustomNavigation;
+/* 是否是原生的导航栏项 */
+@property(nonatomic, assign) BOOL isNativeNavigationItems;
+
+
+- (void)setupNavigationBar;
 
 - (void)rightNavButtonDidPress;
+
+- (void)leftNavButtonDidPress;
 @end

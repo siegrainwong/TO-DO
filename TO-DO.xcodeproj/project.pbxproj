@@ -10,6 +10,8 @@
 		8A80814723BDF84A9866A1C1 /* libPods-TO-DO.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 874BB13DFF8BBE53341474BC /* libPods-TO-DO.a */; };
 		F1F6A01A071FC81615789AA5 /* SGDelegateProxy.m in Sources */ = {isa = PBXBuildFile; fileRef = F1F6A54104EA3D8B8904206E /* SGDelegateProxy.m */; };
 		F1F6A01B884B904F531B9DD7 /* DetailTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = F1F6A6773FAC505BFA23DF13 /* DetailTableViewCell.m */; };
+		F1F6A066640FB5781B5C3206 /* SGTextEditorViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = F1F6A320980A63023D074909 /* SGTextEditorViewController.m */; };
+		F1F6A080C61A755278A666AD /* SGBaseTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = F1F6AAE6708389C6A3E5FE91 /* SGBaseTableViewController.m */; };
 		F1F6A0E1805A4A65E5C648C0 /* DetailTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = F1F6AA0F281649748A317E36 /* DetailTableViewController.m */; };
 		F1F6A132DD8CA1BC1212F8E7 /* DetailViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = F1F6A4A64F479D8CF21D1C4D /* DetailViewController.m */; };
 		F1F6A179ABFDEFF1CBC108DB /* UIImage+Compression.m in Sources */ = {isa = PBXBuildFile; fileRef = F1F6A5FBC0CA62435D01947B /* UIImage+Compression.m */; };
@@ -28,6 +30,7 @@
 		F1F6AC66CE20B5D9C269FA27 /* UIView+Extension.m in Sources */ = {isa = PBXBuildFile; fileRef = F1F6A8A0740505126718EA47 /* UIView+Extension.m */; };
 		F1F6ACF98DC036673E41BB5E /* ZLIconLabel.m in Sources */ = {isa = PBXBuildFile; fileRef = F1F6AC0F9F670BCC4E3A13B2 /* ZLIconLabel.m */; };
 		F1F6AE2F9BFF49BCB7C15268 /* SGCoordinate.m in Sources */ = {isa = PBXBuildFile; fileRef = F1F6A878E251DCECA21023DB /* SGCoordinate.m */; };
+		F1F6AE71DC06E54CAB2B824F /* UIViewController+ESSeparatorInset.m in Sources */ = {isa = PBXBuildFile; fileRef = F1F6A7F559C1857D66F04D8A /* UIViewController+ESSeparatorInset.m */; };
 		F1F6AE9A733A169801E9096C /* SGLocating.m in Sources */ = {isa = PBXBuildFile; fileRef = F1F6A422DDD7AD6A144F2B94 /* SGLocating.m */; };
 		F1F6AEC811EE3F1EDA63C256 /* RNObserverManager.m in Sources */ = {isa = PBXBuildFile; fileRef = F1F6ADF09588232CDE1AAF8D /* RNObserverManager.m */; };
 		F1F6AF45A097CB00BA92DD46 /* DetailModel.m in Sources */ = {isa = PBXBuildFile; fileRef = F1F6AF695552B0187E974543 /* DetailModel.m */; };
@@ -146,20 +149,24 @@
 		F1F6A1FA388CF728AE1FB045 /* EmptyDataView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = EmptyDataView.m; path = "TO-DO/Classes/Common/EmptyDataView.m"; sourceTree = SOURCE_ROOT; };
 		F1F6A261B6E274ACFBF8C1DA /* DetailModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DetailModel.h; sourceTree = "<group>"; };
 		F1F6A3160A6AC2B29F6A25E3 /* SGDelegateProxy.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = SGDelegateProxy.h; path = "TO-DO/Classes/Common/Views/SGDelegateProxy.h"; sourceTree = SOURCE_ROOT; };
+		F1F6A320980A63023D074909 /* SGTextEditorViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SGTextEditorViewController.m; sourceTree = "<group>"; };
 		F1F6A37F439E94DD8DD9F7C8 /* UIView+Extension.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIView+Extension.h"; sourceTree = "<group>"; };
 		F1F6A3F4779F709448CBD242 /* SGLocating.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SGLocating.h; sourceTree = "<group>"; };
 		F1F6A41D7341C56C217E3EBC /* create header bg.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "create header bg.png"; sourceTree = "<group>"; };
 		F1F6A422DDD7AD6A144F2B94 /* SGLocating.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SGLocating.m; sourceTree = "<group>"; };
 		F1F6A461ADA8158B33C41CB5 /* SGTextView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SGTextView.h; sourceTree = "<group>"; };
 		F1F6A4A64F479D8CF21D1C4D /* DetailViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DetailViewController.m; sourceTree = "<group>"; };
+		F1F6A516C9F0FCF8925FABFE /* SGTextEditorViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SGTextEditorViewController.h; sourceTree = "<group>"; };
 		F1F6A54104EA3D8B8904206E /* SGDelegateProxy.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = SGDelegateProxy.m; path = "TO-DO/Classes/Common/Views/SGDelegateProxy.m"; sourceTree = SOURCE_ROOT; };
 		F1F6A5807933AF532909237B /* SGRectangleView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SGRectangleView.h; sourceTree = "<group>"; };
+		F1F6A5D0D59DE02D41B84082 /* UIViewController+ESSeparatorInset.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIViewController+ESSeparatorInset.h"; sourceTree = "<group>"; };
 		F1F6A5FBC0CA62435D01947B /* UIImage+Compression.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIImage+Compression.m"; sourceTree = "<group>"; };
 		F1F6A61C489DE0CCD9F6AAEF /* DZMInputView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DZMInputView.h; sourceTree = "<group>"; };
 		F1F6A63CD4780AAF6A0A6888 /* EmptyDataView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = EmptyDataView.h; path = "TO-DO/Classes/Common/EmptyDataView.h"; sourceTree = SOURCE_ROOT; };
 		F1F6A6773FAC505BFA23DF13 /* DetailTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DetailTableViewCell.m; sourceTree = "<group>"; };
 		F1F6A6CE85FCE33A18942419 /* SGCoordinate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SGCoordinate.h; sourceTree = "<group>"; };
 		F1F6A731F0B33EA4B81AE09F /* SGGraphics.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SGGraphics.m; sourceTree = "<group>"; };
+		F1F6A7F559C1857D66F04D8A /* UIViewController+ESSeparatorInset.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIViewController+ESSeparatorInset.m"; sourceTree = "<group>"; };
 		F1F6A865482BC7ED81EFF40B /* CommonDataManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CommonDataManager.h; sourceTree = "<group>"; };
 		F1F6A868F08DE8AC02C37C3A /* UIImage+Extension.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIImage+Extension.h"; sourceTree = "<group>"; };
 		F1F6A86E1321D8770D4F66F6 /* CommonDataManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CommonDataManager.m; sourceTree = "<group>"; };
@@ -175,7 +182,9 @@
 		F1F6AA85E1C29172F37A3439 /* UIView+Extension.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIView+Extension.m"; sourceTree = "<group>"; };
 		F1F6AA97887536814EE82427 /* MBProgressHUD+SGExtension.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "MBProgressHUD+SGExtension.h"; sourceTree = "<group>"; };
 		F1F6AA9B2F59528335E9B4FE /* SGGraphics.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SGGraphics.h; sourceTree = "<group>"; };
+		F1F6AAE6708389C6A3E5FE91 /* SGBaseTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SGBaseTableViewController.m; sourceTree = "<group>"; };
 		F1F6AB04326E3F3489B73A95 /* SGMultipleDelegates.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SGMultipleDelegates.m; sourceTree = "<group>"; };
+		F1F6ABF4B99EF7FA19A0E12A /* SGBaseTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SGBaseTableViewController.h; sourceTree = "<group>"; };
 		F1F6AC0F9F670BCC4E3A13B2 /* ZLIconLabel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ZLIconLabel.m; sourceTree = "<group>"; };
 		F1F6AC815641A66E1EA21F3D /* UIView+Extension.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIView+Extension.h"; sourceTree = "<group>"; };
 		F1F6ACC309D8ADC4FB8734C1 /* MBProgressHUD+SGExtension.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "MBProgressHUD+SGExtension.m"; sourceTree = "<group>"; };
@@ -443,6 +452,15 @@
 			name = Controllers;
 			sourceTree = "<group>";
 		};
+		F1F6A9F3B6E85B7E8AAB3FCE /* ESSeparatorInset */ = {
+			isa = PBXGroup;
+			children = (
+				F1F6A5D0D59DE02D41B84082 /* UIViewController+ESSeparatorInset.h */,
+				F1F6A7F559C1857D66F04D8A /* UIViewController+ESSeparatorInset.m */,
+			);
+			path = ESSeparatorInset;
+			sourceTree = "<group>";
+		};
 		F1F6AA0FF6BC3C3FFCC9FFC1 /* Protocols */ = {
 			isa = PBXGroup;
 			children = (
@@ -628,6 +646,10 @@
 				F98DE68B1CFDCE6B00859A81 /* TodoTableViewController.m */,
 				F1F6A8A14EB155CD97151DD3 /* SGBaseMapViewController.m */,
 				F1F6A156E261995924B89DEB /* SGBaseMapViewController.h */,
+				F1F6A516C9F0FCF8925FABFE /* SGTextEditorViewController.h */,
+				F1F6A320980A63023D074909 /* SGTextEditorViewController.m */,
+				F1F6AAE6708389C6A3E5FE91 /* SGBaseTableViewController.m */,
+				F1F6ABF4B99EF7FA19A0E12A /* SGBaseTableViewController.h */,
 			);
 			name = Controllers;
 			sourceTree = "<group>";
@@ -664,6 +686,7 @@
 				F94CA1F11CE2F9780006904F /* SCLAlertView */,
 				F1F6ACF7CF08DC09CF4B72FE /* ZLIconLabel */,
 				F1F6AE433D8FC4D769840AF0 /* DZMInputView */,
+				F1F6A9F3B6E85B7E8AAB3FCE /* ESSeparatorInset */,
 			);
 			name = Libraries;
 			path = Classes/Libraries;
@@ -1383,6 +1406,9 @@
 				F1F6A8A9B5E8F03C80DF9ABC /* SGMultipleDelegates.m in Sources */,
 				F1F6AEC811EE3F1EDA63C256 /* RNObserverManager.m in Sources */,
 				F1F6AF45A097CB00BA92DD46 /* DetailModel.m in Sources */,
+				F1F6A066640FB5781B5C3206 /* SGTextEditorViewController.m in Sources */,
+				F1F6A080C61A755278A666AD /* SGBaseTableViewController.m in Sources */,
+				F1F6AE71DC06E54CAB2B824F /* UIViewController+ESSeparatorInset.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

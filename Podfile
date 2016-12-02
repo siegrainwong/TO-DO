@@ -34,4 +34,5 @@ target "TO-DO" do
   pod 'JMRoundedCorner'
   pod 'BEMCheckBox'
   pod 'SSDynamicText'
+  pod 'ACEExpandableTextCell'
 end

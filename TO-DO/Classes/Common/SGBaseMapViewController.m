@@ -26,7 +26,7 @@
 
 - (void)viewDidLoad {
     self.locating = [SGLocating new];
-    self.isCustomNavigation = YES;
+    self.isNativeNavigationItems = YES;
     
     [super viewDidLoad];
 }
@@ -35,11 +35,6 @@
     [super setupViews];
     
     self.title = Localized(@"Choose location");
-    self.navigationController.navigationBar.titleTextAttributes = @{NSForegroundColorAttributeName: [UIColor whiteColor]};
-    self.navigationItem.rightBarButtonItem = [[UIBarButtonItem alloc] initWithTitle:Localized(@"OK") style:UIBarButtonItemStylePlain target:self action:@selector(rightNavButtonDidPress)];
-    self.navigationItem.leftBarButtonItem = [[UIBarButtonItem alloc] initWithTitle:Localized(@"Cancel") style:UIBarButtonItemStylePlain target:self action:@selector(leftNavButtonDidPress)];
-    self.navigationItem.rightBarButtonItem.tintColor = self.navigationItem.leftBarButtonItem.tintColor = [UIColor whiteColor];
-    [self.navigationController.navigationBar setBackgroundImage:[UIImage imageWithColor:[SGHelper themeColorRed]] forBarMetrics:UIBarMetricsDefault];
     
     self.mapView = [MAMapView new];
     self.mapView.mapType = MAMapTypeStandard;

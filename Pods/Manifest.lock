@@ -1,4 +1,6 @@
 PODS:
+  - ACEExpandableTextCell (1.0.4):
+    - SZTextView
   - AFNetworking (2.6.3):
     - AFNetworking/NSURLConnection (= 2.6.3)
     - AFNetworking/NSURLSession (= 2.6.3)
@@ -77,10 +79,12 @@ PODS:
     - SDWebImage/Core (= 3.8.2)
   - SDWebImage/Core (3.8.2)
   - SSDynamicText (1.1.0)
+  - SZTextView (1.2.2)
   - TPKeyboardAvoiding (1.3)
   - ZFDragableModalTransition (0.6)
 
 DEPENDENCIES:
+  - ACEExpandableTextCell
   - AFNetworking-Synchronous
   - AMap2DMap (~> 4.3.0)
   - AMapLocation (~> 2.1.0)
@@ -123,6 +127,7 @@ CHECKOUT OPTIONS:
     :git: https://github.com/Seanwong933/FSCalendar.git
 
 SPEC CHECKSUMS:
+  ACEExpandableTextCell: 02c1fdb5a57344f543c9536c8c985ffcca1ed8b2
   AFNetworking: cb8d14a848e831097108418f5d49217339d4eb60
   AFNetworking-Synchronous: 29531ad341ec465a4ff9b66dea9cf7272080e12e
   AMap2DMap: f3f0fc5cdbf0242ff22da0c8605f24f8d7187b35
@@ -155,9 +160,10 @@ SPEC CHECKSUMS:
   SDAutoLayout: e9b36d04b8c0b504762a04d76fbbe5108944297a
   SDWebImage: 098e97e6176540799c27e804c96653ee0833d13c
   SSDynamicText: e5a1d15b757814a78508de4aeb73cdd287948cfe
+  SZTextView: 3a81174dce0710a9ab069bc73a813e6df53b9c82
   TPKeyboardAvoiding: a5138f318c06fb3e151f886e18ce4a72695d9cbe
   ZFDragableModalTransition: 0d294eaaba6edfcb9839595de765f9ca06a4b524
 
-PODFILE CHECKSUM: 55ab71a2761988205db4fab1c7cf6fcd9f7a1db4
+PODFILE CHECKSUM: 73613c82c224ae4721a4190cb6baabfeca6c973a
 
 COCOAPODS: 1.0.1

@@ -11,6 +11,8 @@
 #import "UITableView+SDAutoTableViewCellHeight.h"
 #import "HSDatePickerViewController+Configure.h"
 #import "MRTodoDataManager.h"
+#import "RTRootNavigationController.h"
+#import "SGTextEditorViewController.h"
 
 typedef NS_ENUM(NSInteger, SGDetailItem) {
     SGDetailItemDeadline,
@@ -26,9 +28,31 @@ typedef NS_ENUM(NSInteger, SGDetailItem) {
 
 @property(nonatomic, strong) HSDatePickerViewController *datePickerViewController;
 @property(nonatomic, strong) MRTodoDataManager *dataManager;
+@property(nonatomic, strong) SGTextEditorViewController *editorViewController;
 @end
 
 @implementation DetailTableViewController
+
+#pragma mark - lazy load
+
+- (SGTextEditorViewController *)editorViewController {
+    if (!_editorViewController) {
+        _editorViewController = [SGTextEditorViewController new];
+        _editorViewController.title = Localized(@"Description");
+        _editorViewController.value = _model.sgDescription;
+        __weak __typeof(self) weakSelf = self;
+        [_editorViewController setEditorDidSave:^(NSString *value) {
+            weakSelf.model.sgDescription = value;
+            weakSelf.dataArray[SGDetailItemDescription].content = value;
+            weakSelf.dataArray[SGDetailItemDescription].rowHeight = 0;
+            [weakSelf save];
+        }];
+    }
+    return _editorViewController;
+}
+
+
+#pragma mark - initial
 
 - (void)setModel:(CDTodo *)model {
     _model = model;
@@ -101,7 +125,9 @@ typedef NS_ENUM(NSInteger, SGDetailItem) {
     if (indexPath.row == SGDetailItemDeadline) {
         [self showDatetimePicker:_model.deadline];
     } else if (indexPath.row == SGDetailItemDescription) {
-        
+        RTRootNavigationController *rootNavigationController = [[RTRootNavigationController alloc] initWithRootViewController:self.editorViewController];
+        self.editorViewController.value = _model.sgDescription;
+        [self presentViewController:rootNavigationController animated:YES completion:nil];
     } else if (indexPath.row == SGDetailItemLocation) {
         
     } else if (indexPath.row == SGDetailItemPhoto) {
