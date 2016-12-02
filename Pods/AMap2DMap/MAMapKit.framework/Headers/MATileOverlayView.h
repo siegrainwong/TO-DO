@@ -21,7 +21,7 @@
 
 /*!
  @brief 根据指定的tileOverlay生成MAOverlayView
- @param overlay 数据源
+ @param tileOverlay 数据源
  @return 初始化成功则返回overlayView,否则返回nil
  */
 - (id)initWithTileOverlay:(MATileOverlay *)overlay;

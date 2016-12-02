@@ -66,8 +66,9 @@ LoginView ()
 
 + (instancetype)loginView {
     LoginView *loginView = [[LoginView alloc] init];
-    loginView->_isSignUp = false;
-    loginView->_textFieldHeight = kScreenHeight * 0.08;
+    loginView.isSignUp = false;
+    loginView.textFieldHeight = kScreenHeight * 0.08;
+    loginView.backgroundColor = [UIColor whiteColor];
     
     [loginView setup];
     [loginView bindConstraints];

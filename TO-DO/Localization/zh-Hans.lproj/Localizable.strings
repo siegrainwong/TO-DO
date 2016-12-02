@@ -65,3 +65,6 @@
 /* Detail */
 "Add location" = "添加位置";
 "Add a photo" = "添加照片";
+
+/* Map */
+"Locate failed" = "定位失败";

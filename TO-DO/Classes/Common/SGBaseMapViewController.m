@@ -60,7 +60,11 @@
     } else {
         __weak __typeof(self) weakSelf = self;
         [_locating locatingWithAccuracy:kCLLocationAccuracyHundredMeters succeed:^(BOOL succeed, SGCoordinate *coordinate, AMapLocationReGeocode *regeocode) {
-            if (!succeed || weakSelf.coordinate) return;
+            if (!succeed) {
+                [SGHelper errorAlertWithMessage:Localized(@"Locate failed")];
+                return;
+            }
+            if (weakSelf.coordinate) return;
             weakSelf.coordinate = coordinate;
             [weakSelf.coordinate setRegeocode:regeocode];
             

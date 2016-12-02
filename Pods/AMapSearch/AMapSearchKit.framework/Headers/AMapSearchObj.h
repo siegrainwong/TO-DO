@@ -24,7 +24,7 @@
 @property (nonatomic, assign) NSInteger  page; //!< 当前页数, 范围1-100, [default = 1]
 
 @property (nonatomic, assign) BOOL requireExtension; //!< 是否返回扩展信息，默认为 NO。
-@property (nonatomic, assign) BOOL requireSubPOIs; //!< 是否返子POI，默认为 NO。
+@property (nonatomic, assign) BOOL requireSubPOIs; //!< 是否返回扩POI，默认为 NO。
 
 @end
 
@@ -39,7 +39,7 @@
 @interface AMapPOIKeywordsSearchRequest : AMapPOISearchBaseRequest
 
 @property (nonatomic, copy)   NSString *keywords; //!< 查询关键字，多个关键字用“|”分割
-@property (nonatomic, copy)   NSString *city; //!< 查询城市，可选值：cityname（中文或中文全拼）、citycode、adcode.(注：台湾地区一律设置为【台湾】，不具体到市。)
+@property (nonatomic, copy)   NSString *city; //!< 查询城市，可选值：cityname（中文或中文全拼）、citycode、adcode.
 @property (nonatomic, assign) BOOL cityLimit; //!< 强制城市限制功能 默认NO，例如：在上海搜索天安门，如果citylimit为true，将不返回北京的天安门相关的POI
 
 @end
@@ -252,9 +252,6 @@ typedef NS_ENUM(NSInteger, AMapRoutePOISearchType)
 
 @property (nonatomic, copy) NSString *originId; //!< 出发点 POI ID
 @property (nonatomic, copy) NSString *destinationId; //!< 目的地 POI ID
-
-@property (nonatomic, copy) NSString *origintype; //!< 出发点POI类型编码
-@property (nonatomic, copy) NSString *destinationtype; //!< 目的地POI类型编码
 
 @property (nonatomic, assign) BOOL requireExtension; //!< 是否返回扩展信息，默认为 NO
 

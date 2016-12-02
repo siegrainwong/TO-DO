@@ -24,12 +24,12 @@ PODS:
   - AFNetworking/UIKit (2.6.3):
     - AFNetworking/NSURLConnection
     - AFNetworking/NSURLSession
-  - AMap2DMap (4.4.0):
+  - AMap2DMap (4.3.0):
     - AMapFoundation (~> 1.2)
   - AMapFoundation (1.3.2)
   - AMapLocation (2.1.1):
     - AMapFoundation (~> 1.2)
-  - AMapSearch (4.4.0):
+  - AMapSearch (4.3.0):
     - AMapFoundation (~> 1.2)
   - AutoLinearLayoutView (0.3.0)
   - AVOSCloud (3.2.12)
@@ -82,9 +82,9 @@ PODS:
 
 DEPENDENCIES:
   - AFNetworking-Synchronous
-  - AMap2DMap (~> 4.4.0)
+  - AMap2DMap (~> 4.3.0)
   - AMapLocation (~> 2.1.0)
-  - AMapSearch (~> 4.4.0)
+  - AMapSearch (~> 4.3.0)
   - AutoLinearLayoutView
   - AVOSCloud (~> 3.2.9)
   - BEMCheckBox
@@ -125,10 +125,10 @@ CHECKOUT OPTIONS:
 SPEC CHECKSUMS:
   AFNetworking: cb8d14a848e831097108418f5d49217339d4eb60
   AFNetworking-Synchronous: 29531ad341ec465a4ff9b66dea9cf7272080e12e
-  AMap2DMap: 5e310b546e93776462cf5a561cc74bafd6acee58
+  AMap2DMap: f3f0fc5cdbf0242ff22da0c8605f24f8d7187b35
   AMapFoundation: 843dc27b2c02bc0bc2ef3346bb3dd0456cf64dbb
   AMapLocation: dd203f76b034ef5cb546600f4e1ffad2a3a14072
-  AMapSearch: a6c7c83905dbe12aa059c7ff83cb0726cb4fc32f
+  AMapSearch: c90cc018a6c5281af17af6058ca99218a4d4b442
   AutoLinearLayoutView: b4da48a230fcbe03c38e3fd01f435d830071c49b
   AVOSCloud: fcbb5c2bcccaddbdea8c2b4f6c1ad7f13e6639fe
   BEMCheckBox: 264b8b72aa92adbfefa265cc58a0cdb86b207b9f
@@ -158,6 +158,6 @@ SPEC CHECKSUMS:
   TPKeyboardAvoiding: a5138f318c06fb3e151f886e18ce4a72695d9cbe
   ZFDragableModalTransition: 0d294eaaba6edfcb9839595de765f9ca06a4b524
 
-PODFILE CHECKSUM: d13d5868db658ad7914db56a383d17c226e5c31c
+PODFILE CHECKSUM: 55ab71a2761988205db4fab1c7cf6fcd9f7a1db4
 
 COCOAPODS: 1.0.1

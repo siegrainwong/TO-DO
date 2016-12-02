@@ -1,8 +1,8 @@
 platform :ios, '8.0'
 
 target "TO-DO" do
-  pod 'AMap2DMap', '~> 4.4.0'
-  pod 'AMapSearch', '~> 4.4.0'
+  pod 'AMap2DMap', '~> 4.3.0'
+  pod 'AMapSearch', '~> 4.3.0'
   pod 'AMapLocation', '~> 2.1.0'
   pod 'AVOSCloud', '~> 3.2.9'
 
