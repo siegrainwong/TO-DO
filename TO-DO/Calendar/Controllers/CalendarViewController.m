@@ -26,6 +26,7 @@ CalendarViewController ()
 
 @implementation CalendarViewController
 #pragma mark - release
+
 - (void)dealloc {
     //Mark: 由于释放顺序的原因，导致TableView释放后KVO还没有移除，只有先移除HeaderView
     [_todoTableViewController.tableView.tableHeaderView removeFromSuperview];
@@ -78,7 +79,6 @@ CalendarViewController ()
         [createViewController setSelectedDate:selectedDate];
         [createViewController setCreateViewControllerDidFinishCreate:^(CDTodo *model) {
             model.photoImage = [model.photoImage imageAddCornerWithRadius:model.photoImage.size.width / 2 andSize:model.photoImage.size];
-            [weakSelf.todoTableViewController retrieveDataWithUser:weakSelf.cdUser date:weakSelf.calendar.selectedDate];
             [weakSelf.calendar reloadData];
         }];
         [weakSelf.navigationController pushViewController:createViewController animated:YES];
@@ -106,7 +106,8 @@ CalendarViewController ()
     [_calendar selectDate:[NSDate date]];
     [_calendarContainer addSubview:_calendar];
     
-    _todoTableViewController = [TodoTableViewController todoTableViewControllerWithStyle:TodoTableViewControllerStyleCalendar];
+    _todoTableViewController = [TodoTableViewController new];
+    _todoTableViewController.style = TodoTableViewControllerStyleCalendar;
     _todoTableViewController.delegate = self;
     _todoTableViewController.headerHeight = self.headerHeight;
     _todoTableViewController.tableView.tableHeaderView = self.headerView;
@@ -122,7 +123,7 @@ CalendarViewController ()
 - (void)bindConstraints {
     [super bindConstraints];
     
-    [_todoTableViewController.tableView mas_makeConstraints:^(MASConstraintMaker *make) {
+    [_todoTableViewController.tableView mas_remakeConstraints:^(MASConstraintMaker *make) {
         make.top.offset(-64);
         make.bottom.right.left.offset(0);
     }];
@@ -144,12 +145,6 @@ CalendarViewController ()
         make.top.left.right.offset(0);
         make.height.offset(self.calendarHeight);
     }];
-
-//    [_menuButton mas_makeConstraints:^(MASConstraintMaker* make) {
-//        make.bottom.offset(-10);
-//        make.right.offset(-10);
-//        make.width.height.offset(kScreenHeight * 0.08);
-//    }];
 }
 
 #pragma mark - retrieve data
@@ -235,10 +230,5 @@ CalendarViewController ()
     }];
     //Mark: 为了让SectionHeader能够正确浮动在HeaderView下方，需要设置contentInset
     _todoTableViewController.tableView.contentInset = UIEdgeInsetsMake(collapsed ? self.headerCollapseHeight + 64 : 64, 0, 0, 0);
-}
-
-#pragma mark - menu button
-
-- (void)menuButtonDidPress {
 }
 @end

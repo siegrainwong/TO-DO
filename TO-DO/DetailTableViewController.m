@@ -65,14 +65,9 @@ typedef NS_ENUM(NSInteger, SGDetailItem) {
     ];
 }
 
-- (void)viewDidLoad {
-    [super viewDidLoad];
-    
-    [self setupViews];
-    [self bindConstraints];
-}
-
 - (void)setupViews {
+    [super setupViews];
+    
     self.dataManager = [MRTodoDataManager new];
     self.tableView.separatorInset = UIEdgeInsetsMake(0, 55, 0, 0);
     
@@ -80,10 +75,6 @@ typedef NS_ENUM(NSInteger, SGDetailItem) {
     [self.tableView registerClass:[DetailTableViewCell class] forCellReuseIdentifier:@(DetailCellStylePhoto).stringValue];
     [self.tableView registerClass:[DetailTableViewCell class] forCellReuseIdentifier:@(DetailCellStyleText).stringValue];
     [self.tableView registerClass:[DetailTableViewCell class] forCellReuseIdentifier:@(DetailCellStyleMultiLineText).stringValue];
-}
-
-- (void)bindConstraints {
-    
 }
 
 #pragma mark - tableview
@@ -161,6 +152,8 @@ typedef NS_ENUM(NSInteger, SGDetailItem) {
 - (void)save {
     if (![_dataManager isModifiedTodo:_model]) return [SGHelper errorAlertWithMessage:@"Saving failed, please try again"];
     [self.tableView reloadData];
+    
+    [[NSNotificationCenter defaultCenter] postNotificationName:kTaskChangedNotification object:self];
 }
 
 @end

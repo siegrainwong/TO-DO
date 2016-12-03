@@ -108,7 +108,7 @@
     
     _titleTextField = [SGTextField textField];
     _titleTextField.field.font = [SGHelper themeFontWithSize:32];
-    _titleTextField.field.textColor = _titleTextField.field.tintColor =  [UIColor whiteColor];
+    _titleTextField.field.textColor = _titleTextField.field.tintColor = [UIColor whiteColor];
     _titleTextField.field.returnKeyType = UIReturnKeyNext;
     _titleTextField.isUnderlineHidden = YES;
     [_titleTextField setTextFieldShouldReturn:^(SGTextField *textField) {
@@ -221,6 +221,8 @@
         
         [weakSelf enableView:YES];
         if (![weakSelf.dataManager isInsertedTodo:todo]) return;
+        
+        [[NSNotificationCenter defaultCenter] postNotificationName:kTaskChangedNotification object:weakSelf];
         if (weakSelf.createViewControllerDidFinishCreate) weakSelf.createViewControllerDidFinishCreate(todo);
         [weakSelf.navigationController popToRootViewControllerAnimated:YES];
     }];
@@ -239,8 +241,7 @@
 
 #pragma mark - imagePicker delegate
 
-- (void)imagePickerController:(UIImagePickerController *)picker
-didFinishPickingMediaWithInfo:(NSDictionary<NSString *, id> *)info {
+- (void)imagePickerController:(UIImagePickerController *)picker didFinishPickingMediaWithInfo:(NSDictionary<NSString *, id> *)info {
     _selectedImage = info[UIImagePickerControllerEditedImage];
     [self.headerView.rightOperationButton setImage:_selectedImage forState:UIControlStateNormal];
     [picker dismissViewControllerAnimated:true completion:nil];
@@ -320,7 +321,7 @@ didFinishPickingMediaWithInfo:(NSDictionary<NSString *, id> *)info {
             weakSelf.locationTextField.field.text = coordinate.explicitAddress;
         }];
         
-        RTRootNavigationController * rootNavigationController = [[RTRootNavigationController alloc] initWithRootViewController:viewController];
+        RTRootNavigationController *rootNavigationController = [[RTRootNavigationController alloc] initWithRootViewController:viewController];
         rootNavigationController.modalPresentationStyle = UIModalPresentationPopover;
         [self presentViewController:rootNavigationController animated:YES completion:nil];
         

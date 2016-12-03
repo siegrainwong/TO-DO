@@ -17,7 +17,7 @@ static NSString* const kFinishedSyncInOneBatchNotification = @"kFinishedSyncInOn
 /**
  *  当待办事项数据发生变更时发送通知
  */
-static NSString* const kTodosChangedNotification = @"kTodosChangedNotification";
+static NSString* const kTaskChangedNotification = @"kTaskChangedNotification";
 
 /**************************************** 全局枚举*/
 /**

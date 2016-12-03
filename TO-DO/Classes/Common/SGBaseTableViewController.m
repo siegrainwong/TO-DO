@@ -1,15 +1,14 @@
 //
-//  SGFilterTableViewController.m
-//  GamePlatform
+//  TodoTableViewController.h
+//  TO-DO
 //
-//  Created by Siegrain on 16/8/19.
-//  Copyright © 2016年 com.lurenwang.gameplatform. All rights reserved.
+//  Created by Siegrain on 16/5/31.
+//  Copyright © 2016年 com.siegrain. All rights reserved.
 //
 
 #import "SGBaseTableViewController.h"
 
-@interface
-SGBaseTableViewController ()
+@interface SGBaseTableViewController ()
 @end
 
 @implementation SGBaseTableViewController
@@ -18,20 +17,16 @@ SGBaseTableViewController ()
 
 - (void)viewDidLoad {
     [super viewDidLoad];
+    
+    [self setupViews];
+    [self bindConstraints];
 }
 
 - (void)setupViews {
-    [super setupViews];
-    
-    _tableView = [UITableView new];
-    _tableView.delegate = self;
-    _tableView.dataSource = self;
-    _tableView.tableFooterView = [UIView new];
-    [self.view addSubview:_tableView];
+    self.tableView.tableFooterView = [UIView new];
 }
 
 - (void)bindConstraints {
-    [super bindConstraints];
 }
 
 #pragma mark - tableview
@@ -46,10 +41,6 @@ SGBaseTableViewController ()
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
     return [UITableViewCell new];
-}
-
-- (NSString *)identifierAtIndexPath:(NSIndexPath *)indexPath {
-    return nil;
 }
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {

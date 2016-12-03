@@ -57,29 +57,23 @@ TodoTableViewController ()
 
 #pragma mark - initial
 
-+ (instancetype)todoTableViewControllerWithStyle:(TodoTableViewControllerStyle)style {
-    TodoTableViewController *controller = [TodoTableViewController new];
-    controller.style = style;
-    return controller;
-}
-
 - (void)viewDidLoad {
-    [super viewDidLoad];
-    
     _dataDictionary = [NSMutableDictionary new];
     _sectionArray = [NSMutableArray new];
     _dataManager = [MRTodoDataManager new];
-    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(retrieveData) name:kFinishedSyncInOneBatchNotification object:nil];
-    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(taskNeedsToReorder) name:kFinishedSyncInOneBatchNotification object:nil];
     
-    [self setupView];
+    [super viewDidLoad];
+    
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(retrieveData) name:kFinishedSyncInOneBatchNotification object:nil];
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(retrieveData) name:kTaskChangedNotification object:nil];
 }
 
-- (void)setupView {
-    self.tableView.dataSource = self;
-    self.tableView.delegate = self;
+- (void)setupViews {
+    [super setupViews];
+    
     [self.tableView registerClass:[TodoTableViewCell class] forCellReuseIdentifier:kTodoIdentifierArray[TodoIdentifierNormal]];
-    self.tableView.separatorInset = UIEdgeInsetsMake(0, kScreenHeight * kCellHorizontalInsetsMuiltipledByHeight, 0, kScreenHeight * kCellHorizontalInsetsMuiltipledByHeight);
+    [self setSeparatorInsetZeroWithTableView:self.tableView];
+//    self.tableView.separatorInset = UIEdgeInsetsMake(0, kScreenHeight * kCellHorizontalInsetsMuiltipledByHeight, 0, kScreenHeight * kCellHorizontalInsetsMuiltipledByHeight);
 }
 
 #pragma mark - retrieve data

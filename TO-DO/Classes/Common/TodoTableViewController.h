@@ -8,6 +8,7 @@
 
 #import "HSDatePickerViewController.h"
 #import "MGSwipeTableCell.h"
+#import "SGBaseTableViewController.h"
 #import <UIKit/UIKit.h>
 
 typedef NS_ENUM(NSInteger, TodoTableViewControllerStyle) {
@@ -39,21 +40,23 @@ typedef NS_ENUM(NSInteger, TodoTableViewControllerStyle) {
 /**
  *  代办事项列表
  */
-@interface TodoTableViewController : UITableViewController <HSDatePickerViewControllerDelegate, MGSwipeTableCellDelegate>
+@interface TodoTableViewController : SGBaseTableViewController <HSDatePickerViewControllerDelegate, MGSwipeTableCellDelegate>
 /**
  *  代理
  */
-@property(nonatomic, readwrite, weak) id <TodoTableViewControllerDelegate> delegate;
+@property(nonatomic, weak) id <TodoTableViewControllerDelegate> delegate;
 /**
  *  获取到的数据数量
  */
-@property(nonatomic, readwrite, assign) NSInteger dataCount;
-/*Header高度*/
+@property(nonatomic, assign) NSInteger dataCount;
+/**
+ * Header高度
+ */
 @property(nonatomic, assign) CGFloat headerHeight;
-
+/**
+ * 表格样式
+ */
 @property(nonatomic, assign) TodoTableViewControllerStyle style;
-
-+ (instancetype)todoTableViewControllerWithStyle:(TodoTableViewControllerStyle)style;
 
 /**
  *  获取数据

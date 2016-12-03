@@ -25,6 +25,7 @@
 		F1F6A8A9B5E8F03C80DF9ABC /* SGMultipleDelegates.m in Sources */ = {isa = PBXBuildFile; fileRef = F1F6AB04326E3F3489B73A95 /* SGMultipleDelegates.m */; };
 		F1F6A8ADE671A4D528A4E341 /* SGRectangleView.m in Sources */ = {isa = PBXBuildFile; fileRef = F1F6AE460B77EC2BE5BB0FA5 /* SGRectangleView.m */; };
 		F1F6AB0A7F5E488863B32B68 /* DZMInputView.m in Sources */ = {isa = PBXBuildFile; fileRef = F1F6A9550E33224A65936D5A /* DZMInputView.m */; };
+		F1F6ABC8867D2715DBB1F9A4 /* UIViewController+SGConfigure.m in Sources */ = {isa = PBXBuildFile; fileRef = F1F6A246492749D8DFE4B5F2 /* UIViewController+SGConfigure.m */; };
 		F1F6AC193A86F1A9ECBA3612 /* UIView+Extension.m in Sources */ = {isa = PBXBuildFile; fileRef = F1F6AA85E1C29172F37A3439 /* UIView+Extension.m */; };
 		F1F6AC1F1CDC682E0C3E8F80 /* SGTextView.m in Sources */ = {isa = PBXBuildFile; fileRef = F1F6AE3F5A1A5795A7B9901B /* SGTextView.m */; };
 		F1F6AC66CE20B5D9C269FA27 /* UIView+Extension.m in Sources */ = {isa = PBXBuildFile; fileRef = F1F6A8A0740505126718EA47 /* UIView+Extension.m */; };
@@ -147,6 +148,7 @@
 		F1F6A156E261995924B89DEB /* SGBaseMapViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SGBaseMapViewController.h; sourceTree = "<group>"; };
 		F1F6A1C1709FA2CB47BEAB41 /* SGMultipleDelegates.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SGMultipleDelegates.h; sourceTree = "<group>"; };
 		F1F6A1FA388CF728AE1FB045 /* EmptyDataView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = EmptyDataView.m; path = "TO-DO/Classes/Common/EmptyDataView.m"; sourceTree = SOURCE_ROOT; };
+		F1F6A246492749D8DFE4B5F2 /* UIViewController+SGConfigure.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIViewController+SGConfigure.m"; sourceTree = "<group>"; };
 		F1F6A261B6E274ACFBF8C1DA /* DetailModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DetailModel.h; sourceTree = "<group>"; };
 		F1F6A3160A6AC2B29F6A25E3 /* SGDelegateProxy.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = SGDelegateProxy.h; path = "TO-DO/Classes/Common/Views/SGDelegateProxy.h"; sourceTree = SOURCE_ROOT; };
 		F1F6A320980A63023D074909 /* SGTextEditorViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SGTextEditorViewController.m; sourceTree = "<group>"; };
@@ -167,6 +169,7 @@
 		F1F6A6CE85FCE33A18942419 /* SGCoordinate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SGCoordinate.h; sourceTree = "<group>"; };
 		F1F6A731F0B33EA4B81AE09F /* SGGraphics.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SGGraphics.m; sourceTree = "<group>"; };
 		F1F6A7F559C1857D66F04D8A /* UIViewController+ESSeparatorInset.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIViewController+ESSeparatorInset.m"; sourceTree = "<group>"; };
+		F1F6A808FBB681656B6AE234 /* UIViewController+SGConfigure.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIViewController+SGConfigure.h"; sourceTree = "<group>"; };
 		F1F6A865482BC7ED81EFF40B /* CommonDataManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CommonDataManager.h; sourceTree = "<group>"; };
 		F1F6A868F08DE8AC02C37C3A /* UIImage+Extension.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIImage+Extension.h"; sourceTree = "<group>"; };
 		F1F6A86E1321D8770D4F66F6 /* CommonDataManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CommonDataManager.m; sourceTree = "<group>"; };
@@ -770,6 +773,8 @@
 				F1F6A9C74D155902CD4A8861 /* UIImage+Compression.h */,
 				F1F6AD7342C2328CE5A0747B /* UIImage+Extension.m */,
 				F1F6A868F08DE8AC02C37C3A /* UIImage+Extension.h */,
+				F1F6A246492749D8DFE4B5F2 /* UIViewController+SGConfigure.m */,
+				F1F6A808FBB681656B6AE234 /* UIViewController+SGConfigure.h */,
 			);
 			path = Categories;
 			sourceTree = "<group>";
@@ -1409,6 +1414,7 @@
 				F1F6A066640FB5781B5C3206 /* SGTextEditorViewController.m in Sources */,
 				F1F6A080C61A755278A666AD /* SGBaseTableViewController.m in Sources */,
 				F1F6AE71DC06E54CAB2B824F /* UIViewController+ESSeparatorInset.m in Sources */,
+				F1F6ABC8867D2715DBB1F9A4 /* UIViewController+SGConfigure.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

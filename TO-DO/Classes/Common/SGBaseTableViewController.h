@@ -1,14 +1,13 @@
 //
-//  SGFilterTableViewController.h
-//  GamePlatform
+//  TodoTableViewController.h
+//  TO-DO
 //
-//  Created by Siegrain on 16/8/19.
-//  Copyright © 2016年 com.lurenwang.gameplatform. All rights reserved.
+//  Created by Siegrain on 16/5/31.
+//  Copyright © 2016年 com.siegrain. All rights reserved.
 //
 
 #import "SGBaseViewController.h"
 #import "UIViewController+ESSeparatorInset.h"
 
-@interface SGBaseTableViewController : SGBaseViewController<UITableViewDelegate, UITableViewDataSource>
-@property (nonatomic, readonly, strong) UITableView* tableView;
+@interface SGBaseTableViewController : UITableViewController<SGTableViews>
 @end

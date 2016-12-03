@@ -9,5 +9,13 @@
 
 @protocol SGViews <NSObject>
 - (void)setupViews;
+
 - (void)bindConstraints;
+@end
+
+@protocol SGTableViews <SGViews>
+@optional
+- (NSString *)identifierAtIndexPath:(NSIndexPath *)indexPath;
+- (NSObject *)modelAtIndexPath:(NSIndexPath *)indexPath;
+- (void)configureCell:(UITableViewCell *)cell atIndexPath:(NSIndexPath *)indexPath;
 @end

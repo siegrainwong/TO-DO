@@ -10,6 +10,4 @@
 
 - (void)setModel:(CDTodo *)model;
 
-@property(nonatomic, copy) void (^taskHasChange)(CDTodo *todo);
-
 @end

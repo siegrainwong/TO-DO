@@ -11,11 +11,12 @@
 #import "LCUser.h"
 #import "Masonry.h"
 #import "SGViews.h"
+#import "UIViewController+SGConfigure.h"
 
 /**
  *  基页（除登录）
  */
-@interface SGBaseViewController : UIViewController <SGViews>
+@interface SGBaseViewController : UIViewController <SGViews,SGNavigationBar>
 /**
  *  右侧导航栏按钮
  */
@@ -46,11 +47,4 @@
 @property(nonatomic, assign) BOOL isEditing;
 /* 是否是原生的导航栏项 */
 @property(nonatomic, assign) BOOL isNativeNavigationItems;
-
-
-- (void)setupNavigationBar;
-
-- (void)rightNavButtonDidPress;
-
-- (void)leftNavButtonDidPress;
 @end

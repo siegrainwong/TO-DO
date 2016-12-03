@@ -22,15 +22,15 @@
 }
 
 - (void)setupViews {
-    [self setupNavigationBar];
+    [self setupNavigation];
     [self attachGestureRecognizer];
 }
 
 - (void)bindConstraints {
 }
 
-- (void)setupNavigationBar {
-    if (!_isNativeNavigationItems) [self setupCustomNavigationBar]; else [self setupNativeNavigationBar];
+- (void)setupNavigation {
+    if (!_isNativeNavigationItems) [self setupCustomNavigationBar]; else [self setupNavigationBar];
 }
 
 - (void)setupCustomNavigationBar {
@@ -63,22 +63,6 @@
     [_rightNavigationButton setImage:[UIImage imageNamed:@"search"] forState:UIControlStateNormal];
     [_rightNavigationButton addTarget:self action:@selector(rightNavButtonDidPress) forControlEvents:UIControlEventTouchUpInside];
     self.navigationItem.rightBarButtonItem = [[UIBarButtonItem alloc] initWithCustomView:_rightNavigationButton];
-}
-
-- (void)setupNativeNavigationBar {
-    self.navigationController.navigationBar.titleTextAttributes = @{NSForegroundColorAttributeName: [UIColor whiteColor]};
-    self.navigationItem.rightBarButtonItem = [[UIBarButtonItem alloc] initWithTitle:Localized(@"OK") style:UIBarButtonItemStylePlain target:self action:@selector(rightNavButtonDidPress)];
-    self.navigationItem.leftBarButtonItem = [[UIBarButtonItem alloc] initWithTitle:Localized(@"Cancel") style:UIBarButtonItemStylePlain target:self action:@selector(leftNavButtonDidPress)];
-    self.navigationItem.rightBarButtonItem.tintColor = self.navigationItem.leftBarButtonItem.tintColor = [UIColor whiteColor];
-    [self.navigationController.navigationBar setBackgroundImage:[UIImage imageWithColor:[SGHelper themeColorRed]] forBarMetrics:UIBarMetricsDefault];
-}
-
-- (void)leftNavButtonDidPress {
-    
-}
-
-- (void)rightNavButtonDidPress {
-    
 }
 
 - (void)attachGestureRecognizer {

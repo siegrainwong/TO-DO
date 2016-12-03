@@ -5,9 +5,10 @@
 
 #import "ACEExpandableTextCell.h"
 #import "SGTextEditorViewController.h"
+#import "UIViewController+SGConfigure.h"
 
 @interface
-SGTextEditorViewController () <ACEExpandableTableViewDelegate>
+SGTextEditorViewController () <ACEExpandableTableViewDelegate, SGNavigationBar>
 @property(nonatomic, readwrite, assign) CGFloat cellHeight;
 @property(nonatomic, readwrite, strong) ACEExpandableTextCell *cell;
 @end
@@ -16,7 +17,6 @@ SGTextEditorViewController () <ACEExpandableTableViewDelegate>
 - (void)viewWillAppear:(BOOL)animated {
     [super viewWillAppear:animated];
     
-    self.isNativeNavigationItems = YES;
     [self setupNavigationBar];
 }
 
@@ -82,5 +82,13 @@ SGTextEditorViewController () <ACEExpandableTableViewDelegate>
 
 - (void)tableView:(UITableView *)tableView updatedHeight:(CGFloat)height atIndexPath:(NSIndexPath *)indexPath {
     self.cellHeight = height;
+}
+
+- (BOOL)tableView:(UITableView *)tableView textView:(UITextView *)textView shouldChangeTextInRange:(NSRange)range replacementText:(NSString *)text {
+    if ([text isEqualToString:@"\n"]) {
+        [self.view endEditing:YES];
+        return NO;
+    }
+    return YES;
 }
 @end
