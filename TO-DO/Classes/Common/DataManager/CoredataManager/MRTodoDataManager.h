@@ -16,8 +16,8 @@ typedef void (^retrieveResult)(BOOL succeed, NSDictionary *data, NSInteger count
 
 @interface MRTodoDataManager : NSObject<Localized>
 /* retrieve */
-- (void)retrieveDataWithUser:(CDUser*)user date:(NSDate*)date complete:(retrieveResult)complete;
-- (void)retrieveCalendarDataWithUser:(CDUser *)user date:(NSDate *)date complete:(retrieveResult)complete;
+- (void)tasksWithUser:(CDUser *)user complete:(retrieveResult)complete;
+- (void)tasksWithUser:(CDUser *)user date:(NSDate *)date complete:(retrieveResult)complete;
 - (BOOL)hasDataWithDate:(NSDate*)date user:(CDUser*)user;
 
 /* modify */

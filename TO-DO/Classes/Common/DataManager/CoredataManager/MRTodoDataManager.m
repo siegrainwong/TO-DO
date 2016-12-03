@@ -50,8 +50,8 @@ MRTodoDataManager ()
 
 #pragma mark - retrieve
 
-- (void)retrieveDataWithUser:(CDUser *)user date:(NSDate *)date complete:(retrieveResult)complete {
-    NSPredicate *filter = [self predicateWithUser:user date:date isComplete:@(NO)];
+- (void)tasksWithUser:(CDUser *)user complete:(retrieveResult)complete {
+    NSPredicate *filter = [self predicateWithUser:user date:nil isComplete:@(NO)];
     NSArray<CDTodo *> *data = [CDTodo MR_findAllSortedBy:@"deadline" ascending:YES withPredicate:filter];
     
     NSInteger dataCount = data.count;
@@ -64,7 +64,7 @@ MRTodoDataManager ()
         if (![dateString isEqualToString:newDateString]) {
             dateString = newDateString;
             dataInSameDay = [NSMutableArray new];
-            dataDictionary[dateString] = dataInSameDay;
+            dataDictionary[todo.deadline] = dataInSameDay;
         }
         [dataInSameDay addObject:todo];
     }
@@ -72,7 +72,7 @@ MRTodoDataManager ()
     return complete(YES, [dataDictionary copy], dataCount);
 }
 
-- (void)retrieveCalendarDataWithUser:(CDUser *)user date:(NSDate *)date complete:(retrieveResult)complete {
+- (void)tasksWithUser:(CDUser *)user date:(NSDate *)date complete:(retrieveResult)complete {
     NSPredicate *filter = [self predicateWithUser:user date:date isComplete:@(NO)];
     NSArray<CDTodo *> *tasks = [CDTodo MR_findAllSortedBy:@"deadline" ascending:YES withPredicate:filter];
     filter = [self predicateWithUser:user date:date isComplete:@(YES)];

@@ -9,7 +9,7 @@
 #import <UIKit/UIKit.h>
 
 @interface TodoHeaderCell : UIView
-@property (nonatomic, readwrite, strong) NSString* text;
+@property (nonatomic, strong) NSString* text;
 
 + (instancetype)headerCell;
 @end
