@@ -117,7 +117,7 @@ TodoTableViewController ()
 }
 
 - (CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section {
-    if (!section && _style == TodoTableViewControllerStyleCalendar) return 0;
+    if ((!section && _style == TodoTableViewControllerStyleCalendar) || ![self dataArrayAtSection:section].count) return 0;
     return 15;
 }
 
@@ -126,8 +126,6 @@ TodoTableViewController ()
 }
 
 - (UIView *)tableView:(UITableView *)tableView viewForHeaderInSection:(NSInteger)section {
-    if (![self dataArrayAtSection:section].count) return nil;   //没有数据不显示header
-    
     TodoHeaderCell *header = [TodoHeaderCell headerCell];
     if (_style == TodoTableViewControllerStyleHome)
         header.text = [DateUtil dateString:_sectionArray[section] withFormat:@"MMM d"];
