@@ -56,7 +56,7 @@ HomeViewController () <UINavigationControllerDelegate, UIImagePickerControllerDe
     [super viewDidLoad];
     
     [self localizeStrings];
-    [self retrieveDataFromServer];
+    [self retrieveData];
 }
 
 - (void)setupViews {
@@ -78,7 +78,8 @@ HomeViewController () <UINavigationControllerDelegate, UIImagePickerControllerDe
         [createViewController setSelectedDate:[[NSDate date] dateByAddingTimeInterval:60 * 10]];
         [createViewController setCreateViewControllerDidFinishCreate:^(CDTodo *model) {
             model.photoImage = [model.photoImage imageAddCornerWithRadius:model.photoImage.size.width / 2 andSize:model.photoImage.size];
-            [weakSelf.todoTableViewController insertTodo:model];
+            [weakSelf retrieveData];
+//            [weakSelf.todoTableViewController insertTodo:model];
         }];
         [weakSelf.navigationController pushViewController:createViewController animated:YES];
     }];
@@ -128,7 +129,7 @@ HomeViewController () <UINavigationControllerDelegate, UIImagePickerControllerDe
 
 #pragma mark - retrieve data
 
-- (void)retrieveDataFromServer {
+- (void)retrieveData {
     [_todoTableViewController retrieveDataWithUser:self.cdUser date:nil];
 }
 

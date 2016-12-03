@@ -21,8 +21,6 @@ NS_ASSUME_NONNULL_BEGIN
 @property(nonatomic, strong) NSData *photoData;
 /* 缓存表格单元高度 */
 @property(nonatomic, assign) CGFloat cellHeight;
-/* 上次过期时间，该字段用于 snooze 后移除老位置的数据所用 */
-@property(nonatomic, strong) NSDate *lastDeadline;
 /* 指示该待办事项是否在重新排序中 */
 @property(nonatomic, assign) BOOL isReordering;
 /* 位置 */

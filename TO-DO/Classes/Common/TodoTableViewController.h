@@ -62,10 +62,4 @@ typedef NS_ENUM(NSInteger, TodoTableViewControllerStyle) {
  *  @param date <#date description#>
  */
 - (void)retrieveDataWithUser:(CDUser *)user date:(NSDate *)date;
-
-/**
- * 插入任务
- * @param model
- */
-- (void)insertTodo:(CDTodo *)model;
 @end

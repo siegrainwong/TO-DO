@@ -6,9 +6,10 @@
 #import "SGBaseViewController.h"
 
 @interface DetailViewController : SGBaseViewController
+- (UITableView *)tableView;
+
 - (void)setModel:(CDTodo *)model;
 
-- (CGFloat)height;
+@property(nonatomic, copy) void (^taskHasChange)(CDTodo *todo);
 
-- (UITableView *)tableView;
 @end

@@ -147,8 +147,9 @@ typedef NS_ENUM(NSInteger, SGDetailItem) {
 }
 
 - (BOOL)hsDatePickerPickedDate:(NSDate *)date {
+    if ([_model.deadline compare:date] == NSOrderedAscending) _model.status = @(TodoStatusSnoozed);  // 时间推迟了才算你Snoozed
     _model.deadline = date;
-    if ([_model.lastDeadline compare:_model.deadline] == NSOrderedAscending) _model.status = @(TodoStatusSnoozed);  // 时间推迟了才算你Snoozed
+    
     _dataArray[SGDetailItemDeadline].content = [DateUtil dateString:_model.deadline withFormat:@"yyyy.MM.dd HH:mm"];
     [self save];
     

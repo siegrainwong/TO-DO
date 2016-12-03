@@ -14,7 +14,6 @@
 @implementation CDTodo
 @synthesize photoImage = _photoImage;
 @synthesize cellHeight = _cellHeight;
-@synthesize lastDeadline = _lastDeadline;
 @synthesize isReordering = _isReordering;
 @synthesize photoData = _photoData;
 @synthesize coordinate = _coordinate;

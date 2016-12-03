@@ -69,7 +69,8 @@ TodoTableViewController ()
     _dataDictionary = [NSMutableDictionary new];
     _sectionArray = [NSMutableArray new];
     _dataManager = [MRTodoDataManager new];
-    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(syncDataManagerDidFinishedSyncInOneBatch) name:kFinishedSyncInOneBatchNotification object:nil];
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(retrieveData) name:kFinishedSyncInOneBatchNotification object:nil];
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(taskNeedsToReorder) name:kFinishedSyncInOneBatchNotification object:nil];
     
     [self setupView];
 }
@@ -127,17 +128,6 @@ TodoTableViewController ()
     [self.tableView reloadData];
 }
 
-- (void)removeEmptySection:(NSString *)dateString {
-    NSMutableArray<CDTodo *> *array = _dataDictionary[dateString];
-    if (!array.count) {
-        [_dataDictionary removeObjectForKey:dateString];
-        NSInteger index = [_sectionArray indexOfObject:dateString];
-        [_sectionArray removeObject:dateString];
-        
-        if (_style != TodoTableViewControllerStyleCalendar) [self.tableView deleteSections:[NSIndexSet indexSetWithIndex:index] withRowAnimation:UITableViewRowAnimationLeft];
-    }
-}
-
 - (void)didReloadData {
     if ([_delegate respondsToSelector:@selector(todoTableViewControllerDidReloadData)]) [_delegate todoTableViewControllerDidReloadData];
     if (!_dataCount) {
@@ -145,7 +135,7 @@ TodoTableViewController ()
         self.tableView.backgroundColor = self.tableView.tableHeaderView.backgroundColor = [SGHelper themeColorLightGray];
         self.tableView.tableFooterView = emptyDataView;
     } else {
-        self.tableView.tableFooterView = nil;
+        self.tableView.tableFooterView = [UIView new];
         self.tableView.backgroundColor = self.tableView.tableHeaderView.backgroundColor = [UIColor whiteColor];
     }
 }
@@ -236,7 +226,7 @@ TodoTableViewController ()
         if (operation == TodoSwipeOperationComplete) {
             model.isCompleted = @(YES);
             model.completedAt = [NSDate date];
-            [weakSelf modifyTodoWithOperation:operation model:model indexPath:[weakSelf.tableView indexPathForCell:sender]];
+            [weakSelf saveWithTask:model];
             
             return YES;
         } else if (operation == TodoSwipeOperationSnooze) {
@@ -247,7 +237,7 @@ TodoTableViewController ()
         } else if (operation == TodoSwipeOperationRemove) {
             model.isHidden = @(YES);
             model.deletedAt = [NSDate date];
-            [weakSelf modifyTodoWithOperation:operation model:model indexPath:[weakSelf.tableView indexPathForCell:sender]];
+            [weakSelf saveWithTask:model];
             
             return YES;
         } else if (operation == TodoSwipeOperationRevert) {
@@ -270,19 +260,13 @@ TodoTableViewController ()
 }
 
 - (BOOL)hsDatePickerPickedDate:(NSDate *)date {
-    if ([date compare:_datePickerViewController.minDate] == NSOrderedAscending) date = [NSDate date];
+    CDTodo *model = _snoozingCell.model;
+    if ([model.deadline compare:date] == NSOrderedAscending) model.status = @(TodoStatusSnoozed);   // 时间推迟了才算你Snoozed
+    model.deadline = date;
     
-    __weak typeof(self) weakSelf = self;
-    CDTodo *todo = _snoozingCell.model;
-    todo.lastDeadline = todo.deadline;
-    todo.deadline = date;
-    // 时间推迟了才算你Snoozed
-    if ([todo.lastDeadline compare:todo.deadline] == NSOrderedAscending)
-        todo.status = @(TodoStatusSnoozed);
-    
-    [weakSelf modifyTodoWithOperation:TodoSwipeOperationSnooze model:todo indexPath:[weakSelf.tableView indexPathForCell:_snoozingCell]];
-    [weakSelf.snoozingCell hideSwipeAnimated:YES];
-    weakSelf.snoozingCell = nil;
+    [self saveWithTask:model];
+    [_snoozingCell hideSwipeAnimated:YES];
+    _snoozingCell = nil;
     
     return YES;
 }
@@ -294,59 +278,15 @@ TodoTableViewController ()
 
 #pragma mark - private methods
 
-- (void)modifyTodoWithOperation:(TodoSwipeOperation)operation model:(CDTodo *)model indexPath:(NSIndexPath *)indexPath {
-    if ([_dataManager isModifiedTodo:model]) {
-        if (_style == TodoTableViewControllerStyleCalendar) {   //如果是日历视图，直接重新请求数据
-            [self retrieveDataWithUser:[AppDelegate globalDelegate].cdUser date:_date];
-        } else if (operation == TodoSwipeOperationSnooze)
-            [self reorderTodo:model atIndexPath:indexPath];
-        else
-            [self removeTodo:model atIndexPath:indexPath reordering:NO animate:YES];
-    }
+- (void)saveWithTask:(CDTodo *)model {
+    if ([_dataManager isModifiedTodo:model]) [self retrieveData];
 }
 
-- (void)removeTodo:(CDTodo *)model atIndexPath:(NSIndexPath *)indexPath reordering:(BOOL)reordering animate:(BOOL)animate {
-    // FIXME: 多次请求可能会异常
-    NSString *deadline = reordering ? model.lastDeadline.stringInYearMonthDay : model.deadline.stringInYearMonthDay;
-    NSMutableArray<CDTodo *> *array = _dataDictionary[deadline];
-    [array removeObject:model];
-    
-    [UIView setAnimationsEnabled:animate];
-    if (!array.count) {
-        [self removeEmptySection:deadline];
-    } else {
-        [self.tableView deleteRowsAtIndexPaths:@[indexPath] withRowAnimation:UITableViewRowAnimationLeft];
-    }
-    [UIView setAnimationsEnabled:YES];
-    
-    _dataCount--;
-    // Mark:光用 deleteRows 方法删除该 Section 最后一行时，上一行会冒出一条迷の分割线，所以必须 reloadData
-    [self reloadDataWithArrayNeedsToReorder:nil];
+- (void)retrieveData {
+    [self retrieveDataWithUser:[AppDelegate globalDelegate].cdUser date:_date];
 }
 
-- (void)insertTodo:(CDTodo *)model {
-    NSString *deadline = model.deadline.stringInYearMonthDay;
-    NSMutableArray<CDTodo *> *array = _dataDictionary[deadline];
-    if (!array) array = _dataDictionary[deadline] = [NSMutableArray new];
-    if (![_sectionArray containsObject:deadline]) [_sectionArray addObject:deadline];
-    
-    _dataCount++;
-    [array addObject:model];
-    
-    [self reloadDataWithArrayNeedsToReorder:array];
-}
-
-- (void)reorderTodo:(CDTodo *)model atIndexPath:(NSIndexPath *)indexPath {
-    [self removeTodo:model atIndexPath:indexPath reordering:YES animate:NO];
-    
-    NSString *deadline = model.deadline.stringInYearMonthDay;
-    // 日历视图中，如果不是同一天的话，删掉就可以返回了
-    if (_style == TodoTableViewControllerStyleCalendar && ![model.lastDeadline.stringInYearMonthDay isEqualToString:deadline]) return;
-    
-    [self insertTodo:model];
-}
-
-#pragma mark - timer to overdue
+#pragma mark - overdue tasks with timer
 
 - (void)setupTimer {
     if (_timer.valid) return;
@@ -380,12 +320,6 @@ TodoTableViewController ()
         
         if (needsToReload) [self.tableView reloadData];
     });
-}
-
-#pragma mark - reload data when sync finished
-
-- (void)syncDataManagerDidFinishedSyncInOneBatch {
-    [self retrieveDataWithUser:[AppDelegate globalDelegate].cdUser date:_date];
 }
 
 #pragma mark - scrollView
