@@ -3,13 +3,11 @@
 // Copyright (c) 2016 com.siegrain. All rights reserved.
 //
 
-#import <RTRootNavigationController/RTRootNavigationController.h>
 #import "DetailViewController.h"
 #import "BEMCheckBox.h"
 #import "CDTodo.h"
 #import "DetailTableViewController.h"
 #import "SGTextView.h"
-#import "SGTextEditorViewController.h"
 #import "MRTodoDataManager.h"
 #import "NSNotificationCenter+Extension.h"
 
@@ -30,6 +28,7 @@ static NSUInteger const kMaxLength = 50;
 
 @property(nonatomic, strong) MRTodoDataManager *dataManager;
 @property(nonatomic, assign) CGFloat tableViewHeight;
+@property(nonatomic, assign) CGFloat overHeight;
 @end
 
 @implementation DetailViewController
@@ -56,6 +55,15 @@ static NSUInteger const kMaxLength = 50;
             make.height.offset(weakSelf.tableViewHeight);
         }];
     }];
+    [_titleTextView setTextViewDidUpdateHeight:^(CGFloat height) {
+        CGFloat overHeight = weakSelf.maxHeight - weakSelf.titleContainerHeight - weakSelf.tableViewHeight;
+        if (overHeight >= 0) return;
+    
+        weakSelf.overHeight = fabsf(overHeight);
+        [weakSelf.tableView mas_updateConstraints:^(MASConstraintMaker *make) {
+            make.height.offset(weakSelf.tableViewHeight - weakSelf.overHeight);
+        }];
+    }];
 }
 
 - (CGFloat)height {
@@ -64,7 +72,7 @@ static NSUInteger const kMaxLength = 50;
 }
 
 - (CGFloat)maxHeight {
-    return kScreenHeight - 20;
+    return kScreenHeight;
 }
 
 - (UITableView *)tableView {
@@ -72,7 +80,7 @@ static NSUInteger const kMaxLength = 50;
 }
 
 - (CGFloat)titleContainerHeight {
-    CGFloat titleTextViewHeight =_titleTextView.currentHeight >= kTitleTextViewHeight ?: kTitleTextViewHeight;
+    CGFloat titleTextViewHeight = _titleTextView.currentHeight < kTitleTextViewHeight ? kTitleTextViewHeight : _titleTextView.currentHeight;
     return kOffset * 2 + titleTextViewHeight;
 }
 
@@ -115,7 +123,6 @@ static NSUInteger const kMaxLength = 50;
     _titleTextView.maxLineCount = 3;
     _titleTextView.font = [SGHelper themeFontWithSize:17];
     _titleTextView.tintColor = [SGHelper themeColorRed];
-    _titleTextView.scrollEnabled = NO;
     [_titleContainer addSubview:_titleTextView];
     
     _tableViewController = [DetailTableViewController new];
@@ -179,10 +186,10 @@ static NSUInteger const kMaxLength = 50;
 }
 
 - (void)animateByKeyboard:(BOOL)isShow height:(CGFloat)height {
-    if(!_titleTextView.isFirstResponder) return;
+    if (!_titleTextView.isFirstResponder) return;
     
     [_tableViewController.view mas_updateConstraints:^(MASConstraintMaker *make) {
-        make.bottom.offset(isShow ? -height + self.tableViewHeight : CGFLOAT_MIN);
+        make.bottom.offset(isShow ? -height + self.tableViewHeight - self.overHeight : CGFLOAT_MIN);
     }];
     
     [UIView animateWithDuration:.3 animations:^{[self.view layoutIfNeeded];}];

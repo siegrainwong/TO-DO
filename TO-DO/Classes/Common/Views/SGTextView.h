@@ -21,10 +21,13 @@
 @property(nonatomic, assign) NSUInteger maxLineCount;
 /* 当前高度 */
 @property(nonatomic, readonly, assign) CGFloat currentHeight;
+/* 改变高度时调用 */
+@property(nonatomic, copy) void (^textViewDidUpdateHeight)(CGFloat height);
 
 /*
  * 以下方法必须在外部对应的代理方法中调用
  * */
 - (void)textViewDidChange:(UITextView *)textView;
+
 - (BOOL)textView:(UITextView *)textView shouldChangeTextInRange:(NSRange)range replacementText:(NSString *)text;
 @end

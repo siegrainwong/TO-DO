@@ -115,6 +115,7 @@
     
     CGFloat increase = (lineCount - 1) * lineHeight;
     _currentHeight = _containerInitialHeight + increase;
+    if (_textViewDidUpdateHeight)_textViewDidUpdateHeight(_currentHeight);
     [_container mas_updateConstraints:^(MASConstraintMaker *make) {make.height.offset(_currentHeight);}];
 }
 @end
