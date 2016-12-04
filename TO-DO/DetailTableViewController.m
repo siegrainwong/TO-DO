@@ -45,7 +45,7 @@ typedef NS_ENUM(NSInteger, SGDetailItem) {
             weakSelf.model.sgDescription = value;
             weakSelf.dataArray[SGDetailItemDescription].content = value;
             weakSelf.dataArray[SGDetailItemDescription].rowHeight = 0;
-            [weakSelf save];
+            [weakSelf saveAndReload];
         }];
     }
     return _editorViewController;
@@ -142,15 +142,15 @@ typedef NS_ENUM(NSInteger, SGDetailItem) {
     _model.deadline = date;
     
     _dataArray[SGDetailItemDeadline].content = [DateUtil dateString:_model.deadline withFormat:@"yyyy.MM.dd HH:mm"];
-    [self save];
+    [self saveAndReload];
     
     return YES;
 }
 
 #pragma mark - private methods
 
-- (void)save {
-    if (![_dataManager isModifiedTodo:_model]) return [SGHelper errorAlertWithMessage:@"Saving failed, please try again"];
+- (void)saveAndReload {
+    if (![_dataManager isModifiedTodo:_model]) return;
     [self.tableView reloadData];
     
     [[NSNotificationCenter defaultCenter] postNotificationName:kTaskChangedNotification object:self];

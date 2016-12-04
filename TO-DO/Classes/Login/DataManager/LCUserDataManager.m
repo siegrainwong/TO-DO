@@ -103,7 +103,7 @@ LCUserDataManager ()
 - (BOOL)validate:(LCUser*)user
 {
     // remove whitespaces
-    user.name = [user.name stringByRemovingUnneccessaryWhitespaces];
+    user.name = [user.name stringByRemovingUnnecessaryWhitespaces];
     user.email = [user.email stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceAndNewlineCharacterSet]];
     user.password = [user.password stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceAndNewlineCharacterSet]];
 

@@ -13,11 +13,15 @@
 /**
  *  当同步完成一批时发送通知
  */
-static NSString* const kFinishedSyncInOneBatchNotification = @"kFinishedSyncInOneBatch";
+static NSString *const kFinishedSyncInOneBatchNotification = @"kFinishedSyncInOneBatch";
 /**
  *  当待办事项数据发生变更时发送通知
  */
-static NSString* const kTaskChangedNotification = @"kTaskChangedNotification";
+static NSString *const kTaskChangedNotification = @"kTaskChangedNotification";
+
+/**************************************** 约束 */
+static NSUInteger const kMaxLengthOfTitle = 50;
+static NSUInteger const kMaxLengthOfDescription = 1000;
 
 /**************************************** 全局枚举*/
 /**
@@ -27,24 +31,24 @@ typedef NS_ENUM(NSInteger, AVObjectFilterType) {
     /**
 	 *  不筛选
 	 */
-    AVObjectFilterTypeNone,
+            AVObjectFilterTypeNone,
     /**
 	 *  筛选有objectId的
 	 */
-    AVObjectFilterTypeHasObjectId,
+            AVObjectFilterTypeHasObjectId,
     /**
 	 *  筛选没有objectId的
 	 */
-    AVObjectFilterTypeNoObjectId
+            AVObjectFilterTypeNoObjectId
 };
 /* 待办事项状态 */
 typedef NS_ENUM(NSInteger, TodoStatus) {
     /* 普通 */
-    TodoStatusNormal,
+            TodoStatusNormal,
     /* 延迟 */
-    TodoStatusSnoozed,
+            TodoStatusSnoozed,
     /* 过期 */
-    TodoStatusOverdue
+            TodoStatusOverdue
 };
 /**
  *  同步类型
@@ -53,24 +57,24 @@ typedef NS_ENUM(NSInteger, SyncType) {
     /**
 	 *  增量同步（只同步客户端和服务器不同的部分）
 	 */
-    SyncTypeIncrementalSync,
+            SyncTypeIncrementalSync,
     /**
 	 *  提交变更（上传客户端中被修改过的数据）
 	 */
-    SyncTypeSendChanges,
+            SyncTypeSendChanges,
     /**
 	 *  全量同步（同步所有数据并对差异数据进行对比）
 	 */
-    SyncTypeFullSync
+            SyncTypeFullSync
 };
 /* 同步状态 */
 typedef NS_ENUM(NSInteger, SyncStatus) {
     /* 等待同步 */
-    SyncStatusWaiting,
+            SyncStatusWaiting,
     /* 同步中 */
-    SyncStatusSynchronizing,
+            SyncStatusSynchronizing,
     /* 同步完成 */
-    SyncStatusSynchronized
+            SyncStatusSynchronized
 };
 
 #endif /* Constants_h */

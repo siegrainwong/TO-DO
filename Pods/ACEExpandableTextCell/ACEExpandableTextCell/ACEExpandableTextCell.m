@@ -128,6 +128,11 @@
 
 - (void)textViewDidChange:(UITextView *)theTextView
 {
+    //Modified: ACEExpandableTextCell 增加代理方法
+    if ([self.expandableTableView.delegate respondsToSelector:@selector(textViewDidChange:)]) {
+        [(id <ACEExpandableTableViewDelegate>) self.expandableTableView.delegate textViewDidChange:theTextView];
+    }
+    
     if ([self.expandableTableView.delegate conformsToProtocol:@protocol(ACEExpandableTableViewDelegate)]) {
         
         id<ACEExpandableTableViewDelegate> delegate = (id<ACEExpandableTableViewDelegate>)self.expandableTableView.delegate;

@@ -20,7 +20,7 @@
 /* 最大显示行数 */
 @property(nonatomic, assign) NSUInteger maxLineCount;
 /* 当前高度 */
-@property(nonatomic, assign) CGFloat height;
+@property(nonatomic, readonly, assign) CGFloat currentHeight;
 
 /*
  * 以下方法必须在外部对应的代理方法中调用

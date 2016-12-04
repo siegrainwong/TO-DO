@@ -90,7 +90,6 @@ MRTodoDataManager ()
     return (BOOL) [CDTodo MR_countOfEntitiesWithPredicate:[NSPredicate predicateWithFormat:@"user = %@ AND isHidden = %@ AND deadline >= %@ AND deadline <= %@", user, @(NO), date, [date dateByAddingTimeInterval:kTimeIntervalDay]]];
 }
 
-#pragma mark - insertion
 #pragma mark - commit
 
 - (BOOL)isInsertedTodo:(CDTodo *)todo {
@@ -107,20 +106,34 @@ MRTodoDataManager ()
     return YES;
 }
 
+- (BOOL)isModifiedTodo:(CDTodo *)todo {
+    _model = todo;
+    if (![self validate]) return NO;
+    
+    [[GCDQueue globalQueueWithLevel:DISPATCH_QUEUE_PRIORITY_DEFAULT] sync:^{
+        todo.syncStatus = @(SyncStatusWaiting);
+        todo.syncVersion = @([todo.syncVersion integerValue] + 1);
+        todo.updatedAt = [NSDate date];
+        MR_saveAndWait();
+    }];
+    
+    return YES;
+}
+
 #pragma mark - validate
 
 - (BOOL)validate {
     // 暂时不做正则验证
     // remove whitespaces
-    _model.title = [_model.title stringByRemovingUnneccessaryWhitespaces];
-    _model.sgDescription = [_model.sgDescription stringByRemovingUnneccessaryWhitespaces];
+    _model.title = [_model.title stringByRemovingUnnecessaryWhitespaces];
+    _model.sgDescription = [_model.sgDescription stringByRemovingUnnecessaryWhitespaces];
     
     // title validation
     if (!_model.title.length) {
         [SCLAlertHelper errorAlertWithContent:_localDictionary[kTitleInvalidKey]];
         return NO;
     }
-    if ([SCLAlertHelper errorAlertValidateLengthWithString:_model.title minLength:1 maxLength:30 alertName:NSLocalizedString(@"Title", nil)]) {
+    if ([SCLAlertHelper errorAlertValidateLengthWithString:_model.title minLength:1 maxLength:kMaxLengthOfTitle alertName:NSLocalizedString(@"Title", nil)]) {
         return NO;
     }
     
@@ -131,7 +144,7 @@ MRTodoDataManager ()
         return NO;
     }
     // description validation
-    if ([SCLAlertHelper errorAlertValidateLengthWithString:_model.sgDescription minLength:0 maxLength:200 alertName:NSLocalizedString(@"Description", nil)]) {
+    if ([SCLAlertHelper errorAlertValidateLengthWithString:_model.sgDescription minLength:0 maxLength:kMaxLengthOfDescription alertName:NSLocalizedString(@"Description", nil)]) {
         return NO;
     }
     
@@ -151,21 +164,6 @@ MRTodoDataManager ()
         }
         _model.photoPath = imagePath;
     }
-    
-    return YES;
-}
-
-#pragma mark - modify
-
-- (BOOL)isModifiedTodo:(CDTodo *)todo {
-    [[GCDQueue globalQueueWithLevel:DISPATCH_QUEUE_PRIORITY_DEFAULT] sync:^{
-        todo.syncStatus = @(SyncStatusWaiting);
-        todo.syncVersion = @([todo.syncVersion integerValue] + 1);
-        todo.updatedAt = [NSDate date];
-        MR_saveAndWait();
-    }];
-    
-    [self syncIfNeeded];
     
     return YES;
 }

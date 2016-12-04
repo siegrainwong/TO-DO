@@ -33,6 +33,9 @@
 - (BOOL)tableView:(UITableView *)tableView textView:(UITextView*)textView shouldChangeTextInRange:(NSRange)range replacementText:(NSString *)text;
 - (void)tableView:(UITableView *)tableView textViewDidChangeSelection:(UITextView*)textView;
 - (void)tableView:(UITableView *)tableView textViewDidEndEditing:(UITextView*)textView;
+
+//Modified: ACEExpandableTextCell 增加代理方法
+- (void)tableView:(UITableView *)tableView textViewDidChange:(UITextView*)textView;
 @end
 
 #pragma mark -

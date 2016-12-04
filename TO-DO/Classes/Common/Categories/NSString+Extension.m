@@ -10,18 +10,17 @@
 #import <CommonCrypto/CommonDigest.h>
 
 @implementation NSString (Extension)
-- (NSString*)stringByRemovingUnneccessaryWhitespaces
-{
-    NSCharacterSet* whitespaces = [NSCharacterSet whitespaceCharacterSet];
-    NSPredicate* noEmptyStrings = [NSPredicate predicateWithFormat:@"SELF != ''"];
-
-    NSArray* parts = [self componentsSeparatedByCharactersInSet:whitespaces];
-    NSArray* filteredArray = [parts filteredArrayUsingPredicate:noEmptyStrings];
-
+- (NSString *)stringByRemovingUnnecessaryWhitespaces {
+    NSCharacterSet *whitespaces = [NSCharacterSet whitespaceCharacterSet];
+    NSPredicate *noEmptyStrings = [NSPredicate predicateWithFormat:@"SELF != ''"];
+    
+    NSArray *parts = [self componentsSeparatedByCharactersInSet:whitespaces];
+    NSArray *filteredArray = [parts filteredArrayUsingPredicate:noEmptyStrings];
+    
     return [filteredArray componentsJoinedByString:@" "];
 }
-- (NSInteger)bytesFromString
-{
+
+- (NSInteger)bytesFromString {
     int unicode = 0;
     for (int i = 0; i < [self length]; i++) {
         int a = [self characterAtIndex:i];

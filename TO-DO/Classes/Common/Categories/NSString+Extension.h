@@ -14,7 +14,7 @@
  *
  *  @return <#return value description#>
  */
-- (NSString*)stringByRemovingUnneccessaryWhitespaces;
+- (NSString*)stringByRemovingUnnecessaryWhitespaces;
 /**
  *  获取字符串的字节数（ASCII占1位，Unicode等中文字符占2位）
  *

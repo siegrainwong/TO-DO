@@ -5,6 +5,7 @@ target "TO-DO" do
   pod 'AMapSearch', '~> 4.3.0'
   pod 'AMapLocation', '~> 2.1.0'
   pod 'AVOSCloud', '~> 3.2.9'
+  pod 'ACEExpandableTextCell', '~> 1.0.4'
 
   pod 'FSCalendar', :git => "https://github.com/Seanwong933/FSCalendar.git"
 
@@ -34,5 +35,4 @@ target "TO-DO" do
   pod 'JMRoundedCorner'
   pod 'BEMCheckBox'
   pod 'SSDynamicText'
-  pod 'ACEExpandableTextCell'
 end

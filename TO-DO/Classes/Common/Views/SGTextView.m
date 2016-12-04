@@ -11,6 +11,14 @@
 
 @implementation SGTextView
 
+#pragma mark - accessors
+
+- (void)setText:(NSString *)text {
+    [super setText:text];
+
+//    [self updateTextViewHeight:self];
+}
+
 #pragma mark - release
 
 - (void)dealloc {
@@ -36,6 +44,12 @@
 
 - (void)bindConstraints {
     
+}
+
+- (void)layoutSubviews {
+    [super layoutSubviews];
+    
+    [self updateTextViewHeight:self];
 }
 
 #pragma mark - textview delegate
@@ -100,7 +114,7 @@
     if (_maxLineCount && lineCount > _maxLineCount) return;
     
     CGFloat increase = (lineCount - 1) * lineHeight;
-//    increase = !increase ?: increase + 5;
-    [_container mas_updateConstraints:^(MASConstraintMaker *make) {make.height.offset(_containerInitialHeight + increase);}];
+    _currentHeight = _containerInitialHeight + increase;
+    [_container mas_updateConstraints:^(MASConstraintMaker *make) {make.height.offset(_currentHeight);}];
 }
 @end

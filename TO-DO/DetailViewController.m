@@ -3,13 +3,17 @@
 // Copyright (c) 2016 com.siegrain. All rights reserved.
 //
 
+#import <RTRootNavigationController/RTRootNavigationController.h>
 #import "DetailViewController.h"
 #import "BEMCheckBox.h"
 #import "CDTodo.h"
 #import "DetailTableViewController.h"
 #import "SGTextView.h"
+#import "SGTextEditorViewController.h"
+#import "MRTodoDataManager.h"
+#import "NSNotificationCenter+Extension.h"
 
-//Mark: 这个长度要根据字号来调整，如果不够的话可能会造成无法提行的Bu
+//Mark: 这个长度要根据字号来调整，如果不够的话可能会造成无法提行的Bug
 static CGFloat const kTitleTextViewHeight = 40;
 static CGFloat const kCheckBoxHeight = 38;
 static CGFloat const kOffset = 10;
@@ -18,13 +22,13 @@ static NSUInteger const kMaxLength = 50;
 @interface DetailViewController () <UITextViewDelegate>
 @property(nonatomic, strong) CDTodo *model;
 
-@property(nonatomic, strong) UIView *container;
 @property(nonatomic, strong) UIView *titleContainer;
 
 @property(nonatomic, strong) BEMCheckBox *checkBox;
 @property(nonatomic, strong) SGTextView *titleTextView;
 @property(nonatomic, strong) DetailTableViewController *tableViewController;
 
+@property(nonatomic, strong) MRTodoDataManager *dataManager;
 @property(nonatomic, assign) CGFloat tableViewHeight;
 @end
 
@@ -51,16 +55,16 @@ static NSUInteger const kMaxLength = 50;
         [weakSelf.tableView mas_updateConstraints:^(MASConstraintMaker *make) {
             make.height.offset(weakSelf.tableViewHeight);
         }];
-        
-        [weakSelf.container mas_updateConstraints:^(MASConstraintMaker *make) {
-            make.height.offset(weakSelf.height);
-        }];
     }];
 }
 
 - (CGFloat)height {
     CGFloat height = self.titleContainerHeight + self.tableViewHeight;
-    return height > kScreenHeight ? kScreenHeight : height;
+    return height > self.maxHeight ? self.maxHeight : height;
+}
+
+- (CGFloat)maxHeight {
+    return kScreenHeight - 20;
 }
 
 - (UITableView *)tableView {
@@ -68,7 +72,8 @@ static NSUInteger const kMaxLength = 50;
 }
 
 - (CGFloat)titleContainerHeight {
-    return kOffset * 2 + kTitleTextViewHeight;
+    CGFloat titleTextViewHeight =_titleTextView.currentHeight >= kTitleTextViewHeight ?: kTitleTextViewHeight;
+    return kOffset * 2 + titleTextViewHeight;
 }
 
 #pragma mark - initial
@@ -84,15 +89,14 @@ static NSUInteger const kMaxLength = 50;
 - (void)setupViews {
     [super setupViews];
     
+    [NSNotificationCenter attachKeyboardObservers:self keyboardWillShowSelector:@selector(keyboardWillShow:) keyboardWillHideSelector:@selector(keyboardWillHide:)];
+    _dataManager = [MRTodoDataManager new];
+    
     self.view.backgroundColor = [UIColor clearColor];
     
-    _container = [UIView new];
-    _container.backgroundColor = [UIColor whiteColor];
-    [self.view addSubview:_container];
-    
     _titleContainer = [UIView new];
-//    _titleContainer.backgroundColor = [UIColor redColor];
-    [_container addSubview:_titleContainer];
+    _titleContainer.backgroundColor = [UIColor whiteColor];
+    [self.view addSubview:_titleContainer];
     
     _checkBox = [BEMCheckBox new];
     _checkBox.onTintColor = [SGHelper themeColorRed];
@@ -104,7 +108,6 @@ static NSUInteger const kMaxLength = 50;
     [_titleContainer addSubview:_checkBox];
     
     _titleTextView = [SGTextView new];
-//    _titleTextView.backgroundColor = [UIColor greenColor];
     _titleTextView.delegate = self;
     _titleTextView.container = _titleContainer;
     _titleTextView.containerInitialHeight = self.titleContainerHeight;
@@ -117,20 +120,21 @@ static NSUInteger const kMaxLength = 50;
     
     _tableViewController = [DetailTableViewController new];
     [self addChildViewController:_tableViewController];
-    [_container addSubview:_tableViewController.view];
+    [self.view addSubview:_tableViewController.view];
 }
 
 - (void)bindConstraints {
     [super bindConstraints];
     
-    [_container mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.left.right.bottom.offset(0);
-        make.height.offset(self.height);
+    [self.tableView mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.bottom.left.right.offset(0);
+        make.height.offset(CGFLOAT_MIN);
     }];
     
     [_titleContainer mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.top.left.right.offset(0);
+        make.left.right.offset(0);
         make.height.offset(self.titleContainerHeight);
+        make.bottom.equalTo(self.tableView.mas_top).offset(0);
     }];
     
     [_checkBox mas_makeConstraints:^(MASConstraintMaker *make) {
@@ -143,27 +147,52 @@ static NSUInteger const kMaxLength = 50;
         make.top.equalTo(_checkBox).offset(-2);
         make.right.bottom.offset(-kOffset);
     }];
-    
-    [self.tableView mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.top.equalTo(_titleContainer.mas_bottom).offset(0);
-        make.left.right.offset(0);
-        make.height.offset(CGFLOAT_MIN);
-    }];
 }
 
 #pragma mark - textview
 
 - (BOOL)textView:(UITextView *)textView shouldChangeTextInRange:(NSRange)range replacementText:(NSString *)text {
-    if ([text isEqualToString:@"\n"]) { //return时关掉键盘，不提行
-        [self.view endEditing:YES];
-        return NO;
-    }
-    
     return [_titleTextView textView:textView shouldChangeTextInRange:range replacementText:text];
 }
 
 - (void)textViewDidChange:(UITextView *)textView {
-    return [_titleTextView textViewDidChange:textView];
+    [_titleTextView textViewDidChange:textView];
 }
 
+- (BOOL)textViewShouldEndEditing:(UITextView *)textView {
+    _model.title = textView.text;
+    [self save];
+    
+    return YES;
+}
+
+#pragma mark - keyboard
+
+- (void)keyboardWillShow:(NSNotification *)notification {
+    CGSize keyboardSize = [notification.userInfo[UIKeyboardFrameEndUserInfoKey] CGRectValue].size;
+    [self animateByKeyboard:YES height:keyboardSize.height];
+}
+
+- (void)keyboardWillHide:(NSNotification *)notification {
+    CGSize keyboardSize = [notification.userInfo[UIKeyboardFrameEndUserInfoKey] CGRectValue].size;
+    [self animateByKeyboard:NO height:keyboardSize.height];
+}
+
+- (void)animateByKeyboard:(BOOL)isShow height:(CGFloat)height {
+    if(!_titleTextView.isFirstResponder) return;
+    
+    [_tableViewController.view mas_updateConstraints:^(MASConstraintMaker *make) {
+        make.bottom.offset(isShow ? -height + self.tableViewHeight : CGFLOAT_MIN);
+    }];
+    
+    [UIView animateWithDuration:.3 animations:^{[self.view layoutIfNeeded];}];
+}
+
+#pragma mark - private methods
+
+- (void)save {
+    if (![_dataManager isModifiedTodo:_model]) return;
+    
+    [[NSNotificationCenter defaultCenter] postNotificationName:kTaskChangedNotification object:self];
+}
 @end

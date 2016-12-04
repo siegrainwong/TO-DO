@@ -5,9 +5,11 @@
 
 #import "SGBaseTableViewController.h"
 
-typedef void (^SGTextEditorSavedBlock)(NSString* value);
+typedef void (^SGTextEditorSavedBlock)(NSString *value);
 
 @interface SGTextEditorViewController : SGBaseTableViewController
-@property (nonatomic, strong) NSString* value;
-@property (nonatomic, copy) SGTextEditorSavedBlock editorDidSave;
+@property(nonatomic, strong) NSString *value;
+@property(nonatomic, copy) SGTextEditorSavedBlock editorDidSave;
+@property(nonatomic, assign) NSUInteger maxLength;
+@property(nonatomic, assign) BOOL nullable;
 @end
