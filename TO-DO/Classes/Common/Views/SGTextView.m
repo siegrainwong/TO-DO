@@ -30,6 +30,7 @@
 }
 
 - (void)setupViews {
+    self.textContainer.lineBreakMode = NSLineBreakByCharWrapping;
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(textChanged:) name:UITextViewTextDidChangeNotification object:nil];
 }
 
@@ -99,6 +100,7 @@
     if (_maxLineCount && lineCount > _maxLineCount) return;
     
     CGFloat increase = (lineCount - 1) * lineHeight;
+//    increase = !increase ?: increase + 5;
     [_container mas_updateConstraints:^(MASConstraintMaker *make) {make.height.offset(_containerInitialHeight + increase);}];
 }
 @end

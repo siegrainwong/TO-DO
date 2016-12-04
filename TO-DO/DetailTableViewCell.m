@@ -24,10 +24,6 @@ static CGFloat const kSpacingY = 14;
 @implementation DetailTableViewCell
 #pragma mark - accessors
 
-- (NSInteger)cellStyle {
-    return self.reuseIdentifier.integerValue;
-}
-
 - (void)setModel:(DetailModel *)model {
     _model = model;
     
@@ -89,7 +85,7 @@ static CGFloat const kSpacingY = 14;
     CGPoint space = CGPointMake(19, kSpacingY);
     
     _iconView.sd_layout
-            .leftSpaceToView(self.contentView, space.x)
+            .leftSpaceToView(self.contentView, space.x + 2)
             .topSpaceToView(self.contentView, space.y)
             .heightIs(kIconSize)
             .widthEqualToHeight();

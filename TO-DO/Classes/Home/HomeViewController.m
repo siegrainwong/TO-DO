@@ -15,7 +15,7 @@
 
 // TODO: 搜索功能
 // TODO: 导航栏不透明时，需要把+号按钮添加到导航栏上。
-// FIXME: 我的6P启动时会有一两秒黑屏，黑屏时间似乎和同步的准备同步时间相同
+// FIXME: 我的6P启动时会有一两秒黑屏，黑屏时间似乎和同步的准备同步时间相同，应该是有什么阻塞主线程了
 // FIXME: HeaderView释放不了了，莫名其妙的
 
 // Mark: 这里为了让Section能够挂在NavigationBar之下，设置了HeaderView的IgnoreInset属性忽略了NavigationBar的64Inset

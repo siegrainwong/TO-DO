@@ -69,7 +69,7 @@ typedef NS_ENUM(NSInteger, SGDetailItem) {
     [super setupViews];
     
     self.dataManager = [MRTodoDataManager new];
-    [self setSeparatorInsetWithTableView:self.tableView inset:UIEdgeInsetsMake(0, 55, 0, 0)];
+    [self setSeparatorInsetWithTableView:self.tableView inset:UIEdgeInsetsMake(0, 58, 0, 0)];
     
     [self.tableView registerClass:[DetailTableViewCell class] forCellReuseIdentifier:@(DetailCellStyleMap).stringValue];
     [self.tableView registerClass:[DetailTableViewCell class] forCellReuseIdentifier:@(DetailCellStylePhoto).stringValue];

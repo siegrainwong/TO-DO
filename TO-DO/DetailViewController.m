@@ -9,9 +9,9 @@
 #import "DetailTableViewController.h"
 #import "SGTextView.h"
 
-static CGFloat const kCheckBoxHeight = 35;
-static CGFloat const kTitleHeight = 35;
-//static CGFloat const kTableHeight = 350;
+//Mark: 这个长度要根据字号来调整，如果不够的话可能会造成无法提行的Bu
+static CGFloat const kTitleTextViewHeight = 40;
+static CGFloat const kCheckBoxHeight = 38;
 static CGFloat const kOffset = 10;
 static NSUInteger const kMaxLength = 50;
 
@@ -68,7 +68,7 @@ static NSUInteger const kMaxLength = 50;
 }
 
 - (CGFloat)titleContainerHeight {
-    return kOffset * 2 + kTitleHeight;
+    return kOffset * 2 + kTitleTextViewHeight;
 }
 
 #pragma mark - initial
@@ -91,6 +91,7 @@ static NSUInteger const kMaxLength = 50;
     [self.view addSubview:_container];
     
     _titleContainer = [UIView new];
+//    _titleContainer.backgroundColor = [UIColor redColor];
     [_container addSubview:_titleContainer];
     
     _checkBox = [BEMCheckBox new];
@@ -103,6 +104,7 @@ static NSUInteger const kMaxLength = 50;
     [_titleContainer addSubview:_checkBox];
     
     _titleTextView = [SGTextView new];
+//    _titleTextView.backgroundColor = [UIColor greenColor];
     _titleTextView.delegate = self;
     _titleTextView.container = _titleContainer;
     _titleTextView.containerInitialHeight = self.titleContainerHeight;
@@ -149,12 +151,10 @@ static NSUInteger const kMaxLength = 50;
     }];
 }
 
-
 #pragma mark - textview
 
 - (BOOL)textView:(UITextView *)textView shouldChangeTextInRange:(NSRange)range replacementText:(NSString *)text {
-    //return时关掉键盘，不提行
-    if ([text isEqualToString:@"\n"]) {
+    if ([text isEqualToString:@"\n"]) { //return时关掉键盘，不提行
         [self.view endEditing:YES];
         return NO;
     }

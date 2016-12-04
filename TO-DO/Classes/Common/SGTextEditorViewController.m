@@ -18,6 +18,7 @@ SGTextEditorViewController () <ACEExpandableTableViewDelegate, SGNavigationBar>
     [super viewWillAppear:animated];
     
     [self setupNavigationBar];
+    [self setSeparatorInsetZeroWithTableView:self.tableView];
 }
 
 - (void)viewDidAppear:(BOOL)animated {
@@ -31,7 +32,6 @@ SGTextEditorViewController () <ACEExpandableTableViewDelegate, SGNavigationBar>
     
     self.navigationItem.rightBarButtonItem.title = Localized(@"Save");
     self.tableView.backgroundColor = ColorWithRGB(0xEEEEEE);
-    [self setSeparatorInsetZeroWithTableView:self.tableView];
 }
 
 - (void)bindConstraints {
