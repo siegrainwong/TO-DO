@@ -49,6 +49,37 @@
     return @"Todo";
 }
 
+#pragma mark - public methods
+
+- (void)markAsModified {
+    self.syncStatus = @(SyncStatusWaiting);
+    self.syncVersion = @([self.syncVersion integerValue] + 1);
+    self.updatedAt = [NSDate date];
+}
+
+#pragma mark - save photo
+
+- (BOOL)saveImage {
+    if (!self.photoData) return false;
+    
+    NSString *folderPath = [SGHelper photoPath];
+    NSFileManager *manager = [NSFileManager defaultManager];
+    
+    NSError *error = nil;
+    if (![manager fileExistsAtPath:folderPath]) {
+        [manager createDirectoryAtPath:folderPath withIntermediateDirectories:YES attributes:nil error:&error];
+    }
+    NSString *imagePath = [NSString stringWithFormat:@"%@/%@.jpg", [SGHelper photoPath], self.identifier];
+    if (![self.photoData writeToFile:imagePath atomically:YES]) {
+        return NO;
+    }
+    self.photoPath = imagePath;
+    
+    [self markAsModified];
+    
+    return YES;
+}
+
 #pragma mark - convert LCTodo to CDTodo
 
 + (instancetype)cdTodoWithLCTodo:(LCTodo *)lcTodo inContext:(NSManagedObjectContext *)context {

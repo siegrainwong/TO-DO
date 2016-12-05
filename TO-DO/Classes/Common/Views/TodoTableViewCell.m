@@ -6,6 +6,7 @@
 //  Copyright © 2016年 com.siegrain. All rights reserved.
 //
 
+#import <SDAutoLayout/UITableView+SDAutoTableViewCellHeight.h>
 #import "CDTodo.h"
 #import "NSDateFormatter+Extension.h"
 #import "SDWebImageManager.h"
@@ -14,6 +15,7 @@
 #import "UIView+SDAutoLayout.h"
 #import "ZLIconLabel.h"
 #import "UIImage+Compression.h"
+#import "UIKit+AFNetworking.h"
 
 static NSInteger const kButtonSize = 45;
 static CGFloat const kSlideItemWidth = 60;
@@ -52,10 +54,16 @@ TodoTableViewCell ()
         model.photoImage = [UIImage imageWithContentsOfFile:[NSString stringWithFormat:@"%@/%@.jpg", [SGHelper photoPath], model.identifier]];
         [_photoButton setImage:[model.photoImage jm_imageWithRoundedCornersAndSize:CGSizeMake(kButtonSize, kButtonSize) andCornerRadius:kButtonSize / 2] forState:UIControlStateNormal];
     } else if (model.photoUrl) {
-        SDImageDownload(model.photoUrl, ^(UIImage *image) {
-            model.photoImage = image;
-            [weakSelf.photoButton setImage:[model.photoImage jm_imageWithRoundedCornersAndSize:CGSizeMake(kButtonSize, kButtonSize) andCornerRadius:kButtonSize / 2] forState:UIControlStateNormal];
-        });
+        [_photoButton setImageForState:UIControlStateNormal withURL:[NSURL URLWithString:model.photoUrl]];
+//        SDImageDownload(model.photoUrl, ^(UIImage *image) {
+//            __strong __typeof(self) strongSelf = weakSelf;
+//            model.photoImage = image;
+//            [model saveImage];
+//            MR_saveAndWait();
+//            NSLog(@"mother fucker.");
+//            //[weakSelf.sd_tableView reloadRowsAtIndexPaths:@[[weakSelf.sd_tableView indexPathForCell:self]] withRowAnimation:UITableViewRowAnimationNone];
+//            [strongSelf.photoButton setImage:[model.photoImage jm_imageWithRoundedCornersAndSize:CGSizeMake(kButtonSize, kButtonSize) andCornerRadius:kButtonSize / 2] forState:UIControlStateNormal];
+//        });
     }
     
     // Mark: 苹果的智障框架，系统是24小时制就打印不出12小时，非要设置地区，且该地区只能转换为12小时制
@@ -169,15 +177,15 @@ TodoTableViewCell ()
     
     __weak typeof(self) weakSelf = self;
     MGSwipeButton *completeButton = [MGSwipeButton buttonWithTitle:@"" icon:[UIImage imageNamed:@"check"] backgroundColor:[SGHelper themeColorCyan] callback:^BOOL(MGSwipeTableCell *sender) {
-        if(weakSelf.todoDidSwipe) return _todoDidSwipe(weakSelf, TodoSwipeOperationComplete);
+        if (weakSelf.todoDidSwipe) return _todoDidSwipe(weakSelf, TodoSwipeOperationComplete);
         return NO;
     }];
     MGSwipeButton *snoozeButton = [MGSwipeButton buttonWithTitle:@"" icon:[UIImage imageNamed:@"clock"] backgroundColor:[SGHelper themeColorBrown] callback:^BOOL(MGSwipeTableCell *sender) {
-        if(weakSelf.todoDidSwipe) return _todoDidSwipe(weakSelf, TodoSwipeOperationSnooze);
+        if (weakSelf.todoDidSwipe) return _todoDidSwipe(weakSelf, TodoSwipeOperationSnooze);
         return NO;
     }];
     MGSwipeButton *removeButton = [MGSwipeButton buttonWithTitle:@"" icon:[UIImage imageNamed:@"cross"] backgroundColor:[UIColor redColor] callback:^BOOL(MGSwipeTableCell *sender) {
-        if(weakSelf.todoDidSwipe) return _todoDidSwipe(weakSelf, TodoSwipeOperationRemove);
+        if (weakSelf.todoDidSwipe) return _todoDidSwipe(weakSelf, TodoSwipeOperationRemove);
         return NO;
     }];
     

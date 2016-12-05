@@ -83,7 +83,7 @@ LoginView ()
 - (void)debug {
     //FIXME: 这个通过info.plist的判断贼傻逼，以后换掉...
     if ([InfoDictionary(@"IsDebugging") boolValue]) {
-        _usernameTextField.field.text = @"siegrain@qq.com";
+        _usernameTextField.field.text = @"siegrain@gmail.com";
         _passwordTextField.field.text = @"Weck33";
     }
 }

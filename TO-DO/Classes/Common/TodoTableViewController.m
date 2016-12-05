@@ -20,6 +20,8 @@
 #import "ZFModalTransitionAnimator.h"
 #import "DetailViewController.h"
 
+//FIXME: 尝试将cell图片弄到外部加载
+
 @interface
 TodoTableViewController ()
 
@@ -141,8 +143,11 @@ TodoTableViewController ()
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
     TodoTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:kTodoIdentifierArray[TodoIdentifierNormal] forIndexPath:indexPath];
-    [self configureCell:cell atIndexPath:indexPath];
     return cell;
+}
+
+- (void)tableView:(UITableView *)tableView willDisplayCell:(UITableViewCell *)cell forRowAtIndexPath:(NSIndexPath *)indexPath {
+    [self configureCell:cell atIndexPath:indexPath];
 }
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {

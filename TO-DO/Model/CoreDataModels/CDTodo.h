@@ -26,6 +26,10 @@ NS_ASSUME_NONNULL_BEGIN
 /* 位置 */
 @property(nonatomic, strong) SGCoordinate *coordinate;
 
+- (void)markAsModified;
+
+- (BOOL)saveImage;
+
 /**
  *  已新建实体的方式用lcTodo创建cdTodo
  */

@@ -111,10 +111,10 @@ MRTodoDataManager ()
     if (![self validate]) return NO;
     
     [[GCDQueue globalQueueWithLevel:DISPATCH_QUEUE_PRIORITY_DEFAULT] sync:^{
-        todo.syncStatus = @(SyncStatusWaiting);
-        todo.syncVersion = @([todo.syncVersion integerValue] + 1);
-        todo.updatedAt = [NSDate date];
+        [todo markAsModified];
         MR_saveAndWait();
+        
+        [self syncIfNeeded];
     }];
     
     return YES;
@@ -150,19 +150,10 @@ MRTodoDataManager ()
     
     // 存储照片，如果失败了返回
     if (_model.photoData) {
-        NSString *folderPath = [SGHelper photoPath];
-        NSFileManager *manager = [NSFileManager defaultManager];
-        
-        NSError *error = nil;
-        if (![manager fileExistsAtPath:folderPath]) {
-            [manager createDirectoryAtPath:folderPath withIntermediateDirectories:YES attributes:nil error:&error];
-        }
-        NSString *imagePath = [NSString stringWithFormat:@"%@/%@.jpg", [SGHelper photoPath], _model.identifier];
-        if (![_model.photoData writeToFile:imagePath atomically:YES]) {
+        if (![_model saveImage]) {
             [SCLAlertHelper errorAlertWithContent:_localDictionary[kPhotoSaveFailedKey]];
             return NO;
         }
-        _model.photoPath = imagePath;
     }
     
     return YES;
@@ -178,7 +169,7 @@ MRTodoDataManager ()
     NSMutableArray *arguments = [NSMutableArray new];
     NSString *predicateFormat = [@"user = %@ and isHidden = %@" stringByAppendingString:isComplete ? @" and isCompleted = %@" : @""];
     [arguments addObjectsFromArray:@[user, @(NO)]];
-    if(isComplete) [arguments addObject:isComplete];
+    if (isComplete) [arguments addObject:isComplete];
     if (date) {
         predicateFormat = [predicateFormat stringByAppendingString:@" and deadline >= %@ and deadline <= %@"];
         [arguments addObjectsFromArray:@[date, [date dateByAddingTimeInterval:kTimeIntervalDay]]];

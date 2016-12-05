@@ -16,6 +16,7 @@
 #import "NSObject+PropertyName.h"
 #import "UIImage+RoundedCorner.h"
 #import "UIView+RoundedCorner.h"
+#import "GCDQueue.h"
 
 //启用自动同步
 #define ENABLE_AUTOMATIC_SYNC
@@ -37,8 +38,9 @@
 #define kScreenWidth ([[UIScreen mainScreen] bounds].size.width)
 #define kScreenHeight ([[UIScreen mainScreen] bounds].size.height)
 
-//判断网络状态
-#define isNetworkUnreachable ([AppDelegate globalDelegate].reachability.currentReachabilityStatus == RealStatusNotReachable)
+//判断网络状态，这鬼东西太不稳定了，暂时直接请求
+//#define isNetworkUnreachable ([AppDelegate globalDelegate].reachability.currentReachabilityStatus == RealStatusNotReachable)
+#define isNetworkUnreachable NO
 
 //获取属性名
 #define PropertyName(object, property) ([object stringWithProperty:property])
@@ -73,7 +75,7 @@
 
 /*======图片区  */
 //下载图片
-#define SDImageDownload(url, success) ([[SDWebImageManager sharedManager] downloadImageWithURL:[NSURL URLWithString:url] options:SDWebImageRetryFailed | SDWebImageLowPriority progress:nil completed:^(UIImage * image, NSError * error, SDImageCacheType cacheType, BOOL finished, NSURL * imageURL) { if(finished) success(image); }])
+#define SDImageDownload(url, success) ([[SDWebImageManager sharedManager] downloadImageWithURL:[NSURL URLWithString:url] options:SDWebImageRetryFailed | SDWebImageLowPriority progress:nil completed:^(UIImage * image, NSError * error, SDImageCacheType cacheType, BOOL finished, NSURL * imageURL) { [[GCDQueue mainQueue] async:^{ if(finished) success(image); }]; }])
 
 //下载图片并返回圆角图
 #define SDImageDownloadWithRoundedCorner(url, size, cornerSize, success) (SDImageDownload(url, ^(UIImage * image) { image = [image jm_imageWithRoundedCornersAndSize:CGSizeMake(size, size) andCornerRadius:cornerSize]; success(image); }))

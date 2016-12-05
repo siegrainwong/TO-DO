@@ -8,6 +8,8 @@
 #import "SGBaseMapViewController.h"
 #import "DetailModel.h"
 #import "SDWebImageManager.h"
+#import "GCDQueue.h"
+#import "UIImageView+WebCache.h"
 
 static CGFloat const kIconSize = 18;
 static CGFloat const kSpacingY = 14;
@@ -40,9 +42,7 @@ static CGFloat const kSpacingY = 14;
     if (model.photoPath) {
         _photoView.image = [UIImage imageWithContentsOfFile:[NSString stringWithFormat:@"%@/%@.jpg", [SGHelper photoPath], model.identifier]];
     } else if (model.photoUrl) {
-        SDImageDownload(model.photoUrl, ^(UIImage *image) {
-            weakSelf.photoView.image = image;
-        });
+        [_photoView sd_setImageWithURL:[NSURL URLWithString:model.photoUrl]];
     }
     
     _mapViewController.coordinate = model.location;
