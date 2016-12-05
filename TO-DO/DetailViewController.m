@@ -17,7 +17,7 @@ static CGFloat const kCheckBoxHeight = 38;
 static CGFloat const kOffset = 10;
 static NSUInteger const kMaxLength = 50;
 
-@interface DetailViewController () <UITextViewDelegate>
+@interface DetailViewController () <UITextViewDelegate, BEMCheckBoxDelegate>
 @property(nonatomic, strong) CDTodo *model;
 
 @property(nonatomic, strong) UIView *titleContainer;
@@ -58,7 +58,7 @@ static NSUInteger const kMaxLength = 50;
     [_titleTextView setTextViewDidUpdateHeight:^(CGFloat height) {
         CGFloat overHeight = weakSelf.maxHeight - weakSelf.titleContainerHeight - weakSelf.tableViewHeight;
         if (overHeight >= 0) return;
-    
+        
         weakSelf.overHeight = fabsf(overHeight);
         [weakSelf.tableView mas_updateConstraints:^(MASConstraintMaker *make) {
             make.height.offset(weakSelf.tableViewHeight - weakSelf.overHeight);
@@ -113,6 +113,7 @@ static NSUInteger const kMaxLength = 50;
     _checkBox.animationDuration = .2;
     _checkBox.onAnimationType = _checkBox.offAnimationType = BEMAnimationTypeFill;
     _checkBox.lineWidth = 1;
+    _checkBox.delegate = self;
     [_titleContainer addSubview:_checkBox];
     
     _titleTextView = [SGTextView new];
@@ -171,6 +172,14 @@ static NSUInteger const kMaxLength = 50;
     [self save];
     
     return YES;
+}
+
+#pragma mark - checkbox
+
+- (void)didTapCheckBox:(BEMCheckBox *)checkBox {
+    _model.isCompleted = @(checkBox.on);
+    _model.completedAt = checkBox.on ? [NSDate date] : nil;
+    [self save];
 }
 
 #pragma mark - keyboard

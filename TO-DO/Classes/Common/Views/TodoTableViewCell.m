@@ -20,14 +20,14 @@ static CGFloat const kSlideItemWidth = 60;
 
 @interface
 TodoTableViewCell ()
-@property(nonatomic, readwrite, assign) UIEdgeInsets cellInsets;
-@property(nonatomic, readwrite, assign) TodoIdentifier identifier;
-@property(nonatomic, readwrite, strong) UILabel *timeLabel;
-@property(nonatomic, readwrite, strong) UILabel *meridiemLabel;
-@property(nonatomic, readwrite, strong) UIButton *photoButton;
-@property(nonatomic, readwrite, strong) ZLIconLabel *todoTitleLabel;
-@property(nonatomic, readwrite, strong) UILabel *todoContentLabel;
-@property(nonatomic, readwrite, strong) UIButton *statusButton;
+@property(nonatomic, assign) UIEdgeInsets cellInsets;
+@property(nonatomic, assign) TodoIdentifier identifier;
+@property(nonatomic, strong) UILabel *timeLabel;
+@property(nonatomic, strong) UILabel *meridiemLabel;
+@property(nonatomic, strong) UIButton *photoButton;
+@property(nonatomic, strong) UILabel *todoTitleLabel;
+@property(nonatomic, strong) UILabel *todoContentLabel;
+@property(nonatomic, strong) UIButton *statusButton;
 @end
 
 @implementation TodoTableViewCell
@@ -66,7 +66,7 @@ TodoTableViewCell ()
     _meridiemLabel.text = [[formatter stringFromDate:_model.deadline] lowercaseString];
     
     _todoTitleLabel.text = _model.title;
-    _todoTitleLabel.icon = [UIImage imageWithImage:model.generalAddress ? [UIImage imageNamed:@"location"] : [UIImage new] scaledToSize:CGSizeMake(15, 15)];
+//    _todoTitleLabel.icon = [UIImage imageWithImage:model.generalAddress ? [UIImage imageNamed:@"location"] : [UIImage new] scaledToSize:CGSizeMake(15, 15)];
     _todoContentLabel.text = _model.sgDescription;
     
     NSString *statusImageName = _model.isCompleted.boolValue ? @"status-complete" : [NSString stringWithFormat:@"status-%d", _model.status.intValue];
@@ -95,10 +95,10 @@ TodoTableViewCell ()
     _photoButton = [UIButton new];
     [self.contentView addSubview:_photoButton];
     
-    _todoTitleLabel = [ZLIconLabel new];
+    _todoTitleLabel = [UILabel new];
     _todoTitleLabel.textAlignment = NSTextAlignmentLeft;
-    _todoTitleLabel.iconPosition = ZLIconLabelPositionRight;
-    _todoTitleLabel.iconPadding = 5;
+//    _todoTitleLabel.iconPosition = ZLIconLabelPositionRight;
+//    _todoTitleLabel.iconPadding = 5;
     _todoTitleLabel.font = [SGHelper themeFontWithSize:18];
     [self.contentView addSubview:_todoTitleLabel];
     
