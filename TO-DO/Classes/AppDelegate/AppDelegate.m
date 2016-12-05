@@ -72,11 +72,11 @@ static BOOL const kEnableViewControllerStateHolder = YES;
     [self setupNetworkEye];
     [self setupDDLog];
     [self setupMagicRecord];
-    [self setupUser];
     [self setupLeanCloud];
     [self setupReachability];
     [self setupAmap];
     [self setupDrawerViewController];
+    [self setupUser];
     NSLog(@"%@", [self sandboxUrl]);
     
     [UIApplication sharedApplication].statusBarStyle = UIStatusBarStyleLightContent;
@@ -85,7 +85,6 @@ static BOOL const kEnableViewControllerStateHolder = YES;
     
     // validate user's login state
     if (_lcUser) {
-        DDLogInfo(@"当前用户：%@", _lcUser.username);
         [self switchRootViewController:[HomeViewController new] isNavigation:YES key:[AppDelegate homeViewControllerKey]];
         [self synchronize:SyncModeAutomatically];
     } else {
@@ -98,6 +97,8 @@ static BOOL const kEnableViewControllerStateHolder = YES;
 - (void)setupUser {
     _lcUser = [LCUser currentUser];
     if (_lcUser) _cdUser = [CDUser userWithLCUser:_lcUser];
+    
+    DDLogInfo(@"当前用户：%@", _lcUser.username);
 }
 
 - (void)setupNetworkEye {
@@ -198,8 +199,10 @@ static BOOL const kEnableViewControllerStateHolder = YES;
 #pragma mark - public methods
 
 - (void)logOut {
-    [_stateHolder removeAllObjects];
     [LCUser logOut];
+    _cdUser = nil;
+    
+    [_stateHolder removeAllObjects];
     [self setCenterViewController:[UIViewController new] key:nil];
     LoginViewController *loginViewController = [LoginViewController new];
     [self switchRootViewController:loginViewController isNavigation:NO key:nil];

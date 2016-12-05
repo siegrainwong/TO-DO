@@ -170,8 +170,8 @@ static NSInteger const kMaximumSyncCountPerFetch = 100;
     
     ApplicationNetworkIndicatorVisible(YES);
     
-    if (!_lcUser) _lcUser = [AppDelegate globalDelegate].lcUser;
-    if (!_cdUser) _cdUser = [AppDelegate globalDelegate].cdUser;
+    _lcUser = [AppDelegate globalDelegate].lcUser;
+    _cdUser = [AppDelegate globalDelegate].cdUser;
     
     _recordMark = [[NSUUID UUID] UUIDString];
     
@@ -542,6 +542,9 @@ static NSInteger const kMaximumSyncCountPerFetch = 100;
     _synchronizedCount = 0;
     _recordMark = nil;
     _lastCreateTimeDictionary = [NSMutableDictionary new];
+    _cdUser = nil;
+    _lcUser = nil;
+    
     ApplicationNetworkIndicatorVisible(NO);
 }
 

@@ -13,6 +13,8 @@
 #import "MRTodoDataManager.h"
 #import "RTRootNavigationController.h"
 #import "SGTextEditorViewController.h"
+#import "SGBaseMapViewController.h"
+#import "SGImageUpload.h"
 
 typedef NS_ENUM(NSInteger, SGDetailItem) {
     SGDetailItemDeadline,
@@ -21,7 +23,7 @@ typedef NS_ENUM(NSInteger, SGDetailItem) {
     SGDetailItemPhoto
 };
 
-@interface DetailTableViewController () <HSDatePickerViewControllerDelegate>
+@interface DetailTableViewController () <HSDatePickerViewControllerDelegate, UINavigationControllerDelegate, UIImagePickerControllerDelegate>
 @property(nonatomic, strong) CDTodo *model;
 @property(nonatomic, strong) NSArray<DetailModel *> *dataArray;
 @property(nonatomic, assign) CGFloat cellsTotalHeight;
@@ -120,10 +122,50 @@ typedef NS_ENUM(NSInteger, SGDetailItem) {
         self.editorViewController.value = _model.sgDescription;
         [self presentViewController:rootNavigationController animated:YES completion:nil];
     } else if (indexPath.row == SGDetailItemLocation) {
+        SGBaseMapViewController *viewController = [SGBaseMapViewController new];
+        viewController.isEditing = YES;
+        viewController.coordinate = _model.coordinate;
+        __weak __typeof(self) weakSelf = self;
+        [viewController setBlock:^(SGCoordinate *coordinate) {
+            weakSelf.model.coordinate = coordinate;
+            weakSelf.model.longitude = @(coordinate.longitude);
+            weakSelf.model.latitude = @(coordinate.latitude);
+            weakSelf.model.generalAddress = coordinate.generalAddress;
+            weakSelf.model.explicitAddress = coordinate.explicitAddress;
+            
+            DetailModel *model = weakSelf.dataArray[SGDetailItemLocation];
+            model.rowHeight = 0;
+            model.content = coordinate.address;
+            model.location = coordinate;
+            
+            [weakSelf saveAndReload];
+        }];
         
+        RTRootNavigationController *rootNavigationController = [[RTRootNavigationController alloc] initWithRootViewController:viewController];
+        rootNavigationController.modalPresentationStyle = UIModalPresentationPopover;
+        [self presentViewController:rootNavigationController animated:YES completion:nil];
     } else if (indexPath.row == SGDetailItemPhoto) {
-        
+        [SGHelper photoPickerFromTarget:self];
     }
+}
+
+#pragma mark - imagePicker delegate
+
+- (void)imagePickerController:(UIImagePickerController *)picker didFinishPickingMediaWithInfo:(NSDictionary<NSString *, id> *)info {
+    _model.photoData = [SGImageUpload dataWithImage:info[UIImagePickerControllerEditedImage] type:SGImageTypePhoto quality:kSGDefaultImageQuality];
+    _model.photoImage = [UIImage imageWithData:_model.photoData];
+    
+    DetailModel *model = self.dataArray[SGDetailItemPhoto];
+    model.photoPath = _model.photoPath;
+    model.rowHeight = 0;
+            
+    [picker dismissViewControllerAnimated:true completion:nil];
+    
+    [self saveAndReload];
+}
+
+- (void)imagePickerControllerDidCancel:(UIImagePickerController *)picker {
+    [picker dismissViewControllerAnimated:true completion:nil];
 }
 
 #pragma mark - date time picker
@@ -151,6 +193,8 @@ typedef NS_ENUM(NSInteger, SGDetailItem) {
 
 - (void)saveAndReload {
     if (![_dataManager isModifiedTodo:_model]) return;
+    
+    _cellsTotalHeight = 0;
     [self.tableView reloadData];
     
     [[NSNotificationCenter defaultCenter] postNotificationName:kTaskChangedNotification object:self];
