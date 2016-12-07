@@ -18,4 +18,11 @@
 - (NSString *)identifierAtIndexPath:(NSIndexPath *)indexPath;
 - (NSObject *)modelAtIndexPath:(NSIndexPath *)indexPath;
 - (void)configureCell:(UITableViewCell *)cell atIndexPath:(NSIndexPath *)indexPath;
+
+/*返回对应IndexPath下的图片URL*/
+- (NSString *)imageUrlAtIndexPath:(NSIndexPath *)indexPath;
+/*返回对应IndexPath下的图片Path*/
+- (NSString *)imagePathAtIndexPath:(NSIndexPath *)indexPath;
+/*加载完图片后调用*/
+- (void)shouldDisplayImage:(UIImage *)image onCell:(UITableViewCell *)cell atIndexPath:(NSIndexPath *)indexPath;
 @end

@@ -46,24 +46,19 @@ TodoTableViewCell ()
     return self;
 }
 
+- (void)setCellImage:(UIImage *)cellImage {
+    _cellImage = cellImage;
+    
+    _model.photoImage = cellImage;
+    [_photoButton setImage:[cellImage jm_imageWithRoundedCornersAndSize:CGSizeMake(kButtonSize, kButtonSize) andCornerRadius:kButtonSize / 2] forState:UIControlStateNormal];
+}
+
 - (void)setModel:(CDTodo *)model {
     _model = model;
     
     __weak __typeof(self) weakSelf = self;
-    if (model.photoPath) {
-        model.photoImage = [UIImage imageWithContentsOfFile:[NSString stringWithFormat:@"%@/%@.jpg", [SGHelper photoPath], model.identifier]];
+    if(model.photoImage){
         [_photoButton setImage:[model.photoImage jm_imageWithRoundedCornersAndSize:CGSizeMake(kButtonSize, kButtonSize) andCornerRadius:kButtonSize / 2] forState:UIControlStateNormal];
-    } else if (model.photoUrl) {
-        [_photoButton setImageForState:UIControlStateNormal withURL:[NSURL URLWithString:model.photoUrl]];
-//        SDImageDownload(model.photoUrl, ^(UIImage *image) {
-//            __strong __typeof(self) strongSelf = weakSelf;
-//            model.photoImage = image;
-//            [model saveImage];
-//            MR_saveAndWait();
-//            NSLog(@"mother fucker.");
-//            //[weakSelf.sd_tableView reloadRowsAtIndexPaths:@[[weakSelf.sd_tableView indexPathForCell:self]] withRowAnimation:UITableViewRowAnimationNone];
-//            [strongSelf.photoButton setImage:[model.photoImage jm_imageWithRoundedCornersAndSize:CGSizeMake(kButtonSize, kButtonSize) andCornerRadius:kButtonSize / 2] forState:UIControlStateNormal];
-//        });
     }
     
     // Mark: 苹果的智障框架，系统是24小时制就打印不出12小时，非要设置地区，且该地区只能转换为12小时制

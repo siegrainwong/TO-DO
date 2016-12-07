@@ -143,11 +143,8 @@ TodoTableViewController ()
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
     TodoTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:kTodoIdentifierArray[TodoIdentifierNormal] forIndexPath:indexPath];
-    return cell;
-}
-
-- (void)tableView:(UITableView *)tableView willDisplayCell:(UITableViewCell *)cell forRowAtIndexPath:(NSIndexPath *)indexPath {
     [self configureCell:cell atIndexPath:indexPath];
+    return cell;
 }
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
@@ -186,6 +183,31 @@ TodoTableViewController ()
     if (_style == TodoTableViewControllerStyleCalendar && indexPath.section == 1) return;   //已完成的任务暂时不需要滑动操作
     [self setupCellEvents:cell];
 }
+
+#pragma mark - image loader
+
+- (NSString *)imageUrlAtIndexPath:(NSIndexPath *)indexPath {
+    return [(CDTodo *) [self modelAtIndexPath:indexPath] photoUrl];
+}
+
+- (NSString *)imagePathAtIndexPath:(NSIndexPath *)indexPath {
+    CDTodo *model = [self modelAtIndexPath:indexPath];
+    if (!model.photoPath) return nil;
+    
+    return [NSString stringWithFormat:@"%@/%@.jpg", [SGHelper photoPath], [(CDTodo *) [self modelAtIndexPath:indexPath] identifier]];
+}
+
+- (void)shouldDisplayImage:(UIImage *)image onCell:(TodoTableViewCell *)cell atIndexPath:(NSIndexPath *)indexPath {
+    cell.cellImage = image;
+    
+    CDTodo *model = [self modelAtIndexPath:indexPath];
+    if (!model.photoImage) {
+        model.photoImage = image;
+        [model saveImage];
+        MR_saveAndWait();
+    }
+}
+
 
 #pragma mark - swipe left cell events
 
