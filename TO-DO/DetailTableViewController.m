@@ -47,8 +47,8 @@ typedef NS_ENUM(NSInteger, SGDetailItem) {
             weakSelf.model.sgDescription = value;
             weakSelf.dataArray[SGDetailItemDescription].content = value;
             weakSelf.dataArray[SGDetailItemDescription].rowHeight = 0;
-            [weakSelf save];
-            [weakSelf.tableView reloadRowsAtIndexPaths:@[[NSIndexPath indexPathForRow:SGDetailItemDescription inSection:0]] withRowAnimation:UITableViewRowAnimationNone];
+            [weakSelf saveAndReload];
+//            [weakSelf.tableView reloadRowsAtIndexPaths:@[[NSIndexPath indexPathForRow:SGDetailItemDescription inSection:0]] withRowAnimation:UITableViewRowAnimationNone];
         }];
     }
     return _editorViewController;
@@ -194,12 +194,12 @@ typedef NS_ENUM(NSInteger, SGDetailItem) {
 
 - (void)saveAndReload {
     [self save];
+    
     [self.tableView reloadData];
 }
 
 - (void)save {
     if (![_dataManager isModifiedTodo:_model]) return;
-//    _cellsTotalHeight = 0;
     
     [[NSNotificationCenter defaultCenter] postNotificationName:kTaskChangedNotification object:self];
 }

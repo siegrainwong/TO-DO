@@ -117,6 +117,7 @@ static CGFloat const kSpacingY = 14;
         _contentLabel.sd_layout.maxHeightIs(0);
         bottomView = _photoView;
     } else if (_model.cellStyle == DetailCellStyleMap && _model.content) {
+        _contentLabel.sd_layout.maxHeightIs(55);
         _mapViewController.view.sd_layout.heightIs(150);
         bottomView = _mapViewController.view;
     } else {
