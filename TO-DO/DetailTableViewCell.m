@@ -37,8 +37,7 @@ static CGFloat const kSpacingY = 14;
         _contentLabel.text = model.placeholder;
         _contentLabel.textColor = [SGHelper subTextColor];
     }
-    
-    __weak __typeof(self) weakSelf = self;
+	
     if (model.photoPath) {
         _photoView.image = [UIImage imageWithContentsOfFile:[NSString stringWithFormat:@"%@/%@.jpg", [SGHelper photoPath], model.identifier]];
     } else if (model.photoUrl) {
@@ -121,6 +120,7 @@ static CGFloat const kSpacingY = 14;
         _mapViewController.view.sd_layout.heightIs(150);
         bottomView = _mapViewController.view;
     } else {
+        _contentLabel.sd_layout.maxHeightIs(55);
         bottomView = _contentLabel;
     }
     
