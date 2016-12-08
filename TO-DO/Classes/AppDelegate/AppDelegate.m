@@ -77,6 +77,7 @@ static BOOL const kEnableViewControllerStateHolder = YES;
     [self setupAmap];
     [self setupDrawerViewController];
     [self setupUser];
+    [[UINavigationBar appearance] setShadowImage:[UIImage new]];
     NSLog(@"%@", [self sandboxUrl]);
     
     [UIApplication sharedApplication].statusBarStyle = UIStatusBarStyleLightContent;

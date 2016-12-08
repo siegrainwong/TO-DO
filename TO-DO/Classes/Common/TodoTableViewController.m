@@ -21,8 +21,6 @@
 #import "DetailViewController.h"
 #import "SGSearchBar.h"
 
-//FIXME: 尝试将cell图片弄到外部加载
-
 @interface
 TodoTableViewController () <UISearchBarDelegate, SGNavigationBar>
 
@@ -84,6 +82,7 @@ TodoTableViewController () <UISearchBarDelegate, SGNavigationBar>
         self.navigationItem.rightBarButtonItem = nil;
         _searchBar = [SGSearchBar searchBar];
         _searchBar.delegate = self;
+        _searchBar.placeholder = Localized(@"Search title\\description or location");
         self.tableView.tableHeaderView = _searchBar;
     }
 }
