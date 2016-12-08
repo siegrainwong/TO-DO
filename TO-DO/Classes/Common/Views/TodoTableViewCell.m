@@ -56,10 +56,8 @@ TodoTableViewCell ()
 - (void)setModel:(CDTodo *)model {
     _model = model;
     
-    __weak __typeof(self) weakSelf = self;
-    if(model.photoImage){
-        [_photoButton setImage:[model.photoImage jm_imageWithRoundedCornersAndSize:CGSizeMake(kButtonSize, kButtonSize) andCornerRadius:kButtonSize / 2] forState:UIControlStateNormal];
-    }
+    if (model.photoPath) model.photoImage = [UIImage imageWithContentsOfFile:[NSString stringWithFormat:@"%@/%@.jpg", [SGHelper photoPath], model.identifier]];
+    if (model.photoImage) [_photoButton setImage:[model.photoImage jm_imageWithRoundedCornersAndSize:CGSizeMake(kButtonSize, kButtonSize) andCornerRadius:kButtonSize / 2] forState:UIControlStateNormal];
     
     // Mark: 苹果的智障框架，系统是24小时制就打印不出12小时，非要设置地区，且该地区只能转换为12小时制
     NSDateFormatter *formatter = [NSDateFormatter dateFormatterWithFormatString:@"h"];

@@ -198,14 +198,14 @@ TodoTableViewController ()
 }
 
 - (void)shouldDisplayImage:(UIImage *)image onCell:(TodoTableViewCell *)cell atIndexPath:(NSIndexPath *)indexPath {
-    cell.cellImage = image;
-    
     CDTodo *model = [self modelAtIndexPath:indexPath];
     if (!model.photoImage) {
         model.photoImage = image;
         [model saveImage];
         MR_saveAndWait();
     }
+    
+    cell.cellImage = image;
 }
 
 
