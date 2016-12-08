@@ -82,7 +82,7 @@ TodoTableViewController () <UISearchBarDelegate, SGNavigationBar>
         self.navigationItem.rightBarButtonItem = nil;
         _searchBar = [SGSearchBar searchBar];
         _searchBar.delegate = self;
-        _searchBar.placeholder = Localized(@"Search title\\description or location");
+        _searchBar.placeholder = Localized(@"Search title/description/location");
         self.tableView.tableHeaderView = _searchBar;
     }
 }
