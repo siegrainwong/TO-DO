@@ -20,7 +20,7 @@ NS_ASSUME_NONNULL_BEGIN
 /* 存储NSData */
 @property(nonatomic, strong) NSData *photoData;
 /* 缓存表格单元高度 */
-@property(nonatomic, assign) CGFloat cellHeight;
+@property(nonatomic, assign) CGFloat rowHeight;
 /* 指示该待办事项是否在重新排序中 */
 @property(nonatomic, assign) BOOL isReordering;
 /* 位置 */

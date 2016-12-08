@@ -51,7 +51,7 @@ MRTodoDataManager ()
 #pragma mark - retrieve
 
 - (void)tasksWithUser:(CDUser *)user complete:(retrieveResult)complete {
-    NSPredicate *filter = [self predicateWithUser:user date:nil isComplete:@(NO)];
+    NSPredicate *filter = [self predicateWithUser:user date:nil keyword:nil isComplete:@(NO)];
     NSArray<CDTodo *> *data = [CDTodo MR_findAllSortedBy:@"deadline" ascending:YES withPredicate:filter];
     
     NSInteger dataCount = data.count;
@@ -73,15 +73,37 @@ MRTodoDataManager ()
 }
 
 - (void)tasksWithUser:(CDUser *)user date:(NSDate *)date complete:(retrieveResult)complete {
-    NSPredicate *filter = [self predicateWithUser:user date:date isComplete:@(NO)];
+    NSPredicate *filter = [self predicateWithUser:user date:date keyword:nil isComplete:@(NO)];
     NSArray<CDTodo *> *tasks = [CDTodo MR_findAllSortedBy:@"deadline" ascending:YES withPredicate:filter];
-    filter = [self predicateWithUser:user date:date isComplete:@(YES)];
+    filter = [self predicateWithUser:user date:date keyword:nil isComplete:@(YES)];
     NSArray<CDTodo *> *completedTasks = [CDTodo MR_findAllSortedBy:@"completedAt" ascending:YES withPredicate:filter];
     
     NSInteger dataCount = tasks.count + completedTasks.count;
     NSMutableDictionary *dataDictionary = [NSMutableDictionary new];
     dataDictionary[kDataNotCompleteTaskKey] = tasks;
     dataDictionary[kDataCompletedTaskKey] = completedTasks;
+    
+    return complete(YES, [dataDictionary copy], dataCount);
+}
+
+- (void)tasksWithUser:(CDUser *)user keyword:(NSString *)keyword complete:(retrieveResult)complete {
+    NSPredicate *filter = [self predicateWithUser:user date:nil keyword:keyword isComplete:nil];
+    NSArray<CDTodo *> *data = [CDTodo MR_findAllSortedBy:@"deadline" ascending:YES withPredicate:filter];
+    
+    NSInteger dataCount = data.count;
+    NSMutableDictionary *dataDictionary = [NSMutableDictionary new];
+    
+    NSMutableArray *dataInSameDay;
+    NSString *dateString;
+    for (CDTodo *todo in data) {
+        NSString *newDateString = todo.deadline.stringInYearMonthDay;
+        if (![dateString isEqualToString:newDateString]) {
+            dateString = newDateString;
+            dataInSameDay = [NSMutableArray new];
+            dataDictionary[todo.deadline] = dataInSameDay;
+        }
+        [dataInSameDay addObject:todo];
+    }
     
     return complete(YES, [dataDictionary copy], dataCount);
 }
@@ -165,7 +187,7 @@ MRTodoDataManager ()
     [[GCDQueue mainQueue] async:^{[[AppDelegate globalDelegate] synchronize:SyncModeAutomatically];}];
 }
 
-- (NSPredicate *)predicateWithUser:(CDUser *)user date:(NSDate *)date isComplete:(NSNumber *)isComplete {
+- (NSPredicate *)predicateWithUser:(CDUser *)user date:(NSDate *)date keyword:(NSString *)keyword isComplete:(NSNumber *)isComplete {
     NSMutableArray *arguments = [NSMutableArray new];
     NSString *predicateFormat = [@"user = %@ and isHidden = %@" stringByAppendingString:isComplete ? @" and isCompleted = %@" : @""];
     [arguments addObjectsFromArray:@[user, @(NO)]];
@@ -173,6 +195,10 @@ MRTodoDataManager ()
     if (date) {
         predicateFormat = [predicateFormat stringByAppendingString:@" and deadline >= %@ and deadline <= %@"];
         [arguments addObjectsFromArray:@[date, [date dateByAddingTimeInterval:kTimeIntervalDay]]];
+    }
+    if (keyword) {
+        predicateFormat = [predicateFormat stringByAppendingString:@" and (sgDescription CONTAINS %@ or title CONTAINS %@ or explicitAddress CONTAINS %@ or generalAddress CONTAINS %@)"];
+        [arguments addObjectsFromArray:@[keyword, keyword, keyword, keyword]];
     }
     NSPredicate *filter = [NSPredicate predicateWithFormat:predicateFormat argumentArray:[arguments copy]];
     return filter;

@@ -14,7 +14,6 @@
 #import "UIButton+WebCache.h"
 
 // TODO: 搜索功能
-// TODO: 导航栏不透明时，需要把+号按钮添加到导航栏上。
 // FIXME: 我的6P启动时会有一两秒黑屏，黑屏时间似乎和同步的准备同步时间相同，应该是有什么阻塞主线程了
 // FIXME: HeaderView释放不了了，莫名其妙的
 
@@ -24,6 +23,7 @@
 HomeViewController () <UINavigationControllerDelegate, UIImagePickerControllerDelegate>
 @property(nonatomic, strong) TodoTableViewController *todoTableViewController;
 @property(nonatomic, assign) BOOL isOpacityNavigation;
+@property(nonatomic, strong) UIButton *addButton;
 @end
 
 @implementation HomeViewController
@@ -62,8 +62,17 @@ HomeViewController () <UINavigationControllerDelegate, UIImagePickerControllerDe
     
     __weak typeof(self) weakSelf = self;
     
+    _addButton = [UIButton new];
+    _addButton.tintColor = [UIColor whiteColor];
+    _addButton.frame = CGRectMake(0, 0, 20, 20);
+    _addButton.titleLabel.font = [SGHelper themeFontNavBar];
+    [_addButton setImage:[UIImage imageNamed:@"nav_add"] forState:UIControlStateNormal];
+    [_addButton addTarget:self action:@selector(showCreateViewController) forControlEvents:UIControlEventTouchUpInside];
+    [self.navigationItem setRightBarButtonItems:@[[[UIBarButtonItem alloc] initWithCustomView:self.rightNavigationButton], [[UIBarButtonItem alloc] initWithCustomView:_addButton]] animated:NO];
+    
     self.titleLabel.textAlignment = NSTextAlignmentCenter;
     self.titleLabel.alpha = 0;
+    _addButton.alpha = 0;
     
     self.headerView = [SGHeaderView headerViewWithAvatarPosition:HeaderAvatarPositionCenter titleAlignement:HeaderTitleAlignmentCenter];
     self.headerView.subtitleLabel.text = [SGHelper localizedFormatDate:[NSDate date]];
@@ -72,10 +81,7 @@ HomeViewController () <UINavigationControllerDelegate, UIImagePickerControllerDe
     [self.headerView setImage:[UIImage imageAtResourcePath:@"header bg"] style:HeaderMaskStyleLight];
     [self.headerView setHeaderViewDidPressAvatarButton:^{[SGHelper photoPickerFromTarget:weakSelf];}];
     [self.headerView setHeaderViewDidPressRightOperationButton:^{
-        CreateViewController *createViewController = [CreateViewController new];
-        [createViewController setSelectedDate:[[NSDate date] dateByAddingTimeInterval:60 * 10]];
-        [createViewController setCreateViewControllerDidFinishCreate:^(CDTodo *model) {model.photoImage = [model.photoImage imageAddCornerWithRadius:model.photoImage.size.width / 2 andSize:model.photoImage.size];}];
-        [weakSelf.navigationController pushViewController:createViewController animated:YES];
+        [weakSelf showCreateViewController];
     }];
     
     _todoTableViewController = [TodoTableViewController new];
@@ -120,6 +126,14 @@ HomeViewController () <UINavigationControllerDelegate, UIImagePickerControllerDe
     [picker dismissViewControllerAnimated:true completion:nil];
 }
 
+#pragma mark - events
+
+- (void)showCreateViewController {
+    CreateViewController *createViewController = [CreateViewController new];
+    [createViewController setSelectedDate:[[NSDate date] dateByAddingTimeInterval:60 * 10]];
+    [createViewController setCreateViewControllerDidFinishCreate:^(CDTodo *model) {model.photoImage = [model.photoImage imageAddCornerWithRadius:model.photoImage.size.width / 2 andSize:model.photoImage.size];}];
+    [self.navigationController pushViewController:createViewController animated:YES];
+}
 
 #pragma mark - retrieve data
 
@@ -142,6 +156,7 @@ HomeViewController () <UINavigationControllerDelegate, UIImagePickerControllerDe
         [UIView animateWithDuration:.3 animations:^{
             self.titleLabel.text = self.headerView.titleLabel.text;
             self.titleLabel.alpha = 1;
+            _addButton.alpha = 1;
         }];
     } else if (alpha != 1 && _isOpacityNavigation) {
         _isOpacityNavigation = NO;
@@ -149,6 +164,7 @@ HomeViewController () <UINavigationControllerDelegate, UIImagePickerControllerDe
         [UIView animateWithDuration:.3 animations:^{
             self.titleLabel.text = nil;
             self.titleLabel.alpha = 0;
+            _addButton.alpha = 0;
         }];
     }
 }

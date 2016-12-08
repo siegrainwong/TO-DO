@@ -13,7 +13,8 @@
 
 typedef NS_ENUM(NSInteger, TodoTableViewControllerStyle) {
     TodoTableViewControllerStyleHome,
-    TodoTableViewControllerStyleCalendar
+    TodoTableViewControllerStyleCalendar,
+    TodoTableViewControllerStyleSearch
 };
 
 @protocol TodoTableViewControllerDelegate <NSObject>

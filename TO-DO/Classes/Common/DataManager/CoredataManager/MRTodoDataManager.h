@@ -18,6 +18,8 @@ typedef void (^retrieveResult)(BOOL succeed, NSDictionary *data, NSInteger count
 /* retrieve */
 - (void)tasksWithUser:(CDUser *)user complete:(retrieveResult)complete;
 - (void)tasksWithUser:(CDUser *)user date:(NSDate *)date complete:(retrieveResult)complete;
+- (void)tasksWithUser:(CDUser *)user keyword:(NSString *)keyword complete:(retrieveResult)complete;
+
 - (BOOL)hasDataWithDate:(NSDate*)date user:(CDUser*)user;
 
 /* modify */

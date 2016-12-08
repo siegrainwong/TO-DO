@@ -13,7 +13,7 @@
 
 @implementation CDTodo
 @synthesize photoImage = _photoImage;
-@synthesize cellHeight = _cellHeight;
+@synthesize rowHeight = _rowHeight;
 @synthesize isReordering = _isReordering;
 @synthesize photoData = _photoData;
 @synthesize coordinate = _coordinate;

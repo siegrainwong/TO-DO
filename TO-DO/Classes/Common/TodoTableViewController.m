@@ -19,11 +19,12 @@
 #import "EmptyDataView.h"
 #import "ZFModalTransitionAnimator.h"
 #import "DetailViewController.h"
+#import "SGSearchBar.h"
 
 //FIXME: 尝试将cell图片弄到外部加载
 
 @interface
-TodoTableViewController ()
+TodoTableViewController () <UISearchBarDelegate, SGNavigationBar>
 
 @property(nonatomic, strong) HSDatePickerViewController *datePickerViewController;
 @property(nonatomic, strong) MRTodoDataManager *dataManager;
@@ -36,6 +37,8 @@ TodoTableViewController ()
 @property(nonatomic, strong) NSTimer *timer;
 
 @property(nonatomic, strong) ZFModalTransitionAnimator *animator;
+
+@property(nonatomic, strong) SGSearchBar *searchBar;
 @end
 
 @implementation TodoTableViewController
@@ -75,6 +78,14 @@ TodoTableViewController ()
     
     [self.tableView registerClass:[TodoTableViewCell class] forCellReuseIdentifier:kTodoIdentifierArray[TodoIdentifierNormal]];
     [self setSeparatorInsetZeroWithTableView:self.tableView];
+    
+    if (_style == TodoTableViewControllerStyleSearch) {
+        [self setupNavigationBar];
+        self.navigationItem.rightBarButtonItem = nil;
+        _searchBar = [SGSearchBar searchBar];
+        _searchBar.delegate = self;
+        self.tableView.tableHeaderView = _searchBar;
+    }
 }
 
 #pragma mark - retrieve data
@@ -113,9 +124,9 @@ TodoTableViewController ()
 
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath {
     CDTodo *model = [self modelAtIndexPath:indexPath];
-    if (!model.cellHeight) model.cellHeight = [tableView cellHeightForIndexPath:indexPath model:model keyPath:@"model" cellClass:[TodoTableViewCell class] contentViewWidth:kScreenWidth];
+    if (!model.rowHeight) model.rowHeight = [tableView cellHeightForIndexPath:indexPath model:model keyPath:@"model" cellClass:[TodoTableViewCell class] contentViewWidth:kScreenWidth];
     
-    return model.cellHeight;
+    return model.rowHeight;
 }
 
 - (CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section {
@@ -129,10 +140,10 @@ TodoTableViewController ()
 
 - (UIView *)tableView:(UITableView *)tableView viewForHeaderInSection:(NSInteger)section {
     TodoHeaderCell *header = [TodoHeaderCell headerCell];
-    if (_style == TodoTableViewControllerStyleHome)
-        header.text = [DateUtil dateString:_sectionArray[section] withFormat:@"MMM d"];
-    else if (_style == TodoTableViewControllerStyleCalendar)
+    if (_style == TodoTableViewControllerStyleCalendar)
         header.text = _sectionArray[section];
+    else
+        header.text = [DateUtil dateString:_sectionArray[section] withFormat:@"MMM d"];
     
     return header;
 }
@@ -277,6 +288,8 @@ TodoTableViewController ()
     [self setupTimer];
     
     if ([_delegate respondsToSelector:@selector(todoTableViewControllerDidReloadData)]) [_delegate todoTableViewControllerDidReloadData];
+    if (_style == TodoTableViewControllerStyleSearch) return;
+    
     if (!_dataCount) {
         EmptyDataView *emptyDataView = [[EmptyDataView alloc] initWithFrame:CGRectMake(0, 0, self.tableView.width, kScreenHeight - self.headerHeight)];
         self.tableView.backgroundColor = self.tableView.tableHeaderView.backgroundColor = [SGHelper themeColorLightGray];
@@ -333,5 +346,43 @@ TodoTableViewController ()
 
 - (void)scrollViewDidScroll:(UIScrollView *)scrollView {
     if ([_delegate respondsToSelector:@selector(todoTableViewDidScrollToY:)]) [_delegate todoTableViewDidScrollToY:scrollView.contentOffset.y];
+}
+
+#pragma mark - searchbar
+
+- (void)searchBar:(UISearchBar *)searchBar textDidChange:(NSString *)searchText {
+    __weak __typeof(self) weakSelf = self;
+    [_dataManager tasksWithUser:[AppDelegate globalDelegate].cdUser keyword:searchText complete:^(BOOL succeed, NSDictionary *data, NSInteger count) {
+        weakSelf.dataDictionary = [NSMutableDictionary dictionaryWithDictionary:data];
+        weakSelf.dataCount = count;
+        
+        NSArray *dateArrayOrder = [_dataDictionary.allKeys sortedArrayUsingComparator:^NSComparisonResult(NSDate *date1, NSDate *date2) {return [date1 compare:date2];}];
+        _sectionArray = [dateArrayOrder mutableCopy];
+        
+        [weakSelf reloadData];
+    }];
+}
+
+- (void)searchBarTextDidBeginEditing:(UISearchBar *)searchBar {
+    [searchBar setShowsCancelButton:YES animated:YES];
+    //Mark: 修改取消按钮文字
+    UIButton *btn = [searchBar valueForKey:@"_cancelButton"];
+    btn.tintColor = [UIColor whiteColor];
+    [btn setTitle:Localized(@"Cancel") forState:UIControlStateNormal];
+}
+
+- (void)searchBarTextDidEndEditing:(UISearchBar *)searchBar {
+    [searchBar setShowsCancelButton:NO animated:YES];
+}
+
+- (void)searchBarCancelButtonClicked:(UISearchBar *)searchBar {
+    [self.view endEditing:YES];
+    [searchBar setShowsCancelButton:NO animated:YES];
+}
+
+#pragma mark - events
+
+- (void)leftNavButtonDidPress {
+    [self dismissViewControllerAnimated:YES completion:nil];
 }
 @end

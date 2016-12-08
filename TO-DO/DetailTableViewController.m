@@ -48,7 +48,6 @@ typedef NS_ENUM(NSInteger, SGDetailItem) {
             weakSelf.dataArray[SGDetailItemDescription].content = value;
             weakSelf.dataArray[SGDetailItemDescription].rowHeight = 0;
             [weakSelf saveAndReload];
-//            [weakSelf.tableView reloadRowsAtIndexPaths:@[[NSIndexPath indexPathForRow:SGDetailItemDescription inSection:0]] withRowAnimation:UITableViewRowAnimationNone];
         }];
     }
     return _editorViewController;
@@ -143,7 +142,6 @@ typedef NS_ENUM(NSInteger, SGDetailItem) {
         }];
         
         RTRootNavigationController *rootNavigationController = [[RTRootNavigationController alloc] initWithRootViewController:viewController];
-        rootNavigationController.modalPresentationStyle = UIModalPresentationPopover;
         [self presentViewController:rootNavigationController animated:YES completion:nil];
     } else if (indexPath.row == SGDetailItemPhoto) {
         [SGHelper photoPickerFromTarget:self];

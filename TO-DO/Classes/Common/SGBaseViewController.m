@@ -10,6 +10,8 @@
 #import "SGBaseViewController.h"
 #import "UINavigationController+Transparent.h"
 #import "UIImage+Extension.h"
+#import "TodoTableViewController.h"
+#import "RTRootNavigationController.h"
 
 @implementation SGBaseViewController
 - (void)viewDidLoad {
@@ -56,7 +58,7 @@
     UIBarButtonItem *titleBarButtonItem = [[UIBarButtonItem alloc] initWithCustomView:_titleLabel];
     [self.navigationItem setLeftBarButtonItems:@[leftBarButtonItem, placeHolderBarButtonItem, titleBarButtonItem] animated:YES];
     
-    _rightNavigationButton = [[UIButton alloc] init];
+    _rightNavigationButton = [UIButton new];
     _rightNavigationButton.tintColor = [UIColor whiteColor];
     _rightNavigationButton.frame = CGRectMake(0, 0, 20, 20);
     _rightNavigationButton.titleLabel.font = [SGHelper themeFontNavBar];
@@ -74,6 +76,16 @@
     UISwipeGestureRecognizer *leftSwipeGestureRecognizer = [[UISwipeGestureRecognizer alloc] initWithTarget:self action:@selector(toggleDrawer)];
     leftSwipeGestureRecognizer.direction = UISwipeGestureRecognizerDirectionRight;
     [self.view addGestureRecognizer:leftSwipeGestureRecognizer];
+}
+
+#pragma mark - events
+- (void)rightNavButtonDidPress {
+    TodoTableViewController* controller = [TodoTableViewController new];
+    controller.style = TodoTableViewControllerStyleSearch;
+    controller.title = Localized(@"Search");
+    
+    RTRootNavigationController * navigationController = [[RTRootNavigationController alloc] initWithRootViewController:controller];
+    [self presentViewController:navigationController animated:YES completion:nil];
 }
 
 #pragma mark - drawer
