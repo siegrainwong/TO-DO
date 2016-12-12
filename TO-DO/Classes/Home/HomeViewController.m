@@ -20,7 +20,7 @@
 // Mark: 这里为了让Section能够挂在NavigationBar之下，设置了HeaderView的IgnoreInset属性忽略了NavigationBar的64Inset
 
 @interface
-HomeViewController () <UINavigationControllerDelegate, UIImagePickerControllerDelegate>
+HomeViewController ()
 @property(nonatomic, strong) TodoTableViewController *todoTableViewController;
 @property(nonatomic, assign) BOOL isOpacityNavigation;
 @property(nonatomic, strong) UIButton *addButton;
@@ -111,21 +111,6 @@ HomeViewController () <UINavigationControllerDelegate, UIImagePickerControllerDe
         make.width.offset(kScreenWidth);
         make.height.offset(self.headerHeight);
     }];
-}
-
-#pragma mark - imagePicker delegate
-
-- (void)imagePickerController:(UIImagePickerController *)picker didFinishPickingMediaWithInfo:(NSDictionary<NSString *, id> *)info {
-    UIImage *image = info[UIImagePickerControllerEditedImage];
-    [picker dismissViewControllerAnimated:true completion:nil];
-    __weak __typeof(self) weakSelf = self;
-    [CommonDataManager modifyAvatarWithImage:image block:^{
-        [weakSelf.headerView.avatarButton sd_setImageWithURL:GetPictureUrl(weakSelf.lcUser.avatar, kQiniuImageStyleSmall) forState:UIControlStateNormal];
-    }];
-}
-
-- (void)imagePickerControllerDidCancel:(UIImagePickerController *)picker {
-    [picker dismissViewControllerAnimated:true completion:nil];
 }
 
 #pragma mark - events

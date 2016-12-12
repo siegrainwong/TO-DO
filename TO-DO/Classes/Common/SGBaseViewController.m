@@ -6,12 +6,17 @@
 //  Copyright © 2016年 com.siegrain. All rights reserved.
 //
 
+#import <SDWebImage/UIButton+WebCache.h>
 #import "AppDelegate.h"
 #import "SGBaseViewController.h"
 #import "UINavigationController+Transparent.h"
 #import "UIImage+Extension.h"
 #import "TodoTableViewController.h"
 #import "RTRootNavigationController.h"
+#import "CommonDataManager.h"
+
+@interface SGBaseViewController()<UINavigationControllerDelegate, UIImagePickerControllerDelegate>
+@end
 
 @implementation SGBaseViewController
 - (void)viewDidLoad {
@@ -98,5 +103,20 @@
 
 - (void)hideKeyboard:(UITapGestureRecognizer *)recognizer {
     [self.view endEditing:YES];
+}
+
+#pragma mark - imagePicker delegate
+
+- (void)imagePickerController:(UIImagePickerController *)picker didFinishPickingMediaWithInfo:(NSDictionary<NSString *, id> *)info {
+    UIImage *image = info[UIImagePickerControllerEditedImage];
+    [picker dismissViewControllerAnimated:true completion:nil];
+    __weak __typeof(self) weakSelf = self;
+    [CommonDataManager modifyAvatarWithImage:image block:^{
+        [weakSelf.headerView.avatarButton sd_setImageWithURL:GetPictureUrl(weakSelf.lcUser.avatar, kQiniuImageStyleSmall) forState:UIControlStateNormal];
+    }];
+}
+
+- (void)imagePickerControllerDidCancel:(UIImagePickerController *)picker {
+    [picker dismissViewControllerAnimated:true completion:nil];
 }
 @end

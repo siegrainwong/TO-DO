@@ -27,7 +27,7 @@
     
     //cover
     _segmentedPager.parallaxHeader.mode = MXParallaxHeaderModeFill;
-    _segmentedPager.parallaxHeader.height = kScreenWidth * 0.65;
+    _segmentedPager.parallaxHeader.height = (CGFloat) (kScreenWidth * 0.65);
     _segmentedPager.parallaxHeader.minimumHeight = 42;
     
     // segmented control
