@@ -15,19 +15,17 @@ static NSString *const kDataCompletedTaskKey = @"Completed";
 typedef void (^retrieveResult)(BOOL succeed, NSDictionary *data, NSInteger count);
 
 @interface MRTodoDataManager : NSObject <Localized>
-/* retrieve */
-- (void)tasksWithUser:(CDUser *)user complete:(retrieveResult)complete;
-
+#pragma mark - retrieve
 - (void)tasksWithUser:(CDUser *)user status:(NSNumber *)status isComplete:(NSNumber *)isComplete complete:(retrieveResult)complete;
-
-- (void)tasksWithUser:(CDUser *)user keyword:(NSString *)keyword complete:(retrieveResult)complete;
 
 - (void)tasksWithUser:(CDUser *)user date:(NSDate *)date complete:(retrieveResult)complete;
 
 - (BOOL)hasDataWithDate:(NSDate *)date user:(CDUser *)user;
 
-/* modify */
+#pragma mark - modify
 - (BOOL)modifyTask:(CDTodo *)todo;
+
+- (void)tasksWithUser:(CDUser *)user keyword:(NSString *)keyword status:(NSNumber *)status isComplete:(NSNumber *)isComplete complete:(retrieveResult)complete;
 
 - (BOOL)InsertTask:(CDTodo *)todo;
 @end

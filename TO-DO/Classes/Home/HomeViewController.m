@@ -125,7 +125,7 @@ HomeViewController ()
 #pragma mark - retrieve data
 
 - (void)retrieveData {
-    [_todoTableViewController retrieveDataWithUser:self.cdUser date:nil status:nil isComplete:@NO];
+    [_todoTableViewController retrieveDataWithUser:self.cdUser date:nil status:nil isComplete:@(NO) keyword:nil];
 }
 
 #pragma mark - TodoTableViewController

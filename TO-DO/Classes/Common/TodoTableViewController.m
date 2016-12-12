@@ -12,7 +12,6 @@
 #import "HSDatePickerViewController+Configure.h"
 #import "HomeViewController.h"
 #import "MRTodoDataManager.h"
-#import "NSDate+Extension.h"
 #import "TodoHeaderView.h"
 #import "TodoTableViewCell.h"
 #import "UITableView+SDAutoTableViewCellHeight.h"
@@ -31,12 +30,17 @@ TodoTableViewController () <UISearchBarDelegate, SGNavigationBar>
 
 @property(nonatomic, strong) TodoTableViewCell *snoozingCell;
 
-@property(nonatomic, strong) NSDate *date;
 @property(nonatomic, strong) NSTimer *timer;
 
 @property(nonatomic, strong) ZFModalTransitionAnimator *animator;
 
 @property(nonatomic, strong) SGSearchBar *searchBar;
+
+@property(nonatomic, strong) CDUser *user;
+@property(nonatomic, strong) NSDate *date;
+@property(nonatomic, strong) NSNumber *status;
+@property(nonatomic, strong) NSNumber *isComplete;
+@property(nonatomic, strong) NSString *keyword;
 @end
 
 @implementation TodoTableViewController
@@ -89,11 +93,18 @@ TodoTableViewController () <UISearchBarDelegate, SGNavigationBar>
 
 #pragma mark - retrieve data
 
-- (void)retrieveDataWithUser:(CDUser *)user date:(NSDate *)date status:(NSNumber *)status isComplete:(NSNumber *)isComplete {
+- (void)retrieveDataWithUser:(CDUser *)user date:(NSDate *)date status:(NSNumber *)status isComplete:(NSNumber *)isComplete keyword:(NSString *)keyword {
+    _user = user;
     _date = date;
+    _status = status;
+    _isComplete = isComplete;
+    _keyword = keyword;
+    
     __weak typeof(self) weakSelf = self;
-    if (_style == TodoTableViewControllerStyleHome) {
-        [_dataManager tasksWithUser:user status:status isComplete:isComplete complete:^(BOOL succeed, NSDictionary *data, NSInteger count) {
+    if (_style == TodoTableViewControllerStyleHome || _style == TodoTableViewControllerStyleSearch) {
+        if (_style == TodoTableViewControllerStyleSearch && (!keyword || !keyword.length)) return;  //没有关键字时不搜索
+        
+        [_dataManager tasksWithUser:user keyword:keyword status:status isComplete:isComplete complete:^(BOOL succeed, NSDictionary *data, NSInteger count) {
             weakSelf.dataDictionary = [NSMutableDictionary dictionaryWithDictionary:data];
             weakSelf.dataCount = count;
             
@@ -160,7 +171,7 @@ TodoTableViewController () <UISearchBarDelegate, SGNavigationBar>
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
     [tableView deselectRowAtIndexPath:indexPath animated:YES];
     
-    CDTodo *model = [self modelAtIndexPath:indexPath];
+    CDTodo *model = (CDTodo *) [self modelAtIndexPath:indexPath];
     
     DetailViewController *detailViewController = [DetailViewController new];
     [detailViewController setModel:model];
@@ -306,7 +317,7 @@ TodoTableViewController () <UISearchBarDelegate, SGNavigationBar>
 }
 
 - (void)retrieveData {
-    [self retrieveDataWithUser:[AppDelegate globalDelegate].cdUser date:_date status:nil isComplete:nil];
+    [self retrieveDataWithUser:_user date:_date status:_status isComplete:_isComplete keyword:_keyword];
 }
 
 #pragma mark - overdue tasks with timer
@@ -352,16 +363,9 @@ TodoTableViewController () <UISearchBarDelegate, SGNavigationBar>
 #pragma mark - searchbar
 
 - (void)searchBar:(UISearchBar *)searchBar textDidChange:(NSString *)searchText {
-    __weak __typeof(self) weakSelf = self;
-    [_dataManager tasksWithUser:[AppDelegate globalDelegate].cdUser keyword:searchText complete:^(BOOL succeed, NSDictionary *data, NSInteger count) {
-        weakSelf.dataDictionary = [NSMutableDictionary dictionaryWithDictionary:data];
-        weakSelf.dataCount = count;
-        
-        NSArray *dateArrayOrder = [_dataDictionary.allKeys sortedArrayUsingComparator:^NSComparisonResult(NSDate *date1, NSDate *date2) {return [date1 compare:date2];}];
-        _sectionArray = [dateArrayOrder mutableCopy];
-        
-        [weakSelf reloadData];
-    }];
+    _keyword = searchText;
+    
+    [self retrieveDataWithUser:[AppDelegate globalDelegate].cdUser date:nil status:nil isComplete:nil keyword:searchText];
 }
 
 - (void)searchBarTextDidBeginEditing:(UISearchBar *)searchBar {

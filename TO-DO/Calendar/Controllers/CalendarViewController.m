@@ -150,7 +150,7 @@ CalendarViewController ()
 #pragma mark - retrieve data
 
 - (void)retrieveDataFromServer:(NSDate *)date {
-    [_todoTableViewController retrieveDataWithUser:self.cdUser date:date status:nil isComplete:nil];
+    [_todoTableViewController retrieveDataWithUser:self.cdUser date:date status:nil isComplete:nil keyword:nil];
 }
 
 #pragma mark - calendar delegate

@@ -69,5 +69,5 @@ typedef NS_ENUM(NSInteger, TodoTableViewControllerStyle) {
  *  @param user <#user description#>
  *  @param date <#date description#>
  */
-- (void)retrieveDataWithUser:(CDUser *)user date:(NSDate *)date status:(NSNumber *)status isComplete:(NSNumber *)isComplete;
+- (void)retrieveDataWithUser:(CDUser *)user date:(NSDate *)date status:(NSNumber *)status isComplete:(NSNumber *)isComplete keyword:(NSString *)keyword;
 @end

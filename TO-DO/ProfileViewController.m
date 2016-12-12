@@ -71,8 +71,8 @@
 }
 
 - (void)retrieveData {
-    [_completedTableViewController retrieveDataWithUser:self.cdUser date:nil status:nil isComplete:@YES];
-    [_snoozedTableViewController retrieveDataWithUser:self.cdUser date:nil status:@(TodoStatusSnoozed) isComplete:@NO];
-    [_overdueTableViewController retrieveDataWithUser:self.cdUser date:nil status:@(TodoStatusOverdue) isComplete:@NO];
+    [_completedTableViewController retrieveDataWithUser:self.cdUser date:nil status:nil isComplete:@YES keyword:nil];
+    [_snoozedTableViewController retrieveDataWithUser:self.cdUser date:nil status:@(TodoStatusSnoozed) isComplete:@NO keyword:nil];
+    [_overdueTableViewController retrieveDataWithUser:self.cdUser date:nil status:@(TodoStatusOverdue) isComplete:@NO keyword:nil];
 }
 @end

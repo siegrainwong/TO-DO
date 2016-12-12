@@ -50,22 +50,36 @@ MRTodoDataManager ()
 
 #pragma mark - retrieve
 
-- (void)tasksWithUser:(CDUser *)user complete:(retrieveResult)complete {
-    return [self tasksWithUser:user keyword:nil complete:complete];
-}
-
 - (void)tasksWithUser:(CDUser *)user status:(NSNumber *)status isComplete:(NSNumber *)isComplete complete:(retrieveResult)complete {
     return [self tasksWithUser:user keyword:nil status:status isComplete:isComplete complete:complete];
 }
 
-- (void)tasksWithUser:(CDUser *)user keyword:(NSString *)keyword complete:(retrieveResult)complete {
-    return [self tasksWithUser:user keyword:keyword status:nil isComplete:nil complete:complete];
+- (void)tasksWithUser:(CDUser *)user keyword:(NSString *)keyword status:(NSNumber *)status isComplete:(NSNumber *)isComplete complete:(retrieveResult)complete {
+    NSPredicate *filter = [self predicateWithUser:user date:nil keyword:keyword status:status isComplete:isComplete];
+    NSArray<CDTodo *> *data = [CDTodo MR_findAllSortedBy:@"deadline" ascending:YES withPredicate:filter];
+    
+    NSInteger dataCount = data.count;
+    NSMutableDictionary *dataDictionary = [NSMutableDictionary new];
+    
+    NSMutableArray *dataInSameDay;
+    NSString *dateString;
+    for (CDTodo *todo in data) {
+        NSString *newDateString = todo.deadline.stringInYearMonthDay;
+        if (![dateString isEqualToString:newDateString]) {
+            dateString = newDateString;
+            dataInSameDay = [NSMutableArray new];
+            dataDictionary[todo.deadline] = dataInSameDay;
+        }
+        [dataInSameDay addObject:todo];
+    }
+    
+    return complete(YES, [dataDictionary copy], dataCount);
 }
 
 - (void)tasksWithUser:(CDUser *)user date:(NSDate *)date complete:(retrieveResult)complete {
-    NSPredicate *filter = [self predicateWithUser:user date:date keyword:nil status:nil isComplete:@NO];
+    NSPredicate *filter = [self predicateWithUser:user date:date keyword:nil status:nil isComplete:@(NO)];
     NSArray<CDTodo *> *tasks = [CDTodo MR_findAllSortedBy:@"deadline" ascending:YES withPredicate:filter];
-    filter = [self predicateWithUser:user date:date keyword:nil status:nil isComplete:@YES];
+    filter = [self predicateWithUser:user date:date keyword:nil status:nil isComplete:@(YES)];
     NSArray<CDTodo *> *completedTasks = [CDTodo MR_findAllSortedBy:@"completedAt" ascending:YES withPredicate:filter];
     
     NSInteger dataCount = tasks.count + completedTasks.count;
@@ -162,32 +176,10 @@ MRTodoDataManager ()
     [[GCDQueue mainQueue] async:^{[[AppDelegate globalDelegate] synchronize:SyncModeAutomatically];}];
 }
 
-- (void)tasksWithUser:(CDUser *)user keyword:(NSString *)keyword status:(NSNumber *)status isComplete:(NSNumber *)isComplete complete:(retrieveResult)complete {
-    NSPredicate *filter = [self predicateWithUser:user date:nil keyword:keyword status:status isComplete:isComplete];
-    NSArray<CDTodo *> *data = [CDTodo MR_findAllSortedBy:@"deadline" ascending:YES withPredicate:filter];
-    
-    NSInteger dataCount = data.count;
-    NSMutableDictionary *dataDictionary = [NSMutableDictionary new];
-    
-    NSMutableArray *dataInSameDay;
-    NSString *dateString;
-    for (CDTodo *todo in data) {
-        NSString *newDateString = todo.deadline.stringInYearMonthDay;
-        if (![dateString isEqualToString:newDateString]) {
-            dateString = newDateString;
-            dataInSameDay = [NSMutableArray new];
-            dataDictionary[todo.deadline] = dataInSameDay;
-        }
-        [dataInSameDay addObject:todo];
-    }
-    
-    return complete(YES, [dataDictionary copy], dataCount);
-}
-
 - (NSPredicate *)predicateWithUser:(CDUser *)user date:(NSDate *)date keyword:(NSString *)keyword status:(NSNumber *)status isComplete:(NSNumber *)isComplete {
     NSMutableArray *arguments = [NSMutableArray new];
     NSString *predicateFormat = @"user = %@ and isHidden = %@";
-    [arguments addObjectsFromArray:@[user, @NO]];
+    [arguments addObjectsFromArray:@[user, @(NO)]];
     if (isComplete) {
         predicateFormat = [predicateFormat stringByAppendingString:@" and isCompleted = %@"];
         [arguments addObject:isComplete];
