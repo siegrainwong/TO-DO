@@ -13,7 +13,7 @@
 #import "HomeViewController.h"
 #import "MRTodoDataManager.h"
 #import "NSDate+Extension.h"
-#import "TodoHeaderCell.h"
+#import "TodoHeaderView.h"
 #import "TodoTableViewCell.h"
 #import "UITableView+SDAutoTableViewCellHeight.h"
 #import "EmptyDataView.h"
@@ -138,7 +138,7 @@ TodoTableViewController () <UISearchBarDelegate, SGNavigationBar>
 }
 
 - (UIView *)tableView:(UITableView *)tableView viewForHeaderInSection:(NSInteger)section {
-    TodoHeaderCell *header = [TodoHeaderCell headerCell];
+    TodoHeaderView *header = [TodoHeaderView new];
     if (_style == TodoTableViewControllerStyleCalendar)
         header.text = _sectionArray[section];
     else

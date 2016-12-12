@@ -7,9 +7,8 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "SGViews.h"
 
-@interface TodoHeaderCell : UIView
+@interface TodoHeaderView : UIView<SGViews>
 @property (nonatomic, strong) NSString* text;
-
-+ (instancetype)headerCell;
 @end

@@ -3,11 +3,7 @@
 // Copyright (c) 2016 com.siegrain. All rights reserved.
 //
 
-#import <SDWebImage/UIButton+WebCache.h>
 #import "ProfileViewController.h"
-#import "SGHeaderView.h"
-#import "UIImage+Extension.h"
-#import "NSString+EMAdditions.h"
 #import "TodoTableViewController.h"
 
 @interface ProfileViewController () <UINavigationControllerDelegate, UIImagePickerControllerDelegate>
@@ -17,6 +13,15 @@
 @end
 
 @implementation ProfileViewController
+
+#pragma mark - accessors
+
+- (CGFloat)headerHeight {
+    return (CGFloat) (kScreenWidth * 0.75);
+}
+
+
+#pragma mark - initial
 
 - (void)viewDidLoad {
     [super viewDidLoad];
@@ -37,7 +42,8 @@
     [self.headerView setImage:[UIImage imageAtResourcePath:@"header bg"] style:HeaderMaskStyleLight];
     [self.headerView setHeaderViewDidPressRightOperationButton:^{[SGHelper photoPickerFromTarget:weakSelf];}];
     self.segmentedPager.parallaxHeader.view = self.headerView;
-    self.segmentedPager.parallaxHeader.height = (CGFloat) (kScreenWidth * 0.75);
+    self.segmentedPager.parallaxHeader.height = self.headerHeight;
+    self.segmentedPager.parallaxHeader.minimumHeight = 64;
     
     // segment view controllers
     _completedTableViewController = [TodoTableViewController new];
@@ -49,10 +55,19 @@
     
     _completedTableViewController.style = _snoozedTableViewController.style = _overdueTableViewController.style = TodoTableViewControllerStyleHome;
     _completedTableViewController.disableCellSwiping = _snoozedTableViewController.disableCellSwiping = _overdueTableViewController.disableCellSwiping = YES;
+//    _completedTableViewController.headerHeight = _snoozedTableViewController.headerHeight = _overdueTableViewController.headerHeight = self.headerHeight;
     
     self.viewControllers = @[_completedTableViewController.tableView, _snoozedTableViewController.tableView, _overdueTableViewController.tableView];
     
     self.titleArray = @[@"COMPLETED".attributedString, @"SNOOZED".attributedString, @"OVERDUE".attributedString];
+}
+
+- (void)bindConstraints {
+    [super bindConstraints];
+    
+    [@[_completedTableViewController.tableView, _snoozedTableViewController.tableView, _overdueTableViewController.tableView] mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.top.left.bottom.right.offset(0);
+    }];
 }
 
 - (void)retrieveData {

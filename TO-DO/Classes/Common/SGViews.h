@@ -6,6 +6,9 @@
 #import <Foundation/Foundation.h>
 #import "Masonry.h"
 #import "UIView+Extension.h"
+#import <SDWebImage/UIButton+WebCache.h>
+#import "UIImage+Extension.h"
+#import "NSString+EMAdditions.h"
 
 @protocol SGViews <NSObject>
 - (void)setupViews;

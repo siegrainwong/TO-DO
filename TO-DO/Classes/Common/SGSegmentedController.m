@@ -28,7 +28,7 @@
     //cover
     _segmentedPager.parallaxHeader.mode = MXParallaxHeaderModeFill;
     _segmentedPager.parallaxHeader.height = (CGFloat) (kScreenWidth * 0.65);
-    _segmentedPager.parallaxHeader.minimumHeight = 42;
+    _segmentedPager.parallaxHeader.minimumHeight = 0;
     
     // segmented control
     HMSegmentedControl *control = _segmentedPager.segmentedControl;
@@ -53,6 +53,13 @@
 }
 
 - (void)bindConstraints {
+}
+
+- (void)viewWillLayoutSubviews {
+    [super viewWillLayoutSubviews];
+    
+    /* Mark: SGSegmentedPager: 这段代码是iOS 8的兼容性代码 */
+    _segmentedPager.frame = CGRectMake(0, 0, kScreenWidth, self.pagerHeight);
 }
 
 #pragma mark <MXSegmentedPagerDelegate>
