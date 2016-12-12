@@ -17,13 +17,13 @@
 #import "LoginViewController.h"
 #import "Masonry.h"
 #import "SGSyncManager.h"
+#import "ProfileViewController.h"
 
 typedef NS_ENUM(NSInteger, DrawerItem) {
     DrawerItemHome,
     DrawerItemCalendar,
     DrawerItemOverview,
-    DrawerItemProfile,
-    DrawerItemTimeline
+    DrawerItemProfile
 };
 
 static NSString *const kDataKeyTitle = @"title";
@@ -56,7 +56,10 @@ DrawerTableViewController ()
                     kDataKeyClass: [HomeViewController class]},
             @{kDataKeyTitle: NSLocalizedString(@"Calendar", nil),
                     kDataKeyIcon: @"",
-                    kDataKeyClass: [CalendarViewController class]}
+                    kDataKeyClass: [CalendarViewController class]},
+            @{kDataKeyTitle: NSLocalizedString(@"Profile", nil),
+                    kDataKeyIcon: @"",
+                    kDataKeyClass: [ProfileViewController class]}
     ];
     
     [_leftBottomButton setTitle:NSLocalizedString(@"SYNC", nil) forState:UIControlStateNormal];

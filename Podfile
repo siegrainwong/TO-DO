@@ -6,8 +6,11 @@ target "TO-DO" do
   pod 'AMapLocation', '~> 2.1.0'
   pod 'AVOSCloud', '~> 3.2.9'
   pod 'ACEExpandableTextCell', '~> 1.0.4'
+  pod 'MXPagerView', '= 0.1.3'
 
   pod 'FSCalendar', :git => "https://github.com/Seanwong933/FSCalendar.git"
+  pod 'HMSegmentedControl', :git => 'https://github.com/Seanwong933/HMSegmentedControl'
+  pod 'MXSegmentedPager', :git => 'https://github.com/Seanwong933/MXSegmentedPager'
 
   pod 'SDAutoLayout'
   pod 'MBProgressHUD'
@@ -35,4 +38,5 @@ target "TO-DO" do
   pod 'JMRoundedCorner'
   pod 'BEMCheckBox'
   pod 'SSDynamicText'
+  pod 'EMString'
 end

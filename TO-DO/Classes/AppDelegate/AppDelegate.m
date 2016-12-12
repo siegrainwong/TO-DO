@@ -24,15 +24,17 @@
 #import "NEHTTPEye.h"
 #import "GCDQueue.h"
 #import "SGSyncManager.h"
+#import "EMStringStylingConfiguration.h"
 #import <AVOSCloud.h>
 #import <AMapFoundationKit/AMapFoundationKit.h>
+#import <UserNotifications/UserNotifications.h>
 
 
 // FIXME: 每次进入一个新的ViewController，都会在SecPolicy对象上发生内存泄漏，wtf?
 
 static BOOL const kEnableViewControllerStateHolder = YES;
 
-@interface AppDelegate ()
+@interface AppDelegate () <UNUserNotificationCenterDelegate>
 /* 视图状态存储 */
 @property(nonatomic, strong) NSMutableDictionary *stateHolder;
 @end
@@ -77,6 +79,7 @@ static BOOL const kEnableViewControllerStateHolder = YES;
     [self setupAmap];
     [self setupDrawerViewController];
     [self setupUser];
+    [self setupEMString];
     [[UINavigationBar appearance] setShadowImage:[UIImage new]];
     NSLog(@"%@", [self sandboxUrl]);
     
@@ -119,6 +122,17 @@ static BOOL const kEnableViewControllerStateHolder = YES;
     [LCSync registerSubclass];
     [LCUser registerSubclass];
     [LCTodo registerSubclass];
+}
+
+- (void)setupEMString {
+    EMStylingClass *redClass = [[EMStylingClass alloc] initWithMarkup:@"<red>"];
+    redClass.color = [SGHelper themeColorRed];
+    
+    EMStylingClass *greenClass = [[EMStylingClass alloc] initWithMarkup:@"<green>"];
+    greenClass.color = [UIColor greenColor];
+    
+    [[EMStringStylingConfiguration sharedInstance] addNewStylingClass:redClass];
+    [[EMStringStylingConfiguration sharedInstance] addNewStylingClass:greenClass];
 }
 
 - (void)setupDrawerViewController {
@@ -195,6 +209,56 @@ static BOOL const kEnableViewControllerStateHolder = YES;
 - (NSString *)sandboxUrl {
     NSArray *array = NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES);
     return array[0];
+}
+
+#pragma mark - notifications
+
+- (void)setupRemoteNotification {
+    // FIXME: 远程通知尚未实装，有Bug
+    // iOS10 兼容，下使用UNUserNotificationCenter 管理通知
+    if ([[UIDevice currentDevice].systemVersion floatValue] >= 10.0) {
+        UNUserNotificationCenter *center = [UNUserNotificationCenter currentNotificationCenter];
+        [center setDelegate:self];
+        //iOS10 使用以下方法注册，才能得到授权
+        [center requestAuthorizationWithOptions:(UNAuthorizationOptionAlert + UNAuthorizationOptionBadge + UNAuthorizationOptionSound) completionHandler:^(BOOL granted, NSError *_Nullable error) {
+            [[UIApplication sharedApplication] registerForRemoteNotifications];
+            //TODO:授权状态改变
+            NSLog(@"%@", granted ? @"授权成功" : @"授权失败");
+        }];
+        // 获取当前的通知授权状态, UNNotificationSettings
+        [center getNotificationSettingsWithCompletionHandler:^(UNNotificationSettings *_Nonnull settings) {
+            NSLog(@"%s\nline:%@\n-----\n%@\n\n", __func__, @(__LINE__), settings);
+            /*
+             UNAuthorizationStatusNotDetermined : 没有做出选择
+             UNAuthorizationStatusDenied : 用户未授权
+             UNAuthorizationStatusAuthorized ：用户已授权
+             */
+            if (settings.authorizationStatus == UNAuthorizationStatusNotDetermined) {
+                NSLog(@"未选择");
+            } else if (settings.authorizationStatus == UNAuthorizationStatusDenied) {
+                NSLog(@"未授权");
+            } else if (settings.authorizationStatus == UNAuthorizationStatusAuthorized) {
+                NSLog(@"已授权");
+            }
+        }];
+    }
+#pragma clang diagnostic push
+#pragma clang diagnostic ignored "-Wdeprecated-declarations"
+    if ([[UIDevice currentDevice].systemVersion floatValue] >= 8.0) {
+        UIUserNotificationType types = UIUserNotificationTypeAlert | UIUserNotificationTypeBadge | UIUserNotificationTypeSound;
+        UIUserNotificationSettings *settings = [UIUserNotificationSettings settingsForTypes:types categories:nil];
+        
+        [[UIApplication sharedApplication] registerUserNotificationSettings:settings];
+        [[UIApplication sharedApplication] registerForRemoteNotifications];
+    } else {
+        UIRemoteNotificationType types = UIRemoteNotificationTypeBadge | UIRemoteNotificationTypeAlert | UIRemoteNotificationTypeSound;
+        [[UIApplication sharedApplication] registerForRemoteNotificationTypes:types];
+    }
+#pragma clang diagnostic pop
+}
+
+- (void)application:(UIApplication *)app didRegisterForRemoteNotificationsWithDeviceToken:(NSData *)deviceToken {
+    [AVOSCloud handleRemoteNotificationsWithDeviceToken:deviceToken];
 }
 
 #pragma mark - public methods

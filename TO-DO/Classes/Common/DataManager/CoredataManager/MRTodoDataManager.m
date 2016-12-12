@@ -125,6 +125,7 @@ MRTodoDataManager ()
     MR_saveAndWait();
     
     [self syncIfNeeded];
+    
     return YES;
 }
 
@@ -140,6 +141,12 @@ MRTodoDataManager ()
     }];
     
     return YES;
+}
+
+- (void)scheduleNotification {
+    UILocalNotification *notification = [UILocalNotification new];
+    notification.fireDate = _model.deadline;
+    notification.alertBody = _model.title;
 }
 
 #pragma mark - validate

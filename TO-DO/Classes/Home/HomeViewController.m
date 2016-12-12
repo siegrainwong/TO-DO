@@ -62,6 +62,7 @@ HomeViewController () <UINavigationControllerDelegate, UIImagePickerControllerDe
     
     __weak typeof(self) weakSelf = self;
     
+    //nav add button
     _addButton = [UIButton new];
     _addButton.tintColor = [UIColor whiteColor];
     _addButton.frame = CGRectMake(0, 0, 20, 20);
@@ -74,16 +75,16 @@ HomeViewController () <UINavigationControllerDelegate, UIImagePickerControllerDe
     self.titleLabel.alpha = 0;
     _addButton.alpha = 0;
     
+    //header
     self.headerView = [SGHeaderView headerViewWithAvatarPosition:HeaderAvatarPositionCenter titleAlignement:HeaderTitleAlignmentCenter];
     self.headerView.subtitleLabel.text = [SGHelper localizedFormatDate:[NSDate date]];
     [self.headerView.rightOperationButton setImage:[UIImage imageNamed:@"add"] forState:UIControlStateNormal];
     [self.headerView.avatarButton sd_setImageWithURL:GetPictureUrl(super.lcUser.avatar, kQiniuImageStyleSmall) forState:UIControlStateNormal];
     [self.headerView setImage:[UIImage imageAtResourcePath:@"header bg"] style:HeaderMaskStyleLight];
     [self.headerView setHeaderViewDidPressAvatarButton:^{[SGHelper photoPickerFromTarget:weakSelf];}];
-    [self.headerView setHeaderViewDidPressRightOperationButton:^{
-        [weakSelf showCreateViewController];
-    }];
+    [self.headerView setHeaderViewDidPressRightOperationButton:^{[weakSelf showCreateViewController];}];
     
+    //table view
     _todoTableViewController = [TodoTableViewController new];
     _todoTableViewController.style = TodoTableViewControllerStyleHome;
     _todoTableViewController.delegate = self;
@@ -92,6 +93,7 @@ HomeViewController () <UINavigationControllerDelegate, UIImagePickerControllerDe
     [self addChildViewController:_todoTableViewController];
     [self.view addSubview:_todoTableViewController.tableView];
     
+    //parallax configurations
     self.headerView.parallaxScrollView = _todoTableViewController.tableView;
     self.headerView.parallaxHeight = self.headerHeight;
     self.headerView.parallaxIgnoreInset = 64;

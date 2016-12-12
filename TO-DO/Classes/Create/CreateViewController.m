@@ -28,8 +28,7 @@
 #import "AppDelegate.h"
 #import "RTRootNavigationController.h"
 
-// FIXME: iPhone4s 上 NavigationBar 会遮挡一部分标题文本框
-// TODO: 多人协作
+// TODO: 多人协作（这个坑我都不信我有心情填掉...）
 
 @interface CreateViewController () <UITextFieldDelegate>
 @property(nonatomic, strong) MRTodoDataManager *dataManager;
@@ -94,7 +93,6 @@
     _datePickerViewController.delegate = self;
     
     __weak typeof(self) weakSelf = self;
-    // Mark: 需要这个的原因是 self.view 在视图加载时还不在窗口层级中，无法为其绑定约束
     _containerView = [UIView new];
     _containerView.backgroundColor = [UIColor whiteColor];
     [self.view addSubview:_containerView];

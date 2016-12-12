@@ -20,7 +20,9 @@
 		F1F6A22FCDC6D1F2A1FE85B0 /* UIImage+Extension.m in Sources */ = {isa = PBXBuildFile; fileRef = F1F6AD7342C2328CE5A0747B /* UIImage+Extension.m */; };
 		F1F6A3DCEB1BB6F03124A878 /* CommonDataManager.m in Sources */ = {isa = PBXBuildFile; fileRef = F1F6A86E1321D8770D4F66F6 /* CommonDataManager.m */; };
 		F1F6A49B0B4764086E7B47C5 /* MBProgressHUD+SGExtension.m in Sources */ = {isa = PBXBuildFile; fileRef = F1F6ACC309D8ADC4FB8734C1 /* MBProgressHUD+SGExtension.m */; };
+		F1F6A4BC6B6563F9D8B0F827 /* SGSegmentedController.m in Sources */ = {isa = PBXBuildFile; fileRef = F1F6AB25D361A9661BDC6769 /* SGSegmentedController.m */; };
 		F1F6A68DCCB16413F566B346 /* EmptyDataView.m in Sources */ = {isa = PBXBuildFile; fileRef = F1F6A1FA388CF728AE1FB045 /* EmptyDataView.m */; };
+		F1F6A6A9AFF81437A6A27650 /* ProfileViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = F1F6A2272470DD519537A3EA /* ProfileViewController.m */; };
 		F1F6A77905D5C8431AAF4E70 /* SGGraphics.m in Sources */ = {isa = PBXBuildFile; fileRef = F1F6A731F0B33EA4B81AE09F /* SGGraphics.m */; };
 		F1F6A8A9B5E8F03C80DF9ABC /* SGMultipleDelegates.m in Sources */ = {isa = PBXBuildFile; fileRef = F1F6AB04326E3F3489B73A95 /* SGMultipleDelegates.m */; };
 		F1F6A8ADE671A4D528A4E341 /* SGRectangleView.m in Sources */ = {isa = PBXBuildFile; fileRef = F1F6AE460B77EC2BE5BB0FA5 /* SGRectangleView.m */; };
@@ -117,6 +119,7 @@
 		F9C1A2CF1D06858E000F96AF /* SyncErrorHandler.m in Sources */ = {isa = PBXBuildFile; fileRef = F9C1A2CE1D06858E000F96AF /* SyncErrorHandler.m */; };
 		F9D0E9781CEC46D10005027B /* UIImage+Qiniu.m in Sources */ = {isa = PBXBuildFile; fileRef = F9D0E9771CEC46D10005027B /* UIImage+Qiniu.m */; };
 		F9DE3ED41CF4849F00653A56 /* NSDate+Extension.m in Sources */ = {isa = PBXBuildFile; fileRef = F9DE3ED31CF4849F00653A56 /* NSDate+Extension.m */; };
+		F9E3EE411DFAB5EC00686993 /* UserNotifications.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F9E3EE401DFAB5EC00686993 /* UserNotifications.framework */; };
 		F9E953481CF853A00046E1C9 /* UUDatePicker_DateModel.m in Sources */ = {isa = PBXBuildFile; fileRef = F9E953451CF853A00046E1C9 /* UUDatePicker_DateModel.m */; };
 		F9E953491CF853A00046E1C9 /* UUDatePicker.m in Sources */ = {isa = PBXBuildFile; fileRef = F9E953471CF853A00046E1C9 /* UUDatePicker.m */; };
 		F9E9534E1CF8708C0046E1C9 /* HSDatePickerViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = F9E9534C1CF8708C0046E1C9 /* HSDatePickerViewController.m */; };
@@ -148,9 +151,11 @@
 		36E2DF670BBA7C56A7B0B215 /* Pods-TO-DO.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-TO-DO.release.xcconfig"; path = "Pods/Target Support Files/Pods-TO-DO/Pods-TO-DO.release.xcconfig"; sourceTree = "<group>"; };
 		82F62EB9CE69A5ADAEC271F2 /* Pods-TO-DO.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-TO-DO.debug.xcconfig"; path = "Pods/Target Support Files/Pods-TO-DO/Pods-TO-DO.debug.xcconfig"; sourceTree = "<group>"; };
 		874BB13DFF8BBE53341474BC /* libPods-TO-DO.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-TO-DO.a"; sourceTree = BUILT_PRODUCTS_DIR; };
+		F1F6A11909DD478CD9D5372B /* SGSegmentedController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SGSegmentedController.h; sourceTree = "<group>"; };
 		F1F6A156E261995924B89DEB /* SGBaseMapViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SGBaseMapViewController.h; sourceTree = "<group>"; };
 		F1F6A1C1709FA2CB47BEAB41 /* SGMultipleDelegates.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SGMultipleDelegates.h; sourceTree = "<group>"; };
 		F1F6A1FA388CF728AE1FB045 /* EmptyDataView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = EmptyDataView.m; path = "TO-DO/Classes/Common/EmptyDataView.m"; sourceTree = SOURCE_ROOT; };
+		F1F6A2272470DD519537A3EA /* ProfileViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ProfileViewController.m; sourceTree = "<group>"; };
 		F1F6A246492749D8DFE4B5F2 /* UIViewController+SGConfigure.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIViewController+SGConfigure.m"; sourceTree = "<group>"; };
 		F1F6A261B6E274ACFBF8C1DA /* DetailModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DetailModel.h; sourceTree = "<group>"; };
 		F1F6A3160A6AC2B29F6A25E3 /* SGDelegateProxy.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = SGDelegateProxy.h; path = "TO-DO/Classes/Common/Views/SGDelegateProxy.h"; sourceTree = SOURCE_ROOT; };
@@ -176,6 +181,7 @@
 		F1F6A7F559C1857D66F04D8A /* UIViewController+ESSeparatorInset.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIViewController+ESSeparatorInset.m"; sourceTree = "<group>"; };
 		F1F6A808FBB681656B6AE234 /* UIViewController+SGConfigure.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIViewController+SGConfigure.h"; sourceTree = "<group>"; };
 		F1F6A813409C7A87B19AAC87 /* SGBaseSearchViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SGBaseSearchViewController.m; sourceTree = "<group>"; };
+		F1F6A83C6301DE81616487F2 /* ProfileViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ProfileViewController.h; sourceTree = "<group>"; };
 		F1F6A865482BC7ED81EFF40B /* CommonDataManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CommonDataManager.h; sourceTree = "<group>"; };
 		F1F6A868F08DE8AC02C37C3A /* UIImage+Extension.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIImage+Extension.h"; sourceTree = "<group>"; };
 		F1F6A86E1321D8770D4F66F6 /* CommonDataManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CommonDataManager.m; sourceTree = "<group>"; };
@@ -195,6 +201,7 @@
 		F1F6AA9B2F59528335E9B4FE /* SGGraphics.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SGGraphics.h; sourceTree = "<group>"; };
 		F1F6AAE6708389C6A3E5FE91 /* SGBaseTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SGBaseTableViewController.m; sourceTree = "<group>"; };
 		F1F6AB04326E3F3489B73A95 /* SGMultipleDelegates.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SGMultipleDelegates.m; sourceTree = "<group>"; };
+		F1F6AB25D361A9661BDC6769 /* SGSegmentedController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SGSegmentedController.m; sourceTree = "<group>"; };
 		F1F6ABF4B99EF7FA19A0E12A /* SGBaseTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SGBaseTableViewController.h; sourceTree = "<group>"; };
 		F1F6AC0F9F670BCC4E3A13B2 /* ZLIconLabel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ZLIconLabel.m; sourceTree = "<group>"; };
 		F1F6AC815641A66E1EA21F3D /* UIView+Extension.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIView+Extension.h"; sourceTree = "<group>"; };
@@ -365,6 +372,8 @@
 		F9D0E9771CEC46D10005027B /* UIImage+Qiniu.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIImage+Qiniu.m"; sourceTree = "<group>"; };
 		F9DE3ED21CF4849F00653A56 /* NSDate+Extension.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSDate+Extension.h"; sourceTree = "<group>"; };
 		F9DE3ED31CF4849F00653A56 /* NSDate+Extension.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSDate+Extension.m"; sourceTree = "<group>"; };
+		F9E3EE3F1DFAB2B000686993 /* TO-DO.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = "TO-DO.entitlements"; sourceTree = "<group>"; };
+		F9E3EE401DFAB5EC00686993 /* UserNotifications.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UserNotifications.framework; path = System/Library/Frameworks/UserNotifications.framework; sourceTree = SDKROOT; };
 		F9E953441CF853A00046E1C9 /* UUDatePicker_DateModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UUDatePicker_DateModel.h; sourceTree = "<group>"; };
 		F9E953451CF853A00046E1C9 /* UUDatePicker_DateModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UUDatePicker_DateModel.m; sourceTree = "<group>"; };
 		F9E953461CF853A00046E1C9 /* UUDatePicker.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UUDatePicker.h; sourceTree = "<group>"; };
@@ -388,6 +397,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				F9E3EE411DFAB5EC00686993 /* UserNotifications.framework in Frameworks */,
 				F997BFA71CF83A7C00DD155B /* CoreGraphics.framework in Frameworks */,
 				F997BFA51CF83A6C00DD155B /* Foundation.framework in Frameworks */,
 				F997BFA31CF83A6600DD155B /* UIKit.framework in Frameworks */,
@@ -416,6 +426,7 @@
 		BE17E2C135B91D0BA1E642E0 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				F9E3EE401DFAB5EC00686993 /* UserNotifications.framework */,
 				F997BFA61CF83A7C00DD155B /* CoreGraphics.framework */,
 				F997BFA41CF83A6C00DD155B /* Foundation.framework */,
 				F997BFA21CF83A6600DD155B /* UIKit.framework */,
@@ -432,6 +443,15 @@
 				36E2DF670BBA7C56A7B0B215 /* Pods-TO-DO.release.xcconfig */,
 			);
 			name = Pods;
+			sourceTree = "<group>";
+		};
+		F1F6A13681A7E2B8AEE1F39F /* Controllers */ = {
+			isa = PBXGroup;
+			children = (
+				F1F6A2272470DD519537A3EA /* ProfileViewController.m */,
+				F1F6A83C6301DE81616487F2 /* ProfileViewController.h */,
+			);
+			name = Controllers;
 			sourceTree = "<group>";
 		};
 		F1F6A68F2D6D0639923E0A7E /* Models */ = {
@@ -517,6 +537,14 @@
 				F1F6AD603501DA01BDE501C1 /* DetailTableViewCell.h */,
 			);
 			name = Views;
+			sourceTree = "<group>";
+		};
+		F1F6AFE4C6157A2D8C40A72C /* Profile */ = {
+			isa = PBXGroup;
+			children = (
+				F1F6A13681A7E2B8AEE1F39F /* Controllers */,
+			);
+			name = Profile;
 			sourceTree = "<group>";
 		};
 		F9331D801CF0A97200B36474 /* LeanCloudModels */ = {
@@ -666,6 +694,8 @@
 				F1F6ABF4B99EF7FA19A0E12A /* SGBaseTableViewController.h */,
 				F1F6A521960D9ABB3CB80D4C /* SGBaseSearchViewController.h */,
 				F1F6A813409C7A87B19AAC87 /* SGBaseSearchViewController.m */,
+				F1F6AB25D361A9661BDC6769 /* SGSegmentedController.m */,
+				F1F6A11909DD478CD9D5372B /* SGSegmentedController.h */,
 			);
 			name = Controllers;
 			sourceTree = "<group>";
@@ -992,6 +1022,7 @@
 		F9A723701CDDF8A800E3BC8E /* TO-DO */ = {
 			isa = PBXGroup;
 			children = (
+				F9E3EE3F1DFAB2B000686993 /* TO-DO.entitlements */,
 				F99A90251CE30B5100EC0762 /* Localization */,
 				F9A723AE1CDDF98100E3BC8E /* Classes */,
 				F9A723711CDDF8A800E3BC8E /* Supporting Files */,
@@ -1043,6 +1074,7 @@
 				F9BCE52E1CEDB438003376C7 /* Create */,
 				F9FB96C01CFC739C002581A0 /* Calendar */,
 				F1F6A72079CE5CF437F0F8CA /* Detail */,
+				F1F6AFE4C6157A2D8C40A72C /* Profile */,
 			);
 			name = Classes;
 			sourceTree = "<group>";
@@ -1211,6 +1243,11 @@
 					F9A7236D1CDDF8A800E3BC8E = {
 						CreatedOnToolsVersion = 7.2.1;
 						DevelopmentTeam = Q23TGN5XUQ;
+						SystemCapabilities = {
+							com.apple.Push = {
+								enabled = 1;
+							};
+						};
 					};
 					F9A723891CDDF8A900E3BC8E = {
 						CreatedOnToolsVersion = 7.2.1;
@@ -1433,6 +1470,8 @@
 				F1F6AC461B9D858ED9D476EF /* SGBaseSearchViewController.m in Sources */,
 				F1F6A971694EF8C7BA85587D /* SGSearchBar.m in Sources */,
 				F1F6A995B9500630FFE1224A /* UISearchBar+Additions.m in Sources */,
+				F1F6A4BC6B6563F9D8B0F827 /* SGSegmentedController.m in Sources */,
+				F1F6A6A9AFF81437A6A27650 /* ProfileViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1590,6 +1629,7 @@
 			baseConfigurationReference = 82F62EB9CE69A5ADAEC271F2 /* Pods-TO-DO.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_ENTITLEMENTS = "TO-DO/TO-DO.entitlements";
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
@@ -1611,6 +1651,7 @@
 			baseConfigurationReference = 36E2DF670BBA7C56A7B0B215 /* Pods-TO-DO.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_ENTITLEMENTS = "TO-DO/TO-DO.entitlements";
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
