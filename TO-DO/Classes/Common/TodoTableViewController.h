@@ -58,6 +58,10 @@ typedef NS_ENUM(NSInteger, TodoTableViewControllerStyle) {
  * 表格样式
  */
 @property(nonatomic, assign) TodoTableViewControllerStyle style;
+/**
+ * 禁用Cell滑动
+ */
+@property(nonatomic, assign) BOOL disableCellSwiping;
 
 /**
  *  获取数据
@@ -65,5 +69,5 @@ typedef NS_ENUM(NSInteger, TodoTableViewControllerStyle) {
  *  @param user <#user description#>
  *  @param date <#date description#>
  */
-- (void)retrieveDataWithUser:(CDUser *)user date:(NSDate *)date;
+- (void)retrieveDataWithUser:(CDUser *)user date:(NSDate *)date status:(NSNumber *)status isComplete:(NSNumber *)isComplete;
 @end

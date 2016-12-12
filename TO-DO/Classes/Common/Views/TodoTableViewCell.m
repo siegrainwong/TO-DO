@@ -152,7 +152,7 @@ TodoTableViewCell ()
 }
 
 - (void)configureSwipeBehavior {
-    if (_model.isCompleted.boolValue) {
+    if (_model.disableSwipeBehavior) {
         self.leftButtons = @[];
         self.rightButtons = @[];
         return;

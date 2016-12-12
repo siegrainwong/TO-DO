@@ -207,7 +207,7 @@ static NSUInteger const kMaxLength = 50;
 #pragma mark - private methods
 
 - (void)save {
-    if (![_dataManager isModifiedTodo:_model]) return;
+    if (![_dataManager modifyTask:_model]) return;
     
     [[NSNotificationCenter defaultCenter] postNotificationName:kTaskChangedNotification object:self];
 }

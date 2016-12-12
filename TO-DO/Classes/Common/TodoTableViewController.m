@@ -89,11 +89,11 @@ TodoTableViewController () <UISearchBarDelegate, SGNavigationBar>
 
 #pragma mark - retrieve data
 
-- (void)retrieveDataWithUser:(CDUser *)user date:(NSDate *)date {
+- (void)retrieveDataWithUser:(CDUser *)user date:(NSDate *)date status:(NSNumber *)status isComplete:(NSNumber *)isComplete {
     _date = date;
     __weak typeof(self) weakSelf = self;
     if (_style == TodoTableViewControllerStyleHome) {
-        [_dataManager tasksWithUser:user complete:^(BOOL succeed, NSDictionary *data, NSInteger count) {
+        [_dataManager tasksWithUser:user status:status isComplete:isComplete complete:^(BOOL succeed, NSDictionary *data, NSInteger count) {
             weakSelf.dataDictionary = [NSMutableDictionary dictionaryWithDictionary:data];
             weakSelf.dataCount = count;
             
@@ -188,10 +188,12 @@ TodoTableViewController () <UISearchBarDelegate, SGNavigationBar>
 }
 
 - (void)configureCell:(TodoTableViewCell *)cell atIndexPath:(NSIndexPath *)indexPath {
-    CDTodo *model = [self modelAtIndexPath:indexPath];
+    CDTodo *model = (CDTodo *) [self modelAtIndexPath:indexPath];
+    if ((_style == TodoTableViewControllerStyleCalendar && indexPath.section == 1) || _disableCellSwiping) model.disableSwipeBehavior = YES;
     cell.model = model;
-    if (_style == TodoTableViewControllerStyleCalendar && indexPath.section == 1) return;   //已完成的任务暂时不需要滑动操作
-    [self setupCellEvents:cell];
+    
+    
+    if (!model.disableSwipeBehavior) [self setupCellEvents:cell];
 }
 
 #pragma mark - image loader
@@ -300,11 +302,11 @@ TodoTableViewController () <UISearchBarDelegate, SGNavigationBar>
 }
 
 - (void)saveWithTask:(CDTodo *)model {
-    if ([_dataManager isModifiedTodo:model]) [self retrieveData];
+    if ([_dataManager modifyTask:model]) [self retrieveData];
 }
 
 - (void)retrieveData {
-    [self retrieveDataWithUser:[AppDelegate globalDelegate].cdUser date:_date];
+    [self retrieveDataWithUser:[AppDelegate globalDelegate].cdUser date:_date status:nil isComplete:nil];
 }
 
 #pragma mark - overdue tasks with timer
@@ -335,7 +337,7 @@ TodoTableViewController () <UISearchBarDelegate, SGNavigationBar>
     for (CDTodo *todo in array) {
         if ([todo.status integerValue] != TodoStatusOverdue && [todo.deadline compare:[NSDate date]] == NSOrderedAscending) {
             todo.status = @(TodoStatusOverdue);
-            [self.dataManager isModifiedTodo:todo];
+            [self.dataManager modifyTask:todo];
             *needsToReload = YES;
         }
     }

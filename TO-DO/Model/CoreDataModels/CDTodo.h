@@ -25,6 +25,8 @@ NS_ASSUME_NONNULL_BEGIN
 @property(nonatomic, assign) BOOL isReordering;
 /* 位置 */
 @property(nonatomic, strong) SGCoordinate *coordinate;
+/* 禁用滑动行为 */
+@property(nonatomic, assign) BOOL disableSwipeBehavior;
 
 - (void)markAsModified;
 

@@ -17,6 +17,7 @@
 @synthesize isReordering = _isReordering;
 @synthesize photoData = _photoData;
 @synthesize coordinate = _coordinate;
+@synthesize disableSwipeBehavior = _disableSwipeBehavior;
 
 #pragma mark - accessors
 

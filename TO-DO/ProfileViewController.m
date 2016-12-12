@@ -10,7 +10,7 @@
 #import "NSString+EMAdditions.h"
 #import "TodoTableViewController.h"
 
-@interface ProfileViewController ()
+@interface ProfileViewController () <UINavigationControllerDelegate, UIImagePickerControllerDelegate>
 @property(nonatomic, strong) TodoTableViewController *completedTableViewController;
 @property(nonatomic, strong) TodoTableViewController *snoozedTableViewController;
 @property(nonatomic, strong) TodoTableViewController *overdueTableViewController;
@@ -30,8 +30,8 @@
     __weak __typeof(self) weakSelf = self;
     //header
     self.headerView = [SGHeaderView headerViewWithAvatarPosition:HeaderAvatarPositionBottom titleAlignement:HeaderTitleAlignmentCenter];
-    self.headerView.subtitleLabel.text = [SGHelper localizedFormatDate:[NSDate date]];
     self.headerView.titleLabel.text = self.cdUser.name;
+    self.headerView.subtitleLabel.text = self.cdUser.email;
     [self.headerView.rightOperationButton setHidden:YES];
     [self.headerView.avatarButton sd_setImageWithURL:GetPictureUrl(super.lcUser.avatar, kQiniuImageStyleSmall) forState:UIControlStateNormal];
     [self.headerView setImage:[UIImage imageAtResourcePath:@"header bg"] style:HeaderMaskStyleLight];
@@ -41,24 +41,23 @@
     
     // segment view controllers
     _completedTableViewController = [TodoTableViewController new];
-    _completedTableViewController.style = TodoTableViewControllerStyleHome;
     [self addChildViewController:_completedTableViewController];
-    
     _snoozedTableViewController = [TodoTableViewController new];
-    _snoozedTableViewController.style = TodoTableViewControllerStyleHome;
     [self addChildViewController:_snoozedTableViewController];
-    
     _overdueTableViewController = [TodoTableViewController new];
-    _overdueTableViewController.style = TodoTableViewControllerStyleHome;
     [self addChildViewController:_overdueTableViewController];
+    
+    _completedTableViewController.style = _snoozedTableViewController.style = _overdueTableViewController.style = TodoTableViewControllerStyleHome;
+    _completedTableViewController.disableCellSwiping = _snoozedTableViewController.disableCellSwiping = _overdueTableViewController.disableCellSwiping = YES;
+    
     self.viewControllers = @[_completedTableViewController.tableView, _snoozedTableViewController.tableView, _overdueTableViewController.tableView];
     
     self.titleArray = @[@"COMPLETED".attributedString, @"SNOOZED".attributedString, @"OVERDUE".attributedString];
 }
 
 - (void)retrieveData {
-    [_completedTableViewController retrieveDataWithUser:self.cdUser date:nil];
-    [_snoozedTableViewController retrieveDataWithUser:self.cdUser date:nil];
-    [_overdueTableViewController retrieveDataWithUser:self.cdUser date:nil];
+    [_completedTableViewController retrieveDataWithUser:self.cdUser date:nil status:nil isComplete:@YES];
+    [_snoozedTableViewController retrieveDataWithUser:self.cdUser date:nil status:@(TodoStatusSnoozed) isComplete:@NO];
+    [_overdueTableViewController retrieveDataWithUser:self.cdUser date:nil status:@(TodoStatusOverdue) isComplete:@NO];
 }
 @end

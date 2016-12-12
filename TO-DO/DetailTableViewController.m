@@ -197,7 +197,7 @@ typedef NS_ENUM(NSInteger, SGDetailItem) {
 }
 
 - (void)save {
-    if (![_dataManager isModifiedTodo:_model]) return;
+    if (![_dataManager modifyTask:_model]) return;
     
     [[NSNotificationCenter defaultCenter] postNotificationName:kTaskChangedNotification object:self];
 }

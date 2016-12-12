@@ -218,7 +218,7 @@
         }
         
         [weakSelf enableView:YES];
-        if (![weakSelf.dataManager isInsertedTodo:todo]) return;
+        if (![weakSelf.dataManager InsertTask:todo]) return;
         
         [[NSNotificationCenter defaultCenter] postNotificationName:kTaskChangedNotification object:weakSelf];
         if (weakSelf.createViewControllerDidFinishCreate) weakSelf.createViewControllerDidFinishCreate(todo);
