@@ -55,7 +55,7 @@
     
     _titleLabel = [[UILabel alloc] init];
     _titleLabel.textColor = [UIColor whiteColor];
-    _titleLabel.frame = CGRectMake(0, 0, kScreenWidth - 55 * 2, 20);
+    _titleLabel.frame = CGRectMake(0, 0, kScreenWidth - 55 * 2 - 5, 20);
     _titleLabel.font = [SGHelper themeFontNavBar];
     
     UIBarButtonItem *leftBarButtonItem = [[UIBarButtonItem alloc] initWithCustomView:_leftNavigationButton];
