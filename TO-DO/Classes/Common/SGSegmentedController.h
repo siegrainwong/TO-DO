@@ -9,8 +9,8 @@
 @interface SGSegmentedController : SGBaseViewController <MXSegmentedPagerDelegate, MXSegmentedPagerDataSource>
 @property(nonatomic, strong) MXSegmentedPager *segmentedPager;
 
-@property(nonatomic, copy) NSArray<UIViewController *> *viewControllers;
-@property(nonatomic, copy) NSArray<NSAttributedString *> *titleArray;
+@property(nonatomic, copy) NSArray<UIView *> *views;
+@property(nonatomic, copy) NSArray<NSAttributedString *> *titles;
 
 - (CGFloat)pagerHeight;
 @end

@@ -28,7 +28,6 @@
     //cover
     _segmentedPager.parallaxHeader.mode = MXParallaxHeaderModeFill;
     _segmentedPager.parallaxHeader.height = (CGFloat) (kScreenWidth * 0.65);
-    _segmentedPager.parallaxHeader.minimumHeight = 0;
     
     // segmented control
     HMSegmentedControl *control = _segmentedPager.segmentedControl;
@@ -56,29 +55,28 @@
 }
 
 - (void)viewWillLayoutSubviews {
-    [super viewWillLayoutSubviews];
-    
-    /* Mark: SGSegmentedPager: 这段代码是iOS 8的兼容性代码 */
+    /* FIXME: 在iOS 8模拟器（真机未知）中，偶尔会发生上滑时位置错误的Bug，且该Bug切个模拟器再切回来就没了。 */
     _segmentedPager.frame = CGRectMake(0, 0, kScreenWidth, self.pagerHeight);
+    [super viewWillLayoutSubviews];
 }
 
 #pragma mark <MXSegmentedPagerDelegate>
 
 - (CGFloat)heightForSegmentedControlInSegmentedPager:(MXSegmentedPager *)segmentedPager {
-    return 60;
+    return 20;
 }
 
 #pragma mark <MXSegmentedPagerDataSource>
 
 - (NSInteger)numberOfPagesInSegmentedPager:(MXSegmentedPager *)segmentedPager {
-    return _viewControllers.count;
+    return _views.count;
 }
 
 - (NSAttributedString *)segmentedPager:(MXSegmentedPager *)segmentedPager attributedTitleForSectionAtIndex:(NSInteger)index {
-    return _titleArray[index];
+    return _titles[index];
 }
 
 - (UIView *)segmentedPager:(MXSegmentedPager *)segmentedPager viewForPageAtIndex:(NSInteger)index {
-    return _viewControllers[index];
+    return _views[index];
 }
 @end
