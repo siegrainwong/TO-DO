@@ -23,7 +23,7 @@
     _segmentedPager = [[MXSegmentedPager alloc] initWithFrame:CGRectMake(0, 0, kScreenWidth, self.pagerHeight)];
     _segmentedPager.delegate = self;
     _segmentedPager.dataSource = self;
-    _segmentedPager.pager.gutterWidth = 8;
+    _segmentedPager.pager.gutterWidth = 0;
     
     //cover
     _segmentedPager.parallaxHeader.mode = MXParallaxHeaderModeFill;
@@ -32,9 +32,7 @@
     // segmented control
     HMSegmentedControl *control = _segmentedPager.segmentedControl;
     control.type = HMSegmentedControlTypeText;
-    control.segmentedImageTextPosition = HMSegmentedControlImageTextPositionDefault;
     control.selectionStyle = HMSegmentedControlSelectionStyleFullWidthStripe;
-    control.backgroundColor = [SGHelper themeColorGray];
     control.verticalDividerEnabled = NO;
     
     control.selectionIndicatorColor = [SGHelper themeColorRed];

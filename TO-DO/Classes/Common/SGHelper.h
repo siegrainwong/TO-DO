@@ -32,7 +32,9 @@ static NSInteger const kPopHeightWhenKeyboardShow = 170;
 
 + (UIColor *)themeColorCyan;
 
-+ (UIColor *)themeColorBrown;
++ (UIColor *)themeColorYellow;
+
++ (UIColor *)themeColorPurple;
 
 + (UIColor *)buttonColorHighlighted;
 

@@ -79,7 +79,6 @@ static BOOL const kEnableViewControllerStateHolder = YES;
     [self setupAmap];
     [self setupDrawerViewController];
     [self setupUser];
-    [self setupEMString];
     [[UINavigationBar appearance] setShadowImage:[UIImage new]];
     NSLog(@"%@", [self sandboxUrl]);
     
@@ -122,17 +121,6 @@ static BOOL const kEnableViewControllerStateHolder = YES;
     [LCSync registerSubclass];
     [LCUser registerSubclass];
     [LCTodo registerSubclass];
-}
-
-- (void)setupEMString {
-    EMStylingClass *redClass = [[EMStylingClass alloc] initWithMarkup:@"<red>"];
-    redClass.color = [SGHelper themeColorRed];
-    
-    EMStylingClass *greenClass = [[EMStylingClass alloc] initWithMarkup:@"<green>"];
-    greenClass.color = [UIColor greenColor];
-    
-    [[EMStringStylingConfiguration sharedInstance] addNewStylingClass:redClass];
-    [[EMStringStylingConfiguration sharedInstance] addNewStylingClass:greenClass];
 }
 
 - (void)setupDrawerViewController {

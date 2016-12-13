@@ -173,7 +173,7 @@ TodoTableViewCell ()
         if (weakSelf.todoDidSwipe) return _todoDidSwipe(weakSelf, TodoSwipeOperationComplete);
         return NO;
     }];
-    MGSwipeButton *snoozeButton = [MGSwipeButton buttonWithTitle:@"" icon:[UIImage imageNamed:@"clock"] backgroundColor:[SGHelper themeColorBrown] callback:^BOOL(MGSwipeTableCell *sender) {
+    MGSwipeButton *snoozeButton = [MGSwipeButton buttonWithTitle:@"" icon:[UIImage imageNamed:@"clock"] backgroundColor:[SGHelper themeColorYellow] callback:^BOOL(MGSwipeTableCell *sender) {
         if (weakSelf.todoDidSwipe) return _todoDidSwipe(weakSelf, TodoSwipeOperationSnooze);
         return NO;
     }];
