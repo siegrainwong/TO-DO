@@ -1,6 +1,8 @@
 <component name="ProjectRunConfigurationManager">
   <configuration default="false" name="TO-DO" type="AppleRunConfiguration" factoryName="Application" WORKING_DIR="" PASS_PARENT_ENVS_2="true" PROJECT_NAME="TO-DO" TARGET_NAME="TO-DO" CONFIG_NAME="Debug" SCHEME_NAME="TO-DO" RUN_TARGET_PROJECT_NAME="TO-DO" RUN_TARGET_NAME="TO-DO" MAKE_ACTIVE="TRUE">
-    <envs />
+    <envs>
+      <env name="OS_ACTIVITY_MODE" value="disable" />
+    </envs>
     <EXTENSION ID="org.jetbrains.appcode.reveal.RevealRunConfigurationExtension">
       <REVEAL_SETTINGS autoInject="true" autoInstall="true" askToEnableAutoInstall="true" />
     </EXTENSION>

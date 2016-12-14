@@ -50,7 +50,7 @@ static NSUInteger const kMaxLength = 50;
     
     __weak __typeof(self) weakSelf = self;
     [_tableViewController setTableViewDidCalculateHeight:^(CGFloat height) {
-        weakSelf.tableViewHeight = height;
+		weakSelf.tableViewHeight = height;
         [weakSelf.tableView mas_updateConstraints:^(MASConstraintMaker *make) {
             make.height.offset(weakSelf.tableViewHeight);
         }];
@@ -59,7 +59,7 @@ static NSUInteger const kMaxLength = 50;
         CGFloat overHeight = weakSelf.maxHeight - weakSelf.titleContainerHeight - weakSelf.tableViewHeight;
         if (overHeight >= 0) return;
         
-        weakSelf.overHeight = fabsf(overHeight);
+        weakSelf.overHeight = fabs(overHeight);
         [weakSelf.tableView mas_updateConstraints:^(MASConstraintMaker *make) {
             make.height.offset(weakSelf.tableViewHeight - weakSelf.overHeight);
         }];
