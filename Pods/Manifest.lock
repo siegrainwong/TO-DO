@@ -141,7 +141,7 @@ CHECKOUT OPTIONS:
     :commit: 927f6cce17456b8876feae07bec3f1fb0b57f440
     :git: https://github.com/Seanwong933/FSCalendar.git
   HMSegmentedControl:
-    :commit: 57b419df5683836624fe2d683b86b56e770f5012
+    :commit: 8450b7dcd627cca77cdeda56b1ec2d3625fe39f3
     :git: https://github.com/Seanwong933/HMSegmentedControl
   MXSegmentedPager:
     :commit: 59d45a1dfa6666fbbdecb4dd22f868fd9b3fa243

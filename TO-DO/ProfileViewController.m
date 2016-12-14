@@ -6,7 +6,7 @@
 #import "ProfileViewController.h"
 #import "TodoTableViewController.h"
 
-static CGFloat const kSegmentedControlHeight = 80;
+static CGFloat const kSegmentedControlHeight = 90;
 static CGFloat const kParallaxHeaderMinimumHeight = 64;
 
 @interface ProfileViewController () <UINavigationControllerDelegate, UIImagePickerControllerDelegate, TodoTableViewControllerDelegate>
@@ -136,7 +136,7 @@ static CGFloat const kParallaxHeaderMinimumHeight = 64;
         color = [SGHelper themeColorPurple];
     }
     
-    CGSize size = CGSizeMake(kScreenWidth / 3 - 20 * 2, kSegmentedControlHeight);
+    CGSize size = CGSizeMake(kScreenWidth / 3 - 8 * 2, kSegmentedControlHeight);
     UIGraphicsBeginImageContextWithOptions(size, NO, 0.0);
     CGContextRef context = UIGraphicsGetCurrentContext();
     
@@ -156,7 +156,7 @@ static CGFloat const kParallaxHeaderMinimumHeight = 64;
     CGContextSetLineWidth(context, stripeSize.height);
     CGContextSetStrokeColorWithColor(context, color.CGColor);
     CGContextBeginPath(context);
-    CGPoint stripeBeginPoint = CGPointMake(size.width / 2 - stripeSize.width / 2, size.height * 0.4f + 40);
+    CGPoint stripeBeginPoint = CGPointMake(size.width / 2 - stripeSize.width / 2, size.height * 0.35f + 40);
     CGContextMoveToPoint(context, stripeBeginPoint.x, stripeBeginPoint.y);
     CGContextAddLineToPoint(context, stripeBeginPoint.x + stripeSize.width, stripeBeginPoint.y);
     CGContextStrokePath(context);

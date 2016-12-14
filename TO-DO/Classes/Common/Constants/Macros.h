@@ -48,6 +48,9 @@
 //获取系统语言
 #define SystemLanguege ([NSLocale preferredLanguages][0])
 
+//iOS版本
+#define iOSVersion ([[UIDevice currentDevice].systemVersion floatValue])
+
 //判断是否是中国地区
 #define isChina ([SystemLanguege rangeOfString:@"zh-Han"].location != NSNotFound)
 

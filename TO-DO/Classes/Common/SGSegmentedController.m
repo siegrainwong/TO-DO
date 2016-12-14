@@ -12,6 +12,10 @@
 
 #pragma mark - accessors
 
+- (CGRect)pagerFrame {
+    return CGRectMake(0, 0, kScreenWidth, self.pagerHeight);
+}
+
 - (CGFloat)pagerHeight {
     return kScreenHeight;
 }
@@ -19,8 +23,10 @@
 #pragma mark - initial
 
 - (void)setupViews {
+    self.automaticallyAdjustsScrollViewInsets = NO;
+    
     // segmented pager
-    _segmentedPager = [[MXSegmentedPager alloc] initWithFrame:CGRectMake(0, 0, kScreenWidth, self.pagerHeight)];
+    _segmentedPager = [[MXSegmentedPager alloc] initWithFrame:self.pagerFrame];
     _segmentedPager.delegate = self;
     _segmentedPager.dataSource = self;
     _segmentedPager.pager.gutterWidth = 0;
@@ -32,12 +38,12 @@
     // segmented control
     HMSegmentedControl *control = _segmentedPager.segmentedControl;
     control.type = HMSegmentedControlTypeText;
-    control.selectionStyle = HMSegmentedControlSelectionStyleFullWidthStripe;
+    control.selectionStyle = HMSegmentedControlSelectionStyleArrow;
     control.verticalDividerEnabled = NO;
     
-    control.selectionIndicatorColor = [SGHelper themeColorRed];
+    control.selectionIndicatorColor = [SGHelper themeColorLightGray];
     control.selectionIndicatorLocation = HMSegmentedControlSelectionIndicatorLocationDown;
-    control.selectionIndicatorHeight = 2;
+    control.selectionIndicatorHeight = 10;
     control.selectionIndicatorEdgeInsets = UIEdgeInsetsMake(0, 20, 0, 20);
     
     UIFont *fontForControl = [UIFont systemFontOfSize:kScreenWidth * 0.039];
