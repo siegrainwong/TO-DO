@@ -79,7 +79,8 @@ TodoTableViewController () <UISearchBarDelegate, SGNavigationBar>
     [super setupViews];
     
     [self.tableView registerClass:[TodoTableViewCell class] forCellReuseIdentifier:kTodoIdentifierArray[TodoIdentifierNormal]];
-    [self setSeparatorInsetZeroWithTableView:self.tableView];
+//    [self setSeparatorInsetZeroWithTableView:self.tableView];
+    [self setSeparatorInsetWithTableView:self.tableView inset:UIEdgeInsetsMake(0, kScreenHeight * kCellVerticalInsetsMuiltipledByHeight, 0, kScreenHeight * kCellVerticalInsetsMuiltipledByHeight)];
     
     if (_style == TodoTableViewControllerStyleSearch) {
         [self setupNavigationBar];
