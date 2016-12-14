@@ -79,6 +79,7 @@ static BOOL const kEnableViewControllerStateHolder = YES;
     [self setupAmap];
     [self setupDrawerViewController];
     [self setupUser];
+    [self setupRemoteNotification];
     [[UINavigationBar appearance] setShadowImage:[UIImage new]];
     NSLog(@"%@", [self sandboxUrl]);
     
@@ -202,7 +203,6 @@ static BOOL const kEnableViewControllerStateHolder = YES;
 #pragma mark - notifications
 
 - (void)setupRemoteNotification {
-    // FIXME: 远程通知尚未实装，有Bug
     // iOS10 兼容，下使用UNUserNotificationCenter 管理通知
     if ([[UIDevice currentDevice].systemVersion floatValue] >= 10.0) {
         UNUserNotificationCenter *center = [UNUserNotificationCenter currentNotificationCenter];
