@@ -37,7 +37,7 @@ TodoTableViewCell ()
 
 - (instancetype)initWithStyle:(UITableViewCellStyle)style reuseIdentifier:(NSString *)reuseIdentifier {
     if (self = [super initWithStyle:style reuseIdentifier:reuseIdentifier]) {
-        _cellInsets = UIEdgeInsetsMake(kScreenHeight * kCellVerticalInsetsMuiltipledByHeight, kScreenHeight * kCellHorizontalInsetsMuiltipledByHeight, kScreenHeight * kCellVerticalInsetsMuiltipledByHeight, kScreenHeight * kCellHorizontalInsetsMuiltipledByHeight);
+        _cellInsets = UIEdgeInsetsMake(kScreenHeight * kCellVerticalInsetsRatioByScreenHeight, kScreenHeight * kCellHorizontalInsetsRatioByScreenHeight, kScreenHeight * kCellVerticalInsetsRatioByScreenHeight, kScreenHeight * kCellHorizontalInsetsRatioByScreenHeight);
         _identifier = [kTodoIdentifierArray indexOfObject:reuseIdentifier];
         
         [self setup];
@@ -50,14 +50,14 @@ TodoTableViewCell ()
     _cellImage = cellImage;
     
     _model.photoImage = cellImage;
-    [_photoButton setImage:[cellImage jm_imageWithRoundedCornersAndSize:CGSizeMake(kButtonSize, kButtonSize) andCornerRadius:kButtonSize / 2] forState:UIControlStateNormal];
+    [_photoButton jm_setCornerRadius:kButtonSize / 2 withImage:cellImage contentMode:UIControlStateNormal];
 }
 
 - (void)setModel:(CDTodo *)model {
     _model = model;
     
-    if (model.photoPath) model.photoImage = [UIImage imageWithContentsOfFile:[NSString stringWithFormat:@"%@/%@.jpg", [SGHelper photoPath], model.identifier]];
-    if (model.photoImage) [_photoButton setImage:[model.photoImage jm_imageWithRoundedCornersAndSize:CGSizeMake(kButtonSize, kButtonSize) andCornerRadius:kButtonSize / 2] forState:UIControlStateNormal];
+    if (model.photoPath && !model.photoImage) model.photoImage = [UIImage imageWithContentsOfFile:[NSString stringWithFormat:@"%@/%@.jpg", [SGHelper photoPath], model.identifier]];
+    if (model.photoImage) [_photoButton jm_setCornerRadius:kButtonSize / 2 withImage:model.photoImage contentMode:UIControlStateNormal];
     
     // Mark: 苹果的智障框架，系统是24小时制就打印不出12小时，非要设置地区，且该地区只能转换为12小时制
     NSDateFormatter *formatter = [NSDateFormatter dateFormatterWithFormatString:@"h"];

@@ -79,8 +79,7 @@ TodoTableViewController () <UISearchBarDelegate, SGNavigationBar>
     [super setupViews];
     
     [self.tableView registerClass:[TodoTableViewCell class] forCellReuseIdentifier:kTodoIdentifierArray[TodoIdentifierNormal]];
-//    [self setSeparatorInsetZeroWithTableView:self.tableView];
-    [self setSeparatorInsetWithTableView:self.tableView inset:UIEdgeInsetsMake(0, kScreenHeight * kCellVerticalInsetsMuiltipledByHeight, 0, kScreenHeight * kCellVerticalInsetsMuiltipledByHeight)];
+    [self setSeparatorInsetWithTableView:self.tableView inset:UIEdgeInsetsMake(0, kScreenHeight * kCellVerticalInsetsRatioByScreenHeight, 0, kScreenHeight * kCellVerticalInsetsRatioByScreenHeight)];
     
     if (_style == TodoTableViewControllerStyleSearch) {
         [self setupNavigationBar];
@@ -215,21 +214,23 @@ TodoTableViewController () <UISearchBarDelegate, SGNavigationBar>
 }
 
 - (NSString *)imagePathAtIndexPath:(NSIndexPath *)indexPath {
-    CDTodo *model = [self modelAtIndexPath:indexPath];
+    CDTodo *model = (CDTodo *) [self modelAtIndexPath:indexPath];
     if (!model.photoPath) return nil;
     
     return [NSString stringWithFormat:@"%@/%@.jpg", [SGHelper photoPath], [(CDTodo *) [self modelAtIndexPath:indexPath] identifier]];
 }
 
 - (void)shouldDisplayImage:(UIImage *)image onCell:(TodoTableViewCell *)cell atIndexPath:(NSIndexPath *)indexPath {
-    CDTodo *model = [self modelAtIndexPath:indexPath];
-    if (!model.photoImage) {
-        model.photoImage = image;
-        [model saveImage];
-        MR_saveAndWait();
-    }
-    
-    cell.cellImage = image;
+    CDTodo *model = (CDTodo *) [self modelAtIndexPath:indexPath];
+    [[GCDQueue globalQueueWithLevel:DISPATCH_QUEUE_PRIORITY_DEFAULT] async:^{
+        if (!model.photoImage) {
+            model.photoImage = image;
+            [model saveImage];
+            MR_saveAsynchronous();
+        }
+        
+        [[GCDQueue mainQueue] async:^{cell.cellImage = image;}];
+    }];
 }
 
 

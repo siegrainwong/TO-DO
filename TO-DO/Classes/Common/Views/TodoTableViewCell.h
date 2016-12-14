@@ -9,8 +9,8 @@
 #import "MGSwipeTableCell.h"
 #import <UIKit/UIKit.h>
 
-static CGFloat const kCellHorizontalInsetsMuiltipledByHeight = 0.034;
-static CGFloat const kCellVerticalInsetsMuiltipledByHeight = 0.04;
+static CGFloat const kCellHorizontalInsetsRatioByScreenHeight = 0.034;
+static CGFloat const kCellVerticalInsetsRatioByScreenHeight = 0.04;
 
 typedef NS_ENUM(NSInteger, TodoIdentifier) {
     TodoIdentifierNormal,

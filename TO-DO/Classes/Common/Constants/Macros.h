@@ -75,6 +75,7 @@
 
 //MagicRecord Save
 #define MR_saveAndWait() [[NSManagedObjectContext MR_defaultContext] MR_saveToPersistentStoreAndWait];
+#define MR_saveAsynchronous() [[NSManagedObjectContext MR_defaultContext] MR_saveToPersistentStoreWithCompletion:nil];
 
 /*======图片区  */
 //下载图片
