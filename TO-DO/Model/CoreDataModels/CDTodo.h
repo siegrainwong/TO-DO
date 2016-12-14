@@ -21,8 +21,6 @@ NS_ASSUME_NONNULL_BEGIN
 @property(nonatomic, strong) NSData *photoData;
 /* 缓存表格单元高度 */
 @property(nonatomic, assign) CGFloat rowHeight;
-/* 指示该待办事项是否在重新排序中 */
-@property(nonatomic, assign) BOOL isReordering;
 /* 位置 */
 @property(nonatomic, strong) SGCoordinate *coordinate;
 /* 禁用滑动行为 */
@@ -30,7 +28,7 @@ NS_ASSUME_NONNULL_BEGIN
 
 - (void)markAsModified;
 
-- (BOOL)saveImage;
+- (void)saveImageWithBlock:(void (^ __nullable)(BOOL succeed))complete;
 
 /**
  *  已新建实体的方式用lcTodo创建cdTodo

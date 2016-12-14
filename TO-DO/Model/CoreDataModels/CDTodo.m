@@ -10,11 +10,11 @@
 #import "LCTodo.h"
 #import "SGCoordinate.h"
 #import "SGImageUpload.h"
+#import "UIImage+Extension.h"
 
 @implementation CDTodo
 @synthesize photoImage = _photoImage;
 @synthesize rowHeight = _rowHeight;
-@synthesize isReordering = _isReordering;
 @synthesize photoData = _photoData;
 @synthesize coordinate = _coordinate;
 @synthesize disableSwipeBehavior = _disableSwipeBehavior;
@@ -31,13 +31,6 @@
     }
     
     return _coordinate;
-}
-
-- (UIImage *)avatarPhoto {
-    if (!_photoImage) {
-        _photoImage = [UIImage imageWithData:self.photoData];
-    }
-    return _photoImage;
 }
 
 - (void)setPhotoImage:(UIImage *)photoImage {
@@ -60,25 +53,26 @@
 
 #pragma mark - save photo
 
-- (BOOL)saveImage {
-    if (!self.photoData) return false;
+- (void)saveImageWithBlock:(void (^ __nullable)(BOOL succeed))complete {
+    if (!self.photoData) return;
     
-    NSString *folderPath = [SGHelper photoPath];
-    NSFileManager *manager = [NSFileManager defaultManager];
-    
-    NSError *error = nil;
-    if (![manager fileExistsAtPath:folderPath]) {
-        [manager createDirectoryAtPath:folderPath withIntermediateDirectories:YES attributes:nil error:&error];
-    }
-    NSString *imagePath = [NSString stringWithFormat:@"%@/%@.jpg", [SGHelper photoPath], self.identifier];
-    if (![self.photoData writeToFile:imagePath atomically:YES]) {
-        return NO;
-    }
-    self.photoPath = imagePath;
-    
-    [self markAsModified];
-    
-    return YES;
+    [[GCDQueue globalQueueWithLevel:DISPATCH_QUEUE_PRIORITY_DEFAULT] async:^void {
+        NSString *folderPath = [SGHelper photoPath];
+        NSFileManager *manager = [NSFileManager defaultManager];
+        
+        if (![manager fileExistsAtPath:folderPath]) [manager createDirectoryAtPath:folderPath withIntermediateDirectories:YES attributes:nil error:nil];
+        
+        self.photoPath = SGPhotoPath(self.identifier);
+        self.photoImage = [UIImage imageWithData:self.photoData];
+        
+        if (![self.photoData writeToFile:self.photoPath atomically:YES]) if (complete) return complete(NO); else return;
+        NSData *thumbData = UIImageJPEGRepresentation([UIImage imageWithImage:self.photoImage scaledToSize:kPhotoThumbSize], 1);
+        if (![thumbData writeToFile:SGThumbPath(self.identifier) atomically:YES]) if (complete) return complete(NO); else return;
+        
+        [self markAsModified];
+        
+        if (complete) complete(YES);
+    }];
 }
 
 #pragma mark - convert LCTodo to CDTodo

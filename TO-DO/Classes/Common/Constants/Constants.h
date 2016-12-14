@@ -23,6 +23,9 @@ static NSString *const kTaskChangedNotification = @"kTaskChangedNotification";
 static NSUInteger const kMaxLengthOfTitle = 50;
 static NSUInteger const kMaxLengthOfDescription = 1000;
 
+/**************************************** 其他 */
+static CGSize const kPhotoThumbSize = {45, 45};
+
 /**************************************** 全局枚举*/
 /**
  *  AVObject的ObjectId字段的筛选规则

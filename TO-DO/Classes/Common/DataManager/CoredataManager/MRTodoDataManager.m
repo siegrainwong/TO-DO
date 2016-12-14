@@ -161,10 +161,7 @@ MRTodoDataManager ()
     
     // 存储照片，如果失败了返回
     if (_model.photoData) {
-        if (![_model saveImage]) {
-            [SCLAlertHelper errorAlertWithContent:_localDictionary[kPhotoSaveFailedKey]];
-            return NO;
-        }
+        [_model saveImageWithBlock:^(BOOL succeed) {[SCLAlertHelper errorAlertWithContent:_localDictionary[kPhotoSaveFailedKey]];}];
     }
     
     return YES;

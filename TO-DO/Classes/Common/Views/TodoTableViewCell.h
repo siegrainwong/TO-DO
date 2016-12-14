@@ -36,7 +36,6 @@ typedef BOOL (^todoSwipedBlock)(TodoTableViewCell *sender, TodoSwipeOperation op
  */
 @interface TodoTableViewCell : MGSwipeTableCell
 @property(nonatomic, strong) CDTodo *model;
-@property(nonatomic, strong) UIImage *cellImage;
 
 @property(nonatomic, copy) todoSwipedBlock todoDidSwipe;
 

@@ -43,7 +43,7 @@ static CGFloat const kContentMaxHeight = 55;
     }
 	
     if (model.photoPath) {
-        _photoView.image = [UIImage imageWithContentsOfFile:[NSString stringWithFormat:@"%@/%@.jpg", [SGHelper photoPath], model.identifier]];
+        _photoView.image = [UIImage imageWithContentsOfFile:SGPhotoPath(model.identifier)];
     } else if (model.photoUrl) {
         [_photoView sd_setImageWithURL:[NSURL URLWithString:model.photoUrl]];
     }

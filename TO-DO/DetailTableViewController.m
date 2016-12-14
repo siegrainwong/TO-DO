@@ -86,7 +86,7 @@ typedef NS_ENUM(NSInteger, SGDetailItem) {
 }
 
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath {
-    DetailModel *model = [self modelAtIndexPath:indexPath];
+    DetailModel *model = (DetailModel *) [self modelAtIndexPath:indexPath];
     if (!model.rowHeight) model.rowHeight = [self.tableView cellHeightForIndexPath:indexPath model:model keyPath:@"model" cellClass:[DetailTableViewCell class] contentViewWidth:kScreenWidth];
     if (indexPath.row == _dataArray.count - 1 && self.tableViewDidCalculateHeight && !_cellsTotalHeight) {  //如果不进行最后一个判断会无限递归，因为外部layout后tableview也会reload data
         _cellsTotalHeight = self.tableView.cellsTotalHeight;
@@ -97,7 +97,7 @@ typedef NS_ENUM(NSInteger, SGDetailItem) {
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
     DetailTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:[self identifierAtIndexPath:indexPath] forIndexPath:indexPath];
-    cell.model = [self modelAtIndexPath:indexPath];
+    cell.model = (DetailModel *) [self modelAtIndexPath:indexPath];
     return cell;
 }
 

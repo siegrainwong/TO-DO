@@ -17,7 +17,7 @@
 #import "UIImage+Compression.h"
 #import "UIKit+AFNetworking.h"
 
-static NSInteger const kButtonSize = 45;
+static CGFloat const kButtonSize = 45;
 static CGFloat const kSlideItemWidth = 60;
 
 @interface
@@ -26,7 +26,7 @@ TodoTableViewCell ()
 @property(nonatomic, assign) TodoIdentifier identifier;
 @property(nonatomic, strong) UILabel *timeLabel;
 @property(nonatomic, strong) UILabel *meridiemLabel;
-@property(nonatomic, strong) UIButton *photoButton;
+@property(nonatomic, strong) UIImageView *photoView;
 @property(nonatomic, strong) UILabel *todoTitleLabel;
 @property(nonatomic, strong) UILabel *todoContentLabel;
 @property(nonatomic, strong) UIButton *statusButton;
@@ -38,7 +38,7 @@ TodoTableViewCell ()
 - (instancetype)initWithStyle:(UITableViewCellStyle)style reuseIdentifier:(NSString *)reuseIdentifier {
     if (self = [super initWithStyle:style reuseIdentifier:reuseIdentifier]) {
         _cellInsets = UIEdgeInsetsMake(kScreenHeight * kCellVerticalInsetsRatioByScreenHeight, kScreenHeight * kCellHorizontalInsetsRatioByScreenHeight, kScreenHeight * kCellVerticalInsetsRatioByScreenHeight, kScreenHeight * kCellHorizontalInsetsRatioByScreenHeight);
-        _identifier = [kTodoIdentifierArray indexOfObject:reuseIdentifier];
+        _identifier = (TodoIdentifier) [kTodoIdentifierArray indexOfObject:reuseIdentifier];
         
         [self setup];
         [self bindConstraints];
@@ -46,18 +46,11 @@ TodoTableViewCell ()
     return self;
 }
 
-- (void)setCellImage:(UIImage *)cellImage {
-    _cellImage = cellImage;
-    
-    _model.photoImage = cellImage;
-    [_photoButton jm_setCornerRadius:kButtonSize / 2 withImage:cellImage contentMode:UIControlStateNormal];
-}
-
 - (void)setModel:(CDTodo *)model {
     _model = model;
     
-    if (model.photoPath && !model.photoImage) model.photoImage = [UIImage imageWithContentsOfFile:[NSString stringWithFormat:@"%@/%@.jpg", [SGHelper photoPath], model.identifier]];
-    if (model.photoImage) [_photoButton jm_setCornerRadius:kButtonSize / 2 withImage:model.photoImage contentMode:UIControlStateNormal];
+    if (model.photoPath && !model.photoImage) model.photoImage = [UIImage imageWithContentsOfFile:SGThumbPath(model.identifier)];
+    if (model.photoImage)[_photoView jm_setCornerRadius:kButtonSize / 2 withImage:model.photoImage];
     
     // Mark: 苹果的智障框架，系统是24小时制就打印不出12小时，非要设置地区，且该地区只能转换为12小时制
     NSDateFormatter *formatter = [NSDateFormatter dateFormatterWithFormatString:@"h"];
@@ -67,7 +60,6 @@ TodoTableViewCell ()
     _meridiemLabel.text = [[formatter stringFromDate:_model.deadline] lowercaseString];
     
     _todoTitleLabel.text = _model.title;
-//    _todoTitleLabel.icon = [UIImage imageWithImage:model.generalAddress ? [UIImage imageNamed:@"location"] : [UIImage new] scaledToSize:CGSizeMake(15, 15)];
     _todoContentLabel.text = _model.sgDescription;
     
     NSString *statusImageName = _model.isCompleted.boolValue ? @"status-complete" : [NSString stringWithFormat:@"status-%d", _model.status.intValue];
@@ -93,13 +85,12 @@ TodoTableViewCell ()
     _meridiemLabel.textAlignment = NSTextAlignmentCenter;
     [self.contentView addSubview:_meridiemLabel];
     
-    _photoButton = [UIButton new];
-    [self.contentView addSubview:_photoButton];
+    _photoView = [UIImageView new];
+    _photoView.contentMode = UIViewContentModeScaleAspectFill;
+    [self.contentView addSubview:_photoView];
     
     _todoTitleLabel = [UILabel new];
     _todoTitleLabel.textAlignment = NSTextAlignmentLeft;
-//    _todoTitleLabel.iconPosition = ZLIconLabelPositionRight;
-//    _todoTitleLabel.iconPadding = 5;
     _todoTitleLabel.font = [SGHelper themeFontWithSize:18];
     [self.contentView addSubview:_todoTitleLabel];
     
@@ -125,21 +116,21 @@ TodoTableViewCell ()
             .heightIs(10)
             .widthRatioToView(_timeLabel, 1);
     
-    _photoButton.sd_layout
+    _photoView.sd_layout
             .topSpaceToView(self.contentView, _cellInsets.top - 3)
             .leftSpaceToView(_timeLabel, _cellInsets.left)
             .widthIs(kButtonSize)
             .heightIs(kButtonSize);
     
     _statusButton.sd_layout
-            .centerYEqualToView(_photoButton)
+            .centerYEqualToView(_photoView)
             .rightSpaceToView(self.contentView, _cellInsets.right)
             .widthIs(15)
             .heightEqualToWidth();
     
     // Mark: SDAutoLayout 在设置约束时要注意设置的顺序，不能在约束中使用未被约束的控件。
     _todoTitleLabel.sd_layout
-            .leftSpaceToView(_photoButton, 20)
+            .leftSpaceToView(_photoView, 20)
             .topSpaceToView(self.contentView, _cellInsets.top)
             .rightSpaceToView(_statusButton, 10)
             .heightIs(20);
@@ -190,16 +181,16 @@ TodoTableViewCell ()
 
 - (void)updateConstraints {
     if (!_model.photoImage) {
-        _photoButton.sd_layout.widthIs(0);
-        _todoTitleLabel.sd_layout.leftSpaceToView(_photoButton, 0);
+        _photoView.sd_layout.widthIs(0);
+        _todoTitleLabel.sd_layout.leftSpaceToView(_photoView, 0);
     } else {
-        _photoButton.sd_layout.widthIs(kButtonSize);
-        _todoTitleLabel.sd_layout.leftSpaceToView(_photoButton, 20);
+        _photoView.sd_layout.widthIs(kButtonSize);
+        _todoTitleLabel.sd_layout.leftSpaceToView(_photoView, 20);
     }
     
     if (!_model.sgDescription.length) {
         _todoTitleLabel.sd_layout.topSpaceToView(self.contentView, _cellInsets.top + 10);
-        [self setupAutoHeightWithBottomView:_photoButton bottomMargin:_cellInsets.bottom];
+        [self setupAutoHeightWithBottomView:_photoView bottomMargin:_cellInsets.bottom];
     } else {
         _todoTitleLabel.sd_layout.topSpaceToView(self.contentView, _cellInsets.top);
         [self setupAutoHeightWithBottomView:_todoContentLabel bottomMargin:_cellInsets.bottom + 2];

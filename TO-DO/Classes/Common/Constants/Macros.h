@@ -83,4 +83,7 @@
 
 //下载图片并返回圆角图
 #define SDImageDownloadWithRoundedCorner(url, size, cornerSize, success) (SDImageDownload(url, ^(UIImage * image) { image = [image jm_imageWithRoundedCornersAndSize:CGSizeMake(size, size) andCornerRadius:cornerSize]; success(image); }))
+
+#define SGPhotoPath(identifier) [NSString stringWithFormat:@"%@/%@.jpg", [SGHelper photoPath], identifier]
+#define SGThumbPath(identifier) [NSString stringWithFormat:@"%@/thumb_%@.jpg", [SGHelper photoPath], identifier]
 #endif

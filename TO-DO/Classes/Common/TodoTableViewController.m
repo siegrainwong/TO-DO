@@ -222,15 +222,11 @@ TodoTableViewController () <UISearchBarDelegate, SGNavigationBar>
 
 - (void)shouldDisplayImage:(UIImage *)image onCell:(TodoTableViewCell *)cell atIndexPath:(NSIndexPath *)indexPath {
     CDTodo *model = (CDTodo *) [self modelAtIndexPath:indexPath];
-    [[GCDQueue globalQueueWithLevel:DISPATCH_QUEUE_PRIORITY_DEFAULT] async:^{
-        if (!model.photoImage) {
-            model.photoImage = image;
-            [model saveImage];
-            MR_saveAsynchronous();
-        }
-        
-        [[GCDQueue mainQueue] async:^{cell.cellImage = image;}];
-    }];
+    if (!model.photoImage) {
+        model.photoImage = image;
+        [model saveImageWithBlock:nil];
+        MR_saveAsynchronous();
+    }
 }
 
 
