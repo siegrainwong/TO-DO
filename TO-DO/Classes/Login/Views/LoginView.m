@@ -90,7 +90,7 @@ LoginView ()
 
 - (void)setup {
     __weak typeof(self) weakSelf = self;
-    _headerView = [SGHeaderView headerViewWithAvatarPosition:HeaderAvatarPositionBottom titleAlignement:HeaderTitleAlignmentCenter];
+    _headerView = [SGHeaderView headerViewWithAvatarPosition:HeaderAvatarPositionBottom titleAlignement:NSTextAlignmentCenter];
     _headerView.rightOperationButton.hidden = YES;
     _headerView.titleLabel.layer.opacity = 0;
     [_headerView setImage:[UIImage imageAtResourcePath:@"login header bg"] style:HeaderMaskStyleDark];

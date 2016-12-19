@@ -115,6 +115,8 @@ typedef NS_ENUM(NSInteger, SGDetailItem) {
 }
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
+    [self.tableView deselectRowAtIndexPath:indexPath animated:YES];
+    
     if (indexPath.row == SGDetailItemDeadline) {
         [self showDatetimePicker:_model.deadline];
     } else if (indexPath.row == SGDetailItemDescription) {

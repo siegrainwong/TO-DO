@@ -67,6 +67,7 @@ static CGFloat const kContentMaxHeight = 55;
 
 - (void)setupViews {
     self.selectionStyle = UITableViewCellSelectionStyleNone;
+    self.selectedBackgroundView = [[UIImageView alloc] initWithImage:[UIImage imageWithColor:ColorWithRGBA(0xFF3366, .2)]];
     
     _iconView = [UIImageView new];
     [self.contentView addSubview:_iconView];
@@ -119,13 +120,13 @@ static CGFloat const kContentMaxHeight = 55;
     [super updateConstraints];
     
     UIView *bottomView = nil;
-    if (_model.cellStyle == DetailCellStylePhoto && _model.hasPhoto) {
+    if (_model.style == DetailCellStylePhoto && _model.hasPhoto) {
         _contentLabel.sd_layout.maxHeightIs(0);
         _mapViewController.view.sd_layout.heightIs(0);
         _photoView.sd_layout.heightIs(kPhotoHeight);
 
         bottomView = _photoView;
-    } else if (_model.cellStyle == DetailCellStyleMap && _model.content) {
+    } else if (_model.style == DetailCellStyleMap && _model.content) {
         _contentLabel.sd_layout.maxHeightIs(kContentMaxHeight);
         _photoView.sd_layout.heightIs(0);
         _mapViewController.view.sd_layout.heightIs(kMapHeight);

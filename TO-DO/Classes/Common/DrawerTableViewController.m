@@ -18,6 +18,7 @@
 #import "Masonry.h"
 #import "SGSyncManager.h"
 #import "ProfileViewController.h"
+#import "SettingViewController.h"
 
 typedef NS_ENUM(NSInteger, DrawerItem) {
     DrawerItemHome,
@@ -50,6 +51,7 @@ DrawerTableViewController ()
 #pragma mark - localization
 
 - (void)localizeStrings {
+    //configure menu items
     _dataArray = @[
             @{kDataKeyTitle: [AppDelegate homeViewControllerKey],
                     kDataKeyIcon: @"",
@@ -59,7 +61,10 @@ DrawerTableViewController ()
                     kDataKeyClass: [CalendarViewController class]},
             @{kDataKeyTitle: NSLocalizedString(@"Profile", nil),
                     kDataKeyIcon: @"",
-                    kDataKeyClass: [ProfileViewController class]}
+                    kDataKeyClass: [ProfileViewController class]},
+            @{kDataKeyTitle: NSLocalizedString(@"Setting", nil),
+                    kDataKeyIcon: @"",
+                    kDataKeyClass: [SettingViewController class]}
     ];
     
     [_leftBottomButton setTitle:NSLocalizedString(@"SYNC", nil) forState:UIControlStateNormal];

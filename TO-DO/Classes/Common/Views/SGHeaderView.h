@@ -13,11 +13,6 @@ typedef NS_ENUM(NSInteger, HeaderAvatarPosition) {
     HeaderAvatarPositionCenter
 };
 
-typedef NS_ENUM(NSInteger, HeaderTitleAlignement) {
-    HeaderTitleAlignmentCenter,
-    HeaderTitleAlignmentLeft
-};
-
 typedef NS_ENUM(NSInteger, HeaderMaskStyle) {
     HeaderMaskStyleLight,
     HeaderMaskStyleDark
@@ -49,7 +44,7 @@ typedef NS_ENUM(NSInteger, HeaderMaskStyle) {
  */
 @property(nonatomic, readwrite, copy) void (^headerViewDidPressRightOperationButton)();
 
-+ (instancetype)headerViewWithAvatarPosition:(HeaderAvatarPosition)avatarPosition titleAlignement:(HeaderTitleAlignement)titleAlignment;
++ (instancetype)headerViewWithAvatarPosition:(HeaderAvatarPosition)avatarPosition titleAlignement:(NSTextAlignment)titleAlignment;
 
 /**
  * 设置背景图

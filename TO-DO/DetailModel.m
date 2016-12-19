@@ -26,7 +26,7 @@
         self.photoPath = photoPath;
         self.placeholder = placeholder;
         self.identifier = identifier;
-        self.cellStyle = cellStyle;
+        self.style = cellStyle;
     }
     
     return self;

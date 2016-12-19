@@ -5,8 +5,9 @@
 
 #import "MJExtension.h"
 #import "SGCoordinate.h"
+#import "SGCellViewModel.h"
 
-@interface DetailModel : NSObject
+@interface DetailModel : SGCellViewModel
 @property(nonatomic, strong) NSString *iconName;
 @property(nonatomic, strong) NSString *content;
 @property(nonatomic, strong) SGCoordinate *location;
@@ -14,10 +15,6 @@
 @property(nonatomic, strong) NSString *photoPath;
 @property(nonatomic, strong) NSString *placeholder;
 @property(nonatomic, strong) NSString *identifier;
-
-@property(nonatomic, assign) CGFloat rowHeight;
-@property(nonatomic, assign) NSInteger cellStyle;
-
 
 #pragma mark -
 

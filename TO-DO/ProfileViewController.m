@@ -58,7 +58,7 @@ static CGFloat const kParallaxHeaderMinimumHeight = 64;
     
     __weak __typeof(self) weakSelf = self;
     //header
-    self.headerView = [SGHeaderView headerViewWithAvatarPosition:HeaderAvatarPositionBottom titleAlignement:HeaderTitleAlignmentCenter];
+    self.headerView = [SGHeaderView headerViewWithAvatarPosition:HeaderAvatarPositionBottom titleAlignement:NSTextAlignmentCenter];
     self.headerView.titleLabel.text = self.cdUser.name;
     self.headerView.subtitleLabel.text = self.cdUser.email;
     [self.headerView.rightOperationButton setHidden:YES];

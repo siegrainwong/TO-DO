@@ -97,7 +97,7 @@
     _containerView.backgroundColor = [UIColor whiteColor];
     [self.view addSubview:_containerView];
     
-    self.headerView = [SGHeaderView headerViewWithAvatarPosition:HeaderAvatarPositionCenter titleAlignement:HeaderTitleAlignmentCenter];
+    self.headerView = [SGHeaderView headerViewWithAvatarPosition:HeaderAvatarPositionCenter titleAlignement:NSTextAlignmentCenter];
     [self.headerView setImage:[UIImage imageAtResourcePath:@"create header bg"] style:HeaderMaskStyleDark];
     [self.headerView.rightOperationButton setImage:[UIImage imageNamed:@"photo"] forState:UIControlStateNormal];
     [self.headerView setHeaderViewDidPressRightOperationButton:^{[weakSelf headerViewDidPressRightOperationButton];}];

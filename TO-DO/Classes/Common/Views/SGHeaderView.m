@@ -14,12 +14,13 @@
 static CGFloat const kAvatarButtonSizeMultipliedByHeight = 0.16;
 static CGFloat const kTitleLabelHeight = 40;
 static CGFloat const kRectangleHeight = 40;
+static CGFloat const kTitleSpacingX = 20;
 static void *const kHeaderViewKVOContext = (void *) &kHeaderViewKVOContext;
 
 @interface SGHeaderView ()
 @property(nonatomic, readonly, strong) UIImageView *backgroundImageView;
 @property(nonatomic, readwrite, assign) HeaderAvatarPosition avatarPosition;
-@property(nonatomic, readwrite, assign) HeaderTitleAlignement titleAlignment;
+@property(nonatomic, readwrite, assign) NSTextAlignment titleAlignment;
 @property(nonatomic, strong) SGRectangleView *rectangleView;
 @property(nonatomic, strong) UIImage *image;
 
@@ -59,7 +60,7 @@ static void *const kHeaderViewKVOContext = (void *) &kHeaderViewKVOContext;
 
 #pragma mark - initial
 
-+ (instancetype)headerViewWithAvatarPosition:(HeaderAvatarPosition)avatarPosition titleAlignement:(HeaderTitleAlignement)titleAlignment {
++ (instancetype)headerViewWithAvatarPosition:(HeaderAvatarPosition)avatarPosition titleAlignement:(NSTextAlignment)titleAlignment {
     SGHeaderView *headerView = [[SGHeaderView alloc] init];
     headerView.avatarPosition = avatarPosition;
     headerView.titleAlignment = titleAlignment;
@@ -83,11 +84,13 @@ static void *const kHeaderViewKVOContext = (void *) &kHeaderViewKVOContext;
     _titleLabel = [[UILabel alloc] init];
     _titleLabel.font = [SGHelper themeFontWithSize:32];
     _titleLabel.textColor = [UIColor whiteColor];
+    _titleLabel.textAlignment = _titleAlignment;
     [self addSubview:_titleLabel];
     
     _subtitleLabel = [[UILabel alloc] init];
     _subtitleLabel.font = [SGHelper themeFontWithSize:12];
     _subtitleLabel.textColor = [SGHelper themeColorLightGray];
+    _subtitleLabel.textAlignment = _titleAlignment;
     [self addSubview:_subtitleLabel];
     
     _avatarButton = [[UIButton alloc] init];
@@ -138,8 +141,9 @@ static void *const kHeaderViewKVOContext = (void *) &kHeaderViewKVOContext;
     }];
     
     [_titleLabel mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.centerX.equalTo(weakSelf.backgroundImageView);
-        if (_avatarPosition == HeaderAvatarPositionCenter && weakSelf.titleAlignment == HeaderTitleAlignmentCenter)
+        make.left.offset(kTitleSpacingX);
+        make.right.offset(-kTitleSpacingX);
+        if (_avatarPosition == HeaderAvatarPositionCenter)
             make.top.equalTo(weakSelf.avatarButton.mas_bottom).offset(5);
         else
             make.centerY.offset(-30);
@@ -149,7 +153,7 @@ static void *const kHeaderViewKVOContext = (void *) &kHeaderViewKVOContext;
     [_subtitleLabel mas_makeConstraints:^(MASConstraintMaker *make) {
         make.top.equalTo(weakSelf.titleLabel.mas_bottom).offset(5);
         make.height.offset(20);
-        make.centerX.equalTo(weakSelf.titleLabel);
+        make.left.right.equalTo(_titleLabel);
     }];
 }
 
