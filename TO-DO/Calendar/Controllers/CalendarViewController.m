@@ -70,7 +70,6 @@ CalendarViewController ()
     [self.headerView.avatarButton setHidden:YES];
     [self.headerView.subtitleLabel setHidden:YES];
     self.headerView.subtitleLabel.text = [SGHelper localizedFormatDate:[NSDate date]];
-    [self.headerView.rightOperationButton setImage:[UIImage imageNamed:@"add"] forState:UIControlStateNormal];
     [self.headerView setImage:[UIImage imageAtResourcePath:@"calendar header bg"] style:HeaderMaskStyleDark];
     __weak typeof(self) weakSelf = self;
     [self.headerView setHeaderViewDidPressRightOperationButton:^{
@@ -170,7 +169,7 @@ CalendarViewController ()
 
 #pragma mark - todo tableView controller delegate
 
-- (void)todoTableViewDidScrollToY:(CGFloat)y {
+- (void)tableViewDidScrollToY:(CGFloat)y {
     CGFloat offset = y + 64;
     [self setNavItemAlphaWithOffsetY:offset];
     [self setCalendarWithOffsetY:offset];
@@ -178,7 +177,7 @@ CalendarViewController ()
 
 - (void)todoTableViewControllerDidReloadData {
     // 重新加载数据后，日历的位置在某些情况下需要修正
-    [self todoTableViewDidScrollToY:-64];
+    [self tableViewDidScrollToY:-64];
 }
 
 - (void)todoTableViewControllerDidUpdateTodo {

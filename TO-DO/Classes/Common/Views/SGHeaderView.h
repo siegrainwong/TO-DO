@@ -15,6 +15,7 @@ typedef NS_ENUM(NSInteger, HeaderAvatarPosition) {
 
 typedef NS_ENUM(NSInteger, HeaderMaskStyle) {
     HeaderMaskStyleLight,
+    HeaderMaskStyleMedium,
     HeaderMaskStyleDark
 };
 

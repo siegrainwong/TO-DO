@@ -48,7 +48,7 @@
     _leftNavigationButton.frame = CGRectMake(0, 0, 20, 17);
     _leftNavigationButton.titleLabel.font = [SGHelper themeFontNavBar];
     [_leftNavigationButton addTarget:self action:@selector(toggleDrawer) forControlEvents:UIControlEventTouchUpInside];
-    [_leftNavigationButton setImage:[UIImage imageNamed:@"menu"] forState:UIControlStateNormal];
+    [_leftNavigationButton setImage:[UIImage imageNamed:@"nav_menu"] forState:UIControlStateNormal];
     
     UIView *placeholderView = [[UIView alloc] init];
     placeholderView.frame = CGRectMake(0, 0, 5, 1);
@@ -67,7 +67,7 @@
     _rightNavigationButton.tintColor = [UIColor whiteColor];
     _rightNavigationButton.frame = CGRectMake(0, 0, 20, 20);
     _rightNavigationButton.titleLabel.font = [SGHelper themeFontNavBar];
-    [_rightNavigationButton setImage:[UIImage imageNamed:@"search"] forState:UIControlStateNormal];
+    [_rightNavigationButton setImage:[UIImage imageNamed:@"nav_search"] forState:UIControlStateNormal];
     [_rightNavigationButton addTarget:self action:@selector(rightNavButtonDidPress) forControlEvents:UIControlEventTouchUpInside];
     self.navigationItem.rightBarButtonItem = [[UIBarButtonItem alloc] initWithCustomView:_rightNavigationButton];
 }

@@ -11,5 +11,14 @@
 #import <SDAutoLayout/UITableView+SDAutoTableViewCellHeight.h>
 #import "AppDelegate.h"
 
+@protocol SGBaseTableViewControllerDelegate <NSObject>
+/**
+ * 在滚动时调用
+ * @param y
+ */
+- (void)tableViewDidScrollToY:(CGFloat)y;
+@end
+
 @interface SGBaseTableViewController : UITableViewController<SGTableViews>
+@property(nonatomic, weak) id <SGBaseTableViewControllerDelegate> delegate;
 @end

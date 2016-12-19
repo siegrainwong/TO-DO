@@ -17,7 +17,7 @@ typedef NS_ENUM(NSInteger, TodoTableViewControllerStyle) {
     TodoTableViewControllerStyleSearch
 };
 
-@protocol TodoTableViewControllerDelegate <NSObject>
+@protocol TodoTableViewControllerDelegate <SGBaseTableViewControllerDelegate>
 @optional
 /**
  * 在重新加载数据时调用
@@ -28,12 +28,6 @@ typedef NS_ENUM(NSInteger, TodoTableViewControllerStyle) {
  * 在更新任务后调用
  */
 - (void)todoTableViewControllerDidUpdateTodo;
-
-/**
- * 在滚动时调用
- * @param y
- */
-- (void)todoTableViewDidScrollToY:(CGFloat)y;
 @end
 
 @class CDTodo;

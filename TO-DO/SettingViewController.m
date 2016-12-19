@@ -7,10 +7,8 @@
 #import "SettingTableViewController.h"
 
 
-@interface SettingViewController()
+@interface SettingViewController() <SGBaseTableViewControllerDelegate>
 @property(nonatomic, strong) SettingTableViewController *tableViewController;
-
-@property(nonatomic, assign) BOOL isOpacityNavigation;
 @end
 
 @implementation SettingViewController
@@ -41,20 +39,22 @@
     
     __weak typeof(self) weakSelf = self;
     
-    self.titleLabel.textAlignment = NSTextAlignmentCenter;
-    self.titleLabel.alpha = 0;
+    self.titleLabel.textAlignment = NSTextAlignmentLeft;
+    self.titleLabel.text = Localized(@"System");
+    [self.rightNavigationButton setHidden:YES];
     
     //header
     self.headerView = [SGHeaderView headerViewWithAvatarPosition:HeaderAvatarPositionBottom titleAlignement:NSTextAlignmentLeft];
     self.headerView.titleLabel.text = self.cdUser.name;
     [self.headerView.avatarButton setHidden:YES];
     [self.headerView.rightOperationButton sd_setImageWithURL:GetPictureUrl(self.lcUser.avatar, kQiniuImageStyleSmall) forState:UIControlStateNormal];
-    [self.headerView setImage:[UIImage imageAtResourcePath:@"header bg"] style:HeaderMaskStyleLight];
+    [self.headerView setImage:[UIImage imageAtResourcePath:@"setting header bg"] style:HeaderMaskStyleMedium];
     [self.headerView setHeaderViewDidPressRightOperationButton:^{[SGHelper photoPickerFromTarget:weakSelf];}];
     
     //table view
     _tableViewController = [SettingTableViewController new];
     _tableViewController.tableView.tableHeaderView = self.headerView;
+    _tableViewController.delegate = self;
     [self addChildViewController:_tableViewController];
     [self.view addSubview:_tableViewController.tableView];
     
@@ -84,29 +84,9 @@
 //    [_tableViewController retrieveDataWithUser:self.cdUser date:nil status:nil isComplete:@(NO) keyword:nil];
 }
 
-#pragma mark - TodoTableViewController
-
-- (void)todoTableViewDidScrollToY:(CGFloat)y {
-    //计算alpha
-    float alpha = y > self.headerHeight ? 1 : y <= 0 ? 0 : y / self.headerHeight;
-    //alpha为1时设置不透明
-    [self.navigationController.navigationBar setTranslucent:alpha != 1];
+#pragma mark - table view controller
+- (void)tableViewDidScrollToY:(CGFloat)y {
+    float alpha = y > self.headerHeight ? 1 : y <= 0 ? 0 : y / self.headerHeight;   //计算alpha
     [self.navigationController.navigationBar setBackgroundImage:[UIImage imageWithColor:ColorWithRGBA(0xFF3366, alpha)] forBarMetrics:UIBarMetricsDefault];
-    _tableViewController.tableView.showsVerticalScrollIndicator = alpha == 1;
-    if (alpha == 1 && !_isOpacityNavigation) {
-        _isOpacityNavigation = YES;
-        
-        [UIView animateWithDuration:.3 animations:^{
-            self.titleLabel.text = self.headerView.titleLabel.text;
-            self.titleLabel.alpha = 1;
-        }];
-    } else if (alpha != 1 && _isOpacityNavigation) {
-        _isOpacityNavigation = NO;
-        
-        [UIView animateWithDuration:.3 animations:^{
-            self.titleLabel.text = nil;
-            self.titleLabel.alpha = 0;
-        }];
-    }
 }
 @end

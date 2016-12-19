@@ -17,6 +17,7 @@ static CGFloat const kSpacingY = 14;
 @property(nonatomic, strong) UIImageView *iconView;
 @property(nonatomic, strong) UILabel *titleLabel;
 @property(nonatomic, strong) UILabel *contentLabel;
+@property(nonatomic, strong) UIImageView *indicatorView;
 @end
 
 @implementation SettingTableViewCell
@@ -30,7 +31,6 @@ static CGFloat const kSpacingY = 14;
     _contentLabel.text = model.content;
     
     [self setNeedsUpdateConstraints];
-    //Mark: iOS 10: 不加这句他不会执行updateConstraints
     [self updateConstraintsIfNeeded];
 }
 
@@ -57,6 +57,7 @@ static CGFloat const kSpacingY = 14;
     _contentLabel = [UILabel new];
     _contentLabel.font = [SGHelper themeFontDefault];
     _contentLabel.textColor = [SGHelper subTextColor];
+    _contentLabel.textAlignment = NSTextAlignmentRight;
     [self.contentView addSubview:_contentLabel];
 }
 
@@ -72,7 +73,7 @@ static CGFloat const kSpacingY = 14;
     _titleLabel.sd_layout
             .leftSpaceToView(_iconView, space.x)
             .centerYEqualToView(_iconView)
-            .widthIs(100)
+            .widthIs(0)
             .heightRatioToView(_iconView, 1);
     
     _contentLabel.sd_layout
@@ -84,6 +85,9 @@ static CGFloat const kSpacingY = 14;
 
 - (void)updateConstraints {
     [super updateConstraints];
+    
+    CGSize titleSize = [_titleLabel sizeThatFits:CGSizeMake(CGFLOAT_MAX, kIconSize)];
+    _titleLabel.sd_layout.widthIs(titleSize.width);
     
     UIView *bottomView = _titleLabel;
     [self setupAutoHeightWithBottomView:bottomView bottomMargin:kSpacingY];

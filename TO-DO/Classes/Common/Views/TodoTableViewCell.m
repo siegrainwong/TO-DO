@@ -160,15 +160,15 @@ TodoTableViewCell ()
     self.leftExpansion.threshold = 1;
     
     __weak typeof(self) weakSelf = self;
-    MGSwipeButton *completeButton = [MGSwipeButton buttonWithTitle:@"" icon:[UIImage imageNamed:@"check"] backgroundColor:[SGHelper themeColorCyan] callback:^BOOL(MGSwipeTableCell *sender) {
+    MGSwipeButton *completeButton = [MGSwipeButton buttonWithTitle:@"" icon:[UIImage imageNamed:@"task_complete"] backgroundColor:[SGHelper themeColorCyan] callback:^BOOL(MGSwipeTableCell *sender) {
         if (weakSelf.todoDidSwipe) return _todoDidSwipe(weakSelf, TodoSwipeOperationComplete);
         return NO;
     }];
-    MGSwipeButton *snoozeButton = [MGSwipeButton buttonWithTitle:@"" icon:[UIImage imageNamed:@"clock"] backgroundColor:[SGHelper themeColorYellow] callback:^BOOL(MGSwipeTableCell *sender) {
+    MGSwipeButton *snoozeButton = [MGSwipeButton buttonWithTitle:@"" icon:[UIImage imageNamed:@"task_snooze"] backgroundColor:[SGHelper themeColorYellow] callback:^BOOL(MGSwipeTableCell *sender) {
         if (weakSelf.todoDidSwipe) return _todoDidSwipe(weakSelf, TodoSwipeOperationSnooze);
         return NO;
     }];
-    MGSwipeButton *removeButton = [MGSwipeButton buttonWithTitle:@"" icon:[UIImage imageNamed:@"cross"] backgroundColor:[UIColor redColor] callback:^BOOL(MGSwipeTableCell *sender) {
+    MGSwipeButton *removeButton = [MGSwipeButton buttonWithTitle:@"" icon:[UIImage imageNamed:@"task_remove"] backgroundColor:[UIColor redColor] callback:^BOOL(MGSwipeTableCell *sender) {
         if (weakSelf.todoDidSwipe) return _todoDidSwipe(weakSelf, TodoSwipeOperationRemove);
         return NO;
     }];

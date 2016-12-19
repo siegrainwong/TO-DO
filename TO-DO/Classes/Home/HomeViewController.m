@@ -128,7 +128,7 @@
 
 #pragma mark - TodoTableViewController
 
-- (void)todoTableViewDidScrollToY:(CGFloat)y {
+- (void)tableViewDidScrollToY:(CGFloat)y {
     //计算alpha
     float alpha = y > self.headerHeight ? 1 : y <= 0 ? 0 : y / self.headerHeight;
     //alpha为1时设置不透明

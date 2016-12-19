@@ -63,7 +63,7 @@ static CGFloat const kParallaxHeaderMinimumHeight = 64;
     self.headerView.subtitleLabel.text = self.cdUser.email;
     [self.headerView.rightOperationButton setHidden:YES];
     [self.headerView.avatarButton sd_setImageWithURL:GetPictureUrl(super.lcUser.avatar, kQiniuImageStyleSmall) forState:UIControlStateNormal];
-    [self.headerView setImage:[UIImage imageAtResourcePath:@"header bg"] style:HeaderMaskStyleLight];
+    [self.headerView setImage:[UIImage imageAtResourcePath:@"profile header bg"] style:HeaderMaskStyleMedium];
     [self.headerView setHeaderViewDidPressAvatarButton:^{[SGHelper photoPickerFromTarget:weakSelf];}];
     
     MXParallaxHeader *header = self.segmentedPager.parallaxHeader;

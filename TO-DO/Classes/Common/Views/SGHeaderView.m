@@ -14,7 +14,7 @@
 static CGFloat const kAvatarButtonSizeMultipliedByHeight = 0.16;
 static CGFloat const kTitleLabelHeight = 40;
 static CGFloat const kRectangleHeight = 40;
-static CGFloat const kTitleSpacingX = 20;
+static CGFloat const kTitleSpacingX = 25;
 static void *const kHeaderViewKVOContext = (void *) &kHeaderViewKVOContext;
 
 @interface SGHeaderView ()
@@ -53,6 +53,11 @@ static void *const kHeaderViewKVOContext = (void *) &kHeaderViewKVOContext;
     } else if (style == HeaderMaskStyleDark) {
         CGFloat paths[] = {0, .5, 1};
         NSArray *colors = @[ColorWithRGBA(0xFFFFFF, .0), ColorWithRGBA(0x555555, .5), ColorWithRGBA(0x000000, .8)];
+        _backgroundImageView.backgroundColor = ColorWithRGB(0x9092AC);
+        _backgroundImageView.image = [SGGraphics gradientImageWithImage:image paths:paths colors:colors];
+    }else if (style == HeaderMaskStyleMedium) {
+        CGFloat paths[] = {0, .5, 1};
+        NSArray *colors = @[ColorWithRGBA(0xFFFFFF, .0), ColorWithRGBA(0x999999, .5), ColorWithRGBA(0x000000, .5)];
         _backgroundImageView.backgroundColor = ColorWithRGB(0x9092AC);
         _backgroundImageView.image = [SGGraphics gradientImageWithImage:image paths:paths colors:colors];
     }
@@ -102,6 +107,7 @@ static void *const kHeaderViewKVOContext = (void *) &kHeaderViewKVOContext;
     _rightOperationButton = [[UIButton alloc] init];
     _rightOperationButton.layer.masksToBounds = YES;
     _rightOperationButton.layer.cornerRadius = self.rightOperationButtonSize / 2;
+    [_rightOperationButton setImage:[UIImage imageNamed:@"header_add"] forState:UIControlStateNormal];
     [_rightOperationButton addTarget:self action:@selector(rightOperationButtonDidPress) forControlEvents:UIControlEventTouchUpInside];
     [self addSubview:_rightOperationButton];
 }

@@ -70,9 +70,9 @@ typedef NS_ENUM(NSInteger, SGSettingApplication) {
     _user = [AppDelegate globalDelegate].cdUser;
     _dataArray = @[
             @[
-                    [SettingModel modelWithIconName:@"" title:Localized(@"Account") content:_user.email style:SettingCellStyleNavigator isOn:NO],
-                    [SettingModel modelWithIconName:@"" title:Localized(@"Name") content:_user.name style:SettingCellStyleNavigator isOn:NO],
-                    [SettingModel modelWithIconName:@"" title:Localized(@"Change password") content:nil style:SettingCellStyleNavigator isOn:NO],
+                    [SettingModel modelWithIconName:@"camera" title:Localized(@"Account") content:_user.email style:SettingCellStyleNavigator isOn:NO],
+                    [SettingModel modelWithIconName:@"camera" title:Localized(@"Name") content:_user.name style:SettingCellStyleNavigator isOn:NO],
+                    [SettingModel modelWithIconName:@"camera" title:Localized(@"Change password") content:nil style:SettingCellStyleNavigator isOn:NO],
             ]
     ];
     
@@ -83,7 +83,7 @@ typedef NS_ENUM(NSInteger, SGSettingApplication) {
     [super setupViews];
     
     self.dataManager = [MRTodoDataManager new];
-    [self setSeparatorInsetWithTableView:self.tableView inset:UIEdgeInsetsMake(0, 58, 0, 0)];
+    [self setSeparatorInsetWithTableView:self.tableView inset:UIEdgeInsetsMake(0, 56, 0, 20)];
     
     [self.tableView registerClass:[SettingTableViewCell class] forCellReuseIdentifier:@(SettingCellStyleNavigator).stringValue];
     [self.tableView registerClass:[SettingTableViewCell class] forCellReuseIdentifier:@(SettingCellStyleNone).stringValue];

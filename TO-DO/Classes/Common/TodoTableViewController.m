@@ -297,7 +297,7 @@ TodoTableViewController () <UISearchBarDelegate, SGNavigationBar>
     [self.tableView reloadData];
     [self setupTimer];
     
-    if ([_delegate respondsToSelector:@selector(todoTableViewControllerDidReloadData)]) [_delegate todoTableViewControllerDidReloadData];
+    if ([self.delegate respondsToSelector:@selector(todoTableViewControllerDidReloadData)]) [self.delegate todoTableViewControllerDidReloadData];
     if (_style == TodoTableViewControllerStyleSearch) return;
     
     if (!_dataCount) {
@@ -350,12 +350,6 @@ TodoTableViewController () <UISearchBarDelegate, SGNavigationBar>
             *needsToReload = YES;
         }
     }
-}
-
-#pragma mark - scrollView
-
-- (void)scrollViewDidScroll:(UIScrollView *)scrollView {
-    if ([_delegate respondsToSelector:@selector(todoTableViewDidScrollToY:)]) [_delegate todoTableViewDidScrollToY:scrollView.contentOffset.y];
 }
 
 #pragma mark - searchbar

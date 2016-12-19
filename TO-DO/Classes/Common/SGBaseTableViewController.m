@@ -93,6 +93,11 @@
     [tableView deselectRowAtIndexPath:indexPath animated:YES];
 }
 
+#pragma mark - scroll view
+- (void)scrollViewDidScroll:(UIScrollView *)scrollView {
+    if ([_delegate respondsToSelector:@selector(tableViewDidScrollToY:)]) [_delegate tableViewDidScrollToY:scrollView.contentOffset.y];
+}
+
 #pragma mark - image loader
 
 - (NSString *)imageUrlAtIndexPath:(NSIndexPath *)indexPath {
