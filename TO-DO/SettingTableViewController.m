@@ -70,9 +70,9 @@ typedef NS_ENUM(NSInteger, SGSettingApplication) {
     _user = [AppDelegate globalDelegate].cdUser;
     _dataArray = @[
             @[
-                    [SettingModel modelWithIconName:@"camera" title:Localized(@"Account") content:_user.email style:SettingCellStyleNavigator isOn:NO],
-                    [SettingModel modelWithIconName:@"camera" title:Localized(@"Name") content:_user.name style:SettingCellStyleNavigator isOn:NO],
-                    [SettingModel modelWithIconName:@"camera" title:Localized(@"Change password") content:nil style:SettingCellStyleNavigator isOn:NO],
+                    [SettingModel modelWithIconName:@"sys_account" title:Localized(@"Account") content:_user.email style:SettingCellStyleNavigator isOn:NO],
+                    [SettingModel modelWithIconName:@"sys_name" title:Localized(@"Name") content:_user.name style:SettingCellStyleNavigator isOn:NO],
+                    [SettingModel modelWithIconName:@"sys_password" title:Localized(@"Change password") content:nil style:SettingCellStyleNavigator isOn:NO],
             ]
     ];
     

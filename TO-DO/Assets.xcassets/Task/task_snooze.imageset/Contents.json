@@ -2,11 +2,11 @@
   "images" : [
     {
       "idiom" : "universal",
-      "filename" : "task_snooze.png",
       "scale" : "1x"
     },
     {
       "idiom" : "universal",
+      "filename" : "task_snooze.png",
       "scale" : "2x"
     },
     {
