@@ -8,20 +8,25 @@
 #import "UIImage+Extension.h"
 #import "UIView+SDAutoLayout.h"
 
-static CGFloat const kIconSize = 18;
-static CGFloat const kSpacingY = 14;
+static CGFloat const kIndicatorSize = 13;
 
 @interface SettingTableViewCell ()
+@property(nonatomic, assign) SettingCellStyle style;
 @property(nonatomic, strong) SettingModel *model;
 
 @property(nonatomic, strong) UIImageView *iconView;
 @property(nonatomic, strong) UILabel *titleLabel;
 @property(nonatomic, strong) UILabel *contentLabel;
 @property(nonatomic, strong) UIImageView *indicatorView;
+@property(nonatomic, strong) UISwitch *switchView;
 @end
 
 @implementation SettingTableViewCell
 #pragma mark - accessors
+
+- (CGPoint)cellSpacing {
+    return CGPointMake(kScreenWidth * kSpacingRatioToWidth, kScreenWidth * kSpacingRatioToWidth);
+}
 
 - (void)setModel:(SettingModel *)model {
     _model = model;
@@ -29,6 +34,7 @@ static CGFloat const kSpacingY = 14;
     _iconView.image = [UIImage imageNamed:model.iconName];
     _titleLabel.text = model.title;
     _contentLabel.text = model.content;
+    [_switchView setOn:model.isOn];
     
     [self setNeedsUpdateConstraints];
     [self updateConstraintsIfNeeded];
@@ -38,6 +44,7 @@ static CGFloat const kSpacingY = 14;
 
 - (instancetype)initWithStyle:(UITableViewCellStyle)style reuseIdentifier:(NSString *)reuseIdentifier {
     if (self = [super initWithStyle:style reuseIdentifier:reuseIdentifier]) {
+        _style = (SettingCellStyle) reuseIdentifier.integerValue;
         [self setupViews];
         [self bindConstraints];
     }
@@ -51,18 +58,30 @@ static CGFloat const kSpacingY = 14;
     [self.contentView addSubview:_iconView];
     
     _titleLabel = [UILabel new];
-    _titleLabel.font = [SGHelper themeFontDefault];
+    _titleLabel.font = [SGHelper themeFontWithSize:16];
     [self.contentView addSubview:_titleLabel];
     
     _contentLabel = [UILabel new];
-    _contentLabel.font = [SGHelper themeFontDefault];
+    _contentLabel.font = [SGHelper themeFontWithSize:16];
     _contentLabel.textColor = [SGHelper subTextColor];
     _contentLabel.textAlignment = NSTextAlignmentRight;
     [self.contentView addSubview:_contentLabel];
+    
+    if (_style == SettingCellStyleNavigator) {
+        _indicatorView = [UIImageView new];
+        _indicatorView.image = [UIImage imageNamed:@"indicator"];
+        [self.contentView addSubview:_indicatorView];
+    }
+    
+    if (_style == SettingCellStyleSwitch) {
+        _switchView = [UISwitch new];
+        _switchView.onTintColor = [SGHelper themeColorRed];
+        [self.contentView addSubview:_switchView];
+    }
 }
 
 - (void)bindConstraints {
-    CGPoint space = CGPointMake(19, kSpacingY);
+    CGPoint space = self.cellSpacing;
     
     _iconView.sd_layout
             .leftSpaceToView(self.contentView, space.x)
@@ -81,6 +100,22 @@ static CGFloat const kSpacingY = 14;
             .centerYEqualToView(_titleLabel)
             .rightSpaceToView(self.contentView, space.x)
             .heightRatioToView(_iconView, 1);
+    
+    if (_style == SettingCellStyleSwitch) {
+        _switchView.sd_layout
+                .centerYEqualToView(_titleLabel)
+                .rightSpaceToView(self.contentView, space.x)
+                .widthIs(60)
+                .heightRatioToView(_iconView, 1);
+    }
+    
+    if (_style == SettingCellStyleNavigator) {
+        _indicatorView.sd_layout
+                .centerYEqualToView(_titleLabel)
+                .leftSpaceToView(_contentLabel, (space.x - kIndicatorSize) / 2)
+                .heightIs(kIndicatorSize)
+                .widthIs(kIndicatorSize);
+    }
 }
 
 - (void)updateConstraints {
@@ -89,7 +124,6 @@ static CGFloat const kSpacingY = 14;
     CGSize titleSize = [_titleLabel sizeThatFits:CGSizeMake(CGFLOAT_MAX, kIconSize)];
     _titleLabel.sd_layout.widthIs(titleSize.width);
     
-    UIView *bottomView = _titleLabel;
-    [self setupAutoHeightWithBottomView:bottomView bottomMargin:kSpacingY];
+    [self setupAutoHeightWithBottomView:_titleLabel bottomMargin:self.cellSpacing.y];
 }
 @end

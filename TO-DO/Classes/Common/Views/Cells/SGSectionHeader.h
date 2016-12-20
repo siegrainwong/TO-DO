@@ -9,6 +9,6 @@
 #import <UIKit/UIKit.h>
 #import "SGViews.h"
 
-@interface TodoHeaderView : UIView<SGViews>
+@interface SGSectionHeader : UIView<SGViews>
 @property (nonatomic, strong) NSString* text;
 @end

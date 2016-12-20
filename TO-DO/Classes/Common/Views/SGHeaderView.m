@@ -218,6 +218,8 @@ static void *const kHeaderViewKVOContext = (void *) &kHeaderViewKVOContext;
     CGFloat offset = contentOffset.y + 64;
     [self updateHeaderFrameWithOffsetY:offset];
     [self setHeaderStickWithOffsetY:offset];
+    
+    [_parallaxScrollView bringSubviewToFront:self];
 }
 
 - (void)setHeaderStickWithOffsetY:(CGFloat)y {
@@ -245,7 +247,6 @@ static void *const kHeaderViewKVOContext = (void *) &kHeaderViewKVOContext;
     [self.backgroundImageView mas_updateConstraints:^(MASConstraintMaker *make) {
         make.height.offset(self.height - offset);
     }];
-    [self.superview bringSubviewToFront:self];
 }
 
 @end

@@ -6,5 +6,4 @@
 #import "SGBaseTableViewController.h"
 
 @interface SettingTableViewController : SGBaseTableViewController
-
 @end

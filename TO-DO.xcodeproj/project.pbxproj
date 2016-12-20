@@ -54,7 +54,7 @@
 		F939FA071E080DBE0087E18F /* profile header bg.png in Resources */ = {isa = PBXBuildFile; fileRef = F939FA061E080DBE0087E18F /* profile header bg.png */; };
 		F939FA0A1E080DCB0087E18F /* setting header bg.png in Resources */ = {isa = PBXBuildFile; fileRef = F939FA091E080DCB0087E18F /* setting header bg.png */; };
 		F93BC1571CE5E9EE000A34C5 /* HomeViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = F93BC1561CE5E9EE000A34C5 /* HomeViewController.m */; };
-		F943885B1CF5579100E44379 /* TodoHeaderView.m in Sources */ = {isa = PBXBuildFile; fileRef = F943885A1CF5579100E44379 /* TodoHeaderView.m */; };
+		F943885B1CF5579100E44379 /* SGSectionHeader.m in Sources */ = {isa = PBXBuildFile; fileRef = F943885A1CF5579100E44379 /* SGSectionHeader.m */; };
 		F94388621CF5C38500E44379 /* DrawerTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = F943885F1CF5C38500E44379 /* DrawerTableViewCell.m */; };
 		F94388631CF5C38500E44379 /* DrawerTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = F94388611CF5C38500E44379 /* DrawerTableViewController.m */; };
 		F945ABD71CED913E00C282F7 /* SGBaseViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = F945ABD61CED913E00C282F7 /* SGBaseViewController.m */; };
@@ -247,8 +247,8 @@
 		F939FA091E080DCB0087E18F /* setting header bg.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "setting header bg.png"; sourceTree = "<group>"; };
 		F93BC1551CE5E9EE000A34C5 /* HomeViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HomeViewController.h; sourceTree = "<group>"; };
 		F93BC1561CE5E9EE000A34C5 /* HomeViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HomeViewController.m; sourceTree = "<group>"; };
-		F94388591CF5579100E44379 /* TodoHeaderView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TodoHeaderView.h; sourceTree = "<group>"; };
-		F943885A1CF5579100E44379 /* TodoHeaderView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TodoHeaderView.m; sourceTree = "<group>"; };
+		F94388591CF5579100E44379 /* SGSectionHeader.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SGSectionHeader.h; sourceTree = "<group>"; };
+		F943885A1CF5579100E44379 /* SGSectionHeader.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SGSectionHeader.m; sourceTree = "<group>"; };
 		F943885E1CF5C38500E44379 /* DrawerTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = DrawerTableViewCell.h; path = ../../Classes/Common/DrawerTableViewCell.h; sourceTree = "<group>"; };
 		F943885F1CF5C38500E44379 /* DrawerTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = DrawerTableViewCell.m; path = ../../Classes/Common/DrawerTableViewCell.m; sourceTree = "<group>"; };
 		F94388601CF5C38500E44379 /* DrawerTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = DrawerTableViewController.h; path = ../../Classes/Common/DrawerTableViewController.h; sourceTree = "<group>"; };
@@ -740,8 +740,8 @@
 			children = (
 				F94F2F351CF2D71200128A3A /* TodoTableViewCell.h */,
 				F94F2F361CF2D71200128A3A /* TodoTableViewCell.m */,
-				F94388591CF5579100E44379 /* TodoHeaderView.h */,
-				F943885A1CF5579100E44379 /* TodoHeaderView.m */,
+				F94388591CF5579100E44379 /* SGSectionHeader.h */,
+				F943885A1CF5579100E44379 /* SGSectionHeader.m */,
 			);
 			path = Cells;
 			sourceTree = "<group>";
@@ -1503,7 +1503,7 @@
 				F94CA24B1CE2FA9E0006904F /* MD5Util.m in Sources */,
 				F94CA2481CE2FA9E0006904F /* SGHelper.m in Sources */,
 				F94CA2091CE2F9780006904F /* SCLTimerDisplay.m in Sources */,
-				F943885B1CF5579100E44379 /* TodoHeaderView.m in Sources */,
+				F943885B1CF5579100E44379 /* SGSectionHeader.m in Sources */,
 				F997BF9F1CF8376A00DD155B /* UIViewController+KNSemiModal.m in Sources */,
 				F93BC1571CE5E9EE000A34C5 /* HomeViewController.m in Sources */,
 				F94CA2051CE2F9780006904F /* SCLAlertViewStyleKit.m in Sources */,

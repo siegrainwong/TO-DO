@@ -7,15 +7,15 @@
 //
 
 #import "DateUtil.h"
-#import "TodoHeaderView.h"
+#import "SGSectionHeader.h"
 #import "SGHelper.h"
 #import "UIView+SDAutoLayout.h"
 
-@interface TodoHeaderView ()
+@interface SGSectionHeader ()
 @property(nonatomic, strong) UILabel *label;
 @end
 
-@implementation TodoHeaderView
+@implementation SGSectionHeader
 
 - (instancetype)init {
     if (self = [super init]) {

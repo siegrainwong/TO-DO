@@ -337,12 +337,15 @@ static NSInteger const kMaximumSyncCountPerFetch = 100;
     NSArray<NSDictionary *> *todosDictionary = [self todosToDictionary:todosReadyToCommit];
     NSError *error = nil;
     NSDictionary *commitTodoParameters =
-            @{@"todos": todosDictionary,
-                    @"syncRecordDictionary": @{
-                    @"syncRecordId": _syncRecord.objectId,
-                    @"commitCount": _syncRecord.commitCount,
-                    @"downloadCount": _syncRecord.downloadCount
-            }};
+            @{
+                    @"todos": todosDictionary,
+                    @"syncRecordDictionary":
+                    @{
+                            @"syncRecordId": _syncRecord.objectId,
+                            @"commitCount": _syncRecord.commitCount,
+                            @"downloadCount": _syncRecord.downloadCount
+                    }
+            };
     // Mark: 这里回调返回了两个数据，第一个是待办事项objectId数组，第二个是服务器修改过的的SyncRecord字典。
     // Mark: LeanCloud rpcFunction美名其曰可以直传AVObject，然而云函数并不支持保存
     NSArray *responseDatas = [AVCloud callFunction:@"commitTodos" withParameters:commitTodoParameters error:&error];

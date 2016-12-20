@@ -6,6 +6,9 @@
 
 @class SettingModel;
 
+static CGFloat const kSpacingRatioToWidth = 0.05f;
+static CGFloat const kIconSize = 18;
+
 @interface SettingTableViewCell : UITableViewCell
 - (void)setModel:(SettingModel *)model;
 @end
