@@ -55,29 +55,16 @@ SGTextEditorViewController () <ACEExpandableTableViewDelegate, SGNavigationBar>
 }
 
 - (void)setupViews {
-    _lengthLabel = [UILabel new];
+    [super setupViews];
+    
+    _lengthLabel = [[UILabel alloc] initWithFrame:CGRectMake(0, 0, kScreenWidth, kLengthLabelHeight)];
     _lengthLabel.textColor = [SGHelper themeColorGray];
     _lengthLabel.font = [UIFont systemFontOfSize:14];
     _lengthLabel.textAlignment = NSTextAlignmentRight;
     
-    [super setupViews];
-    
     self.navigationItem.rightBarButtonItem.title = Localized(@"Save");
     self.tableView.backgroundColor = ColorWithRGB(0xEEEEEE);
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(textChanged:) name:UITextViewTextDidChangeNotification object:nil];
-}
-
-- (void)bindConstraints {
-    [super bindConstraints];
-    
-    [self.tableView mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.top.bottom.left.right.offset(0);
-    }];
-    
-    [_lengthLabel mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.top.bottom.left.offset(0);
-        make.right.offset(-10);
-    }];
 }
 
 #pragma mark - events

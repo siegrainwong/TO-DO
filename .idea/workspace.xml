@@ -237,8 +237,6 @@
       <change type="DELETED" beforePath="$PROJECT_DIR$/TO-DO/Classes/Common/TodoHelper.h" afterPath="" />
       <change type="DELETED" beforePath="$PROJECT_DIR$/TO-DO/Classes/Common/TodoHelper.m" afterPath="" />
       <change type="DELETED" beforePath="$PROJECT_DIR$/TO-DO/Classes/Common/Utilities/GCDUtil.m" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/TO-DO/Classes/Common/Views/Cells/TodoHeaderView.h" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/TO-DO/Classes/Common/Views/Cells/TodoHeaderView.m" afterPath="" />
       <change type="DELETED" beforePath="$PROJECT_DIR$/TO-DO/Classes/Login/DataManager/LoginDataManager.m" afterPath="" />
       <change type="DELETED" beforePath="$PROJECT_DIR$/TO-DO/Classes/Login/Model/SGUser.h" afterPath="" />
       <change type="MOVED" beforePath="$PROJECT_DIR$/TO-DO/Classes/Common/Localizable.h" afterPath="$PROJECT_DIR$/TO-DO/Classes/Common/Localized.h" />
@@ -246,9 +244,7 @@
       <change type="MOVED" beforePath="$PROJECT_DIR$/TO-DO/Classes/Login/DataManager/LoginDataManager.h" afterPath="$PROJECT_DIR$/TO-DO/Classes/Login/DataManager/LCUserDataManager.h" />
       <change type="MOVED" beforePath="$PROJECT_DIR$/TO-DO/Classes/Login/Model/SGUser.m" afterPath="$PROJECT_DIR$/TO-DO/Model/LeanCloudModels/LCUser.m" />
       <change type="MOVED" beforePath="$PROJECT_DIR$/TO-DO/Images/1. Login/header bg.png" afterPath="$PROJECT_DIR$/TO-DO/Images/1. Login/login header bg.png" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/dictionaries/Euphoria.xml" afterPath="$PROJECT_DIR$/.idea/dictionaries/Euphoria.xml" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/TO-DO.xcodeproj/project.pbxproj" afterPath="$PROJECT_DIR$/TO-DO.xcodeproj/project.pbxproj" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/TO-DO/Assets.xcassets/AppIcon.appiconset/Contents.json" afterPath="$PROJECT_DIR$/TO-DO/Assets.xcassets/AppIcon.appiconset/Contents.json" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/TO-DO/Base.lproj/Main.storyboard" afterPath="$PROJECT_DIR$/TO-DO/Base.lproj/Main.storyboard" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/TO-DO/Classes/AppDelegate/AppDelegate.h" afterPath="$PROJECT_DIR$/TO-DO/Classes/AppDelegate/AppDelegate.h" />
@@ -257,31 +253,35 @@
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/TO-DO/Classes/Common/Categories/NSString+Extension.m" afterPath="$PROJECT_DIR$/TO-DO/Classes/Common/Categories/NSString+Extension.m" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/TO-DO/Classes/Common/Categories/UIImage+Extension.h" afterPath="$PROJECT_DIR$/TO-DO/Classes/Common/Categories/UIImage+Extension.h" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/TO-DO/Classes/Common/Categories/UIImage+Extension.m" afterPath="$PROJECT_DIR$/TO-DO/Classes/Common/Categories/UIImage+Extension.m" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/TO-DO/Classes/Common/Constants/Constants.h" afterPath="$PROJECT_DIR$/TO-DO/Classes/Common/Constants/Constants.h" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/TO-DO/Classes/Common/Constants/DataKeys.h" afterPath="$PROJECT_DIR$/TO-DO/Classes/Common/Constants/DataKeys.h" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/TO-DO/Classes/Common/Constants/Macros.h" afterPath="$PROJECT_DIR$/TO-DO/Classes/Common/Constants/Macros.h" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/TO-DO/Classes/Common/DataManager/SyncDataManagers/SGSyncManager.m" afterPath="$PROJECT_DIR$/TO-DO/Classes/Common/DataManager/SyncDataManagers/SGSyncManager.m" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/TO-DO/Classes/Common/SCLAlertHelper.h" afterPath="$PROJECT_DIR$/TO-DO/Classes/Common/SCLAlertHelper.h" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/TO-DO/Classes/Common/SCLAlertHelper.m" afterPath="$PROJECT_DIR$/TO-DO/Classes/Common/SCLAlertHelper.m" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/TO-DO/Classes/Common/TodoTableViewController.m" afterPath="$PROJECT_DIR$/TO-DO/Classes/Common/TodoTableViewController.m" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/TO-DO/Classes/Common/SGTextEditorViewController.m" afterPath="$PROJECT_DIR$/TO-DO/Classes/Common/SGTextEditorViewController.m" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/TO-DO/Classes/Common/Utilities/FieldValidator.m" afterPath="$PROJECT_DIR$/TO-DO/Classes/Common/Utilities/FieldValidator.m" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/TO-DO/Classes/Common/Views/SGHeaderView.m" afterPath="$PROJECT_DIR$/TO-DO/Classes/Common/Views/SGHeaderView.m" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/TO-DO/Classes/Home/HomeViewController.m" afterPath="$PROJECT_DIR$/TO-DO/Classes/Home/HomeViewController.m" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/TO-DO/Classes/Libraries/SCLAlertView/SCLAlertView.m" afterPath="$PROJECT_DIR$/TO-DO/Classes/Libraries/SCLAlertView/SCLAlertView.m" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/TO-DO/Classes/Login/Controllers/LoginViewController.h" afterPath="$PROJECT_DIR$/TO-DO/Classes/Login/Controllers/LoginViewController.h" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/TO-DO/Classes/Login/Controllers/LoginViewController.m" afterPath="$PROJECT_DIR$/TO-DO/Classes/Login/Controllers/LoginViewController.m" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/TO-DO/Classes/Login/DataManager/LCUserDataManager.h" afterPath="$PROJECT_DIR$/TO-DO/Classes/Login/DataManager/LCUserDataManager.h" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/TO-DO/Classes/Login/DataManager/LCUserDataManager.m" afterPath="$PROJECT_DIR$/TO-DO/Classes/Login/DataManager/LCUserDataManager.m" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/TO-DO/Classes/Login/Views/LoginView.h" afterPath="$PROJECT_DIR$/TO-DO/Classes/Login/Views/LoginView.h" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/TO-DO/Classes/Login/Views/LoginView.m" afterPath="$PROJECT_DIR$/TO-DO/Classes/Login/Views/LoginView.m" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/TO-DO/Classes/Login/Views/SGTextField.h" afterPath="$PROJECT_DIR$/TO-DO/Classes/Login/Views/SGTextField.h" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/TO-DO/Classes/Login/Views/SGTextField.m" afterPath="$PROJECT_DIR$/TO-DO/Classes/Login/Views/SGTextField.m" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/TO-DO/Classes/Login/Views/SGTextField.xib" afterPath="$PROJECT_DIR$/TO-DO/Classes/Login/Views/SGTextField.xib" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/TO-DO/DetailTableViewController.m" afterPath="$PROJECT_DIR$/TO-DO/DetailTableViewController.m" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/TO-DO/Info.plist" afterPath="$PROJECT_DIR$/TO-DO/Info.plist" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/TO-DO/Localization/en.lproj/Localizable.strings" afterPath="$PROJECT_DIR$/TO-DO/Localization/en.lproj/Localizable.strings" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/TO-DO/Localization/zh-Hans.lproj/Localizable.strings" afterPath="$PROJECT_DIR$/TO-DO/Localization/zh-Hans.lproj/Localizable.strings" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/TO-DO/Model/CoreDataModels/CDUser+CoreDataProperties.h" afterPath="$PROJECT_DIR$/TO-DO/Model/CoreDataModels/CDUser+CoreDataProperties.h" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/TO-DO/Model/CoreDataModels/CDUser+CoreDataProperties.m" afterPath="$PROJECT_DIR$/TO-DO/Model/CoreDataModels/CDUser+CoreDataProperties.m" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/TO-DO/Model/TO_DO.xcdatamodeld/.xccurrentversion" afterPath="$PROJECT_DIR$/TO-DO/Model/TO_DO.xcdatamodeld/.xccurrentversion" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/TO-DO/Model/TO_DO.xcdatamodeld/TO_DO 6.xcdatamodel/contents" afterPath="$PROJECT_DIR$/TO-DO/Model/TO_DO.xcdatamodeld/TO_DO 6.xcdatamodel/contents" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/TO-DO/Model/TO_DO.xcdatamodeld/TO_DO.xcdatamodel/contents" afterPath="$PROJECT_DIR$/TO-DO/Model/TO_DO.xcdatamodeld/TO_DO.xcdatamodel/contents" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/TO-DO/SettingTableViewCell.h" afterPath="$PROJECT_DIR$/TO-DO/SettingTableViewCell.h" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/TO-DO/SettingTableViewCell.m" afterPath="$PROJECT_DIR$/TO-DO/SettingTableViewCell.m" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/TO-DO/SettingTableViewController.h" afterPath="$PROJECT_DIR$/TO-DO/SettingTableViewController.h" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/TO-DO/SettingTableViewController.m" afterPath="$PROJECT_DIR$/TO-DO/SettingTableViewController.m" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/TO-DO/SettingViewController.m" afterPath="$PROJECT_DIR$/TO-DO/SettingViewController.m" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/TO-DO/main.m" afterPath="$PROJECT_DIR$/TO-DO/main.m" />
@@ -302,7 +302,7 @@
     <option name="hideWarnings" value="true" />
     <option name="HIDE_WARNINGS" value="true" />
   </component>
-  <component name="ExecutionTargetManager" SELECTED_TARGET="iphoneos_a48702d1b91504c0f7b16071bcbec38c4fe29705" />
+  <component name="ExecutionTargetManager" SELECTED_TARGET="iphonesimulatoriPhone_5s_10.2_x86_64_1" />
   <component name="FavoritesManager">
     <favorites_list name="TO-DO" />
   </component>
@@ -311,8 +311,8 @@
       <file leaf-file-name="SettingViewController.m" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/TO-DO/SettingViewController.m">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="544">
-              <caret line="57" column="55" lean-forward="true" selection-start-line="57" selection-start-column="55" selection-end-line="57" selection-end-column="55" />
+            <state relative-caret-position="577">
+              <caret line="49" column="47" lean-forward="true" selection-start-line="49" selection-start-column="47" selection-end-line="49" selection-end-column="47" />
               <folding>
                 <element signature="e#100#133#0" expanded="true" />
               </folding>
@@ -320,11 +320,11 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="SettingTableViewController.m" pinned="false" current-in-tab="true">
+      <file leaf-file-name="SettingTableViewController.m" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/TO-DO/SettingTableViewController.m">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="641">
-              <caret line="105" column="44" lean-forward="true" selection-start-line="105" selection-start-column="44" selection-end-line="105" selection-end-column="44" />
+            <state relative-caret-position="1105">
+              <caret line="182" column="5" lean-forward="true" selection-start-line="182" selection-start-column="5" selection-end-line="182" selection-end-column="5" />
               <folding>
                 <element signature="e#100#138#0" expanded="true" />
               </folding>
@@ -332,21 +332,21 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="ProfileViewController.m" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/TO-DO/ProfileViewController.m">
+      <file leaf-file-name="AppDelegate.m" pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/TO-DO/Classes/AppDelegate/AppDelegate.m">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="624">
-              <caret line="68" column="66" lean-forward="true" selection-start-line="68" selection-start-column="66" selection-end-line="68" selection-end-column="66" />
+            <state relative-caret-position="501">
+              <caret line="258" column="36" lean-forward="true" selection-start-line="258" selection-start-column="36" selection-end-line="258" selection-end-column="36" />
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="CalendarViewController.m" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/TO-DO/Calendar/Controllers/CalendarViewController.m">
+      <file leaf-file-name="SGTextEditorViewController.m" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/TO-DO/Classes/Common/SGTextEditorViewController.m">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="641">
-              <caret line="102" column="69" lean-forward="true" selection-start-line="102" selection-start-column="69" selection-end-line="102" selection-end-column="69" />
+            <state relative-caret-position="243">
+              <caret line="73" column="60" lean-forward="true" selection-start-line="73" selection-start-column="60" selection-end-line="73" selection-end-column="60" />
               <folding />
             </state>
           </provider>
@@ -355,18 +355,20 @@
       <file leaf-file-name="SettingTableViewCell.m" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/TO-DO/SettingTableViewCell.m">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="96">
-              <caret line="6" column="13" lean-forward="false" selection-start-line="6" selection-start-column="13" selection-end-line="6" selection-end-column="13" />
-              <folding />
+            <state relative-caret-position="945">
+              <caret line="79" column="50" lean-forward="false" selection-start-line="79" selection-start-column="50" selection-end-line="79" selection-end-column="50" />
+              <folding>
+                <element signature="e#100#132#0" expanded="true" />
+              </folding>
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="TodoTableViewCell.m" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/TO-DO/Classes/Common/Views/TodoTableViewCell.m">
+      <file leaf-file-name="SettingTableViewCell.h" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/TO-DO/SettingTableViewCell.h">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="720">
-              <caret line="93" column="59" lean-forward="true" selection-start-line="93" selection-start-column="59" selection-end-line="93" selection-end-column="59" />
+            <state relative-caret-position="224">
+              <caret line="14" column="64" lean-forward="false" selection-start-line="14" selection-start-column="64" selection-end-line="14" selection-end-column="64" />
               <folding />
             </state>
           </provider>
@@ -376,11 +378,6 @@
   </component>
   <component name="FindInProjectRecents">
     <findStrings>
-      <find>viewforsection</find>
-      <find>emptydata</find>
-      <find>setupcellevents</find>
-      <find>setupcell</find>
-      <find>viewforheader</find>
       <find>minimumheight</find>
       <find>@NO</find>
       <find>search</find>
@@ -406,6 +403,11 @@
       <find>tableheaderview</find>
       <find>header</find>
       <find>tableview</find>
+      <find>cduser</find>
+      <find>Account</find>
+      <find>password</find>
+      <find>overdue</find>
+      <find>logout</find>
     </findStrings>
   </component>
   <component name="Git.Settings">
@@ -414,27 +416,18 @@
   <component name="IdeDocumentHistory">
     <option name="CHANGED_PATHS">
       <list>
-        <option value="$PROJECT_DIR$/TO-DO/Classes/Common/SGBaseSearchViewController.h" />
-        <option value="$PROJECT_DIR$/TO-DO/Classes/Common/SGBaseSearchViewController.m" />
-        <option value="$PROJECT_DIR$/TO-DO/Classes/Common/SGSearchBar.m" />
-        <option value="$PROJECT_DIR$/TO-DO/Localization/zh-Hans.lproj/Localizable.strings" />
-        <option value="$PROJECT_DIR$/TO-DO/ProfileViewController.h" />
-        <option value="$PROJECT_DIR$/Podfile" />
         <option value="$PROJECT_DIR$/TO-DO/Classes/Common/Views/Cells/TodoHeaderCell.h" />
         <option value="$PROJECT_DIR$/TO-DO/Classes/Common/Views/Cells/TodoHeaderView.m" />
         <option value="$PROJECT_DIR$/TO-DO/Classes/Common/SGViews.h" />
         <option value="$PROJECT_DIR$/TO-DO/Classes/Common/DataManager/CoredataManager/MRTodoDataManager.h" />
         <option value="$PROJECT_DIR$/TO-DO/Classes/Common/SGSegmentedController.h" />
         <option value="$PROJECT_DIR$/TO-DO/Classes/Common/SGHelper.m" />
-        <option value="$PROJECT_DIR$/TO-DO/Classes/AppDelegate/AppDelegate.m" />
         <option value="$PROJECT_DIR$/TO-DO/Classes/Common/SGSegmentedController.m" />
         <option value="$PROJECT_DIR$/Pods/HMSegmentedControl/HMSegmentedControl/HMSegmentedControl.h" />
         <option value="$PROJECT_DIR$/Pods/HMSegmentedControl/HMSegmentedControl/HMSegmentedControl.m" />
         <option value="$PROJECT_DIR$/TO-DO/Classes/Common/Constants/Macros.h" />
-        <option value="$PROJECT_DIR$/TO-DO/Classes/Common/Constants/Constants.h" />
         <option value="$PROJECT_DIR$/TO-DO/Model/CoreDataModels/CDTodo.m" />
         <option value="$PROJECT_DIR$/TO-DO/Model/CoreDataModels/CDTodo.h" />
-        <option value="$PROJECT_DIR$/TO-DO/Classes/Common/DataManager/CoredataManager/MRTodoDataManager.m" />
         <option value="$PROJECT_DIR$/TO-DO/Classes/Common/Views/TodoTableViewCell.h" />
         <option value="$PROJECT_DIR$/TO-DO/DetailTableViewCell.m" />
         <option value="$PROJECT_DIR$/TO-DO/SettingModel.m" />
@@ -453,18 +446,27 @@
         <option value="$PROJECT_DIR$/TO-DO/Classes/Common/SGBaseViewController.m" />
         <option value="$PROJECT_DIR$/TO-DO/Classes/Create/CreateViewController.m" />
         <option value="$PROJECT_DIR$/TO-DO/Calendar/Controllers/CalendarViewController.m" />
-        <option value="$PROJECT_DIR$/TO-DO/DetailTableViewController.m" />
         <option value="$PROJECT_DIR$/TO-DO/Classes/Common/Views/TodoTableViewCell.m" />
         <option value="$PROJECT_DIR$/TO-DO/Classes/Common/Views/Cells/TodoHeaderView.h" />
         <option value="$PROJECT_DIR$/TO-DO/Classes/Common/Views/Cells/SGSectionHeader.h" />
         <option value="$PROJECT_DIR$/TO-DO/Classes/Home/HomeViewController.m" />
-        <option value="$PROJECT_DIR$/TO-DO/SettingTableViewCell.h" />
-        <option value="$PROJECT_DIR$/TO-DO/SettingTableViewCell.m" />
         <option value="$PROJECT_DIR$/TO-DO/Classes/Common/Views/SGHeaderView.m" />
         <option value="$PROJECT_DIR$/TO-DO/SettingTableViewController.h" />
-        <option value="$PROJECT_DIR$/TO-DO/SettingViewController.m" />
+        <option value="$PROJECT_DIR$/TO-DO/Classes/Common/DataManager/CoredataManager/MRTodoDataManager.m" />
         <option value="$PROJECT_DIR$/TO-DO/Classes/Common/DataManager/SyncDataManagers/SGSyncManager.m" />
+        <option value="$PROJECT_DIR$/TO-DO/SettingTableViewCell.h" />
+        <option value="$PROJECT_DIR$/TO-DO/SettingTableViewCell.m" />
+        <option value="$PROJECT_DIR$/TO-DO/Classes/Common/SGTextEditorViewController.m" />
+        <option value="$PROJECT_DIR$/TO-DO/DetailTableViewController.m" />
+        <option value="$PROJECT_DIR$/TO-DO/Classes/Common/Constants/Constants.h" />
+        <option value="$PROJECT_DIR$/TO-DO/Classes/Login/DataManager/LCUserDataManager.h" />
+        <option value="$PROJECT_DIR$/TO-DO/Classes/Login/DataManager/LCUserDataManager.m" />
+        <option value="$PROJECT_DIR$/TO-DO/Localization/zh-Hans.lproj/Localizable.strings" />
         <option value="$PROJECT_DIR$/TO-DO/SettingTableViewController.m" />
+        <option value="$PROJECT_DIR$/TO-DO/SettingViewController.m" />
+        <option value="$PROJECT_DIR$/TO-DO/Classes/AppDelegate/AppDelegate.h" />
+        <option value="$PROJECT_DIR$/TO-DO/Classes/Login/Controllers/LoginViewController.m" />
+        <option value="$PROJECT_DIR$/TO-DO/Classes/AppDelegate/AppDelegate.m" />
       </list>
     </option>
   </component>
@@ -545,7 +547,6 @@
       <foldersAlwaysOnTop value="true" />
     </navigator>
     <panes>
-      <pane id="Cidr.FilesView" />
       <pane id="ProjectPane">
         <subPane>
           <PATH>
@@ -776,12 +777,13 @@
           </PATH>
         </subPane>
       </pane>
+      <pane id="Cidr.FilesView" />
     </panes>
   </component>
   <component name="PropertiesComponent">
     <property name="settings.editor.selected.configurable" value="reference.settingsdialog.IDE.editor.colors.Font" />
     <property name="js-jscs-nodeInterpreter" value="/usr/local/bin/node" />
-    <property name="SearchEverywhereHistoryKey" value="sgheaderview&#9;FILE&#9;file:///Volumes/Data/Project/MyProject/TO-DO/TO-DO/Classes/Common/Views/SGHeaderView.m&#10;profile&#9;FILE&#9;file:///Volumes/Data/Project/MyProject/TO-DO/TO-DO/ProfileViewController.m&#10;todotableviewcon&#9;FILE&#9;file:///Volumes/Data/Project/MyProject/TO-DO/TO-DO/Classes/Common/TodoTableViewController.h&#10;calendar&#9;FILE&#9;file:///Volumes/Data/Project/MyProject/TO-DO/TO-DO/Calendar/Controllers/CalendarViewController.m&#10;todotableview&#9;FILE&#9;file:///Volumes/Data/Project/MyProject/TO-DO/TO-DO/Classes/Common/TodoTableViewController.m&#10;todocell&#9;FILE&#9;file:///Volumes/Data/Project/MyProject/TO-DO/TO-DO/Classes/Common/Views/TodoTableViewCell.m&#10;sgheader&#9;FILE&#9;file:///Volumes/Data/Project/MyProject/TO-DO/TO-DO/Classes/Common/Views/SGHeaderView.m&#10;todo&#9;FILE&#9;file:///Volumes/Data/Project/MyProject/TO-DO/TO-DO/Classes/Common/Views/TodoTableViewCell.m&#10;todotableviewcell&#9;FILE&#9;file:///Volumes/Data/Project/MyProject/TO-DO/TO-DO/Classes/Common/Views/TodoTableViewCell.m&#10;detailviewcon&#9;FILE&#9;file:///Volumes/Data/Project/MyProject/TO-DO/TO-DO/DetailTableViewController.m&#10;createviewcon&#9;FILE&#9;file:///Volumes/Data/Project/MyProject/TO-DO/TO-DO/Classes/Create/CreateViewController.m&#10;headerview&#9;FILE&#9;file:///Volumes/Data/Project/MyProject/TO-DO/TO-DO/Classes/Common/Views/SGHeaderView.m&#10;createview&#9;FILE&#9;file:///Volumes/Data/Project/MyProject/TO-DO/TO-DO/Classes/Create/CreateViewController.m&#10;sgbaseviewcon&#9;FILE&#9;file:///Volumes/Data/Project/MyProject/TO-DO/TO-DO/Classes/Common/SGBaseViewController.m&#10;sgbasetableviewcon&#9;FILE&#9;file:///Volumes/Data/Project/MyProject/TO-DO/TO-DO/Classes/Common/SGBaseTableViewController.h&#10;sgbase&#9;FILE&#9;file:///Volumes/Data/Project/MyProject/TO-DO/TO-DO/Classes/Common/SGBaseTableViewController.h&#10;drawertableview&#9;null&#9;null&#10;detailcell&#9;FILE&#9;file:///Volumes/Data/Project/MyProject/TO-DO/TO-DO/DetailTableViewCell.m&#10;homeviewcon&#9;FILE&#9;file:///Volumes/Data/Project/MyProject/TO-DO/TO-DO/Classes/Home/HomeViewController.m&#10;sgbasetableview&#9;FILE&#9;file:///Volumes/Data/Project/MyProject/TO-DO/TO-DO/Classes/Common/SGBaseTableViewController.h&#10;model&#9;null&#9;null&#10;basetableviewcon&#9;FILE&#9;file:///Volumes/Data/Project/MyProject/TO-DO/TO-DO/Classes/Common/SGBaseTableViewController.h&#10;detail&#9;FILE&#9;file:///Volumes/Data/Project/MyProject/TO-DO/TO-DO/DetailTableViewController.m&#10;constants&#9;FILE&#9;file:///Volumes/Data/Project/MyProject/TO-DO/TO-DO/Classes/Common/Constants/Constants.h&#10;detailtableview&#9;FILE&#9;file:///Volumes/Data/Project/MyProject/TO-DO/TO-DO/DetailTableViewController.m&#10;rectangle&#9;FILE&#9;file:///Volumes/Data/Project/MyProject/TO-DO/TO-DO/Classes/Common/Views/SGRectangleView.m&#10;empty&#9;null&#9;null&#10;podfile&#9;FILE&#9;file:///Volumes/Data/Project/MyProject/TO-DO/Podfile&#10;appdele&#9;FILE&#9;file:///Volumes/Data/Project/MyProject/TO-DO/TO-DO/Classes/AppDelegate/AppDelegate.m&#10;macros&#9;FILE&#9;file:///Volumes/Data/Project/MyProject/TO-DO/TO-DO/Classes/Common/Constants/Macros.h&#10;segmentedcontrol&#9;FILE&#9;file:///Volumes/Data/Project/MyProject/TO-DO/Pods/HMSegmentedControl/HMSegmentedControl/HMSegmentedControl.m&#10;cell&#9;FILE&#9;file:///Volumes/Data/Project/MyProject/TO-DO/TO-DO/Classes/Common/Views/TodoTableViewCell.m&#10;homeview&#9;FILE&#9;file:///Volumes/Data/Project/MyProject/TO-DO/TO-DO/Classes/Home/HomeViewController.m&#10;sgviews&#9;FILE&#9;file:///Volumes/Data/Project/MyProject/TO-DO/TO-DO/Classes/Common/SGViews.h&#10;mrtodo&#9;FILE&#9;file:///Volumes/Data/Project/MyProject/TO-DO/TO-DO/Classes/Common/DataManager/CoredataManager/MRTodoDataManager.h&#10;base&#9;FILE&#9;file:///Volumes/Data/Project/MyProject/TO-DO/TO-DO/Classes/Common/SGBaseViewController.m&#10;drawertableviewcon&#9;null&#9;null&#10;cduser&#9;FILE&#9;file:///Volumes/Data/Project/MyProject/TO-DO/TO-DO/Model/CoreDataModels/CDUser.h&#10;sghelper&#9;null&#9;null&#10;local&#9;FILE&#9;file:///Volumes/Data/Project/MyProject/TO-DO/TO-DO/Localization/zh-Hans.lproj/Localizable.strings&#10;localized&#9;null&#9;null&#10;detailtableviewcontroller&#9;FILE&#9;file:///Volumes/Data/Project/MyProject/TO-DO/TO-DO/DetailTableViewController.m&#10;sgbasemapview&#9;null&#9;null&#10;basesearch&#9;FILE&#9;file:///Volumes/Data/Project/MyProject/TO-DO/TO-DO/Classes/Common/SGBaseSearchViewController.m&#10;baseviewcontroller&#9;null&#9;null&#10;homeviewcontroller&#9;null&#9;null&#10;detailtableviewcon&#9;FILE&#9;file:///Volumes/Data/Project/MyProject/TO-DO/TO-DO/DetailTableViewController.m&#10;uiview web&#9;null&#9;null&#10;radius&#9;null&#9;null&#10;todotabl&#9;FILE&#9;file:///Volumes/Data/Project/MyProject/TO-DO/TO-DO/Classes/Common/TodoTableViewController.m" />
+    <property name="SearchEverywhereHistoryKey" value="appdele&#9;FILE&#9;file:///Volumes/Data/Project/MyProject/TO-DO/TO-DO/Classes/AppDelegate/AppDelegate.m&#10;loginview&#9;FILE&#9;file:///Volumes/Data/Project/MyProject/TO-DO/TO-DO/Classes/Login/Controllers/LoginViewController.m&#10;local&#9;FILE&#9;file:///Volumes/Data/Project/MyProject/TO-DO/TO-DO/Localization/zh-Hans.lproj/Localizable.strings&#10;lcuser&#9;FILE&#9;file:///Volumes/Data/Project/MyProject/TO-DO/TO-DO/Classes/Login/DataManager/LCUserDataManager.m&#10;locali&#9;FILE&#9;file:///Volumes/Data/Project/MyProject/TO-DO/TO-DO/Localization/zh-Hans.lproj/Localizable.strings&#10;localized&#9;null&#9;null&#10;lcuserdatamanager&#9;FILE&#9;file:///Volumes/Data/Project/MyProject/TO-DO/TO-DO/Classes/Login/DataManager/LCUserDataManager.m&#10;sync&#9;FILE&#9;file:///Volumes/Data/Project/MyProject/TO-DO/TO-DO/Classes/Common/DataManager/SyncDataManagers/SGSyncManager.m&#10;sgbaseview&#9;FILE&#9;file:///Volumes/Data/Project/MyProject/TO-DO/TO-DO/Classes/Common/SGBaseViewController.m&#10;constants&#9;FILE&#9;file:///Volumes/Data/Project/MyProject/TO-DO/TO-DO/Classes/Common/Constants/Constants.h&#10;lcdata&#9;null&#9;null&#10;detailtable&#9;FILE&#9;file:///Volumes/Data/Project/MyProject/TO-DO/TO-DO/DetailTableViewController.m&#10;loginviewcon&#9;FILE&#9;file:///Volumes/Data/Project/MyProject/TO-DO/TO-DO/Classes/Login/Controllers/LoginViewController.m&#10;loginviewcontroller&#9;null&#9;null&#10;mrtododatamana&#9;FILE&#9;file:///Volumes/Data/Project/MyProject/TO-DO/TO-DO/Classes/Common/DataManager/CoredataManager/MRTodoDataManager.m&#10;drawertableview&#9;FILE&#9;file:///Volumes/Data/Project/MyProject/TO-DO/TO-DO/Classes/Common/DrawerTableViewController.m&#10;todotableview&#9;FILE&#9;file:///Volumes/Data/Project/MyProject/TO-DO/TO-DO/Classes/Common/TodoTableViewController.m&#10;sgheaderview&#9;FILE&#9;file:///Volumes/Data/Project/MyProject/TO-DO/TO-DO/Classes/Common/Views/SGHeaderView.m&#10;profile&#9;FILE&#9;file:///Volumes/Data/Project/MyProject/TO-DO/TO-DO/ProfileViewController.m&#10;todotableviewcon&#9;FILE&#9;file:///Volumes/Data/Project/MyProject/TO-DO/TO-DO/Classes/Common/TodoTableViewController.h&#10;calendar&#9;FILE&#9;file:///Volumes/Data/Project/MyProject/TO-DO/TO-DO/Calendar/Controllers/CalendarViewController.m&#10;todocell&#9;FILE&#9;file:///Volumes/Data/Project/MyProject/TO-DO/TO-DO/Classes/Common/Views/TodoTableViewCell.m&#10;sgheader&#9;FILE&#9;file:///Volumes/Data/Project/MyProject/TO-DO/TO-DO/Classes/Common/Views/SGHeaderView.m&#10;todo&#9;FILE&#9;file:///Volumes/Data/Project/MyProject/TO-DO/TO-DO/Classes/Common/Views/TodoTableViewCell.m&#10;todotableviewcell&#9;FILE&#9;file:///Volumes/Data/Project/MyProject/TO-DO/TO-DO/Classes/Common/Views/TodoTableViewCell.m&#10;detailviewcon&#9;FILE&#9;file:///Volumes/Data/Project/MyProject/TO-DO/TO-DO/DetailTableViewController.m&#10;createviewcon&#9;FILE&#9;file:///Volumes/Data/Project/MyProject/TO-DO/TO-DO/Classes/Create/CreateViewController.m&#10;headerview&#9;FILE&#9;file:///Volumes/Data/Project/MyProject/TO-DO/TO-DO/Classes/Common/Views/SGHeaderView.m&#10;createview&#9;FILE&#9;file:///Volumes/Data/Project/MyProject/TO-DO/TO-DO/Classes/Create/CreateViewController.m&#10;sgbaseviewcon&#9;FILE&#9;file:///Volumes/Data/Project/MyProject/TO-DO/TO-DO/Classes/Common/SGBaseViewController.m&#10;sgbasetableviewcon&#9;FILE&#9;file:///Volumes/Data/Project/MyProject/TO-DO/TO-DO/Classes/Common/SGBaseTableViewController.h&#10;sgbase&#9;FILE&#9;file:///Volumes/Data/Project/MyProject/TO-DO/TO-DO/Classes/Common/SGBaseTableViewController.h&#10;detailcell&#9;FILE&#9;file:///Volumes/Data/Project/MyProject/TO-DO/TO-DO/DetailTableViewCell.m&#10;homeviewcon&#9;FILE&#9;file:///Volumes/Data/Project/MyProject/TO-DO/TO-DO/Classes/Home/HomeViewController.m&#10;sgbasetableview&#9;FILE&#9;file:///Volumes/Data/Project/MyProject/TO-DO/TO-DO/Classes/Common/SGBaseTableViewController.h&#10;model&#9;null&#9;null&#10;basetableviewcon&#9;FILE&#9;file:///Volumes/Data/Project/MyProject/TO-DO/TO-DO/Classes/Common/SGBaseTableViewController.h&#10;detail&#9;FILE&#9;file:///Volumes/Data/Project/MyProject/TO-DO/TO-DO/DetailTableViewController.m&#10;detailtableview&#9;FILE&#9;file:///Volumes/Data/Project/MyProject/TO-DO/TO-DO/DetailTableViewController.m&#10;rectangle&#9;FILE&#9;file:///Volumes/Data/Project/MyProject/TO-DO/TO-DO/Classes/Common/Views/SGRectangleView.m&#10;empty&#9;null&#9;null&#10;podfile&#9;FILE&#9;file:///Volumes/Data/Project/MyProject/TO-DO/Podfile&#10;macros&#9;FILE&#9;file:///Volumes/Data/Project/MyProject/TO-DO/TO-DO/Classes/Common/Constants/Macros.h&#10;segmentedcontrol&#9;FILE&#9;file:///Volumes/Data/Project/MyProject/TO-DO/Pods/HMSegmentedControl/HMSegmentedControl/HMSegmentedControl.m&#10;cell&#9;FILE&#9;file:///Volumes/Data/Project/MyProject/TO-DO/TO-DO/Classes/Common/Views/TodoTableViewCell.m&#10;homeview&#9;FILE&#9;file:///Volumes/Data/Project/MyProject/TO-DO/TO-DO/Classes/Home/HomeViewController.m&#10;sgviews&#9;FILE&#9;file:///Volumes/Data/Project/MyProject/TO-DO/TO-DO/Classes/Common/SGViews.h&#10;mrtodo&#9;FILE&#9;file:///Volumes/Data/Project/MyProject/TO-DO/TO-DO/Classes/Common/DataManager/CoredataManager/MRTodoDataManager.h&#10;base&#9;FILE&#9;file:///Volumes/Data/Project/MyProject/TO-DO/TO-DO/Classes/Common/SGBaseViewController.m&#10;drawertableviewcon&#9;null&#9;null" />
     <property name="OBJC.PRESERVED_TARGET_SELECTION" value="TO-DO" />
     <property name="nodejs_interpreter_path" value="/usr/local/bin/node" />
     <property name="js.eslint.eslintPackage" value="" />
@@ -905,12 +907,14 @@
       <workItem from="1481701396941" duration="15615000" />
       <workItem from="1481971592718" duration="3549000" />
       <workItem from="1482137183767" duration="14225000" />
-      <workItem from="1482214896693" duration="14168000" />
+      <workItem from="1482214896693" duration="15029000" />
+      <workItem from="1482230339854" duration="2338000" />
+      <workItem from="1482232755086" duration="7590000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="483853000" />
+    <option name="totallyTimeSpent" value="494642000" />
   </component>
   <component name="TodoView">
     <todo-panel id="selected-file">
@@ -924,7 +928,7 @@
   </component>
   <component name="ToolWindowManager">
     <frame x="1440" y="-180" width="2560" height="1080" extended-state="0" />
-    <editor active="false" />
+    <editor active="true" />
     <layout>
       <window_info id="Designer" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.0942429" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
@@ -934,7 +938,7 @@
       <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.23861386" sideWeight="0.50157607" order="8" side_tool="true" content_ui="tabs" />
       <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.21980198" sideWeight="0.5" order="9" side_tool="false" content_ui="tabs" />
       <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.27281746" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" x="-189" y="-659" width="1817" height="244" />
-      <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.09692671" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
+      <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.09660883" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.20337301" sideWeight="0.49807376" order="10" side_tool="false" content_ui="tabs" />
       <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="true" content_ui="tabs" />
       <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.24503969" sideWeight="0.49842396" order="3" side_tool="false" content_ui="tabs" />
@@ -1014,166 +1018,11 @@
           <properties />
         </breakpoint>
       </default-breakpoints>
-      <option name="time" value="390" />
+      <option name="time" value="392" />
     </breakpoint-manager>
     <watches-manager />
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/Pods/HMSegmentedControl/HMSegmentedControl/HMSegmentedControl.m">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="6178">
-          <caret line="573" column="5" lean-forward="false" selection-start-line="573" selection-start-column="5" selection-end-line="573" selection-end-column="5" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/TO-DO/Classes/Common/Views/SGRectangleView.m">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="385">
-          <caret line="52" column="4" lean-forward="true" selection-start-line="52" selection-start-column="4" selection-end-line="61" selection-end-column="24" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/Pods/HMSegmentedControl/HMSegmentedControl/HMSegmentedControl.h">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-16">
-          <caret line="28" column="2" lean-forward="false" selection-start-line="28" selection-start-column="2" selection-end-line="28" selection-end-column="2" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/TO-DO/Classes/Common/SGSegmentedController.h">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="224">
-          <caret line="15" column="4" lean-forward="false" selection-start-line="15" selection-start-column="4" selection-end-line="15" selection-end-column="4" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/TO-DO/ProfileViewController.h">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="96">
-          <caret line="6" column="0" lean-forward="false" selection-start-line="6" selection-start-column="0" selection-end-line="6" selection-end-column="0" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/TO-DO/Classes/Common/SGSegmentedController.m">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="464">
-          <caret line="29" column="36" lean-forward="true" selection-start-line="29" selection-start-column="36" selection-end-line="29" selection-end-column="36" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/TO-DO/DetailTableViewCell.h">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="0">
-          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file:///Applications/Xcode.app/Contents/Developer/Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS.sdk/System/Library/Frameworks/UIKit.framework/Headers/UIGeometry.h">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="208">
-          <caret line="15" column="17" lean-forward="false" selection-start-line="15" selection-start-column="17" selection-end-line="15" selection-end-column="17" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file:///Applications/Xcode.app/Contents/Developer/Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS.sdk/usr/include/dispatch/object.h">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="421">
-          <caret line="190" column="28" lean-forward="true" selection-start-line="190" selection-start-column="28" selection-end-line="190" selection-end-column="28" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/TO-DO/Classes/Common/Constants/Constants.h">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="400">
-          <caret line="25" column="45" lean-forward="false" selection-start-line="25" selection-start-column="45" selection-end-line="25" selection-end-column="45" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/TO-DO/Classes/Common/Constants/Macros.h">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="321">
-          <caret line="54" column="81" lean-forward="true" selection-start-line="54" selection-start-column="81" selection-end-line="54" selection-end-column="81" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/TO-DO/Classes/Common/Utilities/GCDQueue.m">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="304">
-          <caret line="19" column="1" lean-forward="true" selection-start-line="19" selection-start-column="1" selection-end-line="19" selection-end-column="1" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/TO-DO/Classes/Common/DataManager/CoredataManager/MRTodoDataManager.m">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="389">
-          <caret line="164" column="5" lean-forward="true" selection-start-line="164" selection-start-column="5" selection-end-line="164" selection-end-column="5" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/TO-DO/Model/CoreDataModels/CDTodo.m">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="337">
-          <caret line="55" column="72" lean-forward="true" selection-start-line="55" selection-start-column="72" selection-end-line="55" selection-end-column="72" />
-          <folding>
-            <element signature="e#125#143#0" expanded="false" />
-            <element signature="e#268#305#0" expanded="false" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/TO-DO/Model/CoreDataModels/CDTodo.h">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="640">
-          <caret line="41" column="4" lean-forward="true" selection-start-line="41" selection-start-column="4" selection-end-line="41" selection-end-column="4" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/Pods/JMRoundedCorner/JMRoundedCorner/UIView+RoundedCorner.m">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="928">
-          <caret line="59" column="8" lean-forward="false" selection-start-line="59" selection-start-column="8" selection-end-line="59" selection-end-column="8" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/TO-DO/Classes/Common/Views/TodoTableViewCell.h">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="640">
-          <caret line="41" column="4" lean-forward="true" selection-start-line="41" selection-start-column="4" selection-end-line="41" selection-end-column="4" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/TO-DO/Model/SGCellViewModel.h">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="176">
-          <caret line="11" column="4" lean-forward="true" selection-start-line="11" selection-start-column="4" selection-end-line="11" selection-end-column="4" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/TO-DO/Model/SGCellViewModel.m">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="128">
-          <caret line="8" column="33" lean-forward="true" selection-start-line="8" selection-start-column="33" selection-end-line="8" selection-end-column="33" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/TO-DO/DetailModel.h">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="240">
-          <caret line="16" column="50" lean-forward="true" selection-start-line="16" selection-start-column="50" selection-end-line="16" selection-end-column="50" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/TO-DO/DetailModel.m">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="128">
-          <caret line="9" column="16" lean-forward="false" selection-start-line="9" selection-start-column="16" selection-end-line="9" selection-end-column="16" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/TO-DO/DetailTableViewCell.m">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="224">
@@ -1182,21 +1031,10 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/TO-DO/Classes/Common/DrawerTableViewController.m">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="608">
-          <caret line="63" column="66" lean-forward="true" selection-start-line="63" selection-start-column="66" selection-end-line="63" selection-end-column="66" />
-          <folding>
-            <element signature="e#145#168#0" expanded="false" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/TO-DO/SettingModel.m">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="128">
           <caret line="8" column="28" lean-forward="false" selection-start-line="8" selection-start-column="28" selection-end-line="8" selection-end-column="28" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -1238,7 +1076,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="288">
           <caret line="18" column="23" lean-forward="true" selection-start-line="18" selection-start-column="23" selection-end-line="18" selection-end-column="23" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -1257,19 +1094,10 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/TO-DO/DetailTableViewController.m">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="720">
-          <caret line="74" column="4" lean-forward="false" selection-start-line="74" selection-start-column="4" selection-end-line="74" selection-end-column="4" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/TO-DO/Classes/Common/Views/Cells/SGSectionHeader.h">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="208">
           <caret line="14" column="0" lean-forward="true" selection-start-line="14" selection-start-column="0" selection-end-line="14" selection-end-column="0" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -1277,7 +1105,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="128">
           <caret line="8" column="4" lean-forward="true" selection-start-line="8" selection-start-column="4" selection-end-line="8" selection-end-column="4" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -1301,15 +1128,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="368">
           <caret line="23" column="38" lean-forward="true" selection-start-line="23" selection-start-column="38" selection-end-line="23" selection-end-column="38" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/TO-DO/Classes/Common/SGBaseViewController.m">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="848">
-          <caret line="71" column="113" lean-forward="false" selection-start-line="71" selection-start-column="113" selection-end-line="71" selection-end-column="113" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -1333,49 +1151,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="417">
           <caret line="223" column="0" lean-forward="true" selection-start-line="223" selection-start-column="0" selection-end-line="223" selection-end-column="0" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/TO-DO/Classes/Common/Views/TodoTableViewCell.m">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="720">
-          <caret line="93" column="59" lean-forward="true" selection-start-line="93" selection-start-column="59" selection-end-line="93" selection-end-column="59" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/TO-DO/SettingTableViewCell.h">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="144">
-          <caret line="9" column="0" lean-forward="false" selection-start-line="9" selection-start-column="0" selection-end-line="9" selection-end-column="36" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/TO-DO/Classes/Common/TodoTableViewController.m">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="2320">
-          <caret line="145" column="0" lean-forward="true" selection-start-line="144" selection-start-column="1" selection-end-line="145" selection-end-column="0" />
-          <folding>
-            <element signature="e#143#166#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/TO-DO/SettingTableViewCell.m">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="96">
-          <caret line="6" column="13" lean-forward="false" selection-start-line="6" selection-start-column="13" selection-end-line="6" selection-end-column="13" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/TO-DO/Calendar/Controllers/CalendarViewController.m">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="641">
-          <caret line="102" column="69" lean-forward="true" selection-start-line="102" selection-start-column="69" selection-end-line="102" selection-end-column="69" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -1387,39 +1162,275 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/TO-DO/Classes/Common/DrawerTableViewController.m">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="2944">
+          <caret line="196" column="7" lean-forward="true" selection-start-line="196" selection-start-column="7" selection-end-line="196" selection-end-column="7" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/TO-DO/Classes/Common/DataManager/CoredataManager/MRTodoDataManager.m">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="545">
+          <caret line="172" column="72" lean-forward="false" selection-start-line="172" selection-start-column="72" selection-end-line="172" selection-end-column="72" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/TO-DO/Calendar/Controllers/CalendarViewController.m">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="1472">
+          <caret line="96" column="66" lean-forward="true" selection-start-line="96" selection-start-column="66" selection-end-line="96" selection-end-column="66" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/TO-DO/ProfileViewController.m">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="624">
-          <caret line="68" column="66" lean-forward="true" selection-start-line="68" selection-start-column="66" selection-end-line="68" selection-end-column="66" />
+          <caret line="68" column="66" lean-forward="false" selection-start-line="68" selection-start-column="66" selection-end-line="68" selection-end-column="66" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/TO-DO/Classes/Common/Views/TodoTableViewCell.m">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="368">
+          <caret line="71" column="0" lean-forward="true" selection-start-line="71" selection-start-column="0" selection-end-line="71" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/TO-DO/SettingTableViewCell.h">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="224">
+          <caret line="14" column="64" lean-forward="false" selection-start-line="14" selection-start-column="64" selection-end-line="14" selection-end-column="64" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/TO-DO/Classes/Common/TodoTableViewController.m">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="160">
+          <caret line="111" column="57" lean-forward="true" selection-start-line="111" selection-start-column="57" selection-end-line="111" selection-end-column="57" />
+          <folding>
+            <element signature="e#143#166#0" expanded="false" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/TO-DO/SettingTableViewCell.m">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="945">
+          <caret line="79" column="50" lean-forward="false" selection-start-line="79" selection-start-column="50" selection-end-line="79" selection-end-column="50" />
+          <folding>
+            <element signature="e#100#132#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Pods/Masonry/Masonry/MASViewConstraint.m">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="243">
+          <caret line="323" column="0" lean-forward="false" selection-start-line="323" selection-start-column="0" selection-end-line="323" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Pods/Masonry/Masonry/MASCompositeConstraint.m">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="458">
+          <caret line="166" column="0" lean-forward="false" selection-start-line="166" selection-start-column="0" selection-end-line="166" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Pods/Masonry/Masonry/MASConstraintMaker.m">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="243">
+          <caret line="44" column="0" lean-forward="false" selection-start-line="44" selection-start-column="0" selection-end-line="44" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Pods/Masonry/Masonry/View+MASAdditions.m">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="243">
+          <caret line="17" column="0" lean-forward="false" selection-start-line="17" selection-start-column="0" selection-end-line="17" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/TO-DO/Classes/Libraries/SCLAlertView/SCLAlertView.m">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="531">
+          <caret line="240" column="43" lean-forward="true" selection-start-line="240" selection-start-column="43" selection-end-line="240" selection-end-column="43" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/TO-DO/Classes/Common/SGBaseViewController.m">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="737">
+          <caret line="113" column="35" lean-forward="true" selection-start-line="113" selection-start-column="35" selection-end-line="113" selection-end-column="35" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/TO-DO/Classes/Common/DataManager/CommonDataManager.m">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="256">
+          <caret line="19" column="63" lean-forward="true" selection-start-line="19" selection-start-column="63" selection-end-line="19" selection-end-column="63" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/TO-DO/Classes/Common/Constants/Constants.h">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="400">
+          <caret line="25" column="50" lean-forward="true" selection-start-line="25" selection-start-column="50" selection-end-line="25" selection-end-column="50" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/TO-DO/Classes/Common/DataManager/SyncDataManagers/SGSyncManager.m">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="464">
+          <caret line="74" column="160" lean-forward="true" selection-start-line="74" selection-start-column="124" selection-end-line="74" selection-end-column="160" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/TO-DO/Classes/Login/DataManager/LCUserDataManager.h">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="496">
+          <caret line="31" column="0" lean-forward="true" selection-start-line="31" selection-start-column="0" selection-end-line="31" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/TO-DO/Model/LeanCloudModels/LCUser.h">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="272">
+          <caret line="18" column="38" lean-forward="false" selection-start-line="18" selection-start-column="38" selection-end-line="18" selection-end-column="38" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/TO-DO/Classes/Common/SGHelper.m">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="497">
+          <caret line="121" column="8" lean-forward="false" selection-start-line="121" selection-start-column="8" selection-end-line="121" selection-end-column="8" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Pods/RTRootNavigationController/RTRootNavigationController/Classes/RTRootNavigationController.m">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="547">
+          <caret line="198" column="46" lean-forward="true" selection-start-line="198" selection-start-column="46" selection-end-line="198" selection-end-column="46" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Pods/SZTextView/Classes/SZTextView.m">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="51">
+          <caret line="125" column="30" lean-forward="false" selection-start-line="125" selection-start-column="30" selection-end-line="125" selection-end-column="30" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/TO-DO/Classes/Common/Localized.h">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="192">
+          <caret line="12" column="10" lean-forward="false" selection-start-line="12" selection-start-column="10" selection-end-line="12" selection-end-column="10" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/TO-DO/Classes/Common/DataManager/CoredataManager/MRUserDataManager.m">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="480">
+          <caret line="32" column="0" lean-forward="false" selection-start-line="32" selection-start-column="0" selection-end-line="32" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/TO-DO/Classes/Login/DataManager/LCUserDataManager.m">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="512">
+          <caret line="44" column="92" lean-forward="false" selection-start-line="44" selection-start-column="56" selection-end-line="44" selection-end-column="92" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/TO-DO/Localization/zh-Hans.lproj/Localizable.strings">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="752">
+          <caret line="47" column="0" lean-forward="true" selection-start-line="47" selection-start-column="0" selection-end-line="47" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/TO-DO/Classes/Login/Controllers/LoginViewController.m">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="513">
+          <caret line="63" column="0" lean-forward="true" selection-start-line="63" selection-start-column="0" selection-end-line="63" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/TO-DO/DetailTableViewController.m">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="1">
+          <caret line="153" column="35" lean-forward="true" selection-start-line="153" selection-start-column="35" selection-end-line="153" selection-end-column="35" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/TO-DO/Classes/Common/SGTextEditorViewController.m">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="243">
+          <caret line="73" column="60" lean-forward="true" selection-start-line="73" selection-start-column="60" selection-end-line="73" selection-end-column="60" />
           <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/TO-DO/SettingViewController.m">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="544">
-          <caret line="57" column="55" lean-forward="true" selection-start-line="57" selection-start-column="55" selection-end-line="57" selection-end-column="55" />
+        <state relative-caret-position="577">
+          <caret line="49" column="47" lean-forward="true" selection-start-line="49" selection-start-column="47" selection-end-line="49" selection-end-column="47" />
           <folding>
             <element signature="e#100#133#0" expanded="true" />
           </folding>
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/TO-DO/Classes/Common/DataManager/SyncDataManagers/SGSyncManager.m">
+    <entry file="file://$PROJECT_DIR$/TO-DO/Classes/AppDelegate/AppDelegate.h">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="243">
-          <caret line="338" column="40" lean-forward="true" selection-start-line="338" selection-start-column="40" selection-end-line="338" selection-end-column="40" />
+        <state relative-caret-position="321">
+          <caret line="29" column="36" lean-forward="true" selection-start-line="29" selection-start-column="36" selection-end-line="29" selection-end-column="36" />
           <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/TO-DO/SettingTableViewController.m">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="641">
-          <caret line="105" column="44" lean-forward="true" selection-start-line="105" selection-start-column="44" selection-end-line="105" selection-end-column="44" />
+        <state relative-caret-position="1105">
+          <caret line="182" column="5" lean-forward="true" selection-start-line="182" selection-start-column="5" selection-end-line="182" selection-end-column="5" />
           <folding>
             <element signature="e#100#138#0" expanded="true" />
           </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/TO-DO/Classes/AppDelegate/AppDelegate.m">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="501">
+          <caret line="258" column="36" lean-forward="true" selection-start-line="258" selection-start-column="36" selection-end-line="258" selection-end-column="36" />
+          <folding />
         </state>
       </provider>
     </entry>

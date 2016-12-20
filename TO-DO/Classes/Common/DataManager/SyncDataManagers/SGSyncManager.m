@@ -348,11 +348,11 @@ static NSInteger const kMaximumSyncCountPerFetch = 100;
             };
     // Mark: 这里回调返回了两个数据，第一个是待办事项objectId数组，第二个是服务器修改过的的SyncRecord字典。
     // Mark: LeanCloud rpcFunction美名其曰可以直传AVObject，然而云函数并不支持保存
-    NSArray *responseDatas = [AVCloud callFunction:@"commitTodos" withParameters:commitTodoParameters error:&error];
+    NSArray *responseData = [AVCloud callFunction:@"commitTodos" withParameters:commitTodoParameters error:&error];
     if (error) return NO;
     
-    NSArray *objectIdArray = responseDatas[0];
-    NSDictionary *syncRecordDictionary = responseDatas[1];
+    NSArray *objectIdArray = responseData[0];
+    NSDictionary *syncRecordDictionary = responseData[1];
     
     // 2-1-3-2. 修改本地待办事项的objectId
     if (objectIdArray.count)
@@ -363,6 +363,7 @@ static NSInteger const kMaximumSyncCountPerFetch = 100;
     // 2-1-3-3. 上传成功后更新本地的同步记录
     _syncRecord.isFinished = syncRecordDictionary[@"isFinished"];
     _syncRecord.syncEndTime = syncRecordDictionary[@"syncEndTime"];
+    _cdUser.lastSyncTime = [NSDate date];
     
     // 2-1-3-4. 持久化保存本地数据
     [_localContext MR_saveToPersistentStoreAndWait];
@@ -511,7 +512,7 @@ static NSInteger const kMaximumSyncCountPerFetch = 100;
     NSDate *serverDate = [DateUtil dateFromISO8601String:responseObject[@"iso"]];
     
     
-    // 现在不判断服务器与本地时间差，这个应该不会造成什么问题。
+    // 现在不判断服务器与本地时间差，就算有问题我也不负责
     // NSInteger intervalFromServer = fabs([serverDate timeIntervalSince1970] - [[NSDate date] timeIntervalSince1970]);
     //    if (intervalFromServer > kInvalidTimeInterval)
     //        return [self.errorHandler returnWithError:nil description:@"2. 本地时间和服务器时间相差过大，已停止同步"];
@@ -566,14 +567,14 @@ static NSInteger const kMaximumSyncCountPerFetch = 100;
     }];
     
     if (commitCount < kMaximumSyncCountPerFetch && downloadCount < kMaximumSyncCountPerFetch) {
-        DDLogInfo(@"此次同步完毕，一共进行了 %ld 次同步", _synchronizedCount + 1);
+        DDLogInfo(@"此次同步完毕，一共进行了 %@ 次同步", @(_synchronizedCount + 1));
         [weakSelf cleanUp];
         [[NSOperationQueue mainQueue] addOperationWithBlock:^{
             return block(YES);
         }];
     } else {
         weakSelf.synchronizedCount++;
-        DDLogInfo(@"开始进行第 %ld 次同步", weakSelf.synchronizedCount + 1);
+        DDLogInfo(@"开始进行第 %@ 次同步", @(weakSelf.synchronizedCount + 1));
         return [weakSelf synchronize:SyncModeManually complete:block];
     }
 }
@@ -584,7 +585,7 @@ static NSInteger const kMaximumSyncCountPerFetch = 100;
 - (NSDictionary *)cdTodosToDictionaryWithObjectIdSetToKey:(NSArray<CDTodo *> *)todosArray {
     NSMutableDictionary *result = [NSMutableDictionary new];
     for (CDTodo *todo in todosArray) {
-        [result setObject:todo forKey:todo.objectId];
+        result[todo.objectId] = todo;
     }
     
     return [result copy];

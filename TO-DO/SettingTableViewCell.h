@@ -11,4 +11,6 @@ static CGFloat const kIconSize = 18;
 
 @interface SettingTableViewCell : UITableViewCell
 - (void)setModel:(SettingModel *)model;
+
+@property (nonatomic, copy) void (^switchDidChange)(BOOL value);
 @end

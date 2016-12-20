@@ -12,6 +12,7 @@
 "Description" = "描述";
 "Time" = "时间";
 "Location" = "位置";
+"Account" = "账户";
 
 /* Button */
 "SIGN IN" = "登录";
@@ -42,6 +43,8 @@
 "Please allow app to access your device's camera in \"Settings\" -> \"Privacy\" -> \"Camera\"" = "请在iPhone的“设置-隐私-相机”选项中，允许本应用访问你的相机";
 "Failed to upload avatar, please try again" = "上传图片失败，请重试";
 "Unable to sync, please check your network connection!" = "无法同步，请检查你的网络是否通畅！";
+"Please check your network connection" = "请检查你的网络是否通畅！";
+"Account information has changed, please log in again" = "账户信息已变更，请重新登录";
 
 /* Exceptions */
 "Unable to open your camera or album because of an unexpected error" = "因为未知原因，无法使用您的相机或相册";
@@ -73,3 +76,25 @@
 
 /* Search */
 "Search title/description/location" = "搜索标题、描述或地址";
+
+/* Profile */
+"Profile" = "资料";
+"COMPLETE" = "完成";
+"SNOOZED" = "延期";
+"OVERDUE" = "过期";
+
+/* Setting */
+"Setting" = "设置";
+"ACCOUNT" = "账户";
+"SYNC" = "同步";
+"REMINDER" = "提醒";
+"EXTRAS" = "其他";
+
+"No record" = "没有记录";
+"Change Password" = "修改密码";
+"Sign Out" = "注销";
+"Enable auto sync" = "启用自动同步";
+"Last sync time" = "上次同步时间";
+"Enable auto reminder" = "启用自动提醒";
+"About" = "关于";
+"Clear Cache" = "清除缓存";

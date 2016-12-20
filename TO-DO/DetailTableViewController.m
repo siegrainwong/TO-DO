@@ -42,6 +42,7 @@ typedef NS_ENUM(NSInteger, SGDetailItem) {
         _editorViewController = [SGTextEditorViewController new];
         _editorViewController.title = Localized(@"Description");
         _editorViewController.value = _model.sgDescription;
+        _editorViewController.maxLength = kMaxLengthOfDescription;
         __weak __typeof(self) weakSelf = self;
         [_editorViewController setEditorDidSave:^(NSString *value) {
             weakSelf.model.sgDescription = value;

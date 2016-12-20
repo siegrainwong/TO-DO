@@ -89,8 +89,7 @@ static BOOL const kEnableViewControllerStateHolder = YES;
     
     // validate user's login state
     if (_lcUser) {
-        [self switchRootViewController:[HomeViewController new] isNavigation:YES key:[AppDelegate homeViewControllerKey]];
-        [self synchronize:SyncModeAutomatically];
+        [self logIn];
     } else {
         [self switchRootViewController:[LoginViewController new] isNavigation:NO key:nil];
     }
@@ -255,16 +254,24 @@ static BOOL const kEnableViewControllerStateHolder = YES;
     [LCUser logOut];
     _cdUser = nil;
     
-    [_stateHolder removeAllObjects];
     [self setCenterViewController:[UIViewController new] key:nil];
+    [self toggleDrawer:nil animated:YES];
+    [_stateHolder removeAllObjects];
     LoginViewController *loginViewController = [LoginViewController new];
     [self switchRootViewController:loginViewController isNavigation:NO key:nil];
-    [self toggleDrawer:nil animated:YES];
+}
+
+- (void)logIn {
+    [self setupUser];
+    [self switchRootViewController:[HomeViewController new] isNavigation:YES key:[AppDelegate homeViewControllerKey]];
+    [self synchronize:SyncModeAutomatically];
 }
 
 #pragma mark - sync
 
 - (void)synchronize:(SyncMode)syncType {
+    if (syncType == SyncModeAutomatically && (!_cdUser.enableAutoSync || !_cdUser.enableAutoSync.boolValue)) return;
+    
     __weak typeof(self) weakSelf = self;
     [[GCDQueue globalQueueWithLevel:DISPATCH_QUEUE_PRIORITY_DEFAULT] sync:^{
         if ([SGSyncManager isSyncing]) return;

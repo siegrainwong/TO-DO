@@ -21,4 +21,11 @@
  *  @return <#return value description#>
  */
 - (void)handleCommit:(LCUser*)user isSignUp:(BOOL)signUp complete:(void (^)(bool succeed))complete;
+
+/**
+ * 编辑用户资料
+ * @param user
+ * @param complete
+ */
+- (void)modifyWithUser:(LCUser *)user complete:(void (^)(bool succeed))complete;
 @end

@@ -2,26 +2,30 @@
 //  CDUser+CoreDataProperties.m
 //  TO-DO
 //
-//  Created by Siegrain on 16/6/4.
+//  Created by Siegrain on 16/12/20.
 //  Copyright © 2016年 com.siegrain. All rights reserved.
-//
-//  Choose "Create NSManagedObject Subclass…" from the Core Data editor menu
-//  to delete and recreate this implementation file for your updated model.
 //
 
 #import "CDUser+CoreDataProperties.h"
 
 @implementation CDUser (CoreDataProperties)
 
++ (NSFetchRequest<CDUser *> *)fetchRequest {
+	return [[NSFetchRequest alloc] initWithEntityName:@"User"];
+}
+
 @dynamic avatar;
 @dynamic avatarData;
+@dynamic createdAt;
 @dynamic email;
 @dynamic name;
-@dynamic username;
-@dynamic phoneIdentifier;
 @dynamic objectId;
-@dynamic createdAt;
+@dynamic phoneIdentifier;
 @dynamic updatedAt;
+@dynamic username;
+@dynamic enableAutoSync;
+@dynamic enableAutoReminder;
+@dynamic lastSyncTime;
 @dynamic syncRecords;
 @dynamic todos;
 

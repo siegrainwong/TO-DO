@@ -58,7 +58,12 @@
 - (void)setupUser;
 
 /**
- * 注销
+ * 注销入口
  */
 - (void)logOut;
+
+/**
+ * 登录入口
+ */
+- (void)logIn;
 @end

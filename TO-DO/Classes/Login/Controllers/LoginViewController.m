@@ -56,10 +56,7 @@ LoginViewController ()
         [[UIApplication sharedApplication] setNetworkActivityIndicatorVisible:NO];
         if (!succeed) return;
         
-        AppDelegate *delegate = (AppDelegate *) [UIApplication sharedApplication].delegate;
-        [delegate setupUser];
-        [delegate switchRootViewController:[[HomeViewController alloc] init] isNavigation:YES key:[AppDelegate homeViewControllerKey]];
-        [delegate synchronize:SyncModeAutomatically];
+        [[AppDelegate globalDelegate] logIn];
     }];
 }
 

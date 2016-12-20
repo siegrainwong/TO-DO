@@ -22,6 +22,8 @@ static NSString *const kTaskChangedNotification = @"kTaskChangedNotification";
 /**************************************** 约束 */
 static NSUInteger const kMaxLengthOfTitle = 50;
 static NSUInteger const kMaxLengthOfDescription = 1000;
+static NSUInteger const kMaxLengthOfUserName = 20;
+static NSUInteger const kMaxLengthOfPassword = 30;
 
 /**************************************** 其他 */
 static CGSize const kPhotoThumbSize = {45, 45};

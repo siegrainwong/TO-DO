@@ -76,6 +76,7 @@ static CGFloat const kIndicatorSize = 13;
     if (_style == SettingCellStyleSwitch) {
         _switchView = [UISwitch new];
         _switchView.onTintColor = [SGHelper themeColorRed];
+        [_switchView addTarget:self action:@selector(switchChanged) forControlEvents:UIControlEventValueChanged];
         [self.contentView addSubview:_switchView];
     }
 }
@@ -126,4 +127,11 @@ static CGFloat const kIndicatorSize = 13;
     
     [self setupAutoHeightWithBottomView:_titleLabel bottomMargin:self.cellSpacing.y];
 }
+
+#pragma mark -
+
+- (void)switchChanged {
+    if (_switchDidChange) _switchDidChange(_switchView.isOn);
+}
+
 @end

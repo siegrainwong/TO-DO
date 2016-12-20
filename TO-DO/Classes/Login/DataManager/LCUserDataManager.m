@@ -26,6 +26,7 @@ static NSString *const kNameInvalidKey = @"NameInvalid";
 static NSString *const kPasswordInvalidKey = @"PasswordInvalid";
 static NSString *const kAvatarHaventSelectedKey = @"AvatarHaventSelected";
 static NSString *const kPictureUploadFailedKey = @"PictureUploadFailed";
+static NSString *const kNetworkUnreachable = @"kNetworkUnreachable";
 static NSInteger const kPasswordIncorrectErrorCodeKey = 210;
 static NSInteger const kUserDoesNotExistErrorCodeKey = 211;
 static NSInteger const kEmailAlreadyTakenErrorCodeKey = 201;
@@ -41,6 +42,7 @@ LCUserDataManager ()
 #pragma mark - localization
 
 - (void)localizeStrings {
+    _localDictionary[kNetworkUnreachable] = Localized(@"Please check your network connection");
     _localDictionary[kPasswordInvalidKey] = ConcatLocalizedString1(@"Password", @" is invalid");
     _localDictionary[kNameInvalidKey] = ConcatLocalizedString1(@"Name", @" is invalid");
     _localDictionary[kAvatarHaventSelectedKey] = NSLocalizedString(@"Please select your avatar", nil);
@@ -66,7 +68,7 @@ LCUserDataManager ()
 
 - (void)handleCommit:(LCUser *)user isSignUp:(BOOL)signUp complete:(void (^)(bool succeed))complete {
     _isSignUp = signUp;
-    if (![self validate:user]) return complete(NO);
+    if (![self validate:user isModify:NO]) return complete(NO);
     
     MRUserDataManager *mrUserDataManager = [MRUserDataManager new];
     
@@ -74,10 +76,13 @@ LCUserDataManager ()
     // sign in
     if (!_isSignUp) {
         [LCUser logInWithUsernameInBackground:user.email password:user.password block:^(AVUser *user, NSError *error) {
-            if (error) [SCLAlertHelper errorAlertWithContent:_localDictionary[@(error.code)] ? _localDictionary[@(error.code)] : error.localizedDescription];
+            if (error) {
+                [SCLAlertHelper errorAlertWithContent:_localDictionary[@(error.code)] ? _localDictionary[@(error.code)] : error.localizedDescription];
+                return complete(NO);
+            }
             
             if (![CDUser userWithLCUser:(LCUser *) user]) [mrUserDataManager createUserByLCUser:(LCUser *) user];   //本地没有用户记录就创建
-            return complete(!error);
+            return complete(YES);
         }];
     } else {
         //上传头像
@@ -101,9 +106,36 @@ LCUserDataManager ()
     }
 }
 
+#pragma mark - modify user
+
+- (void)modifyWithUser:(LCUser *)user complete:(void (^)(bool succeed))complete {
+    if (![self validate:user isModify:YES]) return complete(NO);
+    [SGHelper waitingAlert];
+    [[AppDelegate globalDelegate].lcUser saveInBackgroundWithBlock:^(BOOL succeeded, NSError *error) {
+        [SGHelper dismissAlert];
+        if (error) {
+            [SCLAlertHelper errorAlertWithContent:error.localizedDescription];
+            return complete(NO);
+        }
+        
+        CDUser *cdUser = [AppDelegate globalDelegate].cdUser;
+        cdUser.username = user.username;
+        cdUser.email = user.email;
+        cdUser.name = user.name;
+        
+        MR_saveAndWait();
+        return complete(YES);
+    }];
+}
+
 #pragma mark - validate
 
-- (BOOL)validate:(LCUser *)user {
+- (BOOL)validate:(LCUser *)user isModify:(BOOL)isModify {
+    if (isNetworkUnreachable) {
+        [SCLAlertHelper errorAlertWithContent:_localDictionary[kNetworkUnreachable]];
+        return NO;
+    }
+    
     // remove whitespaces
     user.name = [user.name stringByRemovingUnnecessaryWhitespaces];
     user.email = [user.email stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceAndNewlineCharacterSet]];
@@ -117,7 +149,7 @@ LCUserDataManager ()
         }
         
         // name validation
-        if ([SCLAlertHelper errorAlertValidateLengthWithString:user.name minLength:4 maxLength:20 alertName:NSLocalizedString(@"Name", nil)]) {
+        if ([SCLAlertHelper errorAlertValidateLengthWithString:user.name minLength:4 maxLength:kMaxLengthOfUserName alertName:NSLocalizedString(@"Name", nil)]) {
             return NO;
         } else if (![FieldValidator validateName:user.name]) {
             [SCLAlertHelper errorAlertWithContent:_localDictionary[kNameInvalidKey]];
@@ -131,12 +163,14 @@ LCUserDataManager ()
         return NO;
     }
     
-    // password validation
-    if ([SCLAlertHelper errorAlertValidateLengthWithString:user.password minLength:6 maxLength:20 alertName:NSLocalizedString(@"Password", nil)]) {
-        return NO;
-    } else if (![FieldValidator validatePassword:user.password]) {
-        [SCLAlertHelper errorAlertWithContent:kPasswordInvalidKey];
-        return NO;
+    if (!isModify) {    //编辑模式不做密码验证
+        // password validation
+        if ([SCLAlertHelper errorAlertValidateLengthWithString:user.password minLength:6 maxLength:kMaxLengthOfPassword alertName:NSLocalizedString(@"Password", nil)]) {
+            return NO;
+        } else if (![FieldValidator validatePassword:user.password]) {
+            [SCLAlertHelper errorAlertWithContent:kPasswordInvalidKey];
+            return NO;
+        }
     }
     
     return YES;

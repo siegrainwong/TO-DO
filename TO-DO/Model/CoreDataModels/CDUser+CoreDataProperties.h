@@ -2,28 +2,31 @@
 //  CDUser+CoreDataProperties.h
 //  TO-DO
 //
-//  Created by Siegrain on 16/6/4.
+//  Created by Siegrain on 16/12/20.
 //  Copyright © 2016年 com.siegrain. All rights reserved.
-//
-//  Choose "Create NSManagedObject Subclass…" from the Core Data editor menu
-//  to delete and recreate this implementation file for your updated model.
 //
 
 #import "CDUser.h"
+
 
 NS_ASSUME_NONNULL_BEGIN
 
 @interface CDUser (CoreDataProperties)
 
-@property (nullable, nonatomic, retain) NSString *avatar;
++ (NSFetchRequest<CDUser *> *)fetchRequest;
+
+@property (nullable, nonatomic, copy) NSString *avatar;
 @property (nullable, nonatomic, retain) NSData *avatarData;
-@property (nullable, nonatomic, retain) NSString *email;
-@property (nullable, nonatomic, retain) NSString *name;
-@property (nullable, nonatomic, retain) NSString *username;
-@property (nullable, nonatomic, retain) NSString *phoneIdentifier;
-@property (nullable, nonatomic, retain) NSString *objectId;
-@property (nullable, nonatomic, retain) NSDate *createdAt;
-@property (nullable, nonatomic, retain) NSDate *updatedAt;
+@property (nullable, nonatomic, copy) NSDate *createdAt;
+@property (nullable, nonatomic, copy) NSString *email;
+@property (nullable, nonatomic, copy) NSString *name;
+@property (nullable, nonatomic, copy) NSString *objectId;
+@property (nullable, nonatomic, copy) NSString *phoneIdentifier;
+@property (nullable, nonatomic, copy) NSDate *updatedAt;
+@property (nullable, nonatomic, copy) NSString *username;
+@property (nullable, nonatomic, copy) NSNumber *enableAutoSync;
+@property (nullable, nonatomic, copy) NSNumber *enableAutoReminder;
+@property (nullable, nonatomic, copy) NSDate *lastSyncTime;
 @property (nullable, nonatomic, retain) NSOrderedSet<CDSyncRecord *> *syncRecords;
 @property (nullable, nonatomic, retain) NSOrderedSet<CDTodo *> *todos;
 

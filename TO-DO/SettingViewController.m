@@ -6,13 +6,10 @@
 #import "SettingViewController.h"
 #import "SettingTableViewController.h"
 #import "TodoTableViewController.h"
-#import "MXParallaxHeader.h"
-#import "MXScrollViewController.h"
 
 
 @interface SettingViewController () <TodoTableViewControllerDelegate, SGBaseTableViewControllerDelegate>
 @property(nonatomic, strong) SettingTableViewController *tableViewController;
-//@property(nonatomic, strong) TodoTableViewController *tableViewController;
 @end
 
 @implementation SettingViewController
