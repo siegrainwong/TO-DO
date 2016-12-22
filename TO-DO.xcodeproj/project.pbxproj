@@ -97,6 +97,7 @@
 		F98DE68C1CFDCE6B00859A81 /* TodoTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = F98DE68B1CFDCE6B00859A81 /* TodoTableViewController.m */; };
 		F9964A991D02CD2F008387E5 /* LCSyncRecord.m in Sources */ = {isa = PBXBuildFile; fileRef = F9964A981D02CD2F008387E5 /* LCSyncRecord.m */; };
 		F9964A9C1D030409008387E5 /* CDSyncRecord+CoreDataProperties.m in Sources */ = {isa = PBXBuildFile; fileRef = F9964A9B1D030409008387E5 /* CDSyncRecord+CoreDataProperties.m */; };
+		F996A8131E0BFC0300732C4C /* MessageUI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F996A8121E0BFC0300732C4C /* MessageUI.framework */; };
 		F997BF9F1CF8376A00DD155B /* UIViewController+KNSemiModal.m in Sources */ = {isa = PBXBuildFile; fileRef = F997BF9E1CF8376A00DD155B /* UIViewController+KNSemiModal.m */; };
 		F997BFA11CF8391C00DD155B /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F997BFA01CF8391C00DD155B /* QuartzCore.framework */; };
 		F997BFA31CF83A6600DD155B /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F997BFA21CF83A6600DD155B /* UIKit.framework */; };
@@ -334,6 +335,7 @@
 		F9964A981D02CD2F008387E5 /* LCSyncRecord.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LCSyncRecord.m; sourceTree = "<group>"; };
 		F9964A9A1D030409008387E5 /* CDSyncRecord+CoreDataProperties.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "CDSyncRecord+CoreDataProperties.h"; sourceTree = "<group>"; };
 		F9964A9B1D030409008387E5 /* CDSyncRecord+CoreDataProperties.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "CDSyncRecord+CoreDataProperties.m"; sourceTree = "<group>"; };
+		F996A8121E0BFC0300732C4C /* MessageUI.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MessageUI.framework; path = System/Library/Frameworks/MessageUI.framework; sourceTree = SDKROOT; };
 		F997BF9D1CF8376A00DD155B /* UIViewController+KNSemiModal.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIViewController+KNSemiModal.h"; sourceTree = "<group>"; };
 		F997BF9E1CF8376A00DD155B /* UIViewController+KNSemiModal.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIViewController+KNSemiModal.m"; sourceTree = "<group>"; };
 		F997BFA01CF8391C00DD155B /* QuartzCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = QuartzCore.framework; path = System/Library/Frameworks/QuartzCore.framework; sourceTree = SDKROOT; };
@@ -416,6 +418,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				F996A8131E0BFC0300732C4C /* MessageUI.framework in Frameworks */,
 				F9E3EE411DFAB5EC00686993 /* UserNotifications.framework in Frameworks */,
 				F997BFA71CF83A7C00DD155B /* CoreGraphics.framework in Frameworks */,
 				F997BFA51CF83A6C00DD155B /* Foundation.framework in Frameworks */,
@@ -445,6 +448,7 @@
 		BE17E2C135B91D0BA1E642E0 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				F996A8121E0BFC0300732C4C /* MessageUI.framework */,
 				F9E3EE401DFAB5EC00686993 /* UserNotifications.framework */,
 				F997BFA61CF83A7C00DD155B /* CoreGraphics.framework */,
 				F997BFA41CF83A6C00DD155B /* Foundation.framework */,

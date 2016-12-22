@@ -51,6 +51,7 @@ TodoTableViewCell ()
     
     if (model.photoPath && !model.photoImage) model.photoImage = [UIImage imageWithContentsOfFile:SGThumbPath(model.identifier)];
     if (model.photoImage)[_photoView jm_setCornerRadius:kButtonSize / 2 withImage:model.photoImage];
+    else _photoView.image = [UIImage new];
     
     // Mark: 苹果的智障框架，系统是24小时制就打印不出12小时，非要设置地区，且该地区只能转换为12小时制
     NSDateFormatter *formatter = [NSDateFormatter dateFormatterWithFormatString:@"h"];

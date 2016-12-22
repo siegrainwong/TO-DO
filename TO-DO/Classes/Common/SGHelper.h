@@ -73,4 +73,6 @@ static NSInteger const kPopHeightWhenKeyboardShow = 170;
  *  @return <#return value description#>
  */
 + (NSString *)localizedFormatDate:(NSDate *)date;
+
++ (NSString *)phoneModel;
 @end

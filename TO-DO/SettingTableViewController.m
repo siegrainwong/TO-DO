@@ -14,12 +14,13 @@
 #import "LCUserDataManager.h"
 #import "RTRootNavigationController.h"
 #import "SCLAlertView.h"
+#import <MessageUI/MFMailComposeViewController.h>
 
 typedef NS_ENUM(NSInteger, SGSettingSection) {
     SGSettingSectionUser,
     SGSettingSectionSync,
-    SGSettingSectionNotification,
-    SGSettingSectionApplication
+//    SGSettingSectionNotification, //TODO: 这个可能要在云引擎上部署自己的repo，然后用node.js的nodemailer来定时发送邮件，先不搞了
+            SGSettingSectionApplication
 };
 
 typedef NS_ENUM(NSInteger, SGSettingUser) {
@@ -44,7 +45,7 @@ typedef NS_ENUM(NSInteger, SGSettingApplication) {
     SGSettingApplicationClearCache
 };
 
-@interface SettingTableViewController ()
+@interface SettingTableViewController () <MFMailComposeViewControllerDelegate>
 @property(nonatomic, strong) CDUser *user;
 
 @property(nonatomic, strong) NSArray *titleArray;
@@ -63,7 +64,7 @@ typedef NS_ENUM(NSInteger, SGSettingApplication) {
     _dataManager = [LCUserDataManager new];
     _user = [AppDelegate globalDelegate].cdUser;
     
-    _titleArray = @[@"ACCOUNT", @"SYNC", @"EXTRAS"];
+    _titleArray = @[Localized(@"ACCOUNT"), Localized(@"SYNC"), Localized(@"EXTRAS")];
     _dataArray = @[
             @[
                     [SettingModel modelWithIconName:@"sys_account" title:Localized(@"Account") content:_user.email style:SettingCellStyleNavigator isOn:NO],
@@ -133,9 +134,11 @@ typedef NS_ENUM(NSInteger, SGSettingApplication) {
     [cell setSwitchDidChange:^(BOOL value) {
         if (indexPath.section == SGSettingSectionSync && indexPath.row == SGSettingSyncAuto) {
             weakSelf.user.enableAutoSync = @(value);
-        } else if (indexPath.section == SGSettingSectionNotification && indexPath.row == SGSettingNotificationAuto) {
-            weakSelf.user.enableAutoReminder = @(value);
         }
+        //遗留配置代码
+//        else if (indexPath.section == SGSettingSectionNotification && indexPath.row == SGSettingNotificationAuto) {
+//            weakSelf.user.enableAutoReminder = @(value);
+//        }
         
         model.isOn = value;
         [weakSelf saveConfig];
@@ -189,18 +192,40 @@ typedef NS_ENUM(NSInteger, SGSettingApplication) {
             return;
         }
         SCLAlertView *alert = [[SCLAlertView alloc] initWithNewWindow];
-        [alert showInfo:Localized(@"Change Password") subTitle:Localized(@"We'll send you an email with a link to reset your password.") closeButtonTitle:@"Close" duration:0];
+        [alert showInfo:Localized(@"Change Password") subTitle:Localized(@"We'll send you an email with a link to reset your password.") closeButtonTitle:Localized(@"Close") duration:0];
     } else if (indexPath.section == SGSettingSectionUser && indexPath.row == SGSettingUserSignOut) {
         SCLAlertView *confirm = [[SCLAlertView alloc] initWithNewWindow];
         [confirm addButton:@"Sign Out" actionBlock:^{
             [[AppDelegate globalDelegate] logOut];
         }];
         [confirm showWarning:Localized(@"Are you sure?") subTitle:nil closeButtonTitle:Localized(@"Cancel") duration:0];
-    } else if (indexPath.section == SGSettingSectionNotification && indexPath.row == SGSettingNotificationAuto) {
-        //TODO: 这个很麻烦，要在云引擎上部署自己的repo，然后用node.js的nodemailer来定时发送邮件，先不搞了
     } else if (indexPath.section == SGSettingSectionApplication && indexPath.row == SGSettingApplicationAbout) {
         
+    } else if (indexPath.section == SGSettingSectionApplication && indexPath.row == SGSettingApplicationFeedback) {
+        if (![MFMailComposeViewController canSendMail]) return;
+        MFMailComposeViewController *viewController = [MFMailComposeViewController new];
+        [viewController setSubject:Localized(@"TO-DO feedback")];
+        NSString *content = [NSString stringWithFormat:@"\n\n\n[%@]:%@ + iOS %@", Localized(@"Running environment"), [SGHelper phoneModel], @(iOSVersion)];
+        [viewController setMessageBody:content isHTML:NO];
+        [viewController setToRecipients:@[@"siegrain@qq.com"]];
+        viewController.mailComposeDelegate = self;
+        [self presentViewController:viewController animated:YES completion:nil];
     } else if (indexPath.section == SGSettingSectionApplication && indexPath.row == SGSettingApplicationClearCache) {
+        
+    }
+}
+
+#pragma mark - MFMailComposeViewControllerDelegate
+
+- (void)mailComposeController:(MFMailComposeViewController*)controller didFinishWithResult:(MFMailComposeResult)result error:(NSError*)error
+{
+    [controller dismissViewControllerAnimated:YES completion:nil];
+    if(result == MFMailComposeResultCancelled) {
+        NSLog(@"取消发送");
+    } else if(result == MFMailComposeResultSent) {
+        SCLAlertView *alert = [[SCLAlertView alloc] initWithNewWindow];
+        [alert showSuccess:Localized(@"Thank you") subTitle:Localized(@"Greatly appreciate your feedback, we will use it to evaluate changes and make improvements in this app.") closeButtonTitle:Localized(@"Close") duration:0];
+    } else {
         
     }
 }
@@ -219,4 +244,5 @@ typedef NS_ENUM(NSInteger, SGSettingApplication) {
     RTRootNavigationController *rootNavigationController = [[RTRootNavigationController alloc] initWithRootViewController:_editorViewController];
     [self presentViewController:rootNavigationController animated:YES completion:nil];
 }
+
 @end
