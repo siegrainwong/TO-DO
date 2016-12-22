@@ -13,6 +13,7 @@
 #import "DateUtil.h"
 #import "LCUserDataManager.h"
 #import "RTRootNavigationController.h"
+#import "SCLAlertView.h"
 
 typedef NS_ENUM(NSInteger, SGSettingSection) {
     SGSettingSectionUser,
@@ -24,7 +25,8 @@ typedef NS_ENUM(NSInteger, SGSettingSection) {
 typedef NS_ENUM(NSInteger, SGSettingUser) {
     SGSettingUserAccount,
     SGSettingUserName,
-    SGSettingUserChangePassword
+    SGSettingUserChangePassword,
+    SGSettingUserSignOut
 };
 
 typedef NS_ENUM(NSInteger, SGSettingSync) {
@@ -38,6 +40,7 @@ typedef NS_ENUM(NSInteger, SGSettingNotification) {
 
 typedef NS_ENUM(NSInteger, SGSettingApplication) {
     SGSettingApplicationAbout,
+    SGSettingApplicationFeedback,
     SGSettingApplicationClearCache
 };
 
@@ -60,7 +63,7 @@ typedef NS_ENUM(NSInteger, SGSettingApplication) {
     _dataManager = [LCUserDataManager new];
     _user = [AppDelegate globalDelegate].cdUser;
     
-    _titleArray = @[@"ACCOUNT", @"SYNC", @"REMINDER", @"EXTRAS"];
+    _titleArray = @[@"ACCOUNT", @"SYNC", @"EXTRAS"];
     _dataArray = @[
             @[
                     [SettingModel modelWithIconName:@"sys_account" title:Localized(@"Account") content:_user.email style:SettingCellStyleNavigator isOn:NO],
@@ -73,10 +76,8 @@ typedef NS_ENUM(NSInteger, SGSettingApplication) {
                     [SettingModel modelWithIconName:@"sys_synctime" title:Localized(@"Last sync time") content:_user.lastSyncTime ? [DateUtil dateString:_user.lastSyncTime withFormat:@"yyyy-MM-dd HH:mm"] : @"No record" style:SettingCellStyleNone isOn:NO],
             ],
             @[
-                    [SettingModel modelWithIconName:@"sys_notification" title:Localized(@"Enable auto reminder") content:nil style:SettingCellStyleSwitch isOn:_user.enableAutoReminder ? _user.enableAutoReminder.boolValue : NO],
-            ],
-            @[
                     [SettingModel modelWithIconName:@"sys_info" title:Localized(@"About") content:nil style:SettingCellStyleNavigator isOn:NO],
+                    [SettingModel modelWithIconName:@"sys_feedback" title:Localized(@"Feedback") content:nil style:SettingCellStyleNavigator isOn:NO],
                     [SettingModel modelWithIconName:@"sys_clean" title:Localized(@"Clear Cache") content:nil style:SettingCellStyleNone isOn:NO],
             ]
     ];
@@ -180,6 +181,27 @@ typedef NS_ENUM(NSInteger, SGSettingApplication) {
             }];
         }];
         [self showEditor];
+    } else if (indexPath.section == SGSettingSectionUser && indexPath.row == SGSettingUserChangePassword) {
+        NSError *error = nil;
+        [LCUser requestPasswordResetForEmail:user.email error:&error];
+        if (error) {
+            [SGHelper errorAlertWithMessage:error.localizedDescription];
+            return;
+        }
+        SCLAlertView *alert = [[SCLAlertView alloc] initWithNewWindow];
+        [alert showInfo:Localized(@"Change Password") subTitle:Localized(@"We'll send you an email with a link to reset your password.") closeButtonTitle:@"Close" duration:0];
+    } else if (indexPath.section == SGSettingSectionUser && indexPath.row == SGSettingUserSignOut) {
+        SCLAlertView *confirm = [[SCLAlertView alloc] initWithNewWindow];
+        [confirm addButton:@"Sign Out" actionBlock:^{
+            [[AppDelegate globalDelegate] logOut];
+        }];
+        [confirm showWarning:Localized(@"Are you sure?") subTitle:nil closeButtonTitle:Localized(@"Cancel") duration:0];
+    } else if (indexPath.section == SGSettingSectionNotification && indexPath.row == SGSettingNotificationAuto) {
+        //TODO: 这个很麻烦，要在云引擎上部署自己的repo，然后用node.js的nodemailer来定时发送邮件，先不搞了
+    } else if (indexPath.section == SGSettingSectionApplication && indexPath.row == SGSettingApplicationAbout) {
+        
+    } else if (indexPath.section == SGSettingSectionApplication && indexPath.row == SGSettingApplicationClearCache) {
+        
     }
 }
 
@@ -189,7 +211,7 @@ typedef NS_ENUM(NSInteger, SGSettingApplication) {
     MR_saveAndWait();
 }
 
-- (void)reloadData{
+- (void)reloadData {
     [self.tableView reloadData];
 }
 

@@ -255,7 +255,7 @@ static BOOL const kEnableViewControllerStateHolder = YES;
     _cdUser = nil;
     
     [self setCenterViewController:[UIViewController new] key:nil];
-    [self toggleDrawer:nil animated:YES];
+    [_drawerViewController closeDrawerWithSide:JVFloatingDrawerSideLeft animated:YES completion:nil];
     [_stateHolder removeAllObjects];
     LoginViewController *loginViewController = [LoginViewController new];
     [self switchRootViewController:loginViewController isNavigation:NO key:nil];
@@ -264,7 +264,7 @@ static BOOL const kEnableViewControllerStateHolder = YES;
 - (void)logIn {
     [self setupUser];
     [self switchRootViewController:[HomeViewController new] isNavigation:YES key:[AppDelegate homeViewControllerKey]];
-    [self synchronize:SyncModeAutomatically];
+    [self synchronize:SyncModeManually];
 }
 
 #pragma mark - sync
