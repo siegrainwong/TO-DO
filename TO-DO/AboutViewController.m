@@ -9,6 +9,7 @@
 #import "SGSectionHeader.h"
 #import "TOWebViewController.h"
 #import "SGWebViewController.h"
+#import "LicenseViewController.h"
 
 
 @interface AboutViewController () <SGNavigationBar>
@@ -76,7 +77,6 @@
     [self setSeparatorInsetWithTableView:self.tableView inset:UIEdgeInsetsMake(0, kScreenWidth * kSpacingRatioToWidth, 0, 0)];
     self.tableView.sectionFooterHeight = 20;
     self.tableView.tableHeaderView = _headerView;
-    self.tableView.separatorColor = [UIColor grayColor];
     
     [self.tableView registerClass:[SettingTableViewCell class] forCellReuseIdentifier:@(SettingCellStyleNavigator).stringValue];
     [self.tableView registerClass:[SettingTableViewCell class] forCellReuseIdentifier:@(SettingCellStyleNone).stringValue];
@@ -164,7 +164,8 @@
         SGWebViewController *viewController = [[SGWebViewController alloc] initWithURL:[NSURL URLWithString:kPrivacyPolicyUrl]];
         [self.navigationController pushViewController:viewController animated:YES];
     } else if (indexPath.section == 0 && indexPath.row == 1) {  //Licenses
-        
+        LicenseViewController * viewController = [LicenseViewController new];
+        [self.navigationController pushViewController:viewController animated:YES];
     } else if (indexPath.section == 1 && indexPath.row == 0) {  //Acknowledgements
         
     }

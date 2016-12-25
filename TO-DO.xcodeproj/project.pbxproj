@@ -33,6 +33,7 @@
 		F1F6A8ADE671A4D528A4E341 /* SGRectangleView.m in Sources */ = {isa = PBXBuildFile; fileRef = F1F6AE460B77EC2BE5BB0FA5 /* SGRectangleView.m */; };
 		F1F6A971694EF8C7BA85587D /* SGSearchBar.m in Sources */ = {isa = PBXBuildFile; fileRef = F1F6A924128673F1FFF6D3B6 /* SGSearchBar.m */; };
 		F1F6A995B9500630FFE1224A /* UISearchBar+Additions.m in Sources */ = {isa = PBXBuildFile; fileRef = F1F6A9D468A191BF68F98F49 /* UISearchBar+Additions.m */; };
+		F1F6A9DC57DDEEA117827980 /* LicenseViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = F1F6A025312B7D80A459C649 /* LicenseViewController.m */; };
 		F1F6AB0A7F5E488863B32B68 /* DZMInputView.m in Sources */ = {isa = PBXBuildFile; fileRef = F1F6A9550E33224A65936D5A /* DZMInputView.m */; };
 		F1F6ABC8867D2715DBB1F9A4 /* UIViewController+SGConfigure.m in Sources */ = {isa = PBXBuildFile; fileRef = F1F6A246492749D8DFE4B5F2 /* UIViewController+SGConfigure.m */; };
 		F1F6ABDEC44B05F78957F228 /* SettingTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = F1F6A5DD853CC840086CAEA3 /* SettingTableViewController.m */; };
@@ -161,6 +162,7 @@
 		36E2DF670BBA7C56A7B0B215 /* Pods-TO-DO.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-TO-DO.release.xcconfig"; path = "Pods/Target Support Files/Pods-TO-DO/Pods-TO-DO.release.xcconfig"; sourceTree = "<group>"; };
 		82F62EB9CE69A5ADAEC271F2 /* Pods-TO-DO.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-TO-DO.debug.xcconfig"; path = "Pods/Target Support Files/Pods-TO-DO/Pods-TO-DO.debug.xcconfig"; sourceTree = "<group>"; };
 		874BB13DFF8BBE53341474BC /* libPods-TO-DO.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-TO-DO.a"; sourceTree = BUILT_PRODUCTS_DIR; };
+		F1F6A025312B7D80A459C649 /* LicenseViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LicenseViewController.m; sourceTree = "<group>"; };
 		F1F6A11909DD478CD9D5372B /* SGSegmentedController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SGSegmentedController.h; sourceTree = "<group>"; };
 		F1F6A156E261995924B89DEB /* SGBaseMapViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SGBaseMapViewController.h; sourceTree = "<group>"; };
 		F1F6A1C1709FA2CB47BEAB41 /* SGMultipleDelegates.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SGMultipleDelegates.h; sourceTree = "<group>"; };
@@ -197,6 +199,7 @@
 		F1F6A795FD6CCB0547068E24 /* AboutViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AboutViewController.m; sourceTree = "<group>"; };
 		F1F6A7F559C1857D66F04D8A /* UIViewController+ESSeparatorInset.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIViewController+ESSeparatorInset.m"; sourceTree = "<group>"; };
 		F1F6A808FBB681656B6AE234 /* UIViewController+SGConfigure.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIViewController+SGConfigure.h"; sourceTree = "<group>"; };
+		F1F6A8114AB4759A699FC9D1 /* LicenseViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LicenseViewController.h; sourceTree = "<group>"; };
 		F1F6A813409C7A87B19AAC87 /* SGBaseSearchViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SGBaseSearchViewController.m; sourceTree = "<group>"; };
 		F1F6A83C6301DE81616487F2 /* ProfileViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ProfileViewController.h; sourceTree = "<group>"; };
 		F1F6A865482BC7ED81EFF40B /* CommonDataManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CommonDataManager.h; sourceTree = "<group>"; };
@@ -586,6 +589,8 @@
 				F1F6A8EB1077BD0AE1C09CEB /* AboutViewController.h */,
 				F1F6A2133D4A1EAF4F4B6A98 /* SGWebViewController.m */,
 				F1F6AF40E905BC3AD141E232 /* SGWebViewController.h */,
+				F1F6A025312B7D80A459C649 /* LicenseViewController.m */,
+				F1F6A8114AB4759A699FC9D1 /* LicenseViewController.h */,
 			);
 			name = Controllers;
 			sourceTree = "<group>";
@@ -1590,6 +1595,7 @@
 				F1F6A3B6C7F1FFC9D0E30538 /* SettingViewController.m in Sources */,
 				F1F6A45738A969E13F75ABC5 /* AboutViewController.m in Sources */,
 				F1F6A0B374F3C2CC9DC0E33F /* SGWebViewController.m in Sources */,
+				F1F6A9DC57DDEEA117827980 /* LicenseViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

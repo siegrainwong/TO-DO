@@ -6,8 +6,8 @@
 //  Copyright © 2016年 com.siegrain. All rights reserved.
 //
 
-#ifndef Constants_h
-#define Constants_h
+#ifndef SGConstants_h
+#define SGConstants_h
 
 /**************************************** 通知名 */
 /**
@@ -82,4 +82,4 @@ typedef NS_ENUM(NSInteger, SyncStatus) {
             SyncStatusSynchronized
 };
 
-#endif /* Constants_h */
+#endif /* SGConstants_h */

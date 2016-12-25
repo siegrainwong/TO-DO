@@ -85,7 +85,6 @@ PODS:
   - SDWebImage (3.8.2):
     - SDWebImage/Core (= 3.8.2)
   - SDWebImage/Core (3.8.2)
-  - SSDynamicText (1.1.0)
   - SZTextView (1.2.2)
   - TOWebViewController (2.2.6):
     - TOWebViewController/Core (= 2.2.6)
@@ -127,7 +126,6 @@ DEPENDENCIES:
   - RTRootNavigationController
   - SDAutoLayout
   - SDWebImage
-  - SSDynamicText
   - TOWebViewController
   - TPKeyboardAvoiding
   - ZFDragableModalTransition
@@ -189,12 +187,11 @@ SPEC CHECKSUMS:
   RTRootNavigationController: cf134c044a8ce14d97fc668847ed4567efc53f91
   SDAutoLayout: e9b36d04b8c0b504762a04d76fbbe5108944297a
   SDWebImage: 098e97e6176540799c27e804c96653ee0833d13c
-  SSDynamicText: e5a1d15b757814a78508de4aeb73cdd287948cfe
   SZTextView: 3a81174dce0710a9ab069bc73a813e6df53b9c82
   TOWebViewController: a29908019f7e0e0f8eccfab8a1ee8dcdf4fc5aac
   TPKeyboardAvoiding: a5138f318c06fb3e151f886e18ce4a72695d9cbe
   ZFDragableModalTransition: 0d294eaaba6edfcb9839595de765f9ca06a4b524
 
-PODFILE CHECKSUM: 9aaeee234e39523aba0a606518116a25acfb9b2c
+PODFILE CHECKSUM: 82317bc4783dc369ba32fccaf61c6d77ae1ffd8a
 
 COCOAPODS: 1.0.1

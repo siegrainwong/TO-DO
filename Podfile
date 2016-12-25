@@ -37,7 +37,6 @@ target "TO-DO" do
   pod 'MJExtension'
   pod 'JMRoundedCorner'
   pod 'BEMCheckBox'
-  pod 'SSDynamicText'
   pod 'EMString'
   pod 'TOWebViewController'
 end
