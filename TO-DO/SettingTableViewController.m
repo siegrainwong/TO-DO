@@ -14,6 +14,7 @@
 #import "LCUserDataManager.h"
 #import "RTRootNavigationController.h"
 #import "SCLAlertView.h"
+#import "AboutViewController.h"
 #import <MessageUI/MFMailComposeViewController.h>
 
 typedef NS_ENUM(NSInteger, SGSettingSection) {
@@ -200,7 +201,8 @@ typedef NS_ENUM(NSInteger, SGSettingApplication) {
         }];
         [confirm showWarning:Localized(@"Are you sure?") subTitle:nil closeButtonTitle:Localized(@"Cancel") duration:0];
     } else if (indexPath.section == SGSettingSectionApplication && indexPath.row == SGSettingApplicationAbout) {
-        
+        AboutViewController *viewController = [AboutViewController new];
+        [self.navigationController pushViewController:viewController animated:YES];
     } else if (indexPath.section == SGSettingSectionApplication && indexPath.row == SGSettingApplicationFeedback) {
         if (![MFMailComposeViewController canSendMail]) return;
         MFMailComposeViewController *viewController = [MFMailComposeViewController new];
@@ -217,12 +219,11 @@ typedef NS_ENUM(NSInteger, SGSettingApplication) {
 
 #pragma mark - MFMailComposeViewControllerDelegate
 
-- (void)mailComposeController:(MFMailComposeViewController*)controller didFinishWithResult:(MFMailComposeResult)result error:(NSError*)error
-{
+- (void)mailComposeController:(MFMailComposeViewController *)controller didFinishWithResult:(MFMailComposeResult)result error:(NSError *)error {
     [controller dismissViewControllerAnimated:YES completion:nil];
-    if(result == MFMailComposeResultCancelled) {
+    if (result == MFMailComposeResultCancelled) {
         NSLog(@"取消发送");
-    } else if(result == MFMailComposeResultSent) {
+    } else if (result == MFMailComposeResultSent) {
         SCLAlertView *alert = [[SCLAlertView alloc] initWithNewWindow];
         [alert showSuccess:Localized(@"Thank you") subTitle:Localized(@"Greatly appreciate your feedback, we will use it to evaluate changes and make improvements in this app.") closeButtonTitle:Localized(@"Close") duration:0];
     } else {

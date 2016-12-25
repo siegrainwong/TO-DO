@@ -15,4 +15,11 @@
     self.navigationItem.rightBarButtonItem.tintColor = self.navigationItem.leftBarButtonItem.tintColor = [UIColor whiteColor];
     [self.navigationController.navigationBar setBackgroundImage:[UIImage imageWithColor:[SGHelper themeColorRed]] forBarMetrics:UIBarMetricsDefault];
 }
+
+- (void)setupNavigationBackIndicator {
+    self.navigationItem.rightBarButtonItem = nil;
+    self.navigationItem.leftBarButtonItem.title = nil;
+    self.navigationItem.leftBarButtonItem.image = [UIImage imageNamed:@"back"];
+    self.navigationItem.leftBarButtonItem.imageInsets = UIEdgeInsetsMake(0, -10, 0, 0);
+}
 @end

@@ -143,7 +143,7 @@
     return [DateUtil dateString:date withFormat:dateFormat];
 }
 
-#pragma mark -
+#pragma mark - device helper
 + (NSString *)phoneModel {
     struct utsname systemInfo;
     uname(&systemInfo);

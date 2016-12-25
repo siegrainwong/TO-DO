@@ -13,4 +13,6 @@
 
 @interface UIViewController (SGConfigure)
 - (void)setupNavigationBar;
+
+- (void)setupNavigationBackIndicator;
 @end

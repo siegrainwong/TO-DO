@@ -31,7 +31,11 @@ static CGFloat const kIndicatorSize = 13;
 - (void)setModel:(SettingModel *)model {
     _model = model;
     
-    _iconView.image = [UIImage imageNamed:model.iconName];
+    if (model.iconName)
+        _iconView.image = [UIImage imageNamed:model.iconName];
+    else
+        _iconView.image = [UIImage new];
+    
     _titleLabel.text = model.title;
     _contentLabel.text = model.content;
     [_switchView setOn:model.isOn];
@@ -52,7 +56,11 @@ static CGFloat const kIndicatorSize = 13;
 }
 
 - (void)setupViews {
-    self.selectedBackgroundView = [[UIImageView alloc] initWithImage:[UIImage imageWithColor:ColorWithRGBA(0xFF3366, .2)]];
+    if (_style == SettingCellStyleNavigator) {
+        self.selectedBackgroundView = [[UIImageView alloc] initWithImage:[UIImage imageWithColor:ColorWithRGBA(0xFF3366, .2)]];
+        self.selectionStyle = UITableViewCellSelectionStyleDefault;
+    } else
+        self.selectionStyle = UITableViewCellSelectionStyleNone;
     
     _iconView = [UIImageView new];
     [self.contentView addSubview:_iconView];
@@ -88,7 +96,7 @@ static CGFloat const kIndicatorSize = 13;
             .leftSpaceToView(self.contentView, space.x)
             .topSpaceToView(self.contentView, space.y)
             .heightIs(kIconSize)
-            .widthEqualToHeight();
+            .widthIs(kIconSize);
     
     _titleLabel.sd_layout
             .leftSpaceToView(_iconView, space.x)
@@ -124,6 +132,14 @@ static CGFloat const kIndicatorSize = 13;
     
     CGSize titleSize = [_titleLabel sizeThatFits:CGSizeMake(CGFLOAT_MAX, kIconSize)];
     _titleLabel.sd_layout.widthIs(titleSize.width);
+    
+    if (_model.iconName) {
+        _iconView.sd_layout.widthIs(kIconSize);
+        _titleLabel.sd_layout.leftSpaceToView(_iconView, self.cellSpacing.x);
+    } else {
+        _iconView.sd_layout.widthIs(0);
+        _titleLabel.sd_layout.leftSpaceToView(_iconView, 0);
+    }
     
     [self setupAutoHeightWithBottomView:_titleLabel bottomMargin:self.cellSpacing.y];
 }

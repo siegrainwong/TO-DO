@@ -114,3 +114,11 @@
 "Running environment" = "运行环境";
 "Thank you" = "感谢";
 "Greatly appreciate your feedback, we will use it to evaluate changes and make improvements in this app." = "非常感谢您的反馈，我们将评估它并改进这个应用程序。";
+
+/* About */
+"LEGAL" = "法律";
+"Privacy Policy" = "隐私政策";
+"Licenses" = "授权";
+"Acknowledgements" = "致谢";
+"Version" = "版本";
+"Developer email: siegrainwong@gmail.com" = "有任何建议欢迎反馈到 siegrain@qq.com";

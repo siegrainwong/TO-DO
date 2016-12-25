@@ -39,5 +39,4 @@ target "TO-DO" do
   pod 'BEMCheckBox'
   pod 'SSDynamicText'
   pod 'EMString'
-  pod 'mfmail'
 end
