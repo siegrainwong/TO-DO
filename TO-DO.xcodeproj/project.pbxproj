@@ -39,6 +39,7 @@
 		F1F6ABDEC44B05F78957F228 /* SettingTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = F1F6A5DD853CC840086CAEA3 /* SettingTableViewController.m */; };
 		F1F6AC193A86F1A9ECBA3612 /* UIView+Extension.m in Sources */ = {isa = PBXBuildFile; fileRef = F1F6AA85E1C29172F37A3439 /* UIView+Extension.m */; };
 		F1F6AC1F1CDC682E0C3E8F80 /* SGTextView.m in Sources */ = {isa = PBXBuildFile; fileRef = F1F6AE3F5A1A5795A7B9901B /* SGTextView.m */; };
+		F1F6AC398FEDC54D03BE9F30 /* AcknowledgementViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = F1F6A764518FD11D727AC42E /* AcknowledgementViewController.m */; };
 		F1F6AC461B9D858ED9D476EF /* SGBaseSearchViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = F1F6A813409C7A87B19AAC87 /* SGBaseSearchViewController.m */; };
 		F1F6AC66CE20B5D9C269FA27 /* UIView+Extension.m in Sources */ = {isa = PBXBuildFile; fileRef = F1F6A8A0740505126718EA47 /* UIView+Extension.m */; };
 		F1F6ACF98DC036673E41BB5E /* ZLIconLabel.m in Sources */ = {isa = PBXBuildFile; fileRef = F1F6AC0F9F670BCC4E3A13B2 /* ZLIconLabel.m */; };
@@ -196,6 +197,7 @@
 		F1F6A6BDD51BDFFD0687AE94 /* SGCellViewModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SGCellViewModel.h; sourceTree = "<group>"; };
 		F1F6A6CE85FCE33A18942419 /* SGCoordinate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SGCoordinate.h; sourceTree = "<group>"; };
 		F1F6A731F0B33EA4B81AE09F /* SGGraphics.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SGGraphics.m; sourceTree = "<group>"; };
+		F1F6A764518FD11D727AC42E /* AcknowledgementViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AcknowledgementViewController.m; sourceTree = "<group>"; };
 		F1F6A795FD6CCB0547068E24 /* AboutViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AboutViewController.m; sourceTree = "<group>"; };
 		F1F6A7F559C1857D66F04D8A /* UIViewController+ESSeparatorInset.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIViewController+ESSeparatorInset.m"; sourceTree = "<group>"; };
 		F1F6A808FBB681656B6AE234 /* UIViewController+SGConfigure.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIViewController+SGConfigure.h"; sourceTree = "<group>"; };
@@ -233,6 +235,7 @@
 		F1F6AD4E4CE132DE66B5EB05 /* SettingTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SettingTableViewCell.h; sourceTree = "<group>"; };
 		F1F6AD603501DA01BDE501C1 /* DetailTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DetailTableViewCell.h; sourceTree = "<group>"; };
 		F1F6AD7342C2328CE5A0747B /* UIImage+Extension.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIImage+Extension.m"; sourceTree = "<group>"; };
+		F1F6AD86AA1A7C5DB174E523 /* AcknowledgementViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AcknowledgementViewController.h; sourceTree = "<group>"; };
 		F1F6ADEBE9B492DA76E977A2 /* SettingTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SettingTableViewController.h; sourceTree = "<group>"; };
 		F1F6ADF09588232CDE1AAF8D /* RNObserverManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RNObserverManager.m; sourceTree = "<group>"; };
 		F1F6AE13A889EFB31C02236B /* DetailViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DetailViewController.h; sourceTree = "<group>"; };
@@ -591,6 +594,8 @@
 				F1F6AF40E905BC3AD141E232 /* SGWebViewController.h */,
 				F1F6A025312B7D80A459C649 /* LicenseViewController.m */,
 				F1F6A8114AB4759A699FC9D1 /* LicenseViewController.h */,
+				F1F6A764518FD11D727AC42E /* AcknowledgementViewController.m */,
+				F1F6AD86AA1A7C5DB174E523 /* AcknowledgementViewController.h */,
 			);
 			name = Controllers;
 			sourceTree = "<group>";
@@ -1596,6 +1601,7 @@
 				F1F6A45738A969E13F75ABC5 /* AboutViewController.m in Sources */,
 				F1F6A0B374F3C2CC9DC0E33F /* SGWebViewController.m in Sources */,
 				F1F6A9DC57DDEEA117827980 /* LicenseViewController.m in Sources */,
+				F1F6AC398FEDC54D03BE9F30 /* AcknowledgementViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

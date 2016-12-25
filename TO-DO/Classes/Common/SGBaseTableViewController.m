@@ -56,9 +56,10 @@
     //加载本地图片
     if (path) {
         UIImage *image = [UIImage imageWithContentsOfFile:path];
-        [self shouldDisplayImage:image onCell:cell atIndexPath:indexPath];
-        
-        return;
+        if (image) {    //如果清空缓存的话，这个可能为空
+            [self shouldDisplayImage:image onCell:cell atIndexPath:indexPath];
+            return;
+        }
     }
     
     //加载网络图片
@@ -67,8 +68,10 @@
         NSOperation *operation = _operationDictionary[url];
         if (!operation) {           //没有当前图片的任务，就添加队列进行图片下载
             operation = [NSBlockOperation blockOperationWithBlock:^{
+                ApplicationNetworkIndicatorVisible(YES);
                 NSData *imageData = [NSData dataWithContentsOfURL:[NSURL URLWithString:url]];
                 UIImage *imageFromData = [UIImage imageWithData:imageData];
+                ApplicationNetworkIndicatorVisible(NO);
                 
                 _imageDictionary[url] = imageFromData;
                 _operationDictionary[url] = nil;
@@ -94,6 +97,7 @@
 }
 
 #pragma mark - scroll view
+
 - (void)scrollViewDidScroll:(UIScrollView *)scrollView {
     if ([_delegate respondsToSelector:@selector(tableViewDidScrollToY:)]) [_delegate tableViewDidScrollToY:scrollView.contentOffset.y];
 }

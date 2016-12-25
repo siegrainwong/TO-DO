@@ -3,56 +3,29 @@
 // Copyright (c) 2016 com.siegrain. All rights reserved.
 //
 
-#import "LicenseViewController.h"
+#import "AcknowledgementViewController.h"
 #import "SettingModel.h"
 #import "SettingTableViewCell.h"
 #import "SGSectionHeader.h"
 #import "SGWebViewController.h"
 
-@interface LicenseViewController ()
+@interface AcknowledgementViewController ()
 @property(nonatomic, copy) NSArray<NSArray<SettingModel *> *> *dataArray;
 @property(nonatomic, copy) NSArray *titleArray;
-@property(nonatomic, copy) NSDictionary *repositories;
+@property(nonatomic, copy) NSDictionary *acknowledgements;
 @end
 
-@implementation LicenseViewController
+@implementation AcknowledgementViewController
 #pragma mark - initial
 
 - (void)viewDidLoad {
-    _repositories = @{
-            @"ACEExpandableTextCell": @"https://github.com/acerbetti/ACEExpandableTextCell",
-            @"SDAutoLayout": @"https://github.com/gsdios/SDAutoLayout",
-            @"FSCalendar": @"https://github.com/WenchaoD/FSCalendar",
-            @"HMSegmentedControl": @"https://github.com/HeshamMegid/HMSegmentedControl",
-            @"MXSegmentedPager": @"https://github.com/maxep/MXSegmentedPager",
-            @"MXPagerView": @"https://github.com/maxep/MXPagerView",
-            @"MBProgressHUD": @"https://github.com/jdg/MBProgressHUD",
-            @"TPKeyboardAvoiding": @"https://github.com/michaeltyson/TPKeyboardAvoiding",
-            @"Masonry": @"https://github.com/SnapKit/Masonry",
-            @"SDWebImage": @"https://github.com/rs/SDWebImage",
-            @"RTRootNavigationController": @"https://github.com/rickytan/RTRootNavigationController",
-            @"AutoLinearLayoutView": @"https://github.com/qianbin/AutoLinearLayoutView",
-            @"JVFloatingDrawer": @"https://github.com/JVillella/JVFloatingDrawer",
-            @"MGSwipeTableCell": @"https://github.com/MortimerGoro/MGSwipeTableCell",
-            @"ZFDragableModalTransition": @"https://github.com/zoonooz/ZFDragableModalTransition",
-            @"MagicalRecord": @"https://github.com/magicalpanda/MagicalRecord",
-            @"CocoaLumberjack": @"https://github.com/CocoaLumberjack/CocoaLumberjack",
-            @"DGActivityIndicatorView": @"https://github.com/gontovnik/DGActivityIndicatorView",
-            @"AFNetworking-Synchronous": @"https://github.com/paulmelnikow/AFNetworking-Synchronous",
-            @"RealReachability": @"https://github.com/dustturtle/RealReachability",
-            @"IGLDropDownMenu": @"https://github.com/bestwnh/IGLDropDownMenu",
-            @"LCActionSheet": @"https://github.com/iTofu/LCActionSheet",
-            @"FDFullscreenPopGesture": @"https://github.com/forkingdog/FDFullscreenPopGesture",
-            @"MJExtension": @"https://github.com/CoderMJLee/MJExtension",
-            @"JMRoundedCorner": @"https://github.com/raozhizhen/JMRoundedCorner",
-            @"BEMCheckBox": @"https://github.com/Boris-Em/BEMCheckBox",
-            @"EMString": @"https://github.com/TanguyAladenise/EMString",
-            @"TOWebViewController": @"https://github.com/TimOliver/TOWebViewController",
+    _acknowledgements = @{
+            @"DO": @"https://www.invisionapp.com/do"
     };
-    _titleArray = @[Localized(@"VERY APPRECIATE FOR THESE PROJECTS"),@""];
+    _titleArray = @[Localized(@"SOURCE OF UI DESIGN"),@""];
     NSMutableArray *data = [NSMutableArray new];
-    for (NSString *name in _repositories.allKeys) {
-        [data addObject:[SettingModel modelWithIconName:nil title:name content:nil style:SettingCellStyleNavigator isOn:NO]];
+    for (NSString *name in _acknowledgements.allKeys) {
+        [data addObject:[SettingModel modelWithIconName:@"ack_invision" title:name content:nil style:SettingCellStyleNavigator isOn:NO]];
     }
     _dataArray = @[
             @[],
@@ -67,11 +40,11 @@
     [self setupNavigationBar];
     [self setupNavigationBackIndicator];
     
-    self.title = Localized(@"Licenses");
+    self.title = Localized(@"Acknowledgements");
     
     self.tableView.backgroundColor = [SGHelper themeColorLightGray];
     
-    [self setSeparatorInsetWithTableView:self.tableView inset:UIEdgeInsetsMake(0, kScreenWidth * kSpacingRatioToWidth, 0, 0)];
+    [self setSeparatorInsetWithTableView:self.tableView inset:UIEdgeInsetsMake(0, kScreenWidth * kSpacingRatioToWidth * 2 + kIconSize, 0, kScreenWidth * kSpacingRatioToWidth)];
     self.tableView.tableHeaderView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, kScreenWidth, 30)];
     self.tableView.sectionFooterHeight = 20;
     
@@ -131,7 +104,7 @@
     [self.tableView deselectRowAtIndexPath:indexPath animated:YES];
     
     SettingModel *model = (SettingModel *) [self modelAtIndexPath:indexPath];
-    SGWebViewController *viewController = [[SGWebViewController alloc] initWithURL:[NSURL URLWithString:_repositories[model.title]]];
+    SGWebViewController *viewController = [[SGWebViewController alloc] initWithURL:[NSURL URLWithString:_acknowledgements[model.title]]];
     [self.navigationController pushViewController:viewController animated:YES];
 }
 @end

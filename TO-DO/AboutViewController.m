@@ -10,6 +10,7 @@
 #import "TOWebViewController.h"
 #import "SGWebViewController.h"
 #import "LicenseViewController.h"
+#import "AcknowledgementViewController.h"
 
 
 @interface AboutViewController () <SGNavigationBar>
@@ -72,7 +73,6 @@
     _contentLabel.font = [SGHelper themeFontDefault];
     _contentLabel.textAlignment = NSTextAlignmentCenter;
     [_headerView addSubview:_contentLabel];
-    
     
     [self setSeparatorInsetWithTableView:self.tableView inset:UIEdgeInsetsMake(0, kScreenWidth * kSpacingRatioToWidth, 0, 0)];
     self.tableView.sectionFooterHeight = 20;
@@ -164,10 +164,11 @@
         SGWebViewController *viewController = [[SGWebViewController alloc] initWithURL:[NSURL URLWithString:kPrivacyPolicyUrl]];
         [self.navigationController pushViewController:viewController animated:YES];
     } else if (indexPath.section == 0 && indexPath.row == 1) {  //Licenses
-        LicenseViewController * viewController = [LicenseViewController new];
+        LicenseViewController *viewController = [LicenseViewController new];
         [self.navigationController pushViewController:viewController animated:YES];
     } else if (indexPath.section == 1 && indexPath.row == 0) {  //Acknowledgements
-        
+        AcknowledgementViewController *viewController = [AcknowledgementViewController new];
+        [self.navigationController pushViewController:viewController animated:YES];
     }
 }
 @end
