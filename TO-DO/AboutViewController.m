@@ -7,9 +7,11 @@
 #import "SettingModel.h"
 #import "SettingTableViewCell.h"
 #import "SGSectionHeader.h"
+#import "TOWebViewController.h"
+#import "SGWebViewController.h"
 
 
-@interface AboutViewController ()<SGNavigationBar>
+@interface AboutViewController () <SGNavigationBar>
 @property(nonatomic, copy) NSArray<NSArray<SettingModel *> *> *dataArray;
 @property(nonatomic, strong) NSArray *titleArray;
 
@@ -103,6 +105,7 @@
 }
 
 #pragma mark - events
+
 - (void)leftNavButtonDidPress {
     [self.navigationController popViewControllerAnimated:YES];
 }
@@ -156,5 +159,14 @@
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
     [self.tableView deselectRowAtIndexPath:indexPath animated:YES];
+    
+    if (indexPath.section == 0 && indexPath.row == 0) { //Privacy policy
+        SGWebViewController *viewController = [[SGWebViewController alloc] initWithURL:[NSURL URLWithString:kPrivacyPolicyUrl]];
+        [self.navigationController pushViewController:viewController animated:YES];
+    } else if (indexPath.section == 0 && indexPath.row == 1) {  //Licenses
+        
+    } else if (indexPath.section == 1 && indexPath.row == 0) {  //Acknowledgements
+        
+    }
 }
 @end

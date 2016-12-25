@@ -21,5 +21,6 @@
     self.navigationItem.leftBarButtonItem.title = nil;
     self.navigationItem.leftBarButtonItem.image = [UIImage imageNamed:@"back"];
     self.navigationItem.leftBarButtonItem.imageInsets = UIEdgeInsetsMake(0, -10, 0, 0);
+    self.navigationItem.rightBarButtonItem.tintColor = self.navigationItem.leftBarButtonItem.tintColor = [UIColor whiteColor];
 }
 @end

@@ -14,7 +14,7 @@
             buildForArchiving = "YES">
             <BuildableReference
                BuildableIdentifier = 'primary'
-               BlueprintIdentifier = '6144EB474CC0CCFA7C44B9EF81B58AC3'
+               BlueprintIdentifier = 'DB438C43A5855A20EFA3602B32D1687F'
                BlueprintName = 'SSDynamicText'
                ReferencedContainer = 'container:Pods.xcodeproj'
                BuildableName = 'libSSDynamicText.a'>
