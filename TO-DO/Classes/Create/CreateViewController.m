@@ -27,10 +27,11 @@
 #import "GTMBase64.h"
 #import "AppDelegate.h"
 #import "RTRootNavigationController.h"
+#import "TZImagePickerController.h"
 
 // TODO: 多人协作（这个坑我都不信我有心情填掉...）
 
-@interface CreateViewController () <UITextFieldDelegate>
+@interface CreateViewController () <UITextFieldDelegate, TZImagePickerControllerDelegate>
 @property(nonatomic, strong) MRTodoDataManager *dataManager;
 @property(nonatomic, strong) UIView *containerView;
 @property(nonatomic, strong) SGTextField *titleTextField;
@@ -98,6 +99,7 @@
     [self.view addSubview:_containerView];
     
     self.headerView = [SGHeaderView headerViewWithAvatarPosition:HeaderAvatarPositionCenter titleAlignement:NSTextAlignmentCenter];
+    [self.headerView.rightOperationButton setImage:[UIImage imageNamed:@"header_photo"] forState:UIControlStateNormal];
     [self.headerView setImage:[UIImage imageAtResourcePath:@"create header bg"] style:HeaderMaskStyleDark];
     [self.headerView setHeaderViewDidPressRightOperationButton:^{[weakSelf headerViewDidPressRightOperationButton];}];
     self.headerView.avatarButton.hidden = YES;
@@ -233,7 +235,16 @@
 #pragma mark - pick picture
 
 - (void)headerViewDidPressRightOperationButton {
-    [SGHelper photoPickerFromTarget:self];
+//    [SGHelper photoPickerFromTarget:self];
+    
+    __weak __typeof(self) weakSelf = self;
+    TZImagePickerController *controller = [[TZImagePickerController alloc] initWithMaxImagesCount:1 delegate:self];
+    controller.allowPickingOriginalPhoto = NO;
+    [controller setDidFinishPickingPhotosHandle:^(NSArray<UIImage *> *photos, NSArray *assets, BOOL isSelectOriginalPhoto) {
+        weakSelf.selectedImage = photos.firstObject;
+        [weakSelf.headerView.rightOperationButton setImage:weakSelf.selectedImage forState:UIControlStateNormal];
+    }];
+    [self presentViewController:controller animated:YES completion:nil];
 }
 
 #pragma mark - imagePicker delegate

@@ -12,6 +12,7 @@
 #import "LCActionSheet.h"
 #import "MBProgressHUD+SGExtension.h"
 #import "AppDelegate.h"
+#import "SDImageCache.h"
 #import <AVFoundation/AVFoundation.h>
 #import <MobileCoreServices/UTCoreTypes.h>
 #import <sys/utsname.h>
@@ -143,7 +144,48 @@
     return [DateUtil dateString:date withFormat:dateFormat];
 }
 
+#pragma mark - file
+
++ (CGFloat)fileSizeAtPath:(NSString *)path {
+    NSFileManager *fileManager = [NSFileManager defaultManager];
+    if ([fileManager fileExistsAtPath:path]) {
+        long long size = [fileManager attributesOfItemAtPath:path error:nil].fileSize;
+        return (CGFloat) (size / 1024.0 / 1024.0);
+    }
+    return 0;
+}
+
++ (CGFloat)folderSizeAtPath:(NSString *)path {
+    NSFileManager *fileManager = [NSFileManager defaultManager];
+    CGFloat folderSize;
+    if ([fileManager fileExistsAtPath:path]) {
+        NSArray *childFiles = [fileManager subpathsAtPath:path];
+        for (NSString *fileName in childFiles) {
+            NSString *absolutePath = [path stringByAppendingPathComponent:fileName];
+            folderSize += [self fileSizeAtPath:absolutePath];
+        }
+        //SDWebImage框架自身计算缓存的实现
+        folderSize += [[SDImageCache sharedImageCache] getSize] / 1024.0 / 1024.0;
+        return folderSize;
+    }
+    return 0;
+}
+
++ (void)clearCache:(NSString *)path {
+    NSFileManager *fileManager = [NSFileManager defaultManager];
+    if ([fileManager fileExistsAtPath:path]) {
+        NSArray *childFiles = [fileManager subpathsAtPath:path];
+        for (NSString *fileName in childFiles) {
+            NSString *absolutePath = [path stringByAppendingPathComponent:fileName];
+            [fileManager removeItemAtPath:absolutePath error:nil];
+        }
+    }
+    [[SDImageCache sharedImageCache] cleanDisk];
+}
+
+
 #pragma mark - device helper
+
 + (NSString *)phoneModel {
     struct utsname systemInfo;
     uname(&systemInfo);

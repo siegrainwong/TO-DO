@@ -124,6 +124,7 @@ DrawerTableViewController ()
     [_bottomView addSubview:_leftBottomButton];
     
     _centerBottomButton = [UIButton new];
+    [_centerBottomButton setHidden:YES];    //暂时用不上这个按钮
     _centerBottomButton.titleLabel.font = bottomItemFont;
     [_centerBottomButton setTitleColor:bottomItemColor forState:UIControlStateNormal];
     [_centerBottomButton addTarget:self action:@selector(showSettings) forControlEvents:UIControlEventTouchUpInside];

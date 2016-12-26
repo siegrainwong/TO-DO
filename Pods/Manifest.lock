@@ -90,6 +90,7 @@ PODS:
     - TOWebViewController/Core (= 2.2.6)
   - TOWebViewController/Core (2.2.6)
   - TPKeyboardAvoiding (1.3)
+  - TZImagePickerController (1.7.8)
   - ZFDragableModalTransition (0.6)
 
 DEPENDENCIES:
@@ -128,6 +129,7 @@ DEPENDENCIES:
   - SDWebImage
   - TOWebViewController
   - TPKeyboardAvoiding
+  - TZImagePickerController
   - ZFDragableModalTransition
 
 EXTERNAL SOURCES:
@@ -190,8 +192,9 @@ SPEC CHECKSUMS:
   SZTextView: 3a81174dce0710a9ab069bc73a813e6df53b9c82
   TOWebViewController: a29908019f7e0e0f8eccfab8a1ee8dcdf4fc5aac
   TPKeyboardAvoiding: a5138f318c06fb3e151f886e18ce4a72695d9cbe
+  TZImagePickerController: 87a138ae5d585225aaa6c8abe2cface0f0ad19dd
   ZFDragableModalTransition: 0d294eaaba6edfcb9839595de765f9ca06a4b524
 
-PODFILE CHECKSUM: 82317bc4783dc369ba32fccaf61c6d77ae1ffd8a
+PODFILE CHECKSUM: 6ff7113e95aad68f46a285edb80f4d2350ba49a0
 
 COCOAPODS: 1.0.1

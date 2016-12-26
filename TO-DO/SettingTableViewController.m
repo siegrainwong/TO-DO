@@ -80,7 +80,7 @@ typedef NS_ENUM(NSInteger, SGSettingApplication) {
             @[
                     [SettingModel modelWithIconName:@"sys_info" title:Localized(@"About") content:nil style:SettingCellStyleNavigator isOn:NO],
                     [SettingModel modelWithIconName:@"sys_feedback" title:Localized(@"Feedback") content:nil style:SettingCellStyleNavigator isOn:NO],
-                    [SettingModel modelWithIconName:@"sys_clean" title:Localized(@"Clear Cache") content:nil style:SettingCellStyleNone isOn:NO],
+                    [SettingModel modelWithIconName:@"sys_clean" title:Localized(@"Clear Cache") content:[NSString stringWithFormat:@"%.02f MB",[SGHelper folderSizeAtPath:[SGHelper photoPath]]] style:SettingCellStyleNone isOn:NO],
             ]
     ];
     
@@ -213,7 +213,13 @@ typedef NS_ENUM(NSInteger, SGSettingApplication) {
         viewController.mailComposeDelegate = self;
         [self presentViewController:viewController animated:YES completion:nil];
     } else if (indexPath.section == SGSettingSectionApplication && indexPath.row == SGSettingApplicationClearCache) {
-        
+        SCLAlertView *confirm = [[SCLAlertView alloc] initWithNewWindow];
+        [confirm addButton:@"Yes" actionBlock:^{
+            [SGHelper clearCache:[SGHelper photoPath]];
+            model.content = [NSString stringWithFormat:@"%.02f MB",[SGHelper folderSizeAtPath:[SGHelper photoPath]]];
+            [weakSelf reloadData];
+        }];
+        [confirm showWarning:Localized(@"Are you sure?") subTitle:Localized(@"The cache may contain photos you aren't synchronized") closeButtonTitle:Localized(@"Cancel") duration:0];
     }
 }
 

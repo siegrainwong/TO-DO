@@ -74,5 +74,12 @@ static NSInteger const kPopHeightWhenKeyboardShow = 170;
  */
 + (NSString *)localizedFormatDate:(NSDate *)date;
 
+#pragma mark - file
+
++ (CGFloat)folderSizeAtPath:(NSString *)path;
+
++ (void)clearCache:(NSString *)path;
+
+#pragma mark - device
 + (NSString *)phoneModel;
 @end

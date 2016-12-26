@@ -39,4 +39,5 @@ target "TO-DO" do
   pod 'BEMCheckBox'
   pod 'EMString'
   pod 'TOWebViewController'
+  pod 'TZImagePickerController'
 end

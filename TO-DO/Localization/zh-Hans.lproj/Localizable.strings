@@ -114,6 +114,7 @@
 "Running environment" = "运行环境";
 "Thank you" = "感谢";
 "Greatly appreciate your feedback, we will use it to evaluate changes and make improvements in this app." = "非常感谢您的反馈，我们将评估它并改进这个应用程序。";
+"The cache may contain photos you aren't synchronized" = "缓存中可能包含你尚未同步的照片，确认清除吗？";
 
 /* About */
 "LEGAL" = "法律";
