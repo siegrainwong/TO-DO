@@ -16,8 +16,7 @@
 #import "SGHelper.h"
 #import "UIView+SDAutoLayout.h"
 
-@interface
-LoginViewController ()
+@interface LoginViewController () <TZImagePickerControllerDelegate>
 @property(nonatomic, readwrite, strong) LoginView *loginView;
 @property(nonatomic, readwrite, strong) LCUserDataManager *dataManager;
 @end
@@ -63,19 +62,8 @@ LoginViewController ()
 #pragma mark - avatar
 
 - (void)loginViewDidPressAvatarButton {
-    [SGHelper photoPickerFromTarget:self];
-}
-
-#pragma mark - imagePicker delegate
-
-- (void)imagePickerController:(UIImagePickerController *)picker
-didFinishPickingMediaWithInfo:(NSDictionary<NSString *, id> *)info {
-    [_loginView setAvatar:info[UIImagePickerControllerEditedImage]];
-    [picker dismissViewControllerAnimated:true completion:nil];
-}
-
-- (void)imagePickerControllerDidCancel:(UIImagePickerController *)picker {
-    [picker dismissViewControllerAnimated:true completion:nil];
+    __weak __typeof(self) weakSelf = self;
+    [SGHelper photoPickerFrom:self allowCrop:YES needsActionSheet:!_loginView.avatar pickerDidPicked:^(UIImage *image) {weakSelf.loginView.avatar = image;}];
 }
 
 #pragma mark - release

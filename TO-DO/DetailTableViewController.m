@@ -23,7 +23,7 @@ typedef NS_ENUM(NSInteger, SGDetailItem) {
     SGDetailItemPhoto
 };
 
-@interface DetailTableViewController () <HSDatePickerViewControllerDelegate, UINavigationControllerDelegate, UIImagePickerControllerDelegate>
+@interface DetailTableViewController () <HSDatePickerViewControllerDelegate, UINavigationControllerDelegate, UIImagePickerControllerDelegate, TZImagePickerControllerDelegate>
 @property(nonatomic, strong) CDTodo *model;
 @property(nonatomic, strong) NSArray<DetailModel *> *dataArray;
 @property(nonatomic, assign) CGFloat cellsTotalHeight;
@@ -147,27 +147,18 @@ typedef NS_ENUM(NSInteger, SGDetailItem) {
         RTRootNavigationController *rootNavigationController = [[RTRootNavigationController alloc] initWithRootViewController:viewController];
         [self presentViewController:rootNavigationController animated:YES completion:nil];
     } else if (indexPath.row == SGDetailItemPhoto) {
-        [SGHelper photoPickerFromTarget:self];
+        __weak __typeof(self) weakSelf = self;
+        [SGHelper photoPickerFrom:self allowCrop:NO needsActionSheet:(BOOL) weakSelf.model.photoImage pickerDidPicked:^(UIImage *image) {
+            _model.photoData = [SGImageUpload dataWithImage:image type:SGImageTypePhoto quality:kSGDefaultImageQuality];
+            _model.photoImage = [UIImage imageWithData:_model.photoData];
+        
+            DetailModel *model = weakSelf.dataArray[SGDetailItemPhoto];
+            model.photoPath = _model.photoPath;
+            model.rowHeight = 0;
+        
+            [weakSelf saveAndReload];
+        }];
     }
-}
-
-#pragma mark - imagePicker delegate
-
-- (void)imagePickerController:(UIImagePickerController *)picker didFinishPickingMediaWithInfo:(NSDictionary<NSString *, id> *)info {
-    _model.photoData = [SGImageUpload dataWithImage:info[UIImagePickerControllerEditedImage] type:SGImageTypePhoto quality:kSGDefaultImageQuality];
-    _model.photoImage = [UIImage imageWithData:_model.photoData];
-    
-    DetailModel *model = self.dataArray[SGDetailItemPhoto];
-    model.photoPath = _model.photoPath;
-    model.rowHeight = 0;
-    
-    [picker dismissViewControllerAnimated:true completion:nil];
-    
-    [self saveAndReload];
-}
-
-- (void)imagePickerControllerDidCancel:(UIImagePickerController *)picker {
-    [picker dismissViewControllerAnimated:true completion:nil];
 }
 
 #pragma mark - date time picker

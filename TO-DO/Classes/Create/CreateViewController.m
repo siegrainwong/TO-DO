@@ -9,23 +9,14 @@
 #import "AutoLinearLayoutView.h"
 #import "CreateViewController.h"
 #import "DateUtil.h"
-#import "GCDQueue.h"
 #import "HSDatePickerViewController+Configure.h"
-#import "LCTodo.h"
 #import "MRTodoDataManager.h"
-#import "Macros.h"
-#import "NSDate+Extension.h"
-#import "NSDateFormatter+Extension.h"
 #import "NSNotificationCenter+Extension.h"
-#import "SCLAlertHelper.h"
 #import "SGCommitButton.h"
 #import "SGTextField.h"
-#import "UIImage+Extension.h"
 #import "SGBaseMapViewController.h"
 #import "SGCoordinate.h"
 #import "SGImageUpload.h"
-#import "GTMBase64.h"
-#import "AppDelegate.h"
 #import "RTRootNavigationController.h"
 #import "TZImagePickerController.h"
 
@@ -235,28 +226,11 @@
 #pragma mark - pick picture
 
 - (void)headerViewDidPressRightOperationButton {
-//    [SGHelper photoPickerFromTarget:self];
-    
     __weak __typeof(self) weakSelf = self;
-    TZImagePickerController *controller = [[TZImagePickerController alloc] initWithMaxImagesCount:1 delegate:self];
-    controller.allowPickingOriginalPhoto = NO;
-    [controller setDidFinishPickingPhotosHandle:^(NSArray<UIImage *> *photos, NSArray *assets, BOOL isSelectOriginalPhoto) {
-        weakSelf.selectedImage = photos.firstObject;
+    [SGHelper photoPickerFrom:self allowCrop:NO needsActionSheet:(BOOL) _selectedImage pickerDidPicked:^(UIImage *image) {
+        weakSelf.selectedImage = image;
         [weakSelf.headerView.rightOperationButton setImage:weakSelf.selectedImage forState:UIControlStateNormal];
     }];
-    [self presentViewController:controller animated:YES completion:nil];
-}
-
-#pragma mark - imagePicker delegate
-
-- (void)imagePickerController:(UIImagePickerController *)picker didFinishPickingMediaWithInfo:(NSDictionary<NSString *, id> *)info {
-    _selectedImage = info[UIImagePickerControllerEditedImage];
-    [self.headerView.rightOperationButton setImage:_selectedImage forState:UIControlStateNormal];
-    [picker dismissViewControllerAnimated:true completion:nil];
-}
-
-- (void)imagePickerControllerDidCancel:(UIImagePickerController *)picker {
-    [picker dismissViewControllerAnimated:true completion:nil];
 }
 
 #pragma mark - keyboard events & animation

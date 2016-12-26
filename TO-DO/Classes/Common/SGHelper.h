@@ -9,6 +9,8 @@
 #import "Localized.h"
 #import <UIKit/UIKit.h>
 
+@protocol TZImagePickerControllerDelegate;
+
 static NSInteger const kPopHeightWhenKeyboardShow = 170;
 
 @interface SGHelper : NSObject
@@ -42,7 +44,7 @@ static NSInteger const kPopHeightWhenKeyboardShow = 170;
 
 #pragma mark - photo picker
 
-+ (void)photoPickerFromTarget:(UIViewController <UINavigationControllerDelegate, UIImagePickerControllerDelegate> *)viewController;
++ (void)photoPickerFrom:(UIViewController <TZImagePickerControllerDelegate> *)viewController allowCrop:(BOOL)allowCrop needsActionSheet:(BOOL)needsActionSheet pickerDidPicked:(void (^)(UIImage *image))pickerDidPicked;
 
 #pragma mark - convenience
 

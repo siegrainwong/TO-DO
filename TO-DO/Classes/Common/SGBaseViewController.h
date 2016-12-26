@@ -47,4 +47,7 @@
 @property(nonatomic, assign) BOOL isEditing;
 /* 是否是原生的导航栏项 */
 @property(nonatomic, assign) BOOL isNativeNavigationItems;
+
+/* 头像被点击时需要调用的方法 */
+- (void)avatarButtonDidPress;
 @end

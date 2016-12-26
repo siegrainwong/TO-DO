@@ -148,7 +148,6 @@ MRTodoDataManager ()
         return NO;
     }
     
-    // FIXME: 不是很懂这里为什么不能访问成员变量
     // deadline validation
     if (!_model.deadline) {
         [SCLAlertHelper errorAlertWithContent:_localDictionary[kTimeInvalidKey]];
@@ -161,7 +160,9 @@ MRTodoDataManager ()
     
     // 存储照片，如果失败了返回
     if (_model.photoData) {
-        [_model saveImageWithBlock:^(BOOL succeed) {[SCLAlertHelper errorAlertWithContent:_localDictionary[kPhotoSaveFailedKey]];}];
+        [_model saveImageWithBlock:^(BOOL succeed) {
+            if (!succeed) [SGHelper errorAlertWithMessage:_localDictionary[kPhotoSaveFailedKey]];
+        }];
     }
     
     return YES;

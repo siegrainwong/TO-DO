@@ -78,7 +78,7 @@
     self.headerView.subtitleLabel.text = [SGHelper localizedFormatDate:[NSDate date]];
     [self.headerView.avatarButton sd_setImageWithURL:GetPictureUrl(super.lcUser.avatar, kQiniuImageStyleSmall) forState:UIControlStateNormal];
     [self.headerView setImage:[UIImage imageAtResourcePath:@"header bg"] style:HeaderMaskStyleLight];
-    [self.headerView setHeaderViewDidPressAvatarButton:^{[SGHelper photoPickerFromTarget:weakSelf];}];
+    [self.headerView setHeaderViewDidPressAvatarButton:^{[weakSelf avatarButtonDidPress];}];
     [self.headerView setHeaderViewDidPressRightOperationButton:^{[weakSelf showCreateViewController];}];
     
     //table view

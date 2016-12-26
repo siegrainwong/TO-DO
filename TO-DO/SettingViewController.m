@@ -56,7 +56,7 @@
     [self.headerView.avatarButton setHidden:YES];
     [self.headerView.rightOperationButton sd_setImageWithURL:GetPictureUrl(self.lcUser.avatar, kQiniuImageStyleSmall) forState:UIControlStateNormal];
     [self.headerView setImage:[UIImage imageAtResourcePath:@"setting header bg"] style:HeaderMaskStyleMedium];
-    [self.headerView setHeaderViewDidPressRightOperationButton:^{[SGHelper photoPickerFromTarget:weakSelf];}];
+    [self.headerView setHeaderViewDidPressAvatarButton:^{[weakSelf avatarButtonDidPress];}];
     
     //table view
     _tableViewController = [SettingTableViewController new];

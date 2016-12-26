@@ -21,6 +21,7 @@
  */
 @interface LoginView : UIView<Localized>
 @property (nonatomic, readwrite, weak) id<LoginViewDelegate> delegate;
+@property(nonatomic, strong) UIImage *avatar;
 
 + (instancetype)loginView;
 
@@ -28,11 +29,4 @@
  *  提交操作结束后，停止提交动画
  */
 - (void)stopCommitAnimation;
-
-/**
- *  用户选择图片后，设置头像
- *
- *  @param image <#image description#>
- */
-- (void)setAvatar:(UIImage*)image;
 @end

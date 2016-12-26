@@ -65,14 +65,18 @@
         self.photoPath = SGPhotoPath(self.identifier);
         self.photoImage = [UIImage imageWithData:self.photoData];
         
-        if (![self.photoData writeToFile:self.photoPath atomically:YES]) if (complete) return complete(NO); else return;
+        if (![self.photoData writeToFile:self.photoPath atomically:YES]) return [self returnWithBlock:complete succeed:NO];
         NSData *thumbData = UIImageJPEGRepresentation([UIImage imageWithImage:self.photoImage scaledToSize:kPhotoThumbSize], 1);
-        if (![thumbData writeToFile:SGThumbPath(self.identifier) atomically:YES]) if (complete) return complete(NO); else return;
+        if (![thumbData writeToFile:SGThumbPath(self.identifier) atomically:YES]) return [self returnWithBlock:complete succeed:NO];
         
         [self markAsModified];
-        
-        if (complete) complete(YES);
+    
+        [self returnWithBlock:complete succeed:YES];
     }];
+}
+
+- (void)returnWithBlock:(void (^)(BOOL succeed))complete succeed:(BOOL)succeed {
+    [[GCDQueue mainQueue] async:^{if (complete) complete(succeed);}];
 }
 
 #pragma mark - convert LCTodo to CDTodo

@@ -30,7 +30,6 @@ LoginView ()
 
 @property(nonatomic, assign) BOOL isSignUp;
 @property(nonatomic, assign) CGFloat textFieldHeight;
-@property(nonatomic, strong) UIImage *avatarImage;
 @end
 
 @implementation LoginView
@@ -50,7 +49,7 @@ LoginView ()
         [_commitButton.button setTitle:NSLocalizedString(@"DONE", nil) forState:UIControlStateNormal];
         [_rightOperationButton setTitle:NSLocalizedString(@"SIGN IN", nil) forState:UIControlStateNormal];
         [_leftOperationButton setTitle:NSLocalizedString(@"TERMS & CONDITIONS", nil) forState:UIControlStateNormal];
-        [_headerView.avatarButton setBackgroundImage:_avatarImage ? _avatarImage : [UIImage imageAtResourcePath:@"mark-signup"] forState:UIControlStateNormal];
+        [_headerView.avatarButton setBackgroundImage:_avatar ? _avatar : [UIImage imageAtResourcePath:@"mark-signup"] forState:UIControlStateNormal];
         _headerView.userInteractionEnabled = YES;
     } else {
         _usernameTextField.label.text = NSLocalizedString(@"Username", nil);
@@ -210,7 +209,7 @@ LoginView ()
             user.name = _nameTextField.field.text;
             user.email = user.username;
             user.password = _passwordTextField.field.text;
-            user.avatarImage = _avatarImage;
+            user.avatarImage = _avatar;
             
             [_delegate loginViewDidPressCommitButton:user isSignUp:_isSignUp];
         }
@@ -245,7 +244,7 @@ LoginView ()
 }
 
 - (void)setAvatar:(UIImage *)image {
-    _avatarImage = image;
+    _avatar = image;
     [_headerView.avatarButton setBackgroundImage:image forState:UIControlStateNormal];
 }
 

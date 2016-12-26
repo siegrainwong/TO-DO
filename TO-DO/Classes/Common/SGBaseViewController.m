@@ -15,7 +15,7 @@
 #import "RTRootNavigationController.h"
 #import "CommonDataManager.h"
 
-@interface SGBaseViewController()<UINavigationControllerDelegate, UIImagePickerControllerDelegate>
+@interface SGBaseViewController () <TZImagePickerControllerDelegate>
 @end
 
 @implementation SGBaseViewController
@@ -84,12 +84,13 @@
 }
 
 #pragma mark - events
+
 - (void)rightNavButtonDidPress {
-    TodoTableViewController* controller = [TodoTableViewController new];
+    TodoTableViewController *controller = [TodoTableViewController new];
     controller.style = TodoTableViewControllerStyleSearch;
     controller.title = Localized(@"Search");
     
-    RTRootNavigationController * navigationController = [[RTRootNavigationController alloc] initWithRootViewController:controller];
+    RTRootNavigationController *navigationController = [[RTRootNavigationController alloc] initWithRootViewController:controller];
     [self presentViewController:navigationController animated:YES completion:nil];
 }
 
@@ -105,18 +106,14 @@
     [self.view endEditing:YES];
 }
 
-#pragma mark - imagePicker delegate
+#pragma mark - avatar
 
-- (void)imagePickerController:(UIImagePickerController *)picker didFinishPickingMediaWithInfo:(NSDictionary<NSString *, id> *)info {
-    UIImage *image = info[UIImagePickerControllerEditedImage];
-    [picker dismissViewControllerAnimated:true completion:nil];
+- (void)avatarButtonDidPress {
     __weak __typeof(self) weakSelf = self;
-    [CommonDataManager modifyAvatarWithImage:image block:^{
-        [weakSelf.headerView.avatarButton sd_setImageWithURL:GetPictureUrl(weakSelf.lcUser.avatar, kQiniuImageStyleSmall) forState:UIControlStateNormal];
+    [SGHelper photoPickerFrom:self allowCrop:YES needsActionSheet:YES pickerDidPicked:^(UIImage *image) {
+        [CommonDataManager modifyAvatarWithImage:image block:^{
+            [weakSelf.headerView.avatarButton sd_setImageWithURL:GetPictureUrl(weakSelf.lcUser.avatar, kQiniuImageStyleSmall) forState:UIControlStateNormal];
+        }];
     }];
-}
-
-- (void)imagePickerControllerDidCancel:(UIImagePickerController *)picker {
-    [picker dismissViewControllerAnimated:true completion:nil];
 }
 @end

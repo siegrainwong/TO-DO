@@ -35,8 +35,8 @@
 "Failed to save photo, please check your storage on device and try again" = "保存图片失败，请检查你的存储空间并重试";
 
 /* Photo */
-"Choose photo" = "选择照片";
-"Take a photo" = "拍照";
+"Choose operation" = "选择操作";
+"View original" = "查看大图";
 "Pick from album" = "从相册选择";
 "Cancel" = "取消";
 
@@ -71,7 +71,7 @@
 "Today" = "今天";
 "Set date" = "设置时间";
 "Back" = "返回";
-"Unable to sync, please check your network connection!" = "Unable to sync, please check your network connection!";
+"Unable to sync, please check your network connection!" = "同步失败，请检查您的网络连接!";
 
 /* Detail */
 "Add location" = "添加位置";

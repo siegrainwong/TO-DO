@@ -13,6 +13,7 @@
 #import "MBProgressHUD+SGExtension.h"
 #import "AppDelegate.h"
 #import "SDImageCache.h"
+#import "TZImagePickerController.h"
 #import <AVFoundation/AVFoundation.h>
 #import <MobileCoreServices/UTCoreTypes.h>
 #import <sys/utsname.h>
@@ -74,42 +75,31 @@
     return ColorWithRGB(0x777777);
 }
 
-#pragma mark - 创建一个选择照片的 action sheet
+#pragma mark - photo picker
 
-+ (void)photoPickerFromTarget:(UIViewController <UINavigationControllerDelegate, UIImagePickerControllerDelegate> *)viewController {
-    LCActionSheet *sheet = [LCActionSheet sheetWithTitle:Localized(@"Choose photo") cancelButtonTitle:Localized(@"Cancel") clicked:^(LCActionSheet *actionSheet, NSInteger buttonIndex) {
-        if (buttonIndex == 1)
-            [self pickPictureFromSource:UIImagePickerControllerSourceTypeCamera target:viewController error:nil];
-        else if (buttonIndex == 2)
-            [self pickPictureFromSource:UIImagePickerControllerSourceTypePhotoLibrary target:viewController error:nil];
-    } otherButtonTitles:Localized(@"Take a photo"), Localized(@"Pick from album"), nil];
-    [sheet show];
++ (void)photoPickerFrom:(UIViewController <TZImagePickerControllerDelegate> *)viewController allowCrop:(BOOL)allowCrop needsActionSheet:(BOOL)needsActionSheet pickerDidPicked:(void (^)(UIImage *image))pickerDidPicked {
+    if (needsActionSheet) {
+        LCActionSheet *sheet = [LCActionSheet sheetWithTitle:Localized(@"Choose operation") cancelButtonTitle:Localized(@"Cancel") clicked:^(LCActionSheet *actionSheet, NSInteger buttonIndex) {
+            if (buttonIndex == 1)
+                [self photoPickerFrom:viewController allowCrop:allowCrop pickerDidPicked:pickerDidPicked];
+            else if (buttonIndex == 2)
+                [self photoPickerFrom:viewController allowCrop:allowCrop pickerDidPicked:pickerDidPicked];
+        } otherButtonTitles:Localized(@"View original"), Localized(@"Pick from album"), nil];
+        [sheet show];
+    } else {
+        [self photoPickerFrom:viewController allowCrop:allowCrop pickerDidPicked:pickerDidPicked];
+    }
 }
 
-#pragma mark - pick a picture by camera or album
-
-+ (void)pickPictureFromSource:(UIImagePickerControllerSourceType)sourceType target:(UIViewController <UINavigationControllerDelegate, UIImagePickerControllerDelegate> *)target error:(BOOL *)error {
-    // 判断相机权限
-    if (sourceType == UIImagePickerControllerSourceTypeCamera) {
-        AVAuthorizationStatus authStatus = [AVCaptureDevice authorizationStatusForMediaType:AVMediaTypeVideo];
-        if (authStatus == AVAuthorizationStatusRestricted || authStatus == AVAuthorizationStatusDenied) {
-            [SCLAlertHelper errorAlertWithContent:NSLocalizedString(@"Please allow app to access your device's camera in \"Settings\" -> \"Privacy\" -> \"Camera\"", nil)];
-            if (error) *error = true;
-            return;
-        }
-    }
-    
-    if ([UIImagePickerController isSourceTypeAvailable:sourceType]) {
-        UIImagePickerController *picker = [[UIImagePickerController alloc] init];
-        picker.mediaTypes = @[(NSString *) kUTTypeImage];
-        picker.delegate = target;
-        picker.allowsEditing = true;
-        picker.sourceType = sourceType;
-        [target presentViewController:picker animated:true completion:nil];
-    } else {
-        if (error) *error = true;
-        return;
-    }
++ (void)photoPickerFrom:(UIViewController <TZImagePickerControllerDelegate> *)viewController allowCrop:(BOOL)allowCrop pickerDidPicked:(void (^)(UIImage *image))pickerDidPicked {
+    TZImagePickerController *controller = [[TZImagePickerController alloc] initWithMaxImagesCount:1 delegate:viewController];
+    controller.allowPickingOriginalPhoto = NO;
+    controller.allowPickingVideo = NO;
+    controller.allowCrop = allowCrop;
+    [controller setDidFinishPickingPhotosHandle:^(NSArray<UIImage *> *photos, NSArray *assets, BOOL isSelectOriginalPhoto) {
+        pickerDidPicked(photos.firstObject);
+    }];
+    [viewController presentViewController:controller animated:YES completion:nil];
 }
 
 #pragma mark - convenience
