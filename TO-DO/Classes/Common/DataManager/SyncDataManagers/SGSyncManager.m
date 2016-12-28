@@ -16,8 +16,6 @@
 #import "SGSyncManager.h"
 
 // TODO: 本地化
-// FIXME: 某些情况下会出现+entityForName: nil is not a legal NSManagedObjectContext parameter searching for entity name 'Todo'这个异常，初步断定是因为准备同步时获取线上同步记录失败，但是没有判断并返回了YES导致的Bug
-// FIXME: 某些情况下会在自动同步时弹出错误提示。
 // FIXME: 某些情况下（仅在iPhone5 iOS8.1 以下的模拟器中测试出现）一同步主线程就会锁死，先不管。
 
 typedef NS_ENUM(NSInteger, TodoFetchType) {

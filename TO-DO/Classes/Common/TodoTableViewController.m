@@ -237,8 +237,8 @@ TodoTableViewController () <UISearchBarDelegate, SGNavigationBar>
     CDTodo *model = (CDTodo *) [self modelAtIndexPath:indexPath];
     
     //刷新MR在内存中的缓存
-//    model.photoImage = nil;
-//    model.photoData = nil;
+    model.photoImage = nil;
+    model.photoData = nil;
 }
 
 #pragma mark - swipe left cell events

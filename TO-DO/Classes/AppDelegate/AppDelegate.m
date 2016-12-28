@@ -263,7 +263,6 @@ static BOOL const kEnableViewControllerStateHolder = YES;
 
 -(void)clearStateHolder{
     [_stateHolder removeAllObjects];
-//    [[NSManagedObjectContext MR_context] refreshAllObjects];
     DDLogInfo(@"已清除视图控制器缓存");
 }
 

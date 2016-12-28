@@ -50,8 +50,9 @@ TodoTableViewCell ()
     _model = model;
     
     if (model.photoImage) {
+        NSString * identifier = model.identifier;
         [[GCDQueue globalQueueWithLevel:DISPATCH_QUEUE_PRIORITY_DEFAULT] async:^{
-            UIImage * image = [[UIImage imageWithContentsOfFile:SGThumbPath(model.identifier)] jm_imageWithRoundedCornersAndSize:kPhotoThumbSize andCornerRadius:kPhotoThumbSize.width / 2];
+            UIImage * image = [[UIImage imageWithContentsOfFile:SGThumbPath(identifier)] jm_imageWithRoundedCornersAndSize:kPhotoThumbSize andCornerRadius:kPhotoThumbSize.width / 2];
             [[GCDQueue mainQueue] async:^{
                 _photoView.image = image;
             }];
