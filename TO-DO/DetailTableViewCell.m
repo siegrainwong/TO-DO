@@ -14,8 +14,6 @@
 static CGFloat const kIconSize = 18;
 static CGFloat const kSpacingY = 14;
 
-static CGFloat const kMapHeight = 150;
-static CGFloat const kPhotoHeight = 100;
 static CGFloat const kContentMaxHeight = 55;
 
 @interface DetailTableViewCell ()
@@ -30,6 +28,14 @@ static CGFloat const kContentMaxHeight = 55;
 @implementation DetailTableViewCell
 #pragma mark - accessors
 
+- (CGFloat)mapHeight {
+    return (CGFloat) (kScreenHeight * 0.26);
+}
+
+- (CGFloat)photoHeight {
+    return (CGFloat) (kScreenHeight * 0.17);
+}
+
 - (void)setModel:(DetailModel *)model {
     _model = model;
     
@@ -41,7 +47,7 @@ static CGFloat const kContentMaxHeight = 55;
         _contentLabel.text = model.placeholder;
         _contentLabel.textColor = [SGHelper subTextColor];
     }
-	
+    
     if (model.photoPath) {
         _photoView.image = [UIImage imageWithContentsOfFile:SGPhotoPath(model.identifier)];
     } else if (model.photoUrl) {
@@ -107,7 +113,7 @@ static CGFloat const kContentMaxHeight = 55;
             .leftSpaceToView(_iconView, space.x)
             .topEqualToView(_iconView)
             .rightSpaceToView(self.contentView, space.x)
-            .heightIs(kPhotoHeight);
+            .heightIs(self.photoHeight);
     
     _mapViewController.view.sd_layout
             .leftSpaceToView(_iconView, space.x)
@@ -123,23 +129,22 @@ static CGFloat const kContentMaxHeight = 55;
     if (_model.style == DetailCellStylePhoto && _model.hasPhoto) {
         _contentLabel.sd_layout.maxHeightIs(0);
         _mapViewController.view.sd_layout.heightIs(0);
-        _photoView.sd_layout.heightIs(kPhotoHeight);
-
+        _photoView.sd_layout.heightIs(self.photoHeight);
+        
         bottomView = _photoView;
     } else if (_model.style == DetailCellStyleMap && _model.content) {
         _contentLabel.sd_layout.maxHeightIs(kContentMaxHeight);
         _photoView.sd_layout.heightIs(0);
-        _mapViewController.view.sd_layout.heightIs(kMapHeight);
-
+        _mapViewController.view.sd_layout.heightIs(self.mapHeight);
+        
         bottomView = _mapViewController.view;
     } else {
         _contentLabel.sd_layout.maxHeightIs(kContentMaxHeight);
         _photoView.sd_layout.heightIs(0);
         _mapViewController.view.sd_layout.heightIs(0);
-
+        
         bottomView = _contentLabel;
     }
-    
     
     [self setupAutoHeightWithBottomView:bottomView bottomMargin:kSpacingY];
 }
