@@ -194,7 +194,8 @@ DrawerTableViewController ()
         else
             [_indicatorView stopAnimating];
         
-        [_leftBottomButton setEnabled:!isSyncing];
+        _leftBottomButton.userInteractionEnabled = !isSyncing;
+        [_leftBottomButton setTitle:isSyncing ? Localized(@"SYNCING") : Localized(@"SYNC") forState:UIControlStateNormal];
     }];
 }
 
