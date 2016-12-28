@@ -50,7 +50,7 @@ TodoTableViewCell ()
     _model = model;
     
     if (model.photoImage) {
-        NSString * identifier = model.identifier;
+        NSString * identifier = model.identifier;   //如果这个东西在下面的block中读取，可能会造成_cd_rawData but the object is not being turned into a fault的错误
         [[GCDQueue globalQueueWithLevel:DISPATCH_QUEUE_PRIORITY_DEFAULT] async:^{
             UIImage * image = [[UIImage imageWithContentsOfFile:SGThumbPath(identifier)] jm_imageWithRoundedCornersAndSize:kPhotoThumbSize andCornerRadius:kPhotoThumbSize.width / 2];
             [[GCDQueue mainQueue] async:^{

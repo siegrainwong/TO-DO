@@ -57,7 +57,7 @@
     if (path) {
         [[GCDQueue globalQueueWithLevel:DISPATCH_QUEUE_PRIORITY_DEFAULT] async:^{
             UIImage *image = [UIImage imageWithContentsOfFile:path];
-            if (image) {    //如果清空缓存的话，这个可能为空
+            if (image) {    //清空缓存之后，这个就是空的
                 [[GCDQueue mainQueue] async:^{
                     [self shouldDisplayImage:image onCell:cell atIndexPath:indexPath];
                 }];

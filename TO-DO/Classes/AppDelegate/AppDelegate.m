@@ -86,7 +86,8 @@ static BOOL const kEnableViewControllerStateHolder = YES;
     
     [UIApplication sharedApplication].statusBarStyle = UIStatusBarStyleLightContent;
     self.window = [[UIWindow alloc] initWithFrame:[[UIScreen mainScreen] bounds]];
-    self.window.backgroundColor = [UIColor blackColor];
+    self.window.backgroundColor = [UIColor whiteColor];
+    [self.window makeKeyAndVisible];    //不要把这句放到最下面去，如果同步的话会黑屏一段时间...
     
     // validate user's login state
     if (_lcUser) {
@@ -94,8 +95,6 @@ static BOOL const kEnableViewControllerStateHolder = YES;
     } else {
         [self switchRootViewController:[LoginViewController new] isNavigation:NO key:nil];
     }
-    
-    [self.window makeKeyAndVisible];
 }
 
 - (void)setupUser {
