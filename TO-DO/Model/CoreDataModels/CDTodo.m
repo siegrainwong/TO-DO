@@ -36,7 +36,7 @@
 - (void)setPhotoImage:(UIImage *)photoImage {
     _photoImage = photoImage;
     
-    if (!_photoData) _photoData = UIImageJPEGRepresentation(photoImage, 1);
+    if (!_photoData && photoImage) _photoData = UIImageJPEGRepresentation(photoImage, 1);
 }
 
 + (NSString *)MR_entityName {

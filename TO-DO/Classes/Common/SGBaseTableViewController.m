@@ -48,48 +48,6 @@
     return 0;
 }
 
-//- (void)tableView:(UITableView *)tableView willDisplayCell:(UITableViewCell *)cell forRowAtIndexPath:(NSIndexPath *)indexPath {
-//    NSString *path = [self imagePathAtIndexPath:indexPath];
-//    NSString *url = [self imageUrlAtIndexPath:indexPath];
-//    if (!url && !path) return;
-//
-//    //加载本地图片
-//    if (path) {
-//        [[GCDQueue globalQueueWithLevel:DISPATCH_QUEUE_PRIORITY_DEFAULT] async:^{
-//            UIImage *image = [UIImage imageWithContentsOfFile:path];
-//            if (image) {    //如果清空缓存的话，这个可能为空
-//                [[GCDQueue mainQueue] async:^{
-//                    [self shouldDisplayImage:image onCell:cell atIndexPath:indexPath];
-//                }];
-//                return;
-//            }
-//        }];
-//    }
-//
-//    //加载网络图片
-//    UIImage *image = _imageDictionary[url];
-//    if (!image) {                   //没有下载该图片
-//        NSOperation *operation = _operationDictionary[url];
-//        if (!operation) {           //没有当前图片的任务，就添加队列进行图片下载
-//            operation = [NSBlockOperation blockOperationWithBlock:^{
-//                NSData *imageData = [NSData dataWithContentsOfURL:[NSURL URLWithString:url]];
-//                UIImage *imageFromData = [UIImage imageWithData:imageData];
-//
-//                _imageDictionary[url] = imageFromData;
-//                _operationDictionary[url] = nil;
-//
-//                [[GCDQueue mainQueue] async:^{[weakSelf shouldDisplayImage:image onCell:cell atIndexPath:indexPath];}];
-//            }];
-//            [_queue addOperation:operation];
-//            _operationDictionary[url] = operation;
-//        } else {                    //正在下载中
-//            DDLogInfo(@"downloading");
-//        }
-//    } else {    //已有该图片
-//        [self shouldDisplayImage:image onCell:cell atIndexPath:indexPath];
-//    }
-//}
-
 - (void)tableView:(UITableView *)tableView willDisplayCell:(UITableViewCell *)cell forRowAtIndexPath:(NSIndexPath *)indexPath {
     NSString *path = [self imagePathAtIndexPath:indexPath];
     NSString *url = [self imageUrlAtIndexPath:indexPath];
@@ -109,12 +67,15 @@
     }
     
     UIImage *image = _imageDictionary[url];
-    if(!image) {
+    if (!image) {
         __weak __typeof(self) weakSelf = self;
-        [[SDWebImageManager sharedManager] downloadImageWithURL:[NSURL URLWithString:url] options:0 progress:nil completed:^(UIImage *image, NSError *error, SDImageCacheType cacheType, BOOL finished, NSURL *imageURL) {
+        [[SDWebImageManager sharedManager] downloadImageWithURL:[NSURL URLWithString:url] options:SDWebImageRefreshCached progress:nil completed:^(UIImage *image, NSError *error, SDImageCacheType cacheType, BOOL finished, NSURL *imageURL) {
+            if (cacheType == SDImageCacheTypeMemory) [weakSelf shouldResetModelStateAtIndexPath:indexPath];
             [weakSelf shouldDisplayImage:image onCell:cell atIndexPath:indexPath];
             _imageDictionary[url] = image;
         }];
+    } else {
+        [self shouldDisplayImage:image onCell:cell atIndexPath:indexPath];
     }
 }
 
@@ -143,6 +104,9 @@
 }
 
 - (void)shouldDisplayImage:(UIImage *)image onCell:(UITableViewCell *)cell atIndexPath:(NSIndexPath *)indexPath {
+}
+
+- (void)shouldResetModelStateAtIndexPath:(NSIndexPath *)indexPath {
 }
 
 @end

@@ -30,7 +30,7 @@
 #import <UserNotifications/UserNotifications.h>
 
 
-// FIXME: 每次进入一个新的ViewController，都会在SecPolicy对象上发生内存泄漏，wtf?
+// FIXME: SecPolicy对象上会发生莫名其妙的内存泄漏，不知道怎么解决，每次就漏那么一点，不管他。
 
 static BOOL const kEnableViewControllerStateHolder = YES;
 
@@ -59,7 +59,7 @@ static BOOL const kEnableViewControllerStateHolder = YES;
 }
 
 - (void)applicationDidReceiveMemoryWarning:(UIApplication *)application {
-    [_stateHolder removeAllObjects];
+    [self clearStateHolder];
 }
 
 - (void)applicationWillTerminate:(UIApplication *)application {
@@ -73,7 +73,7 @@ static BOOL const kEnableViewControllerStateHolder = YES;
     
     [self setupNetworkEye];
     [self setupDDLog];
-    [self setupMagicRecord];
+    [self setupMagicalRecord];
     [self setupLeanCloud];
     [self setupReachability];
     [self setupAmap];
@@ -151,7 +151,7 @@ static BOOL const kEnableViewControllerStateHolder = YES;
     [AMapServices sharedServices].apiKey = kAmapKey;
 }
 
-- (void)setupMagicRecord {
+- (void)setupMagicalRecord {
     [MagicalRecord setupAutoMigratingCoreDataStack];
 }
 
@@ -262,7 +262,9 @@ static BOOL const kEnableViewControllerStateHolder = YES;
 }
 
 -(void)clearStateHolder{
-    
+    [_stateHolder removeAllObjects];
+//    [[NSManagedObjectContext MR_context] refreshAllObjects];
+    DDLogInfo(@"已清除视图控制器缓存");
 }
 
 - (void)logIn {

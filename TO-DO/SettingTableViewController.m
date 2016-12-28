@@ -218,6 +218,7 @@ typedef NS_ENUM(NSInteger, SGSettingApplication) {
             [SGHelper clearCache:[SGHelper photoPath]];
             model.content = [NSString stringWithFormat:@"%.02f MB",[SGHelper folderSizeAtPath:[SGHelper photoPath]]];
             [weakSelf reloadData];
+            [[AppDelegate globalDelegate] clearStateHolder];
         }];
         [confirm showWarning:Localized(@"Are you sure?") subTitle:Localized(@"The cache may contain photos you aren't synchronized") closeButtonTitle:Localized(@"Cancel") duration:0];
     }

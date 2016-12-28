@@ -62,6 +62,8 @@
  */
 - (void)logOut;
 
+- (void)clearStateHolder;
+
 /**
  * 登录入口
  */

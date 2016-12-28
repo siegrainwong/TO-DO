@@ -225,12 +225,21 @@ TodoTableViewController () <UISearchBarDelegate, SGNavigationBar>
         model.photoImage = image;
         __weak __typeof(self) weakSelf = self;
         [model saveImageWithBlock:^(BOOL succeed) {
-            [weakSelf configureCell:cell atIndexPath:indexPath];
-            MR_saveAsynchronous();
+            if (succeed) {
+                [weakSelf configureCell:cell atIndexPath:indexPath];
+                MR_saveAsynchronous();
+            }
         }];
     }
 }
 
+- (void)shouldResetModelStateAtIndexPath:(NSIndexPath *)indexPath {
+    CDTodo *model = (CDTodo *) [self modelAtIndexPath:indexPath];
+    
+    //刷新MR在内存中的缓存
+//    model.photoImage = nil;
+//    model.photoData = nil;
+}
 
 #pragma mark - swipe left cell events
 
