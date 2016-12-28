@@ -8,24 +8,14 @@
 
 #import "AppDelegate.h"
 #import "CDTodo.h"
-#import "CocoaLumberjack.h"
-#import "DataKeys.h"
 #import "DrawerTableViewController.h"
 #import "HomeViewController.h"
 #import "RTRootNavigationController.h"
 #import "JVFloatingDrawerSpringAnimator.h"
-#import "JVFloatingDrawerView.h"
 #import "LCSyncRecord.h"
 #import "LCTodo.h"
-#import "LCTodoDataManager.h"
 #import "LoginViewController.h"
-#import "Macros.h"
-#import "UIImage+Extension.h"
 #import "NEHTTPEye.h"
-#import "GCDQueue.h"
-#import "SGSyncManager.h"
-#import "EMStringStylingConfiguration.h"
-#import <AVOSCloud.h>
 #import <AMapFoundationKit/AMapFoundationKit.h>
 #import <UserNotifications/UserNotifications.h>
 
@@ -157,13 +147,9 @@ static BOOL const kEnableViewControllerStateHolder = YES;
 }
 
 - (void)setupReachability {
-    _reachability = [RealReachability sharedInstance];
-    _reachability.autoCheckInterval = 0.3f;
-    [_reachability reachabilityWithBlock:^(ReachabilityStatus status) {
-        
-    }];
-    [_reachability startNotifier];
-    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(networkChanged) name:kRealReachabilityChangedNotification object:nil];
+    LocalConnection * localConnection = [LocalConnection sharedInstance];
+    [localConnection startNotifier];
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(networkChanged) name:kLocalConnectionChangedNotification object:nil];
 }
 
 - (void)truncateLocalData {
@@ -262,7 +248,7 @@ static BOOL const kEnableViewControllerStateHolder = YES;
     [self switchRootViewController:loginViewController isNavigation:NO key:nil];
 }
 
--(void)clearStateHolder{
+- (void)clearStateHolder {
     [_stateHolder removeAllObjects];
     DDLogInfo(@"已清除视图控制器缓存");
 }

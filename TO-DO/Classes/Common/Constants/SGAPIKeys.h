@@ -9,8 +9,8 @@
 /**
  *  各类常量关键字等
  */
-#ifndef DataKeys_h
-#define DataKeys_h
+#ifndef SGAPIKeys_h
+#define SGAPIKeys_h
 
 /**
  * ================================ 各种服务的Key or Secrets

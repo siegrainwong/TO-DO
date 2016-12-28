@@ -6,7 +6,7 @@
 //  Copyright © 2016年 com.siegrain. All rights reserved.
 //
 
-#import "DataKeys.h"
+#import "SGAPIKeys.h"
 #import "UIImage+AFNetworking.h"
 #import "UIImage+Qiniu.h"
 

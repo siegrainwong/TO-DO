@@ -298,7 +298,7 @@
 		F94CA22D1CE2FA9E0006904F /* NSString+Extension.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSString+Extension.m"; sourceTree = "<group>"; };
 		F94CA2301CE2FA9E0006904F /* UITextField+BottomBorder.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UITextField+BottomBorder.h"; sourceTree = "<group>"; };
 		F94CA2311CE2FA9E0006904F /* UITextField+BottomBorder.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UITextField+BottomBorder.m"; sourceTree = "<group>"; };
-		F94CA2351CE2FA9E0006904F /* DataKeys.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DataKeys.h; sourceTree = "<group>"; };
+		F94CA2351CE2FA9E0006904F /* SGAPIKeys.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SGAPIKeys.h; sourceTree = "<group>"; };
 		F94CA2361CE2FA9E0006904F /* Macros.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Macros.h; sourceTree = "<group>"; };
 		F94CA2371CE2FA9E0006904F /* SCLAlertHelper.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = SCLAlertHelper.h; path = ../SCLAlertHelper.h; sourceTree = "<group>"; };
 		F94CA2381CE2FA9E0006904F /* SCLAlertHelper.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = SCLAlertHelper.m; path = ../SCLAlertHelper.m; sourceTree = "<group>"; };
@@ -944,7 +944,7 @@
 		F94CA2341CE2FA9E0006904F /* Constants */ = {
 			isa = PBXGroup;
 			children = (
-				F94CA2351CE2FA9E0006904F /* DataKeys.h */,
+				F94CA2351CE2FA9E0006904F /* SGAPIKeys.h */,
 				F94CA2361CE2FA9E0006904F /* Macros.h */,
 				F99B23611CFEE3CA009A45A2 /* DDLogConfigure.h */,
 				F960B9301D17B88C000AAC2B /* SGConstants.h */,

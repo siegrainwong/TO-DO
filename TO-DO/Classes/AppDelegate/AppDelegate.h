@@ -12,6 +12,7 @@
 #import "RealReachability.h"
 #import "SGSyncManager.h"
 #import <CoreData/CoreData.h>
+#import "LocalConnection.h"
 #import <UIKit/UIKit.h>
 
 @interface AppDelegate : UIResponder <UIApplicationDelegate>

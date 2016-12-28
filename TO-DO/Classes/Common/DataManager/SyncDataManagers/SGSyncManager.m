@@ -59,7 +59,7 @@ static NSInteger const kMaximumSyncCountPerFetch = 100;
         dataManager.isSyncing = NO;
         dataManager.errorHandler = [SyncErrorHandler new];
         dataManager.lastCreateTimeDictionary = [NSMutableDictionary new];
-        [[NSNotificationCenter defaultCenter] addObserver:dataManager selector:@selector(networkChanged:) name:kRealReachabilityChangedNotification object:nil];
+        [[NSNotificationCenter defaultCenter] addObserver:dataManager selector:@selector(networkChanged:) name:kLocalConnectionChangedNotification object:nil];
         [dataManager.errorHandler setErrorHandlerWillReturn:^{[dataManager cleanUp];}];
     });
     return dataManager;
@@ -509,8 +509,7 @@ static NSInteger const kMaximumSyncCountPerFetch = 100;
     
     NSDate *serverDate = [DateUtil dateFromISO8601String:responseObject[@"iso"]];
     
-    
-    // 现在不判断服务器与本地时间差，就算有问题我也不负责
+    // 不需要判断时间差
     // NSInteger intervalFromServer = fabs([serverDate timeIntervalSince1970] - [[NSDate date] timeIntervalSince1970]);
     //    if (intervalFromServer > kInvalidTimeInterval)
     //        return [self.errorHandler returnWithError:nil description:@"2. 本地时间和服务器时间相差过大，已停止同步"];
@@ -592,7 +591,7 @@ static NSInteger const kMaximumSyncCountPerFetch = 100;
 #pragma mark - network changed
 
 - (void)networkChanged:(NSNotification *)notification {
-    if (isNetworkUnreachable) _isSyncing = NO;
+    if (isNetworkUnreachable) _isSyncing = NO;  //如果网络发生变化且无法连通，停止同步
 }
 
 #pragma mark - release

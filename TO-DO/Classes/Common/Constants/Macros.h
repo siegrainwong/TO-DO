@@ -12,7 +12,7 @@
 #ifndef Macros_h
 #define Macros_h
 
-#import "DataKeys.h"
+#import "SGAPIKeys.h"
 #import "NSObject+PropertyName.h"
 #import "UIImage+RoundedCorner.h"
 #import "UIView+RoundedCorner.h"
@@ -38,9 +38,9 @@
 #define kScreenWidth ([[UIScreen mainScreen] bounds].size.width)
 #define kScreenHeight ([[UIScreen mainScreen] bounds].size.height)
 
-//判断网络状态，这鬼东西太不稳定了，暂时直接请求
+//判断网络状态，Realreachability ping百度及其不稳定，放弃使用，监听本地网络状态就行了
 //#define isNetworkUnreachable ([AppDelegate globalDelegate].reachability.currentReachabilityStatus == RealStatusNotReachable)
-#define isNetworkUnreachable NO
+#define isNetworkUnreachable ([LocalConnection sharedInstance].currentLocalConnectionStatus == LC_UnReachable)
 
 //获取属性名
 #define PropertyName(object, property) ([object stringWithProperty:property])
