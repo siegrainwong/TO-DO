@@ -261,6 +261,10 @@ static BOOL const kEnableViewControllerStateHolder = YES;
     [self switchRootViewController:loginViewController isNavigation:NO key:nil];
 }
 
+-(void)clearStateHolder{
+    
+}
+
 - (void)logIn {
     [self setupUser];
     [self switchRootViewController:[HomeViewController new] isNavigation:YES key:[AppDelegate homeViewControllerKey]];

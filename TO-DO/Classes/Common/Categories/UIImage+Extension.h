@@ -26,6 +26,11 @@
  *  @return <#return value description#>
  */
 + (instancetype)imageWithImage:(UIImage*)image scaledToSize:(CGSize)newSize;
+
++ (UIImage *)thumbnailWithCenterClip:(UIImage *)image size:(CGSize)size radius:(CGFloat)radius;
+
++ (UIImage *)thumbnailWithImageWithoutScale:(UIImage *)image size:(CGSize)size;
+
 /**
  *  绘制指定颜色的图片
  *

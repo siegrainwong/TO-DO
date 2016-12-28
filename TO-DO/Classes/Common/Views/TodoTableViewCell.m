@@ -49,8 +49,14 @@ TodoTableViewCell ()
 - (void)setModel:(CDTodo *)model {
     _model = model;
     
-    if (model.photoPath && !model.photoImage) model.photoImage = [UIImage imageWithContentsOfFile:SGPhotoPath(model.identifier)];
-    if (model.photoImage)[_photoView jm_setCornerRadius:kButtonSize / 2 withImage:[UIImage imageWithContentsOfFile:SGThumbPath(model.identifier)]];
+    if (model.photoImage) {
+        [[GCDQueue globalQueueWithLevel:DISPATCH_QUEUE_PRIORITY_DEFAULT] async:^{
+            UIImage * image = [[UIImage imageWithContentsOfFile:SGThumbPath(model.identifier)] jm_imageWithRoundedCornersAndSize:kPhotoThumbSize andCornerRadius:kPhotoThumbSize.width / 2];
+            [[GCDQueue mainQueue] async:^{
+                _photoView.image = image;
+            }];
+        }];
+    }
     else _photoView.image = [UIImage new];
     
     // Mark: 苹果的智障框架，系统是24小时制就打印不出12小时，非要设置地区，且该地区只能转换为12小时制
@@ -150,43 +156,46 @@ TodoTableViewCell ()
         return;
     }
     
-    self.rightExpansion.triggerAnimation.easingFunction = self.leftExpansion.triggerAnimation.easingFunction = MGSwipeEasingFunctionQuadIn;
-    self.rightExpansion.expansionLayout = self.leftExpansion.expansionLayout = MGSwipeExpansionLayoutBorder;
-    self.rightSwipeSettings.transition = self.leftSwipeSettings.transition = MGSwipeTransitionBorder;
-    self.rightExpansion.fillOnTrigger = self.leftExpansion.fillOnTrigger = YES;
-    self.rightExpansion.buttonIndex = self.leftExpansion.buttonIndex = 0;
-    self.rightSwipeSettings.keepButtonsSwiped = NO;
-    self.leftSwipeSettings.keepButtonsSwiped = YES;
-    self.rightExpansion.threshold = 2;
-    self.leftExpansion.threshold = 1;
-    
-    __weak typeof(self) weakSelf = self;
-    MGSwipeButton *completeButton = [MGSwipeButton buttonWithTitle:@"" icon:[UIImage imageNamed:@"task_complete"] backgroundColor:[SGHelper themeColorCyan] callback:^BOOL(MGSwipeTableCell *sender) {
-        if (weakSelf.todoDidSwipe) return _todoDidSwipe(weakSelf, TodoSwipeOperationComplete);
-        return NO;
+    [[GCDQueue globalQueueWithLevel:DISPATCH_QUEUE_PRIORITY_DEFAULT] async:^{
+        self.rightExpansion.triggerAnimation.easingFunction = self.leftExpansion.triggerAnimation.easingFunction = MGSwipeEasingFunctionQuadIn;
+        self.rightExpansion.expansionLayout = self.leftExpansion.expansionLayout = MGSwipeExpansionLayoutBorder;
+        self.rightSwipeSettings.transition = self.leftSwipeSettings.transition = MGSwipeTransitionBorder;
+        self.rightExpansion.fillOnTrigger = self.leftExpansion.fillOnTrigger = YES;
+        self.rightExpansion.buttonIndex = self.leftExpansion.buttonIndex = 0;
+        self.rightSwipeSettings.keepButtonsSwiped = NO;
+        self.leftSwipeSettings.keepButtonsSwiped = YES;
+        self.rightExpansion.threshold = 2;
+        self.leftExpansion.threshold = 1;
+        
+        __weak typeof(self) weakSelf = self;
+        MGSwipeButton *completeButton = [MGSwipeButton buttonWithTitle:@"" icon:[UIImage imageNamed:@"task_complete"] backgroundColor:[SGHelper themeColorCyan] callback:^BOOL(MGSwipeTableCell *sender) {
+            if (weakSelf.todoDidSwipe) return _todoDidSwipe(weakSelf, TodoSwipeOperationComplete);
+            return NO;
+        }];
+        MGSwipeButton *snoozeButton = [MGSwipeButton buttonWithTitle:@"" icon:[UIImage imageNamed:@"task_snooze"] backgroundColor:[SGHelper themeColorYellow] callback:^BOOL(MGSwipeTableCell *sender) {
+            if (weakSelf.todoDidSwipe) return _todoDidSwipe(weakSelf, TodoSwipeOperationSnooze);
+            return NO;
+        }];
+        MGSwipeButton *removeButton = [MGSwipeButton buttonWithTitle:@"" icon:[UIImage imageNamed:@"task_remove"] backgroundColor:[UIColor redColor] callback:^BOOL(MGSwipeTableCell *sender) {
+            if (weakSelf.todoDidSwipe) return _todoDidSwipe(weakSelf, TodoSwipeOperationRemove);
+            return NO;
+        }];
+        
+        completeButton.width = snoozeButton.width = removeButton.width = kSlideItemWidth;
+        [[GCDQueue mainQueue] async:^{
+            self.rightButtons = @[completeButton];
+            self.leftButtons = @[snoozeButton, removeButton];
+        }];
     }];
-    MGSwipeButton *snoozeButton = [MGSwipeButton buttonWithTitle:@"" icon:[UIImage imageNamed:@"task_snooze"] backgroundColor:[SGHelper themeColorYellow] callback:^BOOL(MGSwipeTableCell *sender) {
-        if (weakSelf.todoDidSwipe) return _todoDidSwipe(weakSelf, TodoSwipeOperationSnooze);
-        return NO;
-    }];
-    MGSwipeButton *removeButton = [MGSwipeButton buttonWithTitle:@"" icon:[UIImage imageNamed:@"task_remove"] backgroundColor:[UIColor redColor] callback:^BOOL(MGSwipeTableCell *sender) {
-        if (weakSelf.todoDidSwipe) return _todoDidSwipe(weakSelf, TodoSwipeOperationRemove);
-        return NO;
-    }];
-    
-    completeButton.width = snoozeButton.width = removeButton.width = kSlideItemWidth;
-    
-    self.rightButtons = @[completeButton];
-    self.leftButtons = @[snoozeButton, removeButton];
 }
 
 - (void)updateConstraints {
-    if (!_model.photoImage) {
-        _photoView.sd_layout.widthIs(0);
-        _todoTitleLabel.sd_layout.leftSpaceToView(_photoView, 0);
-    } else {
+    if (_model.photoUrl || _model.photoPath) {
         _photoView.sd_layout.widthIs(kButtonSize);
         _todoTitleLabel.sd_layout.leftSpaceToView(_photoView, 20);
+    } else {
+        _photoView.sd_layout.widthIs(0);
+        _todoTitleLabel.sd_layout.leftSpaceToView(_photoView, 0);
     }
     
     if (!_model.sgDescription.length) {

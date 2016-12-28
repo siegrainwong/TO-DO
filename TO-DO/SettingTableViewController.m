@@ -214,7 +214,7 @@ typedef NS_ENUM(NSInteger, SGSettingApplication) {
         [self presentViewController:viewController animated:YES completion:nil];
     } else if (indexPath.section == SGSettingSectionApplication && indexPath.row == SGSettingApplicationClearCache) {
         SCLAlertView *confirm = [[SCLAlertView alloc] initWithNewWindow];
-        [confirm addButton:@"Yes" actionBlock:^{
+        [confirm addButton:Localized(@"Yes") actionBlock:^{
             [SGHelper clearCache:[SGHelper photoPath]];
             model.content = [NSString stringWithFormat:@"%.02f MB",[SGHelper folderSizeAtPath:[SGHelper photoPath]]];
             [weakSelf reloadData];

@@ -203,7 +203,6 @@ TodoTableViewController () <UISearchBarDelegate, SGNavigationBar>
     if ((_style == TodoTableViewControllerStyleCalendar && indexPath.section == 1) || _disableCellSwiping) model.disableSwipeBehavior = YES;
     cell.model = model;
     
-    
     if (!model.disableSwipeBehavior) [self setupCellEvents:cell];
 }
 
@@ -224,9 +223,11 @@ TodoTableViewController () <UISearchBarDelegate, SGNavigationBar>
     CDTodo *model = (CDTodo *) [self modelAtIndexPath:indexPath];
     if (!model.photoImage) {
         model.photoImage = image;
-        [self.tableView reloadData];
-        [model saveImageWithBlock:nil];
-        MR_saveAsynchronous();
+        __weak __typeof(self) weakSelf = self;
+        [model saveImageWithBlock:^(BOOL succeed) {
+            [weakSelf configureCell:cell atIndexPath:indexPath];
+            MR_saveAsynchronous();
+        }];
     }
 }
 

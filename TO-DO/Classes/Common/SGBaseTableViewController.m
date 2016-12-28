@@ -48,6 +48,48 @@
     return 0;
 }
 
+//- (void)tableView:(UITableView *)tableView willDisplayCell:(UITableViewCell *)cell forRowAtIndexPath:(NSIndexPath *)indexPath {
+//    NSString *path = [self imagePathAtIndexPath:indexPath];
+//    NSString *url = [self imageUrlAtIndexPath:indexPath];
+//    if (!url && !path) return;
+//
+//    //加载本地图片
+//    if (path) {
+//        [[GCDQueue globalQueueWithLevel:DISPATCH_QUEUE_PRIORITY_DEFAULT] async:^{
+//            UIImage *image = [UIImage imageWithContentsOfFile:path];
+//            if (image) {    //如果清空缓存的话，这个可能为空
+//                [[GCDQueue mainQueue] async:^{
+//                    [self shouldDisplayImage:image onCell:cell atIndexPath:indexPath];
+//                }];
+//                return;
+//            }
+//        }];
+//    }
+//
+//    //加载网络图片
+//    UIImage *image = _imageDictionary[url];
+//    if (!image) {                   //没有下载该图片
+//        NSOperation *operation = _operationDictionary[url];
+//        if (!operation) {           //没有当前图片的任务，就添加队列进行图片下载
+//            operation = [NSBlockOperation blockOperationWithBlock:^{
+//                NSData *imageData = [NSData dataWithContentsOfURL:[NSURL URLWithString:url]];
+//                UIImage *imageFromData = [UIImage imageWithData:imageData];
+//
+//                _imageDictionary[url] = imageFromData;
+//                _operationDictionary[url] = nil;
+//
+//                [[GCDQueue mainQueue] async:^{[weakSelf shouldDisplayImage:image onCell:cell atIndexPath:indexPath];}];
+//            }];
+//            [_queue addOperation:operation];
+//            _operationDictionary[url] = operation;
+//        } else {                    //正在下载中
+//            DDLogInfo(@"downloading");
+//        }
+//    } else {    //已有该图片
+//        [self shouldDisplayImage:image onCell:cell atIndexPath:indexPath];
+//    }
+//}
+
 - (void)tableView:(UITableView *)tableView willDisplayCell:(UITableViewCell *)cell forRowAtIndexPath:(NSIndexPath *)indexPath {
     NSString *path = [self imagePathAtIndexPath:indexPath];
     NSString *url = [self imageUrlAtIndexPath:indexPath];
@@ -55,36 +97,24 @@
     
     //加载本地图片
     if (path) {
-        UIImage *image = [UIImage imageWithContentsOfFile:path];
-        if (image) {    //如果清空缓存的话，这个可能为空
-            [self shouldDisplayImage:image onCell:cell atIndexPath:indexPath];
-            return;
-        }
+        [[GCDQueue globalQueueWithLevel:DISPATCH_QUEUE_PRIORITY_DEFAULT] async:^{
+            UIImage *image = [UIImage imageWithContentsOfFile:path];
+            if (image) {    //如果清空缓存的话，这个可能为空
+                [[GCDQueue mainQueue] async:^{
+                    [self shouldDisplayImage:image onCell:cell atIndexPath:indexPath];
+                }];
+                return;
+            }
+        }];
     }
     
-    //加载网络图片
     UIImage *image = _imageDictionary[url];
-    if (!image) {                   //没有下载该图片
-        NSOperation *operation = _operationDictionary[url];
-        if (!operation) {           //没有当前图片的任务，就添加队列进行图片下载
-            operation = [NSBlockOperation blockOperationWithBlock:^{
-                ApplicationNetworkIndicatorVisible(YES);
-                NSData *imageData = [NSData dataWithContentsOfURL:[NSURL URLWithString:url]];
-                UIImage *imageFromData = [UIImage imageWithData:imageData];
-                ApplicationNetworkIndicatorVisible(NO);
-                
-                _imageDictionary[url] = imageFromData;
-                _operationDictionary[url] = nil;
-                
-                [[GCDQueue mainQueue] async:^{[self shouldDisplayImage:image onCell:cell atIndexPath:indexPath];}];
-            }];
-            [_queue addOperation:operation];
-            _operationDictionary[url] = operation;
-        } else {                    //正在下载中
-            DDLogInfo(@"downloading");
-        }
-    } else {    //已有该图片
-        [self shouldDisplayImage:image onCell:cell atIndexPath:indexPath];
+    if(!image) {
+        __weak __typeof(self) weakSelf = self;
+        [[SDWebImageManager sharedManager] downloadImageWithURL:[NSURL URLWithString:url] options:0 progress:nil completed:^(UIImage *image, NSError *error, SDImageCacheType cacheType, BOOL finished, NSURL *imageURL) {
+            [weakSelf shouldDisplayImage:image onCell:cell atIndexPath:indexPath];
+            _imageDictionary[url] = image;
+        }];
     }
 }
 

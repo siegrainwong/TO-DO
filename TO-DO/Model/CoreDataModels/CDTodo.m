@@ -66,11 +66,11 @@
         self.photoImage = [UIImage imageWithData:self.photoData];
         
         if (![self.photoData writeToFile:self.photoPath atomically:YES]) return [self returnWithBlock:complete succeed:NO];
-        NSData *thumbData = UIImageJPEGRepresentation([UIImage imageWithImage:self.photoImage scaledToSize:kPhotoThumbSize], 1);
+        NSData *thumbData = UIImageJPEGRepresentation([UIImage thumbnailWithCenterClip:self.photoImage size:kPhotoThumbSize radius:0], 0.5);
         if (![thumbData writeToFile:SGThumbPath(self.identifier) atomically:YES]) return [self returnWithBlock:complete succeed:NO];
         
         [self markAsModified];
-    
+        
         [self returnWithBlock:complete succeed:YES];
     }];
 }
