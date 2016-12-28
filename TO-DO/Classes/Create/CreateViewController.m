@@ -227,7 +227,7 @@
 
 - (void)headerViewDidPressRightOperationButton {
     __weak __typeof(self) weakSelf = self;
-    [SGHelper photoPickerFrom:self allowCrop:NO needsActionSheet:(BOOL) _selectedImage pickerDidPicked:^(UIImage *image) {
+    [SGHelper photoPickerFrom:self allowCrop:NO currentPhoto:_selectedImage pickerDidPicked:^(UIImage *image) {
         weakSelf.selectedImage = image;
         [weakSelf.headerView.rightOperationButton setImage:weakSelf.selectedImage forState:UIControlStateNormal];
     }];

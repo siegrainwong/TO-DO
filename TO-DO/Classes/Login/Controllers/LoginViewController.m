@@ -63,7 +63,7 @@
 
 - (void)loginViewDidPressAvatarButton {
     __weak __typeof(self) weakSelf = self;
-    [SGHelper photoPickerFrom:self allowCrop:YES needsActionSheet:!_loginView.avatar pickerDidPicked:^(UIImage *image) {weakSelf.loginView.avatar = image;}];
+    [SGHelper photoPickerFrom:self allowCrop:YES currentPhoto:_loginView.avatar pickerDidPicked:^(UIImage *image) {weakSelf.loginView.avatar = image;}];
 }
 
 #pragma mark - release

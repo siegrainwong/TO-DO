@@ -224,6 +224,7 @@ TodoTableViewController () <UISearchBarDelegate, SGNavigationBar>
     CDTodo *model = (CDTodo *) [self modelAtIndexPath:indexPath];
     if (!model.photoImage) {
         model.photoImage = image;
+        [self.tableView reloadData];
         [model saveImageWithBlock:nil];
         MR_saveAsynchronous();
     }

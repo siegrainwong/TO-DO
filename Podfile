@@ -40,4 +40,5 @@ target "TO-DO" do
   pod 'EMString'
   pod 'TOWebViewController'
   pod 'TZImagePickerController'
+  pod 'IDMPhotoBrowser'
 end

@@ -44,7 +44,7 @@ static NSInteger const kPopHeightWhenKeyboardShow = 170;
 
 #pragma mark - photo picker
 
-+ (void)photoPickerFrom:(UIViewController <TZImagePickerControllerDelegate> *)viewController allowCrop:(BOOL)allowCrop needsActionSheet:(BOOL)needsActionSheet pickerDidPicked:(void (^)(UIImage *image))pickerDidPicked;
++ (void)photoPickerFrom:(UIViewController <TZImagePickerControllerDelegate> *)viewController allowCrop:(BOOL)allowCrop currentPhoto:(UIImage *)currentPhoto pickerDidPicked:(void (^)(UIImage *image))pickerDidPicked;
 
 #pragma mark - convenience
 

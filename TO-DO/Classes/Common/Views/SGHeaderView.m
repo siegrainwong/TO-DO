@@ -107,6 +107,7 @@ static void *const kHeaderViewKVOContext = (void *) &kHeaderViewKVOContext;
     _rightOperationButton = [[UIButton alloc] init];
     _rightOperationButton.layer.masksToBounds = YES;
     _rightOperationButton.layer.cornerRadius = self.rightOperationButtonSize / 2;
+    _rightOperationButton.contentMode = UIViewContentModeScaleAspectFill;
     [_rightOperationButton setImage:[UIImage imageNamed:@"header_add"] forState:UIControlStateNormal];
     [_rightOperationButton addTarget:self action:@selector(rightOperationButtonDidPress) forControlEvents:UIControlEventTouchUpInside];
     [self addSubview:_rightOperationButton];

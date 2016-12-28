@@ -82,6 +82,8 @@ EOM
 if [[ "$CONFIGURATION" == "Debug" ]]; then
   install_resource "AMap2DMap/MAMapKit.framework/AMap.bundle"
   install_resource "$PODS_CONFIGURATION_BUILD_DIR/AutoLinearLayoutView/AutoLinearLayoutView.bundle"
+  install_resource "IDMPhotoBrowser/Classes/IDMPhotoBrowser.bundle"
+  install_resource "IDMPhotoBrowser/Classes/IDMPBLocalizations.bundle"
   install_resource "LCActionSheet/LCActionSheet/LCActionSheet.bundle"
   install_resource "$PODS_CONFIGURATION_BUILD_DIR/TOWebViewController/TOWebViewControllerLocalizable.bundle"
   install_resource "TZImagePickerController/TZImagePickerController/TZImagePickerController/TZImagePickerController.bundle"
@@ -89,6 +91,8 @@ fi
 if [[ "$CONFIGURATION" == "Release" ]]; then
   install_resource "AMap2DMap/MAMapKit.framework/AMap.bundle"
   install_resource "$PODS_CONFIGURATION_BUILD_DIR/AutoLinearLayoutView/AutoLinearLayoutView.bundle"
+  install_resource "IDMPhotoBrowser/Classes/IDMPhotoBrowser.bundle"
+  install_resource "IDMPhotoBrowser/Classes/IDMPBLocalizations.bundle"
   install_resource "LCActionSheet/LCActionSheet/LCActionSheet.bundle"
   install_resource "$PODS_CONFIGURATION_BUILD_DIR/TOWebViewController/TOWebViewControllerLocalizable.bundle"
   install_resource "TZImagePickerController/TZImagePickerController/TZImagePickerController/TZImagePickerController.bundle"

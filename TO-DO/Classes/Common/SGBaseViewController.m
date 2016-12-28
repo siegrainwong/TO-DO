@@ -110,7 +110,7 @@
 
 - (void)avatarButtonDidPress {
     __weak __typeof(self) weakSelf = self;
-    [SGHelper photoPickerFrom:self allowCrop:YES needsActionSheet:YES pickerDidPicked:^(UIImage *image) {
+    [SGHelper photoPickerFrom:self allowCrop:YES currentPhoto:_headerView.avatarButton.currentImage pickerDidPicked:^(UIImage *image) {
         [CommonDataManager modifyAvatarWithImage:image block:^{
             [weakSelf.headerView.avatarButton sd_setImageWithURL:GetPictureUrl(weakSelf.lcUser.avatar, kQiniuImageStyleSmall) forState:UIControlStateNormal];
         }];

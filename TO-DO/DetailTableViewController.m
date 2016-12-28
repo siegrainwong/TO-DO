@@ -148,7 +148,7 @@ typedef NS_ENUM(NSInteger, SGDetailItem) {
         [self presentViewController:rootNavigationController animated:YES completion:nil];
     } else if (indexPath.row == SGDetailItemPhoto) {
         __weak __typeof(self) weakSelf = self;
-        [SGHelper photoPickerFrom:self allowCrop:NO needsActionSheet:(BOOL) weakSelf.model.photoImage pickerDidPicked:^(UIImage *image) {
+        [SGHelper photoPickerFrom:self allowCrop:NO currentPhoto:weakSelf.model.photoImage pickerDidPicked:^(UIImage *image) {
             _model.photoData = [SGImageUpload dataWithImage:image type:SGImageTypePhoto quality:kSGDefaultImageQuality];
             _model.photoImage = [UIImage imageWithData:_model.photoData];
         

@@ -14,6 +14,8 @@
 #import "AppDelegate.h"
 #import "SDImageCache.h"
 #import "TZImagePickerController.h"
+#import "IDMPhoto.h"
+#import "IDMPhotoBrowser.h"
 #import <AVFoundation/AVFoundation.h>
 #import <MobileCoreServices/UTCoreTypes.h>
 #import <sys/utsname.h>
@@ -77,11 +79,14 @@
 
 #pragma mark - photo picker
 
-+ (void)photoPickerFrom:(UIViewController <TZImagePickerControllerDelegate> *)viewController allowCrop:(BOOL)allowCrop needsActionSheet:(BOOL)needsActionSheet pickerDidPicked:(void (^)(UIImage *image))pickerDidPicked {
-    if (needsActionSheet) {
++ (void)photoPickerFrom:(UIViewController <TZImagePickerControllerDelegate> *)viewController allowCrop:(BOOL)allowCrop currentPhoto:(UIImage *)currentPhoto pickerDidPicked:(void (^)(UIImage *image))pickerDidPicked {
+    if (currentPhoto) {
         LCActionSheet *sheet = [LCActionSheet sheetWithTitle:Localized(@"Choose operation") cancelButtonTitle:Localized(@"Cancel") clicked:^(LCActionSheet *actionSheet, NSInteger buttonIndex) {
-            if (buttonIndex == 1)
-                [self photoPickerFrom:viewController allowCrop:allowCrop pickerDidPicked:pickerDidPicked];
+            if (buttonIndex == 1){
+                IDMPhoto * photo = [IDMPhoto photoWithImage:currentPhoto];
+                IDMPhotoBrowser * browser = [[IDMPhotoBrowser alloc] initWithPhotos:@[photo]];
+                [viewController presentViewController:browser animated:YES completion:nil];
+            }
             else if (buttonIndex == 2)
                 [self photoPickerFrom:viewController allowCrop:allowCrop pickerDidPicked:pickerDidPicked];
         } otherButtonTitles:Localized(@"View original"), Localized(@"Pick from album"), nil];
@@ -101,6 +106,9 @@
     }];
     [viewController presentViewController:controller animated:YES completion:nil];
 }
+
+#pragma mark - photo browser
+
 
 #pragma mark - convenience
 

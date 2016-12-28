@@ -44,6 +44,7 @@ PODS:
     - CocoaLumberjack/Core
   - CocoaLumberjack/Extensions (3.0.0):
     - CocoaLumberjack/Default
+  - DACircularProgress (2.3.1)
   - DGActivityIndicatorView (2.1.1)
   - EMString (0.3.0)
   - FDFullscreenPopGesture (1.1)
@@ -51,6 +52,10 @@ PODS:
   - GTMBase64 (1.0.0)
   - HappyDNS (0.3.10)
   - HMSegmentedControl (1.5.3)
+  - IDMPhotoBrowser (1.10):
+    - DACircularProgress
+    - pop
+    - SDWebImage
   - IGLDropDownMenu (1.6.2)
   - JMRoundedCorner (1.2.1)
   - JSONModel (1.7.0)
@@ -72,6 +77,7 @@ PODS:
   - NetworkEye (1.0.6):
     - NetworkEye/standard (= 1.0.6)
   - NetworkEye/standard (1.0.6)
+  - pop (1.0.9)
   - Qiniu (7.0.20):
     - AFNetworking (~> 2.0)
     - HappyDNS (~> 0.3)
@@ -109,6 +115,7 @@ DEPENDENCIES:
   - FSCalendar (from `https://github.com/Seanwong933/FSCalendar.git`)
   - GTMBase64
   - HMSegmentedControl (from `https://github.com/Seanwong933/HMSegmentedControl`)
+  - IDMPhotoBrowser
   - IGLDropDownMenu
   - JMRoundedCorner
   - JSONModel
@@ -163,6 +170,7 @@ SPEC CHECKSUMS:
   AVOSCloud: fcbb5c2bcccaddbdea8c2b4f6c1ad7f13e6639fe
   BEMCheckBox: 264b8b72aa92adbfefa265cc58a0cdb86b207b9f
   CocoaLumberjack: c823149bccc5519a9447aeb433be7b1212a7d6a5
+  DACircularProgress: 4dd437c0fc3da5161cb289e07ac449493d41db71
   DGActivityIndicatorView: ff2c76073d79692f724863c8dd38685866a03cb6
   EMString: 612632d8224e86dd31e5743ec27ee28ea6faeae4
   FDFullscreenPopGesture: a8a620179e3d9c40e8e00256dcee1c1a27c6d0f0
@@ -170,6 +178,7 @@ SPEC CHECKSUMS:
   GTMBase64: 0da7372e95f5171f3f652db38cde6716f8eb5e24
   HappyDNS: 06a9fed2796663fd87626dbf02552933265bf059
   HMSegmentedControl: 8c87fc17a40501eb3d71f8cbcaf130235b5c7aa1
+  IDMPhotoBrowser: 818fbaf9f801d16ca881ab0a076d81e063a48faa
   IGLDropDownMenu: ae118618ae858fa66ce7c2ac80ed9124a710b228
   JMRoundedCorner: 214e56c2a7e3a0916e8d6040c66d85519cc1be87
   JSONModel: 840bc0fcffb24b8454d2c026bf26fea454b8e98d
@@ -184,6 +193,7 @@ SPEC CHECKSUMS:
   MXParallaxHeader: 5070ba8e8af27ec793c0d32ae82cfd2318e59635
   MXSegmentedPager: 2b7d6f8d6b7751c4dcb928d30bc4ef66214da34c
   NetworkEye: 54afcde161ab50e407445b86abd7350f3cd08533
+  pop: f667631a5108a2e60d9e8797c9b32ddaf2080bce
   Qiniu: 8958e70c02fb563c8c04d555bb5041441c5f4216
   RealReachability: e6c8a2bbffa316006e8c282efc1ee2567d61a920
   RTRootNavigationController: cf134c044a8ce14d97fc668847ed4567efc53f91
@@ -195,6 +205,6 @@ SPEC CHECKSUMS:
   TZImagePickerController: 87a138ae5d585225aaa6c8abe2cface0f0ad19dd
   ZFDragableModalTransition: 0d294eaaba6edfcb9839595de765f9ca06a4b524
 
-PODFILE CHECKSUM: 6ff7113e95aad68f46a285edb80f4d2350ba49a0
+PODFILE CHECKSUM: fd9684e4fd9500d134cb785462ee0f9f25034ad6
 
 COCOAPODS: 1.0.1
