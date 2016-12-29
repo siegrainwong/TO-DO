@@ -16,7 +16,6 @@
 #import "SGSyncManager.h"
 
 // TODO: 本地化
-// FIXME: 某些情况下（仅在iPhone5 iOS8.1 以下的模拟器中测试出现）一同步主线程就会锁死，先不管。
 
 typedef NS_ENUM(NSInteger, TodoFetchType) {
     TodoFetchTypeCommit,
@@ -176,7 +175,7 @@ static NSInteger const kMaximumSyncCountPerFetch = 100;
     _localContext = [NSManagedObjectContext MR_contextWithParent:[NSManagedObjectContext MR_rootSavingContext]];
     
     //1. 根据服务器和本地的最新同步记录获取此次同步的同步类型
-    LCSyncRecord *lastRecordOnServer = [self fetchLastRecordOnServer];
+    LCSyncRecord *lastRecordOnServer = [self fetchLastRecordOnServer];  //Mark: 这里之前判断了一下如果记录为空就return NO，然而这样新注册的用户就没法同步了，应该是之前修复某个Bug，但是修错了地方。
     _syncType = [self syncTypeWithRecord:lastRecordOnServer andLocalRecord:[self fetchLastRecordOnLocal]];
     
     //2. 在本地和线上插入同步记录，准备开始同步

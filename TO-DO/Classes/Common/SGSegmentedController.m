@@ -59,7 +59,6 @@
 }
 
 - (void)viewWillLayoutSubviews {
-    /* FIXME: 在iOS 8模拟器（真机未知）中，偶尔会发生上滑时位置错误的Bug，且该Bug切个模拟器再切回来就没了。 */
     _segmentedPager.frame = CGRectMake(0, 0, kScreenWidth, self.pagerHeight);
     [super viewWillLayoutSubviews];
 }
