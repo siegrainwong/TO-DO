@@ -95,6 +95,7 @@ LCUserDataManager ()
             }
             
             user.avatar = path;
+            user.avatarImage = nil;
             [user signUpInBackgroundWithBlock:^(BOOL succeeded, NSError *error) {
                 if (error) {
                     [SCLAlertHelper errorAlertWithContent:_localDictionary[@(error.code)] ? _localDictionary[@(error.code)] : error.localizedDescription];
