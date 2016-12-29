@@ -18,6 +18,7 @@
 #import "NSString+Extension.h"
 #import "SCLAlertHelper.h"
 #import "SCLAlertView.h"
+#import "MRTodoDataManager.h"
 #import <AVOSCloud.h>
 
 /* localization dictionary keys */
@@ -72,9 +73,9 @@ LCUserDataManager ()
     
     MRUserDataManager *mrUserDataManager = [MRUserDataManager new];
     
+    __weak __typeof(self) weakSelf = self;
     [[UIApplication sharedApplication] setNetworkActivityIndicatorVisible:YES];
-    // sign in
-    if (!_isSignUp) {
+    if (!_isSignUp) {   // sign in
         [LCUser logInWithUsernameInBackground:user.email password:user.password block:^(AVUser *user, NSError *error) {
             if (error) {
                 [SCLAlertHelper errorAlertWithContent:_localDictionary[@(error.code)] ? _localDictionary[@(error.code)] : error.localizedDescription];
@@ -84,8 +85,8 @@ LCUserDataManager ()
             if (![CDUser userWithLCUser:(LCUser *) user]) [mrUserDataManager createUserByLCUser:(LCUser *) user];   //本地没有用户记录就创建
             return complete(YES);
         }];
-    } else {
-        //上传头像
+    } else {    //sign up
+        //upload avatar
         [SGImageUpload uploadImage:user.avatarImage type:SGImageTypeAvatar prefix:kUploadPrefixAvatar completion:^(bool error, NSString *path) {
             if (error) {
                 [SCLAlertHelper errorAlertWithContent:_localDictionary[kPictureUploadFailedKey]];
@@ -99,7 +100,8 @@ LCUserDataManager ()
                     [SCLAlertHelper errorAlertWithContent:_localDictionary[@(error.code)] ? _localDictionary[@(error.code)] : error.localizedDescription];
                     return complete(NO);
                 }
-                [mrUserDataManager createUserByLCUser:user];
+                CDUser * cdUser = [mrUserDataManager createUserByLCUser:user];
+                [weakSelf insertPilotDataWithUser:cdUser];
                 return complete(YES);
             }];
         }];
@@ -172,6 +174,27 @@ LCUserDataManager ()
             return NO;
         }
     }
+    
+    return YES;
+}
+
+#pragma mark - private methods
+
+- (BOOL)insertPilotDataWithUser:(CDUser *)user {
+    CDTodo *clickTask = [CDTodo newEntityWithInitialData];
+    clickTask.title = Localized(@"Click task");
+    clickTask.user = user;
+    clickTask.sgDescription = Localized(@"See the details or edit it.");
+    
+    CDTodo *swipeTask = [CDTodo newEntityWithInitialData];
+    swipeTask.title = Localized(@"Swipe task");
+    swipeTask.user = user;
+    swipeTask.sgDescription = Localized(@"Swipe left to complete, swipe right to snooze/delete.");
+    
+    MRTodoDataManager *dataManager = [MRTodoDataManager new];
+    if (![dataManager InsertTask:clickTask] || ![dataManager InsertTask:swipeTask]) return NO;
+    
+    [[NSNotificationCenter defaultCenter] postNotificationName:kTaskChangedNotification object:self];
     
     return YES;
 }

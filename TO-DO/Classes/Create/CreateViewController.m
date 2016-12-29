@@ -186,17 +186,12 @@
         [weakSelf.view endEditing:YES];
         [weakSelf enableView:NO];
         
-        CDTodo *todo = [CDTodo MR_createEntity];
+        CDTodo *todo = [CDTodo newEntityWithInitialData];
         todo.title = weakSelf.titleTextField.field.text;
         todo.sgDescription = weakSelf.descriptionTextField.field.text;
         todo.deadline = self.selectedDate;
         todo.user = weakSelf.cdUser;
         todo.status = [self.selectedDate compare:[NSDate date]] == NSOrderedAscending ? @(TodoStatusOverdue) : @(TodoStatusNormal);
-        todo.isCompleted = @(NO);
-        todo.isHidden = @(NO);
-        todo.createdAt = [NSDate date];
-        todo.updatedAt = [todo.createdAt copy];
-        todo.identifier = [[NSUUID UUID] UUIDString];
         if (_selectedCoordinate) {
             todo.longitude = @(_selectedCoordinate.longitude);
             todo.latitude = @(_selectedCoordinate.latitude);

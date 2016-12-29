@@ -39,6 +39,12 @@ NS_ASSUME_NONNULL_BEGIN
  *  将cdTodo的部分数据覆盖为指定lcTodo的数据
  */
 - (instancetype)cdTodoReplaceByLCTodo:(LCTodo *)lcTodo;
+
+/**
+ *  创建实体并填入初始数据
+ * @return
+ */
++ (instancetype)newEntityWithInitialData;
 @end
 
 NS_ASSUME_NONNULL_END

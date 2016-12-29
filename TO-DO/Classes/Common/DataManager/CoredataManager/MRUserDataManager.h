@@ -10,5 +10,5 @@
 #import <Foundation/Foundation.h>
 
 @interface MRUserDataManager : NSObject<Localized>
-- (BOOL)createUserByLCUser:(LCUser*)lcUser;
+- (CDUser *)createUserByLCUser:(LCUser*)lcUser;
 @end

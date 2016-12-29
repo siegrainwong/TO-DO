@@ -16,6 +16,7 @@
 #import "LCTodo.h"
 #import "LoginViewController.h"
 #import "NEHTTPEye.h"
+#import "MRTodoDataManager.h"
 #import <AMapFoundationKit/AMapFoundationKit.h>
 #import <UserNotifications/UserNotifications.h>
 
@@ -157,30 +158,6 @@ static BOOL const kEnableViewControllerStateHolder = YES;
     [CDTodo MR_truncateAll];
 }
 
-- (void)insertTestTodoToLC {
-    NSMutableArray *array = [NSMutableArray array];
-    for (int i = 0; i < 100; i++) {
-        LCTodo *todo = [LCTodo object];
-        todo.title = [NSString stringWithFormat:@"Test data：%d", i];
-        todo.sgDescription = [NSString stringWithFormat:@"this is a fucking description: %d", i];
-        todo.deadline = [[NSDate date] dateByAddingTimeInterval:arc4random() % 70000];
-        todo.user = _lcUser;
-        todo.isCompleted = false;
-        todo.isHidden = false;
-        todo.status = TodoStatusNormal;
-        todo.syncVersion = 0;
-        todo.identifier = [[NSUUID UUID] UUIDString];
-        
-        int random = (int) (arc4random() % 2500000 - 5000000);
-        todo.localCreatedAt = [[NSDate date] dateByAddingTimeInterval:random];
-        todo.localUpdatedAt = [todo.localCreatedAt copy];
-        
-        [array addObject:todo];
-    }
-    
-    [LCTodo saveAll:[array copy]];
-}
-
 - (NSString *)sandboxUrl {
     NSArray *array = NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES);
     return array[0];
@@ -256,7 +233,7 @@ static BOOL const kEnableViewControllerStateHolder = YES;
 - (void)logIn {
     [self setupUser];
     [self switchRootViewController:[HomeViewController new] isNavigation:YES key:[AppDelegate homeViewControllerKey]];
-    [self synchronize:SyncModeManually];
+    [self synchronize:SyncModeAutomatically];
 }
 
 #pragma mark - sync

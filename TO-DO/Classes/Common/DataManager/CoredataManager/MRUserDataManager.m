@@ -16,7 +16,7 @@ MRUserDataManager ()
 
 @implementation MRUserDataManager
 #pragma mark - handle sign up & sign in
-- (BOOL)createUserByLCUser:(LCUser*)lcUser
+- (CDUser *)createUserByLCUser:(LCUser*)lcUser
 {
     CDUser* user = [CDUser MR_createEntity];
     user.name = lcUser.name;
@@ -33,6 +33,6 @@ MRUserDataManager ()
     [[NSUserDefaults standardUserDefaults] setObject:user.phoneIdentifier forKey:user.objectId];
     MR_saveAndWait();
 
-    return YES;
+    return user;
 }
 @end

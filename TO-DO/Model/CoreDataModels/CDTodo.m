@@ -11,6 +11,7 @@
 #import "SGCoordinate.h"
 #import "SGImageUpload.h"
 #import "UIImage+Extension.h"
+#import "AppDelegate.h"
 
 @implementation CDTodo
 @synthesize photoImage = _photoImage;
@@ -117,4 +118,23 @@
     
     return self;
 }
+
+#pragma mark -
+
++ (instancetype)newEntityWithInitialData {
+    CDTodo *todo = [CDTodo MR_createEntity];
+    todo.title = @"new task";
+    todo.sgDescription = @"";
+    todo.deadline = [[NSDate date] dateByAddingTimeInterval:60 * 60 * 2];
+    todo.user = [AppDelegate globalDelegate].cdUser;
+    todo.status = @(TodoStatusNormal);
+    todo.isCompleted = @(NO);
+    todo.isHidden = @(NO);
+    todo.createdAt = [NSDate date];
+    todo.updatedAt = [todo.createdAt copy];
+    todo.identifier = [[NSUUID UUID] UUIDString];
+    
+    return todo;
+}
+
 @end
