@@ -26,7 +26,7 @@
     self.backgroundColor = [SGHelper themeColorLightGray];
     
     self.label = [UILabel new];
-    self.label.text = @"Your task list is empty...";
+    self.label.text = Localized(@"Your task list is empty...");
     self.label.textColor = [SGHelper themeColorGray];
     self.label.font = [SGHelper themeFontDefault];
     self.label.textAlignment = NSTextAlignmentCenter;
