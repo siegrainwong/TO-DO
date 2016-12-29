@@ -6,4 +6,5 @@
 #import "TOWebViewController.h"
 
 @interface SGWebViewController : TOWebViewController
+@property(nonatomic, assign) BOOL showCloseButton;
 @end

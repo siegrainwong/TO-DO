@@ -103,7 +103,9 @@
 
 "No record" = "没有记录";
 "Change Password" = "修改密码";
+"Forgot Password?" = "忘记密码？";
 "We'll send you an email with a link to reset your password." = "我们会向你发送重置密码的邮件，请点击邮件的链接进行重置。";
+"Please enter your registration email, we'll send you a link to reset your password." = "请输入你的注册邮箱，我们会向你发送一个重置密码的链接。";
 "Sign Out" = "注销";
 "Feedback" = "反馈";
 "Enable auto sync" = "启用自动同步";

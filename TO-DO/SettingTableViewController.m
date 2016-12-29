@@ -168,7 +168,7 @@ typedef NS_ENUM(NSInteger, SGSettingApplication) {
         [_editorViewController setEditorDidSave:^(NSString *value) {
             user.username = value;
             user.email = value;
-            [weakSelf.dataManager modifyWithUser:user complete:^(BOOL succeed) {
+            [weakSelf.dataManager modifyWithUser:user complete:^(bool succeed) {
                 if (!succeed) return;
                 [SGHelper errorAlertWithMessage:Localized(@"Account information has changed, please log in again")];
                 [[AppDelegate globalDelegate] logOut];
@@ -178,7 +178,7 @@ typedef NS_ENUM(NSInteger, SGSettingApplication) {
     } else if (indexPath.section == SGSettingSectionUser && indexPath.row == SGSettingUserName) {
         [_editorViewController setEditorDidSave:^(NSString *value) {
             user.name = value;
-            [weakSelf.dataManager modifyWithUser:user complete:^(BOOL succeed) {
+            [weakSelf.dataManager modifyWithUser:user complete:^(bool succeed) {
                 if (!succeed) return;
                 model.content = value;
                 [weakSelf reloadData];

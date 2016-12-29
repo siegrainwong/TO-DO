@@ -17,6 +17,11 @@
 #import "SGHelper.h"
 #import "UIImage+Extension.h"
 #import "UIView+Extentsion.h"
+#import "SGWebViewController.h"
+#import "RTRootNavigationController.h"
+#import "SCLAlertView.h"
+
+// Mark: 当时经验不足，把controller的很多东西放在view里面去了。
 
 @interface
 LoginView ()
@@ -127,6 +132,7 @@ LoginView ()
     [_leftOperationButton setTitleColor:[UIColor lightGrayColor] forState:UIControlStateNormal];
     _leftOperationButton.titleLabel.font = [SGHelper themeFontWithSize:12];
     _leftOperationButton.contentHorizontalAlignment = UIControlContentHorizontalAlignmentLeft;
+    [_leftOperationButton addTarget:self action:@selector(leftButtonDidPress) forControlEvents:UIControlEventTouchUpInside];
     [self addSubview:_leftOperationButton];
     
     _rightOperationButton = [[UIButton alloc] init];
@@ -184,6 +190,31 @@ LoginView ()
     }];
     
     MASAttachKeys(_nameTextField, _usernameTextField, _passwordTextField, _commitButton, _leftOperationButton, _rightOperationButton);
+}
+
+#pragma mark - events
+
+- (void)leftButtonDidPress {
+    if (_isSignUp) {    //Terms & Conditions
+        SGWebViewController *viewController = [[SGWebViewController alloc] initWithURL:[NSURL URLWithString:kPrivacyPolicyUrl]];
+        viewController.showCloseButton = YES;
+        RTRootNavigationController *navigationController = [[RTRootNavigationController alloc] initWithRootViewController:viewController];
+        [self.currentTopViewController presentViewController:navigationController animated:YES completion:nil];
+    } else {    //Forgot password
+        SCLAlertView *alert = [[SCLAlertView alloc] initWithNewWindow];
+        UITextField *textField = [alert addTextField:@"Email"];
+        
+        [alert addButton:@"OK" actionBlock:^(void) {
+            NSError *error = nil;
+            [LCUser requestPasswordResetForEmail:textField.text error:&error];
+            if (error) {
+                [SGHelper errorAlertWithMessage:error.localizedDescription];
+                return;
+            }
+        }];
+        
+        [alert showEdit:self.currentTopViewController title:Localized(@"Forgot Password?") subTitle:@"Please enter your registration email, we'll send you a link to reset your password." closeButtonTitle:Localized(@"Cancel") duration:0.0f];
+    }
 }
 
 #pragma mark - commit & commit animation

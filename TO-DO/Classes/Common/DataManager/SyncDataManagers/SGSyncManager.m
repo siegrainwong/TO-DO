@@ -177,7 +177,6 @@ static NSInteger const kMaximumSyncCountPerFetch = 100;
     
     //1. 根据服务器和本地的最新同步记录获取此次同步的同步类型
     LCSyncRecord *lastRecordOnServer = [self fetchLastRecordOnServer];
-    if (!lastRecordOnServer) return NO;
     _syncType = [self syncTypeWithRecord:lastRecordOnServer andLocalRecord:[self fetchLastRecordOnLocal]];
     
     //2. 在本地和线上插入同步记录，准备开始同步

@@ -6,6 +6,8 @@
 #import "SGWebViewController.h"
 #import "UIViewController+SGConfigure.h"
 
+@interface SGWebViewController () <SGNavigationBar>
+@end
 
 @implementation SGWebViewController
 - (void)viewDidLoad {
@@ -20,6 +22,14 @@
 - (void)viewDidAppear:(BOOL)animated {
     [super viewDidAppear:animated];
     
-    [self setupNavigationBackIndicator];
+    [self setupNavigationBar];
+    self.navigationItem.rightBarButtonItem = nil;
+    self.navigationItem.leftBarButtonItem.title = Localized(@"Close");
+    if(!_showCloseButton) [self setupNavigationBackIndicator];
 }
+
+- (void)leftNavButtonDidPress {
+    if (_showCloseButton) [self dismissViewControllerAnimated:YES completion:nil];
+}
+
 @end
