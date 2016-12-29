@@ -361,7 +361,7 @@ static NSInteger const kMaximumSyncCountPerFetch = 100;
         }];
     
     // 2-1-3-3. 上传成功后更新本地的同步记录
-    _syncRecord.isFinished = syncRecordDictionary[@"isFinished"];
+    _syncRecord.isFinished = syncRecordDictionary[@"isFinished"];   //FIXME: CoreData偶尔在这个地方崩溃，Entity状态为fault，仅遇见过一次
     _syncRecord.syncEndTime = syncRecordDictionary[@"syncEndTime"];
     _cdUser.lastSyncTime = [NSDate date];
     
