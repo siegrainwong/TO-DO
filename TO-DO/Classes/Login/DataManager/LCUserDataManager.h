@@ -11,6 +11,8 @@
 @class LCUser;
 
 @interface LCUserDataManager : NSObject<Localized>
+@property(nonatomic, assign) BOOL isSignUp;
+
 /**
  *  处理登录、注册请求
  *
@@ -20,7 +22,7 @@
  *
  *  @return <#return value description#>
  */
-- (void)handleCommit:(LCUser*)user isSignUp:(BOOL)signUp complete:(void (^)(bool succeed))complete;
+- (void)commitWithUser:(LCUser *)user isSignUp:(BOOL)signUp complete:(void (^)(bool succeed))complete;
 
 /**
  * 编辑用户资料
@@ -28,4 +30,12 @@
  * @param complete
  */
 - (void)modifyWithUser:(LCUser *)user complete:(void (^)(bool succeed))complete;
+
+/**
+ * 验证用户是否合法，用于单元测试
+ * @param user
+ * @param isModify
+ * @return
+ */
+- (BOOL)validateWithUser:(LCUser *)user isModify:(BOOL)isModify;
 @end

@@ -20,7 +20,9 @@
 		F1F6A1C01B77EA3B7B48605F /* create header bg.png in Resources */ = {isa = PBXBuildFile; fileRef = F1F6A41D7341C56C217E3EBC /* create header bg.png */; };
 		F1F6A20C0CF01691B3AEC827 /* SGBaseMapViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = F1F6A8A14EB155CD97151DD3 /* SGBaseMapViewController.m */; };
 		F1F6A22FCDC6D1F2A1FE85B0 /* UIImage+Extension.m in Sources */ = {isa = PBXBuildFile; fileRef = F1F6AD7342C2328CE5A0747B /* UIImage+Extension.m */; };
+		F1F6A37BEAC3564D1EA337BA /* RegisterTests.m in Sources */ = {isa = PBXBuildFile; fileRef = F1F6AA10AAAAC4D2E58CB1F0 /* RegisterTests.m */; };
 		F1F6A3B6C7F1FFC9D0E30538 /* SettingViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = F1F6AA6F892EC6D4EA311FB8 /* SettingViewController.m */; };
+		F1F6A3BED08AE4BDEBA6FF8A /* LICENSE in Resources */ = {isa = PBXBuildFile; fileRef = F1F6A821DF9F69042E01F723 /* LICENSE */; };
 		F1F6A3DCEB1BB6F03124A878 /* CommonDataManager.m in Sources */ = {isa = PBXBuildFile; fileRef = F1F6A86E1321D8770D4F66F6 /* CommonDataManager.m */; };
 		F1F6A45738A969E13F75ABC5 /* AboutViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = F1F6A795FD6CCB0547068E24 /* AboutViewController.m */; };
 		F1F6A49B0B4764086E7B47C5 /* MBProgressHUD+SGExtension.m in Sources */ = {isa = PBXBuildFile; fileRef = F1F6ACC309D8ADC4FB8734C1 /* MBProgressHUD+SGExtension.m */; };
@@ -35,6 +37,7 @@
 		F1F6A995B9500630FFE1224A /* UISearchBar+Additions.m in Sources */ = {isa = PBXBuildFile; fileRef = F1F6A9D468A191BF68F98F49 /* UISearchBar+Additions.m */; };
 		F1F6A9DC57DDEEA117827980 /* LicenseViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = F1F6A025312B7D80A459C649 /* LicenseViewController.m */; };
 		F1F6AB0A7F5E488863B32B68 /* DZMInputView.m in Sources */ = {isa = PBXBuildFile; fileRef = F1F6A9550E33224A65936D5A /* DZMInputView.m */; };
+		F1F6ABC674B394F958DDD2F3 /* RegisterTests.m in Sources */ = {isa = PBXBuildFile; fileRef = F1F6AA10AAAAC4D2E58CB1F0 /* RegisterTests.m */; };
 		F1F6ABC8867D2715DBB1F9A4 /* UIViewController+SGConfigure.m in Sources */ = {isa = PBXBuildFile; fileRef = F1F6A246492749D8DFE4B5F2 /* UIViewController+SGConfigure.m */; };
 		F1F6ABDEC44B05F78957F228 /* SettingTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = F1F6A5DD853CC840086CAEA3 /* SettingTableViewController.m */; };
 		F1F6AC193A86F1A9ECBA3612 /* UIView+Extension.m in Sources */ = {isa = PBXBuildFile; fileRef = F1F6AA85E1C29172F37A3439 /* UIView+Extension.m */; };
@@ -47,6 +50,7 @@
 		F1F6AE71DC06E54CAB2B824F /* UIViewController+ESSeparatorInset.m in Sources */ = {isa = PBXBuildFile; fileRef = F1F6A7F559C1857D66F04D8A /* UIViewController+ESSeparatorInset.m */; };
 		F1F6AE9A733A169801E9096C /* SGLocating.m in Sources */ = {isa = PBXBuildFile; fileRef = F1F6A422DDD7AD6A144F2B94 /* SGLocating.m */; };
 		F1F6AEB3EBEFB1518FF43298 /* SettingModel.m in Sources */ = {isa = PBXBuildFile; fileRef = F1F6AC139F056A79101FA0B4 /* SettingModel.m */; };
+		F1F6AEBEB453076146F8EB8C /* LICENSE in Resources */ = {isa = PBXBuildFile; fileRef = F1F6A821DF9F69042E01F723 /* LICENSE */; };
 		F1F6AEC811EE3F1EDA63C256 /* RNObserverManager.m in Sources */ = {isa = PBXBuildFile; fileRef = F1F6ADF09588232CDE1AAF8D /* RNObserverManager.m */; };
 		F1F6AF45A097CB00BA92DD46 /* DetailModel.m in Sources */ = {isa = PBXBuildFile; fileRef = F1F6AF695552B0187E974543 /* DetailModel.m */; };
 		F9096E4F1DCB53DB007D746D /* header bg.png in Resources */ = {isa = PBXBuildFile; fileRef = F9096E4E1DCB53DB007D746D /* header bg.png */; };
@@ -121,7 +125,6 @@
 		F9A7237C1CDDF8A800E3BC8E /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = F9A7237A1CDDF8A800E3BC8E /* Main.storyboard */; };
 		F9A723811CDDF8A800E3BC8E /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = F9A723801CDDF8A800E3BC8E /* Assets.xcassets */; };
 		F9A723841CDDF8A800E3BC8E /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = F9A723821CDDF8A800E3BC8E /* LaunchScreen.storyboard */; };
-		F9A7238F1CDDF8A900E3BC8E /* TO_DOTests.m in Sources */ = {isa = PBXBuildFile; fileRef = F9A7238E1CDDF8A900E3BC8E /* TO_DOTests.m */; };
 		F9A7239A1CDDF8A900E3BC8E /* TO_DOUITests.m in Sources */ = {isa = PBXBuildFile; fileRef = F9A723991CDDF8A900E3BC8E /* TO_DOUITests.m */; };
 		F9B3DD021CFFDEE8000A8B28 /* MRUserDataManager.m in Sources */ = {isa = PBXBuildFile; fileRef = F9B3DD011CFFDEE8000A8B28 /* MRUserDataManager.m */; };
 		F9B3DD151CFFE55C000A8B28 /* CDUser.m in Sources */ = {isa = PBXBuildFile; fileRef = F9B3DD101CFFE55C000A8B28 /* CDUser.m */; };
@@ -203,6 +206,7 @@
 		F1F6A808FBB681656B6AE234 /* UIViewController+SGConfigure.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIViewController+SGConfigure.h"; sourceTree = "<group>"; };
 		F1F6A8114AB4759A699FC9D1 /* LicenseViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LicenseViewController.h; sourceTree = "<group>"; };
 		F1F6A813409C7A87B19AAC87 /* SGBaseSearchViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SGBaseSearchViewController.m; sourceTree = "<group>"; };
+		F1F6A821DF9F69042E01F723 /* LICENSE */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = LICENSE; sourceTree = "<group>"; };
 		F1F6A83C6301DE81616487F2 /* ProfileViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ProfileViewController.h; sourceTree = "<group>"; };
 		F1F6A865482BC7ED81EFF40B /* CommonDataManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CommonDataManager.h; sourceTree = "<group>"; };
 		F1F6A868F08DE8AC02C37C3A /* UIImage+Extension.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIImage+Extension.h"; sourceTree = "<group>"; };
@@ -220,6 +224,7 @@
 		F1F6A9E3BA5BEF12C9387F45 /* ZLIconLabel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZLIconLabel.h; sourceTree = "<group>"; };
 		F1F6A9FADA6642C43C8E63C7 /* SettingModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SettingModel.h; sourceTree = "<group>"; };
 		F1F6AA0F281649748A317E36 /* DetailTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DetailTableViewController.m; sourceTree = "<group>"; };
+		F1F6AA10AAAAC4D2E58CB1F0 /* RegisterTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RegisterTests.m; sourceTree = "<group>"; };
 		F1F6AA6F892EC6D4EA311FB8 /* SettingViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SettingViewController.m; sourceTree = "<group>"; };
 		F1F6AA85E1C29172F37A3439 /* UIView+Extension.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIView+Extension.m"; sourceTree = "<group>"; };
 		F1F6AA97887536814EE82427 /* MBProgressHUD+SGExtension.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "MBProgressHUD+SGExtension.h"; sourceTree = "<group>"; };
@@ -383,7 +388,6 @@
 		F9A723831CDDF8A800E3BC8E /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		F9A723851CDDF8A800E3BC8E /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		F9A7238A1CDDF8A900E3BC8E /* TO-DOTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "TO-DOTests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
-		F9A7238E1CDDF8A900E3BC8E /* TO_DOTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = TO_DOTests.m; sourceTree = "<group>"; };
 		F9A723901CDDF8A900E3BC8E /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		F9A723951CDDF8A900E3BC8E /* TO-DOUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "TO-DOUITests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
 		F9A723991CDDF8A900E3BC8E /* TO_DOUITests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = TO_DOUITests.m; sourceTree = "<group>"; };
@@ -1123,6 +1127,7 @@
 				F9A7236F1CDDF8A800E3BC8E /* Products */,
 				CA411FFB303A4ED6A651F6F8 /* Pods */,
 				BE17E2C135B91D0BA1E642E0 /* Frameworks */,
+				F1F6A821DF9F69042E01F723 /* LICENSE */,
 			);
 			sourceTree = "<group>";
 		};
@@ -1161,8 +1166,8 @@
 		F9A7238D1CDDF8A900E3BC8E /* TO-DOTests */ = {
 			isa = PBXGroup;
 			children = (
-				F9A7238E1CDDF8A900E3BC8E /* TO_DOTests.m */,
 				F9A723901CDDF8A900E3BC8E /* Info.plist */,
+				F1F6AA10AAAAC4D2E58CB1F0 /* RegisterTests.m */,
 			);
 			path = "TO-DOTests";
 			sourceTree = "<group>";
@@ -1423,6 +1428,7 @@
 				F9A01FB11CF2F60300699939 /* avatar3.png in Resources */,
 				F9A01FB01CF2F60300699939 /* avatar2.png in Resources */,
 				F1F6A1C01B77EA3B7B48605F /* create header bg.png in Resources */,
+				F1F6A3BED08AE4BDEBA6FF8A /* LICENSE in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1430,6 +1436,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				F1F6AEBEB453076146F8EB8C /* LICENSE in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1602,6 +1609,7 @@
 				F1F6A0B374F3C2CC9DC0E33F /* SGWebViewController.m in Sources */,
 				F1F6A9DC57DDEEA117827980 /* LicenseViewController.m in Sources */,
 				F1F6AC398FEDC54D03BE9F30 /* AcknowledgementViewController.m in Sources */,
+				F1F6ABC674B394F958DDD2F3 /* RegisterTests.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1609,7 +1617,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				F9A7238F1CDDF8A900E3BC8E /* TO_DOTests.m in Sources */,
+				F1F6A37BEAC3564D1EA337BA /* RegisterTests.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1765,6 +1773,7 @@
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(PROJECT_DIR)",
+					"$(PLATFORM_DIR)/Developer/Library/Frameworks",
 				);
 				GCC_PREFIX_HEADER = "$(SRCROOT)/TO-DO/PrefixHeader.pch";
 				INFOPLIST_FILE = "TO-DO/Info.plist";
@@ -1773,7 +1782,7 @@
 				PRODUCT_BUNDLE_IDENTIFIER = com.siegrain.todo;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				TARGETED_DEVICE_FAMILY = 1;
-				USER_HEADER_SEARCH_PATHS = "$(PODS_ROOT)/**";
+				USER_HEADER_SEARCH_PATHS = "$(PODS_ROOT)/** $(PLATFORM_DIR)/Developer/Library/Frameworks";
 			};
 			name = Debug;
 		};
@@ -1788,6 +1797,7 @@
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(PROJECT_DIR)",
+					"$(PLATFORM_DIR)/Developer/Library/Frameworks",
 				);
 				GCC_PREFIX_HEADER = "$(SRCROOT)/TO-DO/PrefixHeader.pch";
 				INFOPLIST_FILE = "TO-DO/Info.plist";
@@ -1796,7 +1806,7 @@
 				PRODUCT_BUNDLE_IDENTIFIER = com.siegrain.todo;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				TARGETED_DEVICE_FAMILY = 1;
-				USER_HEADER_SEARCH_PATHS = "$(PODS_ROOT)/**";
+				USER_HEADER_SEARCH_PATHS = "$(PODS_ROOT)/** $(PLATFORM_DIR)/Developer/Library/Frameworks";
 			};
 			name = Release;
 		};
@@ -1804,11 +1814,13 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				BUNDLE_LOADER = "$(TEST_HOST)";
+				FRAMEWORK_SEARCH_PATHS = "$(PLATFORM_DIR)/Developer/Library/Frameworks/**";
 				INFOPLIST_FILE = "TO-DOTests/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = "Siegrain.TO-DOTests";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/TO-DO.app/TO-DO";
+				USER_HEADER_SEARCH_PATHS = "\"${PROJECT_DIR}/Pods\"/** $(PLATFORM_DIR)/Developer/Library/Frameworks";
 			};
 			name = Debug;
 		};
@@ -1816,11 +1828,13 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				BUNDLE_LOADER = "$(TEST_HOST)";
+				FRAMEWORK_SEARCH_PATHS = "$(PLATFORM_DIR)/Developer/Library/Frameworks/**";
 				INFOPLIST_FILE = "TO-DOTests/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = "Siegrain.TO-DOTests";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/TO-DO.app/TO-DO";
+				USER_HEADER_SEARCH_PATHS = "\"${PROJECT_DIR}/Pods\"/** $(PLATFORM_DIR)/Developer/Library/Frameworks";
 			};
 			name = Release;
 		};

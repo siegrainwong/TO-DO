@@ -35,7 +35,6 @@ static NSInteger const kLoginFailCountOverLimitErrorCodeKey = 1;
 
 @interface
 LCUserDataManager ()
-@property(nonatomic, readwrite, assign) BOOL isSignUp;
 @end
 
 @implementation LCUserDataManager
@@ -67,9 +66,9 @@ LCUserDataManager ()
 
 #pragma mark - handle sign up & sign in
 
-- (void)handleCommit:(LCUser *)user isSignUp:(BOOL)signUp complete:(void (^)(bool succeed))complete {
+- (void)commitWithUser:(LCUser *)user isSignUp:(BOOL)signUp complete:(void (^)(bool succeed))complete {
     _isSignUp = signUp;
-    if (![self validate:user isModify:NO]) return complete(NO);
+    if (![self validateWithUser:user isModify:NO]) return complete(NO);
     
     MRUserDataManager *mrUserDataManager = [MRUserDataManager new];
     
@@ -112,7 +111,7 @@ LCUserDataManager ()
 #pragma mark - modify user
 
 - (void)modifyWithUser:(LCUser *)user complete:(void (^)(bool succeed))complete {
-    if (![self validate:user isModify:YES]) return complete(NO);
+    if (![self validateWithUser:user isModify:YES]) return complete(NO);
     [SGHelper waitingAlert];
     [[AppDelegate globalDelegate].lcUser saveInBackgroundWithBlock:^(BOOL succeeded, NSError *error) {
         [SGHelper dismissAlert];
@@ -133,7 +132,7 @@ LCUserDataManager ()
 
 #pragma mark - validate
 
-- (BOOL)validate:(LCUser *)user isModify:(BOOL)isModify {
+- (BOOL)validateWithUser:(LCUser *)user isModify:(BOOL)isModify {
     if (isNetworkUnreachable) {
         [SCLAlertHelper errorAlertWithContent:_localDictionary[kNetworkUnreachable]];
         return NO;
