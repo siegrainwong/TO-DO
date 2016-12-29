@@ -66,9 +66,9 @@ LCUserDataManager ()
 
 #pragma mark - handle sign up & sign in
 
-- (void)commitWithUser:(LCUser *)user isSignUp:(BOOL)signUp complete:(void (^)(bool succeed))complete {
+- (void)commitWithUser:(LCUser *)user isSignUp:(BOOL)signUp complete:(SGUserResponse)complete {
     _isSignUp = signUp;
-    if (![self validateWithUser:user isModify:NO]) return complete(NO);
+    if (![self validateWithUser:user isModify:NO]) return complete(NO, @"字段验证失败");
     
     MRUserDataManager *mrUserDataManager = [MRUserDataManager new];
     
@@ -78,11 +78,11 @@ LCUserDataManager ()
         [LCUser logInWithUsernameInBackground:user.email password:user.password block:^(AVUser *user, NSError *error) {
             if (error) {
                 [SCLAlertHelper errorAlertWithContent:_localDictionary[@(error.code)] ? _localDictionary[@(error.code)] : error.localizedDescription];
-                return complete(NO);
+                return complete(NO, error.localizedDescription);
             }
             
             if (![CDUser userWithLCUser:(LCUser *) user]) [mrUserDataManager createUserByLCUser:(LCUser *) user];   //本地没有用户记录就创建
-            return complete(YES);
+            return complete(YES, nil);
         }];
     } else {    //sign up
         //upload avatar
@@ -90,7 +90,7 @@ LCUserDataManager ()
             if (error) {
                 [SCLAlertHelper errorAlertWithContent:_localDictionary[kPictureUploadFailedKey]];
                 
-                return complete(NO);
+                return complete(NO, _localDictionary[kPictureUploadFailedKey]);
             }
             
             user.avatar = path;
@@ -98,11 +98,11 @@ LCUserDataManager ()
             [user signUpInBackgroundWithBlock:^(BOOL succeeded, NSError *error) {
                 if (error) {
                     [SCLAlertHelper errorAlertWithContent:_localDictionary[@(error.code)] ? _localDictionary[@(error.code)] : error.localizedDescription];
-                    return complete(NO);
+                    return complete(NO, error.localizedDescription);
                 }
-                CDUser * cdUser = [mrUserDataManager createUserByLCUser:user];
+                CDUser *cdUser = [mrUserDataManager createUserByLCUser:user];
                 [weakSelf insertPilotDataWithUser:cdUser];
-                return complete(YES);
+                return complete(YES, nil);
             }];
         }];
     }

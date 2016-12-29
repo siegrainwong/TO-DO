@@ -45,7 +45,7 @@
 #pragma mark - commit
 
 - (void)loginViewDidPressCommitButton:(LCUser *)user isSignUp:(BOOL)isSignUp {
-    [_dataManager commitWithUser:user isSignUp:isSignUp complete:^(bool succeed) {
+    [_dataManager commitWithUser:user isSignUp:isSignUp complete:^(bool succeed, NSString *errorMessage) {
         [_loginView stopCommitAnimation];
         [[UIApplication sharedApplication] setNetworkActivityIndicatorVisible:NO];
         if (!succeed) return;

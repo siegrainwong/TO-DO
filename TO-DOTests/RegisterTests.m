@@ -24,7 +24,7 @@
 #pragma mark - tests
 
 - (void)testAvatar {
-    self.unitName = @"avatar";
+    self.unitName = @"Avatar";
     
     self.user.avatarImage = nil;
     XCTAssertFalse([self validate], @"%@ is %@ but succeed", self.unitName, self.user.avatarImage);
@@ -32,7 +32,7 @@
 }
 
 - (void)testName {
-    self.unitName = @"name";
+    self.unitName = @"Name";
     
     self.user.name = nil;
     XCTAssertFalse([self validate], @"%@ is %@ but succeed", self.unitName, self.user.name);
@@ -55,8 +55,8 @@
     [self resetUser];
 }
 
--(void)testEmail{
-    self.unitName = @"email";
+- (void)testEmail {
+    self.unitName = @"Email";
     
     self.user.email = nil;
     XCTAssertFalse([self validate], @"%@ is %@ but succeed", self.unitName, self.user.email);
@@ -67,8 +67,8 @@
     [self resetUser];
 }
 
--(void)testPassword{
-    self.unitName = @"password";
+- (void)testPassword {
+    self.unitName = @"Password";
     
     self.user.password = nil;
     XCTAssertFalse([self validate], @"%@ is %@ but succeed", self.unitName, self.user.password);
@@ -83,13 +83,23 @@
     [self resetUser];
 }
 
+- (void)testRegister {
+    self.unitName = @"Register";
+    __weak __typeof(self) weakSelf = self;
+    
+    [self resetUser];
+    [self requestWithComplete:^(bool succeed, NSString *errorMessage) {
+        XCTAssertTrue(succeed, @"%@ failed because of : %@", weakSelf.unitName, errorMessage);
+    }];
+}
+
 #pragma mark - test helper
 
-- (void)requestWithComplete:(void (^)(bool succeed))complete {
-    XCTestExpectation *expectation = [self expectationWithDescription:@"what the fuck is this?"];
+- (void)requestWithComplete:(SGUserResponse)complete {
+    XCTestExpectation *expectation = [self expectationWithDescription:@"time out?"];
     __weak __typeof(self) weakSelf = self;
-    [_dataManager commitWithUser:self.user isSignUp:YES complete:^(bool succeed) {
-        complete(succeed);
+    [_dataManager commitWithUser:self.user isSignUp:YES complete:^(bool succeed, NSString *errorMessage) {
+        complete(succeed, errorMessage);
         
         [weakSelf resetUser];
         [expectation fulfill];
@@ -97,7 +107,7 @@
     [self waitForExpectationsWithTimeout:10 handler:^(NSError *error) {}];
 }
 
--(BOOL)validate{
+- (BOOL)validate {
     return [_dataManager validateWithUser:self.user isModify:NO];
 }
 

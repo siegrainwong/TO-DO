@@ -10,7 +10,9 @@
 
 @class LCUser;
 
-@interface LCUserDataManager : NSObject<Localized>
+typedef void (^SGUserResponse)(bool succeed, NSString *errorMessage);
+
+@interface LCUserDataManager : NSObject <Localized>
 @property(nonatomic, assign) BOOL isSignUp;
 
 /**
@@ -22,7 +24,7 @@
  *
  *  @return <#return value description#>
  */
-- (void)commitWithUser:(LCUser *)user isSignUp:(BOOL)signUp complete:(void (^)(bool succeed))complete;
+- (void)commitWithUser:(LCUser *)user isSignUp:(BOOL)signUp complete:(SGUserResponse)complete;
 
 /**
  * 编辑用户资料
