@@ -78,7 +78,18 @@
 "Today" = "今天";
 "Set date" = "设置时间";
 "Back" = "返回";
+
+/* Sync */
 "Unable to sync, please check your network connection!" = "同步失败，请检查您的网络连接!";
+"Sync error: failed to download data" = "同步错误：下载数据失败";
+"Sync error: failed to upload photos, please retry" = "同步错误：上传照片失败，请重试";
+"Sync error: failed to upload/save tasks, please retry" = "同步错误：上传/保存任务失败，请重试";
+"Sync error: failed to fetch sync record from server, please retry" = "同步错误：获取服务器同步记录失败，请重试";
+"Sync error: failed to fetch tasks from server, please retry" = "同步错误：获取服务器上的待办事项失败，请重试";
+"Sync error: failed to insert record on server, please retry" = "同步错误：向服务器插入同步记录失败，请重试";
+"Sync error: failed to fetch timestamp from server, please retry" = "同步错误：向服务器请求时间戳失败，请重试";
+"Sync error: failed to save tasks on server, please retry" = "同步错误：向服务器保存待办事项失败，请重试";
+"Sync error: server may be unavailable, please try again later" = "同步错误：服务器可能异常，请稍后重试";
 
 /* Detail */
 "Add location" = "添加位置";

@@ -32,7 +32,7 @@ NS_ASSUME_NONNULL_BEGIN
  *  错误处理后 return，block 中的 succeed 值为 NO 
  *  用于返回void的方法
  */
-- (void)returnWithError:(nullable NSError *)error description:(NSString *)description failBlock:(CompleteBlock)block;
+- (void)returnWithError:(nullable NSError *)error description:(nullable NSString *)description failBlock:(CompleteBlock)block;
 @end
 
 NS_ASSUME_NONNULL_END

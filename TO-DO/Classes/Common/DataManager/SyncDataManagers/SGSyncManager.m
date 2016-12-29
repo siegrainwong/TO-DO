@@ -15,8 +15,6 @@
 #import "SCLAlertHelper.h"
 #import "SGSyncManager.h"
 
-// TODO: 本地化
-
 typedef NS_ENUM(NSInteger, TodoFetchType) {
     TodoFetchTypeCommit,
     TodoFetchTypeDownload
@@ -69,7 +67,7 @@ static NSInteger const kMaximumSyncCountPerFetch = 100;
 - (void)synchronize:(SyncMode)syncMode complete:(CompleteBlock)complete {
     [self setupSyncMode:syncMode];
     
-    if (isNetworkUnreachable) return [self.errorHandler returnWithError:nil description:NSLocalizedString(@"Unable to sync, please check your network connection!", nil) failBlock:complete];
+    if (isNetworkUnreachable) return [self.errorHandler returnWithError:nil description:Localized(@"Unable to sync, please check your network connection!") failBlock:complete];
     
     _isSyncing = YES;
     /*
@@ -101,7 +99,7 @@ static NSInteger const kMaximumSyncCountPerFetch = 100;
     NSBlockOperation *asyncOperation = [NSBlockOperation new];
     [asyncOperation addExecutionBlock:^{
         //1. 准备同步
-        if (![weakSelf isPrepared]) return [weakSelf.errorHandler returnWithError:nil description:@"1. 准备同步失败，停止同步" failBlock:complete];
+        if (![weakSelf isPrepared]) return [weakSelf.errorHandler returnWithError:nil description:nil failBlock:complete];
         
         __block NSMutableArray<CDTodo *> *todosReadyToCommit = [NSMutableArray new];
         
@@ -122,7 +120,7 @@ static NSInteger const kMaximumSyncCountPerFetch = 100;
                 if ([weakSelf downloadTodosWithLastCreatedAt:lastCreatedAt ?: [NSDate date]]) return;
                 //失败取消CompletionBlock，返回错误信息
                 [weakOperation setCompletionBlock:nil];
-                return [weakSelf.errorHandler returnWithError:nil description:@"2-1. 下载数据失败" failBlock:complete];
+                return [weakSelf.errorHandler returnWithError:nil description:Localized(@"Sync error: failed to download data") failBlock:complete];
             }];
         } else if (weakSelf.syncType == SyncTypeFullSync) { //2-2-2. 如果是全量同步，则将本地没有的数据添加进上下文，将其他数据对比之后加入相应的同步序列
             [operation addExecutionBlock:^{
@@ -177,7 +175,7 @@ static NSInteger const kMaximumSyncCountPerFetch = 100;
     //1. 根据服务器和本地的最新同步记录获取此次同步的同步类型
     BOOL fetchServerRecordSucceed;
     LCSyncRecord *lastRecordOnServer = [self fetchLastRecordOnServerWithSucceed:&fetchServerRecordSucceed];
-    if(!fetchServerRecordSucceed) return NO;
+    if (!fetchServerRecordSucceed) return NO;
     
     _syncType = [self syncTypeWithRecord:lastRecordOnServer andLocalRecord:[self fetchLastRecordOnLocal]];
     
@@ -282,7 +280,7 @@ static NSInteger const kMaximumSyncCountPerFetch = 100;
  */
 - (void)saveWithTodosArray:(NSArray<CDTodo *> *)todosReadyToCommit complete:(CompleteBlock)complete {
     //检查网络
-    if (isNetworkUnreachable) return [self.errorHandler returnWithError:nil description:NSLocalizedString(@"Unable to sync, please check your network connection!", nil) failBlock:complete];
+    if (isNetworkUnreachable) return [self.errorHandler returnWithError:nil description:Localized(@"Unable to sync, please check your network connection!") failBlock:complete];
     
     //并行上传图片
     NSBlockOperation *operation = [NSBlockOperation new];
@@ -293,13 +291,13 @@ static NSInteger const kMaximumSyncCountPerFetch = 100;
             cdTodo.photoData = [NSData dataWithContentsOfFile:[NSString stringWithFormat:@"%@/%@.jpg", [SGHelper photoPath], cdTodo.identifier]];
             AVFile *photo = [AVFile fileWithName:[NSString stringWithFormat:@"%@.jpg", cdTodo.identifier] data:cdTodo.photoData];
             if ([photo save]) cdTodo.photoUrl = photo.url;
-            else [self.errorHandler returnWithError:nil description:[NSString stringWithFormat:@"2-3. 上传图片失败：%@", cdTodo.identifier] failBlock:nil];
+            else [self.errorHandler returnWithError:nil description:Localized(@"Sync error: failed to upload photos, please retry") failBlock:nil];
         }];
     }
     
     [operation setCompletionBlock:^{
         //上传并保存本地数据
-        if (![self commitAndSaveWithTodoArray:todosReadyToCommit]) return [self.errorHandler returnWithError:nil description:@"2-3. 上传\\保存数据失败" failBlock:complete];
+        if (![self commitAndSaveWithTodoArray:todosReadyToCommit]) return [self.errorHandler returnWithError:nil description:nil failBlock:complete];
         //判断是否需要进行下一批次的同步
         return [self syncIfNeeded:complete];
     }];
@@ -348,7 +346,10 @@ static NSInteger const kMaximumSyncCountPerFetch = 100;
     // Mark: 这里回调返回了两个数据，第一个是待办事项objectId数组，第二个是服务器修改过的的SyncRecord字典。
     // Mark: LeanCloud rpcFunction美名其曰可以直传AVObject，然而云函数并不支持保存
     NSArray *responseData = [AVCloud callFunction:@"commitTodos" withParameters:commitTodoParameters error:&error];
-    if (error) return NO;
+    if (error) {
+        [self.errorHandler returnWithError:error description:Localized(@"Sync error: failed to save tasks on server, please retry")];
+        return NO;
+    }
     
     NSArray *objectIdArray = responseData[0];
     NSDictionary *syncRecordDictionary = responseData[1];
@@ -384,7 +385,7 @@ static NSInteger const kMaximumSyncCountPerFetch = 100;
     LCSyncRecord *record = (LCSyncRecord *) [query getFirstObject:&error];
     if (error && error.code != 101) {  //101意思是没有这个表
         *succeed = NO;
-        return [self.errorHandler returnWithError:error description:[NSString stringWithFormat:@"1. 获取服务器同步记录失败 %s", __func__]];
+        return [self.errorHandler returnWithError:error description:Localized(@"Sync error: failed to fetch sync record from server, please retry")];
     }
     
     *succeed = YES;
@@ -404,7 +405,7 @@ static NSInteger const kMaximumSyncCountPerFetch = 100;
     NSError *error = nil;
     NSArray<LCTodo *> *array = [query findObjects:&error];
     if (error && error.code != 101) {  //101意思是没有这个表
-        return [self.errorHandler returnWithError:error description:[NSString stringWithFormat:@"2-1. %s", __func__]];
+        return [self.errorHandler returnWithError:error description:Localized(@"Sync error: failed to fetch tasks from server, please retry")];
     }
     
     return array;
@@ -488,7 +489,7 @@ static NSInteger const kMaximumSyncCountPerFetch = 100;
     lcSyncRecord.recordMark = _recordMark;
     
     [lcSyncRecord save:&error];
-    if (error) return [self.errorHandler returnWithError:error description:[NSString stringWithFormat:@"2. %s", __func__]];
+    if (error) return [self.errorHandler returnWithError:error description:Localized(@"Sync error: failed to insert record on server, please retry")];
     
     CDSyncRecord *cdSyncRecord = [CDSyncRecord syncRecordFromLCSyncRecord:lcSyncRecord inContext:_localContext];
     
@@ -504,11 +505,11 @@ static NSInteger const kMaximumSyncCountPerFetch = 100;
  *  获取服务器时间并转换为 NSDate
  */
 - (NSDate *)serverDate {
-    NSDictionary *parameters = [NSDictionary dictionaryWithObjects:@[kLeanCloudAppID, kLeanCloudAppKey] forKeys:@[@"X-LC-Id", @"X-LC-Key"]];
+    NSDictionary *parameters = @{@"X-LC-Id": kLeanCloudAppID, @"X-LC-Key": kLeanCloudAppKey};
     AFHTTPRequestOperationManager *manager = [AFHTTPRequestOperationManager manager];
     NSError *error = nil;
     NSDictionary *responseObject = [manager syncGET:kLeanCloudServerDateApiUrl parameters:parameters operation:nil error:&error];
-    if (error) return [self.errorHandler returnWithError:error description:@"2. 无法获取服务器时间"];
+    if (error) return [self.errorHandler returnWithError:error description:Localized(@"Sync error: failed to fetch timestamp from server, please retry")];
     
     NSDate *serverDate = [DateUtil dateFromISO8601String:responseObject[@"iso"]];
     

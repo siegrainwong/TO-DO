@@ -7,9 +7,9 @@
 #import "LCUserDataManager.h"
 #import "AVUser.h"
 #import "LCUser.h"
-#import "UIImage+Extension.h"
 #import "SGSyncManager.h"
 #import "AppDelegate.h"
+#import "UIImage+Extension.h"
 #import <XCTest/XCTest.h>
 
 @interface RegisterTests : XCTestCase
