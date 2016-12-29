@@ -34,9 +34,11 @@
 - (NSString *)sandboxUrl;
 
 /**
- * 全局同步方法
+ * 同步入口
+ * @param syncType 同步类型
+ * @param isForcing 忽略用户设置强制同步
  */
-- (void)synchronize:(SyncMode)syncType;
+- (void)synchronize:(SyncMode)syncType isForcing:(BOOL)isForcing;
 
 /**
  *  切换根控制器

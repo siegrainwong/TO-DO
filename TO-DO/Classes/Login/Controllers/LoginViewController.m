@@ -8,15 +8,8 @@
 
 #import "AppDelegate.h"
 #import "HomeViewController.h"
-#import "LCUser.h"
 #import "LCUserDataManager.h"
 #import "LoginViewController.h"
-#import "Masonry.h"
-#import "SCLAlertView.h"
-#import "SGHelper.h"
-#import "UIView+SDAutoLayout.h"
-#import "CDTodo.h"
-#import "MRTodoDataManager.h"
 
 @interface LoginViewController () <TZImagePickerControllerDelegate>
 @property(nonatomic, readwrite, strong) LoginView *loginView;

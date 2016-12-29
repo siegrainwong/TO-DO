@@ -171,7 +171,7 @@ MRTodoDataManager ()
 #pragma mark - private methods
 
 - (void)syncIfNeeded {
-    [[GCDQueue mainQueue] async:^{[[AppDelegate globalDelegate] synchronize:SyncModeAutomatically];}];
+    [[GCDQueue mainQueue] async:^{[[AppDelegate globalDelegate] synchronize:SyncModeAutomatically isForcing:NO];}];
 }
 
 - (NSPredicate *)predicateWithUser:(CDUser *)user date:(NSDate *)date keyword:(NSString *)keyword status:(NSNumber *)status isComplete:(NSNumber *)isComplete {

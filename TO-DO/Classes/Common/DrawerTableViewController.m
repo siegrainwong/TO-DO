@@ -181,7 +181,7 @@ DrawerTableViewController ()
 #pragma mark - sync button
 
 - (void)syncButtonDidPress {
-    [[AppDelegate globalDelegate] synchronize:SyncModeManually];
+    [[AppDelegate globalDelegate] synchronize:SyncModeManually isForcing:NO];
 }
 
 #pragma mark - synchronize

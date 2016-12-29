@@ -148,7 +148,7 @@ static BOOL const kEnableViewControllerStateHolder = YES;
 }
 
 - (void)setupReachability {
-    LocalConnection * localConnection = [LocalConnection sharedInstance];
+    LocalConnection *localConnection = [LocalConnection sharedInstance];
     [localConnection startNotifier];
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(networkChanged) name:kLocalConnectionChangedNotification object:nil];
 }
@@ -233,13 +233,13 @@ static BOOL const kEnableViewControllerStateHolder = YES;
 - (void)logIn {
     [self setupUser];
     [self switchRootViewController:[HomeViewController new] isNavigation:YES key:[AppDelegate homeViewControllerKey]];
-    [self synchronize:SyncModeAutomatically];
+    [self synchronize:SyncModeAutomatically isForcing:YES];
 }
 
 #pragma mark - sync
 
-- (void)synchronize:(SyncMode)syncType {
-    if (syncType == SyncModeAutomatically && (!_cdUser.enableAutoSync || !_cdUser.enableAutoSync.boolValue)) return;
+- (void)synchronize:(SyncMode)syncType isForcing:(BOOL)isForcing {
+    if (!isForcing) if (syncType == SyncModeAutomatically && (!_cdUser.enableAutoSync || !_cdUser.enableAutoSync.boolValue)) return;
     
     __weak typeof(self) weakSelf = self;
     [[GCDQueue globalQueueWithLevel:DISPATCH_QUEUE_PRIORITY_DEFAULT] sync:^{
@@ -255,7 +255,7 @@ static BOOL const kEnableViewControllerStateHolder = YES;
 }
 
 - (void)networkChanged {
-    [self synchronize:SyncModeAutomatically];
+    [self synchronize:SyncModeAutomatically isForcing:NO];
 }
 
 #pragma mark - switch root view controller
