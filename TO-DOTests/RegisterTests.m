@@ -8,6 +8,8 @@
 #import "AVUser.h"
 #import "LCUser.h"
 #import "UIImage+Extension.h"
+#import "SGSyncManager.h"
+#import "AppDelegate.h"
 #import <XCTest/XCTest.h>
 
 @interface RegisterTests : XCTestCase
@@ -53,6 +55,10 @@
     self.user.name = @"名称的最大长度应该不超";
     XCTAssertFalse([self validate], @"%@ should shorter than %@ but succeed", self.unitName, self.user.name);
     [self resetUser];
+    
+    self.user.name = @"@#%*@#$%-";
+    XCTAssertFalse([self validate], @"%@ should'nt have %@ but succeed", self.unitName, self.user.name);
+    [self resetUser];
 }
 
 - (void)testEmail {
@@ -83,29 +89,47 @@
     [self resetUser];
 }
 
-- (void)testRegister {
+- (void)testRegisterAndSync {
     self.unitName = @"Register";
     __weak __typeof(self) weakSelf = self;
     
     [self resetUser];
-    [self requestWithComplete:^(bool succeed, NSString *errorMessage) {
+    NSLog(@"%@", [self.user dictionaryForObject]);
+    
+    __block BOOL registerResult;
+    [self registerWithComplete:^(bool succeed, NSString *errorMessage) {
         XCTAssertTrue(succeed, @"%@ failed because of : %@", weakSelf.unitName, errorMessage);
+        registerResult = succeed;
     }];
+    
+    if (registerResult) {
+        [self syncWithComplete:^(BOOL succeed) {
+            XCTAssertTrue(succeed, @"Sync after %@ failed, please read log", self.unitName);
+        }];
+    }
 }
 
 #pragma mark - test helper
 
-- (void)requestWithComplete:(SGUserResponse)complete {
-    XCTestExpectation *expectation = [self expectationWithDescription:@"time out?"];
-    __weak __typeof(self) weakSelf = self;
+- (void)registerWithComplete:(SGUserResponse)complete {
+    XCTestExpectation *expectation = [self expectationWithDescription:@"register time out?"];
     [_dataManager commitWithUser:self.user isSignUp:YES complete:^(bool succeed, NSString *errorMessage) {
         complete(succeed, errorMessage);
-        
-        [weakSelf resetUser];
         [expectation fulfill];
     }];
     [self waitForExpectationsWithTimeout:10 handler:^(NSError *error) {}];
 }
+
+- (void)syncWithComplete:(CompleteBlock)complete {
+    XCTestExpectation *expectation = [self expectationWithDescription:@"sync time out?"];
+    [[AppDelegate globalDelegate] setupUser];
+    [[SGSyncManager sharedInstance] synchronize:SyncModeAutomatically complete:^(BOOL succeed) {
+        complete(succeed);
+        [expectation fulfill];
+    }];
+    [self waitForExpectationsWithTimeout:10 handler:^(NSError *error) {}];
+}
+
 
 - (BOOL)validate {
     return [_dataManager validateWithUser:self.user isModify:NO];
@@ -113,13 +137,13 @@
 
 - (void)resetUser {
     CGFloat random = arc4random() % 99999 + 1;
-    NSString *name = [NSString stringWithFormat:@"sgtest-%@", @(random)];
+    NSString *name = [NSString stringWithFormat:@"sgtest%@", @(random)];
     
     self.user = [LCUser object];
+    self.user.name = name;
     self.user.avatarImage = [UIImage imageAtResourcePath:@"avatar1"];
     self.user.email = [NSString stringWithFormat:@"%@@qq.com", name];
     self.user.username = self.user.email;
-    self.user.name = name;
     self.user.password = @"testuser";
 }
 

@@ -30,6 +30,13 @@
 			<key>orderHint</key>
 			<integer>43</integer>
 		</dict>
+		<key>-[RegisterTests testRegister].xcscheme</key>
+		<dict>
+			<key>isShown</key>
+			<false />
+			<key>orderHint</key>
+			<integer>44</integer>
+		</dict>
 	</dict>
 	<key>SuppressBuildableAutocreation</key>
 	<dict>
