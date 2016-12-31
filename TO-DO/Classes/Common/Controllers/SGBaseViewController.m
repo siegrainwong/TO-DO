@@ -112,7 +112,7 @@
     __weak __typeof(self) weakSelf = self;
     [SGHelper photoPickerFrom:self allowCrop:YES currentPhoto:_headerView.avatarButton.currentImage pickerDidPicked:^(UIImage *image) {
         [CommonDataManager modifyAvatarWithImage:image block:^{
-            [weakSelf.headerView.avatarButton sd_setImageWithURL:GetPictureUrl(weakSelf.lcUser.avatar, kQiniuImageStyleSmall) forState:UIControlStateNormal];
+            [weakSelf.headerView.avatarButton sd_setImageWithURL:GetQiniuPictureUrl(weakSelf.lcUser.avatar) forState:UIControlStateNormal];
         }];
     }];
 }

@@ -6,11 +6,6 @@
 3. 界面设计来源于 [DO](https://www.invisionapp.com/do) ，部分素材和界面为本人设计。
 4. 该项目于 2016-12-29 日第一版开发完成，之前由于意外收录可能有些朋友 clone 的是不稳定版，还请重新下载一次。
 
-##关于测试服务器
-为了方便大家观察服务器的数据，分离服务器后会把测试账号公开，要是有什么情况请通知我，（当然万一发生了类似超额的情况我不一定会解决），另一方面会这样做的主要原因是自己搭建的话可能比较麻烦。
-todotest
-Abcd123!@#
-
 ##项目演示
 一共6张GIF，共9M，请耐心等待。
 
@@ -18,10 +13,27 @@ Abcd123!@#
 ![1](https://raw.githubusercontent.com/Seanwong933/TO-DO/master/Gif/3.%20Create.gif) ![2](https://raw.githubusercontent.com/Seanwong933/TO-DO/master/Gif/4.%20Calendar.gif)
 ![1](https://raw.githubusercontent.com/Seanwong933/TO-DO/master/Gif/5.%20Profile.gif) ![2](https://raw.githubusercontent.com/Seanwong933/TO-DO/master/Gif/6.%20Setting.gif)
 
-##自己搭建
-该项目一共接入了三个第三方服务，分别为七牛、LeanCloud 和高德地图，对应的key or secret各位请向服务商申请，然后在 `SGAPIKeys.h` 中进行配置。
+##测试服务器
+为了方便大家观察服务器的数据，测试账号已公开，要是有什么情况请通知我，（当然万一发生了类似超额的情况我不一定会解决），另一方面会这样做的主要原因是自己搭建的话可能比较麻烦。
+注：从2016年12月31日起，该项目中的所有的**第三方API Key**已经换成测试账号中的新秘钥，且以前的 API Key 都被**弃用**。
 
-除申请对应的API Key外，LeanCloud 上还需要配置相应的在线云函数才能使用同步功能，这是必需的，毕竟 LeanCloud 的 SDK 没有提供类似事务的功能。
+####LeanCloud 账号
+todotest
+
+Abcd123!@#
+
+####七牛账号（存放头像）
+sgtodo@126.com
+
+Abcd123!@#
+
+####高德
+高德 Key 要 BundleID，请各位自行配置，不用地图也一样。
+
+##自己搭建
+该项目一共接入了三个第三方服务，分别为七牛、LeanCloud 和高德地图，对应的 API Key 各位请向服务商申请，然后在 `SGAPIKeys.h` 中进行配置。
+
+除此之外，LeanCloud 上还需要配置相应的在线云函数才能使用同步功能，这是必需的，毕竟 LeanCloud 的 SDK 没有提供类似事务的功能。
 
 ##同步算法、思路等
 如果你对这个感兴趣的话，请查看以下内容，并对照相应代码进行理解。

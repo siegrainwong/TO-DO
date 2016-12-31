@@ -73,7 +73,8 @@
     //header
     self.headerView = [SGHeaderView headerViewWithAvatarPosition:HeaderAvatarPositionCenter titleAlignement:NSTextAlignmentCenter];
     self.headerView.subtitleLabel.text = [SGHelper localizedFormatDate:[NSDate date]];
-    [self.headerView.avatarButton sd_setImageWithURL:GetPictureUrl(super.lcUser.avatar, kQiniuImageStyleSmall) forState:UIControlStateNormal];
+    [self.headerView.avatarButton sd_setImageWithURL:GetQiniuPictureUrl(super.lcUser.avatar) forState:UIControlStateNormal];
+    DDLogInfo(@"%@", GetQiniuPictureUrl(super.lcUser.avatar));
     [self.headerView setImage:[UIImage imageAtResourcePath:@"header bg"] style:HeaderMaskStyleLight];
     [self.headerView setHeaderViewDidPressAvatarButton:^{[weakSelf avatarButtonDidPress];}];
     [self.headerView setHeaderViewDidPressRightOperationButton:^{[weakSelf showCreateViewController];}];

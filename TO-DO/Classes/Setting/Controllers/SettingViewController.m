@@ -54,7 +54,7 @@
     if (iOSVersion < 10) self.headerView.frame = CGRectMake(0, 0, kScreenWidth, self.headerHeight);  //真™神了，之前的表格都没有这个Bug，不给一个frame的话tableHeaderView不会有大小
     self.headerView.titleLabel.text = self.cdUser.name;
     [self.headerView.avatarButton setHidden:YES];
-    [self.headerView.rightOperationButton sd_setImageWithURL:GetPictureUrl(self.lcUser.avatar, kQiniuImageStyleSmall) forState:UIControlStateNormal];
+    [self.headerView.rightOperationButton sd_setImageWithURL:GetQiniuPictureUrl(self.lcUser.avatar) forState:UIControlStateNormal];
     [self.headerView setImage:[UIImage imageAtResourcePath:@"setting header bg"] style:HeaderMaskStyleMedium];
     [self.headerView setHeaderViewDidPressAvatarButton:^{[weakSelf avatarButtonDidPress];}];
     

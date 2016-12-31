@@ -16,11 +16,14 @@
  * ================================ 各种服务的Key or Secrets
  */
 
-/* 高德地图 */
-static NSString * const kAmapKey = @"f387111b6ebe49a4a9c4477706a6c7e8";
+/* 高德地图（请自行配置） */
+static NSString * const kAmapKey = @"";
 
-/* 七牛空间地址 */
-static NSString* const kQiniuDomain = @"http://o6yj5t1zc.bkt.clouddn.com/";
+/* 七牛 */
+static NSString* const kQiniuDomain = @"http://oj1x4qt6d.bkt.clouddn.com/";
+static NSString *const kQiniuBucketName = @"to-do";
+static NSString *const kQiniuSK = @"rDEdMSp8QIa6yroBreM0XpQYMTkJmUYfx0lz4IN-";
+static NSString *const kQiniuAK = @"05fAHfwHezWboSVVyTWJV14Ae9NZWMxCrbs2QFlL";
 
 /* LeanCloud */
 static NSString* const kLeanCloudAppID = @"DbN2mTGoaxedDtiXvnwgNMeA-gzGzoHsz";
@@ -35,10 +38,5 @@ static NSString * const kPrivacyPolicyUrl = @"http://siegrain.wang/post/to-do-pr
 
 /* LeanCloud获取服务器时间的API地址 */
 static NSString* const kLeanCloudServerDateApiUrl = @"https://api.leancloud.cn/1.1/date";
-
-/* 七牛图片样式 */
-static NSString* const kQiniuImageStyleMedium = @"medium";
-static NSString* const kQiniuImageStyleSmall = @"small";
-static NSString* const kQiniuImageStyleThumbnail = @"thumb";
 
 #endif

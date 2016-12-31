@@ -62,7 +62,7 @@ static CGFloat const kParallaxHeaderMinimumHeight = 64;
     self.headerView.titleLabel.text = self.cdUser.name;
     self.headerView.subtitleLabel.text = self.cdUser.email;
     [self.headerView.rightOperationButton setHidden:YES];
-    [self.headerView.avatarButton sd_setImageWithURL:GetPictureUrl(super.lcUser.avatar, kQiniuImageStyleSmall) forState:UIControlStateNormal];
+    [self.headerView.avatarButton sd_setImageWithURL:GetQiniuPictureUrl(super.lcUser.avatar) forState:UIControlStateNormal];
     [self.headerView setImage:[UIImage imageAtResourcePath:@"profile header bg"] style:HeaderMaskStyleMedium];
     [self.headerView setHeaderViewDidPressAvatarButton:^{[weakSelf avatarButtonDidPress];}];
     
