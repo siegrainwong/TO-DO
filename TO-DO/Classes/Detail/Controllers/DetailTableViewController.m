@@ -149,14 +149,20 @@ typedef NS_ENUM(NSInteger, SGDetailItem) {
     } else if (indexPath.row == SGDetailItemPhoto) {
         __weak __typeof(self) weakSelf = self;
         [SGHelper photoPickerFrom:self allowCrop:NO currentPhoto:weakSelf.model.photoImage pickerDidPicked:^(UIImage *image) {
-            _model.photoData = [SGImageUpload dataWithImage:image type:SGImageTypePhoto quality:kSGDefaultImageQuality];
-            _model.photoImage = [UIImage imageWithData:_model.photoData];
-        
-            DetailModel *model = weakSelf.dataArray[SGDetailItemPhoto];
-            model.photoPath = _model.photoPath;
-            model.rowHeight = 0;
-        
-            [weakSelf saveAndReload];
+            weakSelf.model.photoData = [SGImageUpload dataWithImage:image type:SGImageTypePhoto quality:kSGDefaultImageQuality];
+            weakSelf.model.photoImage = [UIImage imageWithData:_model.photoData];
+            [weakSelf.model saveImageWithBlock:^(BOOL succeed) {
+                if(!succeed){
+                    [SGHelper errorAlertWithMessage:Localized(@"Failed to save photo, please check your storage on device and try again")];
+                    return;
+                }
+    
+                DetailModel *model = weakSelf.dataArray[SGDetailItemPhoto];
+                model.photoPath = weakSelf.model.photoPath;
+                model.rowHeight = 0;
+    
+                [weakSelf saveAndReload];
+            }];
         }];
     }
 }

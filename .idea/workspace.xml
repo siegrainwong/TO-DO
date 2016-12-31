@@ -201,9 +201,6 @@
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/TO-DO/Classes/Common/Categories/UIImage+Extension.h" afterPath="$PROJECT_DIR$/TO-DO/Classes/Common/Categories/UIImage+Extension.h" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/TO-DO/Classes/Common/Categories/UIImage+Extension.m" afterPath="$PROJECT_DIR$/TO-DO/Classes/Common/Categories/UIImage+Extension.m" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/TO-DO/Classes/Common/Constants/Macros.h" afterPath="$PROJECT_DIR$/TO-DO/Classes/Common/Constants/Macros.h" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/TO-DO/Classes/Common/Controllers/SGBaseTableViewController.m" afterPath="$PROJECT_DIR$/TO-DO/Classes/Common/Controllers/SGBaseTableViewController.m" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/TO-DO/Classes/Common/Controllers/TodoTableViewController.m" afterPath="$PROJECT_DIR$/TO-DO/Classes/Common/Controllers/TodoTableViewController.m" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/TO-DO/Classes/Common/Protocols/SGViews.h" afterPath="$PROJECT_DIR$/TO-DO/Classes/Common/Protocols/SGViews.h" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/TO-DO/Classes/Common/Utilities/FieldValidator.m" afterPath="$PROJECT_DIR$/TO-DO/Classes/Common/Utilities/FieldValidator.m" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/TO-DO/Classes/Libraries/SCLAlertView/SCLAlertView.m" afterPath="$PROJECT_DIR$/TO-DO/Classes/Libraries/SCLAlertView/SCLAlertView.m" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/TO-DO/Classes/Login/Controllers/LoginViewController.h" afterPath="$PROJECT_DIR$/TO-DO/Classes/Login/Controllers/LoginViewController.h" />
@@ -262,38 +259,28 @@
       <file leaf-file-name="SGSyncManager.m" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/TO-DO/Classes/DataManagers/SyncDataManagers/SGSyncManager.m">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="256">
-              <caret line="23" column="55" lean-forward="true" selection-start-line="23" selection-start-column="55" selection-end-line="23" selection-end-column="55" />
+            <state relative-caret-position="272">
+              <caret line="24" column="0" lean-forward="true" selection-start-line="24" selection-start-column="0" selection-end-line="24" selection-end-column="0" />
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="TodoTableViewController.m" pinned="false" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/TO-DO/Classes/Common/Controllers/TodoTableViewController.m">
+      <file leaf-file-name="DetailTableViewController.m" pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/TO-DO/Classes/Detail/Controllers/DetailTableViewController.m">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="545">
-              <caret line="241" column="65" lean-forward="true" selection-start-line="241" selection-start-column="65" selection-end-line="241" selection-end-column="65" />
+            <state relative-caret-position="630">
+              <caret line="163" column="41" lean-forward="true" selection-start-line="163" selection-start-column="41" selection-end-line="163" selection-end-column="41" />
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="SGBaseTableViewController.m" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/TO-DO/Classes/Common/Controllers/SGBaseTableViewController.m">
+      <file leaf-file-name="Localizable.strings" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/TO-DO/Localization/zh-Hans.lproj/Localizable.strings">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="435">
-              <caret line="78" column="82" lean-forward="true" selection-start-line="78" selection-start-column="82" selection-end-line="78" selection-end-column="82" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="SGViews.h" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/TO-DO/Classes/Common/Protocols/SGViews.h">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="480">
-              <caret line="35" column="11" lean-forward="false" selection-start-line="35" selection-start-column="11" selection-end-line="35" selection-end-column="11" />
+            <state relative-caret-position="278">
+              <caret line="35" column="0" lean-forward="false" selection-start-line="35" selection-start-column="0" selection-end-line="35" selection-end-column="73" />
               <folding />
             </state>
           </provider>
@@ -303,7 +290,6 @@
   </component>
   <component name="FindInProjectRecents">
     <findStrings>
-      <find>header</find>
       <find>tableview</find>
       <find>cduser</find>
       <find>Account</find>
@@ -333,6 +319,7 @@
       <find>your task list</find>
       <find>login</find>
       <find>networkeye</find>
+      <find>save photo</find>
     </findStrings>
   </component>
   <component name="Git.Settings">
@@ -341,7 +328,6 @@
   <component name="IdeDocumentHistory">
     <option name="CHANGED_PATHS">
       <list>
-        <option value="$PROJECT_DIR$/TO-DO/LicenseViewController.m" />
         <option value="$PROJECT_DIR$/TO-DO/AcknowledgementViewController.m" />
         <option value="$PROJECT_DIR$/TO-DO/Classes/Common/DataManager/CoredataManager/MRTodoDataManager.m" />
         <option value="$PROJECT_DIR$/TO-DO/Classes/Login/Views/LoginView.h" />
@@ -392,6 +378,7 @@
         <option value="$PROJECT_DIR$/TO-DO/Classes/Common/Protocols/SGViews.h" />
         <option value="$PROJECT_DIR$/TO-DO/Classes/Common/Controllers/SGBaseTableViewController.m" />
         <option value="$PROJECT_DIR$/TO-DO/Classes/Common/Controllers/TodoTableViewController.m" />
+        <option value="$PROJECT_DIR$/TO-DO/Classes/Detail/Controllers/DetailTableViewController.m" />
       </list>
     </option>
   </component>
@@ -403,10 +390,10 @@
   </component>
   <component name="OCFindUsagesOptions" text="true" ivars="false" properties="true" derivedClasses="false" />
   <component name="ProjectFrameBounds">
-    <option name="x" value="1440" />
-    <option name="y" value="-180" />
-    <option name="width" value="2560" />
-    <option name="height" value="1080" />
+    <option name="x" value="17" />
+    <option name="y" value="12" />
+    <option name="width" value="1405" />
+    <option name="height" value="877" />
   </component>
   <component name="ProjectInspectionProfilesVisibleTreeState">
     <entry key="Project Default">
@@ -472,7 +459,6 @@
       <foldersAlwaysOnTop value="true" />
     </navigator>
     <panes>
-      <pane id="Cidr.FilesView" />
       <pane id="ProjectPane">
         <subPane>
           <PATH>
@@ -595,12 +581,13 @@
           </PATH>
         </subPane>
       </pane>
+      <pane id="Cidr.FilesView" />
     </panes>
   </component>
   <component name="PropertiesComponent">
     <property name="settings.editor.selected.configurable" value="reference.settingsdialog.IDE.editor.colors.Font" />
     <property name="js-jscs-nodeInterpreter" value="/usr/local/bin/node" />
-    <property name="SearchEverywhereHistoryKey" value="todotableviewcontroller&#9;null&#9;null&#10;errorhan&#9;FILE&#9;file:///Volumes/Data/Project/MyProject/TO-DO/TO-DO/Classes/Common/DataManager/SyncDataManagers/ErrorHandler/SyncErrorHandler.m&#10;appdele&#9;FILE&#9;file:///Volumes/Data/Project/MyProject/TO-DO/TO-DO/Classes/AppDelegate/AppDelegate.m&#10;sgsyncmanager&#9;FILE&#9;file:///Volumes/Data/Project/MyProject/TO-DO/TO-DO/Classes/Common/DataManager/SyncDataManagers/SGSyncManager.m&#10;localiza&#9;FILE&#9;file:///Volumes/Data/Project/MyProject/TO-DO/TO-DO/Localization/zh-Hans.lproj/Localizable.strings&#10;syncmana&#9;FILE&#9;file:///Volumes/Data/Project/MyProject/TO-DO/TO-DO/Classes/Common/DataManager/SyncDataManagers/SGSyncManager.m&#10;sgsyncmana&#9;FILE&#9;file:///Volumes/Data/Project/MyProject/TO-DO/TO-DO/Classes/Common/DataManager/SyncDataManagers/SGSyncManager.m&#10;localized&#9;FILE&#9;file:///Volumes/Data/Project/MyProject/TO-DO/TO-DO/Classes/Common/Localized.h&#10;sgconstan&#9;FILE&#9;file:///Volumes/Data/Project/MyProject/TO-DO/TO-DO/Classes/Common/Constants/SGConstants.h&#10;validate&#9;null&#9;null&#10;homeview&#9;FILE&#9;file:///Volumes/Data/Project/MyProject/TO-DO/TO-DO/Classes/Home/HomeViewController.m&#10;loginview&#9;FILE&#9;file:///Volumes/Data/Project/MyProject/TO-DO/TO-DO/Classes/Login/Controllers/LoginViewController.m&#10;lcuserdata&#9;FILE&#9;file:///Volumes/Data/Project/MyProject/TO-DO/TO-DO/Classes/Login/DataManager/LCUserDataManager.m&#10;mruser&#9;FILE&#9;file:///Volumes/Data/Project/MyProject/TO-DO/TO-DO/Classes/Common/DataManager/CoredataManager/MRUserDataManager.m&#10;lctododata&#9;FILE&#9;file:///Volumes/Data/Project/MyProject/TO-DO/TO-DO/Classes/Home/LCTodoDataManager.h&#10;loginviewcontroller&#9;FILE&#9;file:///Volumes/Data/Project/MyProject/TO-DO/TO-DO/Classes/Login/Controllers/LoginViewController.m&#10;createviewcon&#9;null&#9;null&#10;syncmanager&#9;FILE&#9;file:///Volumes/Data/Project/MyProject/TO-DO/TO-DO/Classes/Common/DataManager/SyncDataManagers/SGSyncManager.m&#10;sgweb&#9;FILE&#9;file:///Volumes/Data/Project/MyProject/TO-DO/TO-DO/SGWebViewController.h&#10;sgwebviewcon&#9;null&#9;null&#10;about&#9;FILE&#9;file:///Volumes/Data/Project/MyProject/TO-DO/TO-DO/AboutViewController.m&#10;aboutview&#9;null&#9;null&#10;loginvie&#9;FILE&#9;file:///Volumes/Data/Project/MyProject/TO-DO/TO-DO/Classes/Login/Views/LoginView.m&#10;drawetableview&#9;FILE&#9;file:///Volumes/Data/Project/MyProject/TO-DO/TO-DO/Classes/Common/DrawerTableViewController.m&#10;detailtableviewcell&#9;FILE&#9;file:///Volumes/Data/Project/MyProject/TO-DO/TO-DO/DetailTableViewCell.m&#10;loginviewcon&#9;FILE&#9;file:///Volumes/Data/Project/MyProject/TO-DO/TO-DO/Classes/Login/Controllers/LoginViewController.m&#10;sgbaseviewcon&#9;FILE&#9;file:///Volumes/Data/Project/MyProject/TO-DO/TO-DO/Classes/Common/SGBaseTableViewController.m&#10;sghelper&#9;FILE&#9;file:///Volumes/Data/Project/MyProject/TO-DO/TO-DO/Classes/Common/SGHelper.m&#10;homeviewcon&#9;FILE&#9;file:///Volumes/Data/Project/MyProject/TO-DO/TO-DO/Classes/Home/HomeViewController.m&#10;settingtableview&#9;FILE&#9;file:///Volumes/Data/Project/MyProject/TO-DO/TO-DO/SettingTableViewController.h&#10;local&#9;FILE&#9;file:///Volumes/Data/Project/MyProject/TO-DO/TO-DO/Localization/zh-Hans.lproj/Localizable.strings&#10;uiimage&#9;FILE&#9;file:///Volumes/Data/Project/MyProject/TO-DO/TO-DO/Classes/Common/Categories/UIImage+Extension.m&#10;todotableviewcon&#9;FILE&#9;file:///Volumes/Data/Project/MyProject/TO-DO/TO-DO/Classes/Common/TodoTableViewController.m&#10;settingviewcon&#9;FILE&#9;file:///Volumes/Data/Project/MyProject/TO-DO/TO-DO/SettingViewController.m&#10;saveimage&#9;null&#9;null&#10;todotableviewcell&#9;FILE&#9;file:///Volumes/Data/Project/MyProject/TO-DO/TO-DO/Classes/Common/Views/TodoTableViewCell.m&#10;todotableview&#9;FILE&#9;file:///Volumes/Data/Project/MyProject/TO-DO/TO-DO/Classes/Common/TodoTableViewController.m&#10;podfile&#9;FILE&#9;file:///Volumes/Data/Project/MyProject/TO-DO/Podfile&#10;sgbasetableviewcon&#9;FILE&#9;file:///Volumes/Data/Project/MyProject/TO-DO/TO-DO/Classes/Common/SGBaseTableViewController.m&#10;createview&#9;FILE&#9;file:///Volumes/Data/Project/MyProject/TO-DO/TO-DO/Classes/Create/CreateViewController.h&#10;drawertableviewcon&#9;null&#9;null&#10;aboutviewcon&#9;FILE&#9;file:///Volumes/Data/Project/MyProject/TO-DO/TO-DO/AboutViewController.m&#10;todocell&#9;FILE&#9;file:///Volumes/Data/Project/MyProject/TO-DO/TO-DO/Classes/Common/Views/TodoTableViewCell.m&#10;sgbasetableview&#9;FILE&#9;file:///Volumes/Data/Project/MyProject/TO-DO/TO-DO/Classes/Common/SGBaseTableViewController.m&#10;datakey&#9;FILE&#9;file:///Volumes/Data/Project/MyProject/TO-DO/TO-DO/Classes/Common/Constants/DataKeys.h&#10;sgbase&#9;FILE&#9;file:///Volumes/Data/Project/MyProject/TO-DO/TO-DO/Classes/Common/SGBaseViewController.m&#10;macros&#9;FILE&#9;file:///Volumes/Data/Project/MyProject/TO-DO/TO-DO/Classes/Common/Constants/Macros.h&#10;sghel&#9;FILE&#9;file:///Volumes/Data/Project/MyProject/TO-DO/TO-DO/Classes/Common/SGHelper.m&#10;pofile&#9;null&#9;null&#10;lcuser&#9;FILE&#9;file:///Volumes/Data/Project/MyProject/TO-DO/TO-DO/Classes/Login/DataManager/LCUserDataManager.m" />
+    <property name="SearchEverywhereHistoryKey" value="localiza&#9;FILE&#9;file:///Volumes/Data/Project/MyProject/TO-DO/TO-DO/Localization/zh-Hans.lproj/Localizable.strings&#10;detailviewcon&#9;null&#9;null&#10;todotableviewcontroller&#9;null&#9;null&#10;errorhan&#9;FILE&#9;file:///Volumes/Data/Project/MyProject/TO-DO/TO-DO/Classes/Common/DataManager/SyncDataManagers/ErrorHandler/SyncErrorHandler.m&#10;appdele&#9;FILE&#9;file:///Volumes/Data/Project/MyProject/TO-DO/TO-DO/Classes/AppDelegate/AppDelegate.m&#10;sgsyncmanager&#9;FILE&#9;file:///Volumes/Data/Project/MyProject/TO-DO/TO-DO/Classes/Common/DataManager/SyncDataManagers/SGSyncManager.m&#10;syncmana&#9;FILE&#9;file:///Volumes/Data/Project/MyProject/TO-DO/TO-DO/Classes/Common/DataManager/SyncDataManagers/SGSyncManager.m&#10;sgsyncmana&#9;FILE&#9;file:///Volumes/Data/Project/MyProject/TO-DO/TO-DO/Classes/Common/DataManager/SyncDataManagers/SGSyncManager.m&#10;localized&#9;FILE&#9;file:///Volumes/Data/Project/MyProject/TO-DO/TO-DO/Classes/Common/Localized.h&#10;sgconstan&#9;FILE&#9;file:///Volumes/Data/Project/MyProject/TO-DO/TO-DO/Classes/Common/Constants/SGConstants.h&#10;validate&#9;null&#9;null&#10;homeview&#9;FILE&#9;file:///Volumes/Data/Project/MyProject/TO-DO/TO-DO/Classes/Home/HomeViewController.m&#10;loginview&#9;FILE&#9;file:///Volumes/Data/Project/MyProject/TO-DO/TO-DO/Classes/Login/Controllers/LoginViewController.m&#10;lcuserdata&#9;FILE&#9;file:///Volumes/Data/Project/MyProject/TO-DO/TO-DO/Classes/Login/DataManager/LCUserDataManager.m&#10;mruser&#9;FILE&#9;file:///Volumes/Data/Project/MyProject/TO-DO/TO-DO/Classes/Common/DataManager/CoredataManager/MRUserDataManager.m&#10;lctododata&#9;FILE&#9;file:///Volumes/Data/Project/MyProject/TO-DO/TO-DO/Classes/Home/LCTodoDataManager.h&#10;loginviewcontroller&#9;FILE&#9;file:///Volumes/Data/Project/MyProject/TO-DO/TO-DO/Classes/Login/Controllers/LoginViewController.m&#10;createviewcon&#9;null&#9;null&#10;syncmanager&#9;FILE&#9;file:///Volumes/Data/Project/MyProject/TO-DO/TO-DO/Classes/Common/DataManager/SyncDataManagers/SGSyncManager.m&#10;sgweb&#9;FILE&#9;file:///Volumes/Data/Project/MyProject/TO-DO/TO-DO/SGWebViewController.h&#10;sgwebviewcon&#9;null&#9;null&#10;about&#9;FILE&#9;file:///Volumes/Data/Project/MyProject/TO-DO/TO-DO/AboutViewController.m&#10;aboutview&#9;null&#9;null&#10;loginvie&#9;FILE&#9;file:///Volumes/Data/Project/MyProject/TO-DO/TO-DO/Classes/Login/Views/LoginView.m&#10;drawetableview&#9;FILE&#9;file:///Volumes/Data/Project/MyProject/TO-DO/TO-DO/Classes/Common/DrawerTableViewController.m&#10;detailtableviewcell&#9;FILE&#9;file:///Volumes/Data/Project/MyProject/TO-DO/TO-DO/DetailTableViewCell.m&#10;loginviewcon&#9;FILE&#9;file:///Volumes/Data/Project/MyProject/TO-DO/TO-DO/Classes/Login/Controllers/LoginViewController.m&#10;sgbaseviewcon&#9;FILE&#9;file:///Volumes/Data/Project/MyProject/TO-DO/TO-DO/Classes/Common/SGBaseTableViewController.m&#10;sghelper&#9;FILE&#9;file:///Volumes/Data/Project/MyProject/TO-DO/TO-DO/Classes/Common/SGHelper.m&#10;homeviewcon&#9;FILE&#9;file:///Volumes/Data/Project/MyProject/TO-DO/TO-DO/Classes/Home/HomeViewController.m&#10;settingtableview&#9;FILE&#9;file:///Volumes/Data/Project/MyProject/TO-DO/TO-DO/SettingTableViewController.h&#10;local&#9;FILE&#9;file:///Volumes/Data/Project/MyProject/TO-DO/TO-DO/Localization/zh-Hans.lproj/Localizable.strings&#10;uiimage&#9;FILE&#9;file:///Volumes/Data/Project/MyProject/TO-DO/TO-DO/Classes/Common/Categories/UIImage+Extension.m&#10;todotableviewcon&#9;FILE&#9;file:///Volumes/Data/Project/MyProject/TO-DO/TO-DO/Classes/Common/TodoTableViewController.m&#10;settingviewcon&#9;FILE&#9;file:///Volumes/Data/Project/MyProject/TO-DO/TO-DO/SettingViewController.m&#10;saveimage&#9;null&#9;null&#10;todotableviewcell&#9;FILE&#9;file:///Volumes/Data/Project/MyProject/TO-DO/TO-DO/Classes/Common/Views/TodoTableViewCell.m&#10;todotableview&#9;FILE&#9;file:///Volumes/Data/Project/MyProject/TO-DO/TO-DO/Classes/Common/TodoTableViewController.m&#10;podfile&#9;FILE&#9;file:///Volumes/Data/Project/MyProject/TO-DO/Podfile&#10;sgbasetableviewcon&#9;FILE&#9;file:///Volumes/Data/Project/MyProject/TO-DO/TO-DO/Classes/Common/SGBaseTableViewController.m&#10;createview&#9;FILE&#9;file:///Volumes/Data/Project/MyProject/TO-DO/TO-DO/Classes/Create/CreateViewController.h&#10;drawertableviewcon&#9;null&#9;null&#10;aboutviewcon&#9;FILE&#9;file:///Volumes/Data/Project/MyProject/TO-DO/TO-DO/AboutViewController.m&#10;todocell&#9;FILE&#9;file:///Volumes/Data/Project/MyProject/TO-DO/TO-DO/Classes/Common/Views/TodoTableViewCell.m&#10;sgbasetableview&#9;FILE&#9;file:///Volumes/Data/Project/MyProject/TO-DO/TO-DO/Classes/Common/SGBaseTableViewController.m&#10;datakey&#9;FILE&#9;file:///Volumes/Data/Project/MyProject/TO-DO/TO-DO/Classes/Common/Constants/DataKeys.h&#10;sgbase&#9;FILE&#9;file:///Volumes/Data/Project/MyProject/TO-DO/TO-DO/Classes/Common/SGBaseViewController.m&#10;macros&#9;FILE&#9;file:///Volumes/Data/Project/MyProject/TO-DO/TO-DO/Classes/Common/Constants/Macros.h&#10;sghel&#9;FILE&#9;file:///Volumes/Data/Project/MyProject/TO-DO/TO-DO/Classes/Common/SGHelper.m&#10;pofile&#9;null&#9;null" />
     <property name="OBJC.PRESERVED_TARGET_SELECTION" value="TO-DO,,,TO-DOTests" />
     <property name="nodejs_interpreter_path" value="/usr/local/bin/node" />
     <property name="js.eslint.eslintPackage" value="" />
@@ -794,7 +781,9 @@
       <workItem from="1483018077250" duration="572000" />
       <workItem from="1483023020232" duration="52000" />
       <workItem from="1483023144847" duration="251000" />
-      <workItem from="1483171010094" duration="1485000" />
+      <workItem from="1483171010094" duration="1742000" />
+      <workItem from="1483173128957" duration="2000" />
+      <workItem from="1483174243995" duration="294000" />
     </task>
     <servers />
   </component>
@@ -831,7 +820,7 @@
     </history-entry>
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="588225000" />
+    <option name="totallyTimeSpent" value="588778000" />
   </component>
   <component name="TodoView">
     <todo-panel id="selected-file">
@@ -844,11 +833,11 @@
     </todo-panel>
   </component>
   <component name="ToolWindowManager">
-    <frame x="1440" y="-180" width="2560" height="1080" extended-state="0" />
+    <frame x="17" y="12" width="1405" height="877" extended-state="0" />
     <editor active="true" />
     <layout>
       <window_info id="Designer" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
-      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.09227129" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
+      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.16509776" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.23809524" sideWeight="0.49842396" order="6" side_tool="false" content_ui="tabs" />
       <window_info id="Messages" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.18948413" sideWeight="0.49842396" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Palette&#9;" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
@@ -858,7 +847,7 @@
       <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.09660883" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.20337301" sideWeight="0.49807376" order="10" side_tool="false" content_ui="tabs" />
       <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="true" content_ui="tabs" />
-      <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.25198412" sideWeight="0.49369085" order="3" side_tool="false" content_ui="tabs" />
+      <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25198412" sideWeight="0.49369085" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Cvs" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
       <window_info id="Message" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
       <window_info id="Commander" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
@@ -948,14 +937,6 @@
     <watches-manager />
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/TO-DO/main.m" />
-    <entry file="file://$PROJECT_DIR$/TO-DO/Classes/Common/Categories/UIViewController+SGConfigure.m">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="272">
-          <caret line="18" column="8" lean-forward="false" selection-start-line="18" selection-start-column="8" selection-end-line="18" selection-end-column="8" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/TO-DO/SettingTableViewController.m" />
     <entry file="file://$PROJECT_DIR$/TO-DO/SGWebViewController.h" />
     <entry file="file://$PROJECT_DIR$/TO-DO/Classes/Libraries/SCLAlertView/SCLButton.h">
@@ -1077,14 +1058,6 @@
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/TO-DO/Classes/Common/DataManager/SyncDataManagers/ErrorHandler/SyncErrorHandler.m" />
-    <entry file="file://$PROJECT_DIR$/TO-DO/Localization/zh-Hans.lproj/Localizable.strings">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="432">
-          <caret line="82" column="76" lean-forward="true" selection-start-line="82" selection-start-column="76" selection-end-line="82" selection-end-column="76" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/TO-DO/Classes/AppDelegate/AppDelegate.m">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="976">
@@ -1097,6 +1070,36 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/TO-DO/Classes/Login/DataManager/LCUserDataManager.m" />
     <entry file="file://$PROJECT_DIR$/TO-DO/Classes/Common/DataManager/SyncDataManagers/SGSyncManager.m" />
+    <entry file="file://$PROJECT_DIR$/TO-DO/Supporting Files/PrefixHeader.pch">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="320">
+          <caret line="20" column="0" lean-forward="false" selection-start-line="20" selection-start-column="0" selection-end-line="20" selection-end-column="0" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/TO-DOTests/RegisterTests.m">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="448">
+          <caret line="34" column="0" lean-forward="false" selection-start-line="34" selection-start-column="0" selection-end-line="34" selection-end-column="0" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/TO-DO/Classes/Common/Controllers/TodoTableViewController.m">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="2416">
+          <caret line="147" column="31" lean-forward="false" selection-start-line="147" selection-start-column="31" selection-end-line="147" selection-end-column="31" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/TO-DO/Classes/Common/Controllers/SGBaseTableViewController.m">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="742">
+          <caret line="78" column="82" lean-forward="false" selection-start-line="78" selection-start-column="82" selection-end-line="78" selection-end-column="82" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/TO-DO/Classes/Common/Protocols/SGViews.h">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="480">
@@ -1105,46 +1108,34 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/TO-DO/Classes/Common/Controllers/SGBaseTableViewController.m">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="435">
-          <caret line="78" column="82" lean-forward="true" selection-start-line="78" selection-start-column="82" selection-end-line="78" selection-end-column="82" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/TO-DO/Supporting Files/PrefixHeader.pch">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="320">
-          <caret line="20" column="0" lean-forward="false" selection-start-line="20" selection-start-column="0" selection-end-line="20" selection-end-column="0" />
-          <folding>
-            <element signature="e#184#207#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/TO-DOTests/RegisterTests.m">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="448">
-          <caret line="34" column="0" lean-forward="false" selection-start-line="34" selection-start-column="0" selection-end-line="34" selection-end-column="0" />
-          <folding>
-            <element signature="e#101#130#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/TO-DO/Classes/DataManagers/SyncDataManagers/SGSyncManager.m">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="256">
-          <caret line="23" column="55" lean-forward="true" selection-start-line="23" selection-start-column="55" selection-end-line="23" selection-end-column="55" />
+        <state relative-caret-position="272">
+          <caret line="24" column="0" lean-forward="true" selection-start-line="24" selection-start-column="0" selection-end-line="24" selection-end-column="0" />
           <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/TO-DO/Classes/Common/Controllers/TodoTableViewController.m">
+    <entry file="file://$PROJECT_DIR$/TO-DO/Classes/Models/CoredataModels/CDTodo.m">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="545">
-          <caret line="241" column="65" lean-forward="true" selection-start-line="241" selection-start-column="65" selection-end-line="241" selection-end-column="65" />
+        <state relative-caret-position="210">
+          <caret line="56" column="8" lean-forward="false" selection-start-line="56" selection-start-column="8" selection-end-line="56" selection-end-column="8" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/TO-DO/Localization/zh-Hans.lproj/Localizable.strings">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="278">
+          <caret line="35" column="0" lean-forward="false" selection-start-line="35" selection-start-column="0" selection-end-line="35" selection-end-column="73" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/TO-DO/Classes/Detail/Controllers/DetailTableViewController.m">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="630">
+          <caret line="163" column="41" lean-forward="true" selection-start-line="163" selection-start-column="41" selection-end-line="163" selection-end-column="41" />
           <folding />
         </state>
       </provider>
