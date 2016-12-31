@@ -46,7 +46,7 @@ static BOOL const kEnableViewControllerStateHolder = YES;
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
     [self setup];
-    
+     
     return YES;
 }
 
@@ -156,6 +156,30 @@ static BOOL const kEnableViewControllerStateHolder = YES;
 - (void)truncateLocalData {
     [CDUser MR_truncateAll];
     [CDTodo MR_truncateAll];
+}
+
+- (void)insertTestTodoToLC {
+    NSMutableArray *array = [NSMutableArray array];
+    for (int i = 0; i < 148; i++) {
+        LCTodo *todo = [LCTodo object];
+        todo.title = [NSString stringWithFormat:@"Test data：%d", i];
+        todo.sgDescription = [NSString stringWithFormat:@"this is a description: %d", i];
+        todo.deadline = [[NSDate date] dateByAddingTimeInterval:arc4random() % 70000];
+        todo.user = _lcUser;
+        todo.isCompleted = false;
+        todo.isHidden = false;
+        todo.status = TodoStatusNormal;
+        todo.syncVersion = 0;
+        todo.identifier = [[NSUUID UUID] UUIDString];
+        
+        int random = (int) (arc4random() % 2500000 - 5000000);
+        todo.localCreatedAt = [[NSDate date] dateByAddingTimeInterval:random];
+        todo.localUpdatedAt = [todo.localCreatedAt copy];
+        
+        [array addObject:todo];
+    }
+    
+    [LCTodo saveAll:[array copy]];
 }
 
 - (NSString *)sandboxUrl {
