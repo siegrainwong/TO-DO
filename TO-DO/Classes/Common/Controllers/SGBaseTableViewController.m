@@ -70,6 +70,11 @@
     if (!image) {
         __weak __typeof(self) weakSelf = self;
         [[SDWebImageManager sharedManager] downloadImageWithURL:[NSURL URLWithString:url] options:SDWebImageRefreshCached progress:nil completed:^(UIImage *image, NSError *error, SDImageCacheType cacheType, BOOL finished, NSURL *imageURL) {
+            if(error) {
+                [weakSelf shouldDisplayPlaceholder:[UIImage imageNamed:@"task_placeholder"] onCell:cell atIndexPath:indexPath];
+                return;
+            }
+            
             if (cacheType == SDImageCacheTypeMemory) [weakSelf shouldResetModelStateAtIndexPath:indexPath];
             [weakSelf shouldDisplayImage:image onCell:cell atIndexPath:indexPath];
             _imageDictionary[url] = image;
@@ -104,6 +109,9 @@
 }
 
 - (void)shouldDisplayImage:(UIImage *)image onCell:(UITableViewCell *)cell atIndexPath:(NSIndexPath *)indexPath {
+}
+
+- (void)shouldDisplayPlaceholder:(UIImage *)placeholder onCell:(UITableViewCell *)cell atIndexPath:(NSIndexPath *)indexPath {
 }
 
 - (void)shouldResetModelStateAtIndexPath:(NSIndexPath *)indexPath {

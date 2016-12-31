@@ -33,6 +33,9 @@
 /*加载完图片后调用*/
 - (void)shouldDisplayImage:(UIImage *)image onCell:(UITableViewCell *)cell atIndexPath:(NSIndexPath *)indexPath;
 
+/*加载图片失败后调用*/
+- (void)shouldDisplayPlaceholder:(UIImage *)placeholder onCell:(UITableViewCell *)cell atIndexPath:(NSIndexPath *)indexPath;
+
 /*当清空缓存后，MagicalRecord的瞬态字段还在内存中，要在这个方法中把模型中的图片字段给清空*/
 - (void)shouldResetModelStateAtIndexPath:(NSIndexPath *)indexPath;
 @end

@@ -233,6 +233,11 @@ TodoTableViewController () <UISearchBarDelegate, SGNavigationBar>
     }
 }
 
+- (void)shouldDisplayPlaceholder:(UIImage *)placeholder onCell:(UITableViewCell *)cell atIndexPath:(NSIndexPath *)indexPath {
+    CDTodo *model = (CDTodo *) [self modelAtIndexPath:indexPath];
+    model.photoImage = placeholder;
+}
+
 - (void)shouldResetModelStateAtIndexPath:(NSIndexPath *)indexPath {
     CDTodo *model = (CDTodo *) [self modelAtIndexPath:indexPath];
     
