@@ -407,6 +407,7 @@ static NSInteger const kMaximumSyncCountPerFetch = 100;
     if (error && error.code != 101) {  //101意思是没有这个表
         return [self.errorHandler returnWithError:error description:Localized(@"Sync error: failed to fetch tasks from server, please retry")];
     }
+    if (!array) array = @[];
     
     return array;
 }

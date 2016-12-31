@@ -23,8 +23,8 @@ static NSString * const kAmapKey = @"f387111b6ebe49a4a9c4477706a6c7e8";
 static NSString* const kQiniuDomain = @"http://o6yj5t1zc.bkt.clouddn.com/";
 
 /* LeanCloud */
-static NSString* const kLeanCloudAppID = @"vDDTixlKPFwrGS60fnprdslF-gzGzoHsz";
-static NSString* const kLeanCloudAppKey = @"dM0JeJT5w3a74pE1yQ9UcMJk";
+static NSString* const kLeanCloudAppID = @"DbN2mTGoaxedDtiXvnwgNMeA-gzGzoHsz";
+static NSString* const kLeanCloudAppKey = @"8aiYpob0b7KpW1xK5vDeYNXN";
 
 /* Privacy Policy URL */
 static NSString * const kPrivacyPolicyUrl = @"http://siegrain.wang/post/to-do-privacy-policy";

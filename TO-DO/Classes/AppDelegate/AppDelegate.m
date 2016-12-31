@@ -20,7 +20,6 @@
 #import <AMapFoundationKit/AMapFoundationKit.h>
 #import <UserNotifications/UserNotifications.h>
 
-
 // FIXME: SecPolicy对象上会发生莫名其妙的内存泄漏，不知道怎么解决，每次就漏那么一点，不管他。
 // FIXME: 在访问NSFileManager的时候，有时会出现error: can't allocate region，无法申请内存的Bug，但是用Leaks看了感觉没问题，而且模拟器上没有，真机虽然报错但是不崩溃，就先不管。
 
