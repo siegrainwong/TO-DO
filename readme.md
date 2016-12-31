@@ -10,9 +10,11 @@
 为了方便大家观察服务器的数据，分离服务器后会把测试账号公开，要是有什么情况请通知我，（当然万一发生了类似超额的情况我不一定会解决），另一方面会这样做的主要原因是自己搭建的话可能比较麻烦。
 
 ##项目演示
-谁能告诉我别人又高清又小的GIF图怎么做的？改天我找到方法后再来更新新的效果图。
+一共6张GIF，共9M，请耐心等待。
 
-![1](https://raw.githubusercontent.com/Seanwong933/TO-DO/master/Gif/Home.gif) ![2](https://raw.githubusercontent.com/Seanwong933/TO-DO/master/Gif/Calendar.gif)
+![1](https://raw.githubusercontent.com/Seanwong933/TO-DO/master/Gif/1.%20SignUp.gif) ![2](https://raw.githubusercontent.com/Seanwong933/TO-DO/master/Gif/2.%20Home.gif)
+![1](https://raw.githubusercontent.com/Seanwong933/TO-DO/master/Gif/3.%20Create.gif) ![2](https://raw.githubusercontent.com/Seanwong933/TO-DO/master/Gif/4.%20Calendar.gif)
+![1](https://raw.githubusercontent.com/Seanwong933/TO-DO/master/Gif/5.%20Profile.gif) ![2](https://raw.githubusercontent.com/Seanwong933/TO-DO/master/Gif/6.%20Setting.gif)
 
 ##自己搭建
 该项目一共接入了三个第三方服务，分别为七牛、LeanCloud 和高德地图，对应的key or secret各位请向服务商申请，然后在 `SGAPIKeys.h` 中进行配置。
@@ -28,6 +30,7 @@
 该同步思路来源于以下两篇回答，并根据项目需求总结而来。
 
 [服务端和各种客户端（手机端，平板端，web端）怎样进行数据同步？](https://www.zhihu.com/question/20754172)
+
 [Evernote 的同步方式是怎样的？](https://www.zhihu.com/question/20238731)
 
 ###同步方式
