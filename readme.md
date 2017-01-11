@@ -19,7 +19,7 @@
 >注：从2016年12月31日起，该项目中的所有的**第三方API Key**已经换成测试账号中的新秘钥，且之前的 API Key 都被**弃用**。
 
 ####LeanCloud 账号
-todotest
+siegrain@qq.com
 
 Abcd123!@#
 
